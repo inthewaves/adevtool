@@ -24,8 +24,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.vendor.camera.extensions.service=com.google.android.apps.camera.services.extensions.service.PixelExtensions
 
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.build.expect.baseband=g5123b-145971-250103-B-12866815 \
-    ro.build.expect.bootloader=bluejay-15.3-13239612 \
+    ro.build.expect.baseband=g5123b-145971-250328-b-13284995 \
+    ro.build.expect.bootloader=bluejay-16.2-13291547 \
     ro.vendor.build.svn=78 \
     ro.surface_flinger.game_default_frame_rate_override=60 \
     drm.service.enabled=true \

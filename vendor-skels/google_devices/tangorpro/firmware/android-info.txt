@@ -1,4 +1,5 @@
 require board=tangorpro
 
-require version-bootloader=tangorpro-15.2-13237001
+require version-bootloader=tangorpro-16.0-13291549
+require version-baseband=
 require partition-exists=vendor_kernel_boot

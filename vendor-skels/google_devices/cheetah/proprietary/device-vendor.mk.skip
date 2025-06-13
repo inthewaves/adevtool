@@ -25,8 +25,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.vendor.camera.extensions.service=com.google.android.apps.camera.services.extensions.service.PixelExtensions
 
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.build.expect.baseband=g5300q-241205-250127-B-12973597 \
-    ro.build.expect.bootloader=cloudripper-15.2-13237001 \
+    ro.build.expect.baseband=g5300q-250320-250425-B-13407682 \
+    ro.build.expect.bootloader=cloudripper-16.0-13291549 \
     dalvik.vm.isa.arm.variant=cortex-a53 \
     dalvik.vm.isa.arm.features=default \
     ro.vendor.build.svn=75 \

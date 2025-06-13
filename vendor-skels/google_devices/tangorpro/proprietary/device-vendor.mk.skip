@@ -30,7 +30,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
     enable_one_pane_in_embedded_activity=true
 
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.build.expect.bootloader=tangorpro-15.2-13237001 \
+    ro.build.expect.bootloader=tangorpro-16.0-13291549 \
     dalvik.vm.isa.arm.variant=cortex-a53 \
     dalvik.vm.isa.arm.features=default \
     ro.surface_flinger.game_default_frame_rate_override=60 \
