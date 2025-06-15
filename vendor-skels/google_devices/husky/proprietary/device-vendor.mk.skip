@@ -25,7 +25,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.vendor.camera.extensions.service=com.google.android.apps.camera.services.extensions.service.PixelExtensions
 
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.build.expect.baseband=g5300i-250320-250425-b-13407682 \
+    ro.build.expect.baseband=g5300i-250320-250425-B-13407682 \
     ro.build.expect.bootloader=ripcurrent-16.2-13291556 \
     ro.vendor.build.svn=52 \
     ro.surface_flinger.game_default_frame_rate_override=60 \
