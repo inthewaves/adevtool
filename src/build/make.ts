@@ -4,6 +4,8 @@ import { PartitionProps } from '../blobs/props'
 import { DeviceConfig } from '../config/device'
 import { SelinuxPartResolutions } from '../selinux/contexts'
 import { MAKEFILE_HEADER } from '../util/headers'
+import { android16filesforpixels } from './hardcoded-files-config'
+import * as fs from 'fs/promises'
 
 const CONT_SEPARATOR = ' \\\n    '
 
@@ -91,8 +93,14 @@ function partPathToMakePath(partition: string, subpath: string) {
   return `$(${copyPart})/${subpath}`
 }
 
-export function blobToFileCopy(entry: BlobEntry, proprietaryDir: string) {
+// Quick hack to just copy files from a defined dir in the ANDROID16_OVERRIDE_DIR env var to the output folder
+export function blobToFileCopy(entry: BlobEntry, proprietaryDir: string, device: string) {
   let destPath = partPathToMakePath(entry.partition, entry.path)
+  if (android16filesforpixels[device].includes(entry.srcPath)) {
+    let overridePath = process.env.ANDROID16_OVERRIDE_DIR + "/" + entry.srcPath;
+    let endPath = proprietaryDir + "/" + entry.srcPath;
+    fs.copyFile(overridePath, endPath);
+  }
   return `${proprietaryDir}/${entry.srcPath}:${destPath}`
 }
 

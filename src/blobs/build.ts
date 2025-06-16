@@ -28,6 +28,7 @@ import {
 import { DeviceConfig } from '../config/device'
 import { Partition } from '../util/partitions'
 import { BlobEntry, blobNeedsSoong } from './entry'
+import { spawnAsyncNoOut } from '../util/process'
 
 export interface BuildFiles {
   rootBlueprint?: SoongBlueprint
@@ -146,7 +147,11 @@ export async function generateBuild(
     // Other files -> Kati Makefile
 
     // Simple PRODUCT_COPY_FILES line
-    copyFiles.push(blobToFileCopy(entry, dirs.proprietary))
+
+    // Quick hack to workaround file permission issues
+    await spawnAsyncNoOut('chmod', ['--recursive', 'u+w', dirs.proprietary]);
+
+    copyFiles.push(blobToFileCopy(entry, dirs.proprietary, device))
   }
 
   let buildPackages = Array.from(namedModules.keys())
