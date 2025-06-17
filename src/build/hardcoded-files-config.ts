@@ -40,8 +40,18 @@ export const android16filesforpixels: Record<string, string[]> = {
     "panther": [
     ],
     "bluejay": [
+        'vendor/firmware/brcm/BCM.hcd', // Bluetooth firmware
+        'vendor/firmware/brcm/BTFW_B.hcd', // Bluetooth firmware
+        'vendor/firmware/fw_bcmdhd.bin', // WiFi firmware
+        'vendor/firmware/fw_bcmdhd.map', // WiFi firmware
+        'vendor/firmware/google/edgetpu-abrolhos.fw', // TPU firmware
     ],
     "raven": [
+        'vendor/firmware/brcm/BCM.hcd', // Bluetooth firmware
+        'vendor/firmware/brcm/BTFW_B.hcd', // Bluetooth firmware
+        'vendor/firmware/fw_bcmdhd.bin', // WiFi firmware
+        'vendor/firmware/fw_bcmdhd.map', // WiFi firmware
+        'vendor/firmware/google/edgetpu-abrolhos.fw', // TPU firmware
     ],
     "oriole": [
         'vendor/firmware/brcm/BCM.hcd', // Bluetooth firmware
