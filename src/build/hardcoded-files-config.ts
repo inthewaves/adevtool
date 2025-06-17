@@ -1,13 +1,55 @@
 export const android16filesforpixels: Record<string, string[]> = {
     "tegu": [
+        'vendor/firmware/brcm/BCM.hcd', // Bluetooth firmware
+        'vendor/firmware/brcm/BTFW_B.hcd', // Bluetooth firmware
+        'vendor/firmware/fw_bcmdhd.bin', // WiFi firmware
+        'vendor/firmware/fw_bcmdhd.bin_4383_a3', // WiFi firmware
+        'vendor/firmware/fw_bcmdhd.map', // WiFi firmware
+        'vendor/firmware/fw_bcmdhd.map_4383_a3', // WiFi firmware
+        'vendor/firmware/google/edgetpu-rio.fw', // TPU
+        'vendor/firmware/google/gxp-callisto.fw', // TPU
+        'vendor/firmware/gxp_callisto_fw_core0', // TPU
+        'vendor/firmware/gxp_callisto_fw_core1', // TPU
+        'vendor/firmware/gxp_callisto_fw_core2', // TPU
     ],
     "comet": [
+        'vendor/firmware/brcm/BCM_200.hcd', // Bluetooth firmware
+        'vendor/firmware/fw_bcmdhd.bin_4390_b1', // WiFi firmware
+        'vendor/firmware/fw_bcmdhd.map_4390_b1', // WiFi firmware
+        'vendor/firmware/google/edgetpu-rio.fw', // TPU
+        'vendor/firmware/google/gxp-callisto.fw', // TPU
+        'vendor/firmware/gxp_callisto_fw_core0', // TPU
+        'vendor/firmware/gxp_callisto_fw_core1', // TPU
+        'vendor/firmware/gxp_callisto_fw_core2', // TPU
     ],
     "komodo": [
+        'vendor/firmware/brcm/BCM_200.hcd', // Bluetooth firmware
+        'vendor/firmware/fw_bcmdhd.bin_4390_b1', // WiFi firmware
+        'vendor/firmware/fw_bcmdhd.map_4390_b1', // WiFi firmware
+        'vendor/firmware/google/edgetpu-rio.fw', // TPU
+        'vendor/firmware/google/gxp-callisto.fw', // TPU
+        'vendor/firmware/gxp_callisto_fw_core0', // TPU
+        'vendor/firmware/gxp_callisto_fw_core1', // TPU
+        'vendor/firmware/gxp_callisto_fw_core2', // TPU
     ],
     "caiman": [
+        'vendor/firmware/brcm/BCM_200.hcd', // Bluetooth firmware
+        'vendor/firmware/fw_bcmdhd.bin_4390_b1', // WiFi firmware
+        'vendor/firmware/fw_bcmdhd.map_4390_b1', // WiFi firmware
+        'vendor/firmware/google/gxp-callisto.fw', // TPU
+        'vendor/firmware/gxp_callisto_fw_core0', // TPU
+        'vendor/firmware/gxp_callisto_fw_core1', // TPU
+        'vendor/firmware/gxp_callisto_fw_core2', // TPU
     ],
     "tokay": [
+        'vendor/firmware/brcm/BCM_200.hcd', // Bluetooth firmware
+        'vendor/firmware/fw_bcmdhd.bin_4390_b1', // WiFi firmware
+        'vendor/firmware/fw_bcmdhd.map_4390_b1', // WiFi firmware
+        'vendor/firmware/google/edgetpu-rio.fw', // TPU
+        'vendor/firmware/google/gxp-callisto.fw', // TPU
+        'vendor/firmware/gxp_callisto_fw_core0', // TPU
+        'vendor/firmware/gxp_callisto_fw_core1', // TPU
+        'vendor/firmware/gxp_callisto_fw_core2', // TPU
     ],
     "akita": [
         'vendor/firmware/bcmdhd_clm.blob_4383_a', // WiFi firmware
@@ -26,14 +68,53 @@ export const android16filesforpixels: Record<string, string[]> = {
         'vendor/firmware/gxp_callisto_fw_core2', // TPU
     ],
     "husky": [
+        'vendor/firmware/brcm/BCM.hcd', // Bluetooth firmware
+        'vendor/firmware/brcm/BTFW_B.hcd', // Bluetooth firmware
+        'vendor/firmware/fw_bcmdhd.bin_4398_d0', // WiFi firmware
+        'vendor/firmware/fw_bcmdhd.map_4398_d0', // WiFi firmware
+        'vendor/firmware/google/edgetpu-rio.fw', // TPU
+        'vendor/firmware/google/gxp-callisto.fw', // TPU
+        'vendor/firmware/gxp_callisto_fw_core0', // TPU
+        'vendor/firmware/gxp_callisto_fw_core1', // TPU
+        'vendor/firmware/gxp_callisto_fw_core2', // TPU
     ],
     "shiba": [
+        'vendor/firmware/brcm/BCM.hcd', // Bluetooth firmware
+        'vendor/firmware/brcm/BTFW_B.hcd', // Bluetooth firmware
+        'vendor/firmware/fw_bcmdhd.bin_4398_d0', // WiFi firmware
+        'vendor/firmware/fw_bcmdhd.map_4398_d0', // WiFi firmware
+        'vendor/firmware/google/edgetpu-rio.fw', // TPU
+        'vendor/firmware/google/gxp-callisto.fw', // TPU
+        'vendor/firmware/gxp_callisto_fw_core0', // TPU
+        'vendor/firmware/gxp_callisto_fw_core1', // TPU
+        'vendor/firmware/gxp_callisto_fw_core2', // TPU
     ],
     "felix": [
+        'vendor/firmware/brcm/BCM.hcd', // Bluetooth firmware
+        'vendor/firmware/brcm/BTFW_D.hcd', // Bluetooth firmware // TODO: _Only_ on 16
+        'vendor/firmware/fw_bcmdhd.bin', // WiFi firmware
+        'vendor/firmware/fw_bcmdhd.map', // WiFi firmware
+        'vendor/firmware/google/edgetpu-janeiro.fw', // TPU firmware
+        'vendor/firmware/gxp_fw_core0', // TPU firmware
+        'vendor/firmware/gxp_fw_core1', // TPU firmware
+        'vendor/firmware/gxp_fw_core2', // TPU firmware
+        'vendor/firmware/gxp_fw_core3', // TPU firmware
     ],
-    "tangorpro": [
+    "tangorpro": [ // TODO: No obvious Bluetooth in the diff. Confirm?
+        'vendor/firmware/fw_bcmdhd.bin', // WiFi firmware
+        'vendor/firmware/fw_bcmdhd.map', // WiFi firmware
+        'vendor/firmware/google/edgetpu-janeiro.fw', // TPU firmware
+        'vendor/firmware/gxp_fw_core0', // TPU firmware
+        'vendor/firmware/gxp_fw_core1', // TPU firmware
+        'vendor/firmware/gxp_fw_core2', // TPU firmware
+        'vendor/firmware/gxp_fw_core3', // TPU firmware
     ],
-    "lynx": [
+    "lynx": [ // TODO: No obvious Wifi, Bluetooth in the diff. Confirm?
+        'vendor/firmware/google/edgetpu-janeiro.fw', // TPU firmware
+        'vendor/firmware/gxp_fw_core0', // TPU firmware
+        'vendor/firmware/gxp_fw_core1', // TPU firmware
+        'vendor/firmware/gxp_fw_core2', // TPU firmware
+        'vendor/firmware/gxp_fw_core3', // TPU firmware
     ],
     "cheetah": [
         'vendor/firmware/brcm/BCM.hcd', // Bluetooth firmware
