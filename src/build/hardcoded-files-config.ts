@@ -48,6 +48,16 @@ export const android16filesforpixels: Record<string, string[]> = {
         'vendor/firmware/gxp_fw_core3', // TPU firmware?
     ],
     "panther": [
+        'vendor/firmware/brcm/BCM.hcd', // Bluetooth firmware
+        'vendor/firmware/brcm/BTFW_B.hcd', // Bluetooth firmware
+        'vendor/firmware/brcm/BTFW_D.hcd', // Bluetooth firmware // TODO: _Only_ on 16
+        'vendor/firmware/fw_bcmdhd.bin', // WiFi firmware
+        'vendor/firmware/fw_bcmdhd.map', // WiFi firmware
+        'vendor/firmware/google/edgetpu-janeiro.fw', // TPU firmware
+        'vendor/firmware/gxp_fw_core0', // TPU firmware?
+        'vendor/firmware/gxp_fw_core1', // TPU firmware?
+        'vendor/firmware/gxp_fw_core2', // TPU firmware?
+        'vendor/firmware/gxp_fw_core3', // TPU firmware?
     ],
     "bluejay": [
         'vendor/firmware/brcm/BCM.hcd', // Bluetooth firmware
