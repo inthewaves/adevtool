@@ -19,6 +19,7 @@ import { ALL_SYS_PARTITIONS } from '../util/partitions'
 import { run, spawnAsyncNoOut } from '../util/process'
 import { isSparseImage } from '../util/sparse'
 import { listZipFiles } from '../util/zip'
+import { android16filesforpixels } from '../build/hardcoded-files-config'
 
 export const WRAPPED_SOURCE_FLAGS = {
   stockSrc: Flags.string({
@@ -306,7 +307,7 @@ export async function prepareDeviceImages(
   devices: DeviceConfig[],
   // if not specified, current build ID is used for each device
   maybeBuildIds?: string[],
-  maybeBuildIdForAndroid16Backport?: string,
+  maybeBuildIdForAndroid16Backport?: boolean,
 ) {
   let allImages: DeviceImage[] = []
 
@@ -316,9 +317,8 @@ export async function prepareDeviceImages(
     for (let type of types) {
       let buildIds = maybeBuildIds ?? [deviceConfig.device.build_id]
 
-      // TODO: Somehow get Android 16 image
       if (maybeBuildIdForAndroid16Backport) {
-        buildIds.push(maybeBuildIdForAndroid16Backport);
+        buildIds.push(android16filesforpixels[deviceConfig.device.name].sourceBuildId);
       }
 
       for (let buildIdSpec of buildIds) {

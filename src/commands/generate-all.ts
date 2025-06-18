@@ -7,7 +7,7 @@ import path from 'path'
 import { createVendorDirs, VendorDirectories } from '../blobs/build'
 import { copyBlobs } from '../blobs/copy'
 import { BlobEntry } from '../blobs/entry'
-import { DEVICE_CONFIG_FLAGS, DeviceBuildId, DeviceConfig, getDeviceBuildId, loadDeviceConfigs } from '../config/device'
+import { DEVICE_CONFIG_FLAGS, DeviceBuildId, DeviceConfig, getDeviceBuildId, loadDeviceConfigs, makeDeviceBuildId } from '../config/device'
 import {
   CARRIER_SETTINGS_DIR,
   CARRIER_SETTINGS_FACTORY_PATH,
@@ -66,8 +66,11 @@ const doDevice = (
   factoryPath: string | undefined,
   skipCopy: boolean,
   useTemp: boolean,
+  backportSourceDevicePath?: string | undefined
 ) =>
   withTempDir(async tmp => {
+    backportSourceDevicePath = process.env.ANDROID16_OVERRIDE_DIR ?? backportSourceDevicePath
+
     // Prepare stock system source
     let wrapBuildId = buildId == undefined ? null : buildId
     let wrapped = await withSpinner('Extracting stock system source', spinner =>
@@ -118,9 +121,13 @@ const doDevice = (
     await withSpinner('Marking Android 16 backport files for replacement', async spinner => {
       let replaceFiles = new Set(android16filesforpixels[config.device.name].replaceFiles)
       if (replaceFiles.size > 0) {
+        if (!backportSourceDevicePath) {
+          throw new Error(`missing backportSourceDevice for ${config.device.name}`);
+        }
+
         for (let entry of entries) {
           if (replaceFiles.delete(entry.srcPath)) {
-            entry.diskSrcPath = process.env.ANDROID16_OVERRIDE_DIR + '/' + entry.srcPath
+            entry.diskSrcPath = backportSourceDevicePath + '/' + entry.srcPath
             if (!(await exists(entry.diskSrcPath))) {
               throw new Error(`Path ${entry.diskSrcPath} doesn't exist`)
             }
@@ -129,18 +136,17 @@ const doDevice = (
         }
 
         if (replaceFiles.size > 0) {
-          throw new Error(`Unhandled backport files: ${JSON.stringify(replaceFiles)}`)
+          throw new Error(`These files didn't exist so they couldn't be replaced: ${JSON.stringify(Array.from(replaceFiles))}`)
         }
       }
     });
 
     let newFiles = android16filesforpixels[config.device.name].newFiles
     if (newFiles && newFiles.length > 0) {
-      if (!process.env.ANDROID16_OVERRIDE_DIR) {
-        // TODO: Download, unpack, and read from Android 16 factory image?
-        // Would need to update build index maybe
-        throw new Error(`Need to set ANDROID16_OVERRIDE_DIR to dir of unpacked Android 16 factory image for ${config.device.name}`);
+      if (!backportSourceDevicePath) {
+        throw new Error(`missing backportSourceDevice for ${config.device.name}`);
       }
+      let currentEntriesSrcPaths = new Set(entries.map(e => e.srcPath));
       await withSpinner('Adding new files for Android 16 backports', async spinner => {
         let backportedEntries = new Map<string, BlobEntry>()
 
@@ -160,11 +166,15 @@ const doDevice = (
           null, 
           backportedEntries, 
           null, 
-          process.env.ANDROID16_OVERRIDE_DIR as string
+          backportSourceDevicePath
         )
 
         for (let backportedEntry of backportedEntries.values()) {
-          backportedEntry.diskSrcPath = process.env.ANDROID16_OVERRIDE_DIR + '/' + backportedEntry.srcPath
+          if (currentEntriesSrcPaths.has(backportedEntry.srcPath)) {
+            throw new Error(`Path ${backportedEntry.diskSrcPath} already in current image!`);
+          }
+
+          backportedEntry.diskSrcPath = backportSourceDevicePath + '/' + backportedEntry.srcPath
           // should exist from enumerateFiles, but just a sanity check
           if (!(await exists(backportedEntry.diskSrcPath))) {
             throw new Error(`Path ${backportedEntry.diskSrcPath} doesn't exist`);
@@ -308,7 +318,7 @@ export default class GenerateFull extends Command {
 
     if (useImagesFromConfig) {
       let index: BuildIndex = await loadBuildIndex()
-      images = await prepareDeviceImages(index, [ImageType.Factory], devices)
+      images = await prepareDeviceImages(index, [ImageType.Factory], devices, undefined, true)
       assert(flags.buildId === undefined)
       assert(flags.factoryPath === undefined)
       assert(!flags.useTemp)
@@ -321,10 +331,13 @@ export default class GenerateFull extends Command {
         let deviceBuildId: string | undefined
         let stockSrc: string
         let factoryPath: string | undefined
+        let backportSourceDevicePath: string | undefined
         if (useImagesFromConfig) {
           let deviceImages = images.get(getDeviceBuildId(config))!
           stockSrc = deviceImages.unpackedFactoryImageDir
           factoryPath = deviceImages.factoryImage.getPath()
+          let backportDeviceId = android16filesforpixels[config.device.name].sourceBuildId
+          backportSourceDevicePath = images.get(makeDeviceBuildId(config.device.name, backportDeviceId))?.unpackedFactoryImageDir
         } else {
           stockSrc = flags.stockSrc!
           factoryPath = flags.factoryPath
@@ -344,6 +357,7 @@ export default class GenerateFull extends Command {
           factoryPath,
           flags.skipCopy,
           flags.useTemp,
+          backportSourceDevicePath,
         )
 
         if (!flags.doNotReplaceCarrierSettings) {
