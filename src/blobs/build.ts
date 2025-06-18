@@ -80,6 +80,8 @@ export async function generateBuild(
   let conflictModules = new Map<string, SoongModule[]>()
   let conflictCounters = new Map<string, number>()
 
+  let permissionIssueHackDone = false;
+
   entryLoop: for (let entry of entries) {
     let ext = path.extname(entry.path)
     let pathParts = entry.path.split('/')
@@ -136,7 +138,13 @@ export async function generateBuild(
         resolvedName += `__${conflictNum}`
       }
 
-      let module = blobToSoongModule(resolvedName, ext, vendor, entry, entrySrcPaths)
+      // Quick hack to workaround file permission issues
+      if (!permissionIssueHackDone) {
+        permissionIssueHackDone = true;
+        await spawnAsyncNoOut('chmod', ['--recursive', 'u+w', dirs.proprietary]);
+      }
+
+      let module = blobToSoongModule(resolvedName, ext, vendor, entry, entrySrcPaths, device, dirs.proprietary)
       namedModules.set(resolvedName, module)
 
       // Save all conflicting modules for conflict resolution
@@ -149,7 +157,10 @@ export async function generateBuild(
     // Simple PRODUCT_COPY_FILES line
 
     // Quick hack to workaround file permission issues
-    await spawnAsyncNoOut('chmod', ['--recursive', 'u+w', dirs.proprietary]);
+    if (!permissionIssueHackDone) {
+      permissionIssueHackDone = true;
+      await spawnAsyncNoOut('chmod', ['--recursive', 'u+w', dirs.proprietary]);
+    }
 
     copyFiles.push(blobToFileCopy(entry, dirs.proprietary, device))
   }

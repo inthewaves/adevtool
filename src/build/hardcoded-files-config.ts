@@ -127,6 +127,16 @@ export const android16filesforpixels: Record<string, string[]> = {
         'vendor/firmware/gxp_fw_core1', // TPU firmware?
         'vendor/firmware/gxp_fw_core2', // TPU firmware?
         'vendor/firmware/gxp_fw_core3', // TPU firmware?
+        'vendor/bin/hw/rild_exynos',
+        'vendor/lib64/libril_sitril.so',
+        'vendor/lib64/libril_gfeature.so', 
+        'vendor/lib64/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so',
+        'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so',
+        'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.1.so',
+        'system_ext/priv-app/OemRilService/OemRilService.apk', 
+        'system_ext/app/OemRilHookService/OemRilHookService.apk', 
+        'system_ext/framework/google-ril.jar', 
+        'system_ext/framework/oemrilhook.jar',
     ],
     "panther": [
         'vendor/firmware/brcm/BCM.hcd', // Bluetooth firmware

@@ -2,6 +2,8 @@ import util from 'util'
 
 import { BlobEntry, partPathToSrcPath } from '../blobs/entry'
 import { SOONG_HEADER } from '../util/headers'
+import { android16filesforpixels } from './hardcoded-files-config'
+import * as fs from 'fs/promises'
 
 export const SPECIAL_FILE_EXTENSIONS = new Set(['.so', '.apk', '.jar', '.xml', '.apex'])
 
@@ -139,6 +141,8 @@ export function blobToSoongModule(
   vendor: string,
   entry: BlobEntry,
   entrySrcPaths: Set<string>,
+  device: string,
+  proprietaryDir: string,
 ) {
   let pathParts = entry.path.split('/')
 
@@ -285,6 +289,12 @@ export function blobToSoongModule(
     }
   } else {
     throw new Error(`File ${entry.srcPath} has unknown extension ${ext}`)
+  }
+
+  if (android16filesforpixels[device].includes(entry.srcPath)) {
+      let overridePath = process.env.ANDROID16_OVERRIDE_DIR + "/" + entry.srcPath;
+      let endPath = proprietaryDir + "/" + entry.srcPath;
+      fs.copyFile(overridePath, endPath);
   }
 
   return {
