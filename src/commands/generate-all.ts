@@ -53,6 +53,8 @@ import {
   getCarrierSettingsUpdatesDir,
   getVersionsMap,
 } from '../blobs/carrier'
+import { Filters } from '../config/filters'
+import { android16filesforpixels } from '../build/hardcoded-files-config'
 
 const doDevice = (
   dirs: VendorDirectories,
@@ -110,6 +112,67 @@ const doDevice = (
       entries = await withSpinner('Flattening APEX modules', spinner =>
         flattenApexs(spinner, entries, dirs, tmp, stockSrc),
       )
+    }
+
+    // Android 16 backports
+    await withSpinner('Marking Android 16 backport files for replacement', async spinner => {
+      let replaceFiles = new Set(android16filesforpixels[config.device.name].replaceFiles)
+      if (replaceFiles.size > 0) {
+        for (let entry of entries) {
+          if (replaceFiles.delete(entry.srcPath)) {
+            entry.diskSrcPath = process.env.ANDROID16_OVERRIDE_DIR + '/' + entry.srcPath
+            if (!(await exists(entry.diskSrcPath))) {
+              throw new Error(`Path ${entry.diskSrcPath} doesn't exist`)
+            }
+            spinner.text = entry.srcPath
+          } 
+        }
+
+        if (replaceFiles.size > 0) {
+          throw new Error(`Unhandled backport files: ${JSON.stringify(replaceFiles)}`)
+        }
+      }
+    });
+
+    let newFiles = android16filesforpixels[config.device.name].newFiles
+    if (newFiles && newFiles.length > 0) {
+      if (!process.env.ANDROID16_OVERRIDE_DIR) {
+        // TODO: Download, unpack, and read from Android 16 factory image?
+        // Would need to update build index maybe
+        throw new Error(`Need to set ANDROID16_OVERRIDE_DIR to dir of unpacked Android 16 factory image for ${config.device.name}`);
+      }
+      await withSpinner('Adding new files for Android 16 backports', async spinner => {
+        let backportedEntries = new Map<string, BlobEntry>()
+
+        // Only get the files we want to backport
+        let backportFilter: Filters = {
+          include: true,
+          match: new Set(newFiles),
+          prefix: [],
+          suffix: [],
+          substring: [],
+          regex: []
+        }
+
+        await enumerateFiles(
+          spinner, 
+          backportFilter, 
+          null, 
+          backportedEntries, 
+          null, 
+          process.env.ANDROID16_OVERRIDE_DIR as string
+        )
+
+        for (let backportedEntry of backportedEntries.values()) {
+          backportedEntry.diskSrcPath = process.env.ANDROID16_OVERRIDE_DIR + '/' + backportedEntry.srcPath
+          // should exist from enumerateFiles, but just a sanity check
+          if (!(await exists(backportedEntry.diskSrcPath))) {
+            throw new Error(`Path ${backportedEntry.diskSrcPath} doesn't exist`);
+          }
+          spinner.text = backportedEntry.srcPath
+          entries.push(backportedEntry)
+        }
+      });
     }
 
     // 5. Extract

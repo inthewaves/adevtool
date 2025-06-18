@@ -306,6 +306,7 @@ export async function prepareDeviceImages(
   devices: DeviceConfig[],
   // if not specified, current build ID is used for each device
   maybeBuildIds?: string[],
+  maybeBuildIdForAndroid16Backport?: string,
 ) {
   let allImages: DeviceImage[] = []
 
@@ -314,6 +315,11 @@ export async function prepareDeviceImages(
   for (let deviceConfig of devices) {
     for (let type of types) {
       let buildIds = maybeBuildIds ?? [deviceConfig.device.build_id]
+
+      // TODO: Somehow get Android 16 image
+      if (maybeBuildIdForAndroid16Backport) {
+        buildIds.push(maybeBuildIdForAndroid16Backport);
+      }
 
       for (let buildIdSpec of buildIds) {
         let buildId = resolveBuildId(buildIdSpec, deviceConfig)

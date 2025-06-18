@@ -55,6 +55,8 @@ const doDevice = (
     // After this point, we only need entry objects
     let entries = Array.from(namedEntries.values())
 
+    // No Android 16 backports for reference AOSP build(?)
+
     // 2. Extract
     // Copy blobs (this has its own spinner)
     if (config.generate.files && !skipCopy) {
