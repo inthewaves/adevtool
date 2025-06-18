@@ -22,7 +22,28 @@ export const android16filesforpixels: Record<string, BackportConfig> = {
             'vendor/firmware/gxp_callisto_fw_core0', // TPU
             'vendor/firmware/gxp_callisto_fw_core1', // TPU
             'vendor/firmware/gxp_callisto_fw_core2', // TPU
-        ]
+
+            'system_ext/priv-app/ril-extension/ril-extension.apk',
+            'vendor/bin/hw/rild_exynos',
+            'vendor/lib64/libgooglerilaudio.so', // used by rild_exynos; requires vendor.google.whitechapel.audio.extension-V5-ndk.so
+            'vendor/lib64/libgooglerilmemmonitor.so', // used by rild_exynos
+            'vendor/lib64/libgril_oem-google.so',
+            'vendor/lib64/libril-aidl.so', // used by rild_exynos
+            'vendor/lib64/libril_gfeature.so', // used by rild_exynos
+            'vendor/lib64/libril_sitril.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.oemservice-V1-ndk.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal-V1-ndk.so', // used by rild_exynos
+            'system_ext/priv-app/OemRilService/OemRilService.apk',
+            'system_ext/app/OemRilHookService/OemRilHookService.apk',
+            'system_ext/framework/google-ril.jar',
+            'system_ext/framework/oemrilhook.jar',
+            'system_ext/priv-app/ShannonIms/ShannonIms.apk',
+            'system_ext/priv-app/ShannonRcs/ShannonRcs.apk',
+        ],
+        newFiles: [
+            'vendor/lib64/vendor.google.whitechapel.audio.extension-V5-ndk.so',
+        ],
     },
     "comet": {
         sourceBuildId: "BP2A.250605.031.A3",
@@ -35,7 +56,28 @@ export const android16filesforpixels: Record<string, BackportConfig> = {
             'vendor/firmware/gxp_callisto_fw_core0', // TPU
             'vendor/firmware/gxp_callisto_fw_core1', // TPU
             'vendor/firmware/gxp_callisto_fw_core2', // TPU
-        ]
+
+            'system_ext/priv-app/ril-extension/ril-extension.apk',
+            'vendor/bin/hw/rild_exynos',
+            'vendor/lib64/libgooglerilaudio.so', // used by rild_exynos; requires vendor.google.whitechapel.audio.extension-V5-ndk.so
+            'vendor/lib64/libgooglerilmemmonitor.so', // used by rild_exynos
+            'vendor/lib64/libgril_oem-google.so',
+            'vendor/lib64/libril-aidl.so', // used by rild_exynos
+            'vendor/lib64/libril_gfeature.so', // used by rild_exynos
+            'vendor/lib64/libril_sitril.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.1.so', // used by rild_exynos
+            'system_ext/priv-app/OemRilService/OemRilService.apk',
+            'system_ext/app/OemRilHookService/OemRilHookService.apk',
+            'system_ext/framework/google-ril.jar',
+            'system_ext/framework/oemrilhook.jar',
+            'system_ext/priv-app/ShannonIms/ShannonIms.apk',
+            'system_ext/priv-app/ShannonRcs/ShannonRcs.apk',
+        ],
+        newFiles: [
+            'vendor/lib64/vendor.google.whitechapel.audio.extension-V5-ndk.so',
+        ],
     },
     "komodo": {
         sourceBuildId: "BP2A.250605.031.A2",
@@ -48,7 +90,28 @@ export const android16filesforpixels: Record<string, BackportConfig> = {
             'vendor/firmware/gxp_callisto_fw_core0', // TPU
             'vendor/firmware/gxp_callisto_fw_core1', // TPU
             'vendor/firmware/gxp_callisto_fw_core2', // TPU
-        ]
+
+            'system_ext/priv-app/ril-extension/ril-extension.apk',
+            'vendor/bin/hw/rild_exynos',
+            'vendor/lib64/libgooglerilaudio.so', // used by rild_exynos; requires vendor.google.whitechapel.audio.extension-V5-ndk.so
+            'vendor/lib64/libgooglerilmemmonitor.so', // used by rild_exynos
+            'vendor/lib64/libgril_oem-google.so',
+            'vendor/lib64/libril-aidl.so', // used by rild_exynos
+            'vendor/lib64/libril_gfeature.so', // used by rild_exynos
+            'vendor/lib64/libril_sitril.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.1.so', // used by rild_exynos
+            'system_ext/priv-app/OemRilService/OemRilService.apk',
+            'system_ext/app/OemRilHookService/OemRilHookService.apk',
+            'system_ext/framework/google-ril.jar',
+            'system_ext/framework/oemrilhook.jar',
+            'system_ext/priv-app/ShannonIms/ShannonIms.apk',
+            'system_ext/priv-app/ShannonRcs/ShannonRcs.apk',
+        ],
+        newFiles: [
+            'vendor/lib64/vendor.google.whitechapel.audio.extension-V5-ndk.so',
+        ],
     },
     "caiman": {
         sourceBuildId: "BP2A.250605.031.A2",
@@ -60,7 +123,28 @@ export const android16filesforpixels: Record<string, BackportConfig> = {
             'vendor/firmware/gxp_callisto_fw_core0', // TPU
             'vendor/firmware/gxp_callisto_fw_core1', // TPU
             'vendor/firmware/gxp_callisto_fw_core2', // TPU
-        ]
+
+            'system_ext/priv-app/ril-extension/ril-extension.apk',
+            'vendor/bin/hw/rild_exynos',
+            'vendor/lib64/libgooglerilaudio.so', // used by rild_exynos; requires vendor.google.whitechapel.audio.extension-V5-ndk.so
+            'vendor/lib64/libgooglerilmemmonitor.so', // used by rild_exynos
+            'vendor/lib64/libgril_oem-google.so',
+            'vendor/lib64/libril-aidl.so', // used by rild_exynos
+            'vendor/lib64/libril_gfeature.so', // used by rild_exynos
+            'vendor/lib64/libril_sitril.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.1.so', // used by rild_exynos
+            'system_ext/priv-app/OemRilService/OemRilService.apk',
+            'system_ext/app/OemRilHookService/OemRilHookService.apk',
+            'system_ext/framework/google-ril.jar',
+            'system_ext/framework/oemrilhook.jar',
+            'system_ext/priv-app/ShannonIms/ShannonIms.apk',
+            'system_ext/priv-app/ShannonRcs/ShannonRcs.apk',
+        ],
+        newFiles: [
+            'vendor/lib64/vendor.google.whitechapel.audio.extension-V5-ndk.so',
+        ],
     },
     "tokay": {
         sourceBuildId: "BP2A.250605.031.A2",
@@ -73,14 +157,35 @@ export const android16filesforpixels: Record<string, BackportConfig> = {
             'vendor/firmware/gxp_callisto_fw_core0', // TPU
             'vendor/firmware/gxp_callisto_fw_core1', // TPU
             'vendor/firmware/gxp_callisto_fw_core2', // TPU
-        ]
+
+            'system_ext/priv-app/ril-extension/ril-extension.apk',
+            'vendor/bin/hw/rild_exynos',
+            'vendor/lib64/libgooglerilaudio.so', // used by rild_exynos; requires vendor.google.whitechapel.audio.extension-V5-ndk.so
+            'vendor/lib64/libgooglerilmemmonitor.so', // used by rild_exynos
+            'vendor/lib64/libgril_oem-google.so',
+            'vendor/lib64/libril-aidl.so', // used by rild_exynos
+            'vendor/lib64/libril_gfeature.so', // used by rild_exynos
+            'vendor/lib64/libril_sitril.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.1.so', // used by rild_exynos
+            'system_ext/priv-app/OemRilService/OemRilService.apk',
+            'system_ext/app/OemRilHookService/OemRilHookService.apk',
+            'system_ext/framework/google-ril.jar',
+            'system_ext/framework/oemrilhook.jar',
+            'system_ext/priv-app/ShannonIms/ShannonIms.apk',
+            'system_ext/priv-app/ShannonRcs/ShannonRcs.apk',
+        ],
+        newFiles: [
+            'vendor/lib64/vendor.google.whitechapel.audio.extension-V5-ndk.so',
+        ],
     },
     "akita": {
         sourceBuildId: "BP2A.250605.031.A2",
         replaceFiles: [
-            'vendor/firmware/bcmdhd_clm.blob_4383_a', // WiFi firmware
+            'vendor/firmware/bcmdhd_clm.blob_4383_a3', // WiFi firmware
             'vendor/firmware/bcmdhd_clm.blob_MMW', // WiFi firmware
-            'vendor/firmware/bcmdhd_clm.blob_NA',  // WiFi firmware // TODO: This is part of the WiFi firmware but is _only_ on 16, so we need to get adevtool to ship this also
+
             'vendor/firmware/brcm/BCM.hcd', // Bluetooth firmware
             'vendor/firmware/brcm/BTFW_B.hcd', // Bluetooth firmware
             'vendor/firmware/fw_bcmdhd.bin', // WiFi firmware
@@ -92,7 +197,29 @@ export const android16filesforpixels: Record<string, BackportConfig> = {
             'vendor/firmware/gxp_callisto_fw_core0', // TPU
             'vendor/firmware/gxp_callisto_fw_core1', // TPU
             'vendor/firmware/gxp_callisto_fw_core2', // TPU
-        ]
+
+            'system_ext/priv-app/ril-extension/ril-extension.apk',
+            'vendor/bin/hw/rild_exynos',
+            'vendor/lib64/libgooglerilaudio.so', // used by rild_exynos; requires vendor.google.whitechapel.audio.extension-V5-ndk.so
+            'vendor/lib64/libgooglerilmemmonitor.so', // used by rild_exynos
+            'vendor/lib64/libgril_oem-google.so',
+            'vendor/lib64/libril-aidl.so', // used by rild_exynos
+            'vendor/lib64/libril_gfeature.so', // used by rild_exynos
+            'vendor/lib64/libril_sitril.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.1.so', // used by rild_exynos
+            'system_ext/priv-app/OemRilService/OemRilService.apk',
+            'system_ext/app/OemRilHookService/OemRilHookService.apk',
+            'system_ext/framework/google-ril.jar',
+            'system_ext/framework/oemrilhook.jar',
+            'system_ext/priv-app/ShannonIms/ShannonIms.apk',
+            'system_ext/priv-app/ShannonRcs/ShannonRcs.apk',
+        ],
+        newFiles: [
+            'vendor/firmware/bcmdhd_clm.blob_NA',  // WiFi firmware, only on 16
+            'vendor/lib64/vendor.google.whitechapel.audio.extension-V5-ndk.so',
+        ],
     },
     "husky": {
         sourceBuildId: "BP2A.250605.031.A2",
@@ -106,7 +233,28 @@ export const android16filesforpixels: Record<string, BackportConfig> = {
             'vendor/firmware/gxp_callisto_fw_core0', // TPU
             'vendor/firmware/gxp_callisto_fw_core1', // TPU
             'vendor/firmware/gxp_callisto_fw_core2', // TPU
-        ]
+
+            'system_ext/priv-app/ril-extension/ril-extension.apk',
+            'vendor/bin/hw/rild_exynos',
+            'vendor/lib64/libgooglerilaudio.so', // used by rild_exynos; requires vendor.google.whitechapel.audio.extension-V5-ndk.so
+            'vendor/lib64/libgooglerilmemmonitor.so', // used by rild_exynos
+            'vendor/lib64/libgril_oem-google.so',
+            'vendor/lib64/libril-aidl.so', // used by rild_exynos
+            'vendor/lib64/libril_gfeature.so', // used by rild_exynos
+            'vendor/lib64/libril_sitril.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.1.so', // used by rild_exynos
+            'system_ext/priv-app/OemRilService/OemRilService.apk',
+            'system_ext/app/OemRilHookService/OemRilHookService.apk',
+            'system_ext/framework/google-ril.jar',
+            'system_ext/framework/oemrilhook.jar',
+            'system_ext/priv-app/ShannonIms/ShannonIms.apk',
+            'system_ext/priv-app/ShannonRcs/ShannonRcs.apk',
+        ],
+        newFiles: [
+            'vendor/lib64/vendor.google.whitechapel.audio.extension-V5-ndk.so',
+        ],
     },
     "shiba": {
         sourceBuildId: "BP2A.250605.031.A2",
@@ -119,13 +267,33 @@ export const android16filesforpixels: Record<string, BackportConfig> = {
             'vendor/firmware/gxp_callisto_fw_core0', // TPU
             'vendor/firmware/gxp_callisto_fw_core1', // TPU
             'vendor/firmware/gxp_callisto_fw_core2', // TPU
-        ]
+
+            'system_ext/priv-app/ril-extension/ril-extension.apk',
+            'vendor/bin/hw/rild_exynos',
+            'vendor/lib64/libgooglerilaudio.so', // used by rild_exynos; requires vendor.google.whitechapel.audio.extension-V5-ndk.so
+            'vendor/lib64/libgooglerilmemmonitor.so', // used by rild_exynos
+            'vendor/lib64/libgril_oem-google.so',
+            'vendor/lib64/libril-aidl.so', // used by rild_exynos
+            'vendor/lib64/libril_gfeature.so', // used by rild_exynos
+            'vendor/lib64/libril_sitril.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.1.so', // used by rild_exynos
+            'system_ext/priv-app/OemRilService/OemRilService.apk',
+            'system_ext/app/OemRilHookService/OemRilHookService.apk',
+            'system_ext/framework/google-ril.jar',
+            'system_ext/framework/oemrilhook.jar',
+            'system_ext/priv-app/ShannonIms/ShannonIms.apk',
+            'system_ext/priv-app/ShannonRcs/ShannonRcs.apk',
+        ],
+        newFiles: [
+            'vendor/lib64/vendor.google.whitechapel.audio.extension-V5-ndk.so',
+        ],
     },
     "felix": {
         sourceBuildId: "BP2A.250605.031.A2",
         replaceFiles: [
             'vendor/firmware/brcm/BCM.hcd', // Bluetooth firmware
-            'vendor/firmware/brcm/BTFW_D.hcd', // Bluetooth firmware // TODO: _Only_ on 16
             'vendor/firmware/fw_bcmdhd.bin', // WiFi firmware
             'vendor/firmware/fw_bcmdhd.map', // WiFi firmware
             'vendor/firmware/google/edgetpu-janeiro.fw', // TPU firmware
@@ -133,7 +301,28 @@ export const android16filesforpixels: Record<string, BackportConfig> = {
             'vendor/firmware/gxp_fw_core1', // TPU firmware
             'vendor/firmware/gxp_fw_core2', // TPU firmware
             'vendor/firmware/gxp_fw_core3', // TPU firmware
-        ]
+
+            'vendor/bin/hw/rild_exynos',
+            'vendor/lib64/libgooglerilaudio.so', // used by rild_exynos; requires vendor.google.whitechapel.audio.extension-V5-ndk.so
+            'vendor/lib64/libgooglerilmemmonitor.so', // used by rild_exynos
+            'vendor/lib64/libgril_oem-google.so',
+            'vendor/lib64/libril-aidl.so', // used by rild_exynos
+            'vendor/lib64/libril_gfeature.so', // used by rild_exynos
+            'vendor/lib64/libril_sitril.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.1.so', // used by rild_exynos
+            'system_ext/priv-app/OemRilService/OemRilService.apk',
+            'system_ext/app/OemRilHookService/OemRilHookService.apk',
+            'system_ext/framework/google-ril.jar',
+            'system_ext/framework/oemrilhook.jar',
+            'system_ext/priv-app/ShannonIms/ShannonIms.apk',
+            'system_ext/priv-app/ShannonRcs/ShannonRcs.apk',
+        ],
+        newFiles: [
+            'vendor/firmware/brcm/BTFW_D.hcd', // Bluetooth firmware, only on 16
+            'vendor/lib64/vendor.google.whitechapel.audio.extension-V5-ndk.so',
+        ],
     },
     "tangorpro": {
         sourceBuildId: "BP2A.250605.031.A2",
@@ -145,6 +334,9 @@ export const android16filesforpixels: Record<string, BackportConfig> = {
             'vendor/firmware/gxp_fw_core1', // TPU firmware
             'vendor/firmware/gxp_fw_core2', // TPU firmware
             'vendor/firmware/gxp_fw_core3', // TPU firmware
+
+            'vendor/lib64/libgril_oem-google.so',
+            'system_ext/framework/google-ril.jar',
         ]
     },
     "lynx": {
@@ -155,7 +347,27 @@ export const android16filesforpixels: Record<string, BackportConfig> = {
             'vendor/firmware/gxp_fw_core1', // TPU firmware
             'vendor/firmware/gxp_fw_core2', // TPU firmware
             'vendor/firmware/gxp_fw_core3', // TPU firmware
-        ]
+
+            'vendor/bin/hw/rild_exynos',
+            'vendor/lib64/libgooglerilaudio.so', // used by rild_exynos; requires vendor.google.whitechapel.audio.extension-V5-ndk.so
+            'vendor/lib64/libgooglerilmemmonitor.so', // used by rild_exynos
+            'vendor/lib64/libgril_oem-google.so',
+            'vendor/lib64/libril-aidl.so', // used by rild_exynos
+            'vendor/lib64/libril_gfeature.so', // used by rild_exynos
+            'vendor/lib64/libril_sitril.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.1.so', // used by rild_exynos
+            'system_ext/priv-app/OemRilService/OemRilService.apk',
+            'system_ext/app/OemRilHookService/OemRilHookService.apk',
+            'system_ext/framework/google-ril.jar',
+            'system_ext/framework/oemrilhook.jar',
+            'system_ext/priv-app/ShannonIms/ShannonIms.apk',
+            'system_ext/priv-app/ShannonRcs/ShannonRcs.apk',
+        ],
+        newFiles: [
+            'vendor/lib64/vendor.google.whitechapel.audio.extension-V5-ndk.so',
+        ],
     },
     "cheetah": {
         sourceBuildId: "BP2A.250605.031.A2",
@@ -169,23 +381,25 @@ export const android16filesforpixels: Record<string, BackportConfig> = {
             'vendor/firmware/gxp_fw_core1', // TPU firmware?
             'vendor/firmware/gxp_fw_core2', // TPU firmware?
             'vendor/firmware/gxp_fw_core3', // TPU firmware?
+
             'vendor/bin/hw/rild_exynos',
+            'vendor/lib64/libgooglerilaudio.so', // used by rild_exynos; requires vendor.google.whitechapel.audio.extension-V5-ndk.so
+            'vendor/lib64/libgooglerilmemmonitor.so', // used by rild_exynos
+            'vendor/lib64/libgril_oem-google.so',
             'vendor/lib64/libril-aidl.so', // used by rild_exynos
-            'vendor/lib64/libril_sitril.so', // used by rild_exynos
             'vendor/lib64/libril_gfeature.so', // used by rild_exynos
+            'vendor/lib64/libril_sitril.so', // used by rild_exynos
             'vendor/lib64/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so', // used by rild_exynos
             'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so', // used by rild_exynos
             'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.1.so', // used by rild_exynos
-            'system_ext/priv-app/OemRilService/OemRilService.apk', 
-            'system_ext/app/OemRilHookService/OemRilHookService.apk', 
-            'system_ext/framework/google-ril.jar', 
+            'system_ext/priv-app/OemRilService/OemRilService.apk',
+            'system_ext/app/OemRilHookService/OemRilHookService.apk',
+            'system_ext/framework/google-ril.jar',
             'system_ext/framework/oemrilhook.jar',
-            'vendor/lib64/libgril_oem-google.so',
-            'vendor/lib64/libgooglerilaudio.so', // used by rild_exynos; requires vendor.google.whitechapel.audio.extension-V5-ndk.so
-            'vendor/lib64/libgooglerilmemmonitor.so', // used by rild_exynos
             'system_ext/priv-app/ShannonIms/ShannonIms.apk',
             'system_ext/priv-app/ShannonRcs/ShannonRcs.apk',
-            'vendor/lib64/libsitril.so', // used by rild_exynos
+            // 'vendor/lib64/libsitril.so', // only this is used by rild_exynos via lsof -p $PID, but adding this seems to break telephony
+            // showed up in diff
             // 'vendor/lib64/libsitril-ims.so',
             // 'vendor/lib64/libsitril-gps.so',
             // 'vendor/lib64/libsitril-client.so',
@@ -208,23 +422,24 @@ export const android16filesforpixels: Record<string, BackportConfig> = {
             'vendor/firmware/gxp_fw_core1', // TPU firmware?
             'vendor/firmware/gxp_fw_core2', // TPU firmware?
             'vendor/firmware/gxp_fw_core3', // TPU firmware?
+
             'vendor/bin/hw/rild_exynos',
+            'vendor/lib64/libgooglerilaudio.so', // used by rild_exynos; requires vendor.google.whitechapel.audio.extension-V5-ndk.so
+            'vendor/lib64/libgooglerilmemmonitor.so', // used by rild_exynos
+            'vendor/lib64/libgril_oem-google.so',
             'vendor/lib64/libril-aidl.so', // used by rild_exynos
-            'vendor/lib64/libril_sitril.so', // used by rild_exynos
             'vendor/lib64/libril_gfeature.so', // used by rild_exynos
+            'vendor/lib64/libril_sitril.so', // used by rild_exynos
             'vendor/lib64/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so', // used by rild_exynos
             'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so', // used by rild_exynos
             'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.1.so', // used by rild_exynos
-            'system_ext/priv-app/OemRilService/OemRilService.apk', 
-            'system_ext/app/OemRilHookService/OemRilHookService.apk', 
-            'system_ext/framework/google-ril.jar', 
+            'system_ext/priv-app/OemRilService/OemRilService.apk',
+            'system_ext/app/OemRilHookService/OemRilHookService.apk',
+            'system_ext/framework/google-ril.jar',
             'system_ext/framework/oemrilhook.jar',
-            'vendor/lib64/libgril_oem-google.so',
-            'vendor/lib64/libgooglerilaudio.so', // used by rild_exynos; requires vendor.google.whitechapel.audio.extension-V5-ndk.so
-            'vendor/lib64/libgooglerilmemmonitor.so', // used by rild_exynos
             'system_ext/priv-app/ShannonIms/ShannonIms.apk',
             'system_ext/priv-app/ShannonRcs/ShannonRcs.apk',
-            'vendor/lib64/libsitril.so', // used by rild_exynos
+            // 'vendor/lib64/libsitril.so', // used by rild_exynos, but adding this seems to break telephony
             // 'vendor/lib64/libsitril-ims.so',
             // 'vendor/lib64/libsitril-gps.so',
             // 'vendor/lib64/libsitril-client.so',
@@ -232,53 +447,94 @@ export const android16filesforpixels: Record<string, BackportConfig> = {
         ],
         newFiles: [
             'vendor/firmware/brcm/BTFW_D.hcd', // Bluetooth firmware, only on 16
-            'vendor/lib64/vendor.google.whitechapel.audio.extension-V5-ndk.so'
+            'vendor/lib64/vendor.google.whitechapel.audio.extension-V5-ndk.so',
         ],
     },
     "bluejay": {
         sourceBuildId: "BP2A.250605.031.A2",
-        replaceFiles:[
+        replaceFiles: [
             'vendor/firmware/brcm/BCM.hcd', // Bluetooth firmware
             'vendor/firmware/brcm/BTFW_B.hcd', // Bluetooth firmware
             'vendor/firmware/fw_bcmdhd.bin', // WiFi firmware
             'vendor/firmware/fw_bcmdhd.map', // WiFi firmware
-            'vendor/firmware/google/edgetpu-abrolhos.fw', // TPU firmware,
+            'vendor/firmware/google/edgetpu-abrolhos.fw', // TPU firmware
+
             'vendor/bin/hw/rild_exynos',
-            'vendor/lib64/libril_sitril.so', // used by rild_exynos
+            'vendor/lib64/libgooglerilaudio.so', // used by rild_exynos; requires vendor.google.whitechapel.audio.extension-V5-ndk.so
+            'vendor/lib64/libgooglerilmemmonitor.so', // used by rild_exynos
+            'vendor/lib64/libgril_oem-google.so',
             'vendor/lib64/libril_gfeature.so', // used by rild_exynos
+            'vendor/lib64/libril_sitril.so', // used by rild_exynos
             'vendor/lib64/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so', // used by rild_exynos
             'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so', // used by rild_exynos
             'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.1.so', // used by rild_exynos
-            'system_ext/priv-app/OemRilService/OemRilService.apk', 
-            'system_ext/app/OemRilHookService/OemRilHookService.apk', 
-            'system_ext/framework/google-ril.jar', 
+            'system_ext/priv-app/OemRilService/OemRilService.apk',
+            'system_ext/app/OemRilHookService/OemRilHookService.apk',
+            'system_ext/framework/google-ril.jar',
             'system_ext/framework/oemrilhook.jar',
-            'vendor/lib64/libgril_oem-google.so',
-            'vendor/lib64/libgooglerilaudio.so', // used by rild_exynos; requires vendor.google.whitechapel.audio.extension-V5-ndk.so
-            'vendor/lib64/libgooglerilmemmonitor.so', // used by rild_exynos
             'system_ext/priv-app/ShannonIms/ShannonIms.apk',
             'system_ext/priv-app/ShannonRcs/ShannonRcs.apk',
-            'vendor/lib64/libsitril.so', // used by rild_exynos
-        ]
+        ],
+        newFiles: [
+            'vendor/lib64/vendor.google.whitechapel.audio.extension-V5-ndk.so',
+        ],
     },
     "raven": {
         sourceBuildId: "BP2A.250605.031.A2",
-        replaceFiles:[
+        replaceFiles: [
             'vendor/firmware/brcm/BCM.hcd', // Bluetooth firmware
             'vendor/firmware/brcm/BTFW_B.hcd', // Bluetooth firmware
             'vendor/firmware/fw_bcmdhd.bin', // WiFi firmware
             'vendor/firmware/fw_bcmdhd.map', // WiFi firmware
-            'vendor/firmware/google/edgetpu-abrolhos.fw', // TPU firmware    
-        ]
+            'vendor/firmware/google/edgetpu-abrolhos.fw', // TPU firmware
+
+            'vendor/bin/hw/rild_exynos',
+            'vendor/lib64/libgooglerilaudio.so', // used by rild_exynos; requires vendor.google.whitechapel.audio.extension-V5-ndk.so
+            'vendor/lib64/libgooglerilmemmonitor.so', // used by rild_exynos
+            'vendor/lib64/libgril_oem-google.so',
+            'vendor/lib64/libril_gfeature.so', // used by rild_exynos
+            'vendor/lib64/libril_sitril.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.1.so', // used by rild_exynos
+            'system_ext/priv-app/OemRilService/OemRilService.apk',
+            'system_ext/app/OemRilHookService/OemRilHookService.apk',
+            'system_ext/framework/google-ril.jar',
+            'system_ext/framework/oemrilhook.jar',
+            'system_ext/priv-app/ShannonIms/ShannonIms.apk',
+            'system_ext/priv-app/ShannonRcs/ShannonRcs.apk',
+        ],
+        newFiles: [
+            'vendor/lib64/vendor.google.whitechapel.audio.extension-V5-ndk.so',
+        ],
     },
     "oriole": {
         sourceBuildId: "BP2A.250605.031.A2",
-        replaceFiles:[
+        replaceFiles: [
             'vendor/firmware/brcm/BCM.hcd', // Bluetooth firmware
             'vendor/firmware/brcm/BTFW_B.hcd', // Bluetooth firmware
             'vendor/firmware/fw_bcmdhd.bin', // WiFi firmware
             'vendor/firmware/fw_bcmdhd.map', // WiFi firmware
-            'vendor/firmware/google/edgetpu-abrolhos.fw', // TPU firmware    
-        ]
+            'vendor/firmware/google/edgetpu-abrolhos.fw', // TPU firmware
+
+            'vendor/bin/hw/rild_exynos',
+            'vendor/lib64/libgooglerilaudio.so', // used by rild_exynos; requires vendor.google.whitechapel.audio.extension-V5-ndk.so
+            'vendor/lib64/libgooglerilmemmonitor.so', // used by rild_exynos
+            'vendor/lib64/libgril_oem-google.so',
+            'vendor/lib64/libril_gfeature.so', // used by rild_exynos
+            'vendor/lib64/libril_sitril.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so', // used by rild_exynos
+            'vendor/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.1.so', // used by rild_exynos
+            'system_ext/priv-app/OemRilService/OemRilService.apk',
+            'system_ext/app/OemRilHookService/OemRilHookService.apk',
+            'system_ext/framework/google-ril.jar',
+            'system_ext/framework/oemrilhook.jar',
+            'system_ext/priv-app/ShannonIms/ShannonIms.apk',
+            'system_ext/priv-app/ShannonRcs/ShannonRcs.apk',
+        ],
+        newFiles: [
+            'vendor/lib64/vendor.google.whitechapel.audio.extension-V5-ndk.so',
+        ],
     },
 }
