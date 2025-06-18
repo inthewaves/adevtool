@@ -146,8 +146,16 @@ const doDevice = (
       if (!backportSourceDevicePath) {
         throw new Error(`missing backportSourceDevice for ${config.device.name}`);
       }
+
       let currentEntriesSrcPaths = new Set(entries.map(e => e.srcPath));
       await withSpinner('Adding new files for Android 16 backports', async spinner => {
+        for (let newFile of newFiles) {
+          let newFilePath = backportSourceDevicePath + '/' + newFile
+          if (!(await exists(newFilePath))) {
+            throw new Error(`Path ${newFilePath} doesn't exist`);
+          }
+        }
+
         let backportedEntries = new Map<string, BlobEntry>()
 
         // Only get the files we want to backport
@@ -166,7 +174,7 @@ const doDevice = (
           null, 
           backportedEntries, 
           null, 
-          backportSourceDevicePath
+          backportSourceDevicePath as string
         )
 
         for (let backportedEntry of backportedEntries.values()) {
@@ -177,7 +185,7 @@ const doDevice = (
           backportedEntry.diskSrcPath = backportSourceDevicePath + '/' + backportedEntry.srcPath
           // should exist from enumerateFiles, but just a sanity check
           if (!(await exists(backportedEntry.diskSrcPath))) {
-            throw new Error(`Path ${backportedEntry.diskSrcPath} doesn't exist`);
+            throw new Error(`Path ${backportedEntry.diskSrcPath} doesn't exist; check the hardcoded config`);
           }
           spinner.text = backportedEntry.srcPath
           entries.push(backportedEntry)
