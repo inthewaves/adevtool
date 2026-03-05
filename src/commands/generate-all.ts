@@ -179,6 +179,7 @@ export default class GenerateFull extends Command {
       char: 'p',
       description: 'generate devices in parallel',
       default: true,
+      allowNo: true,
     }),
     verbose: Flags.boolean({ char: 'v' }),
     updateSpec: Flags.boolean({
