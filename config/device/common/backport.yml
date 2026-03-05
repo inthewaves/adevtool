@@ -34,6 +34,7 @@ backport_files:
     - bin/hw/vendor.google.edgetpu_vendor_service@1.0-service
     - bin/hw/vendor.google.radioext@1.0-service
     - bin/pvrhwperfd
+    - bin/shared_modem_platform
     - etc/powervr.ini
     - lib64/aconfig_gpu_flags_c_lib.so
     - lib64/com.google.input-V2-ndk.so
