@@ -3,3 +3,8 @@ includes:
 
 device:
   platform: zuma
+
+backport_files:
+  vendor:
+    - apex/com.google.pixel.camera.hal.apex
+
