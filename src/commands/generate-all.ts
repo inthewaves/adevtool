@@ -27,6 +27,7 @@ import {
   DeviceBuildId,
   DeviceConfig,
   getDeviceBuildId,
+  loadDeviceConfigs,
   loadDeviceConfigs2,
 } from '../config/device'
 import {
@@ -49,7 +50,7 @@ import {
   writeEnvsetupCommands,
 } from '../frontend/generate'
 import { writeReadme } from '../frontend/readme'
-import { DeviceImages, prepareDeviceImages } from '../frontend/source'
+import { deleteUnpackedDeviceImages, DeviceImages, prepareDeviceImages } from '../frontend/source'
 import { BuildIndex, ImageType, loadBuildIndex } from '../images/build-index'
 import { processApks } from '../processor/apk-processor'
 import { processSystemServerClassPaths } from '../processor/classpath'
@@ -196,6 +197,13 @@ export default class GenerateFull extends Command {
 
     doNotDownloadCarrierSettings: Flags.boolean({}),
 
+    devicesToKeepUnpacked: Flags.string({
+      char: 'k',
+      description: `Device or DeviceList config paths or names of unpacked images to keep. If this is set, other devices will have their unpacked images removed on successful vendor module generation`,
+      multiple: true,
+      default: [],
+    }),
+
     ...DEVICE_CONFIGS_FLAG_WITH_BUILD_ID,
   }
 
@@ -204,6 +212,13 @@ export default class GenerateFull extends Command {
 
     let devices = await loadDeviceConfigs2(flags)
     let index: BuildIndex = await loadBuildIndex()
+
+    const devicesToKeepUnpacked = (flags.devicesToKeepUnpacked.length > 0)
+      ? new Set(
+          (await loadDeviceConfigs2({ devices: flags.devicesToKeepUnpacked }))
+            .map(config => config.device.name)
+        )
+      : undefined;
 
     await forEachDevice(
       devices,
@@ -308,7 +323,14 @@ export default class GenerateFull extends Command {
           }
         }
         await writeVersionCheckFile(config, vendorDirs, flags.noVerify)
-        log('Generated vendor module at ' + vendorDirs.out)
+
+        const baseMsg = 'Generated vendor module at ' + vendorDirs.out
+        if (devicesToKeepUnpacked && !devicesToKeepUnpacked.has(config.device.name)) {
+          log(baseMsg + ', deleting unpacked images')
+          await deleteUnpackedDeviceImages(images);
+        } else {
+          log(baseMsg)
+        }
       },
       config => config.device.name,
     )
