@@ -113,14 +113,28 @@ export async function prepareDeviceImages(
   return imagesMap
 }
 
-const unpackConcurrency = parseInt(process.env['ADEVTOOL_UNPACK_CONCURRENCY'] ?? '10')
-const unpackSemaphore = new Semaphore(unpackConcurrency)
-
-async function unpackImage(imageToUnpack: DeviceImage, destDir: string) {
+async function deleteNonTempUnpackedImagesDir(destDir: string) {
   if (await isDirectory(destDir)) {
     await spawnAsyncNoOut('chmod', ['-R', 'u+w', destDir])
     await spawnAsyncNoOut('rm', ['-r', destDir])
   }
+}
+
+export async function deleteUnpackedDeviceImages(imagesMap: Map<DeviceBuildId, DeviceImages>) {
+  for (const images of imagesMap.values()) {
+    const dir = images.unpackedFactoryImageDir;
+    if (!dir) {
+      continue;
+    }
+    await deleteNonTempUnpackedImagesDir(dir);
+  }
+}
+
+const unpackConcurrency = parseInt(process.env['ADEVTOOL_UNPACK_CONCURRENCY'] ?? '10')
+const unpackSemaphore = new Semaphore(unpackConcurrency)
+
+async function unpackImage(imageToUnpack: DeviceImage, destDir: string) {
+  await deleteNonTempUnpackedImagesDir(destDir);
 
   let destTmpDir = destDir + '-tmp'
 
