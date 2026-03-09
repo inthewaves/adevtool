@@ -75,12 +75,6 @@ async function maybePatch(entry: BlobEntry, srcPath: string, device: string) {
           return patchGpsXml(await readFile(srcPath))
         case 'etc/gnss/gps.cfg':
           return patchGpsCfg(await readFile(srcPath))
-        case 'etc/thermal_info_config.json':
-        case 'etc/thermal_info_config_charge.json':
-          if (device === 'rango') {
-            return patchThermalCfg(await readFile(srcPath))
-          }
-
       }
       if (relPath.startsWith('etc/fstab')) {
         return patchFstab(await readFile(srcPath))
@@ -203,23 +197,6 @@ function patchGpsCfg(orig: string) {
     })
   )
 }
-
-function patchThermalCfg(orig: string) {
-  let dropCoeff = false;
-
-  return replaceLines(orig, (line) => {
-    if (line.includes('"S9M_VDD_TPU_M"')) {
-      dropCoeff = true;
-      return line.replace(/"S9M_VDD_TPU_M",?\s*/, "").replace(/,\s*]/, "]");
-    }
-    if (dropCoeff && line.includes('"Coefficient"')) {
-      dropCoeff = false;
-      return line.replace(/,?\s*[\d.]+(?=\s*])/, "");
-    }
-    return line;
-  });
-}
-
 
 function replaceLines(multiLine: string, callbackFn: (value: string) => string) {
   return multiLine
