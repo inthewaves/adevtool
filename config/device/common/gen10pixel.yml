@@ -4,6 +4,34 @@ includes:
 device:
   platform: laguna
 
+backport_files:
+  vendor:
+    - bin/hw/android.hardware.power-service.pixel-libperfmgr
+    - bin/hw/android.hardware.thermal-service.pixel
+    - bin/hw/vendor.google.google_battery-service
+    - bin/hw/vendor.google.google_battery.ekf.service
+    - bin/pixelstats-vendor
+    - etc/init/hw/init.laguna.rc
+    - etc/init/pixel-bgtasks-experiment.rc
+    - etc/init/pixelstats-vendor.laguna.rc
+    - etc/init/vendor.google.google_battery-default.rc
+    - etc/powerhint.json
+    - etc/pixelstats_config.json
+    - etc/thermal_info_config.json
+    - etc/thermal_info_config_charge.json
+    - etc/thermal_info_config_earlywarnings.json
+    - etc/thermal_info_config_lpm.json
+    - etc/thermal_info_config_stats.json
+    - etc/thermal_info_config_throttling.json
+    - etc/thermal_info_config_vt.json
+    - etc/thermal_info_config_wingboard.json
+    - lib64/libperfmgr.so
+    - lib64/libpixelatoms_defs.so
+    - lib64/libpixelstats.so
+    - lib64/pixel-power-ext-V1-ndk.so
+    - lib64/pixel-power-ext-V2-ndk.so
+    - lib64/pixelatoms-cpp.so
+
 kernel_cmdline_exclusions:
   - init_on_alloc=0
   - init_on_free=1
