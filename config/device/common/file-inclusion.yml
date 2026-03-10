@@ -768,6 +768,7 @@ filters:
       - vendor/etc/init/mosey.rc
       - vendor/etc/init/nfc-service-default.rc
       - vendor/etc/init/pcie_power.rc
+      - vendor/etc/init/pixel-bgtasks-experiment.rc
       - vendor/etc/init/pixel-experiments-recovery.rc
       - vendor/etc/init/pixel-gnss-default.rc
       - vendor/etc/init/pixel-mm-gki.rc
@@ -926,6 +927,7 @@ filters:
       - vendor/etc/thermal_info_config_backup.json
       - vendor/etc/thermal_info_config_charge.json
       - vendor/etc/thermal_info_config_charge_proto.json
+      - vendor/etc/thermal_info_config_earlywarnings.json
       - vendor/etc/thermal_info_config_lpm.json
       - vendor/etc/thermal_info_config_proactive_skin.json
       - vendor/etc/thermal_info_config_proto.json
@@ -1487,6 +1489,7 @@ filters:
       - vendor/lib64/nos_app_keymaster.so
       - vendor/lib64/nos_app_weaver.so
       - vendor/lib64/pixel-power-ext-V1-ndk.so
+      - vendor/lib64/pixel-power-ext-V2-ndk.so
       - vendor/lib64/pixel_stateresidency_provider_aidl_interface-ndk.so
       - vendor/lib64/pixelatoms-cpp.so
       - vendor/lib64/pixelpowerstats_provider_aidl_interface-cpp.so
