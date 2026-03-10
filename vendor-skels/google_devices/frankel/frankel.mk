@@ -823,6 +823,7 @@ PRODUCT_PACKAGES += \
     pcie_power_control \
     pixel-experiments-recovery.sh \
     pixel-power-ext-V1-ndk \
+    pixel-power-ext-V2-ndk \
     pixel.gralloc.allocator-V2-service \
     pixel_irq_load_balancer \
     pixel_stateresidency_provider_aidl_interface-ndk \
@@ -1735,6 +1736,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/frankel/proprietary/vendor/etc/init/memtrack.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/memtrack.rc \
     vendor/google_devices/frankel/proprietary/vendor/etc/init/mosey.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/mosey.rc \
     vendor/google_devices/frankel/proprietary/vendor/etc/init/pcie_power.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pcie_power.rc \
+    vendor/google_devices/frankel/proprietary/vendor/etc/init/pixel-bgtasks-experiment.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-bgtasks-experiment.rc \
     vendor/google_devices/frankel/proprietary/vendor/etc/init/pixel-experiments-recovery.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-experiments-recovery.rc \
     vendor/google_devices/frankel/proprietary/vendor/etc/init/pixel-gnss-default.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-gnss-default.rc \
     vendor/google_devices/frankel/proprietary/vendor/etc/init/pixel-mm-gki.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-mm-gki.rc \
@@ -1803,6 +1805,8 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/frankel/proprietary/vendor/etc/telephony/satellite_access_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/telephony/satellite_access_config.json \
     vendor/google_devices/frankel/proprietary/vendor/etc/telephony/sats2.dat:$(TARGET_COPY_OUT_VENDOR)/etc/telephony/sats2.dat \
     vendor/google_devices/frankel/proprietary/vendor/etc/thermal_info_config_charge.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_charge.json \
+    vendor/google_devices/frankel/proprietary/vendor/etc/thermal_info_config_earlywarnings.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_earlywarnings.json \
+    vendor/google_devices/frankel/proprietary/vendor/etc/thermal_info_config_lpm.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_lpm.json \
     vendor/google_devices/frankel/proprietary/vendor/etc/thermal_info_config_stats.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_stats.json \
     vendor/google_devices/frankel/proprietary/vendor/etc/thermal_info_config_throttling.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_throttling.json \
     vendor/google_devices/frankel/proprietary/vendor/etc/thermal_info_config_vt.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_vt.json \
