@@ -12,3 +12,4 @@ BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := f2fs
 
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += vendor/adevtool/config/mk/google_devices/platform/laguna/sepolicy/system_ext/public
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += vendor/adevtool/config/mk/google_devices/platform/laguna/sepolicy/system_ext/private
+BOARD_VENDOR_SEPOLICY_DIRS += vendor/adevtool/config/mk/google_devices/platform/laguna/sepolicy/vendor
