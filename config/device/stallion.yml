@@ -14,6 +14,7 @@ backport_files:
     - bin/hw/android.hardware.contexthub-service.generic
     - bin/hw/android.hardware.usb-service
     - bin/modem_logging_control
+    - bin/pixelstats-vendor
     - lib64/chremetrics-cpp.so
     - lib64/com.google.edgetpu_app_service-V6-ndk.so
     - lib64/libjsoncpp.so
