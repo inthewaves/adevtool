@@ -42,6 +42,13 @@ replacement_module_inclusions:
   - libkeymint # system/keymaster | system/lib64/libkeymint.so
   - netd_aidl_interface-V17-cpp # packages/modules/Connectivity/staticlibs/netd | system/lib64/netd_aidl_interface-V17-cpp.so
 
+synthetic_overlays:
+  SettingsIntelligenceGoogleSyntheticOverlay:
+    resourcesToInclude:
+      string:
+        - charging_optimization_footer_charge_limit
+        - charging_optimization_summary_charge_limit
+
 sysconfig_exclusions:
   - |-
     <privapp-permissions package="com.android.settings">
