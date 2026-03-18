@@ -9,7 +9,6 @@ package_inclusions:
     include_uses_permissions:
       - android.permission.CAMERA_OPEN_CLOSE_LISTENER
       - android.permission.CONTROL_DISPLAY_BRIGHTNESS
-      - android.permission.CONTROL_DISPLAY_COLOR_TRANSFORMS
       - android.permission.CREATE_USERS
       - android.permission.DEVICE_POWER
       - android.permission.INTERNAL_SYSTEM_WINDOW
@@ -25,6 +24,7 @@ package_inclusions:
       - android.permission.INTERACT_ACROSS_USERS_FULL
       - android.permission.MANAGE_USERS
       - android.permission.ACCESS_CONTEXT_HUB
+      - android.permission.CONTROL_DISPLAY_COLOR_TRANSFORMS
 
   com.shannon.rcsservice:
     max_known_version: 0
