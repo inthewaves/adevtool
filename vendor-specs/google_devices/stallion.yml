@@ -6376,6 +6376,7 @@ proprietary/vendor/lib64/android.hardware.power.stats-impl.gs-common.so: 3918a51
 proprietary/vendor/lib64/android.hardware.power.stats-impl.pixel.so: 79b70213ee0f4e5481d2ea71038582d8079fe4a4ebada5e0923bb9d56de69594
 proprietary/vendor/lib64/android.hardware.power.stats-impl.zumapro.so: bf619aed84e2aa01b33ecdc8e11f385aee27bb9341dab37b2117cd90482d23f2
 proprietary/vendor/lib64/android.hardware.security.keymint-impl.nos.so: 24cd02b048cb82f8341dcad02a160b9806aed144f9f1453c27d27e359dfc64d1
+proprietary/vendor/lib64/android.hardware.usb-V4-ndk.so: f92768902adbd15cb7e6b1047f93af076df50e73691efd228dda083d4dfda1f6
 proprietary/vendor/lib64/android.hardware.weaver-bridge.nos.so: 91decc40172970d62c3fefc08e3853bd38215bd67fe25a6791a7aec5556a28a4
 proprietary/vendor/lib64/android.hardware.weaver-impl.nos.so: 5aeb35cb801f54acba4bcb074085017acd85824f3abf0f3deac7475462531eda
 proprietary/vendor/lib64/android.hardware.weaver2-impl.nos.so: 30d8b33e316722c967a1a413e59fca36a274979aac0d613f36cc0b60682a09d0
@@ -6608,7 +6609,7 @@ sepolicy/vendor/sepolicy_ext_recovery.cil: 589c8852f4733b8caa13307138a59428d565e
 sepolicy/vendor/service_contexts: bc8c5953e9546a892298a30e5d5653cbcf34472fea75459e04164238600f3dc9
 sepolicy/vendor/types.te: 8e209bf6fde4d1db07468144205f231c297c98c98c40a447943e5781f5b0374f
 sepolicy/vendor/vndservice_contexts: a798285f683386edf3a64d6db4a5f3424ffefccafd67920af418ebb020cfee30
-stallion.mk: 4ab5dae0712bd10c711947bf8318daff77f75bd21e0b2c2b2203bccef02cdef6
+stallion.mk: 061339bf463226defd0ecdedd15febc4e191e2cff51217b449b3d0e73331dd43
 sysconfig: dir
 sysconfig/Android.bp: 303d8180cf9e1689aa6751ae3e8e120b8fad031d0e818de31ef444c26cc93348
 sysconfig/product: dir

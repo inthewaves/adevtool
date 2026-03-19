@@ -492,9 +492,11 @@ export async function generateBuildFiles(
           copyFiles.push(blobToFileCopy(entry, dirs.proprietary))
           continue
         }
-        if (resolvedName === 'libjsoncpp' && config.device.name === 'stallion') {
-          copyFiles.push(blobToFileCopy(entry, dirs.proprietary))
-          continue
+        if (config.device.name === 'stallion') {
+          if (resolvedName === 'libjsoncpp' || resolvedName === 'android.hardware.usb-V4-ndk') {
+            copyFiles.push(blobToFileCopy(entry, dirs.proprietary))
+            continue
+          }
         }
       }
 

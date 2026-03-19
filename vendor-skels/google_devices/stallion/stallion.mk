@@ -922,8 +922,7 @@ PRODUCT_PACKAGES += \
 # extra packages
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth.socket-V1-ndk.vendor \
-    android.hardware.bluetooth.ranging-V2-ndk.vendor \
-    android.hardware.usb-V4-ndk.vendor
+    android.hardware.bluetooth.ranging-V2-ndk.vendor
 
 # inclusion of symlinks
 PRODUCT_PACKAGES += \
@@ -4597,6 +4596,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/stallion/proprietary/vendor/firmware/uecapconfig/WINDTRE_7893983720033341017.binarypb:$(TARGET_COPY_OUT_VENDOR)/firmware/uecapconfig/WINDTRE_7893983720033341017.binarypb \
     vendor/google_devices/stallion/proprietary/vendor/firmware/uecapconfig/WINDTRE_8011870100005042994.binarypb:$(TARGET_COPY_OUT_VENDOR)/firmware/uecapconfig/WINDTRE_8011870100005042994.binarypb \
     vendor/google_devices/stallion/proprietary/vendor/firmware/uecapconfig/WINDTRE_8851100888085059077.binarypb:$(TARGET_COPY_OUT_VENDOR)/firmware/uecapconfig/WINDTRE_8851100888085059077.binarypb \
+    vendor/google_devices/stallion/proprietary/vendor/lib64/android.hardware.usb-V4-ndk.so:$(TARGET_COPY_OUT_VENDOR)/lib64/android.hardware.usb-V4-ndk.so \
     vendor/google_devices/stallion/proprietary/vendor/lib64/libaconfig_storage_read_api_cc.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libaconfig_storage_read_api_cc.so \
     vendor/google_devices/stallion/proprietary/vendor/lib64/libc++.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libc++.so \
     vendor/google_devices/stallion/proprietary/vendor/lib64/libjsoncpp.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libjsoncpp.so \
