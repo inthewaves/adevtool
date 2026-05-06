@@ -4955,7 +4955,7 @@ proprietary/system_ext/priv-app/UwbVendorService/UwbVendorService.apk: 33d1f45a3
 proprietary/vendor: dir
 proprietary/vendor/apex: dir
 proprietary/vendor/apex/com.google.android.widevine-13130248.apex: ba0e3533d48a4fccc6a63ba8ee7520cfacae83e0f9332c8b8e5659cab134c092
-proprietary/vendor/apex/com.google.pixel.camera.hal.apex: 79edcba621815f093b8c1812ec17ec035b633aaa776d9404739bba12faf7fa72
+proprietary/vendor/apex/com.google.pixel.camera.hal.apex: 0235dc3ded408556990a5487b0a8fcd3a3219e0a2a298c27818901aba2b935fe
 proprietary/vendor/apex/com.google.pixel.wifi.ext.apex: a4e45dc95e50a5469c175857426cb5e3faf028903f5bc04d6f8a3e96a851d012
 proprietary/vendor/bin: dir
 proprietary/vendor/bin/aocd: 37ed95e0b46a73c30205f6527dd37aa4da93eca348a423b0d27fdb605be6484c
@@ -5005,7 +5005,7 @@ proprietary/vendor/bin/hw/android.hardware.power-service.pixel-libperfmgr: 19d99
 proprietary/vendor/bin/hw/android.hardware.power.stats-service.pixel: cb2f02657be8a2e7210e5bc77227e9dc67939ed1cb8547fdf306a6129e10a3f2
 proprietary/vendor/bin/hw/android.hardware.qorvo.uwb.service: 92742cb8d01935bd946d3a2c54d62a57a877bb210b7c1e4fc2d0363b05933ff2
 proprietary/vendor/bin/hw/android.hardware.security.keymint-service.citadel: a9dfe3c5ff3de05d2ee06c985d5ef3ea4b072c52c25f47e3009d3100d013a9f5
-proprietary/vendor/bin/hw/android.hardware.thermal-service.pixel: e9ce935a011aba1cead98668059fe004de622c3c5d239ca1714559e8960f8c12
+proprietary/vendor/bin/hw/android.hardware.thermal-service.pixel: 4482aae28f6dac980e3a770a0899532ec97d61a23737c93b67964b31cd3744f9
 proprietary/vendor/bin/hw/android.hardware.usb-service: 07fb1758f054938149cab254867d8fceb58610553055d39fa6c1d768684c282f
 proprietary/vendor/bin/hw/android.hardware.usb.gadget-service: 0b3f981ecfdf2af9fc87c887937caf53edb4c70177eb59ce8f32acb32af04eef
 proprietary/vendor/bin/hw/android.hardware.weaver-service.citadel: b8d8dd6d421fb5f165628c8410fd2ead92bb2d36317a4479dcf2e324475f0ff8
