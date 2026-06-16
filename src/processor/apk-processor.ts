@@ -257,7 +257,7 @@ export async function processApks(
           }
         } else {
           unpackedStockApex = pathResolver.resolveUnpackedApexPath(part as Partition, relPath)
-          foundStockApex = await isDirectory(unpackedStockApex)
+          foundStockApex = await isApexOrCapexDir(unpackedStockApex)
           if (!foundStockApex) {
             let name = path.basename(relPath)
             let prefix = 'com.android.'
@@ -267,7 +267,7 @@ export async function processApks(
                 part as Partition,
                 relPath.slice(0, -name.length) + googleName,
               )
-              foundStockApex = await isDirectory(unpackedStockApex)
+              foundStockApex = await isApexOrCapexDir(unpackedStockApex)
             }
           }
         }
@@ -311,4 +311,13 @@ function getGsfGmsCoreSharedPerms() {
     'com.google.android.gtalkservice.permission.GTALK_SERVICE',
     'com.android.vending.INTENT_VENDING_ONLY',
   ]
+}
+
+async function isApexOrCapexDir(path: string) {
+  if (await isDirectory(path)) {
+    return true
+  }
+  let suffix = '.apex'
+  assert(path.endsWith(suffix))
+  return await isDirectory(path.slice(0, -suffix.length) + '.capex')
 }
