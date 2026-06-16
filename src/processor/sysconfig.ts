@@ -210,19 +210,14 @@ export async function processSysconfig(
                   if (inclusionConfig === undefined) {
                     return FilterResult.UNKNOWN_ENTRY
                   }
-
-                  let trimmedEntry = structuredClone(entry)
-                  let attrs = trimmedEntry[':@'] as Record<string, unknown>
-                  delete attrs[packageAttr]
-                  let xmlStr = stringifyXml([trimmedEntry])
+                  let xmlStr = stringifyXml([entry])
                   if (inclusionConfig.sysconfig_inclusions?.includes(xmlStr)) {
                     return FilterResult.INCLUDE
                   }
                   if (inclusionConfig.sysconfig_exclusions?.includes(xmlStr)) {
                     return FilterResult.EXCLUDE
                   }
-                  log(`included unknown ${pkgName} sysconfig: ${xmlStr}`)
-                  return FilterResult.INCLUDE
+                  return FilterResult.UNKNOWN_ENTRY
                 }
               }
             },
