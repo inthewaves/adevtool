@@ -120,7 +120,7 @@ async function doDevice(
   let updatePresignedPromise = updatePresigned(entries, pathResolver, sdkVersion)
 
   // modifies entries array, needs await
-  let productSystemServerJars: string[] = await processSystemServerClassPaths(entries, pathResolver, customState)
+  let systemServerCpJars = await processSystemServerClassPaths(entries, pathResolver, customState)
 
   if (verbose) log('Copying blobs')
   let copyBlobsPromise = copyBlobs(
@@ -153,7 +153,7 @@ async function doDevice(
     entries,
     buildPkgs,
     propResults,
-    productSystemServerJars,
+    systemServerCpJars,
     await fwPaths,
     await vintfPaths,
     await sepolicyDirs,

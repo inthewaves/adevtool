@@ -10,10 +10,11 @@ import { SystemState } from '../config/system-state'
 import { PropResults } from '../frontend/generate'
 import { MKBOOTIMG_ARGS_FILE_NAME } from '../frontend/source'
 import { generateAndroidInfo } from '../images/firmware'
+import { SystemServerClasspathJar } from '../processor/classpath'
 import { SepolicyDirs } from '../processor/sepolicy'
 import { VintfPaths } from '../processor/vintf'
 import { LinkerConfig } from '../proto-ts/build/soong/linkerconfig/proto/linker_config'
-import { assertDefined, mapGet } from '../util/data'
+import { assertDefined, mapGet, updateMultiMap } from '../util/data'
 import { EntryFilterCmd, filterEntries } from '../util/exact-filter'
 import { isFile, readFile } from '../util/fs'
 import { MAKEFILE_HEADER } from '../util/headers'
@@ -150,7 +151,7 @@ export async function genProductMakefile(
   copyFiles: string[],
   vintfPathsMap: Map<string, VintfPaths> | null,
   propResults: PropResults,
-  productSystemServerJars: string[],
+  systemServerCpJars: SystemServerClasspathJar[],
   dirs: VendorDirectories,
   pathResolver: PathResolver,
   customState: SystemState | null,
@@ -326,7 +327,14 @@ PRODUCT_MANUFACTURER := ${mapGet(productProps, 'ro.product.product.manufacturer'
       blocks.push(block)
     }
 
-    addContBlock(blocks, 'PRODUCT_SYSTEM_SERVER_JARS', productSystemServerJars)
+    let sscpJars = new Map<string, string[]>()
+    for (let jar of systemServerCpJars) {
+      updateMultiMap(sscpJars, jar.makefileArrayName, jar.makefileName)
+    }
+
+    for (let [arrName, entries] of sscpJars.entries()) {
+      addContBlock(blocks, arrName, entries)
+    }
   }
 
   let missingProps = propResults.missingProps
@@ -512,8 +520,7 @@ TARGET_COPY_OUT_ODM_DLKM := odm_dlkm`)
   }
 
   blocks.push(
-    '# needed for overriding AOSP-available files with extracted prebuilts\n' +
-      'BUILD_BROKEN_DUP_RULES := true',
+    '# needed for overriding AOSP-available files with extracted prebuilts\n' + 'BUILD_BROKEN_DUP_RULES := true',
   )
 
   if (config.device.backport_build_id !== undefined) {

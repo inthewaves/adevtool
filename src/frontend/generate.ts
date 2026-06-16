@@ -28,6 +28,7 @@ import { getHostBinPath } from '../config/paths'
 import { parseSystemState, SystemState } from '../config/system-state'
 import { extractFactoryFirmware, writeFirmwareImages } from '../images/firmware'
 import { BriefApkInfo } from '../processor/apk-processor'
+import { SystemServerClasspathJar } from '../processor/classpath'
 import { getCertDigests, SepolicyDirs } from '../processor/sepolicy'
 import { SYSCONFIG_DIR_NAMES } from '../processor/sysconfig'
 import { VintfPaths } from '../processor/vintf'
@@ -372,7 +373,7 @@ export async function generateBuildFiles(
   entries: BlobEntry[],
   buildPkgs: BuildSystemPackages[],
   propResults: PropResults,
-  productSystemServerJars: string[],
+  systemServerCpJars: SystemServerClasspathJar[],
   fwPaths: string[] | null,
   vintfPaths: Map<string, VintfPaths> | null,
   sepolicyDirs: SepolicyDirs | null,
@@ -494,7 +495,6 @@ export async function generateBuildFiles(
         }
       }
 
-
       let module = blobToSoongModule(
         config,
         resolvedName,
@@ -570,7 +570,7 @@ export async function generateBuildFiles(
       copyFiles,
       vintfPaths,
       propResults,
-      productSystemServerJars,
+      systemServerCpJars,
       dirs,
       pathResolver,
       customState,
