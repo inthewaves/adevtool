@@ -28,7 +28,14 @@ async function extractFactoryDirFirmware(
 
   let blVersion = mapGet(vendorProps, BOOTLOADER_VERSION_PROP)
 
-  let imageInfix = `-${config.device.name}${config.device.is_beta_build_id || config.device.is_beta_backport_build_id ? '_beta' : ''}-`
+  let isBetaImage
+  if (config.device.backport_build_id === undefined) {
+    isBetaImage = config.device.is_beta_build_id
+  } else {
+    isBetaImage = config.device.is_beta_backport_build_id
+  }
+
+  let imageInfix = `-${config.device.name}${isBetaImage ? '_beta' : ''}-`
 
   images.set('bootloader.img', await fs.readFile(path.join(baseFwDirPath, `bootloader${imageInfix}${blVersion}.img`)))
 
