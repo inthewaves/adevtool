@@ -10,7 +10,6 @@ device:
     # calibration file bluetooth_power_limits_G03Z5_JP.csv, and the
     # device's own regulatory_content.html all agree on G03Z5.
     - G03Z5 # For Japan only: 5G Sub 6GHz JP
-  build_id: BP4A.251205.006
 
 includes:
   - common/gen7pixel.yml

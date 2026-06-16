@@ -5,7 +5,6 @@ device:
     - GP4BC # 5G Sub 6GHz
     - GE2AE # 5G mmWave + Sub 6GHz
     - GFE4J # For Japan only: 5G mmWave + Sub 6GHz JP
-  build_id: BP4A.251205.006
 
 includes:
   - common/gen7pixel.yml
