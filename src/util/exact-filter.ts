@@ -86,6 +86,10 @@ export function filterEntries2<T>(cmd: EntryFilter2Cmd<T>) {
   let filtered: [string, T][] = []
   let hasTransforms = false
   for (let pair of Array.from(cmd.entries)) {
+    // system_ext/etc/sysconfig/preinstalled-packages-cccdktimesync.xml has an invalid extra dot after comment as of CP2A.260605.012
+    if (pair[1]['#text'] === '.' && Object.keys(pair[1]).length === 1) {
+      continue
+    }
     if (cmd.preprocess !== undefined) {
       let res = cmd.preprocess(pair[1])
       if (res !== null) {
