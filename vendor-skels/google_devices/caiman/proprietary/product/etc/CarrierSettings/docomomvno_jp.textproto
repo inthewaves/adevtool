@@ -1,5 +1,5 @@
 canonical_name: "docomomvno_jp"
-version: 75000000010
+version: 77000000013
 apns {
   apn {
     name: "sp\343\203\242\343\203\274\343\203\211"
@@ -53,6 +53,7 @@ apns {
     password: "0000"
     authtype: 3
     protocol: IPV4V6
+    roaming_protocol: IPV4V6
   }
   apn {
     name: "Rakuten Mobile - rmobile_co"
@@ -63,6 +64,7 @@ apns {
     password: "0000"
     authtype: 3
     protocol: IPV4V6
+    roaming_protocol: IPV4V6
   }
   apn {
     name: "mineo"
@@ -268,6 +270,10 @@ configs {
       item: "0xA001-0xA002:type=other, emergency=true"
       item: "0xA004-0xA3FF:type=other, emergency=true"
     }
+  }
+  config {
+    key: "carrier_default_2g_protection_enabled_bool"
+    bool_value: true
   }
   config {
     key: "carrier_force_disable_etws_cmas_test_bool"
@@ -486,10 +492,6 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "vilte_data_is_metered_bool"
     bool_value: false
   }
@@ -508,5 +510,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1753863651
+  seconds: 1770215841
 }

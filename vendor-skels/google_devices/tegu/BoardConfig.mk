@@ -19,7 +19,6 @@ BOARD_KERNEL_CMDLINE += \
     androidboot.console=ttySAC0 \
     printk.devkmsg=on \
     cma_sysfs.experimental=Y \
-    cgroup_disable=memory \
     cgroup.memory=nokmem \
     rcupdate.rcu_expedited=1 \
     rcu_nocbs=all \
@@ -77,6 +76,3 @@ SELINUX_IGNORE_NEVERALLOWS := true
 
 # needed for overriding AOSP-available files with extracted prebuilts
 BUILD_BROKEN_DUP_RULES := true
-
-# needed for partially backporting multi-partition libraries, e.g. libc++
-BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true

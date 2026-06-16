@@ -2,7 +2,7 @@
 <resources>
     <string name="charge_limit_indexing_keywords">зарядка, ограничение, оптимизация зарядки, ограничение уровня заряда</string>
     <string name="charging_optimization_entry_summary_charge_limit">Максимум %1$s</string>
-    <string name="charging_optimization_footer_message_charge_limit">Чтобы продлить срок службы батареи, телефон заряжается только на %1$s. Для точного определения уровня заряда раз в одну-две недели устройство будет заряжаться до %2$s.</string>
-    <string name="charging_optimization_summary_off">Отключена</string>
+    <string name="charging_optimization_footer_message_charging_limit">Это помогает продлить срок службы батареи. Иногда телефон будет заряжаться полностью, чтобы данные о емкости батареи оставались точными.</string>
+    <string name="charging_optimization_summary_off">Отключено</string>
     <string name="charging_optimization_title">Оптимизация зарядки</string>
 </resources>

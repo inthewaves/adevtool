@@ -1,5 +1,5 @@
 canonical_name: "base_be"
-version: 75000000011
+version: 77000000013
 apns {
   apn {
     name: "BASE WAP"
@@ -53,6 +53,10 @@ configs {
   }
   config {
     key: "carrier_wfc_ims_available_bool"
+    bool_value: true
+  }
+  config {
+    key: "hide_enhanced_4g_lte_bool"
     bool_value: true
   }
   config {
@@ -147,14 +151,10 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "wfc_spn_format_idx_int"
     int_value: 11
   }
 }
 last_updated {
-  seconds: 1746619449
+  seconds: 1770819129
 }

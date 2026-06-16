@@ -14,12 +14,17 @@ BOARD_BOOT_HEADER_VERSION := 4
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 
 BOARD_KERNEL_CMDLINE += \
+    fips140.load_sequential=1 \
+    exynos_drm.load_sequential=1 \
+    g2d.load_sequential=1 \
+    samsung_iommu_v9.load_sequential=1 \
+    vh_sched.load_sequential=1 \
+    pcie_exynos_gs.load_sequential=1 \
     earlycon=exynos4210,0x10870000 \
     console=ttySAC0,115200 \
     androidboot.console=ttySAC0 \
     printk.devkmsg=on \
     cma_sysfs.experimental=Y \
-    cgroup_disable=memory \
     cgroup.memory=nokmem \
     rcupdate.rcu_expedited=1 \
     rcu_nocbs=all \
@@ -38,6 +43,7 @@ BOARD_INIT_BOOT_HEADER_VERSION := 4
 BOARD_MKBOOTIMG_INIT_ARGS += --header_version $(BOARD_INIT_BOOT_HEADER_VERSION)
 
 BOARD_BOOTCONFIG += \
+    androidboot.load_modules_parallel=true \
     androidboot.boot_devices=13200000.ufs
 
 AB_OTA_PARTITIONS += \
@@ -77,6 +83,3 @@ SELINUX_IGNORE_NEVERALLOWS := true
 
 # needed for overriding AOSP-available files with extracted prebuilts
 BUILD_BROKEN_DUP_RULES := true
-
-# needed for partially backporting multi-partition libraries, e.g. libc++
-BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true

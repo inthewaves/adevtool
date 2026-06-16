@@ -7,6 +7,13 @@
         <item>0</item>
         <item>0</item>
     </array>
+    <array name="config_doze_brightness_sensor_to_wallpaper_scrim_opacity">
+        <item>-1</item>
+        <item>51</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </array>
     <bool name="config_enableDisplayCutoutProtection">true</bool>
     <bool name="doze_display_state_supported">true</bool>
     <bool name="doze_suspend_display_state_supported">false</bool>

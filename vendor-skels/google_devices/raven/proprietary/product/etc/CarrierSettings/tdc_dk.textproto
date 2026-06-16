@@ -1,5 +1,5 @@
 canonical_name: "tdc_dk"
-version: 75000000503
+version: 77000000503
 apns {
   apn {
     name: "TDC MMS"

@@ -4,8 +4,9 @@
         <item>Certifikatet har upphört att gälla</item>
         <item>Sensorn har tillfälligt inaktiverats</item>
         <item>Kalibreringsfel</item>
-        <item>Ansiktslås är inte tillgängligt. Telefonen är för varm.</item>
-        <item>Du måste konfigurera ansiktslåset på nytt</item>
+        <item>Ansiktslås är otillgängligt. Telefonen är för varm.</item>
+        <item>Du måste ställa in ansiktslåset på nytt</item>
+        <item>Justera belysningen och håll kameran stilla</item>
     </array>
     <string name="biometric_app_setting_name">Ansikte eller fingeravtryck</string>
     <string name="biometric_dialog_default_subtitle">Fortsätt med hjälp av ditt ansikte eller fingeravtryck</string>

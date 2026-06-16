@@ -1,5 +1,5 @@
 canonical_name: "nexphone_ch"
-version: 75000000002
+version: 77000000004
 apns {
   apn {
     name: "NX"
@@ -28,5 +28,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1731496825
+  seconds: 1770819156
 }

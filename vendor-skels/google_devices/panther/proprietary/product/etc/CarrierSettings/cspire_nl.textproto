@@ -1,5 +1,5 @@
 canonical_name: "cspire_nl"
-version: 75000000009
+version: 77000000009
 apns {
   apn {
     name: "INTL CSpire Internet"

@@ -1,5 +1,5 @@
 canonical_name: "celluarone_us"
-version: 75000000007
+version: 77000000008
 apns {
   apn {
     name: "IMS"
@@ -53,6 +53,14 @@ configs {
     bool_value: false
   }
   config {
+    key: "imsss.use_csfb_on_xcap_over_ut_failure_bool"
+    bool_value: false
+  }
+  config {
+    key: "imsss.ut_as_server_fqdn_string"
+    text_value: "epc.mnc320.mcc310.pub.3gppnetwork.org"
+  }
+  config {
     key: "imsss.xcap_over_ut_supported_rats_int_array"
     int_array {
     }
@@ -97,6 +105,10 @@ configs {
     bool_value: true
   }
   config {
+    key: "imsvoice.prack_supported_for_18x_bool"
+    bool_value: true
+  }
+  config {
     key: "imsvoice.voice_qos_precondition_supported_bool"
     bool_value: false
   }
@@ -104,7 +116,11 @@ configs {
     key: "imsvt.video_qos_precondition_supported_bool"
     bool_value: false
   }
+  config {
+    key: "iwlan.epdg_static_address_string"
+    text_value: "epdg.epc.mnc320.mcc310.pub.3gppnetwork.org"
+  }
 }
 last_updated {
-  seconds: 1706100361
+  seconds: 1769617002
 }

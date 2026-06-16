@@ -1,5 +1,5 @@
 canonical_name: "roccstar_us"
-version: 75000000006
+version: 77000000007
 apns {
   apn {
     name: "Roccstar"
@@ -172,6 +172,12 @@ configs {
   config {
     key: "data_limit_threshold_bytes_long"
     long_value: 107374182400
+  }
+  config {
+    key: "disconnect_cause_network_busy_int_array"
+    int_array {
+      item: 60
+    }
   }
   config {
     key: "editable_voicemail_number_setting_bool"
@@ -711,5 +717,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1764155412
+  seconds: 1777512316
 }

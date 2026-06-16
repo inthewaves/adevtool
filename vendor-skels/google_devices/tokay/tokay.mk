@@ -3,8 +3,8 @@
 
 include vendor/google_devices/tokay/adevtool-version-check.mk
 
-ifneq ($(BUILD_ID),BP4A.260205.002)
-  $(error BUILD_ID: expected BP4A.260205.002, got $(BUILD_ID))
+ifneq ($(BUILD_ID),CP2A.260605.012)
+  $(error BUILD_ID: expected CP2A.260605.012, got $(BUILD_ID))
 endif
 
 $(call inherit-product, vendor/adevtool/config/mk/google_devices/device/tokay/device.mk)
@@ -38,11 +38,13 @@ TARGET_RECOVERY_WIPE := vendor/google_devices/tokay/proprietary/recovery/system/
 
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     vendor/google_devices/tokay/vintf/system_ext/aocx_framework_compatibility_matrix_system_ext \
+    vendor/google_devices/tokay/vintf/system_ext/camera_interference_avoidance_framework_compatibility_matrix_system_ext \
     vendor/google_devices/tokay/vintf/system_ext/imageprocessing_hal_framework_compatibility_matrix_system_ext
 
 # system_ext vintf_fragments
 PRODUCT_PACKAGES += \
     adevtool_vintf_fragment_system_ext_com.google.pixel.camera.services@1.0-service-google.xml \
+    adevtool_vintf_fragment_system_ext_manifest_mosey.xml \
     adevtool_vintf_fragment_system_ext_vendor.google.edgetpu_app_service@1.0-service.xml
 
 DEVICE_PRODUCT_COMPATIBILITY_MATRIX_FILE += \
@@ -57,7 +59,7 @@ DEVICE_MANIFEST_FILE += vendor/google_devices/tokay/vintf/vendor/manifest.xml
 PRODUCT_PACKAGES += \
     adevtool_vintf_fragment_vendor_android.hardware.audio.service-aidl.aoc.xml \
     adevtool_vintf_fragment_vendor_android.hardware.authsecret-service.citadel.xml \
-    adevtool_vintf_fragment_vendor_android.hardware.camera.provider@2.7-service-google-apex.xml \
+    adevtool_vintf_fragment_vendor_android.hardware.bluetooth.socket-service.pixel.xml \
     adevtool_vintf_fragment_vendor_android.hardware.contexthub-service.generic.xml \
     adevtool_vintf_fragment_vendor_android.hardware.dumpstate.3-service.xml \
     adevtool_vintf_fragment_vendor_android.hardware.gnss@lassen.xml \
@@ -66,7 +68,8 @@ PRODUCT_PACKAGES += \
     adevtool_vintf_fragment_vendor_android.hardware.oemlock-service.citadel.xml \
     adevtool_vintf_fragment_vendor_android.hardware.power-service.pixel.xml \
     adevtool_vintf_fragment_vendor_android.hardware.power.stats-service.pixel.xml \
-    adevtool_vintf_fragment_vendor_android.hardware.security.keymint-service.citadel.xml \
+    adevtool_vintf_fragment_vendor_android.hardware.security.keymint-service-v3.citadel.xml \
+    adevtool_vintf_fragment_vendor_android.hardware.security.sharesecret-service.citadel.xml \
     adevtool_vintf_fragment_vendor_android.hardware.thermal-service.pixel.xml \
     adevtool_vintf_fragment_vendor_android.hardware.usb-service.xml \
     adevtool_vintf_fragment_vendor_android.hardware.usb.gadget-service.xml \
@@ -82,18 +85,18 @@ PRODUCT_PACKAGES += \
     adevtool_vintf_fragment_vendor_manifest_aocx.xml \
     adevtool_vintf_fragment_vendor_manifest_gralloc_aidl2.xml \
     adevtool_vintf_fragment_vendor_manifest_input.processor-service.xml \
-    adevtool_vintf_fragment_vendor_manifest_mosey.xml \
     adevtool_vintf_fragment_vendor_manifest_radioext.xml \
     adevtool_vintf_fragment_vendor_memtrack.xml \
     adevtool_vintf_fragment_vendor_pixel-display-default.xml \
     adevtool_vintf_fragment_vendor_pixel-gnss-default.xml \
     adevtool_vintf_fragment_vendor_qfp-daemon.xml \
     adevtool_vintf_fragment_vendor_shared_modem_platform.xml \
-    adevtool_vintf_fragment_vendor_vendor.dolby.media.c2@1.0-service.xml \
+    adevtool_vintf_fragment_vendor_vendor.dolby.media.c2-default-service.xml \
     adevtool_vintf_fragment_vendor_vendor.google.aam.xml \
     adevtool_vintf_fragment_vendor_vendor.google.battery_mitigation-default.xml \
     adevtool_vintf_fragment_vendor_vendor.google.edgetpu_vendor_service@1.0-service.xml \
     adevtool_vintf_fragment_vendor_vendor.google.google_battery-default.xml \
+    adevtool_vintf_fragment_vendor_vendor.google.plat_security-service.xml \
     adevtool_vintf_fragment_vendor_vendor.google.radio_ext-default.xml \
     adevtool_vintf_fragment_vendor_vendor.google.wireless_charger-default.xml \
     adevtool_vintf_fragment_vendor_vendor.google.wireless_charger.service-default.xml
@@ -143,24 +146,27 @@ PRODUCT_PACKAGES += \
     android.frameworks.stats-V1-cpp.vendor \
     android.frameworks.stats-V1-ndk.vendor \
     android.frameworks.stats-V2-ndk.vendor \
-    android.hardware.audio.common-V4-ndk.vendor \
+    android.hardware.audio.common-V5-ndk.vendor \
     android.hardware.audio.common@5.0.vendor \
     android.hardware.audio.core-V4-ndk.vendor \
-    android.hardware.audio.core.sounddose-V3-ndk.vendor \
-    android.hardware.audio.effect-V3-ndk.vendor \
+    android.hardware.audio.core.sounddose-V4-ndk.vendor \
+    android.hardware.audio.effect-V4-ndk.vendor \
     android.hardware.audio.low_latency.prebuilt.xml \
     android.hardware.audio.pro.prebuilt.xml \
     android.hardware.authsecret-V1-ndk.vendor \
     android.hardware.biometrics.common-V3-ndk.vendor \
     android.hardware.biometrics.fingerprint-V3-ndk.vendor \
     android.hardware.bluetooth-V1-ndk.vendor \
-    android.hardware.bluetooth.audio-V5-ndk.vendor \
+    android.hardware.bluetooth.audio-V6-ndk.vendor \
     android.hardware.bluetooth.audio-impl \
     android.hardware.bluetooth.audio@2.0.vendor \
     android.hardware.bluetooth.audio@2.1.vendor \
     android.hardware.bluetooth.finder-V1-ndk.vendor \
+    android.hardware.bluetooth.lmp_event-V1-ndk.vendor \
     android.hardware.bluetooth.prebuilt.xml \
-    android.hardware.bluetooth.ranging-V1-ndk.vendor \
+    android.hardware.bluetooth.ranging-V2-ndk.vendor \
+    android.hardware.bluetooth.socket-V2-ndk.vendor \
+    android.hardware.bluetooth_le.channel_sounding.prebuilt.xml \
     android.hardware.bluetooth_le.prebuilt.xml \
     android.hardware.boot-V1-ndk.vendor \
     android.hardware.boot@1.0.vendor \
@@ -173,7 +179,7 @@ PRODUCT_PACKAGES += \
     android.hardware.common-V2-ndk.vendor \
     android.hardware.common.fmq-V1-ndk.vendor \
     android.hardware.context_hub.prebuilt.xml \
-    android.hardware.contexthub-V4-ndk.vendor \
+    android.hardware.contexthub-V5-ndk.vendor \
     android.hardware.device_unique_attestation.prebuilt.xml \
     android.hardware.drm-V1-ndk.vendor \
     android.hardware.drm-V2-ndk.vendor \
@@ -203,7 +209,7 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.common@1.0.vendor \
     android.hardware.graphics.common@1.1.vendor \
     android.hardware.graphics.common@1.2.vendor \
-    android.hardware.graphics.composer3-V4-ndk.vendor \
+    android.hardware.graphics.composer3-V5-ndk.vendor \
     android.hardware.graphics.composer@2.1-resources.vendor \
     android.hardware.graphics.composer@2.1.vendor \
     android.hardware.graphics.composer@2.2-resources.vendor \
@@ -216,6 +222,7 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@4.0.vendor \
     android.hardware.health-V1-ndk.vendor \
     android.hardware.health-V4-ndk.vendor \
+    android.hardware.health-V5-ndk.vendor \
     android.hardware.health.storage-V1-ndk.vendor \
     android.hardware.health.storage-service.default \
     android.hardware.input.common-V1-ndk.vendor \
@@ -224,7 +231,7 @@ PRODUCT_PACKAGES += \
     android.hardware.location.gps.prebuilt.xml \
     android.hardware.media.bufferpool2-V2-ndk.vendor \
     android.hardware.media.bufferpool@2.0.vendor \
-    android.hardware.media.c2-V1-ndk.vendor \
+    android.hardware.media.c2-V2-ndk.vendor \
     android.hardware.media.c2@1.0.vendor \
     android.hardware.media.c2@1.1.vendor \
     android.hardware.media.c2@1.2.vendor \
@@ -246,22 +253,21 @@ PRODUCT_PACKAGES += \
     android.hardware.opengles.aep.prebuilt.xml \
     android.hardware.power-V1-ndk.vendor \
     android.hardware.power-V2-ndk.vendor \
-    android.hardware.power-V6-ndk.vendor \
+    android.hardware.power-V7-ndk.vendor \
     android.hardware.power.stats-V2-ndk.vendor \
-    android.hardware.radio-V2-ndk.vendor \
-    android.hardware.radio.config-V2-ndk.vendor \
+    android.hardware.radio-V3-ndk.vendor \
+    android.hardware.radio.config-V3-ndk.vendor \
     android.hardware.radio.config@1.0.vendor \
     android.hardware.radio.config@1.1.vendor \
     android.hardware.radio.config@1.2.vendor \
-    android.hardware.radio.data-V2-ndk.vendor \
+    android.hardware.radio.data-V3-ndk.vendor \
     android.hardware.radio.deprecated@1.0.vendor \
-    android.hardware.radio.ims-V1-ndk.vendor \
-    android.hardware.radio.messaging-V2-ndk.vendor \
-    android.hardware.radio.modem-V2-ndk.vendor \
-    android.hardware.radio.network-V2-ndk.vendor \
+    android.hardware.radio.messaging-V3-ndk.vendor \
+    android.hardware.radio.modem-V3-ndk.vendor \
+    android.hardware.radio.network-V3-ndk.vendor \
     android.hardware.radio.sap-V1-ndk.vendor \
-    android.hardware.radio.sim-V2-ndk.vendor \
-    android.hardware.radio.voice-V2-ndk.vendor \
+    android.hardware.radio.sim-V3-ndk.vendor \
+    android.hardware.radio.voice-V3-ndk.vendor \
     android.hardware.radio@1.2.vendor \
     android.hardware.radio@1.3.vendor \
     android.hardware.radio@1.4.vendor \
@@ -278,6 +284,7 @@ PRODUCT_PACKAGES += \
     android.hardware.security.rkp-V3-ndk.vendor \
     android.hardware.security.secretkeeper.trusty \
     android.hardware.security.sharedsecret-V1-ndk.vendor \
+    android.hardware.security.timestamp-V1-ndk.vendor \
     android.hardware.sensor.accelerometer.prebuilt.xml \
     android.hardware.sensor.barometer.prebuilt.xml \
     android.hardware.sensor.compass.prebuilt.xml \
@@ -295,8 +302,7 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@2.0-ScopedWakelock.vendor \
     android.hardware.sensors@2.0.vendor \
     android.hardware.sensors@2.1.vendor \
-    android.hardware.soundtrigger3-V3-ndk.vendor \
-    android.hardware.strongbox_keystore.prebuilt.xml \
+    android.hardware.soundtrigger3-V4-ndk.vendor \
     android.hardware.telephony.carrierlock.prebuilt.xml \
     android.hardware.telephony.gsm.prebuilt.xml \
     android.hardware.telephony.ims.prebuilt.xml \
@@ -307,13 +313,13 @@ PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0.vendor \
     android.hardware.thermal@2.0.vendor \
     android.hardware.touchscreen.multitouch.jazzhand.prebuilt.xml \
-    android.hardware.usb-V3-ndk.vendor \
+    android.hardware.usb-V4-ndk.vendor \
     android.hardware.usb.accessory.prebuilt.xml \
     android.hardware.usb.gadget-V1-ndk.vendor \
     android.hardware.usb.gadget@1.0.vendor \
     android.hardware.usb.host.prebuilt.xml \
     android.hardware.vibrator-V3-ndk.vendor \
-    android.hardware.weaver-V2-ndk.vendor \
+    android.hardware.weaver-V3-ndk.vendor \
     android.hardware.wifi.aware.prebuilt.xml \
     android.hardware.wifi.common-V2-ndk.vendor \
     android.hardware.wifi.direct.prebuilt.xml \
@@ -326,9 +332,9 @@ PRODUCT_PACKAGES += \
     android.hidl.safe_union@1.0.vendor \
     android.hidl.token@1.0-utils.vendor \
     android.hidl.token@1.0.vendor \
-    android.media.audio.common.types-V4-ndk.vendor \
-    android.media.audio.eraser.types-V1-ndk.vendor \
-    android.media.soundtrigger.types-V3-ndk.vendor \
+    android.media.audio.common.types-V5-ndk.vendor \
+    android.media.audio.eraser.types-V2-ndk.vendor \
+    android.media.soundtrigger.types-V4-ndk.vendor \
     android.software.angle.xml \
     android.software.device_id_attestation.prebuilt.xml \
     android.software.ipsec_tunnel_migration.prebuilt.xml \
@@ -341,17 +347,21 @@ PRODUCT_PACKAGES += \
     chre_atoms_log \
     chremetrics-cpp \
     com.android.hardware.biometrics.face.virtual \
-    com.android.hardware.biometrics.fingerprint.virtual \
     com.nxp.mifare.prebuilt.xml \
     fastbootd \
     fsck.f2fs.vendor \
     handheld_core_hardware.prebuilt.xml \
     hfp_codec_capabilities_xml \
     ld-android.vendor_ramdisk \
+    libaconfig_storage_file.vendor \
+    libaconfig_storage_protos.vendor \
+    libaconfig_storage_read_api.vendor \
     libaho_corasick.vendor \
     libalsautilsv2.vendor \
     libandroid_log_sys.vendor \
     libandroid_logger.vendor \
+    libanstyle.vendor \
+    libanyhow.vendor \
     libasyncio.recovery \
     libaudio_aidl_conversion_common_ndk.vendor \
     libaudioaidlcommon.vendor \
@@ -361,15 +371,21 @@ PRODUCT_PACKAGES += \
     libavservices_minijail.vendor \
     libbase.vendor_ramdisk \
     libbinder_trusty \
-    libbluetooth_audio_session_aidl \
+    libbionic_bindgen.vendor \
+    libbitflags.vendor \
+    libbluetooth_audio_session_aidl.vendor \
     libbundleaidl \
+    libbytes.vendor \
     libc++.vendor_ramdisk \
     libc.vendor_ramdisk \
     libcap.vendor \
     libcfg_if.vendor \
     libclang_rt.ubsan_standalone.vendor \
+    libclap.vendor \
+    libclap_builder.vendor \
+    libclap_lex.vendor \
     libcodec2.vendor \
-    libcodec2_aidl.vendor \
+    libcodec2_aidl_V2.vendor \
     libcodec2_aidl_noisurface.vendor \
     libcodec2_hal_common.vendor \
     libcodec2_hidl@1.0.vendor \
@@ -379,6 +395,8 @@ PRODUCT_PACKAGES += \
     libcppbor.vendor \
     libcppcose_rkp.vendor \
     libcurl.vendor \
+    libcutils_bindgen.vendor \
+    libcxx.vendor \
     libdl.vendor_ramdisk \
     libdownmixaidl \
     libdrm.vendor \
@@ -386,6 +404,7 @@ PRODUCT_PACKAGES += \
     libdynamicsprocessingaidl \
     libeffectconfig \
     libenv_filter.vendor \
+    libenv_logger.vendor \
     libevent.vendor \
     libexpat.vendor \
     libext2_blkid.vendor_ramdisk \
@@ -397,7 +416,9 @@ PRODUCT_PACKAGES += \
     libext2fs.vendor_ramdisk \
     libflatbuffers-cpp.vendor \
     libfmq.vendor \
+    libfoldhash.vendor \
     libgralloctypes.vendor \
+    libgui.vendor \
     libhapticgeneratoraidl \
     libhidlmemory.vendor \
     libhidltransport.vendor \
@@ -409,29 +430,39 @@ PRODUCT_PACKAGES += \
     libkeymaster_portable.vendor \
     libkeymint_support_V3.vendor \
     libkeystore-engine-wifi-hidl \
-    liblibloading.vendor \
+    liblazy_static.vendor \
+    liblibc.vendor \
     liblog.vendor_ramdisk \
     liblog_rust.vendor \
+    liblogger.vendor \
     libloudnessenhanceraidl \
     liblzma.vendor \
     libm.vendor_ramdisk \
     libmedia_omx.vendor \
     libmediautils_vendor.vendor \
     libmemchr.vendor \
+    libmemmap2.vendor \
+    libmemoffset.vendor \
     libmemunreachable.vendor \
     libminijail.vendor \
     libnbaio_mono \
     libnetutils.vendor \
+    libnix.vendor \
     libnl.vendor \
     libonce_cell.vendor \
     libpng.vendor \
     libpower.vendor \
     libprocessgroup.vendor \
+    libprotobuf.vendor \
+    libprotobuf_support.vendor \
     libregex.vendor \
     libregex_automata.vendor \
     libregex_syntax.vendor \
     libreverbaidl \
+    librustutils.vendor \
     libsensorndkbridge \
+    libserde.vendor \
+    libserde_core.vendor \
     libsfplugin_ccodec_utils.vendor \
     libsparse.vendor \
     libsparse.vendor_ramdisk \
@@ -442,6 +473,9 @@ PRODUCT_PACKAGES += \
     libstagefright_omx_utils.vendor \
     libstagefright_xmlparser.vendor \
     libstd.vendor \
+    libstrsim.vendor \
+    libsystem_properties_bindgen_sys.vendor \
+    libthiserror.vendor \
     libtinyalsa.vendor \
     libtinyalsav2.vendor \
     libtinycompress \
@@ -485,11 +519,13 @@ PRODUCT_PACKAGES += \
 # sysconfig
 PRODUCT_PACKAGES += \
     adevtool_sysconfig_system_ext_default-permissions \
+    adevtool_sysconfig_system_ext_sysconfig \
     adevtool_sysconfig_system_ext_permissions \
     adevtool_sysconfig_product_default-permissions \
     adevtool_sysconfig_product_sysconfig \
     adevtool_sysconfig_product_permissions \
-    adevtool_sysconfig_vendor_permissions
+    adevtool_sysconfig_vendor_permissions \
+    adevtool_sysconfig_odm_sysconfig_sku_G1B60
 
 # APK parser config
 PRODUCT_PACKAGES += \
@@ -509,6 +545,7 @@ PRODUCT_PACKAGES += \
     GooglePermissionControllerSafetyCenterOverlay \
     ManagedProvisioningPixelOverlay \
     NetworkStackOverlay \
+    NfcOverlayTokayGsi \
     PearlOverlay2024 \
     PixelBatteryHealthOverlay \
     PixelBatteryLotXOverlay \
@@ -538,7 +575,6 @@ PRODUCT_PACKAGES += \
     SystemUIGoogle__tokay__auto_generated_rro_vendor \
     TeleService__tokay__auto_generated_rro_product \
     TeleService__tokay__auto_generated_rro_vendor \
-    Telecom__tokay__auto_generated_rro_product \
     TrafficLightFaceOverlay \
     UdfpsOverlay \
     UltrasonicOverlay \
@@ -554,7 +590,7 @@ PRODUCT_PACKAGES += \
     OemRilHookService \
     OemRilService \
     PersistentBackgroundCameraServices \
-    PixelCameraServicesConnectivityClient \
+    PixelCameraServices \
     PixelDisplayService \
     PixelImsMediaService \
     PixelNfc \
@@ -563,6 +599,8 @@ PRODUCT_PACKAGES += \
     ShannonIms \
     ShannonRcs \
     aconfig_gpu_flags_c_lib \
+    aconfig_gsc_flags_c_lib \
+    aconfig_ultrasonic_udfps_flags_c_lib \
     activity \
     aidb_recorder \
     ambient_volume \
@@ -610,12 +648,14 @@ PRODUCT_PACKAGES += \
     android.hardware.weaver2-impl.nos \
     aoc_aconfig_flags_c_lib \
     aocd \
-    aocx-V2-ndk \
+    aocx-V3-ndk \
     aocxd \
     ar_bridge \
     arm.graphics-V1-ndk \
+    backup_ota_log.sh \
     battery_mitigation \
     bipchmgr \
+    block_queue_depth \
     blue \
     capo \
     cbd \
@@ -628,18 +668,18 @@ PRODUCT_PACKAGES += \
     com.google.android.camera.experimental2024_system \
     com.google.android.camera.extensions \
     com.google.android.camerax.extensions \
-    com.google.android.widevine-13130248 \
+    com.google.android.widevine-15027108-cp2a \
     com.google.edgetpu.tachyon-ndk \
     com.google.edgetpu.tachyon-service \
     com.google.edgetpu_app_service-V6-ndk \
     com.google.edgetpu_app_service-V6-ndk.system_ext \
     com.google.edgetpu_vendor_service-V2-ndk \
     com.google.edgetpu_vendor_service-V2-ndk.system_ext \
-    com.google.hardware.biometrics.fingerprint.fingerprint-ext-V2-ndk \
+    com.google.hardware.biometrics.fingerprint.fingerprint-ext-V3-ndk \
     com.google.hardware.pixel.display-V15-ndk \
-    com.google.hardware.pixel.display-V17-ndk \
+    com.google.hardware.pixel.display-V21-ndk \
     com.google.input-V2-ndk \
-    com.google.input-V6-ndk \
+    com.google.input-V8-ndk \
     com.google.input.gia.giaservicemanager \
     com.google.pixel.camera.connectivity \
     com.google.pixel.camera.hal \
@@ -650,6 +690,7 @@ PRODUCT_PACKAGES += \
     com.google.pixel.wifi.ext \
     copy_efs_files_to_data \
     dck_gating \
+    devcoredump_action \
     disable_contaminant_detection.sh \
     dmd \
     drop \
@@ -669,7 +710,6 @@ PRODUCT_PACKAGES += \
     dump_soc \
     dump_storage \
     dump_thermal.sh \
-    dump_touch.sh \
     dump_tpu \
     dump_trusty.sh \
     fake_gxp_telemetry_reader \
@@ -681,7 +721,7 @@ PRODUCT_PACKAGES += \
     gnssd \
     google-ril \
     google.hardware.media.c2@2.0-service \
-    gpu_probe \
+    gpuflag \
     gs_watchdogd \
     gxp_metrics_logger \
     gxp_telemetry_reader \
@@ -694,6 +734,7 @@ PRODUCT_PACKAGES += \
     init.radio.sh \
     init_citadel \
     insmod.sh \
+    instant_sense \
     ip_health \
     lassen_dmd_constants \
     libAlgFx_HiFi3z \
@@ -722,18 +763,15 @@ PRODUCT_PACKAGES += \
     libacryl_hdr_plugin \
     libalertv3 \
     libaoc \
-    libaptXHD_encoder \
-    libaptX_encoder \
     libbw_av1dec \
     libbw_av1enc \
     libc2filterplugin \
     libcodec2_soft_ddpdec \
     libcodec2_store_dolby \
     libcustomgnss \
-    libdapparamstorage \
     libdarwinn_hal \
-    libdeccfg \
     libdeeptouch \
+    libdisplay_tflite \
     libdisplaycolor \
     libdisplaypanel \
     libdisppower-pixel \
@@ -761,12 +799,12 @@ PRODUCT_PACKAGES += \
     libgooglerilaudio \
     libgooglerilmemmonitor \
     libgpudataproducer \
+    libgpuflag_aconfig_rust.dylib \
     libgril_oem-google \
     libgxp \
     libhwjpeg \
     libion_google \
     libjson \
-    liblmkd_flags_c \
     libmahalcontroller \
     libmedia_ecoservice \
     libmediaadaptor \
@@ -792,9 +830,8 @@ PRODUCT_PACKAGES += \
     libpixelhealth \
     libpixelimsmedia \
     libpixelstats \
+    libpixelstatsflags \
     libpowerstatshaldataprovider \
-    libprotobuf-cpp-full-6.33.1 \
-    libprotobuf-cpp-lite-6.33.1 \
     libqfp-service \
     libqfpsuez \
     libqfstrusty_intf \
@@ -848,12 +885,11 @@ PRODUCT_PACKAGES += \
     pcie_power_control \
     pixel-experiments-recovery.sh \
     pixel-power-ext-V1-ndk \
+    pixel-power-ext-V2-ndk \
     pixel_stateresidency_provider_aidl_interface-ndk \
     pixelatoms-cpp \
-    pixelpowerstats_provider_aidl_interface-cpp \
     pixelstats-vendor \
-    predump_gti0.sh \
-    predump_touch.sh \
+    pixelstats_flags_c_lib \
     qfp-daemon \
     rebalance_interrupts-vendor \
     rfsd \
@@ -868,15 +904,16 @@ PRODUCT_PACKAGES += \
     storage_init.sh \
     structural_health \
     system_signal_hub \
+    thermal-budget-interface-ndk \
     thermal_symlinks \
     time_sync \
-    touch_gti_ical \
     trusty_metricsd \
     twoshay \
+    usboffmode \
     usf_stats \
     uv_exposure \
     vendor-pixelatoms-cpp \
-    vendor.dolby.media.c2@1.0-service \
+    vendor.dolby.media.c2-default-service \
     vendor.google.aam-V3-ndk \
     vendor.google.aam-service \
     vendor.google.battery_mitigation-V1-ndk \
@@ -885,17 +922,20 @@ PRODUCT_PACKAGES += \
     vendor.google.bluetooth_ext-V4-ndk \
     vendor.google.edgetpu_app_service@1.0-service \
     vendor.google.edgetpu_vendor_service@1.0-service \
+    vendor.google.gnss.gnss_manager.controller-V1-ndk \
     vendor.google.gnss_ext-V1-ndk \
     vendor.google.google_battery-V5-ndk \
     vendor.google.google_battery-service \
+    vendor.google.plat_security-V1-ndk \
+    vendor.google.plat_security-service \
     vendor.google.radio_ext-V1-ndk \
     vendor.google.radio_ext-service \
     vendor.google.radioext@1.0-service \
     vendor.google.whitechapel.audio.audioext@4.0 \
     vendor.google.whitechapel.audio.audioext@4.0.system_ext \
     vendor.google.whitechapel.audio.extension-V5-ndk \
-    vendor.google.whitechapel.audio.extension-V7-ndk \
-    vendor.google.whitechapel.audio.extension-V7-ndk.system_ext \
+    vendor.google.whitechapel.audio.extension-V8-ndk \
+    vendor.google.whitechapel.audio.extension-V8-ndk.system_ext \
     vendor.google.whitechapel.audio.hal.parserservice \
     vendor.google.whitechapel.audio.hal.utils \
     vendor.google.whitechapel.audio.hal.utils.adaptedinfo \
@@ -904,7 +944,7 @@ PRODUCT_PACKAGES += \
     vendor.google.whitechapel.audio.hal.utils.bluenote \
     vendor.google.whitechapel.audio.hal.utils.pipe \
     vendor.google.whitechapel.audio_flags \
-    vendor.google.wireless_charger-V5-ndk \
+    vendor.google.wireless_charger-V7-ndk \
     vendor.google.wireless_charger-default \
     vendor.google.wireless_charger.service-V2-ndk \
     vendor.google.wireless_charger.service-default \
@@ -931,6 +971,7 @@ PRODUCT_PACKAGES += \
     device_symlinks
 
 PRODUCT_COPY_FILES += \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/019mobile_il.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/019mobile_il.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/1and1_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/1and1_de.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/1global_bootstrap.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/1global_bootstrap.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/2degrees_nz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/2degrees_nz.pb \
@@ -953,9 +994,11 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/alcom_fi.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/alcom_fi.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/alestra_mx.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/alestra_mx.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/aliv_bs.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/aliv_bs.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/alkafeel_iq.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/alkafeel_iq.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/altice_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/altice_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/alticeroaming_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/alticeroaming_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/andorratelecom_ad.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/andorratelecom_ad.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/annatel_il.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/annatel_il.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/antel_uy.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/antel_uy.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/appalachian_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/appalachian_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/apt_tw.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/apt_tw.pb \
@@ -972,21 +1015,24 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/attbootstrap_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/attbootstrap_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/attmvnos_mx.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/attmvnos_mx.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/attmvnos_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/attmvnos_us.pb \
-    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/avatel_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/avatel_es.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/axis_id.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/axis_id.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/b1_ch.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/b1_ch.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/bait_mx.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bait_mx.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/bark_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bark_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/base_be.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/base_be.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/batelco_bh.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/batelco_bh.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/bbix_zz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bbix_zz.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/bell_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bell_ca.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/best_la.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/best_la.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/bhtelecom_ba.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bhtelecom_ba.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/bics_be.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bics_be.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/bite_lt.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bite_lt.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/bite_lv.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bite_lv.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/bluegrass_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bluegrass_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/bob_at.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bob_at.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/bonbon_hr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bonbon_hr.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/boost_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/boost_us.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/boostmobile_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/boostmobile_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/boosttmo_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/boosttmo_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/bouygues_fr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bouygues_fr.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/bouyguesb2b_fr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bouyguesb2b_fr.pb \
@@ -998,6 +1044,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/cablewireless_sc.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cablewireless_sc.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/cape_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cape_ca.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/cape_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cape_us.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/caribbean_vg.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/caribbean_vg.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/carolinawest_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/carolinawest_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/carrier_list.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/carrier_list.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/celcom_my.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/celcom_my.pb \
@@ -1013,10 +1060,12 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/cht_tw.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cht_tw.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/citymesh_be.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/citymesh_be.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/citymesh_se.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/citymesh_se.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/cjsc_tj.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cjsc_tj.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/claro_ar.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_ar.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/claro_br.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_br.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/claro_cl.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_cl.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/claro_co.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_co.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/claro_pe.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_pe.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/claro_pr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_pr.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/cloud9_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cloud9_gb.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/cloudcore_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cloudcore_ca.pb \
@@ -1051,7 +1100,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/digimobil_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/digimobil_es.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/dish_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/dish_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/dish5gsa_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/dish5gsa_us.pb \
-    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/dishatt_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/dishatt_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/dito_ph.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/dito_ph.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/dna_fi.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/dna_fi.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/docomo_jp.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/docomo_jp.pb \
@@ -1065,19 +1113,23 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/eir_ie.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/eir_ie.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/elisa_ee.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/elisa_ee.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/elisa_fi.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/elisa_fi.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/emnify_br.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/emnify_br.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/emnify_li.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/emnify_li.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/emnify_zz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/emnify_zz.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/enetworks_gy.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/enetworks_gy.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/enreach_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/enreach_de.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/enreach_nl.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/enreach_nl.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/entel_cl.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/entel_cl.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/entel_pe.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/entel_pe.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/epic_mt.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/epic_mt.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/eplus_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/eplus_de.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/erate_no.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/erate_no.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/esimgo_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/esimgo_gb.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/esimgotravel_zz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/esimgotravel_zz.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/esn_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/esn_gb.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/etisalat_ae.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/etisalat_ae.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/etisalat_af.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/etisalat_af.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/etl_ls.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/etl_ls.pb \
-    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/eureka_jp.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/eureka_jp.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/evolve_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/evolve_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/execulink_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/execulink_ca.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/faiba_ke.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/faiba_ke.pb \
@@ -1100,7 +1152,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/free_re.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/free_re.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/freedommobile_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/freedommobile_ca.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/gamma_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/gamma_gb.pb \
-    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/gbrli_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/gbrli_gb.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/gci_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/gci_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/gibtel_gi.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/gibtel_gi.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/giffgaff_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/giffgaff_gb.pb \
@@ -1168,7 +1219,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/linemo_jp.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/linemo_jp.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/lmt_lv.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/lmt_lv.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/lobster_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/lobster_es.pb \
-    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/lobster_gi.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/lobster_gi.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/lowi_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/lowi_es.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/luckymobile_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/luckymobile_ca.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/lum_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/lum_ca.pb \
@@ -1205,16 +1255,21 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/movistar_co.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/movistar_co.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/movistar_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/movistar_es.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/movistar_mx.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/movistar_mx.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/movistar_pe.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/movistar_pe.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/mtel_at.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtel_at.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/mtel_ba.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtel_ba.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/mtel_ch.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtel_ch.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/mtel_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtel_de.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/mtel_me.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtel_me.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/mtn_gh.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtn_gh.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/mtn_ng.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtn_ng.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/mtn_zm.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtn_zm.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/mtx_lu.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtx_lu.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/mtx_zz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtx_zz.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/mucho_ch.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mucho_ch.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/mvnoconnect_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mvnoconnect_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/naf_no.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/naf_no.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/natcom_ht.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/natcom_ht.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/ncell_np.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/ncell_np.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/nema_fo.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/nema_fo.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/neotel_nr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/neotel_nr.pb \
@@ -1268,18 +1323,20 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/orangentn_fr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/orangentn_fr.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/others.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/others.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/otz_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/otz_us.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/ourtelekom_sb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/ourtelekom_sb.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/oxio_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/oxio_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/paradisemobile_bm.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/paradisemobile_bm.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/paradisemobile_ky.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/paradisemobile_ky.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/partner_il.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/partner_il.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/pcmobilebell_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pcmobilebell_ca.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/pelephone_il.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pelephone_il.pb \
-    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/pivotel_au.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pivotel_au.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/pinebelt_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pinebelt_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/play_pl.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/play_pl.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/plintron_it.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/plintron_it.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/plintron_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/plintron_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/plus_pl.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/plus_pl.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/pmci_pw.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pmci_pw.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/pn_xx.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pn_xx.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/popcorn_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/popcorn_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/post_lu.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/post_lu.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/postemobile_it.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/postemobile_it.pb \
@@ -1351,6 +1408,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/sprintwholesale_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/sprintwholesale_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/spusu_at.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/spusu_at.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/spusu_ch.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/spusu_ch.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/spusu_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/spusu_de.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/spusu_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/spusu_gb.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/spusu_it.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/spusu_it.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/ssimobile_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/ssimobile_ca.pb \
@@ -1409,11 +1467,11 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/telia_lt.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telia_lt.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/telia_no.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telia_no.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/telia_se.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telia_se.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/teliab2b_se.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/teliab2b_se.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/telkomsel_id.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telkomsel_id.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/tello_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/tello_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/telna_zz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telna_zz.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/telnyx_be.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telnyx_be.pb \
-    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/telnyx_it.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telnyx_it.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/telnyx_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telnyx_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/telstra_au.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telstra_au.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/telus_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telus_ca.pb \
@@ -1476,6 +1534,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/vinaphone_vn.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vinaphone_vn.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/virgin_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/virgin_ca.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/virgin_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/virgin_gb.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/virgin_kw.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/virgin_kw.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/virgin_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/virgin_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/visible_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/visible_us.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/visiblev_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/visiblev_us.pb \
@@ -1484,6 +1543,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/vivo_br.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vivo_br.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/vodafone_al.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_al.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/vodafone_au.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_au.pb \
+    vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/vodafone_ck.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_ck.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/vodafone_cz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_cz.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/vodafone_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_de.pb \
     vendor/google_devices/tokay/proprietary/product/etc/CarrierSettings/vodafone_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_es.pb \
@@ -1542,10 +1602,15 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/recovery/system/etc/init/android.hardware.boot-service.default_recovery-pixel.rc:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/init/android.hardware.boot-service.default_recovery-pixel.rc \
     vendor/google_devices/tokay/proprietary/recovery/system/etc/init/android.hardware.health-service.zumapro_recovery.rc:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/init/android.hardware.health-service.zumapro_recovery.rc \
     vendor/google_devices/tokay/proprietary/system_ext/etc/init/init.gs_watchdogd.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.gs_watchdogd.rc \
+    vendor/google_devices/tokay/proprietary/system_ext/etc/init/mosey.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/mosey.rc \
     vendor/google_devices/tokay/proprietary/system_ext/etc/init/vendor.google.edgetpu_app_service@1.0-service.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/vendor.google.edgetpu_app_service@1.0-service.rc \
     vendor/google_devices/tokay/proprietary/system_ext/etc/init/vendor.google.whitechapel.audio.hal.parserservice.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/vendor.google.whitechapel.audio.hal.parserservice.rc \
     vendor/google_devices/tokay/proprietary/system_ext/etc/public.libraries-google.txt:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/public.libraries-google.txt \
+    vendor/google_devices/tokay/proprietary/system_ext/etc/wifi/p2p_supplicant_mainline_overlay.conf:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/wifi/p2p_supplicant_mainline_overlay.conf \
+    vendor/google_devices/tokay/proprietary/system_ext/etc/wifi/wpa_supplicant_mainline_overlay.conf:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/wifi/wpa_supplicant_mainline_overlay.conf \
     vendor/google_devices/tokay/proprietary/system_ext/priv-app/EuiccSupportPixel-P23/DKA_0302_24.up:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel-P23/DKA_0302_24.up \
+    vendor/google_devices/tokay/proprietary/system_ext/priv-app/EuiccSupportPixel-P23/DKA_0303_02x_24.up:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel-P23/DKA_0303_02x_24.up \
+    vendor/google_devices/tokay/proprietary/system_ext/priv-app/EuiccSupportPixel-P23/DKA_0303_03x_24.up:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel-P23/DKA_0303_03x_24.up \
     vendor/google_devices/tokay/proprietary/system_ext/priv-app/EuiccSupportPixel-P23/esim-full-v1.img:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel-P23/esim-full-v1.img \
     vendor/google_devices/tokay/proprietary/system_ext/priv-app/EuiccSupportPixel-P23/Felica_Tag_66_Changer.apdu:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel-P23/Felica_Tag_66_Changer.apdu \
     vendor/google_devices/tokay/proprietary/vendor_ramdisk/system/etc/fstab.zuma:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/etc/fstab.zuma \
@@ -1606,6 +1671,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/etc/chre/gesture.napp_header:$(TARGET_COPY_OUT_VENDOR)/etc/chre/gesture.napp_header \
     vendor/google_devices/tokay/proprietary/vendor/etc/chre/health.napp_header:$(TARGET_COPY_OUT_VENDOR)/etc/chre/health.napp_header \
     vendor/google_devices/tokay/proprietary/vendor/etc/chre/imu_cal.napp_header:$(TARGET_COPY_OUT_VENDOR)/etc/chre/imu_cal.napp_header \
+    vendor/google_devices/tokay/proprietary/vendor/etc/chre/instant_sense.napp_header:$(TARGET_COPY_OUT_VENDOR)/etc/chre/instant_sense.napp_header \
     vendor/google_devices/tokay/proprietary/vendor/etc/chre/ip_health.napp_header:$(TARGET_COPY_OUT_VENDOR)/etc/chre/ip_health.napp_header \
     vendor/google_devices/tokay/proprietary/vendor/etc/chre/libchre_log_database.bin:$(TARGET_COPY_OUT_VENDOR)/etc/chre/libchre_log_database.bin \
     vendor/google_devices/tokay/proprietary/vendor/etc/chre/location.napp_header:$(TARGET_COPY_OUT_VENDOR)/etc/chre/location.napp_header \
@@ -1632,6 +1698,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/etc/display_golden_google-tk4c_cal0.pb:$(TARGET_COPY_OUT_VENDOR)/etc/display_golden_google-tk4c_cal0.pb \
     vendor/google_devices/tokay/proprietary/vendor/etc/docv.csv:$(TARGET_COPY_OUT_VENDOR)/etc/docv.csv \
     vendor/google_devices/tokay/proprietary/vendor/etc/earcheek_classifier.tflite:$(TARGET_COPY_OUT_VENDOR)/etc/earcheek_classifier.tflite \
+    vendor/google_devices/tokay/proprietary/vendor/etc/edgetpu/custom_kernel.pbtxt:$(TARGET_COPY_OUT_VENDOR)/etc/edgetpu/custom_kernel.pbtxt \
     vendor/google_devices/tokay/proprietary/vendor/etc/fstab.efs:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.efs \
     vendor/google_devices/tokay/proprietary/vendor/etc/fstab.efs.from_data:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.efs.from_data \
     vendor/google_devices/tokay/proprietary/vendor/etc/fstab.modem:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.modem \
@@ -1687,11 +1754,12 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/citadeld.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/citadeld.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/com.google.edgetpu.tachyon-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/com.google.edgetpu.tachyon-service.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/com.google.input.gia.giacore.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/com.google.input.gia.giacore.rc \
+    vendor/google_devices/tokay/proprietary/vendor/etc/init/devcoredump_action.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/devcoredump_action.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/dmd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/dmd.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/dump_power.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/dump_power.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/Exynos_C2.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/Exynos_C2.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/google.hardware.media.c2@2.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/google.hardware.media.c2@2.0-service.rc \
-    vendor/google_devices/tokay/proprietary/vendor/etc/init/gpu_probe.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/gpu_probe.rc \
+    vendor/google_devices/tokay/proprietary/vendor/etc/init/gpuflag.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/gpuflag.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/hostapd.android.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hostapd.android.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/hw/init.efs.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.efs.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/hw/init.persist.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.persist.rc \
@@ -1707,6 +1775,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/init.display_logbuffer.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.display_logbuffer.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/init.fingerprint.dump.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.fingerprint.dump.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/init.flood.control.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.flood.control.rc \
+    vendor/google_devices/tokay/proprietary/vendor/etc/init/init.gia.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.gia.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/init.gnss.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.gnss.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/init.liboemservice_proxy.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.liboemservice_proxy.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/init.modem_logging_control.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.modem_logging_control.rc \
@@ -1718,20 +1787,22 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/init.shared_modem_platform_l.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.shared_modem_platform_l.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/init.storage.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.storage.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/init.touch.gti0.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.touch.gti0.rc \
-    vendor/google_devices/tokay/proprietary/vendor/etc/init/init.touch.predump.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.touch.predump.rc \
+    vendor/google_devices/tokay/proprietary/vendor/etc/init/init.usboffmode.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.usboffmode.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/init.usf.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.usf.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/init.vendor_telephony.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.vendor_telephony.rc \
+    vendor/google_devices/tokay/proprietary/vendor/etc/init/init.watermark-scale-factor.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.watermark-scale-factor.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/libg3a_gabc.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/libg3a_gabc.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/libg3a_gaf.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/libg3a_gaf.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/libg3a_ghawb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/libg3a_ghawb.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/memtrack.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/memtrack.rc \
-    vendor/google_devices/tokay/proprietary/vendor/etc/init/mosey.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/mosey.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/pcie_power.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pcie_power.rc \
+    vendor/google_devices/tokay/proprietary/vendor/etc/init/pixel-bgtasks-experiment.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-bgtasks-experiment.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/pixel-experiments-recovery.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-experiments-recovery.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/pixel-gnss-default.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-gnss-default.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/pixel-mm-gki.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-mm-gki.rc \
+    vendor/google_devices/tokay/proprietary/vendor/etc/init/pixel-sched-proxy-exec-experiment.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-sched-proxy-exec-experiment.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/pixel-thermal-symlinks.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-thermal-symlinks.rc \
-    vendor/google_devices/tokay/proprietary/vendor/etc/init/pixel-ubp-experiment.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-ubp-experiment.rc \
+    vendor/google_devices/tokay/proprietary/vendor/etc/init/pixel-zram-comp-algorithm-experiment.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-zram-comp-algorithm-experiment.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/pixelstats-vendor.zumapro.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixelstats-vendor.zumapro.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/pktrouter.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pktrouter.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/qfp-daemon.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/qfp-daemon.rc \
@@ -1742,12 +1813,13 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/storage.init.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/storage.init.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/trusty_metricsd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/trusty_metricsd.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/twoshay.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/twoshay.rc \
-    vendor/google_devices/tokay/proprietary/vendor/etc/init/vendor.dolby.media.c2@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.dolby.media.c2@1.0-service.rc \
+    vendor/google_devices/tokay/proprietary/vendor/etc/init/vendor.dolby.media.c2-default-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.dolby.media.c2-default-service.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/vendor.google.aam.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.aam.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/vendor.google.battery_mitigation-default.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.battery_mitigation-default.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/vendor.google.edgetpu_vendor_service@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.edgetpu_vendor_service@1.0-service.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/vendor.google.google_battery-default.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.google_battery-default.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/vendor.google.modem_ml_svc_sit.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.modem_ml_svc_sit.rc \
+    vendor/google_devices/tokay/proprietary/vendor/etc/init/vendor.google.plat_security-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.plat_security-service.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/vendor.google.radio_ext-default.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.radio_ext-default.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/vendor.google.radioext@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.radioext@1.0-service.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/init/vendor.google.wireless_charger-default.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.wireless_charger-default.rc \
@@ -1783,6 +1855,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/etc/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json \
     vendor/google_devices/tokay/proprietary/vendor/etc/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt \
     vendor/google_devices/tokay/proprietary/vendor/etc/res/images/charger/battery_fail.png:$(TARGET_COPY_OUT_VENDOR)/etc/res/images/charger/battery_fail.png \
+    vendor/google_devices/tokay/proprietary/vendor/etc/res/images/charger/battery_overheat.png:$(TARGET_COPY_OUT_VENDOR)/etc/res/images/charger/battery_overheat.png \
     vendor/google_devices/tokay/proprietary/vendor/etc/res/images/charger/battery_scale.png:$(TARGET_COPY_OUT_VENDOR)/etc/res/images/charger/battery_scale.png \
     vendor/google_devices/tokay/proprietary/vendor/etc/res/images/charger/main_font.png:$(TARGET_COPY_OUT_VENDOR)/etc/res/images/charger/main_font.png \
     vendor/google_devices/tokay/proprietary/vendor/etc/res/values/charger/animation.txt:$(TARGET_COPY_OUT_VENDOR)/etc/res/values/charger/animation.txt \
@@ -1806,15 +1879,16 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/etc/tcm_test_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/tcm_test_cfg.ini \
     vendor/google_devices/tokay/proprietary/vendor/etc/telephony/satellite_access_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/telephony/satellite_access_config.json \
     vendor/google_devices/tokay/proprietary/vendor/etc/telephony/sats2.dat:$(TARGET_COPY_OUT_VENDOR)/etc/telephony/sats2.dat \
+    vendor/google_devices/tokay/proprietary/vendor/etc/thermal_info_config_bg_tasks_throttling.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_bg_tasks_throttling.json \
     vendor/google_devices/tokay/proprietary/vendor/etc/thermal_info_config_charge.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_charge.json \
     vendor/google_devices/tokay/proprietary/vendor/etc/thermal_info_config_lpm.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_lpm.json \
     vendor/google_devices/tokay/proprietary/vendor/etc/thermal_info_config_proto.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_proto.json \
     vendor/google_devices/tokay/proprietary/vendor/etc/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json \
     vendor/google_devices/tokay/proprietary/vendor/etc/touchflow.pb:$(TARGET_COPY_OUT_VENDOR)/etc/touchflow.pb \
+    vendor/google_devices/tokay/proprietary/vendor/etc/tracing_descriptors.gz:$(TARGET_COPY_OUT_VENDOR)/etc/tracing_descriptors.gz \
     vendor/google_devices/tokay/proprietary/vendor/etc/twoshay_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/twoshay_config.json \
     vendor/google_devices/tokay/proprietary/vendor/etc/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc \
     vendor/google_devices/tokay/proprietary/vendor/etc/vt_estimation_model.tflite:$(TARGET_COPY_OUT_VENDOR)/etc/vt_estimation_model.tflite \
-    vendor/google_devices/tokay/proprietary/vendor/etc/vt_prediction_lstm_model.tflite:$(TARGET_COPY_OUT_VENDOR)/etc/vt_prediction_lstm_model.tflite \
     vendor/google_devices/tokay/proprietary/vendor/etc/waves_config.ini:$(TARGET_COPY_OUT_VENDOR)/etc/waves_config.ini \
     vendor/google_devices/tokay/proprietary/vendor/etc/waves_preset.mps:$(TARGET_COPY_OUT_VENDOR)/etc/waves_preset.mps \
     vendor/google_devices/tokay/proprietary/vendor/etc/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
@@ -1845,14 +1919,11 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/cfg.db:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/cfg.db \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/cfg.sha2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/cfg.sha2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs_symbolic_link_mapping:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs_symbolic_link_mapping \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/00226774b5fd43ae48d26d579450fa58c9b317bc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/00226774b5fd43ae48d26d579450fa58c9b317bc \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/002792e9e8d691b427056f39d909ef289af87bb1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/002792e9e8d691b427056f39d909ef289af87bb1 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/0043366cac642467b6e30b72b6c00236ac75a4e5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0043366cac642467b6e30b72b6c00236ac75a4e5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/00863156ac680f7647a60dd6f3a36a4a623826e7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/00863156ac680f7647a60dd6f3a36a4a623826e7 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/01083369e79d86f62e3aadb2b3009f1aeb8ddd45:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/01083369e79d86f62e3aadb2b3009f1aeb8ddd45 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/01bcd13d69c1d96179c6504fdcb866c58214d904:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/01bcd13d69c1d96179c6504fdcb866c58214d904 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/01c8a8a9e56e4b15875c4669f81b8eb5e7dc3772:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/01c8a8a9e56e4b15875c4669f81b8eb5e7dc3772 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/0221d556f442d197d01bdb6a51e897f5b3300244:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0221d556f442d197d01bdb6a51e897f5b3300244 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/02537df3fc45267b59a891625a7e1c5a2a0bd33a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/02537df3fc45267b59a891625a7e1c5a2a0bd33a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/027a57ddd7d82a616e4874babddb588ebd9a85b1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/027a57ddd7d82a616e4874babddb588ebd9a85b1 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/02c28ec5efb3d631a49a851b89c89730db361a10:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/02c28ec5efb3d631a49a851b89c89730db361a10 \
@@ -1866,10 +1937,9 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/04bae239b62c058084297f112e04aa1f07209fb9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/04bae239b62c058084297f112e04aa1f07209fb9 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/04ed487861a87316b060c8c2c78936b4f9b9899d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/04ed487861a87316b060c8c2c78936b4f9b9899d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/051b30eb1befd30321979b73e338f2ba73fdc90d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/051b30eb1befd30321979b73e338f2ba73fdc90d \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/054d4e34f88f31d546bb8bb01217eeb7d4a2fc0b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/054d4e34f88f31d546bb8bb01217eeb7d4a2fc0b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/05571f4f5b49e2135fc90d53d26876fc7acf71fe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/05571f4f5b49e2135fc90d53d26876fc7acf71fe \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/056327dadc1a9a9f431c982088c343b2b69934a3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/056327dadc1a9a9f431c982088c343b2b69934a3 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/0581e1cbc0051b13b8b1da89dda6a85b62fd5581:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0581e1cbc0051b13b8b1da89dda6a85b62fd5581 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/0581f639cc51b8081cad9bf97e969d660f6c3517:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0581f639cc51b8081cad9bf97e969d660f6c3517 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/059f473a12317ff55cf871d69771d49482855fb7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/059f473a12317ff55cf871d69771d49482855fb7 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/05bbd25db23ffc8a76da52ff834f8f080fcbcfba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/05bbd25db23ffc8a76da52ff834f8f080fcbcfba \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/064d7c1c5af7c3fd772108beadba40bacb1c1056:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/064d7c1c5af7c3fd772108beadba40bacb1c1056 \
@@ -1877,8 +1947,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/06d448fc4f337c6bdb2a546415f51336e9a4a789:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/06d448fc4f337c6bdb2a546415f51336e9a4a789 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/06e89b35ef2228d0b7f017e7c1a93a80a957b3f3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/06e89b35ef2228d0b7f017e7c1a93a80a957b3f3 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/078f9b58b86931e1aab9e0c9af88d8d760f254cd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/078f9b58b86931e1aab9e0c9af88d8d760f254cd \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/07dedee90efdbf8cb08396eefcd8638b41290d2a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/07dedee90efdbf8cb08396eefcd8638b41290d2a \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/080a6f4d62a8f3b77572844d48a520c2bf5490b2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/080a6f4d62a8f3b77572844d48a520c2bf5490b2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/08402c62bbb9b261e098e74c5e5e51bcc3dfebd5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/08402c62bbb9b261e098e74c5e5e51bcc3dfebd5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/087157d1cfbb20f5b07b1a5f30df938886356128:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/087157d1cfbb20f5b07b1a5f30df938886356128 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/08c264b3ee6387a299fcf7b2cc9bb24073df1c86:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/08c264b3ee6387a299fcf7b2cc9bb24073df1c86 \
@@ -1889,14 +1957,13 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/0b2296dce9ce3a46168ec91fe0004906f824f26b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0b2296dce9ce3a46168ec91fe0004906f824f26b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/0b354db896e612aa36f98d78869bfb65b0382202:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0b354db896e612aa36f98d78869bfb65b0382202 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/0c049730c9ac30dc65d21809f84fa7a834d73221:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0c049730c9ac30dc65d21809f84fa7a834d73221 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/0c4b88695ed324b89fb491f55ca93e4009e84755:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0c4b88695ed324b89fb491f55ca93e4009e84755 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/0c6091933aea2dc7acb1df388f8ff9e0ac55ea48:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0c6091933aea2dc7acb1df388f8ff9e0ac55ea48 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/0c82bc8d6624e9fd4fb3a323f79df1c0d1ed4c43:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0c82bc8d6624e9fd4fb3a323f79df1c0d1ed4c43 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/0d0600f38af79eb84619d687c4a82e77bbb156b5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0d0600f38af79eb84619d687c4a82e77bbb156b5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/0d12c459a1d0e0a23cce2e4ce75598617b84fbfb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0d12c459a1d0e0a23cce2e4ce75598617b84fbfb \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/0d5147425f6a15b26b7fe9191cde73fe17e93eb2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0d5147425f6a15b26b7fe9191cde73fe17e93eb2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/0d6905ab635f1f407392a37a15bebb0ac875c5f5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0d6905ab635f1f407392a37a15bebb0ac875c5f5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/0d6969fb648019b6c5f41f2799493b94e263afeb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0d6969fb648019b6c5f41f2799493b94e263afeb \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/0d97479ae8919e1b394332f3d88506c7672b7c4a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0d97479ae8919e1b394332f3d88506c7672b7c4a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/0dd9f874f68914dca40dd979cf7c7ca2a50fea08:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0dd9f874f68914dca40dd979cf7c7ca2a50fea08 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/0e11f182f4f5c8135545f88fe2d2f6bc13aa857c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0e11f182f4f5c8135545f88fe2d2f6bc13aa857c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/0e215bc580a6b78093e5daa714fa2071e53bacd6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0e215bc580a6b78093e5daa714fa2071e53bacd6 \
@@ -1913,6 +1980,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/0fd0211d2c22e38b1bd8903e25a676e8328ff327:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0fd0211d2c22e38b1bd8903e25a676e8328ff327 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/103d6d5f0968f8159091bbd2e39211d38717fb31:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/103d6d5f0968f8159091bbd2e39211d38717fb31 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/10b727ccb39e6c98b80a73bf0d41d39b9835322a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/10b727ccb39e6c98b80a73bf0d41d39b9835322a \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/111201df299cbbc36e6d61b321c7369cdef44375:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/111201df299cbbc36e6d61b321c7369cdef44375 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/118d1b9d53def6e86c9274ec7bd4bad65cfa08f2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/118d1b9d53def6e86c9274ec7bd4bad65cfa08f2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/119aa8ef803ab24b5368b496bbd3da73ec4f9507:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/119aa8ef803ab24b5368b496bbd3da73ec4f9507 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/11af4613fc5c242319581ee0395524b7277458ae:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/11af4613fc5c242319581ee0395524b7277458ae \
@@ -1920,12 +1988,13 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/11dce7336f5860c98509fe8a96181c9b89e33335:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/11dce7336f5860c98509fe8a96181c9b89e33335 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/12a48bd463db9442a3bf02b6850cb5c176bafa45:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/12a48bd463db9442a3bf02b6850cb5c176bafa45 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/12c38dc39947fced475fab030f63b6ac035b1116:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/12c38dc39947fced475fab030f63b6ac035b1116 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/13ca2ff324c049994fd865a70951ba18f7b6e19e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/13ca2ff324c049994fd865a70951ba18f7b6e19e \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/14ddc38a66a807981b325e2502ef725bcf543b82:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/14ddc38a66a807981b325e2502ef725bcf543b82 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/1427f3974de43231fc0f9cda371e9abd671f3840:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1427f3974de43231fc0f9cda371e9abd671f3840 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/144dc58682fa7a4beb539d07084677663bf3687f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/144dc58682fa7a4beb539d07084677663bf3687f \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/1477fab09da9e634fc34b5636dc6fff0cccd4339:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1477fab09da9e634fc34b5636dc6fff0cccd4339 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/14f357eb9fc0f2662511125535f4ff5725471d6e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/14f357eb9fc0f2662511125535f4ff5725471d6e \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/15e7d18dc30d1ebb0d203f715f417b07f21e591b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/15e7d18dc30d1ebb0d203f715f417b07f21e591b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/16238f1b433f6b4f5d43edf543469f4210eff076:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/16238f1b433f6b4f5d43edf543469f4210eff076 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/1633ed9f5900d7fd5676d052a2abb6dfac587389:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1633ed9f5900d7fd5676d052a2abb6dfac587389 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/16693b78cfe2df6998e280b27931723a0cf72e1e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/16693b78cfe2df6998e280b27931723a0cf72e1e \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/167e78557a162bb47ea3501ac8ce8fc80339d927:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/167e78557a162bb47ea3501ac8ce8fc80339d927 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/174b327660d8c6f3b254201f05b4c8def7e03cd8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/174b327660d8c6f3b254201f05b4c8def7e03cd8 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/178fab9bc0abb9d8335260f2b8ae1b974e7e9018:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/178fab9bc0abb9d8335260f2b8ae1b974e7e9018 \
@@ -1933,7 +2002,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/183de664e2db120aeb33af14a9b0cc132d0c5f40:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/183de664e2db120aeb33af14a9b0cc132d0c5f40 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/189a8f3b232574a9fec94ec4f428c1f2ec70dafd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/189a8f3b232574a9fec94ec4f428c1f2ec70dafd \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/18b0f539c80176feff6e4c0a73776730357d5acb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/18b0f539c80176feff6e4c0a73776730357d5acb \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/192b39c74056fd0b3b987ce0386cb6dcbdabd10b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/192b39c74056fd0b3b987ce0386cb6dcbdabd10b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/195f1cc3a40f27b6795ac69c8288725b501ef0a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/195f1cc3a40f27b6795ac69c8288725b501ef0a2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/1979ce4faa564a6a756a532a7df19b607a4ee277:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1979ce4faa564a6a756a532a7df19b607a4ee277 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/1990f610156d33d2b8ec1cf98445980bd7943b43:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1990f610156d33d2b8ec1cf98445980bd7943b43 \
@@ -1946,47 +2014,48 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/1c10925855096c98b7f1361114d4950159e707d8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1c10925855096c98b7f1361114d4950159e707d8 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/1c1da477e9c71f4794668a0a82f14d5bcd6ab0f9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1c1da477e9c71f4794668a0a82f14d5bcd6ab0f9 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/1ccbcb3e9dc9a2e59a4ad26ede5d82a3e2ab52c5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1ccbcb3e9dc9a2e59a4ad26ede5d82a3e2ab52c5 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/1d5b63331159ce620cd990e55e712ceb708e473a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1d5b63331159ce620cd990e55e712ceb708e473a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/1d713241e4c4960ad4be5af83739d16a90525174:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1d713241e4c4960ad4be5af83739d16a90525174 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/1e17023ac82194b47061f2114ef33d6750dc7b6c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1e17023ac82194b47061f2114ef33d6750dc7b6c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/1e20670d6c07a78a502f38636e74be2cebc0ad9b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1e20670d6c07a78a502f38636e74be2cebc0ad9b \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/1e35ac9a03b5ddb83be1664bb213b92d9aee93c0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1e35ac9a03b5ddb83be1664bb213b92d9aee93c0 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/1e65def430d65b4f15efa1f447416eb3d1781527:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1e65def430d65b4f15efa1f447416eb3d1781527 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/1ec0a1815c67c815e25ae5422787a1b9a4dbdaa5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1ec0a1815c67c815e25ae5422787a1b9a4dbdaa5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/1ecd83e4e6b13a7bdc04b90b206065d5b68c1049:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1ecd83e4e6b13a7bdc04b90b206065d5b68c1049 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/1f72667f1a2ac7ad5c07e7b01cae2f1c64674075:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1f72667f1a2ac7ad5c07e7b01cae2f1c64674075 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/1fdf0a4d04d1ade13ca171bbe967087a6429e1dc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1fdf0a4d04d1ade13ca171bbe967087a6429e1dc \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/1fe4fcb912d1b1cca988474f27ed79533bae9a00:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1fe4fcb912d1b1cca988474f27ed79533bae9a00 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/1ff7805a55541d673e0f594959036738916f62db:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1ff7805a55541d673e0f594959036738916f62db \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2047f3861cc84d82d6d7ff94baffea891adb3e38:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2047f3861cc84d82d6d7ff94baffea891adb3e38 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/20554fef6021f23ee05dae25ac426bbe14c068dd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/20554fef6021f23ee05dae25ac426bbe14c068dd \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/209276c0e1df9f87add4bafaed172451fc6019ce:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/209276c0e1df9f87add4bafaed172451fc6019ce \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/20a0098a90c77e3525315600f95c0ad3e08c2872:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/20a0098a90c77e3525315600f95c0ad3e08c2872 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/20a5a2d776e0391ea7bcef717e109e7cfc83b0ff:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/20a5a2d776e0391ea7bcef717e109e7cfc83b0ff \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/218ea26f5c4e06e7589e339dd06f41788503123c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/218ea26f5c4e06e7589e339dd06f41788503123c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/21aae1828abbc2159ed4402a931fcfcd36bd9a32:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/21aae1828abbc2159ed4402a931fcfcd36bd9a32 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/21d98f0f65614b9b3ea17088ffe20a9bdac16b8b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/21d98f0f65614b9b3ea17088ffe20a9bdac16b8b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/21f9744415ccd13217aae6ef787e3260948638ca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/21f9744415ccd13217aae6ef787e3260948638ca \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/22104722f4d37539e5c28439124e3d8369588df4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/22104722f4d37539e5c28439124e3d8369588df4 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/22d5d736839b0a8b4c5ea89bdbe6c531cd8e4c28:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/22d5d736839b0a8b4c5ea89bdbe6c531cd8e4c28 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/231c33f06a3c5bce7c9f732d691b0297d524d4e9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/231c33f06a3c5bce7c9f732d691b0297d524d4e9 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2345362a2daf6ef25b4506c3a2e0d560f304e22d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2345362a2daf6ef25b4506c3a2e0d560f304e22d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/23a8e765df30cd651e590318ddaf0d375255bc92:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/23a8e765df30cd651e590318ddaf0d375255bc92 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2442419e2467912c81d6cbe02499489e2b473c5d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2442419e2467912c81d6cbe02499489e2b473c5d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/249c922e09336eed0dd652984e771d43f37f3c95:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/249c922e09336eed0dd652984e771d43f37f3c95 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/24a87acd35b8040ce8a8971380bac00b8c493be2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/24a87acd35b8040ce8a8971380bac00b8c493be2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/24cc481ddcf4e0a6c99a71e92e4b725ffa5ac48a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/24cc481ddcf4e0a6c99a71e92e4b725ffa5ac48a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/253688947bd2ed1b8258f1349e8d2068bd51971c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/253688947bd2ed1b8258f1349e8d2068bd51971c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/25613dfe4c1b66be6e2d45424f6181931d04ffac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/25613dfe4c1b66be6e2d45424f6181931d04ffac \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/25e47698106c211b5c2055b12a7f0ea47d005f55:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/25e47698106c211b5c2055b12a7f0ea47d005f55 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/26bafbf77b6b3dda401cba479a38eab9d69295a1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/26bafbf77b6b3dda401cba479a38eab9d69295a1 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2704f7db05660b61e47ace5ca2b98f5a52e7cb17:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2704f7db05660b61e47ace5ca2b98f5a52e7cb17 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/27255970fbf37e11a27898c72d399ed1a64f4d40:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/27255970fbf37e11a27898c72d399ed1a64f4d40 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/27ab9e0465c276915d3f7d1023ba10a563fcd965:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/27ab9e0465c276915d3f7d1023ba10a563fcd965 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/28129a209c4402313492dc681bb87a6217bd4847:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/28129a209c4402313492dc681bb87a6217bd4847 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2825f1d2e743f9a0b58025f9ec54efa9a05c0952:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2825f1d2e743f9a0b58025f9ec54efa9a05c0952 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/28543837c4431ee74504807d32101895f556135c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/28543837c4431ee74504807d32101895f556135c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/28970ecab2311d7d3b36f58b03ccd79a650428b8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/28970ecab2311d7d3b36f58b03ccd79a650428b8 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/28ae3c9cb89fa290f48b76c3f1afcb8a6895d1fc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/28ae3c9cb89fa290f48b76c3f1afcb8a6895d1fc \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/29408153a411ba8f369cb7f5f519cede7bcad2f6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/29408153a411ba8f369cb7f5f519cede7bcad2f6 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/298b43f75fd3202ece1e51363af72ecbf0b841c2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/298b43f75fd3202ece1e51363af72ecbf0b841c2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2a349407e4a8f6b29e090908e4c2c18b8ec7c8b7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2a349407e4a8f6b29e090908e4c2c18b8ec7c8b7 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2a3f47b1c8d025b0ec27749c40f4abfb2162bfdb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2a3f47b1c8d025b0ec27749c40f4abfb2162bfdb \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2a81121a3b9ba763a274ca04063e2bfcad5cdbab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2a81121a3b9ba763a274ca04063e2bfcad5cdbab \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2ad82121fd7691133f594ef21b4fb57037c93e7a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2ad82121fd7691133f594ef21b4fb57037c93e7a \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2ae68aec08e1c8ac14ccebc78dcc4e3019fa87ee:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2ae68aec08e1c8ac14ccebc78dcc4e3019fa87ee \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2af03405877f4521d5d1bf9978c3ec8a0cd90e60:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2af03405877f4521d5d1bf9978c3ec8a0cd90e60 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2b2efd19b01da6bdb553ad3205cc0e6194e8ade5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2b2efd19b01da6bdb553ad3205cc0e6194e8ade5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2b518add72970e331dd47d0a1a00b60451040af8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2b518add72970e331dd47d0a1a00b60451040af8 \
@@ -1994,21 +2063,20 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2c03f6091a8f25bf444ad4097037a7ee87f95dfa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2c03f6091a8f25bf444ad4097037a7ee87f95dfa \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2c7f878c96c93e37f7cfa6ec6f18c23ad2f95d49:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2c7f878c96c93e37f7cfa6ec6f18c23ad2f95d49 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2d3ac0ecb4b454a1ee588702010cc4e421b43688:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2d3ac0ecb4b454a1ee588702010cc4e421b43688 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2d52995e43e391da1cde7d9384896d61f961e0e9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2d52995e43e391da1cde7d9384896d61f961e0e9 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2d924994da49adc2b8d52566483626aac52b6c9b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2d924994da49adc2b8d52566483626aac52b6c9b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2daa0a435e70e9a82ff9f225393638f205cac59a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2daa0a435e70e9a82ff9f225393638f205cac59a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2dd3a5707d75f8ebaf645527d2b0e3da35ea55ca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2dd3a5707d75f8ebaf645527d2b0e3da35ea55ca \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2de33ddae25249e5512246359d98e9dfd10d4756:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2de33ddae25249e5512246359d98e9dfd10d4756 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2e053916f0cd7d6bd57d80b7879e4eddee75836d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2e053916f0cd7d6bd57d80b7879e4eddee75836d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2e0beac640bf9b23b0fc0aacb32b9e1df22c4b1f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2e0beac640bf9b23b0fc0aacb32b9e1df22c4b1f \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2e81a93b2891e7ba77b29b18c417d7ce0d50b156:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2e81a93b2891e7ba77b29b18c417d7ce0d50b156 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2e6de9c78b1d79d68ac61527a19f80f740b42389:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2e6de9c78b1d79d68ac61527a19f80f740b42389 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2e9d8bb08f80ddbb7985a9678b9f0d9929295879:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2e9d8bb08f80ddbb7985a9678b9f0d9929295879 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2ea62a2154bd16f4b081ffc2abd9a49b312a8f1e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2ea62a2154bd16f4b081ffc2abd9a49b312a8f1e \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2eb9419e3496fd0766a7b72dcbfe7569d35cffd9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2eb9419e3496fd0766a7b72dcbfe7569d35cffd9 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2ec7b925954d6c14842de2119ec26496e5c03105:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2ec7b925954d6c14842de2119ec26496e5c03105 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2eff67e29038bd02bf3832ded5202e8ae0556aca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2eff67e29038bd02bf3832ded5202e8ae0556aca \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2f32215066bf75e78af3eb4e5d9011294154936a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2f32215066bf75e78af3eb4e5d9011294154936a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2f6e83370ee2c0228c2e65c6595dc7798e85b15e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2f6e83370ee2c0228c2e65c6595dc7798e85b15e \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2f78aa529400652e954561617e844cbb5a0c52d3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2f78aa529400652e954561617e844cbb5a0c52d3 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/2fe188ea4405e40595bcb51505b2c1134edd8ad0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2fe188ea4405e40595bcb51505b2c1134edd8ad0 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/3075226fab428570db9fba7eca593170558a1be5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3075226fab428570db9fba7eca593170558a1be5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/312a18cf4dbdedf0844cc603c238524b1dd0ecd4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/312a18cf4dbdedf0844cc603c238524b1dd0ecd4 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/319cae25bb3ff58018ab60a4939524ef09abd0f1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/319cae25bb3ff58018ab60a4939524ef09abd0f1 \
@@ -2019,7 +2087,9 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/322f93d854c76c94d021989440ad80889d04bdb2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/322f93d854c76c94d021989440ad80889d04bdb2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/32374d85eff3363d527a595027288e50cbbf7dd1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/32374d85eff3363d527a595027288e50cbbf7dd1 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/32a24a2e18f317e6f4af5c25a5084dd7b17a88e8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/32a24a2e18f317e6f4af5c25a5084dd7b17a88e8 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/33cd94d1b8dbb98f430ea851ecc07e9a424243fa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/33cd94d1b8dbb98f430ea851ecc07e9a424243fa \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/336485ee72f8d47a28931f13734091c7d214d9f9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/336485ee72f8d47a28931f13734091c7d214d9f9 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/337f59931917d6173f56e8ce9741c04b347d0b35:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/337f59931917d6173f56e8ce9741c04b347d0b35 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/33abd0618d698df9eb4f8cb7a132c9e679807f9b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/33abd0618d698df9eb4f8cb7a132c9e679807f9b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/34a9cc4ba1ea006b150bf3b78bcab90797826137:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/34a9cc4ba1ea006b150bf3b78bcab90797826137 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/3528655397ae502669d54aea5798f31ab7ec4917:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3528655397ae502669d54aea5798f31ab7ec4917 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/3695cacb79e9c83f0cce4bda3d4d6182ea91e7c5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3695cacb79e9c83f0cce4bda3d4d6182ea91e7c5 \
@@ -2032,7 +2102,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/3869cbfcd29fac8c17f5a52278986a883fc29399:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3869cbfcd29fac8c17f5a52278986a883fc29399 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/386b217ca5444777eee9911d6878eac2d13958bb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/386b217ca5444777eee9911d6878eac2d13958bb \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/38f5c05e5a2f63ecf20a1dd1b3f09f58e03c3f30:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/38f5c05e5a2f63ecf20a1dd1b3f09f58e03c3f30 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/390bba2fc42ebfb1a413e5da15c58817771eb8cf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/390bba2fc42ebfb1a413e5da15c58817771eb8cf \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/3942b9d6c14c316b75c0fe3f6bb4fe5d9b4e9f03:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3942b9d6c14c316b75c0fe3f6bb4fe5d9b4e9f03 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/39ad3110b8f84821ca22cfbd995914f2149521d2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/39ad3110b8f84821ca22cfbd995914f2149521d2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/39ee49647bb20528b659d4ad32a8e3372b11bca2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/39ee49647bb20528b659d4ad32a8e3372b11bca2 \
@@ -2067,23 +2136,24 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/41791d94797dd453e70107905a2b2e1c0a3a45f8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/41791d94797dd453e70107905a2b2e1c0a3a45f8 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/417b21ee082a7ccf6bb676d7b82be31d7fd1b82e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/417b21ee082a7ccf6bb676d7b82be31d7fd1b82e \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/41c934afd668c1c0a01ea4d4b09c736216ac16e1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/41c934afd668c1c0a01ea4d4b09c736216ac16e1 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/41f3dc8abb00be482b3ceb75ea014e0d19c4701b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/41f3dc8abb00be482b3ceb75ea014e0d19c4701b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/42e69c694e72af57606514a5da1436dd7f5c483a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/42e69c694e72af57606514a5da1436dd7f5c483a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/42ffdd88f967782c15eed37ecf026ad0fc6353d3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/42ffdd88f967782c15eed37ecf026ad0fc6353d3 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/430f97244f7a8fc8e3cf1faa8c9d4490738a2a67:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/430f97244f7a8fc8e3cf1faa8c9d4490738a2a67 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/43661d30c335a3268cb29e92e29cd307ee1b4fbe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/43661d30c335a3268cb29e92e29cd307ee1b4fbe \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/436824caae4876996b2fd6fc882f86f46cd48aee:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/436824caae4876996b2fd6fc882f86f46cd48aee \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/43b7aa5c20bb1eeadf4c71ca2b8d22ae9986db73:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/43b7aa5c20bb1eeadf4c71ca2b8d22ae9986db73 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/43be3782b459516fba74660385a106e12ee8ea90:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/43be3782b459516fba74660385a106e12ee8ea90 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/44110a0117dbf701d48b096174a214fc643941d3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/44110a0117dbf701d48b096174a214fc643941d3 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/441a915ae1ea2da1e8b96ad63ce0e1092847b979:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/441a915ae1ea2da1e8b96ad63ce0e1092847b979 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/443b52198927317f4719fa9447284c249019e416:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/443b52198927317f4719fa9447284c249019e416 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/44609a31aefc2760eb75f30604b087769caa9473:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/44609a31aefc2760eb75f30604b087769caa9473 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4483329c0947b4f5d1322ce31e575ec7b2348ecf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4483329c0947b4f5d1322ce31e575ec7b2348ecf \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4486a8da78591ca54066614690bd262ded6efaea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4486a8da78591ca54066614690bd262ded6efaea \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/453b5a5dad2b3c93cb3c148f14feffa85ad129a4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/453b5a5dad2b3c93cb3c148f14feffa85ad129a4 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/455b5a07bd651900e82d93ec93083efdee9ec6f8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/455b5a07bd651900e82d93ec93083efdee9ec6f8 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/458357b68583458a2185c91c0306c7c07352a900:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/458357b68583458a2185c91c0306c7c07352a900 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/45a4cd4f75c74592016dc45d9f9196709781bf9a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/45a4cd4f75c74592016dc45d9f9196709781bf9a \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/461748b3f483fc2dcfe52cefadd5f59dc5f0449f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/461748b3f483fc2dcfe52cefadd5f59dc5f0449f \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4626884ed9bc5785b684cc34d9d76af0cf468063:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4626884ed9bc5785b684cc34d9d76af0cf468063 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/462cbf4028a8937796055b85442b4bc47619003e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/462cbf4028a8937796055b85442b4bc47619003e \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/46476cd23c24f10684bf6f269051e9907a8fe27b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/46476cd23c24f10684bf6f269051e9907a8fe27b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/465e40291aac3d321ebe4c276456eed603bc1ba1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/465e40291aac3d321ebe4c276456eed603bc1ba1 \
@@ -2091,11 +2161,9 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/47afabf23729e3911460d652144401fc820c2bba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/47afabf23729e3911460d652144401fc820c2bba \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/487cb1005254185e85e76fd1defdf3de7bf6edd5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/487cb1005254185e85e76fd1defdf3de7bf6edd5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/48ebdff8a8c0083f8c5f3272c19acd227a7420c6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/48ebdff8a8c0083f8c5f3272c19acd227a7420c6 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/48f140fb36f71d123b2ff4e4e1f32b9ef714a1d5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/48f140fb36f71d123b2ff4e4e1f32b9ef714a1d5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/48f71ca05ae51a7c197be3df0dd87b374fba28d5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/48f71ca05ae51a7c197be3df0dd87b374fba28d5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4a0af9a0e6ecf8aad7e57292c090b3872278e761:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4a0af9a0e6ecf8aad7e57292c090b3872278e761 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4a0d255f1f2787d7a8ff390c192a113e330afd20:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4a0d255f1f2787d7a8ff390c192a113e330afd20 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4a13bbf3c382a5822d208f6186e52aa5986e02ef:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4a13bbf3c382a5822d208f6186e52aa5986e02ef \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4a2d55f656a8617558ca6f7969cd076ef34e0abf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4a2d55f656a8617558ca6f7969cd076ef34e0abf \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4a49178aa2971bde0ba51e5431a8f5a4b3aa8ebc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4a49178aa2971bde0ba51e5431a8f5a4b3aa8ebc \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4b2931ee099d5b7b82590c566ed3dec9e12e3383:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4b2931ee099d5b7b82590c566ed3dec9e12e3383 \
@@ -2104,12 +2172,14 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4bb2f5a133ab9babd4f4a32bfcf3d462468740c0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4bb2f5a133ab9babd4f4a32bfcf3d462468740c0 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4c9b943caecced7c9876ba4fe711d99c71e60d49:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4c9b943caecced7c9876ba4fe711d99c71e60d49 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4ca287ee04f236826074e6612a5bb751477ab6ec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4ca287ee04f236826074e6612a5bb751477ab6ec \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4cc6c13485450761f75fb5bfd578c56a5c00d4ea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4cc6c13485450761f75fb5bfd578c56a5c00d4ea \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4cd0d2087f5d4c87aca09ecdd340d00f36b0ad1a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4cd0d2087f5d4c87aca09ecdd340d00f36b0ad1a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4cd5106932210504ca2603fdf1648d031771cedb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4cd5106932210504ca2603fdf1648d031771cedb \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4cecc7f960b18e8caa861b52adc303f47c0209fa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4cecc7f960b18e8caa861b52adc303f47c0209fa \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4d0f9164357e8c4414d951ac10f23519eeb3fc0b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d0f9164357e8c4414d951ac10f23519eeb3fc0b \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4d1a352c3b172d6108623825ed409ea5029af5ec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d1a352c3b172d6108623825ed409ea5029af5ec \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4d22be4cdf34ac541f6c982df0cea5725ba05b43:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d22be4cdf34ac541f6c982df0cea5725ba05b43 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4d5c76164b7969fd1aa4dca415f8b9a973d4edaf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d5c76164b7969fd1aa4dca415f8b9a973d4edaf \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4d58c8bb5690c3103ee59ba031e5e3f3acc22940:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d58c8bb5690c3103ee59ba031e5e3f3acc22940 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4d6e89827da9a9e019973ca6450c6ff72da462cf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d6e89827da9a9e019973ca6450c6ff72da462cf \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4d86092d1a6451cb86c858ac0fea065539ffd8e4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d86092d1a6451cb86c858ac0fea065539ffd8e4 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4d967bf96eec7427e182e4cec9685708509557a9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d967bf96eec7427e182e4cec9685708509557a9 \
@@ -2117,51 +2187,51 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4dcc469c85546618839a674df019b32e9b89af0d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4dcc469c85546618839a674df019b32e9b89af0d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4dd0040862987e8428d596c40d5aed3cae5b3483:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4dd0040862987e8428d596c40d5aed3cae5b3483 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4de5e2e177d2dc863fbe1c34ee8f72b2ec0bc6b5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4de5e2e177d2dc863fbe1c34ee8f72b2ec0bc6b5 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4e57c6cd490076665a94e3b7adfee4cea31c56a0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4e57c6cd490076665a94e3b7adfee4cea31c56a0 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4e5c96ee497511796634a38ee097ffa1921345a0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4e5c96ee497511796634a38ee097ffa1921345a0 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4eaf80ecb6c85abe44bb8eb193205f05cabe96e3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4eaf80ecb6c85abe44bb8eb193205f05cabe96e3 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4ecf1fb965a7d4a1843a368feed8e359670deae5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4ecf1fb965a7d4a1843a368feed8e359670deae5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4f11778323302a45b98633df1306144c039bed42:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4f11778323302a45b98633df1306144c039bed42 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4f8cfc9fa32989d6b8ff54992cae0801e48f1f9c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4f8cfc9fa32989d6b8ff54992cae0801e48f1f9c \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4f90593eb1cfb87a3b8c4abe4128c14257e1b09d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4f90593eb1cfb87a3b8c4abe4128c14257e1b09d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4fb2d0b6446f2ed45fd7e660b156062dfb0fe8f4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4fb2d0b6446f2ed45fd7e660b156062dfb0fe8f4 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4fb5ab1dca1414b80c89b89e6e8e13b134b2d69b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4fb5ab1dca1414b80c89b89e6e8e13b134b2d69b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/4fd80955d6f6bdd5dfc108ee129b7cc7df25cff3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4fd80955d6f6bdd5dfc108ee129b7cc7df25cff3 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/500329abac100a953a7396b54b36be57d333022f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/500329abac100a953a7396b54b36be57d333022f \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/504deda50a2c88b13e2b6897134a56aacc528338:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/504deda50a2c88b13e2b6897134a56aacc528338 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/50a06994be183ab77b14f75336cb4673d7308fe3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/50a06994be183ab77b14f75336cb4673d7308fe3 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5109dcf62728e71521d9b6242bdf4eb299580ccd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5109dcf62728e71521d9b6242bdf4eb299580ccd \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/51209202eefa4becfe5ebbea942e718dfa21bb95:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/51209202eefa4becfe5ebbea942e718dfa21bb95 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/512f24f35937b9f9d4529a1cb58b9c8d1de33166:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/512f24f35937b9f9d4529a1cb58b9c8d1de33166 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5138abafac76c4e022b9d5d90886ccf88257a200:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5138abafac76c4e022b9d5d90886ccf88257a200 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5144dd3c1849836328e7cbc60edbd8989c59b552:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5144dd3c1849836328e7cbc60edbd8989c59b552 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/515783771329a082dacff161f44fd44fb970571d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/515783771329a082dacff161f44fd44fb970571d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5159e0287aca5cfccec88400ebbf0c7679183838:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5159e0287aca5cfccec88400ebbf0c7679183838 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/51720cd65dd8d4ee5d02d7817bd0a40c53f49d54:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/51720cd65dd8d4ee5d02d7817bd0a40c53f49d54 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5185425cf7246b47564780b1d6be16a03b722cec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5185425cf7246b47564780b1d6be16a03b722cec \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/52e7d6adce8c6d7217b0323514f04dff5c92928d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/52e7d6adce8c6d7217b0323514f04dff5c92928d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/53318313501ac2e67348d94c3136ed97601436a0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/53318313501ac2e67348d94c3136ed97601436a0 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5345534689ed5803aedf2cae9028402e66e7800c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5345534689ed5803aedf2cae9028402e66e7800c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/53555890e6d8dc159b9702b82f6bc0e34f3447de:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/53555890e6d8dc159b9702b82f6bc0e34f3447de \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/537bcb6dc7744f406d6c6dcff599538af8f9db52:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/537bcb6dc7744f406d6c6dcff599538af8f9db52 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/538fc1e59e21944090a45ba3d6f553e6ba9f7cc4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/538fc1e59e21944090a45ba3d6f553e6ba9f7cc4 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/53b254a43accdeccc11034349145594a3ae872d8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/53b254a43accdeccc11034349145594a3ae872d8 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/53b7b751bc027878ce11daade8b8a3c434a1c4a9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/53b7b751bc027878ce11daade8b8a3c434a1c4a9 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/53cdd0f4b821311be6d64cf033f29be7fa50b5d4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/53cdd0f4b821311be6d64cf033f29be7fa50b5d4 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5403dae1acdb1da75ccb94fb4a35980829ffb948:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5403dae1acdb1da75ccb94fb4a35980829ffb948 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/543bb1325904b9aece275705bcc5e76f9bf138f1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/543bb1325904b9aece275705bcc5e76f9bf138f1 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/543e19bce853ae87b24160ec50794ac33bcbb476:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/543e19bce853ae87b24160ec50794ac33bcbb476 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5463ec08cb812b9426687595f12c5338ebc29227:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5463ec08cb812b9426687595f12c5338ebc29227 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/54889d9160131abd1e9c4aea21e2d52bde9708e6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/54889d9160131abd1e9c4aea21e2d52bde9708e6 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/54d56b8530b9e70560363087fe2cca562d85b9c7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/54d56b8530b9e70560363087fe2cca562d85b9c7 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/551ab4332c58f92b3ec8fc0bc1d79ca1587d0b7c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/551ab4332c58f92b3ec8fc0bc1d79ca1587d0b7c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/55472686cd7af8381b1ce5328a4cc235102b9f71:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/55472686cd7af8381b1ce5328a4cc235102b9f71 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/555376f5273327137001b82690082493daf85eeb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/555376f5273327137001b82690082493daf85eeb \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/558fcebfaa056632c51695fe0d596b9dc8036e34:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/558fcebfaa056632c51695fe0d596b9dc8036e34 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/559222e3b109cd228e603703150419c010c6be64:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/559222e3b109cd228e603703150419c010c6be64 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/55f68c7ec7905e382217582b8319fbf1a3a45f16:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/55f68c7ec7905e382217582b8319fbf1a3a45f16 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/56152b56a0dd58217453eb33c6ceb38ad2e88da4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/56152b56a0dd58217453eb33c6ceb38ad2e88da4 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/56768342f090d45fad34b6965f07ac76a0943d7b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/56768342f090d45fad34b6965f07ac76a0943d7b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/56cb10847a0e6a2a3d4e0722891e9e33c6c448f6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/56cb10847a0e6a2a3d4e0722891e9e33c6c448f6 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5724cd27ef1e87208415963d2c3ab82a56b28006:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5724cd27ef1e87208415963d2c3ab82a56b28006 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/576cbb245b74e45757ddd92fe2a25129969ad4a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/576cbb245b74e45757ddd92fe2a25129969ad4a2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/57d9bae9613347669b07262bfc39dc7903a075f8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/57d9bae9613347669b07262bfc39dc7903a075f8 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/58215c2bb75931cca61bd019666aa716b972e135:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/58215c2bb75931cca61bd019666aa716b972e135 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/583264722538c74b5d359735168b36c6caf78d13:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/583264722538c74b5d359735168b36c6caf78d13 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5837e1608cc4d79354e22c7757339d0099a01535:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5837e1608cc4d79354e22c7757339d0099a01535 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/584cb56ed7af5af9308a9fde8a489e72aea20164:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/584cb56ed7af5af9308a9fde8a489e72aea20164 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5878970c211ced93080f23714726fe9313ed4204:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5878970c211ced93080f23714726fe9313ed4204 \
@@ -2169,16 +2239,18 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/58a7f23dcb4ea8577070770cc3d30312b4ae0872:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/58a7f23dcb4ea8577070770cc3d30312b4ae0872 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/58dcbaf9fcec7e559cf32c71551b9676595710a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/58dcbaf9fcec7e559cf32c71551b9676595710a2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/592657f407917aa69f86fd996587f223e372ed69:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/592657f407917aa69f86fd996587f223e372ed69 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/595ae7b41d209b4dfcc940c0e9bc7cfa48532ddf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/595ae7b41d209b4dfcc940c0e9bc7cfa48532ddf \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/599bb09d0e033bc9ad5434131ed876c4cd677955:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/599bb09d0e033bc9ad5434131ed876c4cd677955 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/599fb43f38dd3f6a92cf3b4e90d0a63f52399677:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/599fb43f38dd3f6a92cf3b4e90d0a63f52399677 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/59ef1318ed95aaff87c6af0b99f17407d0edabe3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/59ef1318ed95aaff87c6af0b99f17407d0edabe3 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5a22663031399aa12b02ce613bf75017394789c4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5a22663031399aa12b02ce613bf75017394789c4 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5ace0bda77342c678fbe0b3e6d55b0c5272fff17:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5ace0bda77342c678fbe0b3e6d55b0c5272fff17 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5afe23552c7c5f8a30c12e5944d9717f748b104b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5afe23552c7c5f8a30c12e5944d9717f748b104b \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5b155c2e13b1ccef7784cddec71eb3a3d0b84e4c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5b155c2e13b1ccef7784cddec71eb3a3d0b84e4c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5bfbff79d8e204d6a8a7607e08e028646e456de0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5bfbff79d8e204d6a8a7607e08e028646e456de0 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5c11e89cada221c6da115fbd4cde17117b1baf23:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5c11e89cada221c6da115fbd4cde17117b1baf23 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5c2efee31e70db8162a40f0288c489a322537c80:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5c2efee31e70db8162a40f0288c489a322537c80 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5c8c9ccbc0440c274056e53ab1e63ff425c2cba0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5c8c9ccbc0440c274056e53ab1e63ff425c2cba0 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5c9ba037931f23aa7ee6d2c408b08b360880b6bc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5c9ba037931f23aa7ee6d2c408b08b360880b6bc \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5cc087981ea28d4ccb0cac18fd54338f3de72b5a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5cc087981ea28d4ccb0cac18fd54338f3de72b5a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5cef7fe76ab35d90c79c862bfa1d92250d648a13:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5cef7fe76ab35d90c79c862bfa1d92250d648a13 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5d043f7c9bd64902915a1814f67a50a60d575499:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5d043f7c9bd64902915a1814f67a50a60d575499 \
@@ -2186,11 +2258,9 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5d7b917483ff8955fdff4a05378fe18c14ceb68e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5d7b917483ff8955fdff4a05378fe18c14ceb68e \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5dba8a5bd6d0f9299a1c9a6c4e41381146ee90c3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5dba8a5bd6d0f9299a1c9a6c4e41381146ee90c3 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5dcdd22b0b9514ddaa5e41933bf3eb912fed1e8e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5dcdd22b0b9514ddaa5e41933bf3eb912fed1e8e \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5e40aa425d74ce457ee8d8c14303c8754715a659:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5e40aa425d74ce457ee8d8c14303c8754715a659 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5ea9fbd090e4c3a9a675dafec8d92d484c7bfe18:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5ea9fbd090e4c3a9a675dafec8d92d484c7bfe18 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5ec3d82e298c3a2776726f21759ebabc9097abc5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5ec3d82e298c3a2776726f21759ebabc9097abc5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5f399cacc91d9b38995d6af7cb944ff97c84e6ab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5f399cacc91d9b38995d6af7cb944ff97c84e6ab \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5f6e11fad338559b10a1c75e6beec725b924d32e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5f6e11fad338559b10a1c75e6beec725b924d32e \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5f7d78b19eab0ae4f9421712391af1a827d65712:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5f7d78b19eab0ae4f9421712391af1a827d65712 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/5f9457cea42f4bcbe1036f31e3547770a9676535:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5f9457cea42f4bcbe1036f31e3547770a9676535 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6025a477a0a8006d8882b7716987b403d365e6d8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6025a477a0a8006d8882b7716987b403d365e6d8 \
@@ -2198,6 +2268,8 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/60ab761a633ff71fc752341ca00596e119f8b67e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/60ab761a633ff71fc752341ca00596e119f8b67e \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/61001c9df22670ba32d3bd6491a3c1cb2ffb7bff:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/61001c9df22670ba32d3bd6491a3c1cb2ffb7bff \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/61401e9363bc4e7af923684cb0e63b61d22f2a2b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/61401e9363bc4e7af923684cb0e63b61d22f2a2b \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/614d17759dd5bd39c4e50d2a4eb201a8750eeaec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/614d17759dd5bd39c4e50d2a4eb201a8750eeaec \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/618a7d95718fbd02e30f3c6caa4a1dc9cff90159:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/618a7d95718fbd02e30f3c6caa4a1dc9cff90159 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/62430813b792802b0f784de506019ca281b5bdca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/62430813b792802b0f784de506019ca281b5bdca \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/624cfaf10b497c876730608f6271c6b42cef51db:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/624cfaf10b497c876730608f6271c6b42cef51db \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6252be89a7921f3dda8916b29c3042f5e3bdd7ab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6252be89a7921f3dda8916b29c3042f5e3bdd7ab \
@@ -2210,27 +2282,26 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/638cee3aaf5b087f0b28125782366570d8443703:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/638cee3aaf5b087f0b28125782366570d8443703 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/63eafae9ddfb2b628d15c53208c7c1b93841c013:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/63eafae9ddfb2b628d15c53208c7c1b93841c013 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/647e3626882ab96e6e2977c04acd6e31183f38b1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/647e3626882ab96e6e2977c04acd6e31183f38b1 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6483a0762da43b2b434d2c71efeaf4075bc3cefb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6483a0762da43b2b434d2c71efeaf4075bc3cefb \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6493b7a73e306835fd40b81c4a25b64b5b8960de:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6493b7a73e306835fd40b81c4a25b64b5b8960de \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/64aa56f0be29bf092d7535cd211ff6405eb55b9c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/64aa56f0be29bf092d7535cd211ff6405eb55b9c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/64ee4171932026da12b2a956c61d5ee119ad4ca2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/64ee4171932026da12b2a956c61d5ee119ad4ca2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/652a66398c119e93731eb6c9596717db56f1b903:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/652a66398c119e93731eb6c9596717db56f1b903 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/65620497297f7932b43f041fbb6e08b26d7d62dd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/65620497297f7932b43f041fbb6e08b26d7d62dd \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/65807051ae4ef820a7ace28a6f01de71c3ba3323:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/65807051ae4ef820a7ace28a6f01de71c3ba3323 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/65a1e5d668a7f2fce0b9d08b53b1841d73cac9b8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/65a1e5d668a7f2fce0b9d08b53b1841d73cac9b8 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/65b227bdd21131bdcfbe30963ae9f22eba5f568e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/65b227bdd21131bdcfbe30963ae9f22eba5f568e \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/65ae73e8a9b2a78e0c5b08773a1295cf4f3e31a7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/65ae73e8a9b2a78e0c5b08773a1295cf4f3e31a7 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/66001f5b35b3778ed5b039c1c8b600b26ddea0eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/66001f5b35b3778ed5b039c1c8b600b26ddea0eb \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6617b51b99c5ab3df239412a9b8c81d841acd796:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6617b51b99c5ab3df239412a9b8c81d841acd796 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/664ae6b1344432d4460d4716bcd10ba17931ee92:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/664ae6b1344432d4460d4716bcd10ba17931ee92 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6651a639f8892b9dd4a3b8697940473842e4547f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6651a639f8892b9dd4a3b8697940473842e4547f \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/66a642db404c9c7b57346bba41d569fb975b1308:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/66a642db404c9c7b57346bba41d569fb975b1308 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/66b5e43fd2e0369739069ac52fd5074e452a1c25:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/66b5e43fd2e0369739069ac52fd5074e452a1c25 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/66dc6bfeff15f7d45900b3ecfdae04109ae652fd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/66dc6bfeff15f7d45900b3ecfdae04109ae652fd \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/67055767806f2d0dcc976e0774f79ced458972ad:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/67055767806f2d0dcc976e0774f79ced458972ad \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/675a7f9b7b4bda83baf59a32eadcfe9b95909c67:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/675a7f9b7b4bda83baf59a32eadcfe9b95909c67 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/67706a88eeaf3804ded3b520e199a648509ba228:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/67706a88eeaf3804ded3b520e199a648509ba228 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6772705537fce5ee118fda82075a2665c570c083:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6772705537fce5ee118fda82075a2665c570c083 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/67cdb2a4f0dd0737ce5cf44682f48063b8ffca9b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/67cdb2a4f0dd0737ce5cf44682f48063b8ffca9b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/67ce97fe99df7124a40ff309f6f621bd750f9e31:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/67ce97fe99df7124a40ff309f6f621bd750f9e31 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/685af3a3658866f22677c08ce56f15608877566e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/685af3a3658866f22677c08ce56f15608877566e \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6878901c84bc4cfa2850214dfdabe7f95507628e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6878901c84bc4cfa2850214dfdabe7f95507628e \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/68a67496ea83fda867378d9bdba5523f5a7cd98f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/68a67496ea83fda867378d9bdba5523f5a7cd98f \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/68a87c5a169b1ae61f3e571f6198b6e57e204a26:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/68a87c5a169b1ae61f3e571f6198b6e57e204a26 \
@@ -2245,6 +2316,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6a63b7b5a4effc178f133c7faeafec6fac038fbd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6a63b7b5a4effc178f133c7faeafec6fac038fbd \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6a8ae6483e0a9ee223305b0447085b83b3fc9545:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6a8ae6483e0a9ee223305b0447085b83b3fc9545 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6ab6715b20f06b28c4c9bc1ddff6477ace42fbe1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6ab6715b20f06b28c4c9bc1ddff6477ace42fbe1 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6b1fc4371a641f2aee9bb8336d0d6387148bdfa6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6b1fc4371a641f2aee9bb8336d0d6387148bdfa6 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6b2c3711eae9f2399dd8313039e3b51b1320c863:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6b2c3711eae9f2399dd8313039e3b51b1320c863 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6b52a9304eafb9ac3347aa74e305be214e29968f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6b52a9304eafb9ac3347aa74e305be214e29968f \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6b8f049c6c9d7c4da607ff9ca28183be4e1dde24:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6b8f049c6c9d7c4da607ff9ca28183be4e1dde24 \
@@ -2260,9 +2332,9 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6e1fa20326c6d900cfca5ceb8daeae1c30b0fbe4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6e1fa20326c6d900cfca5ceb8daeae1c30b0fbe4 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6e8f1d91e9be172a24836c3b4d253372d3fb7466:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6e8f1d91e9be172a24836c3b4d253372d3fb7466 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6eb2204b8668f9005e38f387ed7d317378f0d0a6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6eb2204b8668f9005e38f387ed7d317378f0d0a6 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6ec9eccd4bdd828812eebe70abecf13663c1066d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6ec9eccd4bdd828812eebe70abecf13663c1066d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6f00359970eaa682de23ea38dd4e43ae3bfc3305:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6f00359970eaa682de23ea38dd4e43ae3bfc3305 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6f03aff9d3c32a3ea1ddf32903587bb32b30500b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6f03aff9d3c32a3ea1ddf32903587bb32b30500b \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6f3f31b95159bfa6493db2f214de558b33ea8ae1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6f3f31b95159bfa6493db2f214de558b33ea8ae1 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6f92b6ccbbeb35d132e18aa2056b5269730df0ba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6f92b6ccbbeb35d132e18aa2056b5269730df0ba \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6fb9137537239b67b2d938de1051c38da30fede3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6fb9137537239b67b2d938de1051c38da30fede3 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/6fc57f2cc1a9c0b174a6443a26985efafad04b90:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6fc57f2cc1a9c0b174a6443a26985efafad04b90 \
@@ -2277,7 +2349,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7159b61f1f287f4064181845ccb07e25666863a6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7159b61f1f287f4064181845ccb07e25666863a6 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/71f1e2fa9237d93972bbf66dac3601584a68ef6a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/71f1e2fa9237d93972bbf66dac3601584a68ef6a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/728b8f387b090c09d9bdaafbfc81e32599a87556:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/728b8f387b090c09d9bdaafbfc81e32599a87556 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/72a0f15de29fd1a7720ec71bafbce4cd5de43142:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/72a0f15de29fd1a7720ec71bafbce4cd5de43142 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/72fb00e8feae4bbc228ec1c8bb1c9313a03fd759:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/72fb00e8feae4bbc228ec1c8bb1c9313a03fd759 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/734430dffde950512f806373f6706652c5c4bfc6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/734430dffde950512f806373f6706652c5c4bfc6 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/74337ba62414cf899ebf0278f479f698a49f921d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/74337ba62414cf899ebf0278f479f698a49f921d \
@@ -2295,15 +2366,16 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/762a17b362660225fad0019763e82ac6f5aa9c47:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/762a17b362660225fad0019763e82ac6f5aa9c47 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/764e288fb723cae740222a7d0c0b2e1035a172b2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/764e288fb723cae740222a7d0c0b2e1035a172b2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/76606a5f08c764f6c7edea0f8ca14d8902044768:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/76606a5f08c764f6c7edea0f8ca14d8902044768 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/76612c5163e223b2ed0e2de1a9f1c2d4cdebe502:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/76612c5163e223b2ed0e2de1a9f1c2d4cdebe502 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/766f46f712a0c944b54d9faccdfc6b911d335618:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/766f46f712a0c944b54d9faccdfc6b911d335618 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/767a8cfd4bfdbf6d73ed876eed469b05d53c4af7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/767a8cfd4bfdbf6d73ed876eed469b05d53c4af7 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/768939db7b32f9d355eb4ef216b6abd5d5011c68:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/768939db7b32f9d355eb4ef216b6abd5d5011c68 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/769c1fe3bda18d41d7ce99f015a0b6823a051a3a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/769c1fe3bda18d41d7ce99f015a0b6823a051a3a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/76a0d432a110797b3d53c1cb08e0296bc0986a3f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/76a0d432a110797b3d53c1cb08e0296bc0986a3f \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/772b03e14185892b5cdab57bc0a74befc7947452:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/772b03e14185892b5cdab57bc0a74befc7947452 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7762862fd9c359d9ebc7316d2d16bebbc196052e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7762862fd9c359d9ebc7316d2d16bebbc196052e \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7775ca7a6fb9ce273abcf6f0a63baf1a9ce4c8d7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7775ca7a6fb9ce273abcf6f0a63baf1a9ce4c8d7 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/78859c3a2d2535559eb87938be13bf48c01ff4fd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/78859c3a2d2535559eb87938be13bf48c01ff4fd \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/794fd88e53af3c0cb3e989a2c0ff8155268684bf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/794fd88e53af3c0cb3e989a2c0ff8155268684bf \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7992eb01a9bf66b4ca9595294890352adfb41053:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7992eb01a9bf66b4ca9595294890352adfb41053 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/79d1ff471da7c25fbfc4454638c7f82352f3515d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/79d1ff471da7c25fbfc4454638c7f82352f3515d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7a1b4ed93a67d601ef00a069c5fdfdbfd2d7a225:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7a1b4ed93a67d601ef00a069c5fdfdbfd2d7a225 \
@@ -2311,10 +2383,10 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7a489ed0da8454ed9c41e34859fffd49fadd057b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7a489ed0da8454ed9c41e34859fffd49fadd057b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7a9af4088bd7b4de4d537dc4aef2afc6aa2953be:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7a9af4088bd7b4de4d537dc4aef2afc6aa2953be \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7b537806c4672ce41e8a852340e0ebec7f1f1ec3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7b537806c4672ce41e8a852340e0ebec7f1f1ec3 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7b734a0ba74cc163ff759b9ce83ef41e1916918c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7b734a0ba74cc163ff759b9ce83ef41e1916918c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7b95597cce5986e53337950a08c079973552857a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7b95597cce5986e53337950a08c079973552857a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7ba3b7c57673cecda274993bf65896411b3cb114:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7ba3b7c57673cecda274993bf65896411b3cb114 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7ba4eba2f149bac7ba2f9f5bc15d30d27e27f33e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7ba4eba2f149bac7ba2f9f5bc15d30d27e27f33e \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7bc2bab454a8e046f8499206ddc2bdeb03ecb3ec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7bc2bab454a8e046f8499206ddc2bdeb03ecb3ec \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7c14ac129463ca208eb05760a5c229ede5b6561c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7c14ac129463ca208eb05760a5c229ede5b6561c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7cbf22e36fdc0c969bad5a3d88e29f6a55ca1e00:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7cbf22e36fdc0c969bad5a3d88e29f6a55ca1e00 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7cd04dddcd5b81030f00cea30e458c9edc8c59de:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7cd04dddcd5b81030f00cea30e458c9edc8c59de \
@@ -2325,7 +2397,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7d8c46d451658a7ae640e19e401bbd18d037d1c4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7d8c46d451658a7ae640e19e401bbd18d037d1c4 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7e038e2d039d8dbc1754ca80defd2a6384a08f37:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7e038e2d039d8dbc1754ca80defd2a6384a08f37 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7e6c397988f83d6a01e8310560ec1147cdef4066:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7e6c397988f83d6a01e8310560ec1147cdef4066 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7e74e42f6702069259150aa194946ec4623a8623:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7e74e42f6702069259150aa194946ec4623a8623 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7f21aed629580e31e7474bbf04c5fd27ab87275b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7f21aed629580e31e7474bbf04c5fd27ab87275b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7f23eaa63fb8f064df6a193b49b99e24ea473654:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7f23eaa63fb8f064df6a193b49b99e24ea473654 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/7f51966af5bb5876f5be44ef980265acacdfa628:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7f51966af5bb5876f5be44ef980265acacdfa628 \
@@ -2337,7 +2408,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8014921c152253e2622f73851138d84732577655:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8014921c152253e2622f73851138d84732577655 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/806aefb3e4f5fe525129187602074c526ac91c28:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/806aefb3e4f5fe525129187602074c526ac91c28 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/80dae55a40d6b08bd30fd73e2daa5aa1322355a5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/80dae55a40d6b08bd30fd73e2daa5aa1322355a5 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/80efd9a2032bbbb546cf179089ab2f28324ea689:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/80efd9a2032bbbb546cf179089ab2f28324ea689 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8180933e678c3148327d439c8b117a40bdd8ecc6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8180933e678c3148327d439c8b117a40bdd8ecc6 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/81b23d875a4b39b66c62c4c4546e9aa324719883:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/81b23d875a4b39b66c62c4c4546e9aa324719883 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/826a2fc8d6418cc9e8aebf079a2ec15557667915:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/826a2fc8d6418cc9e8aebf079a2ec15557667915 \
@@ -2349,7 +2419,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/84b08f4f10672994756ccb19cf232d1d26cf2442:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/84b08f4f10672994756ccb19cf232d1d26cf2442 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/855ef136f21b87cf38cd80f2b8344ef3996b8ecb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/855ef136f21b87cf38cd80f2b8344ef3996b8ecb \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/856119f81cf3dab949551fbc07fdac6e7e0e3dfd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/856119f81cf3dab949551fbc07fdac6e7e0e3dfd \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8590aaec583ed115d4da87955af7096e7b74d3ac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8590aaec583ed115d4da87955af7096e7b74d3ac \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/85cae0fe162739fc5d9b452e1174d1e1dcc2c4eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/85cae0fe162739fc5d9b452e1174d1e1dcc2c4eb \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8607e7351da2aba567c0f007276440eb28230bf6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8607e7351da2aba567c0f007276440eb28230bf6 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/86d4a6dc5d567680ead3a8c0c646ccce15e933b5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/86d4a6dc5d567680ead3a8c0c646ccce15e933b5 \
@@ -2359,32 +2428,37 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/87a473d19ecbfae77e32e31dd170da81f50bd823:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/87a473d19ecbfae77e32e31dd170da81f50bd823 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/87a699020db486926b79d834b9dc32f029962863:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/87a699020db486926b79d834b9dc32f029962863 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/87a9c9439a74a22ce970df904804f9ad5ada32ee:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/87a9c9439a74a22ce970df904804f9ad5ada32ee \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/87aa5f6d246e2dfb7d64a8b7a9bac09f4d4f864b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/87aa5f6d246e2dfb7d64a8b7a9bac09f4d4f864b \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/87c92aaf5456faebee477f1923be24cbfb0ed989:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/87c92aaf5456faebee477f1923be24cbfb0ed989 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8809b226d3a9e86814cc26f92c1ce1507db6c433:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8809b226d3a9e86814cc26f92c1ce1507db6c433 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8860f35a22497a263cfd0d3652572f871a20502f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8860f35a22497a263cfd0d3652572f871a20502f \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8873c45a0222b820f6fb0c313835255bdaf0d90c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8873c45a0222b820f6fb0c313835255bdaf0d90c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8899008f1cc486b82a59163e95a2894e83fa003c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8899008f1cc486b82a59163e95a2894e83fa003c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/889c5339106a035e82aebe586b0f81d75746e995:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/889c5339106a035e82aebe586b0f81d75746e995 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/88ab3303dbbda62a1c8c69c89e434ced5981b139:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/88ab3303dbbda62a1c8c69c89e434ced5981b139 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/88cfd6d9bf0ad33a2a5205a9da269f40e2520e83:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/88cfd6d9bf0ad33a2a5205a9da269f40e2520e83 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8912aa2fe06180035dbc7ff81d2f121f527c667a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8912aa2fe06180035dbc7ff81d2f121f527c667a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8971ab6b02e391b6be01a1d71b2ed74dc34c1555:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8971ab6b02e391b6be01a1d71b2ed74dc34c1555 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8980459f8a08b9b0648a130f80730e8c2b496d31:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8980459f8a08b9b0648a130f80730e8c2b496d31 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/89c976d452334e5c7f270247494834bf9ec9acdb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/89c976d452334e5c7f270247494834bf9ec9acdb \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/89d349baaeb0f9b76ed4e91344eb2a4b31e368f5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/89d349baaeb0f9b76ed4e91344eb2a4b31e368f5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8a71479ee4c3b238c2c5cd1b39e837ce4d29f648:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8a71479ee4c3b238c2c5cd1b39e837ce4d29f648 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8a7b53c9656f15e0283296d13239161e1a4a5fc1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8a7b53c9656f15e0283296d13239161e1a4a5fc1 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8ac2d46c99fb075330d6f1c74267dd450afa96d5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8ac2d46c99fb075330d6f1c74267dd450afa96d5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8acea1ca4136ddab95420169fa36b93da899d03c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8acea1ca4136ddab95420169fa36b93da899d03c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8ae05d114b613f00bb9525857a3dc2015c5a29a0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8ae05d114b613f00bb9525857a3dc2015c5a29a0 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8aea88f3eeb3c144bdfaab638c9ca1f7703aaffc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8aea88f3eeb3c144bdfaab638c9ca1f7703aaffc \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8b52778c1e15fbe518b2c1ac5f1bf34c0ddf6e05:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8b52778c1e15fbe518b2c1ac5f1bf34c0ddf6e05 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8b698b844c306d2b06915c49f8bbaef4dd795d60:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8b698b844c306d2b06915c49f8bbaef4dd795d60 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8b8dd8bed1f095a6412972b16f540dc34d604d41:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8b8dd8bed1f095a6412972b16f540dc34d604d41 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8c16247a94e238798ffdc273fdbf72ac1b6ff36a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8c16247a94e238798ffdc273fdbf72ac1b6ff36a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8c27e578434a9a37069b018a463fe4233a97212a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8c27e578434a9a37069b018a463fe4233a97212a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8c2ec36f7c94186c28d4e16b66653065d8d9e274:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8c2ec36f7c94186c28d4e16b66653065d8d9e274 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8c40d1695cd69c56cfa6d65c60c5c7ecd418c9a9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8c40d1695cd69c56cfa6d65c60c5c7ecd418c9a9 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8c5643a6567665c03241c83558be1864519d292d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8c5643a6567665c03241c83558be1864519d292d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8c5f9283887d58c53f6e02aa38b406393d0771d5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8c5f9283887d58c53f6e02aa38b406393d0771d5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8cdd8e1930cb1f4f5882cc15729bc1fc473e9c29:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8cdd8e1930cb1f4f5882cc15729bc1fc473e9c29 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8d02f7116d930bc8feeedca15004b3f64bd296dd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8d02f7116d930bc8feeedca15004b3f64bd296dd \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8d2e616256c1e326632ef7f848df7308302f5baf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8d2e616256c1e326632ef7f848df7308302f5baf \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8d599212635bdf8ed4e396eefc80b0bacb5bc4b0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8d599212635bdf8ed4e396eefc80b0bacb5bc4b0 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8dc05120c45453eaa880c9443d00825bdd569d78:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8dc05120c45453eaa880c9443d00825bdd569d78 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8df9c1a1841553edad299f22407f592a58e41219:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8df9c1a1841553edad299f22407f592a58e41219 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/8e0e0c29c88b7101596ac42e99a486fc7e05f4e4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8e0e0c29c88b7101596ac42e99a486fc7e05f4e4 \
@@ -2408,7 +2482,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/90f9a63509d5b5825985905b8a850debb8eb86b6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/90f9a63509d5b5825985905b8a850debb8eb86b6 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/910a4970bc76a35889dd479a3a7a52432e934a3d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/910a4970bc76a35889dd479a3a7a52432e934a3d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9115600b3269a05ccd5560ff32b042f077666bc5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9115600b3269a05ccd5560ff32b042f077666bc5 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9127171a47f3077b065745787daeb71a4d7325eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9127171a47f3077b065745787daeb71a4d7325eb \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/914cff80f74a02c1fb66ccae1068fcbf6926afa5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/914cff80f74a02c1fb66ccae1068fcbf6926afa5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/915e7d6d6341d7b9e05f68cef1c20a3b4462bf6b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/915e7d6d6341d7b9e05f68cef1c20a3b4462bf6b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/917d8d6e548b92cbb85696ab9a88f61ae9e6c4c3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/917d8d6e548b92cbb85696ab9a88f61ae9e6c4c3 \
@@ -2416,14 +2489,15 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/91bee0b8421d3e716105996bc8909bbbc28a2b0a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/91bee0b8421d3e716105996bc8909bbbc28a2b0a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/91e43ca86f573b57e65d616526ef52072fe0dfe1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/91e43ca86f573b57e65d616526ef52072fe0dfe1 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9204ba8b1966d76613f83a83705afcf9e51c9d56:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9204ba8b1966d76613f83a83705afcf9e51c9d56 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/92551bf520c5ae57449507305251f1dddeb36b86:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/92551bf520c5ae57449507305251f1dddeb36b86 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/92566c1ea499e46eec9205673871e951e7e87980:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/92566c1ea499e46eec9205673871e951e7e87980 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/926c8a027e86d70d2a12d3927128d3912edde2be:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/926c8a027e86d70d2a12d3927128d3912edde2be \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/929d77fb4ef88c2a63871ac50f21351ba6a21df2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/929d77fb4ef88c2a63871ac50f21351ba6a21df2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/929f28627801e830b1b0d8732179bee46ffb7eef:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/929f28627801e830b1b0d8732179bee46ffb7eef \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/92ba0d625d54a188616f430be1b7798d647b24ad:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/92ba0d625d54a188616f430be1b7798d647b24ad \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/935c994801c885714178cf941c1bbeae57042b58:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/935c994801c885714178cf941c1bbeae57042b58 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/937098fd582798101c4356f89173ab61e3693bc9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/937098fd582798101c4356f89173ab61e3693bc9 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/938a534a1c7232db41c00cb1b7ea4e8f77bc31d7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/938a534a1c7232db41c00cb1b7ea4e8f77bc31d7 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/93c009b6d331cb48361e44a7b8e77ad07f0426a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/93c009b6d331cb48361e44a7b8e77ad07f0426a2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/93c3bc199d7f2093c9f76b47cf4668a4bbc3c444:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/93c3bc199d7f2093c9f76b47cf4668a4bbc3c444 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/93f87ed21462f812da4298f7ff2fccd2751ce11f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/93f87ed21462f812da4298f7ff2fccd2751ce11f \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/941b84facb51db8313b22de687b681a1847d2358:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/941b84facb51db8313b22de687b681a1847d2358 \
@@ -2432,6 +2506,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9482859c7dc3d44d20a76a90e871e3588a18299b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9482859c7dc3d44d20a76a90e871e3588a18299b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/94e8491ffd59d3ced4beadfd62ce1bb708d1a685:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/94e8491ffd59d3ced4beadfd62ce1bb708d1a685 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/951120675391d3ebfc390d7a6186b560d3b74608:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/951120675391d3ebfc390d7a6186b560d3b74608 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/955408ec63b101a6fcbd24bd62c10709131003a7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/955408ec63b101a6fcbd24bd62c10709131003a7 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/95a813ca371fa52d6ef6e96b3246fee32404b0b3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/95a813ca371fa52d6ef6e96b3246fee32404b0b3 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/95d01e88d15611907af0c26d27f0f7b2859ec2e1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/95d01e88d15611907af0c26d27f0f7b2859ec2e1 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/967e85e326fcd6c0527334f5ff329a9804f912bc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/967e85e326fcd6c0527334f5ff329a9804f912bc \
@@ -2440,7 +2515,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/981c3ac4aba5ebfa98a73d78ed6cec2f403221ab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/981c3ac4aba5ebfa98a73d78ed6cec2f403221ab \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/982262e7c3aae1b314649beb03fd5f89fab8fed5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/982262e7c3aae1b314649beb03fd5f89fab8fed5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/986dc82ebbf5e3496223c911a31f45926d2d33ac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/986dc82ebbf5e3496223c911a31f45926d2d33ac \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/987afecd2129893f5bff75121c64116948e5786d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/987afecd2129893f5bff75121c64116948e5786d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9892f49cdc9024c95860c135da90e209c03b3b99:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9892f49cdc9024c95860c135da90e209c03b3b99 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/98c088cb04201a571b170b2eff4aa1e2b2c2dcea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/98c088cb04201a571b170b2eff4aa1e2b2c2dcea \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/98f3e16b060806012195fe93e5f364d878fdcb1c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/98f3e16b060806012195fe93e5f364d878fdcb1c \
@@ -2454,6 +2528,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9b0f046657d0720f02811467ef5158aa27b35e46:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9b0f046657d0720f02811467ef5158aa27b35e46 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9b8f4fc5c35ffdc06263b4866375603f24783ae2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9b8f4fc5c35ffdc06263b4866375603f24783ae2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9b934bd51bdcbaea92a51c946e3a5baba270c923:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9b934bd51bdcbaea92a51c946e3a5baba270c923 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9bcad98767255b23a69a5a43ba3042c005dd196c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9bcad98767255b23a69a5a43ba3042c005dd196c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9be2df47e5eeaa40de0b8bcc312668372bd2a6e0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9be2df47e5eeaa40de0b8bcc312668372bd2a6e0 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9c49c8d1234452d8976ff427ccf5926afe382c0f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9c49c8d1234452d8976ff427ccf5926afe382c0f \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9ca98453eb56226c0daa3f3f2bdb85f0121845e5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9ca98453eb56226c0daa3f3f2bdb85f0121845e5 \
@@ -2466,16 +2541,15 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9d85402ad82999191b6defbbb41c3b1b867da48e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9d85402ad82999191b6defbbb41c3b1b867da48e \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9d8871fd6618461ee2108cf5229bfb7dd6942590:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9d8871fd6618461ee2108cf5229bfb7dd6942590 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9d89e6ec1fd6f3ed19f98dad9eb66393ef082b5d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9d89e6ec1fd6f3ed19f98dad9eb66393ef082b5d \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9da8c32596a6aa88b9ce523b76b0b568e5256d5b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9da8c32596a6aa88b9ce523b76b0b568e5256d5b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9dc73eaba51df836d82e1feaebad0456dcd99f00:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9dc73eaba51df836d82e1feaebad0456dcd99f00 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9e50237a7a789535f0983891b696f3692d8119a3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9e50237a7a789535f0983891b696f3692d8119a3 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9f0e12caab212c1885b0fdb544211b525f6cfb2a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9f0e12caab212c1885b0fdb544211b525f6cfb2a \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9f243e299683d6e3c534c3eda8141cb2f3832d10:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9f243e299683d6e3c534c3eda8141cb2f3832d10 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9f378a4a69a62c0ca251c50c58319f46a8b7cf18:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9f378a4a69a62c0ca251c50c58319f46a8b7cf18 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9f55887d4db8005304e059fb971af3562fdb3b20:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9f55887d4db8005304e059fb971af3562fdb3b20 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9f572f6610a7dd4e429e06c96a96c2968b9d8d03:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9f572f6610a7dd4e429e06c96a96c2968b9d8d03 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/9fbd298f3504b85ae2573cf5a1257c607a4472f9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9fbd298f3504b85ae2573cf5a1257c607a4472f9 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/a03a9ba8f58a18984e31db61b42715334f4175f2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a03a9ba8f58a18984e31db61b42715334f4175f2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/a0a2b36926c0abdef1872645b19e0d040313e04d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a0a2b36926c0abdef1872645b19e0d040313e04d \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/a0cfdb6fb470b5f4eb04c649940667ac5426ed0f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a0cfdb6fb470b5f4eb04c649940667ac5426ed0f \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/a1441e72dc6aa3d47eea4e7747d6aad6b0162ed5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a1441e72dc6aa3d47eea4e7747d6aad6b0162ed5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/a155996e1faff223b36f00bdd334799a9d8d2ec4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a155996e1faff223b36f00bdd334799a9d8d2ec4 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/a171ebe05194b253327c468a3882a511f5170811:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a171ebe05194b253327c468a3882a511f5170811 \
@@ -2493,7 +2567,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/a642e04c2d7b1db402b577a948c75bdee9b2f9b9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a642e04c2d7b1db402b577a948c75bdee9b2f9b9 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/a655a0f243b8f4e3363dd9746e337f806d0b11d4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a655a0f243b8f4e3363dd9746e337f806d0b11d4 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/a6668e534c52a501556f5e76d44a88063fe33b2d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a6668e534c52a501556f5e76d44a88063fe33b2d \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/a68ff29e24b85141a8c8200e479269131dd293a9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a68ff29e24b85141a8c8200e479269131dd293a9 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/a6be41f7341db492c755d7db6ae91716928b296e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a6be41f7341db492c755d7db6ae91716928b296e \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/a72264689e4bfdf43496cd969ec8a570f9f00a7f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a72264689e4bfdf43496cd969ec8a570f9f00a7f \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/a73f7de579bb6304473db135c5f829641eb3d477:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a73f7de579bb6304473db135c5f829641eb3d477 \
@@ -2511,9 +2584,9 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ac3ddcb30e47ab869ca267b464e2c84f2d912dac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ac3ddcb30e47ab869ca267b464e2c84f2d912dac \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ad057bd572b1a7f91bd3649948090e5ba733ead2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ad057bd572b1a7f91bd3649948090e5ba733ead2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ad28ed2fbf81bcb9a9c77555d35aee0c6e7595f7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ad28ed2fbf81bcb9a9c77555d35aee0c6e7595f7 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ad8728b3a41021fd1232bb6fdf08eaac44ef0d08:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ad8728b3a41021fd1232bb6fdf08eaac44ef0d08 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ad9b8f2368832a6383e9dc5f469401b0af8ff1c0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ad9b8f2368832a6383e9dc5f469401b0af8ff1c0 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ae9782148354ae5a706353b13329437bca7e9fa3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ae9782148354ae5a706353b13329437bca7e9fa3 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/aebf49be09c6d3ce9a484603dd42f629a30c1767:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/aebf49be09c6d3ce9a484603dd42f629a30c1767 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/aed28098f0dc12b29c2c70f789c0f7086d9ebf3e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/aed28098f0dc12b29c2c70f789c0f7086d9ebf3e \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/aeeef987635a8ee0bd997e59fe274991ec135b1a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/aeeef987635a8ee0bd997e59fe274991ec135b1a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/af056bc1fac6f6596a5441cd29cf8a35890109e6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/af056bc1fac6f6596a5441cd29cf8a35890109e6 \
@@ -2530,12 +2603,14 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b0c2bc9f250e025af1e8ed0bbe5c442a4b604eab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b0c2bc9f250e025af1e8ed0bbe5c442a4b604eab \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b0cd5866510e9e8aa0b0091a0e183221f761c797:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b0cd5866510e9e8aa0b0091a0e183221f761c797 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b0f8298ffb978fd3879aaacfe3c83bdcee897058:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b0f8298ffb978fd3879aaacfe3c83bdcee897058 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b14448c94e6964eeb028f2f2e66b51645b8deae8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b14448c94e6964eeb028f2f2e66b51645b8deae8 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b1e84f262dc13fe334a232554a237245a46f29b8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b1e84f262dc13fe334a232554a237245a46f29b8 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b222b1e3fdf52845c597bc35a623ce21c2013e27:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b222b1e3fdf52845c597bc35a623ce21c2013e27 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b29e3cb6d22dc459fb993bb975cb1f40117e301c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b29e3cb6d22dc459fb993bb975cb1f40117e301c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b2f916c3eac81fda4f440d84b45fb5dbbc360f2a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b2f916c3eac81fda4f440d84b45fb5dbbc360f2a \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b3de50451bacb48e5362b0f4ecb92360f6375d25:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b3de50451bacb48e5362b0f4ecb92360f6375d25 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b46d71e882b0807f2413309adc4c898293384fab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b46d71e882b0807f2413309adc4c898293384fab \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b47ea6fa463572a843398b3f4836524d3bf068ba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b47ea6fa463572a843398b3f4836524d3bf068ba \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b4a46ebec6684ba91d60194f637c96860b1dd494:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b4a46ebec6684ba91d60194f637c96860b1dd494 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b4abf150fbfe1fefcc3d3684818127dc317819a1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b4abf150fbfe1fefcc3d3684818127dc317819a1 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b4e75158ddc9d3dcbe92033c8f1a619807d06c0c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b4e75158ddc9d3dcbe92033c8f1a619807d06c0c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b4f03ca09738f1e88117240eebcdd6a9132223c2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b4f03ca09738f1e88117240eebcdd6a9132223c2 \
@@ -2543,12 +2618,12 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b58d55d0a333515bdf86a9eca2bd51716e9a7d42:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b58d55d0a333515bdf86a9eca2bd51716e9a7d42 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b5cdef11db69622d8e84778cea20509098a16ef2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b5cdef11db69622d8e84778cea20509098a16ef2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b5f9e2d7bb05943cafbc8c7283e56f8f126568a1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b5f9e2d7bb05943cafbc8c7283e56f8f126568a1 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b6586a4c411bb2698b3f5c9c59eb7389e4134a46:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b6586a4c411bb2698b3f5c9c59eb7389e4134a46 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b6c77ca841a56a6a55c481870a67eb46da388c2b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b6c77ca841a56a6a55c481870a67eb46da388c2b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b6ce2343c3f15ee746022727b2cd2ca59fc21459:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b6ce2343c3f15ee746022727b2cd2ca59fc21459 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b6f5d4583d6b3d7b698b70f757239649427a2c17:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b6f5d4583d6b3d7b698b70f757239649427a2c17 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b6fa0ea35b0282533d5c3dd53463731e88f17b5f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b6fa0ea35b0282533d5c3dd53463731e88f17b5f \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b73a9e455d1956209a322d3960feae5965085f3f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b73a9e455d1956209a322d3960feae5965085f3f \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b75ab830a59476a3470c7478d026b5f2c86532c5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b75ab830a59476a3470c7478d026b5f2c86532c5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b766590cfda9581223882e37e03d6f7a1d641733:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b766590cfda9581223882e37e03d6f7a1d641733 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b77837a41673531a47f7115472b760ab352ebb62:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b77837a41673531a47f7115472b760ab352ebb62 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/b7c058741bd0921ea6bf422af88bdbd0a71ec891:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b7c058741bd0921ea6bf422af88bdbd0a71ec891 \
@@ -2567,6 +2642,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/bae9235c41ab2e36613090bf1af79a01ee00dd02:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bae9235c41ab2e36613090bf1af79a01ee00dd02 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/baef61ee4e7ec5d8c1564119c535bd35c2a8d0a3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/baef61ee4e7ec5d8c1564119c535bd35c2a8d0a3 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/bb008ac7b5d622ac88baf8d2ccee6f18fa606fe8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bb008ac7b5d622ac88baf8d2ccee6f18fa606fe8 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/bb14e8576d42f80242d71a5016fd507a94cac869:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bb14e8576d42f80242d71a5016fd507a94cac869 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/bb1635982c5ba693d8a529f8e2d902c1f3730922:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bb1635982c5ba693d8a529f8e2d902c1f3730922 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/bb47db64b2a83f7c406c0e7dd0336116b06b5e36:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bb47db64b2a83f7c406c0e7dd0336116b06b5e36 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/bb73c3d44ce7a585e8ec896235c3c5663898dfdc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bb73c3d44ce7a585e8ec896235c3c5663898dfdc \
@@ -2593,16 +2669,17 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/bfad83fdcfd8bc22d3b5734889e4435e7579178d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bfad83fdcfd8bc22d3b5734889e4435e7579178d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/bfcf1ed23ce1823ed16ab54e108829aa7a14170b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bfcf1ed23ce1823ed16ab54e108829aa7a14170b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c0027da62f2c69be7861d0c12d2f3ecd4f4cc728:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c0027da62f2c69be7861d0c12d2f3ecd4f4cc728 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c003e8c99adce8de3bd6e541f6b3c2506233af71:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c003e8c99adce8de3bd6e541f6b3c2506233af71 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c00c8e10f958bcd09e28313e6e1ef6b0b24f1fc5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c00c8e10f958bcd09e28313e6e1ef6b0b24f1fc5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c042bead0a49fb2fbf0fbaeba9ec0650f1c985b3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c042bead0a49fb2fbf0fbaeba9ec0650f1c985b3 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c054768407a3f7ef58f6c3b1911575fe212d5f9c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c054768407a3f7ef58f6c3b1911575fe212d5f9c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c0887b00f31d267ce975d6d3864630a02a0ea83e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c0887b00f31d267ce975d6d3864630a02a0ea83e \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c0b6742265d6982e313560458a658932255beaff:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c0b6742265d6982e313560458a658932255beaff \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c0fc260bff85932fbd1ed145dbcc81344dac0aa0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c0fc260bff85932fbd1ed145dbcc81344dac0aa0 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c122b2eb3b70e53642c05e3c45eca15cc87bd98c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c122b2eb3b70e53642c05e3c45eca15cc87bd98c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c1563c48a96e146a4c611d9bf083ef6678f89b6f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c1563c48a96e146a4c611d9bf083ef6678f89b6f \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c1a88d17054cc41fde020992a38f1c13e1bf7b95:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c1a88d17054cc41fde020992a38f1c13e1bf7b95 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c231931b347d70653aca6d6761ce6127dbe45761:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c231931b347d70653aca6d6761ce6127dbe45761 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c2bfe56ab21ea17cf2be210aabfd5b20db5ad923:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c2bfe56ab21ea17cf2be210aabfd5b20db5ad923 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c30d568882444fad6d23e6af6aeb726e1e7f5979:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c30d568882444fad6d23e6af6aeb726e1e7f5979 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c38fec0a6866a50f3b237a4e6eb92834383c41ec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c38fec0a6866a50f3b237a4e6eb92834383c41ec \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c3996aafb989fee3a0124dd90976208ac69cc107:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c3996aafb989fee3a0124dd90976208ac69cc107 \
@@ -2615,6 +2692,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c60a45bf44bf99df6119858bffb00ccdf9e6e470:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c60a45bf44bf99df6119858bffb00ccdf9e6e470 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c62525b49e41431ea40b5ff16549bf67f8ffd635:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c62525b49e41431ea40b5ff16549bf67f8ffd635 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c63b86afeac6c587fc96c7144577123df02e300c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c63b86afeac6c587fc96c7144577123df02e300c \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c666dc9cb6be1b5a62d41d300def217f53ce0ff2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c666dc9cb6be1b5a62d41d300def217f53ce0ff2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c6b564cd5497804151091b93500407d3d12acf18:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c6b564cd5497804151091b93500407d3d12acf18 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c6e5c7d477d5afb4d308501f755cec3e335c0bf2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c6e5c7d477d5afb4d308501f755cec3e335c0bf2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c6ed327e618f1671388540265ef937c5d0b6705f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c6ed327e618f1671388540265ef937c5d0b6705f \
@@ -2624,6 +2702,8 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c782da88b9a15a9474595e2dae355ab0bc58d69d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c782da88b9a15a9474595e2dae355ab0bc58d69d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c7f2c3bc828a59c54a8f52ec24dff04ec779646c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c7f2c3bc828a59c54a8f52ec24dff04ec779646c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c84c9fc6d117ed811f023a62175b0842e11470d0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c84c9fc6d117ed811f023a62175b0842e11470d0 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c91ebda0ea5dbc45432b94eeced3805c1deac427:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c91ebda0ea5dbc45432b94eeced3805c1deac427 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c9e5edfb5398bca87746c28cacb754653d3c5c8e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c9e5edfb5398bca87746c28cacb754653d3c5c8e \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c9f022c44bb6ee68a3f9106d57754afaab522287:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c9f022c44bb6ee68a3f9106d57754afaab522287 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/c9f1032bd74ca1cc16fc102060302f7bd269d3e8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c9f1032bd74ca1cc16fc102060302f7bd269d3e8 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ca064cb0d2aa4b3d92f367408e61bfc6db122bdf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ca064cb0d2aa4b3d92f367408e61bfc6db122bdf \
@@ -2635,16 +2715,16 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/cae4802a0252414f415c21f1deb052da88594c41:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cae4802a0252414f415c21f1deb052da88594c41 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/cb07d8c24d9533f10dfa73f70e32e0ee012b935d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cb07d8c24d9533f10dfa73f70e32e0ee012b935d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/cb2f041c1db1aababdc499155f6f8c43d01f45ed:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cb2f041c1db1aababdc499155f6f8c43d01f45ed \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/cb68eb42e7045d42819786fb0860f1f610ebdbb3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cb68eb42e7045d42819786fb0860f1f610ebdbb3 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/cb6d6ea7d53fdcd0da6c1ba428a3b30a261b68f4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cb6d6ea7d53fdcd0da6c1ba428a3b30a261b68f4 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/cbe1e4baad65588200b05aa5ae726db80c8fa114:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cbe1e4baad65588200b05aa5ae726db80c8fa114 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/cc31c5e266916810ad141af97d06d13f8820ef62:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cc31c5e266916810ad141af97d06d13f8820ef62 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/cc3711dfc7ac8ae3e7be4f19054752c5a0f25688:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cc3711dfc7ac8ae3e7be4f19054752c5a0f25688 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/cc389f08ae70e7a2d5ec579ceb37188bbbd78374:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cc389f08ae70e7a2d5ec579ceb37188bbbd78374 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/cc7b2a0277135205da0e41c4794e76f51f5c62a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cc7b2a0277135205da0e41c4794e76f51f5c62a2 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ccaf27c2455f58557f5a425475b84c36dca14af3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ccaf27c2455f58557f5a425475b84c36dca14af3 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ccd402e06f080350a450c6895926685692ee5c2d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ccd402e06f080350a450c6895926685692ee5c2d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/cd5f06c4f821a53d303a99f32417785862433e0d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cd5f06c4f821a53d303a99f32417785862433e0d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/cd72152f3de1edf20440e579275e453b5e643dd1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cd72152f3de1edf20440e579275e453b5e643dd1 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/cdfb75fe53de9b3b16ba898704dcfbc2d212ccab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cdfb75fe53de9b3b16ba898704dcfbc2d212ccab \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ce5a4be95e79bab148b0f4c48ab21674c840ab6c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ce5a4be95e79bab148b0f4c48ab21674c840ab6c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ce7346b17fd31c8075f25dc299dbd16f7ee0560b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ce7346b17fd31c8075f25dc299dbd16f7ee0560b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/cebb7c3f7db740a40f553de9d706447ec23cef3f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cebb7c3f7db740a40f553de9d706447ec23cef3f \
@@ -2664,6 +2744,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/d320a2dd08f33ea5ecd9c430a1df3e5873ee749c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d320a2dd08f33ea5ecd9c430a1df3e5873ee749c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/d339f6007d1d6e3017e70b498e0142098f730087:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d339f6007d1d6e3017e70b498e0142098f730087 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/d356915f77034c4a42fb3b6d10d3d139a463e2ab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d356915f77034c4a42fb3b6d10d3d139a463e2ab \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/d38d8c05f18e087d8fff311843ac01264590e85a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d38d8c05f18e087d8fff311843ac01264590e85a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/d3a9c4b81a8c69726d4e78a3d2b28760fad87562:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d3a9c4b81a8c69726d4e78a3d2b28760fad87562 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/d4813a46dc46c9b732ef7061563b65258ca41cbb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d4813a46dc46c9b732ef7061563b65258ca41cbb \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/d4a57697ae01fca9fdc7c502aae5425a4a7947d8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d4a57697ae01fca9fdc7c502aae5425a4a7947d8 \
@@ -2673,6 +2754,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/d53234a0f23f5c6453d90c0ce296e83bfe166ecd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d53234a0f23f5c6453d90c0ce296e83bfe166ecd \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/d581751312564d76c7119884e2da62322cc35b3f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d581751312564d76c7119884e2da62322cc35b3f \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/d6566622bf53fd94f880369236e462c2eeb35e6f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d6566622bf53fd94f880369236e462c2eeb35e6f \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/d659c22352ec9e44dd2436fa9936e5ff87f50dd6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d659c22352ec9e44dd2436fa9936e5ff87f50dd6 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/d68cfed4e4612869d0c6fd1c1c3d402abc1a8f6d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d68cfed4e4612869d0c6fd1c1c3d402abc1a8f6d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/d6a478414148a86fbcd0890a456506ec72cd8951:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d6a478414148a86fbcd0890a456506ec72cd8951 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/d76b372e4e46e951553ee2583335429eb0c7986f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d76b372e4e46e951553ee2583335429eb0c7986f \
@@ -2688,8 +2770,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/d9949ec6b7e67c48cb017c9f7e85cb70b061d945:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d9949ec6b7e67c48cb017c9f7e85cb70b061d945 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/da1153acf76174f6f86e869f533cff7f087d1f7d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/da1153acf76174f6f86e869f533cff7f087d1f7d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/da22f1b3c78df4d55630d058cc35e16e903fd2eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/da22f1b3c78df4d55630d058cc35e16e903fd2eb \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/da5582fd5db7e1217bde0f07201e9d1f58b3deb2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/da5582fd5db7e1217bde0f07201e9d1f58b3deb2 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/da9c593fa6681db117a9f5c240d31ee9e410a1de:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/da9c593fa6681db117a9f5c240d31ee9e410a1de \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/da59e7dfa8ef7ac76d0420ed5b3ba3edef9f00f8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/da59e7dfa8ef7ac76d0420ed5b3ba3edef9f00f8 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/daaf71b74e66a763e284b2b7a74799b76fe227ca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/daaf71b74e66a763e284b2b7a74799b76fe227ca \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/dab2df8b52650bbeb63730d2c6f5b28de0f10da1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dab2df8b52650bbeb63730d2c6f5b28de0f10da1 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/dac3087902905ab72f45df6b07832322068ab219:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dac3087902905ab72f45df6b07832322068ab219 \
@@ -2705,8 +2786,10 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/dcec36adf0cfbbee90b615d90090fe6388e62d06:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dcec36adf0cfbbee90b615d90090fe6388e62d06 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/dd07ffbfece5965e4cea247990445462a5f13689:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dd07ffbfece5965e4cea247990445462a5f13689 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/dd1064e4a1b52f2e786fa6dab2ebcd58d09359f9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dd1064e4a1b52f2e786fa6dab2ebcd58d09359f9 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/dd58c613ca6dc040f1952c6e81a19d39b5ef578c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dd58c613ca6dc040f1952c6e81a19d39b5ef578c \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/dd9706daa9a88025587934eeb4be75c1de1fbcf2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dd9706daa9a88025587934eeb4be75c1de1fbcf2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ddf0c2da63143a4ae31877b81fca49f5b265da9e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ddf0c2da63143a4ae31877b81fca49f5b265da9e \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/de9a7fb23e08a8a70b2fe7fe3d8c5d9699797fa0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/de9a7fb23e08a8a70b2fe7fe3d8c5d9699797fa0 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/deec05ec79edc03cc18cfe10b1fd773556b4975d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/deec05ec79edc03cc18cfe10b1fd773556b4975d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/deef8f3426cd13349b31af884af90de972fbd0e3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/deef8f3426cd13349b31af884af90de972fbd0e3 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/df02198bf6e584fbc2f8ebbb853d749a501c7c33:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/df02198bf6e584fbc2f8ebbb853d749a501c7c33 \
@@ -2714,6 +2797,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/dfaaf0cb3202a9ce2aaac2c4b6e3dc977808aa60:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dfaaf0cb3202a9ce2aaac2c4b6e3dc977808aa60 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/dfe8ef44431c6dbdbe10f0bcdef00b0893806221:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dfe8ef44431c6dbdbe10f0bcdef00b0893806221 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e041251829264aeec3e8cd4098c20a6db27b3142:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e041251829264aeec3e8cd4098c20a6db27b3142 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e0612be03069b3c721ee33511d39a29523cdce9d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e0612be03069b3c721ee33511d39a29523cdce9d \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e0724f1a15676bccfbefe1afc355a24f84fe7009:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e0724f1a15676bccfbefe1afc355a24f84fe7009 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e08e172a1b0b14aba332e495e4f06e3d17af6ceb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e08e172a1b0b14aba332e495e4f06e3d17af6ceb \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e0d495312e9be26cab3e11cef8ec5b69e32b827c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e0d495312e9be26cab3e11cef8ec5b69e32b827c \
@@ -2721,13 +2805,15 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e135b0029c9d671d31eed6dc1136ef18b056213f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e135b0029c9d671d31eed6dc1136ef18b056213f \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e1b94d21737ba7d976132cb152c7b3b1dc004f47:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e1b94d21737ba7d976132cb152c7b3b1dc004f47 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e214fdc28b95e893bf3cd8435ec3b134747f79eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e214fdc28b95e893bf3cd8435ec3b134747f79eb \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e26a5b49bff886de826735be22b2ac2c2e042974:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e26a5b49bff886de826735be22b2ac2c2e042974 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e2828f00c7b1d03ff31ddcca2c8cf02c203cce96:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e2828f00c7b1d03ff31ddcca2c8cf02c203cce96 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e287e6283d92c3d6921def9c22b7f111549bf155:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e287e6283d92c3d6921def9c22b7f111549bf155 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e371c49e26da8747f05c2711a82a3f73ef3cc0a4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e371c49e26da8747f05c2711a82a3f73ef3cc0a4 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e40c354843b6c19a0c462d0f3f3443de3d99a591:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e40c354843b6c19a0c462d0f3f3443de3d99a591 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e43638139315e42f673a52c8c112c7aa397c67a5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e43638139315e42f673a52c8c112c7aa397c67a5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e442012b6887280aaaaa4fa0098fc1a78cce27fc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e442012b6887280aaaaa4fa0098fc1a78cce27fc \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e45c8828d38ddb264338bff0d8f936f684a876e5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e45c8828d38ddb264338bff0d8f936f684a876e5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e46c9b888d31ba2f26ef18dc68582a2ccb97cdc0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e46c9b888d31ba2f26ef18dc68582a2ccb97cdc0 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e5220801a32b5ba55b001f26e86df5f150cad728:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e5220801a32b5ba55b001f26e86df5f150cad728 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e525660ea522931b7ea62685082a65f535a1ca22:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e525660ea522931b7ea62685082a65f535a1ca22 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e5a45191f6d223a90c2951930e515ad2f79c6eec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e5a45191f6d223a90c2951930e515ad2f79c6eec \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e5e8d0699595fe54de049c840bd77e6be7f6956c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e5e8d0699595fe54de049c840bd77e6be7f6956c \
@@ -2736,9 +2822,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e613646c144be88376a48ace714fcdef277ad2aa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e613646c144be88376a48ace714fcdef277ad2aa \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e6514e64fb4558c9ccc1b5ef69d283beef901010:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e6514e64fb4558c9ccc1b5ef69d283beef901010 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e6cf14092d8b7002fd1c120963bf0c6d44989747:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e6cf14092d8b7002fd1c120963bf0c6d44989747 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e6d41c0052168a1365312b498d45c294c6ccb01e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e6d41c0052168a1365312b498d45c294c6ccb01e \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e7059c208a7a499036ae857a4d1d2472c87790fe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e7059c208a7a499036ae857a4d1d2472c87790fe \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e72a24eb9e6d5e2d51a773a8ef57c78a8cf04343:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e72a24eb9e6d5e2d51a773a8ef57c78a8cf04343 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e7850e1506ce2ddccd31caffdeb40a4ced6aa316:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e7850e1506ce2ddccd31caffdeb40a4ced6aa316 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e7cf5a4a2b297755497666d5d3d562f0586758b2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e7cf5a4a2b297755497666d5d3d562f0586758b2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e7f023bf19a25ec520feb3df99197618c6351ec5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e7f023bf19a25ec520feb3df99197618c6351ec5 \
@@ -2747,20 +2831,19 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e93a46c53e4a2194a1c1de5bb1baf2b9976027dc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e93a46c53e4a2194a1c1de5bb1baf2b9976027dc \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e9452bfbdcbe850d7fa9951a13bbf7f58969f71a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e9452bfbdcbe850d7fa9951a13bbf7f58969f71a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e979a6baf0fdd28a1e27a77b31f504d59fb18866:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e979a6baf0fdd28a1e27a77b31f504d59fb18866 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/e9d3d85a123ce910b580aaa90218f1022ae2e21f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e9d3d85a123ce910b580aaa90218f1022ae2e21f \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ea1732ee48c5d1db96c3516e1f687877b062b816:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ea1732ee48c5d1db96c3516e1f687877b062b816 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ea382a776b0ea8fec5f4c71be8c0221b8561b9be:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ea382a776b0ea8fec5f4c71be8c0221b8561b9be \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ea8f84a92bdf0ed1004a0912f45f34a4ef58119e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ea8f84a92bdf0ed1004a0912f45f34a4ef58119e \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ea96cf34b497608b3dfe8e35da179e3c858cab52:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ea96cf34b497608b3dfe8e35da179e3c858cab52 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/eafa67b758f8650f7b61df28f9fb41b8de4a1b13:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/eafa67b758f8650f7b61df28f9fb41b8de4a1b13 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/eb3d73c363d55b2faa3db83314ffe89edc7c95ea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/eb3d73c363d55b2faa3db83314ffe89edc7c95ea \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/eb433b27b9075b2175afc530e48bbd7295b7488d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/eb433b27b9075b2175afc530e48bbd7295b7488d \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ebc7ca8575859721fa9d4c225a156ffaa4044a0b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ebc7ca8575859721fa9d4c225a156ffaa4044a0b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ebe0db14c8321e7b3a8eeec0d93d30aed50f529b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ebe0db14c8321e7b3a8eeec0d93d30aed50f529b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ebec7c3441d3180d160e414d4b770465d54645c8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ebec7c3441d3180d160e414d4b770465d54645c8 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ec2c35758d2a9faaf0aca0b27f37c2671dac9e5a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec2c35758d2a9faaf0aca0b27f37c2671dac9e5a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ec2d4c6db997b83bb16b2250b9468a5b17ca5fe9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec2d4c6db997b83bb16b2250b9468a5b17ca5fe9 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ec2df7ac09e51e3b7f702ef19a23e2333ef9ef87:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec2df7ac09e51e3b7f702ef19a23e2333ef9ef87 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ec456efadfc2b0caf1565d0f7355a0b8ddd37065:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec456efadfc2b0caf1565d0f7355a0b8ddd37065 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ec5a94a35a161ea250311a219d21ea5f18c57502:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec5a94a35a161ea250311a219d21ea5f18c57502 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ec5f376f6b0475d305d94656a1ab8ca13b368731:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec5f376f6b0475d305d94656a1ab8ca13b368731 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ec6546b7b7b134fcec4b9a188689dc58ed013cc5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec6546b7b7b134fcec4b9a188689dc58ed013cc5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ec71cfa0dab51f19c13abebd4ea2fe32a55e731a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec71cfa0dab51f19c13abebd4ea2fe32a55e731a \
@@ -2768,7 +2851,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ecddaf30e27de7d7224c709817471bee6e9b77f1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ecddaf30e27de7d7224c709817471bee6e9b77f1 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ecefb5b0255c170e10b201c0187a24798cf58903:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ecefb5b0255c170e10b201c0187a24798cf58903 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ecffecc4b6e0389af92f791ce5bd2a94a815a217:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ecffecc4b6e0389af92f791ce5bd2a94a815a217 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ed08ba9a116700ab7305981d1c2be07dc9f31c46:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ed08ba9a116700ab7305981d1c2be07dc9f31c46 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ed39f6db1bc9fbe0504525aac813284ba326080a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ed39f6db1bc9fbe0504525aac813284ba326080a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ed3fe2fe8ffd5413a4adf7ee5ae839beaa53e6f8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ed3fe2fe8ffd5413a4adf7ee5ae839beaa53e6f8 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ed56f54f6628072a9da932678c7997b4a0b94d9e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ed56f54f6628072a9da932678c7997b4a0b94d9e \
@@ -2781,6 +2863,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/eead5a2e5d496229afbfc3e67aa16efda12e97f3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/eead5a2e5d496229afbfc3e67aa16efda12e97f3 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/eed89537b96dd76c35e4119d75e14c8ea3734ca5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/eed89537b96dd76c35e4119d75e14c8ea3734ca5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/eeec786efd8c4aa78f93247b4ea74c0ccb8ba431:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/eeec786efd8c4aa78f93247b4ea74c0ccb8ba431 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ef23983ac387a18e37d62664928c3fe362445132:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ef23983ac387a18e37d62664928c3fe362445132 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ef75e7e308d5dac18f071d9ee14149677c8a5d31:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ef75e7e308d5dac18f071d9ee14149677c8a5d31 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ef80786640b2176865f9bdfe1f909f71b2aa7842:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ef80786640b2176865f9bdfe1f909f71b2aa7842 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ef8d40aa13ca34a9beb8b85908246f316f966c61:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ef8d40aa13ca34a9beb8b85908246f316f966c61 \
@@ -2798,8 +2881,10 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f2005ef710c16a2967251820a26e7afc1bbc7060:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f2005ef710c16a2967251820a26e7afc1bbc7060 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f20abbee94a5deae79dc38c31f58655bba559a68:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f20abbee94a5deae79dc38c31f58655bba559a68 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f22a74622a5045adfe6cb5a079d540585c866df4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f22a74622a5045adfe6cb5a079d540585c866df4 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f25029d13414011d3cc03ff37405b848f0a92274:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f25029d13414011d3cc03ff37405b848f0a92274 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f2da6ac222ca146817dfe7d7b5b675c628a3b095:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f2da6ac222ca146817dfe7d7b5b675c628a3b095 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f2e6cda6bf4c38e9213cba7505e575904925eec9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f2e6cda6bf4c38e9213cba7505e575904925eec9 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f2ff570ad6bbc0ccb6a155c7b9d77173a5d00fab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f2ff570ad6bbc0ccb6a155c7b9d77173a5d00fab \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f3742c561cc06c66effc9e918c38112eaed6cdf2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f3742c561cc06c66effc9e918c38112eaed6cdf2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f3a15f7b663360187cf9fed6dfebb437b6086798:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f3a15f7b663360187cf9fed6dfebb437b6086798 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f3a3f7c51c21c3a72aae98ee26a476c59fb9b82e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f3a3f7c51c21c3a72aae98ee26a476c59fb9b82e \
@@ -2809,29 +2894,26 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f43af2dbe6f8d1c9a7778eb4319384bb43ef4081:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f43af2dbe6f8d1c9a7778eb4319384bb43ef4081 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f4b5df4ed71fbccd89536dddea0811cc53d32601:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f4b5df4ed71fbccd89536dddea0811cc53d32601 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f4b6c59ffe9cc23810ae4b0be49f72d0c52013dd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f4b6c59ffe9cc23810ae4b0be49f72d0c52013dd \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f58ce1311c74e9404ccc98b9a9fd984fdae42e1b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f58ce1311c74e9404ccc98b9a9fd984fdae42e1b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f593348c4801c045c723eff07a05a18954f5bab8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f593348c4801c045c723eff07a05a18954f5bab8 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f5bd6ae4f475aa8031a45a23e0bfde92331be14b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f5bd6ae4f475aa8031a45a23e0bfde92331be14b \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f5eaaf6006c3309daf656cb643798e7397597cd6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f5eaaf6006c3309daf656cb643798e7397597cd6 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f602182543d533bd0fb0edd01005115a65701517:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f602182543d533bd0fb0edd01005115a65701517 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f604f944ef742df43aeb9af245489bd0a2969b3f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f604f944ef742df43aeb9af245489bd0a2969b3f \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f670b5b0eec3b9cd44ddd74fb6f2e66e67265916:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f670b5b0eec3b9cd44ddd74fb6f2e66e67265916 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f697d82cc10f4021e6c7e0ad4453f6eefae0b4e6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f697d82cc10f4021e6c7e0ad4453f6eefae0b4e6 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f78771470e537cc3f8e00303aa4acf0bf0bf57e2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f78771470e537cc3f8e00303aa4acf0bf0bf57e2 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f7a5c4575ecb6453735d99b6422c20ee4338b48f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f7a5c4575ecb6453735d99b6422c20ee4338b48f \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f7a78c13078aa584ed95e1a09c007bde15757e89:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f7a78c13078aa584ed95e1a09c007bde15757e89 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f7e98939989dd47e6b04e7a5f15eb2828a161a10:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f7e98939989dd47e6b04e7a5f15eb2828a161a10 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f817d2c471b4dc2f933786fb89c800509f8f8f04:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f817d2c471b4dc2f933786fb89c800509f8f8f04 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f81d6ed4d02f28898547976add3dbff711c98a3f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f81d6ed4d02f28898547976add3dbff711c98a3f \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f81ee840102ef5ef2054738c95b2e163e1486dad:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f81ee840102ef5ef2054738c95b2e163e1486dad \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f831d7f4efcbbe63dc535232957eb91a55fea629:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f831d7f4efcbbe63dc535232957eb91a55fea629 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f84a3359b8af6ea6abb8ad8425823ffb5cdd33d9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f84a3359b8af6ea6abb8ad8425823ffb5cdd33d9 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f86831db6b9c988892332f3274409043e751ef8e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f86831db6b9c988892332f3274409043e751ef8e \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f887c8bfbd844baa88f8c9155f2b458978458662:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f887c8bfbd844baa88f8c9155f2b458978458662 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f8a4b5d976e1d468dab419bf635e5d6fbbad2564:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f8a4b5d976e1d468dab419bf635e5d6fbbad2564 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f8b4f7eb3da84f2faa5baf7fc4df1680f4a39c87:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f8b4f7eb3da84f2faa5baf7fc4df1680f4a39c87 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f8c54d0fd227a8fa4c6e634c54e2127afcbd4ec4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f8c54d0fd227a8fa4c6e634c54e2127afcbd4ec4 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f9924352af6e239878fb8d4fd694f67e69f01677:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f9924352af6e239878fb8d4fd694f67e69f01677 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f9c6ae454a2287fb9a65305a1f7b436587a9398a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f9c6ae454a2287fb9a65305a1f7b436587a9398a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/f9eb59fed5d73dbf177ff41b7592a6a6f5db6785:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f9eb59fed5d73dbf177ff41b7592a6a6f5db6785 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/fa415adff84d1e7a339fa0f79dcdcc9b68fcbf03:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fa415adff84d1e7a339fa0f79dcdcc9b68fcbf03 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/fa56a2e0f29bf51c5af36daa3cafdc28424f7bc3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fa56a2e0f29bf51c5af36daa3cafdc28424f7bc3 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/fa6accf679e856b33a025dd43aaaf7ca17b72684:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fa6accf679e856b33a025dd43aaaf7ca17b72684 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/fa876254d33cd9ef695dc5e1dd99b4b70791834f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fa876254d33cd9ef695dc5e1dd99b4b70791834f \
@@ -2853,290 +2935,290 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/fcf77e35832a2ee166e0d35551e7fecafa561983:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fcf77e35832a2ee166e0d35551e7fecafa561983 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/fd48ecda303ea0d8640b63279ff6ca59c67bad00:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fd48ecda303ea0d8640b63279ff6ca59c67bad00 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/fd8c463b6b717f184b447f31b170e9ecbc11baf6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fd8c463b6b717f184b447f31b170e9ecbc11baf6 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/fdcd17e7ce9a0ee20d653534d401feeb503e0bd5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fdcd17e7ce9a0ee20d653534d401feeb503e0bd5 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/fddca762c06a537728227801872a861b283c04de:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fddca762c06a537728227801872a861b283c04de \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/fe6cb31c1de02834111af0a989b73fae5557c94e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fe6cb31c1de02834111af0a989b73fae5557c94e \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/feb303418f7b86b0a5f06d17bfd48c1cd21a428f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/feb303418f7b86b0a5f06d17bfd48c1cd21a428f \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ff696a1b5f67f79247b2558833e54da1f17fbe5a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ff696a1b5f67f79247b2558833e54da1f17fbe5a \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/ffc8faffd0df5949d3dc60effb13b8c04a3e291a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ffc8faffd0df5949d3dc60effb13b8c04a3e291a \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/confseqs/fff855161c1243582d3044f48272bc19757fc502:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fff855161c1243582d3044f48272bc19757fc502 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests_symbolic_link_mapping:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests_symbolic_link_mapping \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/0464bcb9ad89fabae721d943296a7e804316067c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0464bcb9ad89fabae721d943296a7e804316067c \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/06648f235c76fb54df90cefd829e2b9f7862095e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/06648f235c76fb54df90cefd829e2b9f7862095e \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/0700f958c9b97d793beaf3e854236ff4f8ee9ae1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0700f958c9b97d793beaf3e854236ff4f8ee9ae1 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/07a093ef83ca11b6ba70854d485c39b1d5e449d4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/07a093ef83ca11b6ba70854d485c39b1d5e449d4 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/0871a509497cf97009a9f9861f5220456447b522:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0871a509497cf97009a9f9861f5220456447b522 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/0ae20fd909903d426886cb0a06553c5817122a46:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0ae20fd909903d426886cb0a06553c5817122a46 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/0c4c682ba29ef473f48b3cf549ca43f725a31107:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0c4c682ba29ef473f48b3cf549ca43f725a31107 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/0dcc005c24af8474bb6b376c68a2f2d915fa8355:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0dcc005c24af8474bb6b376c68a2f2d915fa8355 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/0e167ac30afe0fdf724c20ff14082c53572dc6fe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0e167ac30afe0fdf724c20ff14082c53572dc6fe \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/0ed8bdfb227ba11406a96d304e25795051e4990b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0ed8bdfb227ba11406a96d304e25795051e4990b \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/117746df5d8329f6a48fe259cca55a17713247e7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/117746df5d8329f6a48fe259cca55a17713247e7 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/124ac03a3840e00f845c1c073bbfb0d8719470c7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/124ac03a3840e00f845c1c073bbfb0d8719470c7 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/126fd242ce617eab5a606363f4efbaba00a3721a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/126fd242ce617eab5a606363f4efbaba00a3721a \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/12e5b4c938d5d3739739e1f9447c25ce43d194a9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/12e5b4c938d5d3739739e1f9447c25ce43d194a9 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/1351cac52b02bdf85f5797fe5ce546d1bbb76e92:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1351cac52b02bdf85f5797fe5ce546d1bbb76e92 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/161bcd89ae0bdfc4cc36913ebedde9ab36ac52e1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/161bcd89ae0bdfc4cc36913ebedde9ab36ac52e1 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/174dfa96b79cf5b7570b532245a2e9bcddc70b86:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/174dfa96b79cf5b7570b532245a2e9bcddc70b86 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/17a0285f86244c7c69f3aa5ae7f32927b2513485:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/17a0285f86244c7c69f3aa5ae7f32927b2513485 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/1941871b9df29aaa893af96004adf167d2b69ca7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1941871b9df29aaa893af96004adf167d2b69ca7 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/1a4ef1ea25fabe5dc71c5605e7a1fa1f9cff6130:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1a4ef1ea25fabe5dc71c5605e7a1fa1f9cff6130 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/1af4005d183a01de67e0c393295c8fe0dd0663d2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1af4005d183a01de67e0c393295c8fe0dd0663d2 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/1b55d741b6c72b5d5694a85a4846461478f29cf4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1b55d741b6c72b5d5694a85a4846461478f29cf4 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/1dac21b2e37ec7f8b742c55a2f44183844a36228:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1dac21b2e37ec7f8b742c55a2f44183844a36228 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/1e34eedf1e339aaae1076f85c41aebac16d8aab0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1e34eedf1e339aaae1076f85c41aebac16d8aab0 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/1ef6f9c313f1fbb78d685b0c6ee0b16ae94da012:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1ef6f9c313f1fbb78d685b0c6ee0b16ae94da012 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/1f958c5b10bc35d5cc60d536439c91a3c59618c6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1f958c5b10bc35d5cc60d536439c91a3c59618c6 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/2017871fc60146d3325fee4cf034f1092105e057:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2017871fc60146d3325fee4cf034f1092105e057 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/203c2b1ddc635c7915128fcbd074bfddb479f362:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/203c2b1ddc635c7915128fcbd074bfddb479f362 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/219a633a328c066da02f0b85395378b09630d3d0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/219a633a328c066da02f0b85395378b09630d3d0 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/23f94d9ec5b045d3db07ccc1e8d271472c5b6306:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/23f94d9ec5b045d3db07ccc1e8d271472c5b6306 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/24d969d761a59fad2cf86403ce2de2cda90f0a89:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/24d969d761a59fad2cf86403ce2de2cda90f0a89 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/25f802508859051357f506eb4bc2e049e25ef5e4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/25f802508859051357f506eb4bc2e049e25ef5e4 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/2605260613decaae1757f6750d5b1603a097d55a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2605260613decaae1757f6750d5b1603a097d55a \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/2634c1c2df9d608b3c581673cd074edf0ffb323c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2634c1c2df9d608b3c581673cd074edf0ffb323c \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/299d9ca98f755151860ff8df8511ac32dfec999f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/299d9ca98f755151860ff8df8511ac32dfec999f \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/2badce8cc281b51d0a58d1000caaae0f69dc2a8a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2badce8cc281b51d0a58d1000caaae0f69dc2a8a \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/2c72e05db71a4cfc184d8f7c34b4140041498b98:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2c72e05db71a4cfc184d8f7c34b4140041498b98 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/2c9b53686d172289f7cb6f08750e221510bf3ba7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2c9b53686d172289f7cb6f08750e221510bf3ba7 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/2cbe5ddcd117969b7063129c1b84fac7aa4c0a03:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2cbe5ddcd117969b7063129c1b84fac7aa4c0a03 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/2ce84a7eed3b1e3c9de97043f7c30c6f5a4d7a2c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2ce84a7eed3b1e3c9de97043f7c30c6f5a4d7a2c \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/2cfc334ceef731160c574abc52dc450af1af303b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2cfc334ceef731160c574abc52dc450af1af303b \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/2e9ed09c56d6c49c3aca79daa510a5d8c59ef27f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2e9ed09c56d6c49c3aca79daa510a5d8c59ef27f \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/31092bb9c7371bc3c89d6f654b7c07b827911a7b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/31092bb9c7371bc3c89d6f654b7c07b827911a7b \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/32a92bca8f3cf9bc8a95984eb68cb453bc8c0e0f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/32a92bca8f3cf9bc8a95984eb68cb453bc8c0e0f \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/336d9853bc4a40383a0865ad1095140f05107d7d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/336d9853bc4a40383a0865ad1095140f05107d7d \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/336d9c8bb282bdb18ad15ef672b81199b5eed2a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/336d9c8bb282bdb18ad15ef672b81199b5eed2a2 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/3393ff653bd590ce7657174034b836372a4044b2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3393ff653bd590ce7657174034b836372a4044b2 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/360ba95e056eb185f1ac676a23542dc54797eb8f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/360ba95e056eb185f1ac676a23542dc54797eb8f \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/36950716291ca1d8589e9f6bf4f0e9da229c2872:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/36950716291ca1d8589e9f6bf4f0e9da229c2872 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/385a1aed0128c9422fbeefad2707c8612124efa7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/385a1aed0128c9422fbeefad2707c8612124efa7 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/390ba01e3d992e4be376eaa804ef6d65c97332e8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/390ba01e3d992e4be376eaa804ef6d65c97332e8 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/3bae5ae6f3a77b3d410a15df9090c54ed53110a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3bae5ae6f3a77b3d410a15df9090c54ed53110a2 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/3bb4f851cb259dfb4592fa4fb7c73cfc8cf7506b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3bb4f851cb259dfb4592fa4fb7c73cfc8cf7506b \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/3cc93c2e5df8ec9bc937837e8bad1e54d2965e53:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3cc93c2e5df8ec9bc937837e8bad1e54d2965e53 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/3dd91addb1a3917897462dec3cc01f6e0c0bfa8d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3dd91addb1a3917897462dec3cc01f6e0c0bfa8d \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/3df23312a53380a0e203e05fb5bb74f1c4f5b336:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3df23312a53380a0e203e05fb5bb74f1c4f5b336 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/3e388627cb131b9feb709188e85a81a72cc96956:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3e388627cb131b9feb709188e85a81a72cc96956 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/41f993af0984821940a9a124f02635de934d0858:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/41f993af0984821940a9a124f02635de934d0858 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/421853645b6197cb542227476b164705bb0fe85d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/421853645b6197cb542227476b164705bb0fe85d \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/434045689d1f0e2ddad76cd6166d401affa397e4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/434045689d1f0e2ddad76cd6166d401affa397e4 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/4424619f01ecb913ff0c6a37bc663c69e395ef5a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4424619f01ecb913ff0c6a37bc663c69e395ef5a \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/450e78a21c4f2102d509f58e762fc9b300c6d5ce:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/450e78a21c4f2102d509f58e762fc9b300c6d5ce \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/450ed8e7d6c03673c5ef5ef66b387047df47f61d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/450ed8e7d6c03673c5ef5ef66b387047df47f61d \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/46f86412b8c4c9b6a1497e13d6116b1c1041d3e4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/46f86412b8c4c9b6a1497e13d6116b1c1041d3e4 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/472b22c828ad59aa3c3cdc71d2d71963d109c6f7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/472b22c828ad59aa3c3cdc71d2d71963d109c6f7 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/47446f878194b987cf63ea2faeb99db57de1d047:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/47446f878194b987cf63ea2faeb99db57de1d047 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/496ac84b1e1e4de7438d2c275549989f2684bf79:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/496ac84b1e1e4de7438d2c275549989f2684bf79 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/49f0a6e9fa7ff4db9989e62ea42b595932fd0326:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/49f0a6e9fa7ff4db9989e62ea42b595932fd0326 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/4ac1a615b7e57716f96ce8f5c7cf82c9335e9819:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4ac1a615b7e57716f96ce8f5c7cf82c9335e9819 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/4b61693e752d28cb365bfabb002d3d6ac97e2979:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4b61693e752d28cb365bfabb002d3d6ac97e2979 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/4bfcb65d9934517b329630a999950f9097c96e53:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4bfcb65d9934517b329630a999950f9097c96e53 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/4c071d350a231092f29b7965723c8de2e79d20c8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4c071d350a231092f29b7965723c8de2e79d20c8 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/4c9de99198cc63792f31d6b8b5af2fb2fd2b7cfb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4c9de99198cc63792f31d6b8b5af2fb2fd2b7cfb \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/4e75f85858fb174a18218afdebc24fd81b45051b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4e75f85858fb174a18218afdebc24fd81b45051b \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/4fd0f77fcd2c9d106f1594e5e6949ef756a454ac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4fd0f77fcd2c9d106f1594e5e6949ef756a454ac \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/527fc51f52be60bd9a122ad7b574974c5b78be82:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/527fc51f52be60bd9a122ad7b574974c5b78be82 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/53988946a28bb1359edae1ca443a006f25d07378:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/53988946a28bb1359edae1ca443a006f25d07378 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/53ba29fd11afc39d7a9ced877db91673922b8743:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/53ba29fd11afc39d7a9ced877db91673922b8743 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/5435d84ccd9db803f38dc207a0547bfc85bfb4df:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5435d84ccd9db803f38dc207a0547bfc85bfb4df \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/54a7cb73a3a17698708cbefabdfdd6c1e5e72d09:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/54a7cb73a3a17698708cbefabdfdd6c1e5e72d09 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/54b9145b0dd8b60d230e68c10c44a892d67e98e3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/54b9145b0dd8b60d230e68c10c44a892d67e98e3 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/54cc1a3c2564712dd1402dce8ad641ee5576cb20:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/54cc1a3c2564712dd1402dce8ad641ee5576cb20 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/554ef0d8c72a99fbf4c4702e518de1e5beb7aa9a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/554ef0d8c72a99fbf4c4702e518de1e5beb7aa9a \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/56d90bbbae3802f4971d56d2a4054c20c3bc7ebb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/56d90bbbae3802f4971d56d2a4054c20c3bc7ebb \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/57d109dad4bf616cdc28fa6de88b56a37d8085d8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/57d109dad4bf616cdc28fa6de88b56a37d8085d8 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/57dba7f0561de1be3f240b580d0ea9162a4cdf41:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/57dba7f0561de1be3f240b580d0ea9162a4cdf41 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/5804c8a3cf8c2a63a7c91bf650dfa28ecfbe178f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5804c8a3cf8c2a63a7c91bf650dfa28ecfbe178f \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/5b8c4ebc2e774ad928ecf76d431730ed232196b8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5b8c4ebc2e774ad928ecf76d431730ed232196b8 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/5c50c7ac708cdebf252070d69525c14d7832e038:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5c50c7ac708cdebf252070d69525c14d7832e038 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/5dc8400321de4ab42dd64da1d1f104b92e3e3d8a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5dc8400321de4ab42dd64da1d1f104b92e3e3d8a \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/5eba92618b5ada0893eda82991182b3b9559b9cc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5eba92618b5ada0893eda82991182b3b9559b9cc \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/5ecbbf5f04667ece4b1f6536656d077095df404c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5ecbbf5f04667ece4b1f6536656d077095df404c \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/5fbd6a6e6f3d86e331e2c3c790942702346f1952:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5fbd6a6e6f3d86e331e2c3c790942702346f1952 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/5fe5b1bd6b17535bd9ac87d0c02b0a8100f7dc4b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5fe5b1bd6b17535bd9ac87d0c02b0a8100f7dc4b \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6156052a58b458a5198706a3f2a1489ebfb469bc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6156052a58b458a5198706a3f2a1489ebfb469bc \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/629336e6aee3f38c56037722295c8690de867d2c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/629336e6aee3f38c56037722295c8690de867d2c \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/62ae3f5b245a6116f65b1d18c9c81241d30b5f86:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/62ae3f5b245a6116f65b1d18c9c81241d30b5f86 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/62ec6f76b2d295e5faa94b74a24413705844549f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/62ec6f76b2d295e5faa94b74a24413705844549f \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/63016c1af24824e78ad1ffb2a037384ca1475d8c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/63016c1af24824e78ad1ffb2a037384ca1475d8c \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/64b33e9aee52b961269173f198ab0c52d912781b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/64b33e9aee52b961269173f198ab0c52d912781b \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/65e73552fffc2ccba066201977f5c22a34c6e3ba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/65e73552fffc2ccba066201977f5c22a34c6e3ba \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6696a4c0db6f4bc77f0b301c20763f5770b38029:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6696a4c0db6f4bc77f0b301c20763f5770b38029 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/67cd8289d5a92c9ec257492b27e958f9479e526d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/67cd8289d5a92c9ec257492b27e958f9479e526d \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/67d0e5f7348281b0e975d435f9de6370ea43b0c3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/67d0e5f7348281b0e975d435f9de6370ea43b0c3 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6827d575fe361eae7ec7d0c556acc4a5167b23eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6827d575fe361eae7ec7d0c556acc4a5167b23eb \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/691538233e766714e8099a7c67144741dcfe7463:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/691538233e766714e8099a7c67144741dcfe7463 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6928e5c48b6ffc28a162f915a96dedd1bb58b11a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6928e5c48b6ffc28a162f915a96dedd1bb58b11a \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/69739ae8b0997f4ff04f63a2fe9ce142a1f70f94:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/69739ae8b0997f4ff04f63a2fe9ce142a1f70f94 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/69b841d35741a6fa4aff799c4b687ac4004776ea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/69b841d35741a6fa4aff799c4b687ac4004776ea \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6a516e43db68aec1c041f7be8dd4b64c0f6bf8c5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6a516e43db68aec1c041f7be8dd4b64c0f6bf8c5 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6a550802bc159f0a7a3bb8f5efa252cd3ddf7325:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6a550802bc159f0a7a3bb8f5efa252cd3ddf7325 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6af080eaa202786ef133f5291b098a7da7353f52:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6af080eaa202786ef133f5291b098a7da7353f52 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6b14cf2652c3a91e46ba8755da5e9aeac9df9d00:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6b14cf2652c3a91e46ba8755da5e9aeac9df9d00 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6c5da329350faed6906e6f54b0b1440a58b01864:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6c5da329350faed6906e6f54b0b1440a58b01864 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6c90192ffad4e0d2b3d44547e08d21c80969f88d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6c90192ffad4e0d2b3d44547e08d21c80969f88d \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6cfb1ea32c9e4e4cb27dacf9a1f938e1f003674e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6cfb1ea32c9e4e4cb27dacf9a1f938e1f003674e \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6da907a7e86d7d8a50cfe87f44f569b9c0c3ca33:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6da907a7e86d7d8a50cfe87f44f569b9c0c3ca33 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6e7b067b36af0f43b963ab968548a4a033d6b0c1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6e7b067b36af0f43b963ab968548a4a033d6b0c1 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6f6af6471d569414da4c14393bb8adbb5fb76292:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6f6af6471d569414da4c14393bb8adbb5fb76292 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6fca84a0ad9d4cdd74c307292ac306d3ef89be9a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6fca84a0ad9d4cdd74c307292ac306d3ef89be9a \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/72d024192564ef660690589c5e96af3fbeb7ef90:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/72d024192564ef660690589c5e96af3fbeb7ef90 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/752a8d7ee8a33eb5714f4615ae4d0abd1e9b2006:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/752a8d7ee8a33eb5714f4615ae4d0abd1e9b2006 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/75503148b3e55dbf379b46cc79ba34f1af849ebe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/75503148b3e55dbf379b46cc79ba34f1af849ebe \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/758679fd4fb8062da33cffa401024f226ac8456d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/758679fd4fb8062da33cffa401024f226ac8456d \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/76852207c5e4337af3576c60e879185c1504580f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/76852207c5e4337af3576c60e879185c1504580f \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/780294da5fa907e4d711573fa0cf676a9149f3b5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/780294da5fa907e4d711573fa0cf676a9149f3b5 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/780d62e94b068d5787927c9194924f1ab55073e6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/780d62e94b068d5787927c9194924f1ab55073e6 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/7894b0914bf8ca22a0fdd38be4776bc73d6bffdc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7894b0914bf8ca22a0fdd38be4776bc73d6bffdc \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/78f6e5da6dda2e3e88391732dd5f7a9a35c9dfe2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/78f6e5da6dda2e3e88391732dd5f7a9a35c9dfe2 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/791792ff5c71fde8eca3fd8794d8f7360f1a9acd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/791792ff5c71fde8eca3fd8794d8f7360f1a9acd \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/7b4144e65b49c03c7771c879999a1aa85a417a93:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7b4144e65b49c03c7771c879999a1aa85a417a93 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/7cd946e5c1480c49ba74d66098f57f46e295c73e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7cd946e5c1480c49ba74d66098f57f46e295c73e \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/7e13140d6c82092f9c6730eb5d2eb8d9b6c9796e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7e13140d6c82092f9c6730eb5d2eb8d9b6c9796e \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/7fd7c939b54c45433b8313f25da18661cc99cb43:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7fd7c939b54c45433b8313f25da18661cc99cb43 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/803326483d9f7ff087065a4013bafd4dce5d88e4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/803326483d9f7ff087065a4013bafd4dce5d88e4 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/8050c465a5570ca6bcf8f7e8dd3d9bb4c2c3dcc0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8050c465a5570ca6bcf8f7e8dd3d9bb4c2c3dcc0 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/808b88210ba21775e2fab40025c0b6c6bfee6260:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/808b88210ba21775e2fab40025c0b6c6bfee6260 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/809cb0ac2ea22f4ff553a41a1098e3da4640955a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/809cb0ac2ea22f4ff553a41a1098e3da4640955a \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/85b4f5acc179c637211adef59ad8690428f8d8e6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/85b4f5acc179c637211adef59ad8690428f8d8e6 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/85f614064bf2c4ec296f15fdb1af7e71e218c4fe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/85f614064bf2c4ec296f15fdb1af7e71e218c4fe \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/86c788b40742bfaf1ce0b93c4f3ce46100501e57:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/86c788b40742bfaf1ce0b93c4f3ce46100501e57 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/87282deca7cdfb75982d0711ba682f108bf7bf41:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/87282deca7cdfb75982d0711ba682f108bf7bf41 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/8816f6e441eab7b8978cba7ee6b7edd748d16649:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8816f6e441eab7b8978cba7ee6b7edd748d16649 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/890bf506d8a504c379aff43b2c9ae08f8575315d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/890bf506d8a504c379aff43b2c9ae08f8575315d \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/8a56ca0036552d96f43aa80d8bc8a4842bf13d7a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8a56ca0036552d96f43aa80d8bc8a4842bf13d7a \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/8ab375d11a120e4d508f1994e75c449e6f41ae36:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8ab375d11a120e4d508f1994e75c449e6f41ae36 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/8bf03982d123560cc7fc0ad69b6ddd39d9855c49:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8bf03982d123560cc7fc0ad69b6ddd39d9855c49 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/8d3588014f65db9f8bdb62957beddd3dacb443dd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8d3588014f65db9f8bdb62957beddd3dacb443dd \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/8d87ffb27d466a8ad58f78878d96039ae676f7f0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8d87ffb27d466a8ad58f78878d96039ae676f7f0 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/8dc7d5b87b34e03f33c3f2fdbf0903e9c169a692:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8dc7d5b87b34e03f33c3f2fdbf0903e9c169a692 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/8f816129f488735d3afb1bf630c2f5ac5d201f15:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8f816129f488735d3afb1bf630c2f5ac5d201f15 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/91afb197962bdf0dc4dd095b325b78ebb58f2dd1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/91afb197962bdf0dc4dd095b325b78ebb58f2dd1 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/9236e56dfbaf9b9c889a0466a0bc84f1e7b98e27:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9236e56dfbaf9b9c889a0466a0bc84f1e7b98e27 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/92d08f3fd310034fd88f48e235f6be2e14cc802c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/92d08f3fd310034fd88f48e235f6be2e14cc802c \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/93cb47929e514e119f8ec6bbff78ed5f2c7ebeb6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/93cb47929e514e119f8ec6bbff78ed5f2c7ebeb6 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/94736cfe0023bf2d01b4f79ab74363413002fb57:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/94736cfe0023bf2d01b4f79ab74363413002fb57 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/955fab3bdc596cfe8fc658ebea9a345953c601a0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/955fab3bdc596cfe8fc658ebea9a345953c601a0 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/95cea6af253fb3643f21d72c46f3bf3cb5393bd8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/95cea6af253fb3643f21d72c46f3bf3cb5393bd8 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/95ecbd7e6b4881a5ba8a64ee6d4f6a95de85e24a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/95ecbd7e6b4881a5ba8a64ee6d4f6a95de85e24a \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/970a0db3a0d82eca004223b8d8a9303a098bc4f1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/970a0db3a0d82eca004223b8d8a9303a098bc4f1 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/980f3a53a0f48bbe656dee5ac9da576ebc93e663:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/980f3a53a0f48bbe656dee5ac9da576ebc93e663 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/995bd44c13462a892ed9860f1c9d778044f62b41:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/995bd44c13462a892ed9860f1c9d778044f62b41 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/99757df7cf2ebfb47d13649ab295477802336aa5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/99757df7cf2ebfb47d13649ab295477802336aa5 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/99a0b432550357e346058cf0969490c675f35264:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/99a0b432550357e346058cf0969490c675f35264 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/9a926574b30806a2a6abd5106292d3653108b3c9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9a926574b30806a2a6abd5106292d3653108b3c9 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/9b4dd073f3c527832ad655fc9c5b3d4829b646ce:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9b4dd073f3c527832ad655fc9c5b3d4829b646ce \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/9c899b8b1a6f552e9a5f7015c490e0355bd386f8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9c899b8b1a6f552e9a5f7015c490e0355bd386f8 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/9d0888fdb13a0ff0ed5cfcc7b421fd0d485688ea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9d0888fdb13a0ff0ed5cfcc7b421fd0d485688ea \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/9dbb4a8ce51fe4065dbc2730e7323734afd6a0e8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9dbb4a8ce51fe4065dbc2730e7323734afd6a0e8 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/9f9e8836e5ec0923c676db1afcd7ad29f477dc7c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9f9e8836e5ec0923c676db1afcd7ad29f477dc7c \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a0d16c0451196390576fac29afbf1afae52c8b4b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a0d16c0451196390576fac29afbf1afae52c8b4b \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a32e1781bda65afdf0029dcf93dc189c538409c9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a32e1781bda65afdf0029dcf93dc189c538409c9 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a3ddd4d4c8b35b5128a09482f04da06444c078a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a3ddd4d4c8b35b5128a09482f04da06444c078a2 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a4ef410baca86172cf8e6bcadec1557a9be259ed:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a4ef410baca86172cf8e6bcadec1557a9be259ed \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a5043c85bbf8d210699bf48d7810c9bc7069e51b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a5043c85bbf8d210699bf48d7810c9bc7069e51b \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a56080970df82e2501e591e0858396857ed928a1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a56080970df82e2501e591e0858396857ed928a1 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a577d4baaee7365468e244943038ea321859a2e8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a577d4baaee7365468e244943038ea321859a2e8 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a592e6a0e35d141f36dd2c0d4c6a9c17475d9860:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a592e6a0e35d141f36dd2c0d4c6a9c17475d9860 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a5a9b77a616f97373851adafae24f021743c7ab1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a5a9b77a616f97373851adafae24f021743c7ab1 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a63665924ba5a0b1c84734ff0c980bc9c0af6d93:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a63665924ba5a0b1c84734ff0c980bc9c0af6d93 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a725abe4e92201d6e05260c2f04ae619e75152ad:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a725abe4e92201d6e05260c2f04ae619e75152ad \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a78a33803df3f1b8c123318dd5ddb6633c114417:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a78a33803df3f1b8c123318dd5ddb6633c114417 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a79b71a166f86122a315d3018675c1e1f8688ca5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a79b71a166f86122a315d3018675c1e1f8688ca5 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a88a30fb79b820a6e774ad93082f3c3eb3744b68:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a88a30fb79b820a6e774ad93082f3c3eb3744b68 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a9d881f2dfd8661a8f9d224fa4a94cfa52381ca5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a9d881f2dfd8661a8f9d224fa4a94cfa52381ca5 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/aa24e7be607b9942be8612ff01e5f3394e60d633:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/aa24e7be607b9942be8612ff01e5f3394e60d633 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/aaf83e379bcf2535802e158d0dd03acc21409b3a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/aaf83e379bcf2535802e158d0dd03acc21409b3a \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ab35fc6348d07c14c816a4f7188f6855a64122c1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ab35fc6348d07c14c816a4f7188f6855a64122c1 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ab6114b2c11b4b2cb44ab48a53f0f1f704b09afb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ab6114b2c11b4b2cb44ab48a53f0f1f704b09afb \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/afdd24e39befe375f92d1e3d7e00c1ae327f94b6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/afdd24e39befe375f92d1e3d7e00c1ae327f94b6 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b004ff81a4536d2d89d1b25cef127b3e68504b30:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b004ff81a4536d2d89d1b25cef127b3e68504b30 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b102e2a782325cfad37031528c0d83bcd69a0e07:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b102e2a782325cfad37031528c0d83bcd69a0e07 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b1dc974e41a21b202ab46b42d802a6295023ffb4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b1dc974e41a21b202ab46b42d802a6295023ffb4 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b2c59a9940a24a82e8bfc07b5cb0d6cfbce69334:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b2c59a9940a24a82e8bfc07b5cb0d6cfbce69334 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b44ae4f8d41c236dbe29ad7da319ffedbf3435b4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b44ae4f8d41c236dbe29ad7da319ffedbf3435b4 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b4b9c78cb0b607217b125034979137868e46a099:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b4b9c78cb0b607217b125034979137868e46a099 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b4eb01eea9f9c4fb17f6153c5ed0d1fc3cdaadb8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b4eb01eea9f9c4fb17f6153c5ed0d1fc3cdaadb8 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b52288b364b7f308034ce6cfba5247f132e81212:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b52288b364b7f308034ce6cfba5247f132e81212 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b5ee479de724af9cbe519119e7e56d58bf312356:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b5ee479de724af9cbe519119e7e56d58bf312356 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b79cb20acbcf7aad47ca6aeaa5aa68902f6b9fa7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b79cb20acbcf7aad47ca6aeaa5aa68902f6b9fa7 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b95d5e3139ddb0fc61e632a51968951939aeeba6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b95d5e3139ddb0fc61e632a51968951939aeeba6 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/bbf126647ea57bf612a0a7c484418a26adb83b9f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bbf126647ea57bf612a0a7c484418a26adb83b9f \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/bc789247a432a9c572ddba1c9a7f0719a3c0a510:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bc789247a432a9c572ddba1c9a7f0719a3c0a510 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/bced77ec9a108b02dd6b68955ae312f299e1ecbd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bced77ec9a108b02dd6b68955ae312f299e1ecbd \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/bd790c2b95286053fc735c1326f5f7be52403970:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bd790c2b95286053fc735c1326f5f7be52403970 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/bd876be32c26c18e887a793ec03551c7ee2d9a70:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bd876be32c26c18e887a793ec03551c7ee2d9a70 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/bdb0bb7e36a73c110680298996a27ccd90ac912d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bdb0bb7e36a73c110680298996a27ccd90ac912d \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/bebe6e30917f56522be713b49e2d4dbee00be5d0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bebe6e30917f56522be713b49e2d4dbee00be5d0 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/bed15e7af1f9045797645c6b86b5d8c391898f3b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bed15e7af1f9045797645c6b86b5d8c391898f3b \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c12a1d42baa1f096b1236035cb1476cd93379ecf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c12a1d42baa1f096b1236035cb1476cd93379ecf \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c285bfd4515a98b528c8fceb7cc67be142f21c50:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c285bfd4515a98b528c8fceb7cc67be142f21c50 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c2c874a845ba794f84b6e7a1009d342e7bec8ff2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c2c874a845ba794f84b6e7a1009d342e7bec8ff2 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c2eafbb6bb4c999c14a611f52245fb0e12a3810f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c2eafbb6bb4c999c14a611f52245fb0e12a3810f \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c3b84dfed5e454adc0c0305f7d836ac64b86f665:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c3b84dfed5e454adc0c0305f7d836ac64b86f665 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c49d168643a0cb92c0c9dd5da065b44f3dbe0bcb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c49d168643a0cb92c0c9dd5da065b44f3dbe0bcb \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c4b1107c01acfa748b9185ded9aff93ce38f27ae:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c4b1107c01acfa748b9185ded9aff93ce38f27ae \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c558f2ee761185aec3d859399d0cac1358319754:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c558f2ee761185aec3d859399d0cac1358319754 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c613dc10b266ac09aad1159cc52bf6c0582f1126:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c613dc10b266ac09aad1159cc52bf6c0582f1126 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c66f1a5d69aa427e2889f681f63fa2eb4cc5db3f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c66f1a5d69aa427e2889f681f63fa2eb4cc5db3f \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c6be6f1e77720c05f92254a3fc2e7d41e662f318:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c6be6f1e77720c05f92254a3fc2e7d41e662f318 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c98a72cc5bf7864669b83a16b8d0a4f95a2e76fd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c98a72cc5bf7864669b83a16b8d0a4f95a2e76fd \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ca12331d68ced0348c8edf52e6b7e14ae3e8252d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ca12331d68ced0348c8edf52e6b7e14ae3e8252d \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/cac0da7d392121955d07fb7b324870a907023ba4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cac0da7d392121955d07fb7b324870a907023ba4 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ce9c79c261e1062e0f9c6d8f848bc0daa6277d59:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ce9c79c261e1062e0f9c6d8f848bc0daa6277d59 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/cee68ecb3e2fdb0838a03e36059bc9230654a2d1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cee68ecb3e2fdb0838a03e36059bc9230654a2d1 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d2dfcada6abf753a47b134c5f9917fe6aeeb8ae3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d2dfcada6abf753a47b134c5f9917fe6aeeb8ae3 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d32f63972c3eba262f4fb331a357c5d660de5cc6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d32f63972c3eba262f4fb331a357c5d660de5cc6 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d42485be9cac90665324f25a3096f7d2f31aaa83:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d42485be9cac90665324f25a3096f7d2f31aaa83 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d4d7063f92f5bf266fe8bbb2fc32f5b5a31af58d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d4d7063f92f5bf266fe8bbb2fc32f5b5a31af58d \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d4fa4cc31e8b9144311f8e5a00de38396870d6e3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d4fa4cc31e8b9144311f8e5a00de38396870d6e3 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d5677c55ece9dc13d233b40d1b672863caf6376b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d5677c55ece9dc13d233b40d1b672863caf6376b \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d60de93d62c0642ab4d2ed36e9d9baf092d9bf8d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d60de93d62c0642ab4d2ed36e9d9baf092d9bf8d \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d66667d6f19b0a407d2f2d56c380a30e86b14f45:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d66667d6f19b0a407d2f2d56c380a30e86b14f45 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d80a00f740b8b9e3b282970a35bdb27e02c53c32:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d80a00f740b8b9e3b282970a35bdb27e02c53c32 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d884b143e0e03a19ae2c22fa488395cf717a74d8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d884b143e0e03a19ae2c22fa488395cf717a74d8 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d9983726e14cd145fea21c3a9179c9ff8f66b800:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d9983726e14cd145fea21c3a9179c9ff8f66b800 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d9ab7852eff647f6bd2ae4bd22059e1ff1f18982:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d9ab7852eff647f6bd2ae4bd22059e1ff1f18982 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/dacb0cea3a24595168aeda2654ea46db0ed7139d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/dacb0cea3a24595168aeda2654ea46db0ed7139d \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/db7e2bdae1c3f4f4ad605f443ae922550660ff05:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/db7e2bdae1c3f4f4ad605f443ae922550660ff05 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/dcb42b3f9034a670af28678ae716883805e3171c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/dcb42b3f9034a670af28678ae716883805e3171c \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ddea4f6049403321bcd11062dfd76ee61e96819a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ddea4f6049403321bcd11062dfd76ee61e96819a \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/de0eeaffd9a78a945a6f9654a48d394530ae5257:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/de0eeaffd9a78a945a6f9654a48d394530ae5257 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/def8eb6ca85e24f5e53f65e23628a80357da3b81:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/def8eb6ca85e24f5e53f65e23628a80357da3b81 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e09bf19636c8129d60ccbb1087ac8dbba99370a6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e09bf19636c8129d60ccbb1087ac8dbba99370a6 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e22a5d239cf08fe164a59c81f47812ad3d215c86:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e22a5d239cf08fe164a59c81f47812ad3d215c86 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e2755fa1203605933d269859eda588018dc9a4d5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e2755fa1203605933d269859eda588018dc9a4d5 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e3b29ae89019a4e241f7754cbc4c5c5148e95c5a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e3b29ae89019a4e241f7754cbc4c5c5148e95c5a \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e3f6d0b1edebcfcb22bf6a88d56d768513e919b8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e3f6d0b1edebcfcb22bf6a88d56d768513e919b8 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e4b1d377534d365d4fb6ecde15cf9e76cb5107b9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e4b1d377534d365d4fb6ecde15cf9e76cb5107b9 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e546f3bc78dcdbbe23c347bd34fe3b536456f61c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e546f3bc78dcdbbe23c347bd34fe3b536456f61c \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e94eed5a9998f54827f1a03d140a75f4ae710d33:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e94eed5a9998f54827f1a03d140a75f4ae710d33 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e9e29d0c069b70eaaff6080a83a366f8f59d9e42:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e9e29d0c069b70eaaff6080a83a366f8f59d9e42 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ea80466625a7482de23da01f811a1a7fac2438d8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ea80466625a7482de23da01f811a1a7fac2438d8 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/eb0a19ffcfa33c8734cbdd5e13a37c969910d617:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/eb0a19ffcfa33c8734cbdd5e13a37c969910d617 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ed33da64e53fc41443ba2b0042641c8b5a794869:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ed33da64e53fc41443ba2b0042641c8b5a794869 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ee52ca818f36bf872f3b944460fc1d8e5d962134:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ee52ca818f36bf872f3b944460fc1d8e5d962134 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ef305e8d514e20fc68156d60cb2d772ac2241ab9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ef305e8d514e20fc68156d60cb2d772ac2241ab9 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/eff097e458ac9f4a3bb43e3bb35a76ce26be125d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/eff097e458ac9f4a3bb43e3bb35a76ce26be125d \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/f0a9cce51fd4cb6010f33f1fc6da5a4ea3b2a507:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f0a9cce51fd4cb6010f33f1fc6da5a4ea3b2a507 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/f22b5b13b47e0b1e799692d0e35bf4627514a48c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f22b5b13b47e0b1e799692d0e35bf4627514a48c \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/f2a92f0406bfff547b81cfde89ecb3ca9384b404:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f2a92f0406bfff547b81cfde89ecb3ca9384b404 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/f315fb05de368ebe49bcbc931a6723945aa0e35f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f315fb05de368ebe49bcbc931a6723945aa0e35f \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/f4a1576c98d738c05fda3a7d50e4775cc7c1f672:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f4a1576c98d738c05fda3a7d50e4775cc7c1f672 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/f8a5d3bb3a9e5035b5837dfb31a67c782b7035fa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f8a5d3bb3a9e5035b5837dfb31a67c782b7035fa \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/f94d284058f23605bc7a607e20cc54b71828b495:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f94d284058f23605bc7a607e20cc54b71828b495 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/f9b8a155fb5ffae921452f9b2181dbdb9531bb89:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f9b8a155fb5ffae921452f9b2181dbdb9531bb89 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/fad063a4dd734987575072938a4c44c8b5abca37:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fad063a4dd734987575072938a4c44c8b5abca37 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/fade60c2061179c583e9840111ed0e2b4b0f973c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fade60c2061179c583e9840111ed0e2b4b0f973c \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/fb0bc19c95ed6aecd2572d7fd2c4ef3eb41b5382:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fb0bc19c95ed6aecd2572d7fd2c4ef3eb41b5382 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/fb5e89260e75ce6e91d146c7d651800a8ce895ea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fb5e89260e75ce6e91d146c7d651800a8ce895ea \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/fbd22343d2d2c25d32b3de894ea3f427857d6069:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fbd22343d2d2c25d32b3de894ea3f427857d6069 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/fc8332923a436c49ed341bdf5228750be1862aa7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fc8332923a436c49ed341bdf5228750be1862aa7 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/fcfa0db878ae88553d29f3f9535e50d14d6cdfc2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fcfa0db878ae88553d29f3f9535e50d14d6cdfc2 \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/fd0afb83946bcc6194dca067feb82f7799bda3ac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fd0afb83946bcc6194dca067feb82f7799bda3ac \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ffb34372af31c440c27a1a83b96ba9cea5399b8a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ffb34372af31c440c27a1a83b96ba9cea5399b8a \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ffff6ffd2a869576453530193005a4e3703f3de9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ffff6ffd2a869576453530193005a4e3703f3de9 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/0120750b939f8f92616141febac2b1132bf0ab02:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0120750b939f8f92616141febac2b1132bf0ab02 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/02505a64286cabdae784f4a8a9ac64a202432fc2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/02505a64286cabdae784f4a8a9ac64a202432fc2 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/029dc9963c9111461068b2fa895f8bffbc52be2c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/029dc9963c9111461068b2fa895f8bffbc52be2c \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/034bfc6df4060c622c9d71757ea4178fa117ae18:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/034bfc6df4060c622c9d71757ea4178fa117ae18 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/04830d3a9837c0a5123335e916f35e7afb05dee2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/04830d3a9837c0a5123335e916f35e7afb05dee2 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/04b6f14670785149d4026d006ff09a3e690f5d1c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/04b6f14670785149d4026d006ff09a3e690f5d1c \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/05901611180ce32e6e2b79c4b556c3dbe93b7480:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/05901611180ce32e6e2b79c4b556c3dbe93b7480 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/06dc3a0d75cb63d5dec8d4f0714c727c241ee2f1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/06dc3a0d75cb63d5dec8d4f0714c727c241ee2f1 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/06eee200b6f77c98560b01df37ed9f976fa5218f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/06eee200b6f77c98560b01df37ed9f976fa5218f \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/07a01db70075d55dd25449ae30192a206f07cc04:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/07a01db70075d55dd25449ae30192a206f07cc04 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/093cbebd9ed44748aebfe2788dfe98c794834239:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/093cbebd9ed44748aebfe2788dfe98c794834239 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/097c98578c81ce174aba09fb48559ccc5e1fe03a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/097c98578c81ce174aba09fb48559ccc5e1fe03a \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/0b638106b942cd443367e7f7a3aeee92690147e2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0b638106b942cd443367e7f7a3aeee92690147e2 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/0c72956dbc94bd46a116d8c08b030b1f693bde8b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0c72956dbc94bd46a116d8c08b030b1f693bde8b \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/0d99fe83b8a6415dd0a41ad6e591039a68648b17:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0d99fe83b8a6415dd0a41ad6e591039a68648b17 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/0de064570561f6baf313f09246c636f8bd1b7993:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0de064570561f6baf313f09246c636f8bd1b7993 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/0edbf0fb2229a289f10419e5877cd30af9c7e8d2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0edbf0fb2229a289f10419e5877cd30af9c7e8d2 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/0f1da9d3bd7c59348f6f35aa2b0b74ab11544d57:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0f1da9d3bd7c59348f6f35aa2b0b74ab11544d57 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/101a1e6958c607f560086f1c170b53ecdf340eea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/101a1e6958c607f560086f1c170b53ecdf340eea \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/10201605ae4286257825ceb841e1ec6f4635d638:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/10201605ae4286257825ceb841e1ec6f4635d638 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/12328a7e32ad69e6cda53d2c0540ab32405ef4bd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/12328a7e32ad69e6cda53d2c0540ab32405ef4bd \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/12c89d2a4a973fb4820b26d784e5f9bbb9044341:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/12c89d2a4a973fb4820b26d784e5f9bbb9044341 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/15033ae04a75c39650ed4c47a0b7c0c31604e004:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/15033ae04a75c39650ed4c47a0b7c0c31604e004 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/1608f2ead56d61f73fa22470d13d42e75df11cb5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1608f2ead56d61f73fa22470d13d42e75df11cb5 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/16d043cd8e05e0d114d0580befabf80970dba006:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/16d043cd8e05e0d114d0580befabf80970dba006 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/172ca3c44e27745cd090f378cfa94d64fc3290d9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/172ca3c44e27745cd090f378cfa94d64fc3290d9 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/17a7894d3f1dd12b80a85e2142b9175f8290b3b6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/17a7894d3f1dd12b80a85e2142b9175f8290b3b6 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/18c65650326c7b5613742e2e6203ff7125f78285:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/18c65650326c7b5613742e2e6203ff7125f78285 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/18e581de423896617cc0c570b8e66976fadf7a2e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/18e581de423896617cc0c570b8e66976fadf7a2e \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/18fda5ab9b9c93220028ed83f62ee16f72f4b1cd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/18fda5ab9b9c93220028ed83f62ee16f72f4b1cd \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/1a3d7a85bbb60b3c4dcbdfbd7e0e578975e9ee8b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1a3d7a85bbb60b3c4dcbdfbd7e0e578975e9ee8b \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/1d8d11528dd42479f769b436c04f958f223322af:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1d8d11528dd42479f769b436c04f958f223322af \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/1d959113feaf7718bcb9eb5f61a33b7020671869:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1d959113feaf7718bcb9eb5f61a33b7020671869 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/1e4cdca0f29ce5b456417b0a0a42fe80963bb22d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1e4cdca0f29ce5b456417b0a0a42fe80963bb22d \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/1ecc1c41dce804698387a50c4bb8f1c2a6f385ce:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1ecc1c41dce804698387a50c4bb8f1c2a6f385ce \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/1ffa16400dced7bc80287d46cf777c2698c91b1c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1ffa16400dced7bc80287d46cf777c2698c91b1c \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/2210d7ca6e0c3f460582d1339742cd91fadd941d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2210d7ca6e0c3f460582d1339742cd91fadd941d \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/230f66925cd78b1e52991db5d76d43e0383195ac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/230f66925cd78b1e52991db5d76d43e0383195ac \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/2340bbab4d0391b4f64762fe19836a52f2d80b93:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2340bbab4d0391b4f64762fe19836a52f2d80b93 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/2452424a352d1b42e30c1a780e5e8c1712b9c106:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2452424a352d1b42e30c1a780e5e8c1712b9c106 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/2452a2fd0a1b4df7acc5a33e8904a4b1068bd41e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2452a2fd0a1b4df7acc5a33e8904a4b1068bd41e \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/277ecd292bb53a0a4b67e486819142f15fd48982:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/277ecd292bb53a0a4b67e486819142f15fd48982 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/289c45431d29fe79c8bf170be23b737328b41623:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/289c45431d29fe79c8bf170be23b737328b41623 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/2a6aa35655d8334c4ef6160e4ea177def518af3a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2a6aa35655d8334c4ef6160e4ea177def518af3a \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/2b97f665f41f347686c204e6ca80f7c3f1cfabcb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2b97f665f41f347686c204e6ca80f7c3f1cfabcb \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/2ed67bba041ade0a0c807b8c424ea21bef994d86:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2ed67bba041ade0a0c807b8c424ea21bef994d86 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/2f9f790cce603d03ec3bd869c239a8e25816667f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2f9f790cce603d03ec3bd869c239a8e25816667f \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/30624776eb13af4ed4d63380e22953d00f6ba64f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/30624776eb13af4ed4d63380e22953d00f6ba64f \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/3096884ddb8075adf16595f194b5f98a42851bdd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3096884ddb8075adf16595f194b5f98a42851bdd \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/30fdf959462b1c2c5ff62e081da47e2c7a2f1fd9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/30fdf959462b1c2c5ff62e081da47e2c7a2f1fd9 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/32a1d27886460ca05085eee11519793cfbb45a67:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/32a1d27886460ca05085eee11519793cfbb45a67 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/33d8730094e4246ab3df77cc2585e8136d68239c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/33d8730094e4246ab3df77cc2585e8136d68239c \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/343f04a61efcfd387b9703c5ff863942e5be3a01:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/343f04a61efcfd387b9703c5ff863942e5be3a01 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/34acbb7d3b120ec8ea651d2c7b7405207ef116ea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/34acbb7d3b120ec8ea651d2c7b7405207ef116ea \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/363a91d228372c56c11bf988fa4f2a765066d0e6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/363a91d228372c56c11bf988fa4f2a765066d0e6 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/36e4f12549ea331d1d29c1f1d05af75fd9955ddf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/36e4f12549ea331d1d29c1f1d05af75fd9955ddf \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/3765f29d6a69dc7cf82e7f825126af920334be5d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3765f29d6a69dc7cf82e7f825126af920334be5d \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/38fc55660061ac98becd71d3279c4d266009be25:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/38fc55660061ac98becd71d3279c4d266009be25 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/396da2253cc63f792acaa2e95ca6065f11e3b2e5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/396da2253cc63f792acaa2e95ca6065f11e3b2e5 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/399f2b31159bdf8392e2f067d5a3666d35ce0478:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/399f2b31159bdf8392e2f067d5a3666d35ce0478 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/3a17a0a2c5caa8332c52715465093a340868749d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3a17a0a2c5caa8332c52715465093a340868749d \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/3bb9e260ac8e1ec34dac7a1867c3d30d9a3085ae:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3bb9e260ac8e1ec34dac7a1867c3d30d9a3085ae \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/3c0d34ef866f87bd7bc8c496bf9886b2f0d048ee:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3c0d34ef866f87bd7bc8c496bf9886b2f0d048ee \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/3ca82fb0461c26bbc938462895b82bcbf9dedc8e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3ca82fb0461c26bbc938462895b82bcbf9dedc8e \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/3d2e80022bb58daab14a22d569ed417a903b86ac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3d2e80022bb58daab14a22d569ed417a903b86ac \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/4081c8f269e27333b3bc3cde37e332b9ff9b7f2b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4081c8f269e27333b3bc3cde37e332b9ff9b7f2b \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/41169cf4e96dd60b3a54327b219f430a07e99eb6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/41169cf4e96dd60b3a54327b219f430a07e99eb6 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/415bebf67efcba0838a7dbf9ff982eeff8abb273:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/415bebf67efcba0838a7dbf9ff982eeff8abb273 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/41c1d0925be72705c388cd665fb6f1980c935aab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/41c1d0925be72705c388cd665fb6f1980c935aab \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/435ac3119dc558cb1182222ba0eecba9b655ff81:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/435ac3119dc558cb1182222ba0eecba9b655ff81 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/436f4c774439be019e9f352a0488832fc65700d2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/436f4c774439be019e9f352a0488832fc65700d2 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/44a1e42ce577bd8bf2b7ee4def0a3950af48320c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/44a1e42ce577bd8bf2b7ee4def0a3950af48320c \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/46ead63610c75b3576cef1bff3bd020fc0debbcb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/46ead63610c75b3576cef1bff3bd020fc0debbcb \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/475a904c954dcca5aad6fce294a8db26fc02950e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/475a904c954dcca5aad6fce294a8db26fc02950e \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/47ad4f41ddebc1940f8bc0b24260923cd12e2638:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/47ad4f41ddebc1940f8bc0b24260923cd12e2638 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/4815cfe080efbd53f701578a33f87b10f0abd55c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4815cfe080efbd53f701578a33f87b10f0abd55c \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/4878f3e2309f2efd28ac3c01eb5d1b39c6439898:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4878f3e2309f2efd28ac3c01eb5d1b39c6439898 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/4b1041b1f78d15b281e0357ca0dda08b7ef93054:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4b1041b1f78d15b281e0357ca0dda08b7ef93054 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/4bc20176d9162d1d4f260475b3ce59393c1d4c32:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4bc20176d9162d1d4f260475b3ce59393c1d4c32 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/4ce1fe7574c8822f5f7ff7a3c083191cc9eaebe6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4ce1fe7574c8822f5f7ff7a3c083191cc9eaebe6 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/4d1a5449d78ee2a46f1ccd05fedeccf0cc649cb8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4d1a5449d78ee2a46f1ccd05fedeccf0cc649cb8 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/4f1c7bf492f7e010fddabe92c358738d14dae67b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4f1c7bf492f7e010fddabe92c358738d14dae67b \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/50bd774725ff5a56c8250d1255dca3a28d44f58b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/50bd774725ff5a56c8250d1255dca3a28d44f58b \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/510ae6221786dcce25452df9640dd09ce772ca82:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/510ae6221786dcce25452df9640dd09ce772ca82 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/519502fe4d7f67855799532e6f89aa7cd9a52e88:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/519502fe4d7f67855799532e6f89aa7cd9a52e88 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/5223877d720b1723c8fafe04fce24079953b28d6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5223877d720b1723c8fafe04fce24079953b28d6 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/541db3bdfe74f53ce3aa7d37db9f2ae2f1f24548:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/541db3bdfe74f53ce3aa7d37db9f2ae2f1f24548 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/547abcfb910382e462bfae4120970a32e30c20ab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/547abcfb910382e462bfae4120970a32e30c20ab \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/55a2e1c4c481e1e52a58a95703894c96fbdc973d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/55a2e1c4c481e1e52a58a95703894c96fbdc973d \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/55b5790ead40a167a0007cf17ff81271d6192cb5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/55b5790ead40a167a0007cf17ff81271d6192cb5 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/5686ec6805eb916bafaef323cf0c912ce9b9d048:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5686ec6805eb916bafaef323cf0c912ce9b9d048 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/568dfbd1a739f9cd0ce8985baf6c0d8fdbc76db9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/568dfbd1a739f9cd0ce8985baf6c0d8fdbc76db9 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/56c6f930b3f1d735bcc02424b1a0da56e8fd4bab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/56c6f930b3f1d735bcc02424b1a0da56e8fd4bab \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/57826a63d3e1442892d8bd5464177f3796d794ca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/57826a63d3e1442892d8bd5464177f3796d794ca \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/584e81b347fdc265d2830342fdd510f6cdd3e76a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/584e81b347fdc265d2830342fdd510f6cdd3e76a \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/598a8c1906e56be704902bb9df93174aba56bf4b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/598a8c1906e56be704902bb9df93174aba56bf4b \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/5bad1977d9af87a89dfe896594a5999eec898f8d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5bad1977d9af87a89dfe896594a5999eec898f8d \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/5c157bd6e23f0f7afd7ec6b4060cee287b645d30:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5c157bd6e23f0f7afd7ec6b4060cee287b645d30 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/60ad3fb90ff98076d2bd7d83e226b18b9d4ad735:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/60ad3fb90ff98076d2bd7d83e226b18b9d4ad735 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/62a62f25b136b59e6ffc2573dfdc2a7b41ed2238:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/62a62f25b136b59e6ffc2573dfdc2a7b41ed2238 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/62dca1473182066b54e7e49341dce62add1f2651:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/62dca1473182066b54e7e49341dce62add1f2651 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/62f16bb3b4a86977b9e9f73f2855eb4475f5aec7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/62f16bb3b4a86977b9e9f73f2855eb4475f5aec7 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6523ea18a5e2a950c681ff8670277e9feb7851cf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6523ea18a5e2a950c681ff8670277e9feb7851cf \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6c5e74b43dd46ee75103773a38824ba9bf07ebca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6c5e74b43dd46ee75103773a38824ba9bf07ebca \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6d7e8739cc15cd5ef775a91b6c4c158625233e41:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6d7e8739cc15cd5ef775a91b6c4c158625233e41 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6dd1c23e3a0f3f69c9ee1b5a8805e1d85887eb43:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6dd1c23e3a0f3f69c9ee1b5a8805e1d85887eb43 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6e2785bbf7a67657140272941d7f1f6c788d0381:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6e2785bbf7a67657140272941d7f1f6c788d0381 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6ebea2060e8e5a82fd1e31ccefd584053504711b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6ebea2060e8e5a82fd1e31ccefd584053504711b \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6f00ec5b77d4eb7a81185733fe963e8605ab87b4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6f00ec5b77d4eb7a81185733fe963e8605ab87b4 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/6fa1058208287c9ddf6594ede71bc11bd37018f4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6fa1058208287c9ddf6594ede71bc11bd37018f4 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/7243ef718cabe1179171234fa195b076f07df7a9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7243ef718cabe1179171234fa195b076f07df7a9 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/72b967b4b32630545c6188b0cd470f5ef8298286:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/72b967b4b32630545c6188b0cd470f5ef8298286 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/7461cc35a108a7d82d4615750fbc1a4db2209488:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7461cc35a108a7d82d4615750fbc1a4db2209488 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/746e39f3bd44043a3c5873c931bc741bf827e0fb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/746e39f3bd44043a3c5873c931bc741bf827e0fb \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/74a777126d36a8ba829d0cadebe25e6f32d8d695:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/74a777126d36a8ba829d0cadebe25e6f32d8d695 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/76b7bbe84311f2082b0c8f20bdd572929a355a97:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/76b7bbe84311f2082b0c8f20bdd572929a355a97 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/76e78242549229091097b5009f4130f610809338:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/76e78242549229091097b5009f4130f610809338 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/7942f6cf76f30946796a4ba16b0133401f53fffd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7942f6cf76f30946796a4ba16b0133401f53fffd \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/794cdcd15023751906c1cbc35f01a0779b2bccf8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/794cdcd15023751906c1cbc35f01a0779b2bccf8 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/7ad7521691d36372f58a43c8bf4a8481d360ed02:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7ad7521691d36372f58a43c8bf4a8481d360ed02 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/7cf67353fd6b1f1f3aff351079d12d7720ad6e42:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7cf67353fd6b1f1f3aff351079d12d7720ad6e42 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/7dc12f44f2bca4469ee794bae2fb43d7680e8a9d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7dc12f44f2bca4469ee794bae2fb43d7680e8a9d \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/7ef7e91e6961c4913cd059e32fc3b7928b9ce05f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7ef7e91e6961c4913cd059e32fc3b7928b9ce05f \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/7efd6c8ef836842bdb79e836ae2da6d07e129752:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7efd6c8ef836842bdb79e836ae2da6d07e129752 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/7fc9713931ab16ee471b376d68f158439fc9a4ec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7fc9713931ab16ee471b376d68f158439fc9a4ec \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/80710b6515c3d87a10482ed035b988d0040c7649:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/80710b6515c3d87a10482ed035b988d0040c7649 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/818359e71c716c0a14a746ba8a91f744893c3a3f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/818359e71c716c0a14a746ba8a91f744893c3a3f \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/836937075b7dfbc5dd02b046fc8f6682c916285a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/836937075b7dfbc5dd02b046fc8f6682c916285a \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/84f15d7eddf759f58086cdd99301c9689767f8b5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/84f15d7eddf759f58086cdd99301c9689767f8b5 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/86c6eb76452c22ed85ad26d85fb88cb49fc8fc99:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/86c6eb76452c22ed85ad26d85fb88cb49fc8fc99 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/87e67d5efc929ee08cbdfc8ed479331cdefcad99:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/87e67d5efc929ee08cbdfc8ed479331cdefcad99 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/88d21592cdaeee2a963e1af16b24709df6132af0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/88d21592cdaeee2a963e1af16b24709df6132af0 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/895628deceab6e922d55e4276555dedbe44f04bd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/895628deceab6e922d55e4276555dedbe44f04bd \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/8b99721e6d03f875e7a11bd333a1ffd8613f4fc0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8b99721e6d03f875e7a11bd333a1ffd8613f4fc0 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/8c3f486e68dfb49f994d400f6601d6dc6defdc1a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8c3f486e68dfb49f994d400f6601d6dc6defdc1a \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/8d4bb32347a594db70a56b2139bf98be12a269f7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8d4bb32347a594db70a56b2139bf98be12a269f7 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/8d74b6de315ad017c9fb1aa4c188b5a300ffd44b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8d74b6de315ad017c9fb1aa4c188b5a300ffd44b \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/8ef93591baba6db65432a14d35657a409ef5c383:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8ef93591baba6db65432a14d35657a409ef5c383 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/8eff2f0b2652c6f6f54529f8911784aefd98cb0e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8eff2f0b2652c6f6f54529f8911784aefd98cb0e \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/8f735f8cc8af2290c213533bb4a23446112830a6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8f735f8cc8af2290c213533bb4a23446112830a6 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/906e4a9a873a6034744eefe499038dda83fca4bc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/906e4a9a873a6034744eefe499038dda83fca4bc \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/90c9c2313e5f9d58fd42108c50c2b3a1028f23c2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/90c9c2313e5f9d58fd42108c50c2b3a1028f23c2 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/935772e5a0ba2f7f4f8bcc29bdf1da82c0a08beb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/935772e5a0ba2f7f4f8bcc29bdf1da82c0a08beb \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/950f55215943050b18852d2df0a2b1ef00519955:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/950f55215943050b18852d2df0a2b1ef00519955 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/9543295d95f7bc276ecd4c5790a53965a5dd54b8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9543295d95f7bc276ecd4c5790a53965a5dd54b8 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/970eb77a398723d3d4817df6d85ee689a83e7c29:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/970eb77a398723d3d4817df6d85ee689a83e7c29 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/971fc275485f7d4eedfbef851c6ba0067dbda3ba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/971fc275485f7d4eedfbef851c6ba0067dbda3ba \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/9779b8f558647353b6ec9bb0b6d1f71a7d45a3e0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9779b8f558647353b6ec9bb0b6d1f71a7d45a3e0 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/97a8bfca0ed1761e49646c04a6226e95a802f139:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/97a8bfca0ed1761e49646c04a6226e95a802f139 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/97b2ac8a4dfcd172c0d1f38f40ae37eb0dd7df75:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/97b2ac8a4dfcd172c0d1f38f40ae37eb0dd7df75 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/980c193e255401ddf5935f7a20e8c8a46808ea89:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/980c193e255401ddf5935f7a20e8c8a46808ea89 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/9979d13cc2b232a6bbb6176a2bc0534eba0226a9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9979d13cc2b232a6bbb6176a2bc0534eba0226a9 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/99b02efe51d5a3a45c18bd7bb7b7d3b7ffc832b1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/99b02efe51d5a3a45c18bd7bb7b7d3b7ffc832b1 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/9a25d6921eaf58eab09d30f2f73c17a77378816f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9a25d6921eaf58eab09d30f2f73c17a77378816f \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/9c3705bf72541f0e90fd4eb656942197d06c5c79:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9c3705bf72541f0e90fd4eb656942197d06c5c79 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/9df2e9aa9a5cee9bbc124c49caab3f9a998c1f48:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9df2e9aa9a5cee9bbc124c49caab3f9a998c1f48 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/9e6d0e2e8eaf395c9b1bad260cc109e5307fcce5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9e6d0e2e8eaf395c9b1bad260cc109e5307fcce5 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/9e8442b8b9f3d4120d1c676fbfe43cac37ccfbfb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9e8442b8b9f3d4120d1c676fbfe43cac37ccfbfb \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/9f3e6d1c596cd784fae9befc6c6cb70ed1fb61d0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9f3e6d1c596cd784fae9befc6c6cb70ed1fb61d0 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a01adf69d845b5e9de181a37d1b365d258d7a2be:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a01adf69d845b5e9de181a37d1b365d258d7a2be \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a0fa8aa9a2ae3d92041217bcd475def8988111df:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a0fa8aa9a2ae3d92041217bcd475def8988111df \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a11d560d371dab29b3cb1dac891985aa9ce86cb6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a11d560d371dab29b3cb1dac891985aa9ce86cb6 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a1dee9cdbba4fb29a451902fff307804cb28af97:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a1dee9cdbba4fb29a451902fff307804cb28af97 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a245bf560b2bf097e7b247520353ebcd975f7c83:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a245bf560b2bf097e7b247520353ebcd975f7c83 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a3e99d8e7dbb5bd65764bd782c182149759b1cb1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a3e99d8e7dbb5bd65764bd782c182149759b1cb1 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a41a4f855fb29e494434822828fd4bd4f1e02e80:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a41a4f855fb29e494434822828fd4bd4f1e02e80 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a4bcd28be08e0c0fa26085e6448a414aed8417a7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a4bcd28be08e0c0fa26085e6448a414aed8417a7 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a5520d7a4356450a46f1dc8da810386bdc0f46e3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a5520d7a4356450a46f1dc8da810386bdc0f46e3 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a6338e9a511fa4d40f8385731a993c017d575047:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a6338e9a511fa4d40f8385731a993c017d575047 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a6f359137bef29d31edc2eeeec4d9a2be9f3bd54:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a6f359137bef29d31edc2eeeec4d9a2be9f3bd54 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a744ee5f948bb260b17f16918735b0a191c8988b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a744ee5f948bb260b17f16918735b0a191c8988b \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a7468d85feef430c25a67fd05d3e7ba30f119aed:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a7468d85feef430c25a67fd05d3e7ba30f119aed \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a7f8e8d167ded790fa52ca6a7699bd5897e584fa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a7f8e8d167ded790fa52ca6a7699bd5897e584fa \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a84796ffda2113978a969e6208f49c761665ebc7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a84796ffda2113978a969e6208f49c761665ebc7 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a872ada8ccac65e5204dc508e25c5efda2021a8e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a872ada8ccac65e5204dc508e25c5efda2021a8e \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/a9e2c65817ebf50572887f9d8ebc6118ba22716f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a9e2c65817ebf50572887f9d8ebc6118ba22716f \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/aaadc3f9d029cc3a583fa3cb90962408baa52f48:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/aaadc3f9d029cc3a583fa3cb90962408baa52f48 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/aac3bb595f6f78030cf6cf382557362560880858:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/aac3bb595f6f78030cf6cf382557362560880858 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/aad506636f66604a7851ac83d238ce60c4621aba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/aad506636f66604a7851ac83d238ce60c4621aba \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ab5880dac2ed5e6d168947f3ffaba793f9ebf3b1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ab5880dac2ed5e6d168947f3ffaba793f9ebf3b1 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ac61fc5501aed928de61506976e5ea330baa054f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ac61fc5501aed928de61506976e5ea330baa054f \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ad5093b10b3de81e4f7a260dee624a8396c42be7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ad5093b10b3de81e4f7a260dee624a8396c42be7 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ad6327b9c1e19ab834397afff77d4b1a8ac10531:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ad6327b9c1e19ab834397afff77d4b1a8ac10531 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/adfc859cce85ec65ef783c78795325a74a040488:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/adfc859cce85ec65ef783c78795325a74a040488 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ae2cb5fdcf3e6374b7dcea3255acedfb4dd3192f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ae2cb5fdcf3e6374b7dcea3255acedfb4dd3192f \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/aeab71f17ae7310bd5fc664b15f633f4cfc75298:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/aeab71f17ae7310bd5fc664b15f633f4cfc75298 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/af0796ac81ec617a903680a70059c825c49dab4d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/af0796ac81ec617a903680a70059c825c49dab4d \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/af1e77323771c6b0c0acd9f24a4a3708d063e294:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/af1e77323771c6b0c0acd9f24a4a3708d063e294 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b0c6bcc4b955276071935e3df26f4193d7ee41ee:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b0c6bcc4b955276071935e3df26f4193d7ee41ee \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b190622422f34f4c428563b9fa71c460140b2377:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b190622422f34f4c428563b9fa71c460140b2377 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b1dc7e33d23a5b4015deb2651016b7985fed78a4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b1dc7e33d23a5b4015deb2651016b7985fed78a4 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b1e2a1990733951f2ad160fc79df89a798f38134:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b1e2a1990733951f2ad160fc79df89a798f38134 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b4194948d0c3e1aed48c91c2691f83f75b5fde8d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b4194948d0c3e1aed48c91c2691f83f75b5fde8d \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b5106b5d9c50df3f3786273d991c5366d5df5549:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b5106b5d9c50df3f3786273d991c5366d5df5549 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b5db49eb3109cfc2c31859e93d158afa6918c26c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b5db49eb3109cfc2c31859e93d158afa6918c26c \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b60a1451df51406dd6031d1faa5139cff795cee4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b60a1451df51406dd6031d1faa5139cff795cee4 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b77769211c0aca064181202e502e9b8d16ab1912:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b77769211c0aca064181202e502e9b8d16ab1912 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b7ae5b14e713dfc23bd88913864825979c132999:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b7ae5b14e713dfc23bd88913864825979c132999 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b8222fdad59593be75d1d99c299fec81109c3f8e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b8222fdad59593be75d1d99c299fec81109c3f8e \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b8309d22d0fae5046a95f7345cd2f5fb172eba88:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b8309d22d0fae5046a95f7345cd2f5fb172eba88 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/b90097c1344a1416676847ede77a634cf93798b2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b90097c1344a1416676847ede77a634cf93798b2 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ba83f4a8e799edbcd9bc486fdb2ddf68974def1a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ba83f4a8e799edbcd9bc486fdb2ddf68974def1a \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/bb44dc664e259e56bca741a7c0e68ca96f895ecd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bb44dc664e259e56bca741a7c0e68ca96f895ecd \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/bce638f9c4fc6691835aa5a91b1caea3c345df00:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bce638f9c4fc6691835aa5a91b1caea3c345df00 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/bd0336e561563b807eff3fcf4900925048ae9361:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bd0336e561563b807eff3fcf4900925048ae9361 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/bd4fd14f0a1a81f64b529b447ce56faacbb81b6f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bd4fd14f0a1a81f64b529b447ce56faacbb81b6f \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/be9631bd56f48fce930cfb1b53efd4c0b067fac3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/be9631bd56f48fce930cfb1b53efd4c0b067fac3 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/bf75cd3199589651c49818c3c135c670afd6c1c2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bf75cd3199589651c49818c3c135c670afd6c1c2 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/bf8b695db193418cabf10ea361d0f4605d0fae71:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bf8b695db193418cabf10ea361d0f4605d0fae71 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c02c6f08d01f86be940b3e701a8557ebbd4a5ddc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c02c6f08d01f86be940b3e701a8557ebbd4a5ddc \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c08b9e40988d813aeddaf7bb8858b81dc834f17b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c08b9e40988d813aeddaf7bb8858b81dc834f17b \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c1ac8a7759d8b4b089e0a469671cbd924ed17ee9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c1ac8a7759d8b4b089e0a469671cbd924ed17ee9 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c2aab8e3cd676c69dcedf3b4c725a65a7ad9db32:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c2aab8e3cd676c69dcedf3b4c725a65a7ad9db32 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c369609195f3727d5d049fcc35d4a8d11de1b4f7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c369609195f3727d5d049fcc35d4a8d11de1b4f7 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c3a047a2eff01ecba2d33ac918862c4bafc990cd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c3a047a2eff01ecba2d33ac918862c4bafc990cd \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c49d6b8aac589b07b141bed541f54339f978e51a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c49d6b8aac589b07b141bed541f54339f978e51a \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c5fd607de98d1083de72755f4fe63a1bd2e60afc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c5fd607de98d1083de72755f4fe63a1bd2e60afc \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c79693793bd19d504144173d364876824b9c0ee1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c79693793bd19d504144173d364876824b9c0ee1 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c7b90d8294495d8c949c99a91029916328b1cf66:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c7b90d8294495d8c949c99a91029916328b1cf66 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/c9b61f409c27c3b75dc0afdb517b35508b5e5fbc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c9b61f409c27c3b75dc0afdb517b35508b5e5fbc \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/caef4215a0f7c84fb5a6ee53202b4f9885a88c81:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/caef4215a0f7c84fb5a6ee53202b4f9885a88c81 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/cb8e590847bea495c81ee14abe29eafb3f766dc9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cb8e590847bea495c81ee14abe29eafb3f766dc9 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/cbff39821da3b1bf05f141573fdbdd50c378ba68:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cbff39821da3b1bf05f141573fdbdd50c378ba68 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/cd2955723f6798fc40d3efb264064b198a675f02:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cd2955723f6798fc40d3efb264064b198a675f02 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/cd63d9cade0f2482bcdcc1626fb3dc59754afc08:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cd63d9cade0f2482bcdcc1626fb3dc59754afc08 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ce6d902a8c3fbfdf63386c0e8745f2c2354af5ab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ce6d902a8c3fbfdf63386c0e8745f2c2354af5ab \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/cee8147c1a482583d321f350f90bab24f8f15aac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cee8147c1a482583d321f350f90bab24f8f15aac \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/cfd67ebcd22958325b43d16a12ceb2a5bd7298f9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cfd67ebcd22958325b43d16a12ceb2a5bd7298f9 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d06b3b5e2a04d4452b10e05387e0c1fa2d7b99e9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d06b3b5e2a04d4452b10e05387e0c1fa2d7b99e9 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d118ed15453c17ba8cd1ec268d933916f2b3ed99:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d118ed15453c17ba8cd1ec268d933916f2b3ed99 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d1498f95ef39817896b0acbe6a661227b1862cc6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d1498f95ef39817896b0acbe6a661227b1862cc6 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d23c7e2c50a76fa5e96e789be897c286d0795d19:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d23c7e2c50a76fa5e96e789be897c286d0795d19 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d260a3d477f7e032aa66347d10c69a8ac77ef03e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d260a3d477f7e032aa66347d10c69a8ac77ef03e \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d32f2af46589c3a872bf0f21f75b274f4b4c9d3d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d32f2af46589c3a872bf0f21f75b274f4b4c9d3d \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d545332c9f8a68a744b77def6550af40fd037278:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d545332c9f8a68a744b77def6550af40fd037278 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d6cc1713f52c7d27d4c422112ddac3da324d15e8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d6cc1713f52c7d27d4c422112ddac3da324d15e8 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d954c260be5687c87a8c217d3997ecd5dc3e450a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d954c260be5687c87a8c217d3997ecd5dc3e450a \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d9a88384b0f2f792f8377e1340cf93af62988056:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d9a88384b0f2f792f8377e1340cf93af62988056 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/d9f588d090f37d3580e32395a78ddbb4675440a1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d9f588d090f37d3580e32395a78ddbb4675440a1 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/da6f93b3826a1284733ed1b7facd1e66c30b7dd9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/da6f93b3826a1284733ed1b7facd1e66c30b7dd9 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/dbb7c513100d495261549cf5de37d0cde79992e7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/dbb7c513100d495261549cf5de37d0cde79992e7 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/de55166c3f235b8e0bf79a324e42295f1381c162:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/de55166c3f235b8e0bf79a324e42295f1381c162 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e184a50846fba666b78ef0db4bebc96b2e24fda9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e184a50846fba666b78ef0db4bebc96b2e24fda9 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e184c6151c2d04dc7c2879812646c961efbf9d3f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e184c6151c2d04dc7c2879812646c961efbf9d3f \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e23aa0a75f22bf38f811535035822fd2ec224e4b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e23aa0a75f22bf38f811535035822fd2ec224e4b \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e366ffc6d6a9df710eda68d2890acd11ce5ebf48:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e366ffc6d6a9df710eda68d2890acd11ce5ebf48 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e3dc33a706c5f022525565dd12e39a8481146c5b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e3dc33a706c5f022525565dd12e39a8481146c5b \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e54cea40845e55555ea12465a86faa258934af31:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e54cea40845e55555ea12465a86faa258934af31 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e57a11f4d936499cd5cebc5d580c08bf8d5b2c6a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e57a11f4d936499cd5cebc5d580c08bf8d5b2c6a \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e5887210fb1d53bd4afb939e27d18bcae8bb9213:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e5887210fb1d53bd4afb939e27d18bcae8bb9213 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e5b5a0c580d81edd428ce5e84ea9e4afa3637a72:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e5b5a0c580d81edd428ce5e84ea9e4afa3637a72 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e6c6af6550654dabdbc3cb5609ffc67a0305a021:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e6c6af6550654dabdbc3cb5609ffc67a0305a021 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e6df44f4cf6fec70e8da55f5fd3ab54ef8dfadf8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e6df44f4cf6fec70e8da55f5fd3ab54ef8dfadf8 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e75c5d103bbbb093c7b05b30da8f677455737c6d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e75c5d103bbbb093c7b05b30da8f677455737c6d \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e7b776875c017585d2bee503d51cb9ab22e74d90:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e7b776875c017585d2bee503d51cb9ab22e74d90 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/e8c2ea977b138cae7e69e788e8374fd7ff6f6f37:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e8c2ea977b138cae7e69e788e8374fd7ff6f6f37 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/eac74bfabcef062f76bae3d932788fd68fa83265:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/eac74bfabcef062f76bae3d932788fd68fa83265 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ec188579d0c069bdf5be0d9de9cf0f358017388a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ec188579d0c069bdf5be0d9de9cf0f358017388a \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ecb2b1a3bad13a83fa1401dd22fe4eca2fe54046:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ecb2b1a3bad13a83fa1401dd22fe4eca2fe54046 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ed2771af34f0a662a80ec1009bd8165777222070:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ed2771af34f0a662a80ec1009bd8165777222070 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/f09bc7ea742d2905c902387d6d65933125713050:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f09bc7ea742d2905c902387d6d65933125713050 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/f0f98ff8ad9195b3d2a43739484119f05e05b1f3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f0f98ff8ad9195b3d2a43739484119f05e05b1f3 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/f1bc1c6767c4ac92196aeb3c218a9d92a8297168:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f1bc1c6767c4ac92196aeb3c218a9d92a8297168 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/f28b3abb2f63d013bdbbe1da9981574e5b47ea78:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f28b3abb2f63d013bdbbe1da9981574e5b47ea78 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/f3510d686e1ea1431ea6b4bfabad16b81bc9f5f9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f3510d686e1ea1431ea6b4bfabad16b81bc9f5f9 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/f4c9fa8babeecfaef4763b71b32736076561607d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f4c9fa8babeecfaef4763b71b32736076561607d \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/f4e852171028c0bbdc47c9305f70ba3d9175fce8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f4e852171028c0bbdc47c9305f70ba3d9175fce8 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/f6405ecb4794097e46f889f77d3d0a18a47baab7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f6405ecb4794097e46f889f77d3d0a18a47baab7 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/f8960a397c6f29daea69451fa0b47738a40a8161:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f8960a397c6f29daea69451fa0b47738a40a8161 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/f99179a6c644c9cf3bf9f5d90bad2f25f4db5480:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f99179a6c644c9cf3bf9f5d90bad2f25f4db5480 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/f9df27d2a3fdfa3212565ff2b0fdfa039f61c2d4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f9df27d2a3fdfa3212565ff2b0fdfa039f61c2d4 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/fab7c032895a036cf4341eaf9a3ed87dc2941f30:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fab7c032895a036cf4341eaf9a3ed87dc2941f30 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/fac0a7d51c4b47643cacaf395a691b2b78d38652:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fac0a7d51c4b47643cacaf395a691b2b78d38652 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/fc027248225d5572bb0c33d2660e17389c1aadfa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fc027248225d5572bb0c33d2660e17389c1aadfa \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/fc7bac44b52f16e481cf2a592451151b3a26b004:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fc7bac44b52f16e481cf2a592451151b3a26b004 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/fd3879de5c94f5f6d0cae7d48ffec8100c9d8e98:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fd3879de5c94f5f6d0cae7d48ffec8100c9d8e98 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ff90c949efecb724ffaa5be0f96b5e3aeca31c99:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ff90c949efecb724ffaa5be0f96b5e3aeca31c99 \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/manifests/ffbda33138e2e09156ce0468480fc71fad0f2203:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ffbda33138e2e09156ce0468480fc71fad0f2203 \
     vendor/google_devices/tokay/proprietary/vendor/firmware/carrierconfig/release-label:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/release-label \
     vendor/google_devices/tokay/proprietary/vendor/firmware/cs35l41-dsp1-spk-cali.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/cs35l41-dsp1-spk-cali.bin \
     vendor/google_devices/tokay/proprietary/vendor/firmware/cs35l41-dsp1-spk-cali.wmfw:$(TARGET_COPY_OUT_VENDOR)/firmware/cs35l41-dsp1-spk-cali.wmfw \
@@ -3171,12 +3253,11 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/kepler.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/kepler.bin \
     vendor/google_devices/tokay/proprietary/vendor/firmware/KIOXIATHGJFJT1E45BATPC0100.img:$(TARGET_COPY_OUT_VENDOR)/firmware/KIOXIATHGJFJT1E45BATPC0100.img \
     vendor/google_devices/tokay/proprietary/vendor/firmware/KIOXIATHGJFJT2T85BAT0C0100.img:$(TARGET_COPY_OUT_VENDOR)/firmware/KIOXIATHGJFJT2T85BAT0C0100.img \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/mali_csffw-legacy-r56p0.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-legacy-r56p0.bin \
     vendor/google_devices/tokay/proprietary/vendor/firmware/mali_csffw-r51p0.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-r51p0.bin \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/mali_csffw-r52p0.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-r52p0.bin \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/mali_csffw-r53p0.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-r53p0.bin \
-    vendor/google_devices/tokay/proprietary/vendor/firmware/mali_csffw-r54p0.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-r54p0.bin \
     vendor/google_devices/tokay/proprietary/vendor/firmware/mali_csffw-r54p1.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-r54p1.bin \
     vendor/google_devices/tokay/proprietary/vendor/firmware/mali_csffw-r54p2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-r54p2.bin \
+    vendor/google_devices/tokay/proprietary/vendor/firmware/mali_csffw-r54p3.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-r54p3.bin \
     vendor/google_devices/tokay/proprietary/vendor/firmware/mfc_fw.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mfc_fw.bin \
     vendor/google_devices/tokay/proprietary/vendor/firmware/MICRONMT128GBCAV2U310103.img:$(TARGET_COPY_OUT_VENDOR)/firmware/MICRONMT128GBCAV2U310103.img \
     vendor/google_devices/tokay/proprietary/vendor/firmware/MICRONMT128GBCAV2U310104.img:$(TARGET_COPY_OUT_VENDOR)/firmware/MICRONMT128GBCAV2U310104.img \
@@ -4663,8 +4744,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/firmware/uecapconfig/WINDTRE_7893983720033341017.binarypb:$(TARGET_COPY_OUT_VENDOR)/firmware/uecapconfig/WINDTRE_7893983720033341017.binarypb \
     vendor/google_devices/tokay/proprietary/vendor/firmware/uecapconfig/WINDTRE_8011870100005042994.binarypb:$(TARGET_COPY_OUT_VENDOR)/firmware/uecapconfig/WINDTRE_8011870100005042994.binarypb \
     vendor/google_devices/tokay/proprietary/vendor/firmware/uecapconfig/WINDTRE_8851100888085059077.binarypb:$(TARGET_COPY_OUT_VENDOR)/firmware/uecapconfig/WINDTRE_8851100888085059077.binarypb \
-    vendor/google_devices/tokay/proprietary/vendor/lib64/libaconfig_storage_read_api_cc.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libaconfig_storage_read_api_cc.so \
-    vendor/google_devices/tokay/proprietary/vendor/lib64/libc++.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libc++.so \
     vendor/google_devices/tokay/proprietary/vendor/etc/audio_platform_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_platform_configuration.xml \
     vendor/google_devices/tokay/proprietary/vendor/etc/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml \
     vendor/google_devices/tokay/proprietary/vendor/etc/database/DbEcc_202.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_202.xml \
@@ -4675,6 +4754,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/etc/database/DbEcc_216.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_216.xml \
     vendor/google_devices/tokay/proprietary/vendor/etc/database/DbEcc_218.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_218.xml \
     vendor/google_devices/tokay/proprietary/vendor/etc/database/DbEcc_219.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_219.xml \
+    vendor/google_devices/tokay/proprietary/vendor/etc/database/DbEcc_220.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_220.xml \
     vendor/google_devices/tokay/proprietary/vendor/etc/database/DbEcc_222.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_222.xml \
     vendor/google_devices/tokay/proprietary/vendor/etc/database/DbEcc_226.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_226.xml \
     vendor/google_devices/tokay/proprietary/vendor/etc/database/DbEcc_228.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_228.xml \
@@ -4711,6 +4791,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/etc/database/DbEcc_460.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_460.xml \
     vendor/google_devices/tokay/proprietary/vendor/etc/database/DbEcc_466.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_466.xml \
     vendor/google_devices/tokay/proprietary/vendor/etc/database/DbEcc_505.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_505.xml \
+    vendor/google_devices/tokay/proprietary/vendor/etc/database/DbEcc_520.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_520.xml \
     vendor/google_devices/tokay/proprietary/vendor/etc/database/DbEcc_525.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_525.xml \
     vendor/google_devices/tokay/proprietary/vendor/etc/database/DbEcc_647.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_647.xml \
     vendor/google_devices/tokay/proprietary/vendor/etc/database/DbEcc_704.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_704.xml \
@@ -4744,6 +4825,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/tokay/proprietary/vendor/etc/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml \
     vendor/google_devices/tokay/proprietary/vendor/etc/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
     vendor/google_devices/tokay/proprietary/vendor/etc/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml \
+    vendor/google_devices/tokay/proprietary/vendor/etc/memory-limiter-config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/memory-limiter-config.xml \
     vendor/google_devices/tokay/proprietary/vendor/etc/mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths.xml \
     vendor/google_devices/tokay/proprietary/vendor/etc/modem/default_metrics.xml:$(TARGET_COPY_OUT_VENDOR)/etc/modem/default_metrics.xml \
     vendor/google_devices/tokay/proprietary/vendor/etc/wifi/coex_table.xml:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/coex_table.xml

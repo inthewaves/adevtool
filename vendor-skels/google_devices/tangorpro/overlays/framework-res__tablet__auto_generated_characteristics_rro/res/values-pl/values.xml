@@ -12,10 +12,10 @@
     <string name="default_audio_route_name">Tablet</string>
     <string name="enable_explore_by_touch_warning_message">%1$s chce włączyć Czytanie dotykiem. Gdy ta funkcja jest włączona, słyszysz i widzisz opisy elementów, które są pod Twoim palcem, oraz możesz obsługiwać tablet gestami.</string>
     <string name="global_actions">Opcje tabletu</string>
-    <string name="kg_failed_attempts_almost_at_login">"Po raz %1$d nieprawidłowo narysowałeś wzór odblokowania. Po kolejnych %2$d nieudanych próbach konieczne będzie odblokowanie tabletu przy użyciu danych logowania na konto Google.
+    <string name="kg_failed_attempts_almost_at_login">"Po raz %1$d nieprawidłowo narysowano wzór odblokowania. Po kolejnych %2$d nieudanych próbach konieczne będzie odblokowanie tabletu przy użyciu danych logowania na konto Google.
 
  Spróbuj ponownie za %3$d s."</string>
-    <string name="kg_failed_attempts_almost_at_wipe">Po raz %1$d próbowałeś nieprawidłowo odblokować tablet. Po kolejnych %2$d nieudanych próbach tablet zostanie zresetowany do ustawień fabrycznych, a wszystkie dane użytkownika zostaną utracone.</string>
+    <string name="kg_failed_attempts_almost_at_wipe">Po raz %1$d próbowano nieprawidłowo odblokować tablet. Po kolejnych %2$d nieudanych próbach tablet zostanie zresetowany do ustawień fabrycznych, a wszystkie dane użytkownika zostaną utracone.</string>
     <string name="kg_failed_attempts_now_wiping">Po raz %d próbowałeś nieprawidłowo odblokować tablet. Tablet zostanie teraz zresetowany do ustawień fabrycznych.</string>
     <string name="lockscreen_failed_attempts_almost_at_wipe">Próbowano %1$d razy nieprawidłowo odblokować tablet. Po kolejnych %2$d nieudanych próbach tablet zostanie zresetowany do ustawień fabrycznych, a wszystkie dane użytkownika zostaną utracone.</string>
     <string name="lockscreen_failed_attempts_almost_glogin">"Wzór odblokowania został %1$d razy narysowany nieprawidłowo. Po %2$d kolejnych próbach zakończonych niepowodzeniem konieczne będzie odblokowanie tabletu przy użyciu danych logowania na konto Google.

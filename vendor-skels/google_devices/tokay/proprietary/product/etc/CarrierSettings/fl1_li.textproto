@@ -1,5 +1,5 @@
 canonical_name: "fl1_li"
-version: 75000000005
+version: 77000000006
 apns {
   apn {
     name: "fl1"
@@ -112,11 +112,7 @@ configs {
       item: 14
     }
   }
-  config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
 }
 last_updated {
-  seconds: 1754475090
+  seconds: 1767187386
 }

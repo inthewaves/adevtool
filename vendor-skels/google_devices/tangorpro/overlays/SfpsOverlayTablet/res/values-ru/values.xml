@@ -16,14 +16,14 @@
     <string name="security_settings_fingerprint_enroll_find_sensor_title">Прикоснитесь к кнопке питания</string>
     <string name="security_settings_fingerprint_enroll_introduction_title">Настройте разблокировку по отпечатку</string>
     <string name="security_settings_fingerprint_enroll_repeat_title">Уберите палец, затем приложите снова, слегка изменив его положение</string>
-    <string name="security_settings_fingerprint_enroll_repeat_title_immobile_overlay">Коснитесь несколько раз</string>
+    <string name="security_settings_fingerprint_enroll_repeat_title_immobile_overlay">Отпустите и нажмите снова</string>
     <string name="security_settings_fingerprint_enroll_touch_dialog_message">Сканер отпечатков пальцев находится на кнопке питания.</string>
     <string name="security_settings_fingerprint_enroll_touch_dialog_title">Коснитесь сканера</string>
     <string name="security_settings_fingerprint_preference_title">Разблокировка по отпечатку пальца</string>
-    <string name="security_settings_fingerprint_v2_enroll_introduction_footer_message_2">Функция разблокировки по отпечатку пальца использует уникальную модель вашего отпечатка, чтобы узнавать вас во время аутентификации. Для создания модели необходимо отсканировать ваш палец в разных положениях.</string>
+    <string name="security_settings_fingerprint_v2_enroll_introduction_footer_message_2">Чтобы подтверждать вашу личность, функция создаст уникальную модель вашего отпечатка пальца. Для этого вам нужно будет отсканировать палец в разных положениях.</string>
     <string name="security_settings_fingerprint_v2_enroll_introduction_footer_message_3">Изображения, создаваемые во время разблокировки по отпечатку пальца, будут использоваться для обновления модели. Они не сохраняются, а модель отпечатка хранится на планшете и никуда не отправляется. Обработка данных происходит только на вашем планшете.</string>
     <string name="security_settings_fingerprint_v2_enroll_introduction_footer_message_4">Вы можете в любой момент удалить модель отпечатка или отключить разблокировку по отпечатку пальца в настройках. Модели хранятся на планшете, пока вы их не удалите.</string>
-    <string name="security_settings_fingerprint_v2_enroll_introduction_footer_message_consent_2">Функция разблокировки по отпечатку пальца использует уникальную модель отпечатка, чтобы узнавать вашего ребенка во время аутентификации. Для создания модели необходимо отсканировать палец в разных положениях.</string>
+    <string name="security_settings_fingerprint_v2_enroll_introduction_footer_message_consent_2">Чтобы подтверждать личность ребенка, функция создаст уникальную модель его отпечатка пальца. Для этого ему нужно будет отсканировать палец в разных положениях.</string>
     <string name="security_settings_fingerprint_v2_enroll_introduction_footer_message_consent_3">Изображения, получаемые во время разблокировки по отпечатку пальца, используются для обновления модели отпечатка. Они не сохраняются, а модель отпечатка хранится на планшете ребенка и никуда не отправляется. Обработка данных происходит только на планшете.</string>
     <string name="security_settings_fingerprint_v2_enroll_introduction_footer_message_consent_4">Вы и ваш ребенок можете в любой момент удалить модель отпечатка пальца или отключить разблокировку по отпечатку в настройках. Модели хранятся на планшете, пока вы их не удалите.</string>
     <string name="security_settings_fingerprint_v2_enroll_introduction_message_learn_more">"Узнать больше можно на странице &lt;a href='http://g.co/pixeltablet/fingerprintunlock'&gt;g.co/pixeltablet/fingerprintunlock&lt;/a&gt;."</string>
@@ -34,7 +34,7 @@
     <string name="security_settings_sfps_enroll_right_edge_title_immobile_overlay">Коснитесь правой стороной</string>
     <string name="security_settings_work_fingerprint_preference_title">Разблокировка по отпечатку пальца для работы</string>
     <string name="setup_fingerprint_enroll_immobile_help_continue">Продолжить</string>
-    <string name="setup_fingerprint_enroll_immobile_help_subtitle">Отпечаток будет более точным.</string>
+    <string name="setup_fingerprint_enroll_immobile_help_subtitle">Если отсканированная область будет больше, это улучшит разблокировку устройства.</string>
     <string name="setup_fingerprint_enroll_immobile_help_title">Переместите палец</string>
     <string name="suggested_fingerprint_lock_settings_title">Использовать разблокировку по отпечатку пальца</string>
 </resources>

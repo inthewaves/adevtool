@@ -21,7 +21,7 @@
     <bool name="config_wifiChannelUtilizationOverrideEnabled">false</bool>
     <bool name="config_wifiCoexForGpsL1">true</bool>
     <bool name="config_wifiDefaultCoexAlgorithmEnabled">true</bool>
-    <bool name="config_wifiDisableFirmwareRoamingInIdleMode">true</bool>
+    <bool name="config_wifiDisableFirmwareRoamingInIdleMode">false</bool>
     <bool name="config_wifiDriverSupportedNl80211RegChangedEvent">true</bool>
     <bool name="config_wifiDtimMultiplierConfigEnabled">true</bool>
     <bool name="config_wifiEnablePartialInitialScan">true</bool>

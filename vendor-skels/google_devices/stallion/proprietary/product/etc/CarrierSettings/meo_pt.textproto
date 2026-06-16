@@ -1,5 +1,5 @@
 canonical_name: "meo_pt"
-version: 75000000003
+version: 77000000004
 apns {
   apn {
     name: "tmn internet"
@@ -82,6 +82,14 @@ configs {
   }
   config {
     key: "carrier_wfc_ims_available_bool"
+    bool_value: true
+  }
+  config {
+    key: "default_vm_number_string"
+    text_value: "200"
+  }
+  config {
+    key: "editable_voicemail_number_bool"
     bool_value: true
   }
   config {
@@ -247,5 +255,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1752617345
+  seconds: 1770819178
 }

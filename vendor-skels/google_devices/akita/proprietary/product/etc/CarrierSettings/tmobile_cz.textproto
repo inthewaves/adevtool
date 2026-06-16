@@ -1,5 +1,5 @@
 canonical_name: "tmobile_cz"
-version: 75000000020
+version: 77000000022
 apns {
   apn {
     name: "IMS"
@@ -33,6 +33,10 @@ apns {
   }
 }
 configs {
+  config {
+    key: "allow_hold_in_rtt_call_bool"
+    bool_value: false
+  }
   config {
     key: "carrier_default_wfc_ims_mode_int"
     int_value: 1
@@ -253,10 +257,6 @@ configs {
     }
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "volte_replacement_rat_int"
     int_value: 3
   }
@@ -270,5 +270,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1765368115
+  seconds: 1770819129
 }

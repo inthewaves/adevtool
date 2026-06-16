@@ -2,10 +2,11 @@
 <resources>
     <array name="face_error_vendor">
         <item>Sertifikat muddati tugagan</item>
-        <item>Sensor vaqtincha faol emas</item>
+        <item>Sensor vaqtincha oʻchiq</item>
         <item>Sozlashda xatolik yuz berdi</item>
         <item>Yuz bilan ochilmaydi. Telefon qizib ketdi.</item>
         <item>Yuz bilan ochish qayta sozlanishi kerak</item>
+        <item>Yorugʻlikni sozlang va qurilmani qimirlatmang</item>
     </array>
     <string name="biometric_app_setting_name">Yuz yoki barmoqdan foydalaning</string>
     <string name="biometric_dialog_default_subtitle">Davom etish uchun yuz yoki barmoq izidan foydalaning</string>

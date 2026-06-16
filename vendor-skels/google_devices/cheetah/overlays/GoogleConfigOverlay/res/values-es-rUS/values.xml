@@ -4,8 +4,9 @@
         <item>El certificado está vencido</item>
         <item>Se inhabilitó temporalmente el sensor</item>
         <item>Error de calibración</item>
-        <item>No está disponible el desbloqueo facial. Se sobrecalentó el teléfono.</item>
+        <item>El Desbloqueo facial no está disponible. Se sobrecalentó el teléfono.</item>
         <item>Debes volver a configurar el desbloqueo facial</item>
+        <item>Ajusta la luz y sostén el dispositivo con firmeza</item>
     </array>
     <string name="biometric_app_setting_name">Usa tu rostro o huella</string>
     <string name="biometric_dialog_default_subtitle">Usa tu rostro o huella dactilar para continuar</string>

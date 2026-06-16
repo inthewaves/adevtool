@@ -1,5 +1,5 @@
 canonical_name: "maxis_my"
-version: 75000000015
+version: 77000000018
 apns {
   apn {
     name: "Maxis Internet"
@@ -55,12 +55,10 @@ configs {
     int_value: 1
   }
   config {
-    key: "carrier_name_override_bool"
-    bool_value: true
-  }
-  config {
-    key: "carrier_name_string"
-    text_value: "MY MAXIS"
+    key: "carrier_nr_availabilities_int_array"
+    int_array {
+      item: 1
+    }
   }
   config {
     key: "carrier_supports_ss_over_ut_bool"
@@ -142,18 +140,10 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "wfc_spn_format_idx_int"
     int_value: 1
   }
-  config {
-    key: "wfc_spn_use_root_locale"
-    bool_value: true
-  }
 }
 last_updated {
-  seconds: 1756276514
+  seconds: 1771422497
 }

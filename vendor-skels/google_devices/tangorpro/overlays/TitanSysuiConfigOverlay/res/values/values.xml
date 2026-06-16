@@ -18,7 +18,6 @@
     <bool name="config_communalServiceEnabled">true</bool>
     <bool name="config_enableBouncerUserSwitcher">true</bool>
     <bool name="config_enableFullscreenUserSwitcher">true</bool>
-    <bool name="config_enableLockScreenCustomClocks">false</bool>
     <bool name="config_enableVisualQueryAttentionDetection">true</bool>
     <bool name="config_goToHomeFromOccludedApps">true</bool>
     <bool name="config_showUmoOnHub">true</bool>
@@ -31,6 +30,8 @@
     <dimen name="burn_in_prevention_offset_x">0.0dp</dimen>
     <dimen name="burn_in_prevention_offset_y">0.0dp</dimen>
     <dimen name="burn_in_prevention_offset_y_clock">0.0dp</dimen>
+    <dimen name="config_ambientDarkModeThreshold">0.4</dimen>
+    <dimen name="config_ambientLightModeThreshold">0.8</dimen>
     <dimen name="dream_overlay_complication_margin">24.0dp</dimen>
     <dimen name="keyguard_affordance_fixed_height">64.0dp</dimen>
     <dimen name="keyguard_affordance_fixed_padding">14.0dp</dimen>
@@ -38,6 +39,7 @@
     <dimen name="keyguard_affordance_fixed_width">64.0dp</dimen>
     <dimen name="keyguard_affordance_horizontal_offset">40.0dp</dimen>
     <dimen name="keyguard_affordance_vertical_offset">40.0dp</dimen>
+    <string name="config_lowLightDreamComponent">com.android.systemui/com.android.systemui.lowlightclock.LowLightClockDreamService</string>
     <string name="dock_setup_notification_text">Choose a screen saver and turn on hands-free help while your tablet is docked</string>
     <string name="dock_setup_notification_title">Do more while docked</string>
     <string name="doze_brightness_sensor_type">com.google.sensor.binned_brightness</string>

@@ -1,5 +1,5 @@
 canonical_name: "nextech_us"
-version: 75000000015
+version: 77000000016
 apns {
   apn {
     name: "NexTech Ota"
@@ -171,10 +171,6 @@ configs {
     bool_value: false
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "wfc_emergency_address_carrier_app_string"
     text_value: "com.android.imsserviceentitlement/.WfcActivationActivity"
   }
@@ -184,5 +180,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1741179732
+  seconds: 1767187386
 }

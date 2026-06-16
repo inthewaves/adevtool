@@ -1,5 +1,5 @@
 canonical_name: "tango_us"
-version: 75000000006
+version: 77000000009
 apns {
   apn {
     name: "globaldata"
@@ -100,11 +100,7 @@ configs {
       item: "source=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN|UNKNOWN, target=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN, type=disallowed, capabilities=EIMS|MMS|XCAP|CBS|IMS"
     }
   }
-  config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
 }
 last_updated {
-  seconds: 1739349339
+  seconds: 1770819129
 }

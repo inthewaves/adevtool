@@ -12,6 +12,14 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
+    name: "adevtool_sysconfig_system_ext_sysconfig",
+    srcs: [ "system_ext/sysconfig/*.xml" ],
+    owner: "google_devices",
+    sub_dir: "sysconfig",
+    system_ext_specific: true,
+}
+
+prebuilt_etc {
     name: "adevtool_sysconfig_system_ext_permissions",
     srcs: [ "system_ext/permissions/*.xml" ],
     owner: "google_devices",
@@ -49,4 +57,12 @@ prebuilt_etc {
     owner: "google_devices",
     sub_dir: "permissions",
     soc_specific: true,
+}
+
+prebuilt_etc {
+    name: "adevtool_sysconfig_odm_sysconfig_sku_G82U8",
+    srcs: [ "odm/sysconfig/sku_G82U8/*.xml" ],
+    owner: "google_devices",
+    sub_dir: "sysconfig/sku_G82U8",
+    device_specific: true,
 }

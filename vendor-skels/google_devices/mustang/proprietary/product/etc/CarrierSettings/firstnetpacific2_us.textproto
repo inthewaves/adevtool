@@ -1,5 +1,5 @@
 canonical_name: "firstnetpacific2_us"
-version: 75000000001
+version: 77000000002
 apns {
   apn {
     name: "ATT FirstNet-Phone"
@@ -597,10 +597,6 @@ configs {
     bool_value: true
   }
   config {
-    key: "rtt_supported_bool"
-    bool_value: true
-  }
-  config {
     key: "rtt_supported_while_roaming_bool"
     bool_value: true
   }
@@ -634,5 +630,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1724979979
+  seconds: 1769617073
 }

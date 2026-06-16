@@ -6,6 +6,7 @@
         <item>Грешка при калибрисању</item>
         <item>Откључавање лицем није доступно. Телефон је превише загрејан.</item>
         <item>Треба поново да подесите откључавање лицем</item>
+        <item>Прилагодите осветљење и будите мирни</item>
     </array>
     <string name="biometric_app_setting_name">Кор. лице или отисак прста</string>
     <string name="biometric_dialog_default_subtitle">Користите лице или отисак прста да бисте наставили</string>

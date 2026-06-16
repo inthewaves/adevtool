@@ -1,5 +1,5 @@
 canonical_name: "orange_fr"
-version: 75000000031
+version: 77000000033
 apns {
   apn {
     name: "Orange Fr IMS"
@@ -59,6 +59,10 @@ configs {
   config {
     key: "carrier_cross_sim_ims_available_bool"
     bool_value: false
+  }
+  config {
+    key: "carrier_data_call_apn_retry_after_disconnect_long"
+    long_value: 0
   }
   config {
     key: "carrier_metered_apn_types_strings"
@@ -377,10 +381,6 @@ configs {
     int_value: 3000
   }
   config {
-    key: "imsvoice.oip_source_from_header_bool"
-    bool_value: true
-  }
-  config {
     key: "imsvoice.ringback_timer_millis_int"
     int_value: 180000
   }
@@ -450,10 +450,6 @@ configs {
     }
   }
   config {
-    key: "qns.mms_rat_preference_int"
-    int_value: 2
-  }
-  config {
     key: "qns.voice_wifi_rssi_int_array"
     int_array {
       item: -65
@@ -489,5 +485,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1757476321
+  seconds: 1770215790
 }

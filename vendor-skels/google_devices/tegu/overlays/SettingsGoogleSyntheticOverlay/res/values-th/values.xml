@@ -3,7 +3,7 @@
     <string name="battery_missing_link_message">ดูข้อมูลเพิ่มเติม</string>
     <string name="charging_optimization_charge_label">%1$s - ชาร์จเสร็จภายใน %2$s</string>
     <string name="charging_optimization_reach_limit_charge_label">%1$s - ชาร์จแล้ว</string>
-    <string name="charging_optimization_reach_limit_remaining_time_label">ชาร์จแล้ว</string>
+    <string name="charging_optimization_reach_limit_remaining_time_label">ชาร์จเสร็จแล้ว</string>
     <string name="charging_optimization_remaining_time_label">ชาร์จเสร็จภายใน %1$s</string>
     <string name="emission_frequency_summary">ปรับความถี่ของการเปล่งแสงเพื่อปรับปรุงประสบการณ์การรับชมสำหรับผู้ที่มีดวงตาไวต่อแสง</string>
     <string name="emission_frequency_title">ปรับความสว่างสำหรับผู้ที่มีดวงตาไวต่อแสง</string>

@@ -1,5 +1,5 @@
 canonical_name: "zeop_re"
-version: 75000000005
+version: 77000000006
 apns {
   apn {
     name: "internet"
@@ -64,11 +64,7 @@ configs {
       }
     }
   }
-  config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
 }
 last_updated {
-  seconds: 1706100394
+  seconds: 1767187381
 }

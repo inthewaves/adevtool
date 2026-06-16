@@ -2,6 +2,7 @@ vendor.google.wireless_charger.IWirelessCharger/default u:object_r:hal_wireless_
 vendor.google.wireless_charger.service.IWlcService/default u:object_r:hal_wlcservice_service:s0
 com.google.pixel.camera.connectivity.hal.provider.ICameraProvider/default u:object_r:hal_pixel_remote_camera_service:s0
 com.google.android.imageprocessing.hal.IImageProcessingHal/default u:object_r:vendor_image_processing_hal_service:s0
+vendor.google.camera_ext.ICameraInterferenceAvoidance/default u:object_r:vendor_camera_interference_avoidance_service:s0
 com.google.edgetpu.IEdgeTpuVendorService/default u:object_r:edgetpu_vendor_service:s0
 android.hardware.neuralnetworks.IDevice/google-edgetpu u:object_r:edgetpu_nnapi_service:s0
 com.google.edgetpu.dba.IDevice/default u:object_r:edgetpu_dba_service:s0
@@ -20,15 +21,19 @@ com.google.input.ITwoshayNotificationService/default u:object_r:twoshay_notifica
 com.google.input.ITwoshayFileDumpService/twoshay u:object_r:twoshay_file_dump_service:s0
 com.google.input.ITwoshayFileDumpService/touchflow_default u:object_r:twoshay_file_dump_service:s0
 com.google.input.ITwoshayFileDumpService/touchflow_outer u:object_r:twoshay_file_dump_service:s0
+com.google.input.algos.touchflow.ITouchflowLoggerService/default_touchflow u:object_r:touchflow_logger_service:s0
+com.google.input.algos.touchflow.ITouchflowLoggerService/outer_touchflow u:object_r:touchflow_logger_service:s0
+mapper/pixel u:object_r:hal_graphics_mapper_service:s0
 android.hardware.security.keymint.IKeyMintDevice/strongbox u:object_r:hal_keymint_service:s0
 android.hardware.security.sharedsecret.ISharedSecret/strongbox u:object_r:hal_sharedsecret_service:s0
 android.hardware.security.keymint.IRemotelyProvisionedComponent/strongbox u:object_r:hal_remotelyprovisionedcomponent_service:s0
 com.google.input.gia.core.IGiaService/default u:object_r:hal_gia_service:s0
+com.google.input.gia.diagnose.IGiaDiagnoseService/default u:object_r:hal_giadiagnose_service:s0
 com.google.flood.IFloodService/default u:object_r:flood_control_service:s0
 android.hardware.gnss.IGnss/vendor u:object_r:hal_gnss_service:s0
 com.google.face.debug.IDebugHost/default u:object_r:hal_face_debug_service:s0
 com.google.face.debug.IDebugManager/default u:object_r:hal_face_debug_service:s0
-com.google.pixel.moseyservice.IMoseyService/default u:object_r:mosey_service:s0
+vendor.google.hardware.biometrics.face.IFaceExt/default u:object_r:hal_face_ext_service:s0
 vendor.google.ambience_hub.IAmbienceHubConsumerManager/default u:object_r:hal_ambience_hub_service:s0
 vendor.google.ambience_hub.IAmbienceHubProducerManager/default u:object_r:hal_ambience_hub_service:s0
 vendor.qti.hardware.fingerprint.IQfpExtendedFingerprint/default u:object_r:hal_fingerprint_service:s0
@@ -54,5 +59,7 @@ vendor.google.bluetooth_ext.IBluetoothFinder/default u:object_r:hal_bluetooth_co
 vendor.google.bluetooth_ext.IBluetoothCco/default u:object_r:hal_bluetooth_coexistence_service:s0
 power.stats-vendor u:object_r:hal_power_stats_vendor_service:s0
 vendor.google.aam.IAam/default u:object_r:hal_aam_service:s0
+google_battery.ekf u:object_r:hal_googlebattery_ekf_service:s0
 android.hardware.vibrator.IVibrator/dual u:object_r:hal_vibrator_service:s0
+android.hardware.media.c2.IComponentStore/default9 u:object_r:hal_codec2_service:s0
 vendor.google.google_battery.IGoogleBattery/default u:object_r:hal_googlebattery_service:s0

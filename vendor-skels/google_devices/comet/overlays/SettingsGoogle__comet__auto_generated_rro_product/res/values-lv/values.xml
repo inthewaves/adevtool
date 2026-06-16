@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="display_white_balance_summary">Displejā tiek dinamiski pielāgoti siltāki vai vēsāki toņi, pamatojoties uz apkārtējo apgaismojumu.</string>
+    <string name="display_white_balance_summary">Displejā tiek dinamiski pielāgoti siltāki vai vēsāki toņi, pamatojoties uz apkārtējo apgaismojumu</string>
     <string name="display_white_balance_title">Adaptīvs tonis</string>
     <string name="fingerprint_unlock_set_unlock_password">Pixel Imprint un parole</string>
     <string name="fingerprint_unlock_set_unlock_pattern">Pixel Imprint un kombinācija</string>

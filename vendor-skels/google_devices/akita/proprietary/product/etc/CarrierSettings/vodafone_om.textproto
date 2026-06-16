@@ -1,5 +1,5 @@
 canonical_name: "vodafone_om"
-version: 75000000004
+version: 77000000007
 apns {
   apn {
     name: "GPRS"
@@ -67,11 +67,7 @@ configs {
       }
     }
   }
-  config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
 }
 last_updated {
-  seconds: 1706100394
+  seconds: 1770819129
 }

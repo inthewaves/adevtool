@@ -17,14 +17,17 @@ ro.vendor.persist.status u:object_r:vendor_persist_prop:s0 exact string
 vendor.aoc.firmware.version u:object_r:vendor_aoc_prop:s0
 persist.vendor.aoc.status_request_timed_out u:object_r:vendor_timeout_aoc_prop:s0
 persist.vendor.radio.volte_mif_off u:object_r:vendor_volte_mif_off:s0
+vendor.devcoredump. u:object_r:vendor_devcoredump_prop:s0
+vendor.zram.nr_tags u:object_r:vendor_zram_nr_tags_prop:s0 exact int
 ro.boot.ramdump u:object_r:vendor_ramdump_prop:s0
 persist.vendor.intelligence u:object_r:vendor_intelligence_prop:s0
+ro.vendor.trusty.storage.fs_ready_rw u:object_r:vendor_trusty_storage_prop:s0
+ro.vendor.trusty.storage.fs_ready u:object_r:vendor_trusty_storage_prop:s0
 vendor.gxp. u:object_r:vendor_gxp_prop:s0
 vendor.common.modules.ready u:object_r:vendor_device_prop:s0
 vendor.device.modules.ready u:object_r:vendor_device_prop:s0
 vendor.all.modules.ready u:object_r:vendor_device_prop:s0
 vendor.all.devices.ready u:object_r:vendor_device_prop:s0
-vendor.chre.multiclient_hal u:object_r:vendor_chre_hal_prop:s0
 vendor.audio_hal.device.serialno u:object_r:vendor_audio_prop:s0
 vendor.audio_hal.period_multiplier u:object_r:vendor_audio_prop:s0
 persist.vendor.audio. u:object_r:vendor_audio_prop:s0
@@ -46,10 +49,9 @@ persist.vendor.pixel_gralloc.compression.video_encoder u:object_r:vendor_pixel_g
 persist.vendor.pixel_gralloc.compression.camera u:object_r:vendor_pixel_gralloc_prop:s0
 persist.vendor.pixel_gralloc.compression.tpu u:object_r:vendor_pixel_gralloc_prop:s0
 vendor.nos.citadel.version u:object_r:vendor_nos_citadel_version:s0
-vendor.touch.gti0. u:object_r:vendor_gti_prop:s0
-vendor.touch.gti1. u:object_r:vendor_gti_prop:s0
 ro.vendor.flood. u:object_r:vendor_flood_prop:s0
 vendor.perf.allow_experiments u:object_r:vendor_perf_allow_experiments_prop:s0
+vendor.thermal.allow_experiments u:object_r:vendor_thermal_allow_experiments_prop:s0
 persist.vendor.sys.ssr. u:object_r:vendor_ssrdump_prop:s0
 vendor.wlan.driver.version u:object_r:vendor_wifi_version:s0
 vendor.wlan.firmware.version u:object_r:vendor_wifi_version:s0
@@ -82,6 +84,7 @@ persist.vendor.ril. u:object_r:vendor_rild_prop:s0
 vendor.ril. u:object_r:vendor_rild_prop:s0
 vendor.radio. u:object_r:vendor_rild_prop:s0
 vendor.sys.rild_reset u:object_r:vendor_rild_prop:s0
+ro.vendor.ril. u:object_r:vendor_rild_prop:s0
 persist.vendor.config. u:object_r:vendor_persist_config_default_prop:s0
 vendor.gril. u:object_r:vendor_gril_prop:s0
 vendor.display. u:object_r:vendor_display_prop:s0
@@ -89,11 +92,16 @@ ro.vendor.display. u:object_r:vendor_display_prop:s0
 ro.vendor.primarydisplay. u:object_r:vendor_display_prop:s0
 ro.vendor.secondarydisplay. u:object_r:vendor_display_prop:s0
 persist.vendor.display.primary. u:object_r:vendor_display_prop:s0
-ro.vendor.trusty.storage.fs_ready u:object_r:vendor_trusty_storage_prop:s0
+ro.vendor.display.screen_context_telemetry.grid_rows u:object_r:vendor_display_prop:s0 exact uint
+ro.vendor.display.screen_context_telemetry.grid_cols u:object_r:vendor_display_prop:s0 exact uint
+ro.vendor.display.screen_context_telemetry.interval_ms u:object_r:vendor_display_prop:s0 exact uint
+ro.vendor.display.enable_screen_context_telemetry.global u:object_r:vendor_display_prop:s0 exact bool
+ro.vendor.display.enable_screen_context_telemetry.local u:object_r:vendor_display_prop:s0 exact bool
 persist.vendor.tcpdump.capture.len u:object_r:vendor_tcpdump_log_prop:s0
 persist.vendor.usb. u:object_r:vendor_usb_config_prop:s0
 vendor.usb. u:object_r:vendor_usb_config_prop:s0
 vendor.sys.usb.adb.disabled u:object_r:vendor_usb_config_prop:s0
+ro.vendor.usb.userspace.aoa.enabled u:object_r:vendor_usb_aoa_prop:s0 exact bool
 vendor.battery.defender. u:object_r:vendor_battery_defender_prop:s0
 vendor.thermal. u:object_r:vendor_thermal_prop:s0
 vendor.powerhal. u:object_r:vendor_power_prop:s0

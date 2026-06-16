@@ -1,7 +1,19 @@
 canonical_name: "postmobile_ie"
-version: 75000000001
+version: 77000000002
+apns {
+  apn {
+    name: "An Post Mobile"
+    value: "isp.postfone.ie"
+    type: DEFAULT
+    type: SUPL
+    type: MMS
+    mmsc: "http://mms.postfone.ie"
+    mmsc_proxy: "10.192.15.133"
+    mmsc_proxy_port: "80"
+  }
+}
 configs {
 }
 last_updated {
-  seconds: 1762942384
+  seconds: 1769617043
 }

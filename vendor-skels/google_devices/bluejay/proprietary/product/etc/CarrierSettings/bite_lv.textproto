@@ -1,5 +1,5 @@
 canonical_name: "bite_lv"
-version: 75000000016
+version: 77000000017
 apns {
   apn {
     name: "Bite LV Internet"
@@ -132,10 +132,14 @@ configs {
     }
   }
   config {
+    key: "prefer_3g_visibility_bool"
+    bool_value: false
+  }
+  config {
     key: "wfc_spn_format_idx_int"
     int_value: 4
   }
 }
 last_updated {
-  seconds: 1733891242
+  seconds: 1769616990
 }

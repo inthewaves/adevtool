@@ -1,5 +1,5 @@
 canonical_name: "eplus_de"
-version: 75000000492
+version: 77000000492
 apns {
   apn {
     name: "o2 Internet"

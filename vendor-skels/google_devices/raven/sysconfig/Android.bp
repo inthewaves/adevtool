@@ -50,3 +50,11 @@ prebuilt_etc {
     sub_dir: "permissions",
     soc_specific: true,
 }
+
+prebuilt_etc {
+    name: "adevtool_sysconfig_odm_sysconfig_sku_GF5KQ",
+    srcs: [ "odm/sysconfig/sku_GF5KQ/*.xml" ],
+    owner: "google_devices",
+    sub_dir: "sysconfig/sku_GF5KQ",
+    device_specific: true,
+}

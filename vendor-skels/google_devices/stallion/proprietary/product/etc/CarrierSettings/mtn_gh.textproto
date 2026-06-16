@@ -1,5 +1,5 @@
 canonical_name: "mtn_gh"
-version: 75000000003
+version: 77000000003
 apns {
   apn {
     name: "MTN Internet GH"
@@ -39,5 +39,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1770826145
+  seconds: 1769617086
 }

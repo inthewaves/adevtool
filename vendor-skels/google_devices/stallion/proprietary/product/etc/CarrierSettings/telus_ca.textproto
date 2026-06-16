@@ -1,5 +1,5 @@
 canonical_name: "telus_ca"
-version: 75000000007
+version: 77000000009
 apns {
   apn {
     name: "TELUS ISP"
@@ -529,5 +529,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1761090372
+  seconds: 1772636238
 }

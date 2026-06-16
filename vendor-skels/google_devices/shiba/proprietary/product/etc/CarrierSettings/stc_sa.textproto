@@ -1,5 +1,5 @@
 canonical_name: "stc_sa"
-version: 75000000009
+version: 77000000010
 apns {
   apn {
     name: "STC - GPRS"
@@ -7,6 +7,7 @@ apns {
     type: DEFAULT
     type: SUPL
     type: XCAP
+    protocol: IPV6
     user_editable: false
   }
   apn {
@@ -63,7 +64,7 @@ configs {
   }
   config {
     key: "imsss.ut_iptype_home_int"
-    int_value: 0
+    int_value: 1
   }
   config {
     key: "imsss.ut_iptype_roaming_int"
@@ -120,5 +121,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1763549992
+  seconds: 1769617032
 }

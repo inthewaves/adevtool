@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="display_white_balance_summary">Dynamicky přizpůsobuje displej teplejším nebo chladnějším tónům podle okolního osvětlení</string>
+    <string name="display_white_balance_summary">Dynamicky přizpůsobuje displej do teplejších nebo chladnějších tónů podle okolního osvětlení</string>
     <string name="display_white_balance_title">Adaptivní tónování</string>
     <string name="fingerprint_unlock_set_unlock_password">Pixel Imprint a heslo</string>
     <string name="fingerprint_unlock_set_unlock_pattern">Pixel Imprint a gesto</string>

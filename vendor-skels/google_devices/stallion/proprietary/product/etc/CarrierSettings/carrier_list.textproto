@@ -45,13 +45,6 @@ entry {
   canonical_name: "telekom_gr"
   carrier_id {
     mcc_mnc: "20201"
-    gid1: "FFFF"
-  }
-}
-entry {
-  canonical_name: "telekom_gr"
-  carrier_id {
-    mcc_mnc: "20201"
   }
 }
 entry {
@@ -211,13 +204,6 @@ entry {
   canonical_name: "kpn_nl"
   carrier_id {
     mcc_mnc: "20408"
-    spn: "KPN"
-  }
-}
-entry {
-  canonical_name: "kpn_nl"
-  carrier_id {
-    mcc_mnc: "20408"
   }
 }
 entry {
@@ -273,13 +259,6 @@ entry {
   carrier_id {
     mcc_mnc: "20416"
     spn: "BEN NL"
-  }
-}
-entry {
-  canonical_name: "tmomvno_nl"
-  carrier_id {
-    mcc_mnc: "20416"
-    spn: "Simpel"
   }
 }
 entry {
@@ -354,10 +333,10 @@ entry {
   }
 }
 entry {
-  canonical_name: "only_yt"
+  canonical_name: "esimgotravel_zz"
   carrier_id {
     mcc_mnc: "20601"
-    gid1: "F004"
+    gid1: "0409"
   }
 }
 entry {
@@ -509,6 +488,13 @@ entry {
   }
 }
 entry {
+  canonical_name: "esimgotravel_zz"
+  carrier_id {
+    mcc_mnc: "20628"
+    gid1: "0409"
+  }
+}
+entry {
   canonical_name: "bics_be"
   carrier_id {
     mcc_mnc: "20628"
@@ -612,6 +598,13 @@ entry {
   carrier_id {
     mcc_mnc: "20809"
     gid1: "547275554B3030656E"
+  }
+}
+entry {
+  canonical_name: "esimgotravel_zz"
+  carrier_id {
+    mcc_mnc: "20809"
+    gid1: "0409"
   }
 }
 entry {
@@ -826,12 +819,6 @@ entry {
   }
 }
 entry {
-  canonical_name: "transatel_fr"
-  carrier_id {
-    mcc_mnc: "20822"
-  }
-}
-entry {
   canonical_name: "virgin_fr"
   carrier_id {
     mcc_mnc: "20823"
@@ -918,20 +905,6 @@ entry {
   canonical_name: "bouygues_fr"
   carrier_id {
     mcc_mnc: "20888"
-  }
-}
-entry {
-  canonical_name: "monacotelecom_mc"
-  carrier_id {
-    mcc_mnc: "21210"
-    gid1: "4D433032FFFFFFFF"
-  }
-}
-entry {
-  canonical_name: "monacotelecom_mc"
-  carrier_id {
-    mcc_mnc: "21210"
-    imsi: "2121033"
   }
 }
 entry {
@@ -1175,20 +1148,6 @@ entry {
   }
 }
 entry {
-  canonical_name: "avatel_es"
-  carrier_id {
-    mcc_mnc: "21405"
-    imsi: "214050122"
-  }
-}
-entry {
-  canonical_name: "avatel_es"
-  carrier_id {
-    mcc_mnc: "21405"
-    spn: "AVATEL"
-  }
-}
-entry {
   canonical_name: "movistar_es"
   carrier_id {
     mcc_mnc: "21405"
@@ -1304,10 +1263,9 @@ entry {
   }
 }
 entry {
-  canonical_name: "avatel_es"
+  canonical_name: "lobster_es"
   carrier_id {
-    mcc_mnc: "21414"
-    imsi: "21414214050122"
+    mcc_mnc: "21410"
   }
 }
 entry {
@@ -1341,13 +1299,6 @@ entry {
   carrier_id {
     mcc_mnc: "21421"
     spn: "JAZZTEL"
-  }
-}
-entry {
-  canonical_name: "digimobil_es"
-  carrier_id {
-    mcc_mnc: "21422"
-    spn: "Digi.Mobil"
   }
 }
 entry {
@@ -1399,20 +1350,6 @@ entry {
   canonical_name: "telekom_hu"
   carrier_id {
     mcc_mnc: "21630"
-    spn: "T-Mobile H"
-  }
-}
-entry {
-  canonical_name: "telekom_hu"
-  carrier_id {
-    mcc_mnc: "21630"
-    spn: "Telekom HU"
-  }
-}
-entry {
-  canonical_name: "telekom_hu"
-  carrier_id {
-    mcc_mnc: "21630"
   }
 }
 entry {
@@ -1441,13 +1378,13 @@ entry {
   }
 }
 entry {
-  canonical_name: "21805"
+  canonical_name: "mtel_ba"
   carrier_id {
     mcc_mnc: "21805"
   }
 }
 entry {
-  canonical_name: "21890"
+  canonical_name: "bhtelecom_ba"
   carrier_id {
     mcc_mnc: "21890"
   }
@@ -1768,27 +1705,6 @@ entry {
   }
 }
 entry {
-  canonical_name: "telnyx_it"
-  carrier_id {
-    mcc_mnc: "22201"
-    imsi: "22201309072"
-  }
-}
-entry {
-  canonical_name: "telnyx_it"
-  carrier_id {
-    mcc_mnc: "22201"
-    imsi: "22201309372"
-  }
-}
-entry {
-  canonical_name: "telnyx_it"
-  carrier_id {
-    mcc_mnc: "22201"
-    imsi: "22201309373"
-  }
-}
-entry {
   canonical_name: "tango_us"
   carrier_id {
     mcc_mnc: "22201"
@@ -1814,20 +1730,6 @@ entry {
   carrier_id {
     mcc_mnc: "22201"
     imsi: "22201344002"
-  }
-}
-entry {
-  canonical_name: "vianova_it"
-  carrier_id {
-    mcc_mnc: "22201"
-    imsi: "2220177804"
-  }
-}
-entry {
-  canonical_name: "vianova_it"
-  carrier_id {
-    mcc_mnc: "22201"
-    imsi: "2220177805"
   }
 }
 entry {
@@ -1948,20 +1850,6 @@ entry {
   canonical_name: "coopvoce_it"
   carrier_id {
     mcc_mnc: "22253"
-    gid1: "434F4F50FFFFFFFFFF"
-  }
-}
-entry {
-  canonical_name: "coopvoce_it"
-  carrier_id {
-    mcc_mnc: "22253"
-    spn: "CoopVoce"
-  }
-}
-entry {
-  canonical_name: "coopvoce_it"
-  carrier_id {
-    mcc_mnc: "22253"
   }
 }
 entry {
@@ -2019,68 +1907,12 @@ entry {
   canonical_name: "telekom_ro"
   carrier_id {
     mcc_mnc: "22603"
-    spn: "MTV Mobile"
-  }
-}
-entry {
-  canonical_name: "telekom_ro"
-  carrier_id {
-    mcc_mnc: "22603"
-    spn: "TELEKOM.RO"
-  }
-}
-entry {
-  canonical_name: "telekom_ro"
-  carrier_id {
-    mcc_mnc: "22603"
-    spn: "COSMOTE"
-  }
-}
-entry {
-  canonical_name: "telekom_ro"
-  carrier_id {
-    mcc_mnc: "22603"
-    spn: "frog"
-  }
-}
-entry {
-  canonical_name: "telekom_ro"
-  carrier_id {
-    mcc_mnc: "22603"
   }
 }
 entry {
   canonical_name: "digi_ro"
   carrier_id {
     mcc_mnc: "22605"
-  }
-}
-entry {
-  canonical_name: "telekom_ro"
-  carrier_id {
-    mcc_mnc: "22606"
-    spn: "MTV Mobile"
-  }
-}
-entry {
-  canonical_name: "telekom_ro"
-  carrier_id {
-    mcc_mnc: "22606"
-    spn: "TELEKOM.RO"
-  }
-}
-entry {
-  canonical_name: "telekom_ro"
-  carrier_id {
-    mcc_mnc: "22606"
-    spn: "COSMOTE"
-  }
-}
-entry {
-  canonical_name: "telekom_ro"
-  carrier_id {
-    mcc_mnc: "22606"
-    spn: "frog"
   }
 }
 entry {
@@ -2217,13 +2049,6 @@ entry {
   canonical_name: "tmobile_cz"
   carrier_id {
     mcc_mnc: "23001"
-    spn: "T-Mobile CZ"
-  }
-}
-entry {
-  canonical_name: "tmobile_cz"
-  carrier_id {
-    mcc_mnc: "23001"
   }
 }
 entry {
@@ -2248,27 +2073,6 @@ entry {
   canonical_name: "telekom_sk"
   carrier_id {
     mcc_mnc: "23102"
-    spn: "Telekom SK"
-  }
-}
-entry {
-  canonical_name: "telekom_sk"
-  carrier_id {
-    mcc_mnc: "23102"
-    spn: "Juro.sk"
-  }
-}
-entry {
-  canonical_name: "telekom_sk"
-  carrier_id {
-    mcc_mnc: "23102"
-  }
-}
-entry {
-  canonical_name: "4ka_sk"
-  carrier_id {
-    mcc_mnc: "23103"
-    spn: "4KA SK"
   }
 }
 entry {
@@ -2344,6 +2148,13 @@ entry {
   carrier_id {
     mcc_mnc: "23210"
     gid1: "0306"
+  }
+}
+entry {
+  canonical_name: "esimgotravel_zz"
+  carrier_id {
+    mcc_mnc: "23210"
+    gid1: "0409"
   }
 }
 entry {
@@ -2943,20 +2754,6 @@ entry {
   }
 }
 entry {
-  canonical_name: "gbrli_gb"
-  carrier_id {
-    mcc_mnc: "23453"
-    iccid: "894443"
-  }
-}
-entry {
-  canonical_name: "gbrli_gb"
-  carrier_id {
-    mcc_mnc: "23453"
-    iccid: "894453"
-  }
-}
-entry {
   canonical_name: "tango_us"
   carrier_id {
     mcc_mnc: "23453"
@@ -2969,24 +2766,10 @@ entry {
   }
 }
 entry {
-  canonical_name: "sky_gb"
+  canonical_name: "esimgotravel_zz"
   carrier_id {
     mcc_mnc: "23457"
-    gid1: "0C"
-  }
-}
-entry {
-  canonical_name: "sky_gb"
-  carrier_id {
-    mcc_mnc: "23457"
-    imsi: "234570000"
-  }
-}
-entry {
-  canonical_name: "sky_gb"
-  carrier_id {
-    mcc_mnc: "23457"
-    spn: "Sky"
+    gid1: "0409"
   }
 }
 entry {
@@ -3101,6 +2884,13 @@ entry {
   }
 }
 entry {
+  canonical_name: "teliab2b_se"
+  carrier_id {
+    mcc_mnc: "24001"
+    gid1: "2BFFFFFFFFFFFFFFFFFF"
+  }
+}
+entry {
   canonical_name: "halebop_se"
   carrier_id {
     mcc_mnc: "24001"
@@ -3161,20 +2951,6 @@ entry {
   }
 }
 entry {
-  canonical_name: "erate_no"
-  carrier_id {
-    mcc_mnc: "24006"
-    imsi: "240060001"
-  }
-}
-entry {
-  canonical_name: "telavox_se"
-  carrier_id {
-    mcc_mnc: "24006"
-    imsi: "240060002"
-  }
-}
-entry {
   canonical_name: "telavox_se"
   carrier_id {
     mcc_mnc: "24006"
@@ -3192,34 +2968,6 @@ entry {
   carrier_id {
     mcc_mnc: "24007"
     gid1: "0002B"
-  }
-}
-entry {
-  canonical_name: "spusu_it"
-  carrier_id {
-    mcc_mnc: "24007"
-    gid1: "0040"
-  }
-}
-entry {
-  canonical_name: "spusu_at"
-  carrier_id {
-    mcc_mnc: "24007"
-    gid1: "0041"
-  }
-}
-entry {
-  canonical_name: "spusu_gb"
-  carrier_id {
-    mcc_mnc: "24007"
-    gid1: "0048"
-  }
-}
-entry {
-  canonical_name: "spusu_ch"
-  carrier_id {
-    mcc_mnc: "24007"
-    gid1: "0052"
   }
 }
 entry {
@@ -3265,6 +3013,13 @@ entry {
   }
 }
 entry {
+  canonical_name: "spusu_de"
+  carrier_id {
+    mcc_mnc: "24007"
+    gid1: "50"
+  }
+}
+entry {
   canonical_name: "spusu_ch"
   carrier_id {
     mcc_mnc: "24007"
@@ -3304,13 +3059,6 @@ entry {
   carrier_id {
     mcc_mnc: "24007"
     spn: "JUMP"
-  }
-}
-entry {
-  canonical_name: "sky_gb"
-  carrier_id {
-    mcc_mnc: "24007"
-    spn: "Sky"
   }
 }
 entry {
@@ -3459,12 +3207,6 @@ entry {
   carrier_id {
     mcc_mnc: "24215"
     gid1: "0E"
-  }
-}
-entry {
-  canonical_name: "erate_no"
-  carrier_id {
-    mcc_mnc: "24215"
   }
 }
 entry {
@@ -3755,97 +3497,6 @@ entry {
   canonical_name: "telekom_pl"
   carrier_id {
     mcc_mnc: "26002"
-    gid1: "11"
-  }
-}
-entry {
-  canonical_name: "telekom_pl"
-  carrier_id {
-    mcc_mnc: "26002"
-    gid1: "12"
-  }
-}
-entry {
-  canonical_name: "telekom_pl"
-  carrier_id {
-    mcc_mnc: "26002"
-    gid1: "16"
-  }
-}
-entry {
-  canonical_name: "telekom_pl"
-  carrier_id {
-    mcc_mnc: "26002"
-    gid1: "17"
-  }
-}
-entry {
-  canonical_name: "telekom_pl"
-  carrier_id {
-    mcc_mnc: "26002"
-    gid1: "21"
-  }
-}
-entry {
-  canonical_name: "telekom_pl"
-  carrier_id {
-    mcc_mnc: "26002"
-    gid1: "22"
-  }
-}
-entry {
-  canonical_name: "telekom_pl"
-  carrier_id {
-    mcc_mnc: "26002"
-    gid1: "23"
-  }
-}
-entry {
-  canonical_name: "telekom_pl"
-  carrier_id {
-    mcc_mnc: "26002"
-    gid1: "24"
-  }
-}
-entry {
-  canonical_name: "telekom_pl"
-  carrier_id {
-    mcc_mnc: "26002"
-    gid1: "26"
-  }
-}
-entry {
-  canonical_name: "telekom_pl"
-  carrier_id {
-    mcc_mnc: "26002"
-    spn: "T-Mobile.pl Q"
-  }
-}
-entry {
-  canonical_name: "telekom_pl"
-  carrier_id {
-    mcc_mnc: "26002"
-    spn: "tu biedronka"
-  }
-}
-entry {
-  canonical_name: "telekom_pl"
-  carrier_id {
-    mcc_mnc: "26002"
-    spn: "T-Mobile.pl"
-  }
-}
-entry {
-  canonical_name: "telekom_pl"
-  carrier_id {
-    mcc_mnc: "26002"
-    spn: "heyah"
-  }
-}
-entry {
-  canonical_name: "telekom_pl"
-  carrier_id {
-    mcc_mnc: "26002"
   }
 }
 entry {
@@ -4020,16 +3671,15 @@ entry {
   }
 }
 entry {
-  canonical_name: "sipgate_de"
+  canonical_name: "spusu_de"
   carrier_id {
-    mcc_mnc: "26222"
+    mcc_mnc: "26221"
   }
 }
 entry {
-  canonical_name: "1and1_de"
+  canonical_name: "sipgate_de"
   carrier_id {
-    mcc_mnc: "26223"
-    spn: "1&1"
+    mcc_mnc: "26222"
   }
 }
 entry {
@@ -4080,20 +3730,6 @@ entry {
   canonical_name: "airbus_de"
   carrier_id {
     mcc_mnc: "26298"
-  }
-}
-entry {
-  canonical_name: "lobster_gi"
-  carrier_id {
-    mcc_mnc: "26601"
-    imsi: "2660180000018"
-  }
-}
-entry {
-  canonical_name: "lobster_gi"
-  carrier_id {
-    mcc_mnc: "26601"
-    spn: "Lobster"
   }
 }
 entry {
@@ -4219,33 +3855,12 @@ entry {
   canonical_name: "h3g27202_ie"
   carrier_id {
     mcc_mnc: "27202"
-    spn: "3"
-  }
-}
-entry {
-  canonical_name: "h3g27202_ie"
-  carrier_id {
-    mcc_mnc: "27202"
   }
 }
 entry {
   canonical_name: "eir_ie"
   carrier_id {
     mcc_mnc: "27203"
-  }
-}
-entry {
-  canonical_name: "h3_ie"
-  carrier_id {
-    mcc_mnc: "27205"
-    gid1: "3333"
-  }
-}
-entry {
-  canonical_name: "h3_ie"
-  carrier_id {
-    mcc_mnc: "27205"
-    spn: "3"
   }
 }
 entry {
@@ -4293,6 +3908,13 @@ entry {
   carrier_id {
     mcc_mnc: "27215"
     gid1: "75696532"
+  }
+}
+entry {
+  canonical_name: "esimgotravel_zz"
+  carrier_id {
+    mcc_mnc: "27225"
+    gid1: "0409"
   }
 }
 entry {
@@ -4559,27 +4181,6 @@ entry {
   canonical_name: "telekom_mk"
   carrier_id {
     mcc_mnc: "29401"
-    gid1: "FF"
-  }
-}
-entry {
-  canonical_name: "telekom_mk"
-  carrier_id {
-    mcc_mnc: "29401"
-    spn: "Telekom MK"
-  }
-}
-entry {
-  canonical_name: "telekom_mk"
-  carrier_id {
-    mcc_mnc: "29401"
-    spn: "Telekom.mk"
-  }
-}
-entry {
-  canonical_name: "telekom_mk"
-  carrier_id {
-    mcc_mnc: "29401"
   }
 }
 entry {
@@ -4621,6 +4222,27 @@ entry {
   }
 }
 entry {
+  canonical_name: "emnify_li"
+  carrier_id {
+    mcc_mnc: "29505"
+    gid1: "65"
+  }
+}
+entry {
+  canonical_name: "emnify_li"
+  carrier_id {
+    mcc_mnc: "29505"
+    imsi: "29505090"
+  }
+}
+entry {
+  canonical_name: "emnify_li"
+  carrier_id {
+    mcc_mnc: "29505"
+    spn: "emnify"
+  }
+}
+entry {
   canonical_name: "fl1_li"
   carrier_id {
     mcc_mnc: "29505"
@@ -4630,13 +4252,6 @@ entry {
   canonical_name: "one_me"
   carrier_id {
     mcc_mnc: "29701"
-  }
-}
-entry {
-  canonical_name: "telekom_me"
-  carrier_id {
-    mcc_mnc: "29702"
-    spn: "Telekom.me"
   }
 }
 entry {
@@ -4656,13 +4271,6 @@ entry {
   carrier_id {
     mcc_mnc: "302150"
     gid1: "FFFF"
-  }
-}
-entry {
-  canonical_name: "cogeco_ca"
-  carrier_id {
-    mcc_mnc: "302150"
-    imsi: "302150004"
   }
 }
 entry {
@@ -6711,6 +6319,12 @@ entry {
   }
 }
 entry {
+  canonical_name: "limitless_us"
+  carrier_id {
+    mcc_mnc: "310340"
+  }
+}
+entry {
   canonical_name: "310360SPN=PIONEER"
   carrier_id {
     mcc_mnc: "310360"
@@ -6777,70 +6391,70 @@ entry {
   }
 }
 entry {
-  canonical_name: "dishatt_us"
+  canonical_name: "boostmobile_us"
   carrier_id {
     mcc_mnc: "310410"
     gid1: "3430"
   }
 }
 entry {
-  canonical_name: "dishatt_us"
+  canonical_name: "boostmobile_us"
   carrier_id {
     mcc_mnc: "310410"
     gid1: "3432"
   }
 }
 entry {
-  canonical_name: "dishatt_us"
+  canonical_name: "boostmobile_us"
   carrier_id {
     mcc_mnc: "310410"
     gid1: "3434"
   }
 }
 entry {
-  canonical_name: "dishatt_us"
+  canonical_name: "boostmobile_us"
   carrier_id {
     mcc_mnc: "310410"
     gid1: "3436"
   }
 }
 entry {
-  canonical_name: "dishatt_us"
+  canonical_name: "boostmobile_us"
   carrier_id {
     mcc_mnc: "310410"
     gid1: "3438"
   }
 }
 entry {
-  canonical_name: "dishatt_us"
+  canonical_name: "boostmobile_us"
   carrier_id {
     mcc_mnc: "310410"
     gid1: "3440"
   }
 }
 entry {
-  canonical_name: "dishatt_us"
+  canonical_name: "boostmobile_us"
   carrier_id {
     mcc_mnc: "310410"
     gid1: "3442"
   }
 }
 entry {
-  canonical_name: "dishatt_us"
+  canonical_name: "boostmobile_us"
   carrier_id {
     mcc_mnc: "310410"
     gid1: "3444"
   }
 }
 entry {
-  canonical_name: "dishatt_us"
+  canonical_name: "boostmobile_us"
   carrier_id {
     mcc_mnc: "310410"
     gid1: "3446"
   }
 }
 entry {
-  canonical_name: "dishatt_us"
+  canonical_name: "boostmobile_us"
   carrier_id {
     mcc_mnc: "310410"
     gid1: "3448"
@@ -7640,70 +7254,70 @@ entry {
   }
 }
 entry {
-  canonical_name: "dishatt_us"
+  canonical_name: "boostmobile_us"
   carrier_id {
     mcc_mnc: "311180"
     gid1: "3430"
   }
 }
 entry {
-  canonical_name: "dishatt_us"
+  canonical_name: "boostmobile_us"
   carrier_id {
     mcc_mnc: "311180"
     gid1: "3432"
   }
 }
 entry {
-  canonical_name: "dishatt_us"
+  canonical_name: "boostmobile_us"
   carrier_id {
     mcc_mnc: "311180"
     gid1: "3434"
   }
 }
 entry {
-  canonical_name: "dishatt_us"
+  canonical_name: "boostmobile_us"
   carrier_id {
     mcc_mnc: "311180"
     gid1: "3436"
   }
 }
 entry {
-  canonical_name: "dishatt_us"
+  canonical_name: "boostmobile_us"
   carrier_id {
     mcc_mnc: "311180"
     gid1: "3438"
   }
 }
 entry {
-  canonical_name: "dishatt_us"
+  canonical_name: "boostmobile_us"
   carrier_id {
     mcc_mnc: "311180"
     gid1: "3440"
   }
 }
 entry {
-  canonical_name: "dishatt_us"
+  canonical_name: "boostmobile_us"
   carrier_id {
     mcc_mnc: "311180"
     gid1: "3442"
   }
 }
 entry {
-  canonical_name: "dishatt_us"
+  canonical_name: "boostmobile_us"
   carrier_id {
     mcc_mnc: "311180"
     gid1: "3444"
   }
 }
 entry {
-  canonical_name: "dishatt_us"
+  canonical_name: "boostmobile_us"
   carrier_id {
     mcc_mnc: "311180"
     gid1: "3446"
   }
 }
 entry {
-  canonical_name: "dishatt_us"
+  canonical_name: "boostmobile_us"
   carrier_id {
     mcc_mnc: "311180"
     gid1: "3448"
@@ -7945,6 +7559,12 @@ entry {
   carrier_id {
     mcc_mnc: "311240"
     spn: "CordovaWireless"
+  }
+}
+entry {
+  canonical_name: "cordova_us"
+  carrier_id {
+    mcc_mnc: "311240"
   }
 }
 entry {
@@ -8534,6 +8154,12 @@ entry {
   }
 }
 entry {
+  canonical_name: "limitless_us"
+  carrier_id {
+    mcc_mnc: "311600"
+  }
+}
+entry {
   canonical_name: "311610SPN=SRTCOMM"
   carrier_id {
     mcc_mnc: "311610"
@@ -8677,6 +8303,12 @@ entry {
   }
 }
 entry {
+  canonical_name: "limitless_us"
+  carrier_id {
+    mcc_mnc: "312180"
+  }
+}
+entry {
   canonical_name: "assurance_us"
   carrier_id {
     mcc_mnc: "312250"
@@ -8801,6 +8433,13 @@ entry {
   canonical_name: "firstnet_us"
   carrier_id {
     mcc_mnc: "313140"
+  }
+}
+entry {
+  canonical_name: "telnyx_us"
+  carrier_id {
+    mcc_mnc: "313260"
+    imsi: "31326010200"
   }
 }
 entry {
@@ -9192,13 +8831,6 @@ entry {
   canonical_name: "xfinity2_us"
   carrier_id {
     mcc_mnc: "314240"
-  }
-}
-entry {
-  canonical_name: "helium_us"
-  carrier_id {
-    mcc_mnc: "314330"
-    spn: "Helium"
   }
 }
 entry {
@@ -9678,16 +9310,15 @@ entry {
   }
 }
 entry {
-  canonical_name: "34877"
+  canonical_name: "caribbean_vg"
   carrier_id {
-    mcc_mnc: "34877"
+    mcc_mnc: "348570"
   }
 }
 entry {
-  canonical_name: "paradisemobile_bm"
+  canonical_name: "34877"
   carrier_id {
-    mcc_mnc: "350007"
-    spn: "Paradise"
+    mcc_mnc: "34877"
   }
 }
 entry {
@@ -9737,13 +9368,6 @@ entry {
   carrier_id {
     mcc_mnc: "36301"
     imsi: "3630100"
-  }
-}
-entry {
-  canonical_name: "setar_aw"
-  carrier_id {
-    mcc_mnc: "36301"
-    spn: "SETAR"
   }
 }
 entry {
@@ -11603,7 +11227,7 @@ entry {
   }
 }
 entry {
-  canonical_name: "41250"
+  canonical_name: "etisalat_af"
   carrier_id {
     mcc_mnc: "41250"
   }
@@ -11742,7 +11366,7 @@ entry {
   }
 }
 entry {
-  canonical_name: "41892"
+  canonical_name: "alkafeel_iq"
   carrier_id {
     mcc_mnc: "41892"
   }
@@ -11763,6 +11387,12 @@ entry {
   canonical_name: "stc_kw"
   carrier_id {
     mcc_mnc: "41904"
+  }
+}
+entry {
+  canonical_name: "virgin_kw"
+  carrier_id {
+    mcc_mnc: "41909"
   }
 }
 entry {
@@ -11841,13 +11471,6 @@ entry {
   canonical_name: "vodafone_om"
   carrier_id {
     mcc_mnc: "42206"
-    spn: "Vodafone OM"
-  }
-}
-entry {
-  canonical_name: "vodafone_om"
-  carrier_id {
-    mcc_mnc: "42206"
   }
 }
 entry {
@@ -11887,6 +11510,12 @@ entry {
   canonical_name: "partner_il"
   carrier_id {
     mcc_mnc: "42501"
+  }
+}
+entry {
+  canonical_name: "019mobile_il"
+  carrier_id {
+    mcc_mnc: "425019"
   }
 }
 entry {
@@ -12024,6 +11653,12 @@ entry {
   }
 }
 entry {
+  canonical_name: "ondo_mn"
+  carrier_id {
+    mcc_mnc: "42833"
+  }
+}
+entry {
   canonical_name: "42888"
   carrier_id {
     mcc_mnc: "42888"
@@ -12156,7 +11791,7 @@ entry {
   }
 }
 entry {
-  canonical_name: "43604"
+  canonical_name: "cjsc_tj"
   carrier_id {
     mcc_mnc: "43604"
   }
@@ -12357,12 +11992,6 @@ entry {
   canonical_name: "44120"
   carrier_id {
     mcc_mnc: "44120"
-  }
-}
-entry {
-  canonical_name: "eureka_jp"
-  carrier_id {
-    mcc_mnc: "441216"
   }
 }
 entry {
@@ -13001,13 +12630,6 @@ entry {
   }
 }
 entry {
-  canonical_name: "pivotel_au"
-  carrier_id {
-    mcc_mnc: "50588"
-    spn: "Pivotel"
-  }
-}
-entry {
   canonical_name: "50588"
   carrier_id {
     mcc_mnc: "50588"
@@ -13319,6 +12941,12 @@ entry {
   }
 }
 entry {
+  canonical_name: "neotel_nr"
+  carrier_id {
+    mcc_mnc: "53603"
+  }
+}
+entry {
   canonical_name: "53701"
   carrier_id {
     mcc_mnc: "53701"
@@ -13349,7 +12977,7 @@ entry {
   }
 }
 entry {
-  canonical_name: "54001"
+  canonical_name: "ourtelekom_sb"
   carrier_id {
     mcc_mnc: "54001"
   }
@@ -13418,13 +13046,6 @@ entry {
   canonical_name: "viti_pf"
   carrier_id {
     mcc_mnc: "54705"
-    imsi: "5470568988"
-  }
-}
-entry {
-  canonical_name: "viti_pf"
-  carrier_id {
-    mcc_mnc: "54705"
   }
 }
 entry {
@@ -13441,7 +13062,7 @@ entry {
   }
 }
 entry {
-  canonical_name: "54801"
+  canonical_name: "vodafone_ck"
   carrier_id {
     mcc_mnc: "54801"
   }
@@ -14840,13 +14461,13 @@ entry {
   }
 }
 entry {
-  canonical_name: "71606"
+  canonical_name: "movistar_pe"
   carrier_id {
     mcc_mnc: "71606"
   }
 }
 entry {
-  canonical_name: "71610"
+  canonical_name: "claro_pe"
   carrier_id {
     mcc_mnc: "71610"
   }
@@ -14858,7 +14479,7 @@ entry {
   }
 }
 entry {
-  canonical_name: "71617"
+  canonical_name: "entel_pe"
   carrier_id {
     mcc_mnc: "71617"
   }
@@ -15057,6 +14678,20 @@ entry {
   canonical_name: "72439"
   carrier_id {
     mcc_mnc: "72439"
+  }
+}
+entry {
+  canonical_name: "emnify_br"
+  carrier_id {
+    mcc_mnc: "72451"
+    gid1: "65"
+  }
+}
+entry {
+  canonical_name: "emnify_br"
+  carrier_id {
+    mcc_mnc: "72451"
+    spn: "emnify"
   }
 }
 entry {
@@ -15404,6 +15039,12 @@ entry {
   }
 }
 entry {
+  canonical_name: "bbix_zz"
+  carrier_id {
+    mcc_mnc: "90104"
+  }
+}
+entry {
   canonical_name: "webbing_hk"
   carrier_id {
     mcc_mnc: "90131"
@@ -15421,6 +15062,20 @@ entry {
   carrier_id {
     mcc_mnc: "90139"
     spn: "MTXC"
+  }
+}
+entry {
+  canonical_name: "emnify_zz"
+  carrier_id {
+    mcc_mnc: "90143"
+    gid1: "65"
+  }
+}
+entry {
+  canonical_name: "emnify_zz"
+  carrier_id {
+    mcc_mnc: "90143"
+    spn: "emnify"
   }
 }
 entry {
@@ -15454,13 +15109,6613 @@ entry {
   }
 }
 entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99900"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999000"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999001"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999002"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999003"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999004"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999005"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999006"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999007"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999008"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999009"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99901"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999010"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999011"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999012"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999013"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999014"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999015"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999016"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999017"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999018"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999019"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99902"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999020"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999021"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999022"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999023"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999024"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999025"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999026"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999027"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999028"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999029"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99903"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999030"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999031"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999032"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999033"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999034"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999035"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999036"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999037"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999038"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999039"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99904"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999040"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999041"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999042"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999043"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999044"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999045"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999046"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999047"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999048"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999049"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99905"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999050"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999051"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999052"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999053"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999054"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999055"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999056"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999057"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999058"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999059"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99906"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999060"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999061"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999062"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999063"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999064"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999065"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999066"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999067"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999068"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999069"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99907"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999070"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999071"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999072"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999073"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999074"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999075"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999076"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999077"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999078"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999079"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99908"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999080"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999081"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999082"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999083"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999084"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999085"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999086"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999087"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999088"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999089"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99909"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999090"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999091"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999092"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999093"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999094"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999095"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999096"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999097"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999098"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999099"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99910"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999100"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999101"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999102"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999103"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999104"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999105"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999106"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999107"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999108"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999109"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99911"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999110"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999111"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999112"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999113"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999114"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999115"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999116"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999117"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999118"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999119"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99912"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999120"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999121"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999122"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999123"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999124"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999125"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999126"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999127"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999128"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999129"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99913"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999130"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999131"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999132"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999133"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999134"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999135"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999136"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999137"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999138"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999139"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99914"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999140"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999141"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999142"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999143"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999144"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999145"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999146"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999147"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999148"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999149"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99915"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999150"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999151"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999152"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999153"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999154"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999155"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999156"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999157"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999158"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999159"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99916"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999160"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999161"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999162"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999163"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999164"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999165"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999166"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999167"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999168"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999169"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99917"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999170"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999171"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999172"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999173"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999174"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999175"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999176"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999177"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999178"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999179"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99918"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999180"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999181"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999182"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999183"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999184"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999185"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999186"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999187"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999188"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999189"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99919"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999190"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999191"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999192"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999193"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999194"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999195"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999196"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999197"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999198"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999199"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99920"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999200"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999201"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999202"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999203"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999204"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999205"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999206"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999207"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999208"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999209"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99921"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999210"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999211"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999212"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999213"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999214"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999215"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999216"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999217"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999218"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999219"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99922"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999220"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999221"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999222"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999223"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999224"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999225"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999226"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999227"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999228"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999229"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99923"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999230"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999231"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999232"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999233"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999234"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999235"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999236"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999237"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999238"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999239"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99924"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999240"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999241"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999242"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999243"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999244"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999245"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999246"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999247"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999248"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999249"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99925"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999250"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999251"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999252"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999253"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999254"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999255"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999256"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999257"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999258"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999259"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99926"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999260"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999261"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999262"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999263"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999264"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999265"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999266"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999267"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999268"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999269"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99927"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999270"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999271"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999272"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999273"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999274"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999275"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999276"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999277"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999278"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999279"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99928"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999280"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999281"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999282"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999283"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999284"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999285"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999286"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999287"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999288"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999289"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99929"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999290"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999291"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999292"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999293"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999294"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999295"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999296"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999297"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999298"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999299"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99930"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999300"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999301"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999302"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999303"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999304"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999305"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999306"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999307"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999308"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999309"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99931"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999310"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999311"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999312"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999313"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999314"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999315"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999316"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999317"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999318"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999319"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99932"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999320"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999321"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999322"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999323"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999324"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999325"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999326"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999327"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999328"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999329"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99933"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999330"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999331"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999332"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999333"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999334"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999335"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999336"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999337"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999338"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999339"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99934"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999340"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999341"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999342"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999343"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999344"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999345"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999346"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999347"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999348"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999349"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99935"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999350"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999351"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999352"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999353"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999354"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999355"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999356"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999357"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999358"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999359"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99936"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999360"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999361"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999362"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999363"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999364"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999365"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999366"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999367"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999368"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999369"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99937"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999370"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999371"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999372"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999373"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999374"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999375"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999376"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999377"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999378"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999379"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99938"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999380"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999381"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999382"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999383"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999384"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999385"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999386"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999387"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999388"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999389"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99939"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999390"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999391"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999392"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999393"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999394"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999395"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999396"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999397"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999398"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999399"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99940"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999400"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999401"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999402"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999403"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999404"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999405"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999406"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999407"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999408"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999409"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99941"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999410"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999411"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999412"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999413"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999414"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999415"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999416"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999417"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999418"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999419"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99942"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999420"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999421"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999422"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999423"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999424"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999425"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999426"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999427"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999428"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999429"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99943"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999430"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999431"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999432"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999433"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999434"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999435"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999436"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999437"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999438"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999439"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99944"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999440"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999441"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999442"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999443"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999444"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999445"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999446"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999447"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999448"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999449"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99945"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999450"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999451"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999452"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999453"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999454"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999455"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999456"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999457"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999458"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999459"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99946"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999460"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999461"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999462"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999463"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999464"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999465"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999466"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999467"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999468"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999469"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99947"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999470"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999471"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999472"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999473"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999474"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999475"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999476"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999477"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999478"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999479"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99948"
+  }
+}
+entry {
   canonical_name: "verizononsitelte_us"
   carrier_id {
     mcc_mnc: "999480"
     gid1: "D100000000000000"
   }
 }
-version: 75000000573
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999480"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999481"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999482"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999483"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999484"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999485"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999486"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999487"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999488"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999489"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99949"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999490"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999491"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999492"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999493"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999494"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999495"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999496"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999497"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999498"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999499"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99950"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999500"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999501"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999502"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999503"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999504"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999505"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999506"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999507"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999508"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999509"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99951"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999510"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999511"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999512"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999513"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999514"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999515"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999516"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999517"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999518"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999519"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99952"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999520"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999521"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999522"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999523"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999524"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999525"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999526"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999527"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999528"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999529"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99953"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999530"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999531"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999532"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999533"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999534"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999535"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999536"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999537"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999538"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999539"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99954"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999540"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999541"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999542"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999543"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999544"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999545"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999546"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999547"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999548"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999549"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99955"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999550"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999551"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999552"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999553"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999554"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999555"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999556"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999557"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999558"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999559"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99956"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999560"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999561"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999562"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999563"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999564"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999565"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999566"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999567"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999568"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999569"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99957"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999570"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999571"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999572"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999573"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999574"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999575"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999576"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999577"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999578"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999579"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99958"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999580"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999581"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999582"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999583"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999584"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999585"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999586"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999587"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999588"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999589"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99959"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999590"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999591"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999592"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999593"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999594"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999595"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999596"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999597"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999598"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999599"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99960"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999600"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999601"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999602"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999603"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999604"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999605"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999606"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999607"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999608"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999609"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99961"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999610"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999611"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999612"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999613"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999614"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999615"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999616"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999617"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999618"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999619"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99962"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999620"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999621"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999622"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999623"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999624"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999625"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999626"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999627"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999628"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999629"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99963"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999630"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999631"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999632"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999633"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999634"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999635"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999636"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999637"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999638"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999639"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99964"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999640"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999641"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999642"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999643"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999644"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999645"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999646"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999647"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999648"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999649"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99965"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999650"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999651"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999652"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999653"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999654"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999655"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999656"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999657"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999658"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999659"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99966"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999660"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999661"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999662"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999663"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999664"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999665"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999666"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999667"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999668"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999669"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99967"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999670"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999671"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999672"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999673"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999674"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999675"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999676"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999677"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999678"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999679"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99968"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999680"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999681"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999682"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999683"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999684"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999685"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999686"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999687"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999688"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999689"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99969"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999690"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999691"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999692"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999693"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999694"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999695"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999696"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999697"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999698"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999699"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99970"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999700"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999701"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999702"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999703"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999704"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999705"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999706"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999707"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999708"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999709"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99971"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999710"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999711"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999712"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999713"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999714"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999715"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999716"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999717"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999718"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999719"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99972"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999720"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999721"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999722"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999723"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999724"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999725"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999726"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999727"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999728"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999729"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99973"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999730"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999731"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999732"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999733"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999734"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999735"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999736"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999737"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999738"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999739"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99974"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999740"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999741"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999742"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999743"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999744"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999745"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999746"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999747"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999748"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999749"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99975"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999750"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999751"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999752"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999753"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999754"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999755"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999756"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999757"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999758"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999759"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99976"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999760"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999761"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999762"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999763"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999764"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999765"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999766"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999767"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999768"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999769"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99977"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999770"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999771"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999772"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999773"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999774"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999775"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999776"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999777"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999778"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999779"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99978"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999780"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999781"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999782"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999783"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999784"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999785"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999786"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999787"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999788"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999789"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99979"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999790"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999791"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999792"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999793"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999794"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999795"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999796"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999797"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999798"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999799"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99980"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999800"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999801"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999802"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999803"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999804"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999805"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999806"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999807"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999808"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999809"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99981"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999810"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999811"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999812"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999813"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999814"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999815"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999816"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999817"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999818"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999819"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99982"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999820"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999821"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999822"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999823"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999824"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999825"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999826"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999827"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999828"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999829"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99983"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999830"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999831"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999832"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999833"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999834"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999835"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999836"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999837"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999838"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999839"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99984"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999840"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999841"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999842"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999843"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999844"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999845"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999846"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999847"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999848"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999849"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99985"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999850"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999851"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999852"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999853"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999854"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999855"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999856"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999857"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999858"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999859"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99986"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999860"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999861"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999862"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999863"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999864"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999865"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999866"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999867"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999868"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999869"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99987"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999870"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999871"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999872"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999873"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999874"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999875"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999876"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999877"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999878"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999879"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99988"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999880"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999881"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999882"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999883"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999884"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999885"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999886"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999887"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999888"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999889"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99989"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999890"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999891"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999892"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999893"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999894"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999895"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999896"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999897"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999898"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999899"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99990"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999900"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999901"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999902"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999903"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999904"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999905"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999906"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999907"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999908"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999909"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99991"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999910"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999911"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999912"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999913"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999914"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999915"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999916"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999917"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999918"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999919"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99992"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999920"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999921"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999922"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999923"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999924"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999925"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999926"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999927"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999928"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999929"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99993"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999930"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999931"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999932"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999933"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999934"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999935"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999936"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999937"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999938"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999939"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99994"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999940"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999941"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999942"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999943"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999944"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999945"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999946"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999947"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999948"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999949"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99995"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999950"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999951"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999952"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999953"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999954"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999955"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999956"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999957"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999958"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999959"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99996"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999960"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999961"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999962"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999963"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999964"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999965"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999966"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999967"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999968"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999969"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99997"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999970"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999971"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999972"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999973"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999974"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999975"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999976"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999977"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999978"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999979"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99998"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999980"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999981"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999982"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999983"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999984"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999985"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999986"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999987"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999988"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999989"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "99999"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999990"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999991"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999992"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999993"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999994"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999995"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999996"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999997"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999998"
+  }
+}
+entry {
+  canonical_name: "pn_xx"
+  carrier_id {
+    mcc_mnc: "999999"
+  }
+}
+version: 77000000581
 4 {
-  1: 1766565724
+  1: 1775495200
 }

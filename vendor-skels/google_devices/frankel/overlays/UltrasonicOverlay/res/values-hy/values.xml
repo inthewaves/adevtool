@@ -7,6 +7,6 @@
 
 Խորհուրդ ենք տալիս օգտագործել Made for Google հավաստագրմամբ էկրանի պաշտպանիչ։ Այլ պաշտպանիչներով սարքերը կարող են չճանաչել ձեր մատնահետքը։"</string>
     <string name="security_settings_udfps_enroll_fingertip_title">Հպեք մատի ծայրով</string>
-    <string name="security_settings_udfps_enroll_left_edge_title">Հպեք մատի ձախ եզրով</string>
+    <string name="security_settings_udfps_enroll_left_edge_title">Հպեք մատի ձախ ծայրով</string>
     <string name="security_settings_udfps_enroll_right_edge_title">Այժմ հպեք մատի աջ եզրով</string>
 </resources>

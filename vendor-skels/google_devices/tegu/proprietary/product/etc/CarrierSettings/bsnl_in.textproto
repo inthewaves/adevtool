@@ -1,5 +1,5 @@
 canonical_name: "bsnl_in"
-version: 75000000009
+version: 77000000010
 apns {
   apn {
     name: "bsnlmms"
@@ -72,6 +72,12 @@ configs {
     key: "imsemergency.emergency_over_ims_supported_rats_int_array"
     int_array {
       item: 3
+    }
+  }
+  config {
+    key: "imsss.ut_terminal_based_services_int_array"
+    int_array {
+      item: 10
     }
   }
   config {
@@ -172,5 +178,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1762942417
+  seconds: 1765981861
 }

@@ -1,5 +1,5 @@
 canonical_name: "twm_tw"
-version: 75000000014
+version: 77000000016
 apns {
   apn {
     name: "\345\217\260\347\201\243\345\244\247\345\223\245\345\244\247(TW Mobile) (Internet)"
@@ -48,6 +48,10 @@ configs {
   config {
     key: "bsf.bsf_server_fqdn_string"
     text_value: "bsf.ims.taiwanmobile.com"
+  }
+  config {
+    key: "carrier_default_2g_protection_enabled_bool"
+    bool_value: true
   }
   config {
     key: "carrier_default_wfc_ims_enabled_bool"
@@ -262,10 +266,6 @@ configs {
     bool_value: false
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "volte_replacement_rat_int"
     int_value: 3
   }
@@ -275,5 +275,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1762942384
+  seconds: 1769617043
 }

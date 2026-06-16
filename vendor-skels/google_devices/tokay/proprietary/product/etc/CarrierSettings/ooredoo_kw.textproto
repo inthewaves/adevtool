@@ -1,5 +1,5 @@
 canonical_name: "ooredoo_kw"
-version: 75000000005
+version: 77000000006
 apns {
   apn {
     name: "Ooredoo Internet"
@@ -104,11 +104,7 @@ configs {
     key: "imsvt.video_qos_precondition_supported_bool"
     bool_value: false
   }
-  config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
 }
 last_updated {
-  seconds: 1739349346
+  seconds: 1767187386
 }

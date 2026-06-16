@@ -1,5 +1,5 @@
 canonical_name: "tracfonetmo_us"
-version: 75000000015
+version: 77000000016
 apns {
   apn {
     name: "Tracfone"
@@ -350,10 +350,6 @@ configs {
     int_value: 3
   }
   config {
-    key: "vonr_setting_visibility_bool"
-    bool_value: false
-  }
-  config {
     key: "wfc_operator_error_codes_string_array"
     text_array {
       item: "REG09|0"
@@ -365,5 +361,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1764155425
+  seconds: 1768403280
 }

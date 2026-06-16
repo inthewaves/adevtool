@@ -5,7 +5,8 @@
         <item>Sensors ir īslaicīgi atspējots.</item>
         <item>Kalibrēšanas kļūda.</item>
         <item>Autorizācija pēc sejas nav pieejama. Tālrunis ir pārāk karsts.</item>
-        <item>Autorizācija pēc sejas ir jāiestata vēlreiz.</item>
+        <item>Vēlreiz jāiestata autorizācija pēc sejas.</item>
+        <item>Pielāgojiet apgaismojumu un turiet ierīci nekustīgi.</item>
     </array>
     <string name="biometric_app_setting_name">Izmantot seju / pirksta nosp.</string>
     <string name="biometric_dialog_default_subtitle">Lai turpinātu, veiciet autentifikāciju ar seju vai pirksta nospiedumu</string>

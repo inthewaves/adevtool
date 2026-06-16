@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="display_white_balance_summary">Дисплейді айналадағы жарықтың ыңғайына қарай динамикалық түрде жылы не салқын реңктерге бейімдейді.</string>
+    <string name="display_white_balance_summary">Дисплейді айналадағы жарыққа қарай динамикалық түрде жылы не салқын реңктерге келтіреді.</string>
     <string name="display_white_balance_title">Реңкті бейімдеу</string>
     <string name="emission_frequency_summary">Жарыққа сезімтал көзбен көру сапасын жақсарту үшін жарық шығару жиілігін реттеңіз. Ашылған күйдегі құрылғының тек ішкі экранында қолданылады.</string>
     <string name="fingerprint_unlock_set_unlock_password">Pixel Imprint + құпия сөз</string>

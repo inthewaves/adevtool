@@ -1,5 +1,5 @@
 canonical_name: "tango_us"
-version: 75000000006
+version: 77000000008
 apns {
   apn {
     name: "globaldata"
@@ -98,5 +98,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1739349299
+  seconds: 1770819066
 }

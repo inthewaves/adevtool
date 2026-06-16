@@ -1,5 +1,5 @@
 canonical_name: "jcommobile_jp"
-version: 75000000007
+version: 77000000008
 apns {
   apn {
     name: "jcommobile"
@@ -105,6 +105,10 @@ configs {
       item: "891ABE3F0A0D794AD46200DC2374AFF61AFA82711C360EE0CB49C3E6BB2BA006:jp.auone.wallet"
       item: "1001568BB4A4E65F68C8B0F2E5C9EBC97FF719898F39E421DAF29A8DACEAAF1B:com.kddi.android.cmail"
     }
+  }
+  config {
+    key: "carrier_default_2g_protection_enabled_bool"
+    bool_value: true
   }
   config {
     key: "carrier_name_override_bool"
@@ -472,5 +476,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1761090343
+  seconds: 1769617032
 }

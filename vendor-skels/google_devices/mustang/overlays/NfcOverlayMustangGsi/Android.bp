@@ -1,0 +1,1 @@
+runtime_resource_overlay { name: "NfcOverlayMustangGsi", soc_specific: true, }

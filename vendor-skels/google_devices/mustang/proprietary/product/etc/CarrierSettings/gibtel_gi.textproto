@@ -1,5 +1,5 @@
 canonical_name: "gibtel_gi"
-version: 75000000001
+version: 77000000003
 apns {
   apn {
     name: "Gibtel"
@@ -91,5 +91,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1724979979
+  seconds: 1770819167
 }

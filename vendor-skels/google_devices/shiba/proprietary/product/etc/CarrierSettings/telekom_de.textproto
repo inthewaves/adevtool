@@ -1,5 +1,5 @@
 canonical_name: "telekom_de"
-version: 75000000015
+version: 77000000019
 apns {
   apn {
     name: "Telekom IMS"
@@ -79,6 +79,12 @@ configs {
   config {
     key: "carrier_default_wfc_ims_roaming_mode_int"
     int_value: 1
+  }
+  config {
+    key: "carrier_nr_availabilities_int_array"
+    int_array {
+      item: 1
+    }
   }
   config {
     key: "carrier_supports_ss_over_ut_bool"
@@ -392,7 +398,7 @@ configs {
   }
   config {
     key: "wfc_spn_format_idx_int"
-    int_value: 2
+    int_value: 1
   }
   config {
     key: "wifi.carrier_profiles_version_int"
@@ -406,5 +412,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1765368105
+  seconds: 1775048504
 }

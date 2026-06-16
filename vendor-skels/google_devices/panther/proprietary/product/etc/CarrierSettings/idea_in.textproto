@@ -1,5 +1,5 @@
 canonical_name: "idea_in"
-version: 75000000031
+version: 77000000031
 apns {
   apn {
     name: "Vodafone Idea"

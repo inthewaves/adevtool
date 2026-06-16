@@ -1,5 +1,5 @@
 canonical_name: "fi_at"
-version: 75000000008
+version: 77000000009
 apns {
 }
 configs {
@@ -212,20 +212,6 @@ configs {
     int_value: 1
   }
   config {
-    key: "imsemergency.emergency_domain_preference_int_array"
-    int_array {
-      item: 2
-      item: 1
-    }
-  }
-  config {
-    key: "imsemergency.emergency_domain_preference_roaming_int_array"
-    int_array {
-      item: 2
-      item: 1
-    }
-  }
-  config {
     key: "imsemergency.emergency_over_ims_roaming_supported_3gpp_network_types_int_array"
     int_array {
       item: 6
@@ -244,6 +230,7 @@ configs {
     int_array {
       item: 6
       item: 3
+      item: 5
     }
   }
   config {
@@ -365,6 +352,10 @@ configs {
   config {
     key: "imsvt.video_rs_bandwidth_bps_int"
     int_value: 4800
+  }
+  config {
+    key: "imswfc.emergency_call_over_emergency_pdn_bool"
+    bool_value: true
   }
   config {
     key: "iwlan.child_sa_rekey_hard_timer_sec_int"
@@ -504,6 +495,10 @@ configs {
     bool_value: true
   }
   config {
+    key: "qns.sos_transport_type_int"
+    int_value: 2
+  }
+  config {
     key: "qns.video_eutran_rsrp_int_array"
     int_array {
       item: -108
@@ -627,5 +622,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1761862567
+  seconds: 1766559539
 }

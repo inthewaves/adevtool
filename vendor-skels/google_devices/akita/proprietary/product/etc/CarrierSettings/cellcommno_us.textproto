@@ -1,5 +1,5 @@
 canonical_name: "cellcommno_us"
-version: 75000000014
+version: 77000000018
 apns {
   apn {
     name: "Cellcom"
@@ -1014,6 +1014,10 @@ configs {
     text_value: "confserver@ims.cellcom.com"
   }
   config {
+    key: "imsvoice.conference_subscribe_type_int"
+    int_value: 0
+  }
+  config {
     key: "imsvoice.evs_payload_description_bundle"
     bundle {
       config {
@@ -1334,10 +1338,6 @@ configs {
     text_value: "Profile"
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "video_calls_can_be_hd_audio"
     bool_value: false
   }
@@ -1376,5 +1376,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1762942384
+  seconds: 1777043959
 }

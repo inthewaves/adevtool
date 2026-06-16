@@ -1,5 +1,5 @@
 canonical_name: "iliad_it"
-version: 75000000015
+version: 77000000016
 apns {
   apn {
     name: "iliad"
@@ -129,11 +129,7 @@ configs {
     key: "sim_country_iso_override_string"
     text_value: "it"
   }
-  config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
 }
 last_updated {
-  seconds: 1736946287
+  seconds: 1767187381
 }

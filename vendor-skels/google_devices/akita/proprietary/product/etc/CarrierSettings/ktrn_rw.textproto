@@ -1,7 +1,78 @@
 canonical_name: "ktrn_rw"
-version: 75000000001
+version: 77000000002
+apns {
+  apn {
+    name: "KTRN"
+    value: "ktrn.rw"
+    type: DEFAULT
+  }
+  apn {
+    name: "ims"
+    value: "ims"
+    type: IMS
+    bearer_bitmask: "14|20"
+    user_visible: false
+  }
+  apn {
+    name: "XCAP"
+    value: "xcap"
+    type: XCAP
+    user_visible: false
+  }
+}
 configs {
+  config {
+    key: "ims.registration_retry_base_timer_millis_int"
+    int_value: 15000
+  }
+  config {
+    key: "imsemergency.emergency_registration_timer_millis_int"
+    int_value: 2000
+  }
+  config {
+    key: "imsss.use_csfb_on_xcap_over_ut_failure_bool"
+    bool_value: false
+  }
+  config {
+    key: "imsss.ut_as_server_fqdn_string"
+    text_value: "xcap.ims.mnc017.mcc635.pub.3gppnetwork.org"
+  }
+  config {
+    key: "imsvoice.audio_codec_capability_payload_types_bundle"
+    bundle {
+      config {
+        key: "imsvoice.amrnb_payload_type_int_array"
+        int_array {
+          item: 98
+          item: 103
+        }
+      }
+      config {
+        key: "imsvoice.amrwb_payload_type_int_array"
+        int_array {
+          item: 100
+          item: 105
+        }
+      }
+      config {
+        key: "imsvoice.dtmfnb_payload_type_int_array"
+        int_array {
+          item: 97
+        }
+      }
+      config {
+        key: "imsvoice.dtmfwb_payload_type_int_array"
+        int_array {
+          item: 96
+        }
+      }
+    }
+  }
+  config {
+    key: "imsvoice.prack_supported_for_18x_bool"
+    bool_value: true
+  }
 }
 last_updated {
-  seconds: 1762942384
+  seconds: 1769617043
 }

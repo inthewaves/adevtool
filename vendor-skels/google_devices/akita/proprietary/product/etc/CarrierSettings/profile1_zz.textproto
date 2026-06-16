@@ -1,5 +1,5 @@
 canonical_name: "profile1_zz"
-version: 75000000002
+version: 77000000003
 apns {
   apn {
     name: "TEST_DEFAULT"
@@ -15,7 +15,7 @@ apns {
   }
   apn {
     name: "xcap"
-    value: "xcap"
+    value: "internet"
     type: XCAP
     protocol: IPV4V6
     roaming_protocol: IPV4V6
@@ -48,5 +48,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1762942384
+  seconds: 1765368112
 }

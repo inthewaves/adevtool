@@ -1,5 +1,5 @@
 canonical_name: "h3_gb"
-version: 75000000006
+version: 77000000007
 apns {
   apn {
     name: "3hotspot"
@@ -314,10 +314,6 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "volte_replacement_rat_int"
     int_value: 3
   }
@@ -337,5 +333,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1721185512
+  seconds: 1767187386
 }

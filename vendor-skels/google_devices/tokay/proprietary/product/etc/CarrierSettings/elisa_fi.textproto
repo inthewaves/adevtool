@@ -1,5 +1,5 @@
 canonical_name: "elisa_fi"
-version: 75000000003
+version: 77000000004
 apns {
   apn {
     name: "Elisa Internet"
@@ -211,10 +211,6 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "vonr_enabled_bool"
     bool_value: true
   }
@@ -224,5 +220,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1764155460
+  seconds: 1767187386
 }

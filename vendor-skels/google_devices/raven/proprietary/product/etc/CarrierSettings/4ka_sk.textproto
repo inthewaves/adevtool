@@ -1,5 +1,5 @@
 canonical_name: "4ka_sk"
-version: 75000000005
+version: 77000000007
 apns {
   apn {
     name: "4ka Internet"
@@ -47,5 +47,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1755679306
+  seconds: 1770819051
 }

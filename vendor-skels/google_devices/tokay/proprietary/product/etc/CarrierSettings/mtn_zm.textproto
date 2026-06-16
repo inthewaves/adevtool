@@ -1,5 +1,5 @@
 canonical_name: "mtn_zm"
-version: 75000000002
+version: 77000000003
 apns {
   apn {
     name: "MTN"
@@ -20,11 +20,7 @@ apns {
   }
 }
 configs {
-  config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
 }
 last_updated {
-  seconds: 1770826114
+  seconds: 1769617053
 }

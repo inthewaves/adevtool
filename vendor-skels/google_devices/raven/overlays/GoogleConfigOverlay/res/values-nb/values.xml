@@ -4,8 +4,9 @@
         <item>Sertifikatet er utløpt</item>
         <item>Sensoren er midlertidig slått av</item>
         <item>Kalibreringsfeil</item>
-        <item>Ansiktslås er utilgjengelig. Telefonen er for varm.</item>
-        <item>Ansiktslås må konfigureres på nyttt</item>
+        <item>Ansiktslås utilgjengelig. Telefonen er for varm.</item>
+        <item>Ansiktslåsen må konfigureres på nytt</item>
+        <item>Juster belysningen, og hold enheten i ro</item>
     </array>
     <string name="biometric_app_setting_name">Bruk ansikt el. fingeravtrykk</string>
     <string name="biometric_dialog_default_subtitle">Bruk ansikt eller fingeravtrykk for å fortsette</string>

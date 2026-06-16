@@ -1,5 +1,5 @@
 canonical_name: "three_dk"
-version: 75000000012
+version: 77000000013
 apns {
   apn {
     name: "3"
@@ -204,14 +204,6 @@ configs {
     }
   }
   config {
-    key: "imsvoice.audio_rtcp_inactivity_timer_millis_int"
-    int_value: 10000
-  }
-  config {
-    key: "imsvoice.audio_rtp_inactivity_timer_millis_int"
-    int_value: 10000
-  }
-  config {
     key: "imsvoice.evs_payload_description_bundle"
     bundle {
       config {
@@ -307,5 +299,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1763549992
+  seconds: 1773236714
 }

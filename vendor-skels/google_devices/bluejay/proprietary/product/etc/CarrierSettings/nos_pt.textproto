@@ -1,5 +1,5 @@
 canonical_name: "nos_pt"
-version: 75000000010
+version: 77000000010
 apns {
   apn {
     name: "Internet"

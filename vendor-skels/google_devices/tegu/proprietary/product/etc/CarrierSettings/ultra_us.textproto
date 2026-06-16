@@ -1,5 +1,5 @@
 canonical_name: "ultra_us"
-version: 75000000013
+version: 77000000015
 apns {
   apn {
     name: "ultra"
@@ -183,6 +183,12 @@ configs {
   config {
     key: "data_limit_threshold_bytes_long"
     long_value: 107374182400
+  }
+  config {
+    key: "disconnect_cause_network_busy_int_array"
+    int_array {
+      item: 60
+    }
   }
   config {
     key: "display_hd_plus_icon_bool"
@@ -728,10 +734,6 @@ configs {
     int_value: 3
   }
   config {
-    key: "vonr_setting_visibility_bool"
-    bool_value: false
-  }
-  config {
     key: "wfc_carrier_name_override_by_pnn_bool"
     bool_value: true
   }
@@ -764,5 +766,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1764155472
+  seconds: 1777512366
 }

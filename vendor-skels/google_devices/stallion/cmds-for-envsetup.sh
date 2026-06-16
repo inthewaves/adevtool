@@ -1,2 +1,2 @@
-export BUILD_ID_stallion="BD6A.251031.001.A4"
+export BUILD_ID_stallion="CP2A.260605.012"
 unset PLATFORM_SECURITY_PATCH_stallion

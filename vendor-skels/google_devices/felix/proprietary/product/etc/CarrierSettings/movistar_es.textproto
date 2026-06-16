@@ -1,18 +1,13 @@
 canonical_name: "movistar_es"
-version: 75000000014
+version: 77000000016
 apns {
   apn {
     name: "Movistar"
     value: "telefonica.es"
     type: DEFAULT
-    type: MMS
-    type: SUPL
     user: "telefonica"
     password: "telefonica"
     authtype: 1
-    mmsc: "http://mms.movistar.com"
-    mmsc_proxy: "10.138.255.5"
-    mmsc_proxy_port: "8080"
     protocol: IPV4V6
   }
   apn {
@@ -172,7 +167,7 @@ configs {
   }
   config {
     key: "imsvoice.conference_subscribe_type_int"
-    int_value: 0
+    int_value: 1
   }
   config {
     key: "imsvoice.evs_payload_description_bundle"
@@ -198,6 +193,14 @@ configs {
   config {
     key: "imsvoice.prack_supported_for_18x_bool"
     bool_value: true
+  }
+  config {
+    key: "imsvoice.ringback_timer_millis_int"
+    int_value: 180000
+  }
+  config {
+    key: "imsvoice.ringing_timer_millis_int"
+    int_value: 180000
   }
   config {
     key: "imsvoice.session_refresh_method_int"
@@ -330,5 +333,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1736946265
+  seconds: 1773236697
 }

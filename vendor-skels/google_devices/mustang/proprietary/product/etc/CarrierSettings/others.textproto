@@ -1,18 +1,4 @@
-version: 75000000040
-setting {
-  canonical_name: "019mobile_il"
-  apns {
-    apn {
-      name: "internet"
-      value: ""
-      type: DEFAULT
-      protocol: IPV4V6
-      roaming_protocol: IPV4V6
-    }
-  }
-  configs {
-  }
-}
+version: 77000000047
 setting {
   canonical_name: "20209"
   apns {
@@ -1546,62 +1532,6 @@ setting {
       mmsc: "http://mms.gprs.eronet.ba/mms/wapenc"
       mmsc_proxy: "10.12.3.11"
       mmsc_proxy_port: "8080"
-    }
-  }
-  configs {
-  }
-}
-setting {
-  canonical_name: "21805"
-  apns {
-    apn {
-      name: "mtelgprs"
-      value: "3g1"
-      type: DEFAULT
-      type: SUPL
-    }
-    apn {
-      name: "mtelmms"
-      value: "mtelmms"
-      type: MMS
-      mmsc: "http://mmsc.mtel.ba/mms/wapenc"
-      mmsc_proxy: "192.168.61.11"
-      mmsc_proxy_port: "80"
-    }
-  }
-  configs {
-    config {
-      key: "maxImageHeight"
-      int_value: 1944
-    }
-    config {
-      key: "maxImageWidth"
-      int_value: 2592
-    }
-    config {
-      key: "maxMessageSize"
-      int_value: 1048576
-    }
-  }
-}
-setting {
-  canonical_name: "21890"
-  apns {
-    apn {
-      name: "BHMobileInternet"
-      value: "active.bhmobile.ba"
-      type: DEFAULT
-      type: SUPL
-      protocol: IPV4V6
-    }
-    apn {
-      name: "BHMobileMMS"
-      value: "mms.bhmobile.ba"
-      type: MMS
-      mmsc: "http://mms.bhmobile.ba/servlets/mms"
-      mmsc_proxy: "195.222.56.41"
-      mmsc_proxy_port: "8080"
-      protocol: IPV4V6
     }
   }
   configs {
@@ -10925,19 +10855,6 @@ setting {
   }
 }
 setting {
-  canonical_name: "41250"
-  apns {
-    apn {
-      name: "Etisalat"
-      value: "default"
-      type: DEFAULT
-      type: SUPL
-    }
-  }
-  configs {
-  }
-}
-setting {
   canonical_name: "41303"
   apns {
     apn {
@@ -11259,19 +11176,6 @@ setting {
   apns {
     apn {
       name: "Itisaluna"
-      value: "default"
-      type: DEFAULT
-      type: SUPL
-    }
-  }
-  configs {
-  }
-}
-setting {
-  canonical_name: "41892"
-  apns {
-    apn {
-      name: "Omnnea"
       value: "default"
       type: DEFAULT
       type: SUPL
@@ -11791,19 +11695,6 @@ setting {
   apns {
     apn {
       name: "Megafon"
-      value: "default"
-      type: DEFAULT
-      type: SUPL
-    }
-  }
-  configs {
-  }
-}
-setting {
-  canonical_name: "43604"
-  apns {
-    apn {
-      name: "Babilon-M"
       value: "default"
       type: DEFAULT
       type: SUPL
@@ -13262,19 +13153,6 @@ setting {
   }
 }
 setting {
-  canonical_name: "54001"
-  apns {
-    apn {
-      name: "BREEZE"
-      value: "default"
-      type: DEFAULT
-      type: SUPL
-    }
-  }
-  configs {
-  }
-}
-setting {
   canonical_name: "54002"
   apns {
     apn {
@@ -13447,19 +13325,6 @@ setting {
   apns {
     apn {
       name: "Vini"
-      value: "default"
-      type: DEFAULT
-      type: SUPL
-    }
-  }
-  configs {
-  }
-}
-setting {
-  canonical_name: "54801"
-  apns {
-    apn {
-      name: "Telecom Cook"
       value: "default"
       type: DEFAULT
       type: SUPL
@@ -16585,78 +16450,6 @@ setting {
   }
 }
 setting {
-  canonical_name: "71606"
-  apns {
-    apn {
-      name: "Movistar INTERNET"
-      value: "movistar.pe"
-      type: DEFAULT
-      type: SUPL
-      user: "movistar@datos"
-      password: "movistar"
-      authtype: 1
-    }
-    apn {
-      name: "Movistar MMS"
-      value: "mms.movistar.pe"
-      type: MMS
-      user: "movistar@mms"
-      password: "movistar"
-      authtype: 1
-      mmsc: "http://mmsc.telefonicamovistar.com.pe:8088/mms/"
-      mmsc_proxy: "200.4.196.118"
-      mmsc_proxy_port: "8080"
-    }
-  }
-  configs {
-    config {
-      key: "carrier_certificate_string_array"
-      text_array {
-        item: "8C960CA3CBF4A9DA851774F2DE072E57B1289A9CF7D6BDA4A6B386A42BC4FFB3"
-      }
-    }
-    config {
-      key: "enableGroupMms"
-      bool_value: false
-    }
-    config {
-      key: "enabledMMS"
-      bool_value: false
-    }
-    config {
-      key: "groupChatDefaultsToMMS"
-      bool_value: false
-    }
-  }
-}
-setting {
-  canonical_name: "71610"
-  apns {
-    apn {
-      name: "CLARO DATOS"
-      value: "claro.pe"
-      type: DEFAULT
-      type: SUPL
-      user: "claro"
-      password: "claro"
-      authtype: 1
-    }
-    apn {
-      name: "CLARO MMS"
-      value: "mms.claro.pe"
-      type: MMS
-      user: "claro"
-      password: "claro"
-      authtype: 1
-      mmsc: "http://claro/servlets/mms"
-      mmsc_proxy: "192.168.231.30"
-      mmsc_proxy_port: "80"
-    }
-  }
-  configs {
-  }
-}
-setting {
   canonical_name: "71615"
   apns {
     apn {
@@ -16674,37 +16467,6 @@ setting {
       mmsc: "http://181.176.241.99:8080"
       mmsc_proxy: "10.121.144.3"
       mmsc_proxy_port: "8000"
-    }
-  }
-  configs {
-  }
-}
-setting {
-  canonical_name: "71617"
-  apns {
-    apn {
-      name: "Entel PE"
-      value: "entel.pe"
-      type: DEFAULT
-      type: DUN
-      authtype: 0
-      user_editable: false
-    }
-    apn {
-      name: "Entel MMS"
-      value: "mms.entel.pe"
-      type: MMS
-      authtype: 0
-      mmsc: "http://mms.entel.pe"
-      mmsc_proxy: "10.0.215.74"
-      mmsc_proxy_port: "8080"
-    }
-    apn {
-      name: "Entel Location"
-      value: "location.entel.pe"
-      type: SUPL
-      server: "http://location.entel.pe"
-      authtype: 0
     }
   }
   configs {
@@ -18140,19 +17902,6 @@ setting {
   }
 }
 setting {
-  canonical_name: "annatel_il"
-  apns {
-    apn {
-      name: "annatel"
-      value: "annatel"
-      type: DEFAULT
-      type: SUPL
-    }
-  }
-  configs {
-  }
-}
-setting {
   canonical_name: "arlonet_mx"
   apns {
     apn {
@@ -18179,19 +17928,6 @@ setting {
       type: SUPL
       user: "internet"
       password: "internet"
-    }
-  }
-  configs {
-  }
-}
-setting {
-  canonical_name: "bics_be"
-  apns {
-    apn {
-      name: "BICS Internet"
-      value: "bicsapn"
-      type: DEFAULT
-      type: SUPL
     }
   }
   configs {
@@ -18457,6 +18193,10 @@ setting {
       int_value: 8088
     }
     config {
+      key: "carrier_default_2g_protection_enabled_bool"
+      bool_value: true
+    }
+    config {
       key: "carrier_default_wfc_ims_enabled_bool"
       bool_value: true
     }
@@ -18519,6 +18259,10 @@ setting {
     config {
       key: "ims.sip_timer_j_millis_int"
       int_value: 32000
+    }
+    config {
+      key: "imsemergency.prefer_ims_emergency_when_voice_calls_on_cs_bool"
+      bool_value: true
     }
     config {
       key: "imsss.network_initiated_ussd_over_ims_supported_bool"
@@ -19864,20 +19608,6 @@ setting {
   }
 }
 setting {
-  canonical_name: "mtel_ch"
-  apns {
-    apn {
-      name: "mtel"
-      value: "web.mtel.ch"
-      type: DEFAULT
-      protocol: IPV4V6
-      roaming_protocol: IPV4V6
-    }
-  }
-  configs {
-  }
-}
-setting {
   canonical_name: "mtnl_in"
   apns {
     apn {
@@ -19989,32 +19719,6 @@ setting {
   }
 }
 setting {
-  canonical_name: "mtx_lu"
-  apns {
-    apn {
-      name: "internet"
-      value: "internet"
-      type: DEFAULT
-      type: SUPL
-    }
-  }
-  configs {
-  }
-}
-setting {
-  canonical_name: "natcom_ht"
-  apns {
-    apn {
-      name: "NATCOM INTERNET"
-      value: "natcom"
-      type: DEFAULT
-      type: SUPL
-    }
-  }
-  configs {
-  }
-}
-setting {
   canonical_name: "netwey_mx"
   apns {
     apn {
@@ -20114,6 +19818,10 @@ setting {
       text_array {
         item: "B67AFFCDA89E3193B1595036D7C6CDBE22BE5CA24C9F6CF93FC6B48F91D7310D:com.orange.phone,com.orange.orangeetmoi,com.orange.mysosh,com.orange.obl,com.orange.orangepro,com.orange.update"
       }
+    }
+    config {
+      key: "carrier_data_call_apn_retry_after_disconnect_long"
+      long_value: 0
     }
     config {
       key: "carrier_metered_apn_types_strings"
@@ -20455,10 +20163,6 @@ setting {
       int_value: 3000
     }
     config {
-      key: "imsvoice.oip_source_from_header_bool"
-      bool_value: true
-    }
-    config {
       key: "imsvoice.ringback_timer_millis_int"
       int_value: 180000
     }
@@ -20526,10 +20230,6 @@ setting {
         item: -85
         item: -90
       }
-    }
-    config {
-      key: "qns.mms_rat_preference_int"
-      int_value: 2
     }
     config {
       key: "qns.voice_wifi_rssi_int_array"
@@ -20684,45 +20384,6 @@ setting {
       key: "voicemail_notification_persistent_bool"
       bool_value: true
     }
-  }
-}
-setting {
-  canonical_name: "pinebelt_us"
-  apns {
-    apn {
-      name: "Pine Belt"
-      value: "ims"
-      type: IMS
-      protocol: IPV4V6
-      roaming_protocol: IPV4V6
-    }
-    apn {
-      name: "Pine Belt"
-      value: "lte.ota.pinebelt.net"
-      type: FOTA
-      protocol: IPV4V6
-      roaming_protocol: IPV4V6
-    }
-    apn {
-      name: "Pine Belt"
-      value: "lte.internet.pinebelt.net"
-      type: DEFAULT
-      type: MMS
-      type: SUPL
-      mmsc: "http://mmsc.pinebelt.net:6672/"
-      protocol: IPV4V6
-      roaming_protocol: IPV4V6
-    }
-    apn {
-      name: "Pine Belt"
-      value: "lte.tether.pinebelt.net"
-      type: DUN
-      protocol: IPV4V6
-      roaming_protocol: IPV4V6
-      user_editable: false
-    }
-  }
-  configs {
   }
 }
 setting {
@@ -21785,5 +21446,5 @@ setting {
   }
 }
 last_updated {
-  seconds: 1764767000
+  seconds: 1774443087
 }

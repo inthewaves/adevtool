@@ -1,5 +1,5 @@
 canonical_name: "telemach_hr"
-version: 75000000003
+version: 77000000004
 apns {
   apn {
     name: "Telemach Internet"
@@ -31,6 +31,10 @@ apns {
   }
 }
 configs {
+  config {
+    key: "allow_hold_in_rtt_call_bool"
+    bool_value: false
+  }
   config {
     key: "bsf.bsf_server_port_int"
     int_value: 8080
@@ -68,6 +72,10 @@ configs {
     text_array {
       item: "21901"
     }
+  }
+  config {
+    key: "ignore_rtt_mode_setting_bool"
+    bool_value: true
   }
   config {
     key: "imsemergency.emergency_over_ims_supported_rats_int_array"
@@ -171,6 +179,18 @@ configs {
     }
   }
   config {
+    key: "rtt_downgrade_supported_bool"
+    bool_value: true
+  }
+  config {
+    key: "rtt_supported_bool"
+    bool_value: true
+  }
+  config {
+    key: "rtt_supported_while_roaming_bool"
+    bool_value: true
+  }
+  config {
     key: "spn_display_rule_use_roaming_from_service_state_bool"
     bool_value: true
   }
@@ -180,5 +200,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1764767000
+  seconds: 1770819167
 }

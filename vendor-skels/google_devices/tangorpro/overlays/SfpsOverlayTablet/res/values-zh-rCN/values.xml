@@ -3,9 +3,9 @@
     <array name="fingerprint_acquired_vendor">
         <item>请调整手指位置。您已经用指纹的这一区域触摸过传感器。</item>
     </array>
-    <string name="fingerprint_unlock_set_unlock_password">密码 • 指纹</string>
+    <string name="fingerprint_unlock_set_unlock_password">混合密码 • 指纹</string>
     <string name="fingerprint_unlock_set_unlock_pattern">解锁图案 • 指纹</string>
-    <string name="fingerprint_unlock_set_unlock_pin">PIN 码 • 指纹</string>
+    <string name="fingerprint_unlock_set_unlock_pin">数字密码 • 指纹</string>
     <string name="fingerprint_unlock_skip_fingerprint">继续，不设置指纹解锁</string>
     <string name="fingerprint_unlock_title">借助指纹解锁功能，您可以通过指纹解锁平板电脑。为安全起见，您必须设置备用屏幕锁定方式，才能使用该选项。</string>
     <string name="frr_notification_reset_fingerprint_description">这样做有时能解决问题</string>

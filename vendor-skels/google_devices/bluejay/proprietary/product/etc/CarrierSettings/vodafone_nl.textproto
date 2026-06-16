@@ -1,5 +1,5 @@
 canonical_name: "vodafone_nl"
-version: 75000000026
+version: 77000000026
 apns {
   apn {
     name: "Internet"
@@ -366,5 +366,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1765368067
+  seconds: 1765981758
 }

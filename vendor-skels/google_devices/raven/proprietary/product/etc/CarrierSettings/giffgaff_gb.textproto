@@ -1,5 +1,5 @@
 canonical_name: "giffgaff_gb"
-version: 75000000006
+version: 77000000007
 apns {
   apn {
     name: "giffgaff"
@@ -90,9 +90,9 @@ configs {
   }
   config {
     key: "wfc_spn_format_idx_int"
-    int_value: 9
+    int_value: 1
   }
 }
 last_updated {
-  seconds: 1730898236
+  seconds: 1774646529
 }

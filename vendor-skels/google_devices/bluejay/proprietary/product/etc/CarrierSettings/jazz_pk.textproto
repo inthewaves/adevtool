@@ -1,5 +1,5 @@
 canonical_name: "jazz_pk"
-version: 75000000002
+version: 77000000004
 apns {
   apn {
     name: "Mobilink WAP GPRS"
@@ -40,5 +40,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1763549938
+  seconds: 1770819066
 }

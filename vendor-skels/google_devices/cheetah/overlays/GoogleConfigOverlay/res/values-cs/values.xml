@@ -4,8 +4,9 @@
         <item>Platnost certifikátu vypršela</item>
         <item>Senzor je dočasně deaktivován</item>
         <item>Chyba kalibrace</item>
-        <item>Odemknutí obličejem je nedostupné. Telefon je příliš zahřátý.</item>
+        <item>Odemknutí obličejem není k dispozici. Telefon je příliš zahřátý.</item>
         <item>Odemknutí obličejem je třeba nastavit znovu</item>
+        <item>Upravte osvětlení a nehýbejte se</item>
     </array>
     <string name="biometric_app_setting_name">Použít obličej nebo otisk prstu</string>
     <string name="biometric_dialog_default_subtitle">Pokud chcete pokračovat, použijte k ověření obličej nebo otisk prstu</string>

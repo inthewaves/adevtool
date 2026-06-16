@@ -1,5 +1,5 @@
 canonical_name: "telemach_si"
-version: 75000000006
+version: 77000000007
 apns {
   apn {
     name: "Internet"
@@ -86,6 +86,10 @@ configs {
     }
   }
   config {
+    key: "imsvoice.conference_subscribe_type_int"
+    int_value: 0
+  }
+  config {
     key: "imsvoice.evs_payload_description_bundle"
     bundle {
       config {
@@ -112,5 +116,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1749144090
+  seconds: 1773841033
 }

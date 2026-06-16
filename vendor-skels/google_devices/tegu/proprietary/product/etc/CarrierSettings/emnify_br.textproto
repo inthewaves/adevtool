@@ -1,0 +1,21 @@
+canonical_name: "emnify_br"
+version: 77000000001
+apns {
+  apn {
+    name: "emnify"
+    value: "em"
+    type: DEFAULT
+    type: DUN
+    type: IA
+  }
+}
+configs {
+  config {
+    key: "read_only_apn_types_string_array"
+    text_array {
+    }
+  }
+}
+last_updated {
+  seconds: 1769617063
+}

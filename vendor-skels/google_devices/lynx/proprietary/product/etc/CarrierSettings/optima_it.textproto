@@ -1,5 +1,5 @@
 canonical_name: "optima_it"
-version: 75000000002
+version: 77000000002
 apns {
   apn {
     name: "Optima"
@@ -314,5 +314,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1765368096
+  seconds: 1765981799
 }

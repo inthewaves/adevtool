@@ -10,6 +10,7 @@ GooglePermissionControllerOverlay
 GooglePermissionControllerSafetyCenterOverlay
 ManagedProvisioningPixelOverlay
 NetworkStackOverlay
+NfcOverlayFrankelGsi
 PearlOverlay2024
 PixelBatteryHealthOverlay
 PixelBatteryLotXOverlay

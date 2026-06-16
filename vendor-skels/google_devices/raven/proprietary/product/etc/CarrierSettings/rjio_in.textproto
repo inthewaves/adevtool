@@ -1,5 +1,5 @@
 canonical_name: "rjio_in"
-version: 75000000052
+version: 77000000052
 apns {
   apn {
     name: "Jio 4G"

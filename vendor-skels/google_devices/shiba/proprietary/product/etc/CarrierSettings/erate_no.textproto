@@ -1,5 +1,5 @@
 canonical_name: "erate_no"
-version: 75000000007
+version: 77000000009
 apns {
   apn {
     name: "eRate Internet"
@@ -132,6 +132,11 @@ configs {
     }
   }
   config {
+    key: "read_only_apn_types_string_array"
+    text_array {
+    }
+  }
+  config {
     key: "rtt_downgrade_supported_bool"
     bool_value: true
   }
@@ -145,5 +150,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1746619443
+  seconds: 1770819117
 }

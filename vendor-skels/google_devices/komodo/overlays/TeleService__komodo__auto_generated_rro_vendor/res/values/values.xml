@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="config_countries_dynamic_routing_emergency_enabled">
+        <item>th</item>
+        <item>rs</item>
         <item>mk</item>
         <item>al</item>
         <item>cz</item>
@@ -9,7 +11,6 @@
         <item>me</item>
         <item>in</item>
         <item>il</item>
-        <item>tw</item>
         <item>sg</item>
         <item>ch</item>
         <item>sk</item>
@@ -18,6 +19,11 @@
         <item>ba</item>
     </array>
     <array name="config_dynamic_routing_emergency_numbers">
+        <item>th,00,191,199,1669</item>
+        <item>th,03,191,199,1669</item>
+        <item>th,04,191,199,1669</item>
+        <item>th,05,191,199,1669</item>
+        <item>rs,,193,194</item>
         <item>mk,,192,193,194,195,196</item>
         <item>al,,125,126,127,128,129</item>
         <item>cz,01,156</item>
@@ -27,7 +33,6 @@
         <item>me,,122,123,124</item>
         <item>in,,101,102,103,108</item>
         <item>il,,101,102</item>
-        <item>tw,,110,119</item>
         <item>sg,01,995</item>
         <item>sg,02,995</item>
         <item>sg,03,995</item>

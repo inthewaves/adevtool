@@ -1,5 +1,5 @@
 canonical_name: "gomobile_mt"
-version: 75000000002
+version: 77000000005
 apns {
   apn {
     name: "GO"
@@ -19,6 +19,14 @@ apns {
   }
 }
 configs {
+  config {
+    key: "carrier_default_wfc_ims_enabled_bool"
+    bool_value: true
+  }
+  config {
+    key: "carrier_default_wfc_ims_mode_int"
+    int_value: 1
+  }
   config {
     key: "carrier_volte_available_bool"
     bool_value: true
@@ -43,5 +51,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1755679319
+  seconds: 1770819080
 }

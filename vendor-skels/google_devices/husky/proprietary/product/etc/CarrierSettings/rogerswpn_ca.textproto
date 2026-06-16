@@ -1,5 +1,5 @@
 canonical_name: "rogerswpn_ca"
-version: 75000000010
+version: 77000000010
 apns {
   apn {
     name: "Rogers Internet WPN"
@@ -358,5 +358,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1769617597
+  seconds: 1772035386
 }

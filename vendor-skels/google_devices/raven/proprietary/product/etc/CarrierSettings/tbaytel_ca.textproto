@@ -1,5 +1,5 @@
 canonical_name: "tbaytel_ca"
-version: 75000000529
+version: 77000000529
 apns {
   apn {
     name: "Tbaytel Tethering"
@@ -442,5 +442,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1769617532
+  seconds: 1772035340
 }

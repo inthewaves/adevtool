@@ -1,5 +1,5 @@
 canonical_name: "tstar_tw"
-version: 75000000519
+version: 77000000520
 apns {
   apn {
     name: "\345\217\260\347\201\243\345\244\247\345\223\245\345\244\247TS (Internet)"
@@ -36,6 +36,10 @@ configs {
   config {
     key: "allow_hold_call_during_emergency_bool"
     bool_value: false
+  }
+  config {
+    key: "carrier_default_2g_protection_enabled_bool"
+    bool_value: true
   }
   config {
     key: "carrier_supports_ss_over_ut_bool"
@@ -198,5 +202,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1755679306
+  seconds: 1769616980
 }

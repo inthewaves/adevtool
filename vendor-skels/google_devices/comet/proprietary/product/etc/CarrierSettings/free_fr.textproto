@@ -1,5 +1,5 @@
 canonical_name: "free_fr"
-version: 75000000013
+version: 77000000017
 apns {
   apn {
     name: "Free"
@@ -96,6 +96,28 @@ configs {
   config {
     key: "ims.ipv6_sip_mtu_size_cellular_int"
     int_value: 1280
+  }
+  config {
+    key: "imsemergency.emergency_over_ims_roaming_supported_3gpp_network_types_int_array"
+    int_array {
+      item: 6
+      item: 3
+    }
+  }
+  config {
+    key: "imsemergency.emergency_over_ims_supported_3gpp_network_types_int_array"
+    int_array {
+      item: 6
+      item: 3
+    }
+  }
+  config {
+    key: "imsemergency.emergency_over_ims_supported_rats_int_array"
+    int_array {
+      item: 6
+      item: 3
+      item: 5
+    }
   }
   config {
     key: "imsss.network_initiated_ussd_over_ims_supported_bool"
@@ -227,10 +249,6 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "vonr_enabled_bool"
     bool_value: true
   }
@@ -240,5 +258,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1756311905
+  seconds: 1774974064
 }

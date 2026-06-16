@@ -1,5 +1,5 @@
 require board=mustang
 
-require version-bootloader=deepspace-17.1-15016913
-require version-baseband=g5400i-251201-260127-B-14784805
+require version-bootloader=deepspace-17.2-15372054
+require version-baseband=g5400i-260317-260429-B-15308590
 require partition-exists=vendor_kernel_boot

@@ -1,5 +1,5 @@
 canonical_name: "ooredoo_qa"
-version: 75000000005
+version: 77000000006
 apns {
   apn {
     name: "Internet"
@@ -96,11 +96,7 @@ configs {
       }
     }
   }
-  config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
 }
 last_updated {
-  seconds: 1709519164
+  seconds: 1767187386
 }

@@ -1,5 +1,5 @@
 canonical_name: "no_sim"
-version: 75000000007
+version: 77000000009
 configs {
   config {
     key: "5g_nr_ssrsrp_thresholds_int_array"
@@ -31,6 +31,10 @@ configs {
   }
   config {
     key: "carrier_promote_wfc_on_call_fail_bool"
+    bool_value: true
+  }
+  config {
+    key: "carrier_supports_ss_over_ut_bool"
     bool_value: true
   }
   config {
@@ -163,7 +167,6 @@ configs {
     key: "imsss.ut_terminal_based_services_int_array"
     int_array {
       item: 0
-      item: 10
     }
   }
   config {
@@ -491,6 +494,10 @@ configs {
     bool_value: false
   }
   config {
+    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
+    bool_value: true
+  }
+  config {
     key: "world_mode_enabled_bool"
     bool_value: false
   }
@@ -502,5 +509,5 @@ vendor_configs {
   }
 }
 last_updated {
-  seconds: 1762942401
+  seconds: 1767800643
 }

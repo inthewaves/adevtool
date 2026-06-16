@@ -1,5 +1,5 @@
 canonical_name: "softbank_jp"
-version: 75000000003
+version: 77000000005
 apns {
   apn {
     name: "IMS"
@@ -16,7 +16,6 @@ apns {
     type: DEFAULT
     type: MMS
     type: SUPL
-    type: IA
     type: HIPRI
     user: "ym"
     password: "ym"
@@ -44,7 +43,6 @@ apns {
     value: "cmn.mgx"
     type: DEFAULT
     type: SUPL
-    type: IA
     user: "cmn@mgx"
     password: "mgx"
     authtype: 1
@@ -148,6 +146,10 @@ configs {
     bool_value: false
   }
   config {
+    key: "carrier_default_2g_protection_enabled_bool"
+    bool_value: true
+  }
+  config {
     key: "carrier_force_disable_etws_cmas_test_bool"
     bool_value: true
   }
@@ -225,7 +227,7 @@ configs {
   }
   config {
     key: "gps.lpp_profile"
-    text_value: "0"
+    text_value: "3"
   }
   config {
     key: "gps.supl_ver"
@@ -591,5 +593,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1759899421
+  seconds: 1776868038
 }

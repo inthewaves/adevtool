@@ -1,5 +1,5 @@
 canonical_name: "gci_us"
-version: 75000000007
+version: 77000000008
 apns {
   apn {
     name: "GCI WEB"
@@ -128,11 +128,7 @@ configs {
     key: "rtt_supported_bool"
     bool_value: true
   }
-  config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
 }
 last_updated {
-  seconds: 1731496820
+  seconds: 1767187386
 }

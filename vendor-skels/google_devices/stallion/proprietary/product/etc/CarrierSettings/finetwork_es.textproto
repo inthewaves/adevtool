@@ -1,5 +1,5 @@
 canonical_name: "finetwork_es"
-version: 75000000001
+version: 77000000002
 apns {
   apn {
     name: "FINETWORK_DATA"
@@ -30,6 +30,10 @@ apns {
   }
 }
 configs {
+  config {
+    key: "allow_hold_call_during_emergency_bool"
+    bool_value: false
+  }
   config {
     key: "carrier_volte_available_bool"
     bool_value: true
@@ -65,5 +69,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1745372883
+  seconds: 1772035432
 }

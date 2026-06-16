@@ -1,5 +1,5 @@
 canonical_name: "coppervalley_us"
-version: 75000000005
+version: 77000000006
 apns {
   apn {
     name: "CVT"
@@ -73,11 +73,7 @@ configs {
     key: "imsvoice.include_caller_id_service_codes_in_sip_invite_bool"
     bool_value: true
   }
-  config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
 }
 last_updated {
-  seconds: 1706100394
+  seconds: 1767187381
 }

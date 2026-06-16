@@ -6,6 +6,7 @@
         <item>Eroare de calibrare</item>
         <item>Deblocarea facială nu este disponibilă. Telefonul este prea fierbinte.</item>
         <item>Este necesară reconfigurarea deblocării faciale</item>
+        <item>Ajustează luminozitatea și ține dispozitivul nemișcat</item>
     </array>
     <string name="biometric_app_setting_name">Folosește fața sau amprenta</string>
     <string name="biometric_dialog_default_subtitle">Folosește fața sau amprenta pentru a continua</string>

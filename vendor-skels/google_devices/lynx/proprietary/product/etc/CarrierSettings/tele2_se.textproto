@@ -1,5 +1,5 @@
 canonical_name: "tele2_se"
-version: 75000000017
+version: 77000000018
 apns {
   apn {
     name: "Tele2 Internet"
@@ -89,6 +89,10 @@ configs {
   config {
     key: "ims.sip_timer_f_millis_int"
     int_value: 32000
+  }
+  config {
+    key: "imsss.ut_requires_ims_registration_bool"
+    bool_value: true
   }
   config {
     key: "imsss.ut_server_based_services_int_array"
@@ -199,11 +203,11 @@ configs {
   }
   config {
     key: "iwlan.child_sa_rekey_hard_timer_sec_int"
-    int_value: 2100
+    int_value: 7200
   }
   config {
     key: "iwlan.child_sa_rekey_soft_timer_sec_int"
-    int_value: 1500
+    int_value: 7140
   }
   config {
     key: "iwlan.child_session_aes_cbc_key_size_int_array"
@@ -221,11 +225,11 @@ configs {
   }
   config {
     key: "iwlan.ike_rekey_hard_timer_in_sec"
-    int_value: 3600
+    int_value: 86400
   }
   config {
     key: "iwlan.ike_rekey_soft_timer_sec_int"
-    int_value: 3000
+    int_value: 86340
   }
   config {
     key: "iwlan.ike_remote_id_type_int"
@@ -286,5 +290,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1764155425
+  seconds: 1771422474
 }

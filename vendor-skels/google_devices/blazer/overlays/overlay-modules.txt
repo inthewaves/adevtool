@@ -11,6 +11,7 @@ GooglePermissionControllerOverlay
 GooglePermissionControllerSafetyCenterOverlay
 ManagedProvisioningPixelOverlay
 NetworkStackOverlay
+NfcOverlayBlazerGsi
 PearlOverlay2024
 PixelBatteryHealthOverlay
 PixelBatteryLotXOverlay

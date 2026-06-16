@@ -1,5 +1,5 @@
 canonical_name: "vodafone_pt"
-version: 75000000015
+version: 77000000016
 apns {
   apn {
     name: "Vodafone PT"
@@ -201,14 +201,10 @@ configs {
     int_value: 5
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "volte_replacement_rat_int"
     int_value: 3
   }
 }
 last_updated {
-  seconds: 1765368123
+  seconds: 1767187386
 }

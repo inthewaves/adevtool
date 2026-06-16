@@ -1,5 +1,5 @@
 canonical_name: "ee_gb"
-version: 75000000004
+version: 77000000005
 apns {
   apn {
     name: "IMS"
@@ -166,6 +166,10 @@ configs {
       item: 3
       item: 5
     }
+  }
+  config {
+    key: "imsemergency.prefer_ims_emergency_when_voice_calls_on_cs_bool"
+    bool_value: true
   }
   config {
     key: "imsss.network_initiated_ussd_over_ims_supported_bool"
@@ -348,5 +352,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1759305496
+  seconds: 1768403349
 }

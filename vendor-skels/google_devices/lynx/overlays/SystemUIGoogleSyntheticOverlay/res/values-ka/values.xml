@@ -2,5 +2,5 @@
 <resources>
     <string name="keyguard_indication_charging_time_charge_limit">%2$s • დამუხტვის დასრულების დრო: %1$s</string>
     <string name="keyguard_indication_charging_time_charge_limit_v1">%2$s • დატენის დასრულებამდე დარჩენილი დრო: %1$s</string>
-    <string name="keyguard_indication_charging_time_reach_charge_limit">%1$s • დატენვა დასრულებულია</string>
+    <string name="keyguard_indication_charging_time_reach_charge_limit">%1$s • დატენა დასრულებულია</string>
 </resources>

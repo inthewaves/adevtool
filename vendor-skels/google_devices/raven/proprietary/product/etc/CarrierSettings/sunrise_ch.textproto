@@ -1,5 +1,5 @@
 canonical_name: "sunrise_ch"
-version: 75000000589
+version: 77000000589
 apns {
   apn {
     name: "IMS"

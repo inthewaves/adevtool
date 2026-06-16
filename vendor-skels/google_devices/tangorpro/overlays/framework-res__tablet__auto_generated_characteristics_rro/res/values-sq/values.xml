@@ -12,7 +12,7 @@
     <string name="default_audio_route_name">Tablet</string>
     <string name="enable_explore_by_touch_warning_message">"%1$s kërkon të aktivizojë funksionin \"Eksploro me prekje\". Kur aktivizohet \"Eksploro me prekje\", mund të dëgjosh ose të shohësh përshkrime se çfarë ka nën gishtin tënd ose të kryesh gjeste për të bashkëvepruar me tabletin."</string>
     <string name="global_actions">Opsionet e tabletit</string>
-    <string name="kg_failed_attempts_almost_at_login">"E ke vizatuar gabimisht motivin tënd të shkyçjes %1$d herë. Pas %2$d tentativave të tjera të pasuksesshme do të të kërkohet ta shkyçësh tabletin duke përdorur një llogari mail-i.
+    <string name="kg_failed_attempts_almost_at_login">"Ke vizatuar %1$d herë pa sukses motivin tënd. Pas %2$d tentativave të tjera të pasuksesshme, do të të duhet ta shkyçësh tabletin duke përdorur një llogari email-i.
 
  Provo sërish për %3$d sekonda."</string>
     <string name="kg_failed_attempts_almost_at_wipe">Ke tentuar %1$d herë pa sukses për ta shkyçur tabletin tënd. Pas %2$d tentativave të tjera të pasuksesshme, tableti do të rivendoset në gjendje fabrike dhe të gjitha të dhënat e përdoruesit do të humbasin.</string>

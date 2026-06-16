@@ -1,5 +1,5 @@
 canonical_name: "telia_lt"
-version: 75000000022
+version: 77000000023
 apns {
   apn {
     name: "Telia MMS"
@@ -207,14 +207,10 @@ configs {
     bool_value: false
   }
   config {
-    key: "qns.support_wfc_recovery_bool"
-    bool_value: false
-  }
-  config {
     key: "wfc_spn_format_idx_int"
     int_value: 1
   }
 }
 last_updated {
-  seconds: 1765368067
+  seconds: 1773841049
 }

@@ -1,5 +1,5 @@
 canonical_name: "a1_hr"
-version: 75000000007
+version: 77000000010
 apns {
   apn {
     name: "Broadband"
@@ -48,6 +48,10 @@ configs {
     int_value: 1
   }
   config {
+    key: "carrier_default_wfc_ims_roaming_mode_int"
+    int_value: 1
+  }
+  config {
     key: "carrier_supports_ss_over_ut_bool"
     bool_value: true
   }
@@ -57,6 +61,10 @@ configs {
   }
   config {
     key: "carrier_wfc_ims_available_bool"
+    bool_value: true
+  }
+  config {
+    key: "ignore_rtt_mode_setting_bool"
     bool_value: true
   }
   config {
@@ -136,6 +144,16 @@ configs {
     }
   }
   config {
+    key: "iwlan_handover_policy_string_array"
+    text_array {
+      item: "source=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN|UNKNOWN, target=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN, type=disallowed, capabilities=EIMS|MMS|XCAP|CBS"
+      item: "source=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN|UNKNOWN, target=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN, roaming=true, type=disallowed, capabilities=IMS"
+      item: "source=IWLAN|UNKNOWN, target=GERAN|UTRAN, type=disallowed, capabilities=IMS"
+      item: "source=GERAN|UTRAN, target=IWLAN, type=disallowed, capabilities=IMS"
+      item: "source=EUTRAN|NGRAN|IWLAN, target=EUTRAN|NGRAN|IWLAN, type=allowed, capabilities=IMS"
+    }
+  }
+  config {
     key: "mmi_two_digit_number_pattern_string_array"
     text_array {
       item: "92"
@@ -146,7 +164,15 @@ configs {
     }
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
+    key: "rtt_downgrade_supported_bool"
+    bool_value: true
+  }
+  config {
+    key: "rtt_supported_bool"
+    bool_value: true
+  }
+  config {
+    key: "rtt_supported_while_roaming_bool"
     bool_value: true
   }
   config {
@@ -155,5 +181,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1752617319
+  seconds: 1770819129
 }

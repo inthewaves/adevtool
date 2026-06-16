@@ -1,0 +1,28 @@
+canonical_name: "esimgotravel_zz"
+version: 77000000001
+apns {
+  apn {
+    name: "Internet"
+    value: "data.esim"
+    type: DEFAULT
+    type: SUPL
+    type: IA
+    type: DUN
+    protocol: IPV4V6
+    roaming_protocol: IPV4V6
+    user_editable: false
+  }
+}
+configs {
+  config {
+    key: "carrier_default_data_roaming_enabled_bool"
+    bool_value: true
+  }
+  config {
+    key: "carrier_volte_available_bool"
+    bool_value: false
+  }
+}
+last_updated {
+  seconds: 1773236731
+}

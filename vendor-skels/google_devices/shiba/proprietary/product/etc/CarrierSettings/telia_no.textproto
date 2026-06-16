@@ -1,5 +1,5 @@
 canonical_name: "telia_no"
-version: 75000000011
+version: 77000000013
 apns {
   apn {
     name: "Telia Internet"
@@ -45,6 +45,10 @@ configs {
   }
   config {
     key: "carrier_default_wfc_ims_mode_int"
+    int_value: 1
+  }
+  config {
+    key: "carrier_default_wfc_ims_roaming_mode_int"
     int_value: 1
   }
   config {
@@ -254,10 +258,6 @@ configs {
     bool_value: false
   }
   config {
-    key: "qns.support_wfc_recovery_bool"
-    bool_value: false
-  }
-  config {
     key: "rtt_downgrade_supported_bool"
     bool_value: true
   }
@@ -279,5 +279,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1765368105
+  seconds: 1773841108
 }

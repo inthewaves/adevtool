@@ -1,5 +1,5 @@
 canonical_name: "telenor_se"
-version: 75000000021
+version: 77000000021
 apns {
   apn {
     name: "Telenor MMS"

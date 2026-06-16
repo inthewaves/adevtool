@@ -15,6 +15,7 @@ LargeScreenConfigOverlay
 LargeScreenSettingsProviderOverlay
 ManagedProvisioningPixelOverlay
 NetworkStackOverlay
+NfcOverlayFelixGsi
 PixelBatteryHealthOverlay
 PixelConfigOverlay2018
 PixelConfigOverlay2021

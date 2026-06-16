@@ -1,5 +1,5 @@
 canonical_name: "spectrum_us"
-version: 75000000019
+version: 77000000020
 apns {
   apn {
     name: "Spectrum"
@@ -1222,10 +1222,6 @@ configs {
     text_value: "Profile"
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: false
-  }
-  config {
     key: "video_calls_can_be_hd_audio"
     bool_value: false
   }
@@ -1265,5 +1261,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1762942384
+  seconds: 1767187381
 }

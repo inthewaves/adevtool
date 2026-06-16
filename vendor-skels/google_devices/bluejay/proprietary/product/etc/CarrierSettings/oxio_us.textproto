@@ -1,5 +1,5 @@
 canonical_name: "oxio_us"
-version: 75000000001
+version: 77000000003
 apns {
   apn {
     name: "Internet"
@@ -27,5 +27,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1741179687
+  seconds: 1770819066
 }

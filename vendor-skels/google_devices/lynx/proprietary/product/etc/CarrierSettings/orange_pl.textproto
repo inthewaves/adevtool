@@ -1,5 +1,5 @@
 canonical_name: "orange_pl"
-version: 75000000017
+version: 77000000019
 apns {
   apn {
     name: "Orange Internet"
@@ -43,6 +43,10 @@ apns {
   }
 }
 configs {
+  config {
+    key: "allow_hold_in_rtt_call_bool"
+    bool_value: false
+  }
   config {
     key: "call_barring_visibility_bool"
     bool_value: true
@@ -97,6 +101,14 @@ configs {
   config {
     key: "ignore_rtt_mode_setting_bool"
     bool_value: true
+  }
+  config {
+    key: "ims.ipv4_sip_mtu_size_cellular_int"
+    int_value: 1300
+  }
+  config {
+    key: "ims.ipv6_sip_mtu_size_cellular_int"
+    int_value: 1300
   }
   config {
     key: "ims.request_uri_type_int"
@@ -261,8 +273,36 @@ configs {
     }
   }
   config {
+    key: "qns.idle_wifi_rssi_int_array"
+    int_array {
+      item: -65
+      item: -75
+    }
+  }
+  config {
+    key: "qns.idle_wifi_rssi_without_cellular_int_array"
+    int_array {
+      item: -85
+      item: -90
+    }
+  }
+  config {
     key: "qns.mms_rat_preference_int"
     int_value: 2
+  }
+  config {
+    key: "qns.voice_wifi_rssi_int_array"
+    int_array {
+      item: -65
+      item: -75
+    }
+  }
+  config {
+    key: "qns.voice_wifi_rssi_without_cellular_int_array"
+    int_array {
+      item: -85
+      item: -90
+    }
   }
   config {
     key: "rtt_downgrade_supported_bool"
@@ -286,5 +326,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1739349324
+  seconds: 1770819105
 }

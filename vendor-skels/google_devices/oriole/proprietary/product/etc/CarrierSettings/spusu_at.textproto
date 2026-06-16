@@ -1,5 +1,5 @@
 canonical_name: "spusu_at"
-version: 75000000005
+version: 77000000008
 apns {
   apn {
     name: "spusu"
@@ -56,16 +56,10 @@ configs {
     text_value: "epdg.epc.mnc017.mcc232.pub.3gppnetwork.org"
   }
   config {
-    key: "iwlan_handover_policy_string_array"
-    text_array {
-      item: "source=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN|UNKNOWN, target=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN, type=disallowed, capabilities=IMS|EIMS|MMS|XCAP|CBS"
-    }
-  }
-  config {
     key: "wfc_spn_format_idx_int"
     int_value: 1
   }
 }
 last_updated {
-  seconds: 1747202388
+  seconds: 1773236670
 }

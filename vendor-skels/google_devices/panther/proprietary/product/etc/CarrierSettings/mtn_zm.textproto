@@ -1,5 +1,5 @@
 canonical_name: "mtn_zm"
-version: 75000000002
+version: 77000000002
 apns {
   apn {
     name: "MTN"
@@ -26,5 +26,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1770826067
+  seconds: 1769617002
 }

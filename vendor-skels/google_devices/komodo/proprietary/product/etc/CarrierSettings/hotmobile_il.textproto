@@ -1,5 +1,5 @@
 canonical_name: "hotmobile_il"
-version: 75000000006
+version: 77000000007
 apns {
   apn {
     name: "HOT mobile PC"
@@ -140,14 +140,10 @@ configs {
     text_value: "il"
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "wfc_spn_format_idx_int"
     int_value: 1
   }
 }
 last_updated {
-  seconds: 1756276514
+  seconds: 1767187386
 }

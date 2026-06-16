@@ -1,5 +1,5 @@
 canonical_name: "airtel_in"
-version: 75000000012
+version: 77000000013
 apns {
   apn {
     name: "Internet"
@@ -220,7 +220,7 @@ configs {
   }
   config {
     key: "imsvoice.session_expires_timer_sec_int"
-    int_value: 3600
+    int_value: 7200
   }
   config {
     key: "imswfc.emergency_call_over_emergency_pdn_bool"
@@ -346,5 +346,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1762360192
+  seconds: 1769617063
 }

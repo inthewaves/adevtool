@@ -1,5 +1,5 @@
 canonical_name: "plus_pl"
-version: 75000000013
+version: 77000000015
 apns {
   apn {
     name: "Plus Internet"
@@ -26,6 +26,10 @@ apns {
   }
 }
 configs {
+  config {
+    key: "allow_hold_in_rtt_call_bool"
+    bool_value: false
+  }
   config {
     key: "carrier_allow_transfer_ims_call_bool"
     bool_value: true
@@ -80,7 +84,6 @@ configs {
   config {
     key: "imsemergency.emergency_over_ims_supported_rats_int_array"
     int_array {
-      item: 3
     }
   }
   config {
@@ -229,5 +232,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1753205200
+  seconds: 1770819117
 }

@@ -1,5 +1,5 @@
 canonical_name: "gamma_gb"
-version: 75000000007
+version: 77000000011
 apns {
   apn {
     name: "GAMMA"
@@ -14,7 +14,6 @@ apns {
     name: "Gamma MMS"
     value: "three.co.uk"
     type: MMS
-    type: XCAP
     mmsc: "http://mms.um.three.co.uk:10021/mmsc"
     mmsc_proxy: "mms.three.co.uk"
     mmsc_proxy_port: "8799"
@@ -27,6 +26,16 @@ apns {
     type: IMS
     bearer_bitmask: "14|18|20"
     protocol: IPV6
+    roaming_protocol: IPV4V6
+    mtu: 1500
+    user_visible: false
+  }
+  apn {
+    name: "Gamma XCAP"
+    value: "three.co.uk"
+    type: XCAP
+    bearer_bitmask: "14|20"
+    protocol: IPV4V6
     roaming_protocol: IPV4V6
     mtu: 1500
     user_visible: false
@@ -308,10 +317,6 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "volte_replacement_rat_int"
     int_value: 3
   }
@@ -331,5 +336,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1721185512
+  seconds: 1773236731
 }

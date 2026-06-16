@@ -6,6 +6,7 @@
         <item>Calibration error</item>
         <item>Face unlock unavailable. Phone is too hot.</item>
         <item>Face unlock needs to be set up again</item>
+        <item>Adjust lighting and hold steady</item>
     </array>
     <string name="biometric_app_setting_name">Use face or fingerprint</string>
     <string name="biometric_dialog_default_subtitle">Use your face or fingerprint to continue</string>

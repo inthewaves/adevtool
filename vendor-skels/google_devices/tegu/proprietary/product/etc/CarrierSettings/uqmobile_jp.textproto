@@ -1,5 +1,5 @@
 canonical_name: "uqmobile_jp"
-version: 75000000010
+version: 77000000012
 apns {
   apn {
     name: "UQ mobile"
@@ -108,6 +108,10 @@ configs {
       item: "891ABE3F0A0D794AD46200DC2374AFF61AFA82711C360EE0CB49C3E6BB2BA006:jp.auone.wallet"
       item: "1001568BB4A4E65F68C8B0F2E5C9EBC97FF719898F39E421DAF29A8DACEAAF1B:com.kddi.android.cmail"
     }
+  }
+  config {
+    key: "carrier_default_2g_protection_enabled_bool"
+    bool_value: true
   }
   config {
     key: "carrier_name_override_bool"
@@ -474,10 +478,6 @@ configs {
     bool_value: true
   }
   config {
-    key: "satellite_information_redirect_url_string"
-    text_value: "https://www.au.com/mobile/service/starlink-direct/"
-  }
-  config {
     key: "show_4g_for_lte_data_icon_bool"
     bool_value: true
   }
@@ -500,5 +500,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1761090361
+  seconds: 1773236739
 }

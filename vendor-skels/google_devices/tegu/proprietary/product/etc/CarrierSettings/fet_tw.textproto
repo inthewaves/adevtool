@@ -1,5 +1,5 @@
 canonical_name: "fet_tw"
-version: 75000000006
+version: 77000000008
 apns {
   apn {
     name: "\351\201\240\345\202\263\351\233\273\344\277\241(Far EasTone) (Internet)"
@@ -50,6 +50,10 @@ configs {
   config {
     key: "bsf.bsf_server_port_int"
     int_value: 8090
+  }
+  config {
+    key: "carrier_default_2g_protection_enabled_bool"
+    bool_value: true
   }
   config {
     key: "carrier_default_wfc_ims_enabled_bool"
@@ -114,6 +118,10 @@ configs {
   config {
     key: "ims.sip_timer_j_millis_int"
     int_value: 32000
+  }
+  config {
+    key: "imsemergency.prefer_ims_emergency_when_voice_calls_on_cs_bool"
+    bool_value: true
   }
   config {
     key: "imsss.network_initiated_ussd_over_ims_supported_bool"
@@ -298,5 +306,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1755679356
+  seconds: 1769617063
 }

@@ -1,5 +1,5 @@
 canonical_name: "vodafone_ie"
-version: 75000000017
+version: 77000000018
 apns {
   apn {
     name: "Internet"
@@ -262,11 +262,7 @@ configs {
     key: "smsToMmsTextThreshold"
     int_value: 5
   }
-  config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
 }
 last_updated {
-  seconds: 1765368123
+  seconds: 1767187386
 }

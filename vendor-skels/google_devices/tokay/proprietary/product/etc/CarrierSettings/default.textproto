@@ -1,5 +1,5 @@
 canonical_name: "default"
-version: 75000000023
+version: 77000000024
 configs {
   config {
     key: "5g_nr_ssrsrp_thresholds_int_array"
@@ -541,6 +541,10 @@ configs {
     bool_value: false
   }
   config {
+    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
+    bool_value: true
+  }
+  config {
     key: "world_mode_enabled_bool"
     bool_value: false
   }
@@ -552,5 +556,5 @@ vendor_configs {
   }
 }
 last_updated {
-  seconds: 1762942401
+  seconds: 1767187386
 }

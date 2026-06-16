@@ -2,7 +2,7 @@
 <resources>
     <string name="charge_limit_indexing_keywords">įkrovimas, apribojimas, įkrovimo optimizavimas, įkrovimo apribojimas</string>
     <string name="charging_optimization_entry_summary_charge_limit">Apriboti iki %1$s</string>
-    <string name="charging_optimization_footer_message_charge_limit">Kad akumuliatorius veiktų ilgiau, telefono akumuliatorius bus įkrautas tik iki %1$s. Telefonas bus įkraunamas iki %2$s kartą per vieną–dvi savaites, kad būtų užtikrintas akumuliatoriaus lygio ataskaitų teikimo tikslumas.</string>
+    <string name="charging_optimization_footer_message_charging_limit">Tai padeda pailginti akumuliatoriaus veikimo laiką. Telefoną kartais reikės visiškai įkrauti, kad būtų užtikrinta tiksli akumuliatoriaus talpa.</string>
     <string name="charging_optimization_summary_off">Išjungta</string>
     <string name="charging_optimization_title">Įkrovimo optimizavimas</string>
 </resources>

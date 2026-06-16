@@ -1,5 +1,5 @@
 canonical_name: "vodafone_in"
-version: 75000000019
+version: 77000000020
 apns {
   apn {
     name: "Vodafone Idea"
@@ -253,14 +253,10 @@ configs {
     text_value: "com.qti.xdivert/com.qti.xdivert.XDivertSetting"
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "wfc_spn_format_idx_int"
     int_value: 1
   }
 }
 last_updated {
-  seconds: 1763550005
+  seconds: 1767187381
 }

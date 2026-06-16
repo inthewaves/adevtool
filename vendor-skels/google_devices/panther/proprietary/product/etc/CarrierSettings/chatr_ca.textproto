@@ -1,5 +1,5 @@
 canonical_name: "chatr_ca"
-version: 75000000030
+version: 77000000030
 apns {
   apn {
     name: "Chatr Tethering"
@@ -437,5 +437,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1769617559
+  seconds: 1772035357
 }

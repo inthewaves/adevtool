@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="face_error_vendor">
-        <item>Iraungi egin da ziurtagiria</item>
+        <item>Ziurtagiria iraungita dago</item>
         <item>Sentsorea aldi baterako desgaitu da</item>
         <item>Kalibrazio-errorea</item>
-        <item>Aurpegi bidez desblokeatzeko eginbidea ez dago erabilgarri. Telefonoa gehiegi berotu da.</item>
-        <item>Aurpegi bidez desblokeatzeko eginbidea berriro konfiguratu behar da</item>
+        <item>Aurpegi bidez desblokeatzea ez dago erabilgarri. Telefonoa gehiegi berotu da.</item>
+        <item>Aurpegi bidez desblokeatzea berriro konfiguratu behar da</item>
+        <item>Doitu argiztapena eta ez mugitu</item>
     </array>
     <string name="biometric_app_setting_name">Erabili aurpegia edo hatz-marka</string>
     <string name="biometric_dialog_default_subtitle">Aurrera egiteko, erabili aurpegia edo hatz-marka</string>

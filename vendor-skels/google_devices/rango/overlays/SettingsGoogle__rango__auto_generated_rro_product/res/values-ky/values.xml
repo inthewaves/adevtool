@@ -2,7 +2,7 @@
 <resources>
     <string name="display_white_balance_summary">Экран айланадагы жарыкка жараша жылуу же муздак болуп өзгөрүп турат</string>
     <string name="display_white_balance_title">Ыңгайлашуучу тон</string>
-    <string name="emission_frequency_summary">Сезгич көздөр үчүн көрүү тажрыйбасын жакшыртуу максатында нурлануу коэффициентин тууралаңыз. Бул жайылып турган түзмөктүн ички экранына карата гана колдонулат.</string>
+    <string name="emission_frequency_summary">Сезимтал көздөргө күч келбеш үчүн экрандын нурлануу жыштыгын тууралаңыз. Функция ачылып турган түзмөктүн ички экранында гана иштейт.</string>
     <string name="fingerprint_unlock_set_unlock_password">Pixel Imprint + Сырсөз</string>
     <string name="fingerprint_unlock_set_unlock_pattern">Pixel Imprint + Графикалык ачкыч</string>
     <string name="fingerprint_unlock_set_unlock_pin">Pixel Imprint + PIN код</string>

@@ -1,5 +1,5 @@
 canonical_name: "consumercellulartmo_us"
-version: 75000000015
+version: 77000000016
 apns {
   apn {
     name: "Consumer Cellular"
@@ -323,10 +323,6 @@ configs {
     int_value: 3
   }
   config {
-    key: "vonr_setting_visibility_bool"
-    bool_value: false
-  }
-  config {
     key: "wfc_carrier_name_override_by_pnn_bool"
     bool_value: true
   }
@@ -342,5 +338,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1764155425
+  seconds: 1768403280
 }

@@ -245,6 +245,8 @@
     <bool name="config_dozeAlwaysOnDisplayAvailable">true</bool>
     <bool name="config_dozeAlwaysOnEnabled">false</bool>
     <bool name="config_dozePulsePickup">true</bool>
+    <bool name="config_enableAppLaunchBlur">false</bool>
+    <bool name="config_enableBlurExpansion">false</bool>
     <bool name="config_enableHapticTextHandle">true</bool>
     <bool name="config_enableMultiUserUI">true</bool>
     <bool name="config_enableNewAutoSelectNetworkUI">true</bool>
@@ -253,6 +255,7 @@
     <bool name="config_fillSecondaryBuiltInDisplayCutout">true</bool>
     <bool name="config_fold_lock_behavior">true</bool>
     <bool name="config_hotswapCapable">true</bool>
+    <bool name="config_isCameraCompatSimulateRequestedOrientationTreatmentEnabled">false</bool>
     <bool name="config_persistBrightnessNitsForDefaultDisplay">true</bool>
     <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">true</bool>
     <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>

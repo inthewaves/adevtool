@@ -1,5 +1,5 @@
 canonical_name: "telenet_be"
-version: 75000000007
+version: 77000000009
 apns {
   apn {
     name: "Telenet Internet"
@@ -48,6 +48,10 @@ configs {
   }
   config {
     key: "carrier_wfc_ims_available_bool"
+    bool_value: true
+  }
+  config {
+    key: "hide_enhanced_4g_lte_bool"
     bool_value: true
   }
   config {
@@ -138,14 +142,10 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "wfc_spn_format_idx_int"
     int_value: 11
   }
 }
 last_updated {
-  seconds: 1746619456
+  seconds: 1770819142
 }

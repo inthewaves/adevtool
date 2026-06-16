@@ -4,8 +4,9 @@
         <item>Certyfikat wygasł</item>
         <item>Czujnik tymczasowo wyłączony</item>
         <item>Błąd kalibracji</item>
-        <item>Rozpoznawanie twarzy jest niedostępne. Telefon jest zbyt gorący.</item>
+        <item>Rozpoznanie twarzy jest niedostępne. Telefon jest za gorący.</item>
         <item>Musisz ponownie skonfigurować rozpoznawanie twarzy</item>
+        <item>Dostosuj oświetlenie i nie ruszaj się</item>
     </array>
     <string name="biometric_app_setting_name">Używaj rozpoznawania twarzy lub odcisku palca</string>
     <string name="biometric_dialog_default_subtitle">Aby kontynuować, użyj rozpoznawania twarzy lub odcisku palca</string>

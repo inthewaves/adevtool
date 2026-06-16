@@ -1,5 +1,5 @@
 canonical_name: "dito_ph"
-version: 75000000006
+version: 77000000007
 apns {
   apn {
     name: "DITO"
@@ -76,11 +76,7 @@ configs {
     key: "show_4g_for_lte_data_icon_bool"
     bool_value: true
   }
-  config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
 }
 last_updated {
-  seconds: 1715895745
+  seconds: 1767187381
 }

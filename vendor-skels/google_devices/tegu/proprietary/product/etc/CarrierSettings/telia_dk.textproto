@@ -1,5 +1,5 @@
 canonical_name: "telia_dk"
-version: 75000000004
+version: 77000000005
 apns {
   apn {
     name: "Internet"
@@ -47,6 +47,10 @@ configs {
   }
   config {
     key: "carrier_default_wfc_ims_mode_int"
+    int_value: 1
+  }
+  config {
+    key: "carrier_default_wfc_ims_roaming_mode_int"
     int_value: 1
   }
   config {
@@ -218,5 +222,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1736946304
+  seconds: 1765368129
 }

@@ -1,5 +1,5 @@
 canonical_name: "kpn_nl"
-version: 75000000642
+version: 77000000645
 apns {
   apn {
     name: "IMS"
@@ -168,6 +168,13 @@ configs {
     }
   }
   config {
+    key: "imsvoice.audio_inactivity_call_end_reasons_int_array"
+    int_array {
+      item: 2
+      item: 4
+    }
+  }
+  config {
     key: "imsvoice.conference_subscribe_type_int"
     int_value: 0
   }
@@ -245,6 +252,10 @@ configs {
     int_value: 11
   }
   config {
+    key: "prefer_3g_visibility_bool"
+    bool_value: false
+  }
+  config {
     key: "preferred_ike_protocol_int"
     int_value: 40
   }
@@ -258,5 +269,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1724912449
+  seconds: 1772035340
 }

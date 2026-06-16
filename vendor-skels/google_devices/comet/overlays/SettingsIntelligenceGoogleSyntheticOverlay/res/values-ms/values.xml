@@ -2,7 +2,7 @@
 <resources>
     <string name="charge_limit_indexing_keywords">Pengecasan, had, pengoptimuman pengecasan, had pengecasan</string>
     <string name="charging_optimization_entry_summary_charge_limit">Hadkan kepada %1$s</string>
-    <string name="charging_optimization_footer_message_charge_limit">Untuk melanjutkan jangka hayat bateri, telefon anda hanya akan mengecas hingga tahap bateri %1$s. Telefon anda akan dicas hingga %2$s sekali setiap satu hingga dua minggu untuk mengekalkan ketepatan pelaporan tahap bateri.</string>
+    <string name="charging_optimization_footer_message_charging_limit">Tindakan ini membantu untuk melanjutkan jangka hayat bateri. Telefon anda perlu dicas sepenuhnya sekali-sekala untuk memastikan kapasiti bateri yang tepat.</string>
     <string name="charging_optimization_summary_off">Mati</string>
     <string name="charging_optimization_title">Pengoptimuman pengecasan</string>
 </resources>

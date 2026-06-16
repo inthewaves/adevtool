@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="display_white_balance_summary">התאמה דינמית של המסך לגוונים חמים או קרים יותר לפי התאורה בסביבה</string>
+    <string name="display_white_balance_summary">הצבעים במסך יותאמו דינמית לגוונים חמים או קרים יותר לפי התאורה בסביבה</string>
     <string name="display_white_balance_title">גוון דינמי</string>
     <string name="fingerprint_unlock_set_unlock_password">‏Pixel Imprint וסיסמה</string>
     <string name="fingerprint_unlock_set_unlock_pattern">‏Pixel Imprint וקו ביטול נעילה</string>

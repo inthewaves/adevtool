@@ -1,5 +1,5 @@
 canonical_name: "swisscom_ch"
-version: 75000000497
+version: 77000000498
 apns {
   apn {
     name: "Swisscom Services"
@@ -121,6 +121,10 @@ configs {
   config {
     key: "imsi_key_download_url_string"
     text_value: "https://preview.pwlan.ch/assets/cer/imsiencrypt.json"
+  }
+  config {
+    key: "imsserviceentitlement.entitlement_server_url_string"
+    text_value: "https://ses.node.mnc001.mcc228.pub.3gppnetwork.org:10024"
   }
   config {
     key: "imsss.network_initiated_ussd_over_ims_supported_bool"
@@ -439,6 +443,10 @@ configs {
     bool_value: true
   }
   config {
+    key: "support_phone_number_source_ts43_bool"
+    bool_value: true
+  }
+  config {
     key: "wfc_spn_format_idx_int"
     int_value: 1
   }
@@ -454,5 +462,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1739493465
+  seconds: 1765368058
 }

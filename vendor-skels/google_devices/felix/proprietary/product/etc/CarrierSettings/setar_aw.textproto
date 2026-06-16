@@ -1,5 +1,5 @@
 canonical_name: "setar_aw"
-version: 75000000002
+version: 77000000003
 apns {
   apn {
     name: "SETAR Internet"
@@ -41,5 +41,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1770826076
+  seconds: 1770819093
 }

@@ -1,5 +1,5 @@
 canonical_name: "izziatt_mx"
-version: 75000000010
+version: 77000000012
 apns {
   apn {
     name: "INTERNET"
@@ -226,5 +226,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1764155472
+  seconds: 1770819156
 }

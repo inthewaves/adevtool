@@ -1,5 +1,5 @@
 canonical_name: "att_mx"
-version: 75000000024
+version: 77000000025
 apns {
   apn {
     name: "Internet 5G"
@@ -282,6 +282,10 @@ configs {
     int_value: 0
   }
   config {
+    key: "imsvoice.dedicated_bearer_wait_timer_millis_int"
+    int_value: 10000
+  }
+  config {
     key: "imsvoice.evs_payload_description_bundle"
     bundle {
       config {
@@ -462,5 +466,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1769617532
+  seconds: 1770215781
 }

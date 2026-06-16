@@ -1,5 +1,5 @@
 canonical_name: "bluegrass_us"
-version: 75000000016
+version: 77000000017
 apns {
   apn {
     name: "Bluegrass"
@@ -1570,10 +1570,6 @@ configs {
     text_value: "Profile"
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: false
-  }
-  config {
     key: "video_calls_can_be_hd_audio"
     bool_value: false
   }
@@ -1607,5 +1603,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1762942384
+  seconds: 1767187381
 }

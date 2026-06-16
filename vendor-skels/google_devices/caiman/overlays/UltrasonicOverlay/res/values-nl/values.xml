@@ -6,7 +6,7 @@
     <string name="security_settings_fingerprint_v2_enroll_introduction_footer_message_6">"Wil je een screenprotector gebruiken, breng die dan eerst aan op je telefoon zodat de herkenning van je vingerafdruk beter werkt.
 
 Voor de beste resultaten gebruik je een Made for Google-gecertificeerde screenprotector. Bij andere screenprotectors werkt je vingerafdruk misschien niet."</string>
-    <string name="security_settings_udfps_enroll_fingertip_title">Kantel je vinger omhoog en tik met je vingertop</string>
-    <string name="security_settings_udfps_enroll_left_edge_title">Draai je vinger en tik met de linkerrand</string>
-    <string name="security_settings_udfps_enroll_right_edge_title">Draai opnieuw je vinger en tik met de rechterrand</string>
+    <string name="security_settings_udfps_enroll_fingertip_title">Kantel je vinger omhoog en raak aan met je vingertop</string>
+    <string name="security_settings_udfps_enroll_left_edge_title">Draai je vinger en raak aan met de linkerrand</string>
+    <string name="security_settings_udfps_enroll_right_edge_title">Draai opnieuw je vinger en raak aan met de rechterrand</string>
 </resources>

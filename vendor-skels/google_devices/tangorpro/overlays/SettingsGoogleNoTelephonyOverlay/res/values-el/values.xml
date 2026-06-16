@@ -2,6 +2,6 @@
 <resources>
     <string name="network_dashboard_summary_no_mobile">Wi-Fi</string>
     <string name="non_carrier_data_usage">Χρήση δεδομένων Wi-Fi</string>
-    <string name="tether_settings_title_all">Σύνδεση</string>
-    <string name="tethering_footer_info">Συνδεθείτε σε άλλες συσκευές μέσω USB, Ethernet ή Bluetooth για να τους προσφέρετε πρόσβαση στο διαδίκτυο.</string>
+    <string name="tether_settings_title_all">Διαμοιρασμός</string>
+    <string name="tethering_footer_info">Χρησιμοποιήστε διαμοιρασμό για να προσφέρετε σε άλλες συσκευές πρόσβαση στο διαδίκτυο μέσω USB, Ethernet ή Bluetooth.</string>
 </resources>

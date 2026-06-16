@@ -1,5 +1,5 @@
 canonical_name: "carolinawest_us"
-version: 75000000010
+version: 77000000011
 apns {
   apn {
     name: "Carolina West Wireless"
@@ -186,10 +186,6 @@ configs {
     int_value: 1
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "wfc_emergency_address_carrier_app_string"
     text_value: "com.android.imsserviceentitlement/.WfcActivationActivity"
   }
@@ -199,5 +195,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1753205208
+  seconds: 1767187381
 }

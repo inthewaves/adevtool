@@ -11,12 +11,6 @@ vintf_fragment {
 }
 
 vintf_fragment {
-    name: "adevtool_vintf_fragment_vendor_android.hardware.camera.provider@2.7-service-google-apex.xml",
-    src: "android.hardware.camera.provider@2.7-service-google-apex.xml",
-    soc_specific: true,
-}
-
-vintf_fragment {
     name: "adevtool_vintf_fragment_vendor_android.hardware.contexthub-service.generic.xml",
     src: "android.hardware.contexthub-service.generic.xml",
     soc_specific: true,
@@ -65,8 +59,14 @@ vintf_fragment {
 }
 
 vintf_fragment {
-    name: "adevtool_vintf_fragment_vendor_android.hardware.security.keymint-service.citadel.xml",
-    src: "android.hardware.security.keymint-service.citadel.xml",
+    name: "adevtool_vintf_fragment_vendor_android.hardware.security.keymint-service-v3.citadel.xml",
+    src: "android.hardware.security.keymint-service-v3.citadel.xml",
+    soc_specific: true,
+}
+
+vintf_fragment {
+    name: "adevtool_vintf_fragment_vendor_android.hardware.security.sharesecret-service.citadel.xml",
+    src: "android.hardware.security.sharesecret-service.citadel.xml",
     soc_specific: true,
 }
 
@@ -213,6 +213,12 @@ vintf_fragment {
 vintf_fragment {
     name: "adevtool_vintf_fragment_vendor_vendor.google.google_battery-default.xml",
     src: "vendor.google.google_battery-default.xml",
+    soc_specific: true,
+}
+
+vintf_fragment {
+    name: "adevtool_vintf_fragment_vendor_vendor.google.plat_security-service.xml",
+    src: "vendor.google.plat_security-service.xml",
     soc_specific: true,
 }
 

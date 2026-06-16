@@ -1,5 +1,5 @@
 canonical_name: "kena_it"
-version: 75000000007
+version: 77000000009
 apns {
   apn {
     name: "Kena Mobile web"
@@ -291,6 +291,10 @@ configs {
     }
   }
   config {
+    key: "qns.xcap_transport_type_int"
+    int_value: 0
+  }
+  config {
     key: "read_only_apn_types_string_array"
     text_array {
     }
@@ -312,14 +316,10 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "wfc_spn_format_idx_int"
     int_value: 11
   }
 }
 last_updated {
-  seconds: 1736946296
+  seconds: 1770215841
 }

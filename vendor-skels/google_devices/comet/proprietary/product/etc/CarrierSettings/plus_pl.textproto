@@ -1,5 +1,5 @@
 canonical_name: "plus_pl"
-version: 75000000013
+version: 77000000016
 apns {
   apn {
     name: "Plus Internet"
@@ -26,6 +26,10 @@ apns {
   }
 }
 configs {
+  config {
+    key: "allow_hold_in_rtt_call_bool"
+    bool_value: false
+  }
   config {
     key: "carrier_allow_transfer_ims_call_bool"
     bool_value: true
@@ -86,13 +90,18 @@ configs {
   config {
     key: "imsemergency.emergency_domain_preference_roaming_int_array"
     int_array {
+      item: 2
       item: 1
+    }
+  }
+  config {
+    key: "imsemergency.emergency_over_ims_supported_3gpp_network_types_int_array"
+    int_array {
     }
   }
   config {
     key: "imsemergency.emergency_over_ims_supported_rats_int_array"
     int_array {
-      item: 3
     }
   }
   config {
@@ -232,10 +241,6 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "wfc_spn_format_idx_int"
     int_value: 1
   }
@@ -245,5 +250,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1753205216
+  seconds: 1770819142
 }

@@ -1,5 +1,5 @@
 canonical_name: "tim_it"
-version: 75000000021
+version: 77000000022
 apns {
   apn {
     name: "WAP TIM"
@@ -122,7 +122,6 @@ configs {
     int_array {
       item: 6
       item: 3
-      item: 5
       item: 1
       item: 2
     }
@@ -284,6 +283,10 @@ configs {
     }
   }
   config {
+    key: "qns.xcap_transport_type_int"
+    int_value: 0
+  }
+  config {
     key: "read_only_apn_types_string_array"
     text_array {
     }
@@ -310,5 +313,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1736946258
+  seconds: 1770215800
 }

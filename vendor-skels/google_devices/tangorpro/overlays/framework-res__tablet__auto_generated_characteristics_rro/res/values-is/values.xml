@@ -12,13 +12,13 @@
     <string name="default_audio_route_name">Spjaldtölva</string>
     <string name="enable_explore_by_touch_warning_message">%1$s vill kveikja á snertikönnun. Þegar kveikt er á snertikönnun geturðu heyrt eða séð lýsingu á því sem er á skjánum undir fingrinum hverju sinni eða notað bendingar til að stjórna spjaldtölvunni.</string>
     <string name="global_actions">Valkostir spjaldtölvu</string>
-    <string name="kg_failed_attempts_almost_at_login">"Þú hefur teiknað rangt opnunarmynstur %1$d sinnum. Eftir %2$d árangurslausar tilraunir í viðbót verður þú beðin(n) um að opna spjaldtölvuna með tölvupóstreikningi.
+    <string name="kg_failed_attempts_almost_at_login">"Þú hefur teiknað rangt opnunarmynstur %1$d sinnum. Eftir %2$d árangurslausar tilraunir í viðbót verðurðu beðin(n) um að opna spjaldtölvuna með tölvupóstreikningi.
 
  Reyndu aftur eftir %3$d sekúndur."</string>
     <string name="kg_failed_attempts_almost_at_wipe">Þú hefur gert %1$d tilraunir til að opna spjaldtölvuna. Eftir %2$d árangurslausar tilraunir í viðbót verður tölvan stillt á sjálfgefar stillingar og öll notandagögn hennar glatast.</string>
     <string name="kg_failed_attempts_now_wiping">Þú hefur gert %d tilraunir til að opna spjaldtölvuna án árangurs. Hún verður nú stillt á sjálfgefnar stillingar.</string>
     <string name="lockscreen_failed_attempts_almost_at_wipe">Þú hefur gert %1$d tilraunir til að taka spjaldtölvuna úr lás. Eftir %2$d árangurslausar tilraunir í viðbót verður spjaldtölvan stillt á sjálfgefnar stillingar og öll notandagögn hennar glatast.</string>
-    <string name="lockscreen_failed_attempts_almost_glogin">"Þú hefur teiknað opnunarmynstrið rangt %1$d sinnum. Eftir %2$d árangurslausar tilraunir í viðbót verður beðið um að þú notir Google innskráningu til að opna spjaldtölvuna.
+    <string name="lockscreen_failed_attempts_almost_glogin">"Þú hefur teiknað opnunarmynstrið rangt %1$d sinnum. Eftir %2$d árangurslausar tilraunir í viðbót verður beðið um að þú notir Google-innskráningu til að opna spjaldtölvuna.
 
  Prófaðu aftur eftir %3$d sekúndur."</string>
     <string name="lockscreen_failed_attempts_now_wiping">Þú hefur gert %d tilraunir til að taka spjaldtölvuna úr lás. Spjaldtölvan verður nú stillt á sjálfgefnar stillingar.</string>

@@ -1,5 +1,5 @@
 canonical_name: "base_be"
-version: 75000000012
+version: 77000000013
 apns {
   apn {
     name: "BASE WAP"
@@ -53,6 +53,10 @@ configs {
   }
   config {
     key: "carrier_wfc_ims_available_bool"
+    bool_value: true
+  }
+  config {
+    key: "hide_enhanced_4g_lte_bool"
     bool_value: true
   }
   config {
@@ -136,5 +140,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1746619406
+  seconds: 1770819051
 }

@@ -2,7 +2,7 @@
 <resources>
     <string name="display_white_balance_summary">Цвет экрана будет становиться более теплым или холодным в зависимости от внешнего освещения</string>
     <string name="display_white_balance_title">Адаптивный тон</string>
-    <string name="emission_frequency_summary">Регулировать частоту излучения, чтобы повышать комфорт при светочувствительности Функция доступна только на внутреннем экране при разложенном устройстве.</string>
+    <string name="emission_frequency_summary">Настройка частоты мерцания экрана для снижения нагрузки на чувствительные глаза. Функция доступна только на внутреннем экране при разложенном устройстве.</string>
     <string name="fingerprint_unlock_set_unlock_password">Pixel Imprint + пароль</string>
     <string name="fingerprint_unlock_set_unlock_pattern">Pixel Imprint + графический ключ</string>
     <string name="fingerprint_unlock_set_unlock_pin">Pixel Imprint + PIN-код</string>

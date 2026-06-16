@@ -1,5 +1,5 @@
 canonical_name: "fi_tmo_us"
-version: 75000000012
+version: 77000000014
 apns {
 }
 configs {
@@ -198,6 +198,12 @@ configs {
   config {
     key: "data_warning_threshold_bytes_long"
     long_value: -2
+  }
+  config {
+    key: "disconnect_cause_network_busy_int_array"
+    int_array {
+      item: 60
+    }
   }
   config {
     key: "display_hd_audio_property_bool"
@@ -725,10 +731,6 @@ configs {
     text_value: "us"
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "volte_replacement_rat_int"
     int_value: 3
   }
@@ -762,5 +764,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1761862550
+  seconds: 1777512355
 }

@@ -1,5 +1,5 @@
 canonical_name: "cloudcore_ca"
-version: 75000000002
+version: 77000000005
 apns {
   apn {
     name: "Telus Tethered"
@@ -22,22 +22,14 @@ apns {
     user_editable: false
   }
   apn {
-    name: "Telus MMS"
-    value: "sp.telus.com"
-    type: MMS
-    bearer_bitmask: "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|17|18|20"
-    mmsc: "http://aliasredirect.net/proxy/mmsc"
-    mmsc_proxy: "mmscproxy.mobility.ca"
-    mmsc_proxy_port: "8799"
-    protocol: IPV4V6
-    roaming_protocol: IPV4V6
-    user_editable: false
-  }
-  apn {
     name: "CCP Services"
     value: "ccp-services.telus.com"
+    type: MMS
     type: XCAP
     bearer_bitmask: "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|17|20"
+    mmsc: "http://mmsgw.prod.telus.corenetcloud.net"
+    mmsc_proxy: "mmsgw.prod.telus.corenetcloud.net"
+    mmsc_proxy_port: "8799"
     protocol: IPV6
     roaming_protocol: IPV6
     user_editable: false
@@ -506,5 +498,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1765985445
+  seconds: 1773841160
 }

@@ -35,15 +35,15 @@
         <item>@drawable/ZACI_0_2_ZA9162</item>
         <item>@drawable/ZACI_0_4_ZA8938</item>
         <item>@drawable/ZACI_0_6_ZA8712</item>
-        <item>@drawable/ZACI_0_7_ZA8488</item>
-        <item>@drawable/ZACI_0_9_ZA8150</item>
-        <item>@drawable/ZACI_0_13_ZA7700</item>
-        <item>@drawable/ZACI_0_14_ZA7588</item>
-        <item>@drawable/ZACI_0_15_ZA7362</item>
-        <item>@drawable/ZACI_0_16_ZA7138</item>
-        <item>@drawable/ZACI_0_18_ZA6800</item>
-        <item>@drawable/ZACI_0_20_ZA6533_6333_05</item>
-        <item>@drawable/ZACI_0_21_ZA6533_6333_03</item>
+        <item>@drawable/ZACI_0_8_ZA8488</item>
+        <item>@drawable/ZACI_0_9_ZA8375</item>
+        <item>@drawable/ZACI_0_11_ZA7925</item>
+        <item>@drawable/ZACI_0_12_ZA7812</item>
+        <item>@drawable/ZACI_0_13_ZA7588</item>
+        <item>@drawable/ZACI_0_14_ZA7362</item>
+        <item>@drawable/ZACI_0_16_ZA7025</item>
+        <item>@drawable/ZACI_0_18_ZA6800_05</item>
+        <item>@drawable/ZACI_0_19_ZA6800_03</item>
     </array>
     <array name="config_za_primary_display_condition2_brightness_thresholds">
         <item>0.425</item>
@@ -71,21 +71,21 @@
         <item>@drawable/ZACI_0_1_ZA9275</item>
         <item>@drawable/ZACI_0_2_ZA9162</item>
         <item>@drawable/ZACI_0_3_ZA9050</item>
+        <item>@drawable/ZACI_0_4_ZA8938</item>
         <item>@drawable/ZACI_0_5_ZA8825</item>
-        <item>@drawable/ZACI_0_6_ZA8712</item>
-        <item>@drawable/ZACI_0_7_ZA8488</item>
-        <item>@drawable/ZACI_0_8_ZA8375</item>
-        <item>@drawable/ZACI_0_9_ZA8150</item>
+        <item>@drawable/ZACI_0_7_ZA8600</item>
+        <item>@drawable/ZACI_0_8_ZA8488</item>
+        <item>@drawable/ZACI_0_9_ZA8375</item>
+        <item>@drawable/ZACI_0_10_ZA8150</item>
         <item>@drawable/ZACI_0_11_ZA7925</item>
         <item>@drawable/ZACI_0_12_ZA7812</item>
-        <item>@drawable/ZACI_0_14_ZA7588</item>
-        <item>@drawable/ZACI_0_15_ZA7362</item>
-        <item>@drawable/ZACI_0_16_ZA7138</item>
-        <item>@drawable/ZACI_0_17_ZA7025</item>
-        <item>@drawable/ZACI_0_18_ZA6800</item>
-        <item>@drawable/ZACI_0_19_ZA6667</item>
-        <item>@drawable/ZACI_0_20_ZA6533_6333_05</item>
-        <item>@drawable/ZACI_0_21_ZA6533_6333_03</item>
+        <item>@drawable/ZACI_0_13_ZA7588</item>
+        <item>@drawable/ZACI_0_14_ZA7362</item>
+        <item>@drawable/ZACI_0_15_ZA7250</item>
+        <item>@drawable/ZACI_0_16_ZA7025</item>
+        <item>@drawable/ZACI_0_17_ZA6912</item>
+        <item>@drawable/ZACI_0_18_ZA6800_05</item>
+        <item>@drawable/ZACI_0_19_ZA6800_03</item>
     </array>
     <bool name="config_compensation_animation_enabled">false</bool>
     <dimen name="config_compensation_filter_intercept">10.0</dimen>

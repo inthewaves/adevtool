@@ -1,5 +1,5 @@
 canonical_name: "apt_tw"
-version: 75000000009
+version: 77000000011
 apns {
   apn {
     name: "GT Internet"
@@ -19,6 +19,10 @@ apns {
   }
 }
 configs {
+  config {
+    key: "carrier_default_2g_protection_enabled_bool"
+    bool_value: true
+  }
   config {
     key: "carrier_volte_available_bool"
     bool_value: true
@@ -141,11 +145,7 @@ configs {
     key: "rilext.ims_prefer_apm_normal_ecc_enable"
     bool_value: true
   }
-  config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
 }
 last_updated {
-  seconds: 1755679343
+  seconds: 1769617043
 }

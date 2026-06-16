@@ -4,7 +4,7 @@
     <string name="android_upgrading_title">平板电脑正在更新…</string>
     <string name="app_streaming_blocked_message">目前无法在您的%1$s上访问此内容。您可以尝试在平板电脑上访问。</string>
     <string name="app_streaming_blocked_message_for_fingerprint_dialog">此应用要求进行额外的安全性验证，您可以尝试在平板电脑上访问。</string>
-    <string name="app_streaming_blocked_message_for_permission_request">此应用请求获得额外的权限，但在流式传输会话期间无法授予权限。请先在平板电脑上授予相应权限。</string>
+    <string name="app_streaming_blocked_message_for_permission_request">此应用请求获得额外的权限，但在串流会话期间无法授予权限。请先在平板电脑上授予相应权限。</string>
     <string name="app_streaming_blocked_message_for_settings_dialog">无法在您的%1$s上访问此设置，您可以尝试在平板电脑上访问。</string>
     <string name="app_streaming_blocked_title_for_settings_dialog">无法使用平板电脑设置</string>
     <string name="battery_saver_charged_notification_summary">平板电脑电量充足。各项功能不再受限。</string>

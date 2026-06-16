@@ -1,5 +1,5 @@
 canonical_name: "tracfonetmo_us"
-version: 75000000013
+version: 77000000015
 apns {
   apn {
     name: "Tracfone"
@@ -381,16 +381,8 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "volte_replacement_rat_int"
     int_value: 3
-  }
-  config {
-    key: "vonr_setting_visibility_bool"
-    bool_value: false
   }
   config {
     key: "wfc_operator_error_codes_string_array"
@@ -404,5 +396,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1764155460
+  seconds: 1768403316
 }

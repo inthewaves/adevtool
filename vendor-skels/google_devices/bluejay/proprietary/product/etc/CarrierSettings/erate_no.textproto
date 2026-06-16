@@ -1,5 +1,5 @@
 canonical_name: "erate_no"
-version: 75000000006
+version: 77000000008
 apns {
   apn {
     name: "eRate Internet"
@@ -119,7 +119,12 @@ configs {
       item: "source=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN|UNKNOWN, target=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN, type=disallowed, capabilities=IMS|EIMS|MMS|XCAP|CBS"
     }
   }
+  config {
+    key: "read_only_apn_types_string_array"
+    text_array {
+    }
+  }
 }
 last_updated {
-  seconds: 1739493470
+  seconds: 1770819066
 }

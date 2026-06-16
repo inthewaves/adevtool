@@ -1,5 +1,5 @@
 canonical_name: "transatel_fr"
-version: 75000000001
+version: 77000000003
 apns {
   apn {
     name: "Internet"
@@ -18,5 +18,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1754475077
+  seconds: 1770819117
 }

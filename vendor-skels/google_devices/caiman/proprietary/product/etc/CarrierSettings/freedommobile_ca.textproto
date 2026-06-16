@@ -1,5 +1,5 @@
 canonical_name: "freedommobile_ca"
-version: 75000000012
+version: 77000000016
 apns {
   apn {
     name: "Internet"
@@ -146,25 +146,12 @@ configs {
   config {
     key: "imsss.ut_server_based_services_int_array"
     int_array {
-      item: 20
-      item: 12
-      item: 18
-      item: 14
-      item: 19
-      item: 21
-      item: 15
-      item: 16
-      item: 17
-      item: 13
       item: 1
       item: 3
       item: 4
-      item: 7
       item: 6
       item: 5
       item: 2
-      item: 9
-      item: 11
     }
   }
   config {
@@ -344,10 +331,6 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "wfc_emergency_address_carrier_app_string"
     text_value: "com.google.android.wfcactivation/.WfcActivationCanadaActivity"
   }
@@ -367,5 +350,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1759305471
+  seconds: 1773841135
 }

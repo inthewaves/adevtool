@@ -1,5 +1,5 @@
 canonical_name: "lmt_lv"
-version: 75000000016
+version: 77000000017
 apns {
   apn {
     name: "LMT LV"
@@ -144,14 +144,10 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "wfc_spn_format_idx_int"
     int_value: 1
   }
 }
 last_updated {
-  seconds: 1769127436
+  seconds: 1769617043
 }

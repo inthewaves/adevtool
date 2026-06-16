@@ -1,5 +1,5 @@
 canonical_name: "du_ae"
-version: 75000000006
+version: 77000000007
 apns {
   apn {
     name: "du"
@@ -87,11 +87,7 @@ configs {
       }
     }
   }
-  config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
 }
 last_updated {
-  seconds: 1739349339
+  seconds: 1767187381
 }

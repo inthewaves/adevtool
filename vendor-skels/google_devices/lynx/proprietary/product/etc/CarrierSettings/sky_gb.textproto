@@ -1,5 +1,5 @@
 canonical_name: "sky_gb"
-version: 75000000021
+version: 77000000023
 apns {
   apn {
     name: "SKY MMS"
@@ -260,5 +260,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1764155425
+  seconds: 1770819105
 }

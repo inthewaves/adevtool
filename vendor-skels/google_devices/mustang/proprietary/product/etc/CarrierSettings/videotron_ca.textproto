@@ -1,5 +1,5 @@
 canonical_name: "videotron_ca"
-version: 75000000007
+version: 77000000007
 apns {
   apn {
     name: "Media"

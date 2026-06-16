@@ -1,0 +1,3 @@
+typeattribute platform_app halclientdomain;
+typeattribute platform_app hal_face_client;
+typeattribute platform_app hal_fingerprint_client;

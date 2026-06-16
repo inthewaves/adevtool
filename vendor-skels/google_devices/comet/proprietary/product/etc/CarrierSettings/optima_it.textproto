@@ -1,5 +1,5 @@
 canonical_name: "optima_it"
-version: 75000000002
+version: 77000000003
 apns {
   apn {
     name: "Optima"
@@ -325,10 +325,6 @@ configs {
     int_value: 10
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "volte_replacement_rat_int"
     int_value: 3
   }
@@ -338,5 +334,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1765368123
+  seconds: 1767187386
 }

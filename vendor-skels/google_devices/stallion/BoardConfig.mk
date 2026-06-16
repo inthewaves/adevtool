@@ -19,7 +19,6 @@ BOARD_KERNEL_CMDLINE += \
     androidboot.console=ttySAC0 \
     printk.devkmsg=on \
     cma_sysfs.experimental=Y \
-    cgroup_disable=memory \
     cgroup.memory=nokmem \
     rcupdate.rcu_expedited=1 \
     rcu_nocbs=all \
@@ -27,8 +26,10 @@ BOARD_KERNEL_CMDLINE += \
     swiotlb=noforce \
     disable_dma32=on \
     sysctl.kernel.sched_pelt_multiplier=4 \
+    rodata=on \
     at24.write_timeout=100 \
     log_buf_len=1024K \
+    android_arch_task_struct_size=512 \
     bootconfig
 
 BOARD_INIT_BOOT_HEADER_VERSION := 4
@@ -75,6 +76,3 @@ SELINUX_IGNORE_NEVERALLOWS := true
 
 # needed for overriding AOSP-available files with extracted prebuilts
 BUILD_BROKEN_DUP_RULES := true
-
-# needed for partially backporting multi-partition libraries, e.g. libc++
-BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true

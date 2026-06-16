@@ -10,6 +10,7 @@ GooglePermissionControllerOverlay
 GooglePermissionControllerSafetyCenterOverlay
 ManagedProvisioningPixelOverlay
 NetworkStackOverlay
+NfcOverlayCheetahGsi
 ONS__cheetah__auto_generated_rro_vendor
 PixelBatteryHealthOverlay
 PixelConfigOverlay2018

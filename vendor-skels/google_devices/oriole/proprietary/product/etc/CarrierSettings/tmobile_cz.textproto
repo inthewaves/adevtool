@@ -1,5 +1,5 @@
 canonical_name: "tmobile_cz"
-version: 75000000602
+version: 77000000603
 apns {
   apn {
     name: "IMS"
@@ -33,6 +33,10 @@ apns {
   }
 }
 configs {
+  config {
+    key: "allow_hold_in_rtt_call_bool"
+    bool_value: false
+  }
   config {
     key: "carrier_default_wfc_ims_mode_int"
     int_value: 1
@@ -250,5 +254,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1765368059
+  seconds: 1770819051
 }

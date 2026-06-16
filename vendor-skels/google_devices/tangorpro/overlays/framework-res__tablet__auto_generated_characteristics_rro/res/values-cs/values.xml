@@ -21,7 +21,7 @@
     <string name="lockscreen_failed_attempts_almost_glogin">"Již %1$dkrát jste nesprávně nakreslili své heslo odemknutí. Po dalších neúspěšných pokusech (%2$d) budete požádáni o odemčení tabletu pomocí přihlášení Google.
 
  Zkuste to znovu za %3$d s."</string>
-    <string name="lockscreen_failed_attempts_now_wiping">Tablet jste se pokusili nesprávným způsobem odemknout %dkrát. V tabletu se teď obnoví výchozí tovární nastavení.</string>
+    <string name="lockscreen_failed_attempts_now_wiping">Tablet jste se pokusili nesprávným způsobem odemknout %dkrát. V tabletu se teď obnoví výchozí tovární nastavení.</string>
     <string name="lockscreen_missing_sim_message">V tabletu není SIM karta.</string>
     <string name="low_memory">Úložiště tabletu je plné. Uvolněte místo smazáním některých souborů.</string>
     <string name="permdesc_bluetooth">Umožňuje aplikaci zobrazit konfiguraci tabletu s rozhraním Bluetooth, vytvářet připojení ke spárovaným zařízením a přijímat tato připojení.</string>

@@ -1,5 +1,5 @@
 canonical_name: "publicmobile_ca"
-version: 75000000027
+version: 77000000029
 apns {
   apn {
     name: "Tethered Mobile Internet"
@@ -485,5 +485,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1761090330
+  seconds: 1772636194
 }

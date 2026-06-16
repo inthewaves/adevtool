@@ -1,5 +1,5 @@
 canonical_name: "telstra_au"
-version: 75000000017
+version: 77000000018
 apns {
   apn {
     name: "Telstra Broadband"
@@ -110,6 +110,10 @@ configs {
   config {
     key: "editable_wfc_mode_bool"
     bool_value: false
+  }
+  config {
+    key: "editable_wfc_roaming_mode_bool"
+    bool_value: true
   }
   config {
     key: "hide_enhanced_4g_lte_bool"
@@ -241,6 +245,7 @@ configs {
     key: "iwlan_handover_policy_string_array"
     text_array {
       item: "source=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN|UNKNOWN, target=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN, type=disallowed, capabilities=EIMS|MMS|CBS"
+      item: "source=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN|UNKNOWN, target=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN, roaming=true, type=disallowed, capabilities=IMS"
       item: "source=IWLAN|UNKNOWN, target=GERAN|UTRAN, type=disallowed, capabilities=IMS|XCAP"
       item: "source=GERAN|UTRAN, target=IWLAN, type=disallowed, capabilities=IMS|XCAP"
       item: "source=EUTRAN|NGRAN|IWLAN, target=EUTRAN|NGRAN|IWLAN, type=allowed, capabilities=IMS|XCAP"
@@ -373,5 +378,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1761090330
+  seconds: 1769617012
 }

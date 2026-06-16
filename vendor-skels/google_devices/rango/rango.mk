@@ -3,8 +3,8 @@
 
 include vendor/google_devices/rango/adevtool-version-check.mk
 
-ifneq ($(BUILD_ID),BP4A.260205.001)
-  $(error BUILD_ID: expected BP4A.260205.001, got $(BUILD_ID))
+ifneq ($(BUILD_ID),CP2A.260605.012)
+  $(error BUILD_ID: expected CP2A.260605.012, got $(BUILD_ID))
 endif
 
 $(call inherit-product, vendor/adevtool/config/mk/google_devices/device/rango/device.mk)
@@ -39,11 +39,13 @@ TARGET_RECOVERY_WIPE := vendor/google_devices/rango/proprietary/recovery/system/
 
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     vendor/google_devices/rango/vintf/system_ext/aocx_framework_compatibility_matrix_system_ext \
+    vendor/google_devices/rango/vintf/system_ext/camera_interference_avoidance_framework_compatibility_matrix_system_ext \
     vendor/google_devices/rango/vintf/system_ext/imageprocessing_hal_framework_compatibility_matrix_system_ext
 
 # system_ext vintf_fragments
 PRODUCT_PACKAGES += \
     adevtool_vintf_fragment_system_ext_com.google.pixel.camera.services@1.0-service-google.xml \
+    adevtool_vintf_fragment_system_ext_manifest_mosey.xml \
     adevtool_vintf_fragment_system_ext_vendor.google.edgetpu_app_service@1.0-service.xml
 
 DEVICE_PRODUCT_COMPATIBILITY_MATRIX_FILE += \
@@ -58,7 +60,7 @@ DEVICE_MANIFEST_FILE += vendor/google_devices/rango/vintf/vendor/manifest.xml
 PRODUCT_PACKAGES += \
     adevtool_vintf_fragment_vendor_android.hardware.audio.service-aidl.aoc.xml \
     adevtool_vintf_fragment_vendor_android.hardware.authsecret-service.citadel.xml \
-    adevtool_vintf_fragment_vendor_android.hardware.camera.provider@2.7-service-google-apex.xml \
+    adevtool_vintf_fragment_vendor_android.hardware.bluetooth.socket-service.pixel.xml \
     adevtool_vintf_fragment_vendor_android.hardware.contexthub-service.generic.xml \
     adevtool_vintf_fragment_vendor_android.hardware.dumpstate.3-service.xml \
     adevtool_vintf_fragment_vendor_android.hardware.gnss@lassen.xml \
@@ -68,7 +70,8 @@ PRODUCT_PACKAGES += \
     adevtool_vintf_fragment_vendor_android.hardware.power-service.pixel.xml \
     adevtool_vintf_fragment_vendor_android.hardware.power.stats-service.pixel.xml \
     adevtool_vintf_fragment_vendor_android.hardware.samsung.uwb-service.xml \
-    adevtool_vintf_fragment_vendor_android.hardware.security.keymint-service.citadel.xml \
+    adevtool_vintf_fragment_vendor_android.hardware.security.keymint-service-v3.citadel.xml \
+    adevtool_vintf_fragment_vendor_android.hardware.security.sharesecret-service.citadel.xml \
     adevtool_vintf_fragment_vendor_android.hardware.thermal-service.pixel.xml \
     adevtool_vintf_fragment_vendor_android.hardware.usb-service.xml \
     adevtool_vintf_fragment_vendor_android.hardware.usb.gadget-service.xml \
@@ -76,6 +79,7 @@ PRODUCT_PACKAGES += \
     adevtool_vintf_fragment_vendor_android.hardware.weaver-service.citadel.xml \
     adevtool_vintf_fragment_vendor_android.hardware.wifi.hostapd.xml \
     adevtool_vintf_fragment_vendor_android.hardware.wifi.supplicant.xml \
+    adevtool_vintf_fragment_vendor_com.google.edgetpu.tachyon-service.xml \
     adevtool_vintf_fragment_vendor_dmd.xml \
     adevtool_vintf_fragment_vendor_drm_hwc3.xml \
     adevtool_vintf_fragment_vendor_fingerprint-goodix.xml \
@@ -85,14 +89,13 @@ PRODUCT_PACKAGES += \
     adevtool_vintf_fragment_vendor_manifest_input.processor-service.xml \
     adevtool_vintf_fragment_vendor_manifest_mapper_framework.xml \
     adevtool_vintf_fragment_vendor_manifest_media_c2_cnm.xml \
-    adevtool_vintf_fragment_vendor_manifest_mosey.xml \
     adevtool_vintf_fragment_vendor_manifest_radioext.xml \
     adevtool_vintf_fragment_vendor_memtrack.xml \
     adevtool_vintf_fragment_vendor_pixel-display-default.xml \
     adevtool_vintf_fragment_vendor_pixel-display-secondary.xml \
     adevtool_vintf_fragment_vendor_pixel-gnss-default.xml \
     adevtool_vintf_fragment_vendor_shared_modem_platform.xml \
-    adevtool_vintf_fragment_vendor_vendor.dolby.media.c2@1.0-service.xml \
+    adevtool_vintf_fragment_vendor_vendor.dolby.media.c2-default-service.xml \
     adevtool_vintf_fragment_vendor_vendor.google.aam.xml \
     adevtool_vintf_fragment_vendor_vendor.google.ambience_hub-default.xml \
     adevtool_vintf_fragment_vendor_vendor.google.battery_mitigation-default.xml \
@@ -106,6 +109,9 @@ PRODUCT_VENDOR_LINKER_CONFIG_FRAGMENTS += vendor/google_devices/rango/proprietar
 
 PRODUCT_SYSTEM_SERVER_JARS += \
     system_ext:rango-services
+
+PRODUCT_STANDALONE_SYSTEM_SERVER_JARS += \
+    system_ext:laguna-plugin-provider
 
 TARGET_SYSTEM_EXT_PROP += vendor/google_devices/rango/sysprop/system_ext.prop
 TARGET_PRODUCT_PROP += vendor/google_devices/rango/sysprop/product.prop
@@ -138,6 +144,9 @@ PRODUCT_PACKAGES += \
     Rubik-MediumItalic.ttf \
     Rubik-Regular.ttf \
     SafetyRegulatoryInfo \
+    VirtualDeviceManager \
+    VirtualDeviceManager__nosdcard__auto_generated_characteristics_rro \
+    VirtualGamepad \
     ZillaSlab-Medium.ttf \
     ZillaSlab-MediumItalic.ttf \
     ZillaSlab-SemiBold.ttf \
@@ -150,24 +159,27 @@ PRODUCT_PACKAGES += \
     android.frameworks.stats-V1-cpp.vendor \
     android.frameworks.stats-V1-ndk.vendor \
     android.frameworks.stats-V2-ndk.vendor \
-    android.hardware.audio.common-V4-ndk.vendor \
+    android.hardware.audio.common-V5-ndk.vendor \
     android.hardware.audio.common@5.0.vendor \
     android.hardware.audio.core-V4-ndk.vendor \
-    android.hardware.audio.core.sounddose-V3-ndk.vendor \
-    android.hardware.audio.effect-V3-ndk.vendor \
+    android.hardware.audio.core.sounddose-V4-ndk.vendor \
+    android.hardware.audio.effect-V4-ndk.vendor \
     android.hardware.audio.low_latency.prebuilt.xml \
     android.hardware.audio.pro.prebuilt.xml \
     android.hardware.authsecret-V1-ndk.vendor \
     android.hardware.biometrics.common-V3-ndk.vendor \
     android.hardware.biometrics.fingerprint-V3-ndk.vendor \
     android.hardware.bluetooth-V1-ndk.vendor \
-    android.hardware.bluetooth.audio-V5-ndk.vendor \
+    android.hardware.bluetooth.audio-V6-ndk.vendor \
     android.hardware.bluetooth.audio-impl \
     android.hardware.bluetooth.audio@2.0.vendor \
     android.hardware.bluetooth.audio@2.1.vendor \
     android.hardware.bluetooth.finder-V1-ndk.vendor \
+    android.hardware.bluetooth.lmp_event-V1-ndk.vendor \
     android.hardware.bluetooth.prebuilt.xml \
-    android.hardware.bluetooth.ranging-V1-ndk.vendor \
+    android.hardware.bluetooth.ranging-V2-ndk.vendor \
+    android.hardware.bluetooth.socket-V2-ndk.vendor \
+    android.hardware.bluetooth_le.channel_sounding.prebuilt.xml \
     android.hardware.bluetooth_le.prebuilt.xml \
     android.hardware.boot-V1-ndk.vendor \
     android.hardware.boot@1.0.vendor \
@@ -180,7 +192,7 @@ PRODUCT_PACKAGES += \
     android.hardware.common-V2-ndk.vendor \
     android.hardware.common.fmq-V1-ndk.vendor \
     android.hardware.context_hub.prebuilt.xml \
-    android.hardware.contexthub-V4-ndk.vendor \
+    android.hardware.contexthub-V5-ndk.vendor \
     android.hardware.device_unique_attestation.prebuilt.xml \
     android.hardware.drm-V2-ndk.vendor \
     android.hardware.drm-service.clearkey \
@@ -209,7 +221,7 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.common@1.0.vendor \
     android.hardware.graphics.common@1.1.vendor \
     android.hardware.graphics.common@1.2.vendor \
-    android.hardware.graphics.composer3-V4-ndk.vendor \
+    android.hardware.graphics.composer3-V5-ndk.vendor \
     android.hardware.graphics.composer@2.1-resources.vendor \
     android.hardware.graphics.composer@2.1.vendor \
     android.hardware.graphics.composer@2.2-resources.vendor \
@@ -220,6 +232,7 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@4.0.vendor \
     android.hardware.health-V1-ndk.vendor \
     android.hardware.health-V4-ndk.vendor \
+    android.hardware.health-V5-ndk.vendor \
     android.hardware.health.storage-V1-ndk.vendor \
     android.hardware.health.storage-service.default \
     android.hardware.input.common-V1-ndk.vendor \
@@ -228,7 +241,7 @@ PRODUCT_PACKAGES += \
     android.hardware.location.gps.prebuilt.xml \
     android.hardware.media.bufferpool2-V2-ndk.vendor \
     android.hardware.media.bufferpool@2.0.vendor \
-    android.hardware.media.c2-V1-ndk.vendor \
+    android.hardware.media.c2-V2-ndk.vendor \
     android.hardware.media.c2@1.0.vendor \
     android.hardware.media.omx@1.0.vendor \
     android.hardware.media@1.0.vendor \
@@ -244,11 +257,12 @@ PRODUCT_PACKAGES += \
     android.hardware.nfc.hce.prebuilt.xml \
     android.hardware.nfc.hcef.prebuilt.xml \
     android.hardware.nfc.prebuilt.xml \
+    android.hardware.npu-V1-ndk.vendor \
     android.hardware.oemlock-V1-ndk.vendor \
     android.hardware.opengles.aep.prebuilt.xml \
     android.hardware.power-V1-ndk.vendor \
     android.hardware.power-V2-ndk.vendor \
-    android.hardware.power-V6-ndk.vendor \
+    android.hardware.power-V7-ndk.vendor \
     android.hardware.power.stats-V2-ndk.vendor \
     android.hardware.power@1.0.vendor \
     android.hardware.power@1.1.vendor \
@@ -282,6 +296,7 @@ PRODUCT_PACKAGES += \
     android.hardware.security.rkp-V3-ndk.vendor \
     android.hardware.security.secretkeeper.trusty \
     android.hardware.security.sharedsecret-V1-ndk.vendor \
+    android.hardware.security.timestamp-V1-ndk.vendor \
     android.hardware.sensor.accelerometer.prebuilt.xml \
     android.hardware.sensor.barometer.prebuilt.xml \
     android.hardware.sensor.compass.prebuilt.xml \
@@ -300,8 +315,7 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@2.0-ScopedWakelock.vendor \
     android.hardware.sensors@2.0.vendor \
     android.hardware.sensors@2.1.vendor \
-    android.hardware.soundtrigger3-V3-ndk.vendor \
-    android.hardware.strongbox_keystore.prebuilt.xml \
+    android.hardware.soundtrigger3-V4-ndk.vendor \
     android.hardware.telephony.carrierlock.prebuilt.xml \
     android.hardware.telephony.gsm.prebuilt.xml \
     android.hardware.telephony.ims.prebuilt.xml \
@@ -312,13 +326,16 @@ PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0.vendor \
     android.hardware.thermal@2.0.vendor \
     android.hardware.touchscreen.multitouch.jazzhand.prebuilt.xml \
-    android.hardware.usb-V3-ndk.vendor \
+    android.hardware.usb-V4-ndk.vendor \
     android.hardware.usb.accessory.prebuilt.xml \
+    android.hardware.usb.flags-aconfig-cc-lib.vendor \
     android.hardware.usb.gadget-V1-ndk.vendor \
+    android.hardware.usb.gadget-V2-ndk.vendor \
     android.hardware.usb.gadget@1.0.vendor \
     android.hardware.usb.host.prebuilt.xml \
+    android.hardware.uwb.prebuilt.xml \
     android.hardware.vibrator-V3-ndk.vendor \
-    android.hardware.weaver-V2-ndk.vendor \
+    android.hardware.weaver-V3-ndk.vendor \
     android.hardware.wifi.aware.prebuilt.xml \
     android.hardware.wifi.common-V2-ndk.vendor \
     android.hardware.wifi.direct.prebuilt.xml \
@@ -332,9 +349,9 @@ PRODUCT_PACKAGES += \
     android.hidl.memory.token@1.0.vendor \
     android.hidl.memory@1.0.vendor \
     android.hidl.safe_union@1.0.vendor \
-    android.media.audio.common.types-V4-ndk.vendor \
-    android.media.audio.eraser.types-V1-ndk.vendor \
-    android.media.soundtrigger.types-V3-ndk.vendor \
+    android.media.audio.common.types-V5-ndk.vendor \
+    android.media.audio.eraser.types-V2-ndk.vendor \
+    android.media.soundtrigger.types-V4-ndk.vendor \
     android.software.angle.xml \
     android.software.device_id_attestation.prebuilt.xml \
     android.software.ipsec_tunnel_migration.prebuilt.xml \
@@ -346,15 +363,24 @@ PRODUCT_PACKAGES += \
     checkpoint_gc \
     chre_atoms_log \
     chremetrics-cpp \
+    com.android.extensions.computercontrol \
     com.android.hardware.biometrics.face.virtual \
-    com.android.hardware.biometrics.fingerprint.virtual \
     com.nxp.mifare.prebuilt.xml \
+    computercontrol.extension.xml \
     fastbootd \
     handheld_core_hardware.prebuilt.xml \
     hfp_codec_capabilities_xml \
     hwservicemanager \
     ld-android.vendor_ramdisk \
+    libaconfig_storage_file.vendor \
+    libaconfig_storage_protos.vendor \
+    libaconfig_storage_read_api.vendor \
+    libaho_corasick.vendor \
     libalsautilsv2.vendor \
+    libandroid_log_sys.vendor \
+    libandroid_logger.vendor \
+    libanstyle.vendor \
+    libanyhow.vendor \
     libasyncio.recovery \
     libaudio_aidl_conversion_common_ndk.vendor \
     libaudioaidlcommon.vendor \
@@ -364,14 +390,21 @@ PRODUCT_PACKAGES += \
     libavservices_minijail.vendor \
     libbase.vendor_ramdisk \
     libbinder_trusty \
-    libbluetooth_audio_session_aidl \
+    libbionic_bindgen.vendor \
+    libbitflags.vendor \
+    libbluetooth_audio_session_aidl.vendor \
     libbundleaidl \
+    libbytes.vendor \
     libc++.vendor_ramdisk \
     libc.vendor_ramdisk \
     libcap.vendor \
+    libcfg_if.vendor \
     libclang_rt.ubsan_standalone.vendor \
+    libclap.vendor \
+    libclap_builder.vendor \
+    libclap_lex.vendor \
     libcodec2.vendor \
-    libcodec2_aidl.vendor \
+    libcodec2_aidl_V2.vendor \
     libcodec2_aidl_noisurface.vendor \
     libcodec2_hal_common.vendor \
     libcodec2_hidl@1.0.vendor \
@@ -381,12 +414,16 @@ PRODUCT_PACKAGES += \
     libcppbor.vendor \
     libcppcose_rkp.vendor \
     libcurl.vendor \
+    libcutils_bindgen.vendor \
+    libcxx.vendor \
     libdl.vendor_ramdisk \
     libdownmixaidl \
     libdrm.vendor \
     libdumpstateutil.vendor \
     libdynamicsprocessingaidl \
     libeffectconfig \
+    libenv_filter.vendor \
+    libenv_logger.vendor \
     libevent.vendor \
     libexpat.vendor \
     libext2_blkid.vendor_ramdisk \
@@ -397,6 +434,7 @@ PRODUCT_PACKAGES += \
     libext2fs.vendor_ramdisk \
     libflatbuffers-cpp.vendor \
     libfmq.vendor \
+    libfoldhash.vendor \
     libgralloctypes.vendor \
     libhapticgeneratoraidl \
     libhidlmemory.vendor \
@@ -409,21 +447,38 @@ PRODUCT_PACKAGES += \
     libkeymaster_portable.vendor \
     libkeymint_support_V3.vendor \
     libkeystore-engine-wifi-hidl \
+    liblazy_static.vendor \
+    liblibc.vendor \
     liblog.vendor_ramdisk \
+    liblog_rust.vendor \
+    liblogger.vendor \
     libloudnessenhanceraidl \
     liblzma.vendor \
     libm.vendor_ramdisk \
     libmediautils_vendor.vendor \
+    libmemchr.vendor \
+    libmemmap2.vendor \
+    libmemoffset.vendor \
     libmemunreachable.vendor \
     libminijail.vendor \
     libnbaio_mono \
     libnetutils.vendor \
+    libnix.vendor \
     libnl.vendor \
+    libonce_cell.vendor \
     libpng.vendor \
     libpower.vendor \
     libprocessgroup.vendor \
+    libprotobuf.vendor \
+    libprotobuf_support.vendor \
+    libregex.vendor \
+    libregex_automata.vendor \
+    libregex_syntax.vendor \
     libreverbaidl \
+    librustutils.vendor \
     libsensorndkbridge \
+    libserde.vendor \
+    libserde_core.vendor \
     libsfplugin_ccodec_utils.vendor \
     libsparse.vendor_ramdisk \
     libsqlite.vendor \
@@ -431,6 +486,9 @@ PRODUCT_PACKAGES += \
     libstagefright_aidl_bufferpool2.vendor \
     libstagefright_bufferpool@2.0.1.vendor \
     libstd.vendor \
+    libstrsim.vendor \
+    libsystem_properties_bindgen_sys.vendor \
+    libthiserror.vendor \
     libtinyalsa.vendor \
     libtinyalsav2.vendor \
     libtinycompress \
@@ -473,11 +531,13 @@ PRODUCT_PACKAGES += \
 # sysconfig
 PRODUCT_PACKAGES += \
     adevtool_sysconfig_system_ext_default-permissions \
+    adevtool_sysconfig_system_ext_sysconfig \
     adevtool_sysconfig_system_ext_permissions \
     adevtool_sysconfig_product_default-permissions \
     adevtool_sysconfig_product_sysconfig \
     adevtool_sysconfig_product_permissions \
-    adevtool_sysconfig_vendor_permissions
+    adevtool_sysconfig_vendor_permissions \
+    adevtool_sysconfig_odm_sysconfig_sku_GM66V
 
 # APK parser config
 PRODUCT_PACKAGES += \
@@ -501,6 +561,7 @@ PRODUCT_PACKAGES += \
     LargeScreenSettingsProviderOverlay \
     ManagedProvisioningPixelOverlay \
     NetworkStackOverlay \
+    NfcOverlayRangoGsi \
     PearlOverlay2024 \
     PixelBatteryHealthOverlay \
     PixelBatteryLotXOverlay \
@@ -552,7 +613,7 @@ PRODUCT_PACKAGES += \
     OemRilHookService \
     OemRilService \
     PersistentBackgroundCameraServices \
-    PixelCameraServicesConnectivityClient \
+    PixelCameraServices \
     PixelDisplayService \
     PixelImsMediaService \
     PixelModemService \
@@ -562,6 +623,8 @@ PRODUCT_PACKAGES += \
     ShannonIms \
     ShannonRcs \
     aconfig_gpu_flags_c_lib \
+    aconfig_gpu_img_flags_c_lib \
+    aconfig_gsc_flags_c_lib \
     activity \
     aidb_recorder \
     ambient_volume \
@@ -608,12 +671,14 @@ PRODUCT_PACKAGES += \
     android.hardware.weaver2-impl.nos \
     aoc_aconfig_flags_c_lib \
     aocd \
-    aocx-V2-ndk \
+    aocx-V3-ndk \
     aocxd \
     ar_bridge \
+    backup_ota_log.sh \
     battery_mitigation \
     biometricsuez \
     bipchmgr \
+    block_queue_depth \
     blue \
     capo \
     cbd \
@@ -626,20 +691,21 @@ PRODUCT_PACKAGES += \
     com.google.android.camera.extensions \
     com.google.android.camerax.extensions \
     com.google.android.modem.pms.lib \
-    com.google.android.widevine-13130248 \
+    com.google.android.widevine-15027108-cp2a \
     com.google.edgetpu.tachyon-ndk \
     com.google.edgetpu.tachyon-service \
-    com.google.edgetpu_app_service-V6-ndk \
-    com.google.edgetpu_app_service-V6-ndk.system_ext \
+    com.google.edgetpu_app_service-V10-ndk \
+    com.google.edgetpu_app_service-V10-ndk.system_ext \
     com.google.edgetpu_vendor_service-V2-ndk \
     com.google.edgetpu_vendor_service-V2-ndk.system_ext \
     com.google.hardware.biometrics.parcelable.fingerprint.PressToAuthParcelable-V1-ndk \
     com.google.hardware.biometrics.sidefps.fingerprint-ext-V1-ndk \
     com.google.hardware.pixel.display-V15-ndk \
-    com.google.hardware.pixel.display-V17-ndk \
+    com.google.hardware.pixel.display-V21-ndk \
     com.google.input-V2-ndk \
-    com.google.input-V6-ndk \
+    com.google.input-V8-ndk \
     com.google.input.gia.giaservicemanager \
+    com.google.pixel.audio.resource \
     com.google.pixel.camera.connectivity \
     com.google.pixel.camera.hal \
     com.google.pixel.camera.services.cameraidremapper \
@@ -650,6 +716,7 @@ PRODUCT_PACKAGES += \
     com.google.rango.hardware.threadnetwork \
     copy_efs_files_to_data \
     dck_gating \
+    devcoredump_action \
     disable_contaminant_detection.sh \
     dmd \
     drop \
@@ -661,6 +728,7 @@ PRODUCT_PACKAGES += \
     dump_gsa \
     dump_gsc.sh \
     dump_interrupts_traces \
+    dump_iommu \
     dump_mailbox \
     dump_modem \
     dump_modemlog \
@@ -675,13 +743,13 @@ PRODUCT_PACKAGES += \
     dump_storage \
     dump_telemetry \
     dump_thermal.sh \
-    dump_touch.sh \
     dump_tpu \
     dump_trusty.sh \
     dump_uwb \
     fake_gxp_telemetry_reader \
     fake_libtachyon_core \
     flood.control.hal \
+    fwtp_tool \
     gesture \
     gia \
     gnss_test \
@@ -691,6 +759,7 @@ PRODUCT_PACKAGES += \
     goodixfingerprint \
     google-ril \
     google.hardware.media.c2@3.0-service \
+    gpuflag \
     gs_watchdogd \
     gxp_metrics_logger \
     gxp_telemetry_reader \
@@ -700,13 +769,13 @@ PRODUCT_PACKAGES += \
     hostapd \
     imu_cal \
     init.camera.set-interrupts-ownership \
-    init.h2omg.sh \
     init.radio.sh \
     init_citadel \
     init_rdbl.sh \
     init_uwb_calib \
     insmod.sh \
     ip_health \
+    laguna-plugin-provider \
     lassen_dmd_constants \
     libEGL_powervr \
     libGLESv1_CM_powervr \
@@ -722,7 +791,6 @@ PRODUCT_PACKAGES += \
     lib_aion_buffer \
     lib_reader \
     lib_vendor_gsc_atoms \
-    libaconfig_display_pixel_hwc_flags \
     libalertv3 \
     libaoc \
     libc2filterplugin \
@@ -730,10 +798,9 @@ PRODUCT_PACKAGES += \
     libcodec2_store_dolby \
     libcustomer_gralloc_ddk_api \
     libcustomgnss \
-    libdapparamstorage \
     libdarwinn_hal \
-    libdeccfg \
     libdeeptouch \
+    libdisplay_tflite \
     libdisplayambience \
     libdisplaycolor \
     libdisplaypanel \
@@ -754,6 +821,7 @@ PRODUCT_PACKAGES += \
     libgc2_base \
     libgc2_dec \
     libgc2_enc \
+    libgc2_filter_common \
     libgc2_hal_flags \
     libgc2_hevc_dec \
     libgc2_hevc_enc \
@@ -767,12 +835,14 @@ PRODUCT_PACKAGES += \
     libgooglerilaudio \
     libgooglerilmemmonitor \
     libgpudataproducer \
+    libgpuflag_aconfig_rust.dylib \
     libgril_oem-google \
     libgxp \
+    libhwc_flags \
+    libhwc_xrr_flags \
     libhwjpeg \
     libion_google \
     libjson \
-    liblmkd_flags_c \
     libmahalcontroller \
     libmedia_ecoservice \
     libmediaadaptor \
@@ -797,9 +867,8 @@ PRODUCT_PACKAGES += \
     libpixelhealth \
     libpixelimsmedia \
     libpixelstats \
+    libpixelstatsflags \
     libpowerstatshaldataprovider \
-    libprotobuf-cpp-full-6.33.1 \
-    libprotobuf-cpp-lite-6.33.1 \
     librecovery_ui_ext \
     libril-aidl \
     libril_gfeature \
@@ -852,21 +921,20 @@ PRODUCT_PACKAGES += \
     pcie_power_control \
     pixel-experiments-recovery.sh \
     pixel-power-ext-V1-ndk \
-    pixel.gralloc.allocator-V2-service \
+    pixel-power-ext-V2-ndk \
+    pixel.gralloc.allocator-service \
     pixel_irq_load_balancer \
     pixel_stateresidency_provider_aidl_interface-ndk \
     pixelatoms-cpp \
-    pixelpowerstats_provider_aidl_interface-cpp \
+    pixelmd \
     pixelstats-vendor \
-    predump_gti0.sh \
-    predump_gti1.sh \
-    predump_touch.sh \
-    pvrhwperfd \
+    pixelstats_flags_c_lib \
     rango-services \
     rebalance_interrupts-vendor \
     rfsd \
     ril-extension \
     rild_exynos \
+    sconed \
     sd \
     sendhint \
     sensorcollector \
@@ -875,26 +943,30 @@ PRODUCT_PACKAGES += \
     storage_init.sh \
     structural_health \
     system_signal_hub \
+    thermal-budget-interface-ndk \
     thermal_symlinks \
     time_sync \
-    touch_gti_ical \
     trusty_metricsd \
     twoshay \
+    usb_accessory_utils \
+    usboffmode \
     usf_stats \
     uv_exposure \
     vendor-pixelatoms-cpp \
-    vendor.dolby.media.c2@1.0-service \
+    vendor.dolby.media.c2-default-service \
     vendor.google.aam-V3-ndk \
     vendor.google.aam-service \
     vendor.google.ambience_hub-V1-ndk \
     vendor.google.ambience_hub-service \
     vendor.google.ambience_hub.signals-V1-ndk \
+    vendor.google.ambience_hub.signals-V2-ndk \
     vendor.google.battery_mitigation-V1-ndk \
     vendor.google.battery_mitigation.service_static \
     vendor.google.bluetooth_ext-V1-ndk \
     vendor.google.bluetooth_ext-V4-ndk \
     vendor.google.edgetpu_app_service@1.0-service \
     vendor.google.edgetpu_vendor_service@1.0-service \
+    vendor.google.gnss.gnss_manager.controller-V1-ndk \
     vendor.google.gnss_ext-V1-ndk \
     vendor.google.google_battery-V5-ndk \
     vendor.google.google_battery-service \
@@ -904,8 +976,8 @@ PRODUCT_PACKAGES += \
     vendor.google.whitechapel.audio.audioext@4.0 \
     vendor.google.whitechapel.audio.audioext@4.0.system_ext \
     vendor.google.whitechapel.audio.extension-V5-ndk \
-    vendor.google.whitechapel.audio.extension-V7-ndk \
-    vendor.google.whitechapel.audio.extension-V7-ndk.system_ext \
+    vendor.google.whitechapel.audio.extension-V8-ndk \
+    vendor.google.whitechapel.audio.extension-V8-ndk.system_ext \
     vendor.google.whitechapel.audio.hal.parserservice \
     vendor.google.whitechapel.audio.hal.utils \
     vendor.google.whitechapel.audio.hal.utils.adaptedinfo \
@@ -914,7 +986,7 @@ PRODUCT_PACKAGES += \
     vendor.google.whitechapel.audio.hal.utils.bluenote \
     vendor.google.whitechapel.audio.hal.utils.pipe \
     vendor.google.whitechapel.audio_flags \
-    vendor.google.wireless_charger-V5-ndk \
+    vendor.google.wireless_charger-V7-ndk \
     vendor.google.wireless_charger-default \
     vendor.google.wireless_charger.service-V2-ndk \
     vendor.google.wireless_charger.service-default \
@@ -940,6 +1012,7 @@ PRODUCT_PACKAGES += \
     device_symlinks
 
 PRODUCT_COPY_FILES += \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/019mobile_il.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/019mobile_il.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/1and1_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/1and1_de.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/1global_bootstrap.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/1global_bootstrap.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/2degrees_nz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/2degrees_nz.pb \
@@ -962,9 +1035,11 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/alcom_fi.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/alcom_fi.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/alestra_mx.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/alestra_mx.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/aliv_bs.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/aliv_bs.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/alkafeel_iq.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/alkafeel_iq.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/altice_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/altice_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/alticeroaming_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/alticeroaming_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/andorratelecom_ad.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/andorratelecom_ad.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/annatel_il.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/annatel_il.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/antel_uy.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/antel_uy.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/appalachian_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/appalachian_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/apt_tw.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/apt_tw.pb \
@@ -981,21 +1056,24 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/attbootstrap_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/attbootstrap_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/attmvnos_mx.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/attmvnos_mx.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/attmvnos_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/attmvnos_us.pb \
-    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/avatel_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/avatel_es.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/axis_id.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/axis_id.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/b1_ch.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/b1_ch.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/bait_mx.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bait_mx.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/bark_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bark_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/base_be.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/base_be.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/batelco_bh.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/batelco_bh.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/bbix_zz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bbix_zz.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/bell_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bell_ca.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/best_la.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/best_la.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/bhtelecom_ba.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bhtelecom_ba.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/bics_be.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bics_be.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/bite_lt.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bite_lt.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/bite_lv.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bite_lv.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/bluegrass_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bluegrass_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/bob_at.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bob_at.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/bonbon_hr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bonbon_hr.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/boost_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/boost_us.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/boostmobile_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/boostmobile_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/boosttmo_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/boosttmo_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/bouygues_fr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bouygues_fr.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/bouyguesb2b_fr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bouyguesb2b_fr.pb \
@@ -1007,6 +1085,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/cablewireless_sc.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cablewireless_sc.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/cape_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cape_ca.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/cape_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cape_us.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/caribbean_vg.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/caribbean_vg.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/carolinawest_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/carolinawest_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/carrier_list.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/carrier_list.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/celcom_my.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/celcom_my.pb \
@@ -1022,10 +1101,12 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/cht_tw.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cht_tw.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/citymesh_be.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/citymesh_be.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/citymesh_se.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/citymesh_se.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/cjsc_tj.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cjsc_tj.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/claro_ar.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_ar.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/claro_br.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_br.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/claro_cl.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_cl.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/claro_co.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_co.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/claro_pe.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_pe.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/claro_pr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_pr.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/cloud9_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cloud9_gb.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/cloudcore_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cloudcore_ca.pb \
@@ -1060,7 +1141,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/digimobil_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/digimobil_es.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/dish_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/dish_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/dish5gsa_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/dish5gsa_us.pb \
-    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/dishatt_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/dishatt_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/dito_ph.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/dito_ph.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/dna_fi.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/dna_fi.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/docomo_jp.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/docomo_jp.pb \
@@ -1074,19 +1154,23 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/eir_ie.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/eir_ie.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/elisa_ee.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/elisa_ee.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/elisa_fi.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/elisa_fi.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/emnify_br.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/emnify_br.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/emnify_li.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/emnify_li.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/emnify_zz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/emnify_zz.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/enetworks_gy.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/enetworks_gy.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/enreach_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/enreach_de.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/enreach_nl.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/enreach_nl.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/entel_cl.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/entel_cl.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/entel_pe.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/entel_pe.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/epic_mt.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/epic_mt.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/eplus_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/eplus_de.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/erate_no.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/erate_no.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/esimgo_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/esimgo_gb.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/esimgotravel_zz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/esimgotravel_zz.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/esn_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/esn_gb.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/etisalat_ae.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/etisalat_ae.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/etisalat_af.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/etisalat_af.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/etl_ls.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/etl_ls.pb \
-    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/eureka_jp.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/eureka_jp.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/evolve_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/evolve_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/execulink_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/execulink_ca.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/faiba_ke.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/faiba_ke.pb \
@@ -1109,7 +1193,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/free_re.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/free_re.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/freedommobile_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/freedommobile_ca.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/gamma_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/gamma_gb.pb \
-    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/gbrli_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/gbrli_gb.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/gci_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/gci_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/gibtel_gi.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/gibtel_gi.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/giffgaff_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/giffgaff_gb.pb \
@@ -1177,7 +1260,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/linemo_jp.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/linemo_jp.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/lmt_lv.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/lmt_lv.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/lobster_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/lobster_es.pb \
-    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/lobster_gi.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/lobster_gi.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/lowi_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/lowi_es.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/luckymobile_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/luckymobile_ca.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/lum_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/lum_ca.pb \
@@ -1214,16 +1296,21 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/movistar_co.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/movistar_co.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/movistar_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/movistar_es.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/movistar_mx.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/movistar_mx.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/movistar_pe.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/movistar_pe.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/mtel_at.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtel_at.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/mtel_ba.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtel_ba.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/mtel_ch.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtel_ch.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/mtel_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtel_de.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/mtel_me.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtel_me.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/mtn_gh.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtn_gh.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/mtn_ng.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtn_ng.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/mtn_zm.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtn_zm.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/mtx_lu.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtx_lu.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/mtx_zz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtx_zz.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/mucho_ch.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mucho_ch.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/mvnoconnect_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mvnoconnect_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/naf_no.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/naf_no.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/natcom_ht.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/natcom_ht.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/ncell_np.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/ncell_np.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/nema_fo.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/nema_fo.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/neotel_nr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/neotel_nr.pb \
@@ -1277,18 +1364,20 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/orangentn_fr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/orangentn_fr.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/others.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/others.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/otz_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/otz_us.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/ourtelekom_sb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/ourtelekom_sb.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/oxio_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/oxio_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/paradisemobile_bm.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/paradisemobile_bm.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/paradisemobile_ky.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/paradisemobile_ky.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/partner_il.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/partner_il.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/pcmobilebell_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pcmobilebell_ca.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/pelephone_il.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pelephone_il.pb \
-    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/pivotel_au.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pivotel_au.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/pinebelt_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pinebelt_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/play_pl.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/play_pl.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/plintron_it.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/plintron_it.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/plintron_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/plintron_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/plus_pl.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/plus_pl.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/pmci_pw.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pmci_pw.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/pn_xx.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pn_xx.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/popcorn_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/popcorn_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/post_lu.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/post_lu.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/postemobile_it.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/postemobile_it.pb \
@@ -1360,6 +1449,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/sprintwholesale_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/sprintwholesale_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/spusu_at.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/spusu_at.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/spusu_ch.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/spusu_ch.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/spusu_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/spusu_de.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/spusu_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/spusu_gb.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/spusu_it.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/spusu_it.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/ssimobile_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/ssimobile_ca.pb \
@@ -1418,11 +1508,11 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/telia_lt.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telia_lt.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/telia_no.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telia_no.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/telia_se.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telia_se.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/teliab2b_se.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/teliab2b_se.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/telkomsel_id.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telkomsel_id.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/tello_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/tello_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/telna_zz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telna_zz.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/telnyx_be.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telnyx_be.pb \
-    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/telnyx_it.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telnyx_it.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/telnyx_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telnyx_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/telstra_au.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telstra_au.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/telus_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telus_ca.pb \
@@ -1485,6 +1575,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/vinaphone_vn.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vinaphone_vn.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/virgin_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/virgin_ca.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/virgin_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/virgin_gb.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/virgin_kw.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/virgin_kw.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/virgin_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/virgin_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/visible_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/visible_us.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/visiblev_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/visiblev_us.pb \
@@ -1493,6 +1584,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/vivo_br.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vivo_br.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/vodafone_al.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_al.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/vodafone_au.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_au.pb \
+    vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/vodafone_ck.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_ck.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/vodafone_cz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_cz.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/vodafone_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_de.pb \
     vendor/google_devices/rango/proprietary/product/etc/CarrierSettings/vodafone_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_es.pb \
@@ -1553,9 +1645,15 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/recovery/system/etc/init/android.hardware.boot-service.default_recovery-pixel.rc:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/init/android.hardware.boot-service.default_recovery-pixel.rc \
     vendor/google_devices/rango/proprietary/recovery/system/etc/init/android.hardware.health-service.laguna_recovery.rc:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/init/android.hardware.health-service.laguna_recovery.rc \
     vendor/google_devices/rango/proprietary/system_ext/etc/init/init.gs_watchdogd.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.gs_watchdogd.rc \
+    vendor/google_devices/rango/proprietary/system_ext/etc/init/mosey.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/mosey.rc \
+    vendor/google_devices/rango/proprietary/system_ext/etc/init/sconed.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/sconed.rc \
     vendor/google_devices/rango/proprietary/system_ext/etc/init/vendor.google.edgetpu_app_service@1.0-service.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/vendor.google.edgetpu_app_service@1.0-service.rc \
     vendor/google_devices/rango/proprietary/system_ext/etc/init/vendor.google.whitechapel.audio.hal.parserservice.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/vendor.google.whitechapel.audio.hal.parserservice.rc \
+    vendor/google_devices/rango/proprietary/system_ext/etc/wifi/p2p_supplicant_mainline_overlay.conf:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/wifi/p2p_supplicant_mainline_overlay.conf \
+    vendor/google_devices/rango/proprietary/system_ext/etc/wifi/wpa_supplicant_mainline_overlay.conf:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/wifi/wpa_supplicant_mainline_overlay.conf \
     vendor/google_devices/rango/proprietary/system_ext/priv-app/EuiccSupportPixel-P23/DKA_0302_25.up:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel-P23/DKA_0302_25.up \
+    vendor/google_devices/rango/proprietary/system_ext/priv-app/EuiccSupportPixel-P23/DKA_0303_02x_25.up:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel-P23/DKA_0303_02x_25.up \
+    vendor/google_devices/rango/proprietary/system_ext/priv-app/EuiccSupportPixel-P23/DKA_0303_03x_25.up:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel-P23/DKA_0303_03x_25.up \
     vendor/google_devices/rango/proprietary/system_ext/priv-app/EuiccSupportPixel-P23/esim-full-v1-security.img:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel-P23/esim-full-v1-security.img \
     vendor/google_devices/rango/proprietary/system_ext/priv-app/EuiccSupportPixel-P23/esim-full-v1.img:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel-P23/esim-full-v1.img \
     vendor/google_devices/rango/proprietary/vendor_ramdisk/system/etc/fstab.gem5:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/etc/fstab.gem5 \
@@ -1564,47 +1662,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/etc/aidl/le_audio/aidl_audio_set_configurations.json:$(TARGET_COPY_OUT_VENDOR)/etc/aidl/le_audio/aidl_audio_set_configurations.json \
     vendor/google_devices/rango/proprietary/vendor/etc/aidl/le_audio/aidl_audio_set_scenarios.json:$(TARGET_COPY_OUT_VENDOR)/etc/aidl/le_audio/aidl_audio_set_scenarios.json \
     vendor/google_devices/rango/proprietary/vendor/etc/atrace/atrace_categories.txt:$(TARGET_COPY_OUT_VENDOR)/etc/atrace/atrace_categories.txt \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/downlink_bluetooth_headset_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/downlink_bluetooth_headset_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/downlink_dock_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/downlink_dock_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/downlink_external_speaker_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/downlink_external_speaker_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/downlink_handset_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/downlink_handset_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/downlink_handset_hac_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/downlink_handset_hac_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/downlink_speaker_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/downlink_speaker_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/downlink_wired_headset_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/downlink_wired_headset_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/uplink_bluetooth_headset_aec_off_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/uplink_bluetooth_headset_aec_off_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/uplink_bluetooth_headset_aec_on_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/uplink_bluetooth_headset_aec_on_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/uplink_dock_aec_off_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/uplink_dock_aec_off_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/uplink_dock_aec_on_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/uplink_dock_aec_on_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/uplink_external_speaker_aec_off_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/uplink_external_speaker_aec_off_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/uplink_external_speaker_aec_on_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/uplink_external_speaker_aec_on_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/uplink_handset_aec_off_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/uplink_handset_aec_off_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/uplink_handset_aec_on_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/uplink_handset_aec_on_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/uplink_handset_hac_aec_off_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/uplink_handset_hac_aec_off_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/uplink_handset_hac_aec_on_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/uplink_handset_hac_aec_on_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/uplink_speaker_aec_off_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/uplink_speaker_aec_off_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/uplink_speaker_aec_on_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/uplink_speaker_aec_on_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/uplink_wired_headset_aec_off_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/uplink_wired_headset_aec_off_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/apmg3/uplink_wired_headset_aec_on_config.pb:$(TARGET_COPY_OUT_VENDOR)/etc/audio/apmg3/uplink_wired_headset_aec_on_config.pb \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/bluenote/recording.gatf:$(TARGET_COPY_OUT_VENDOR)/etc/audio/bluenote/recording.gatf \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/bluenote/smartfeature.gstf:$(TARGET_COPY_OUT_VENDOR)/etc/audio/bluenote/smartfeature.gstf \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/compensation/compens_spk_l_1.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio/compensation/compens_spk_l_1.conf \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/compensation/compens_spk_l_2.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio/compensation/compens_spk_l_2.conf \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/compensation/compens_spk_r_1.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio/compensation/compens_spk_r_1.conf \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/compensation/compens_spk_r_2.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio/compensation/compens_spk_r_2.conf \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/compensation/default_mic_compensation.bin:$(TARGET_COPY_OUT_VENDOR)/etc/audio/compensation/default_mic_compensation.bin \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/fortemedia/BLUETOOTH.dat:$(TARGET_COPY_OUT_VENDOR)/etc/audio/fortemedia/BLUETOOTH.dat \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/fortemedia/HANDSET.dat:$(TARGET_COPY_OUT_VENDOR)/etc/audio/fortemedia/HANDSET.dat \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/fortemedia/HANDSFREE.dat:$(TARGET_COPY_OUT_VENDOR)/etc/audio/fortemedia/HANDSFREE.dat \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/fortemedia/HEADSET.dat:$(TARGET_COPY_OUT_VENDOR)/etc/audio/fortemedia/HEADSET.dat \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/fortemedia/mcps.dat:$(TARGET_COPY_OUT_VENDOR)/etc/audio/fortemedia/mcps.dat \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/spatializer/base:$(TARGET_COPY_OUT_VENDOR)/etc/audio/spatializer/base \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/spatializer/mode_2_ch:$(TARGET_COPY_OUT_VENDOR)/etc/audio/spatializer/mode_2_ch \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/spatializer/mode_6_ch:$(TARGET_COPY_OUT_VENDOR)/etc/audio/spatializer/mode_6_ch \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/spatializer/mode_xaural:$(TARGET_COPY_OUT_VENDOR)/etc/audio/spatializer/mode_xaural \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/waves/waves_config_nx.ini:$(TARGET_COPY_OUT_VENDOR)/etc/audio/waves/waves_config_nx.ini \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/waves/waves_config.ini:$(TARGET_COPY_OUT_VENDOR)/etc/audio/waves/waves_config.ini \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/waves/waves_preset_nx.mps:$(TARGET_COPY_OUT_VENDOR)/etc/audio/waves/waves_preset_nx.mps \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/waves/waves_preset.mps:$(TARGET_COPY_OUT_VENDOR)/etc/audio/waves/waves_preset.mps \
     vendor/google_devices/rango/proprietary/vendor/etc/bluetooth_power_limits_CA.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_CA.csv \
     vendor/google_devices/rango/proprietary/vendor/etc/bluetooth_power_limits_EU.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_EU.csv \
     vendor/google_devices/rango/proprietary/vendor/etc/bluetooth_power_limits_JP.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_JP.csv \
@@ -1672,6 +1729,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/etc/displayconfig/ltm_td_common.pb:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/ltm_td_common.pb \
     vendor/google_devices/rango/proprietary/vendor/etc/displayconfig/smoothcal_lut_data-google-rgeb.txt:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/smoothcal_lut_data-google-rgeb.txt \
     vendor/google_devices/rango/proprietary/vendor/etc/earcheek_classifier.tflite:$(TARGET_COPY_OUT_VENDOR)/etc/earcheek_classifier.tflite \
+    vendor/google_devices/rango/proprietary/vendor/etc/edgetpu/custom_kernel.pbtxt:$(TARGET_COPY_OUT_VENDOR)/etc/edgetpu/custom_kernel.pbtxt \
     vendor/google_devices/rango/proprietary/vendor/etc/fstab.efs:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.efs \
     vendor/google_devices/rango/proprietary/vendor/etc/fstab.gem5:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.gem5 \
     vendor/google_devices/rango/proprietary/vendor/etc/fstab.laguna:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.laguna \
@@ -1724,11 +1782,13 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/etc/init/citadeld.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/citadeld.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/com.google.edgetpu.tachyon-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/com.google.edgetpu.tachyon-service.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/com.google.input.gia.giacore.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/com.google.input.gia.giacore.rc \
+    vendor/google_devices/rango/proprietary/vendor/etc/init/devcoredump_action.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/devcoredump_action.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/dmd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/dmd.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/drm_hwc3.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/drm_hwc3.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/dump_power.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/dump_power.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/fingerprint-goodix.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/fingerprint-goodix.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/google.hardware.media.c2@3.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/google.hardware.media.c2@3.0-service.rc \
+    vendor/google_devices/rango/proprietary/vendor/etc/init/gpuflag.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/gpuflag.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/hostapd.android.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hostapd.android.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/hw/init.efs.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.efs.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/hw/init.laguna.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.laguna.rc \
@@ -1740,8 +1800,9 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/etc/init/init.aoc.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.aoc.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/init.camera.set-interrupts-ownership.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.camera.set-interrupts-ownership.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/init.flood.control.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.flood.control.rc \
+    vendor/google_devices/rango/proprietary/vendor/etc/init/init.gia.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.gia.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/init.gnss.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.gnss.rc \
-    vendor/google_devices/rango/proprietary/vendor/etc/init/init.h2omg.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.h2omg.rc \
+    vendor/google_devices/rango/proprietary/vendor/etc/init/init.gsa.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.gsa.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/init.interrupts.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.interrupts.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/init.mailbox.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.mailbox.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/init.modem_logging_control.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.modem_logging_control.rc \
@@ -1755,21 +1816,24 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/etc/init/init.storage.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.storage.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/init.touch.gti0.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.touch.gti0.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/init.touch.gti1.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.touch.gti1.rc \
-    vendor/google_devices/rango/proprietary/vendor/etc/init/init.touch.predump.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.touch.predump.rc \
+    vendor/google_devices/rango/proprietary/vendor/etc/init/init.usboffmode.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.usboffmode.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/init.usf.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.usf.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/init.vendor_telephony.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.vendor_telephony.rc \
+    vendor/google_devices/rango/proprietary/vendor/etc/init/init.watermark-scale-factor.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.watermark-scale-factor.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/libg3a_gabc.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/libg3a_gabc.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/libg3a_gaf.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/libg3a_gaf.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/libg3a_ghawb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/libg3a_ghawb.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/memtrack.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/memtrack.rc \
-    vendor/google_devices/rango/proprietary/vendor/etc/init/mosey.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/mosey.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/pcie_power.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pcie_power.rc \
+    vendor/google_devices/rango/proprietary/vendor/etc/init/pixel-bgtasks-experiment.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-bgtasks-experiment.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/pixel-experiments-recovery.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-experiments-recovery.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/pixel-gnss-default.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-gnss-default.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/pixel-mm-gki.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-mm-gki.rc \
+    vendor/google_devices/rango/proprietary/vendor/etc/init/pixel-sched-proxy-exec-experiment.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-sched-proxy-exec-experiment.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/pixel-thermal-symlinks.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-thermal-symlinks.rc \
-    vendor/google_devices/rango/proprietary/vendor/etc/init/pixel-ubp-experiment.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-ubp-experiment.rc \
-    vendor/google_devices/rango/proprietary/vendor/etc/init/pixel.gralloc.allocator-V2-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel.gralloc.allocator-V2-service.rc \
+    vendor/google_devices/rango/proprietary/vendor/etc/init/pixel-zram-comp-algorithm-experiment.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-zram-comp-algorithm-experiment.rc \
+    vendor/google_devices/rango/proprietary/vendor/etc/init/pixel.gralloc.allocator-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel.gralloc.allocator-service.rc \
+    vendor/google_devices/rango/proprietary/vendor/etc/init/pixelmd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixelmd.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/pixelstats-vendor.laguna.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixelstats-vendor.laguna.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/pktrouter.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pktrouter.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/rebalance_interrupts-vendor.gs101.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/rebalance_interrupts-vendor.gs101.rc \
@@ -1779,7 +1843,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/etc/init/trusty_metricsd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/trusty_metricsd.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/twoshay.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/twoshay.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/uwb-calib.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/uwb-calib.rc \
-    vendor/google_devices/rango/proprietary/vendor/etc/init/vendor.dolby.media.c2@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.dolby.media.c2@1.0-service.rc \
+    vendor/google_devices/rango/proprietary/vendor/etc/init/vendor.dolby.media.c2-default-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.dolby.media.c2-default-service.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/vendor.google.aam.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.aam.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/vendor.google.ambience_hub-default.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.ambience_hub-default.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/init/vendor.google.battery_mitigation-default.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.battery_mitigation-default.rc \
@@ -1819,6 +1883,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/etc/powervr.ini:$(TARGET_COPY_OUT_VENDOR)/etc/powervr.ini \
     vendor/google_devices/rango/proprietary/vendor/etc/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt \
     vendor/google_devices/rango/proprietary/vendor/etc/res/images/charger/battery_fail.png:$(TARGET_COPY_OUT_VENDOR)/etc/res/images/charger/battery_fail.png \
+    vendor/google_devices/rango/proprietary/vendor/etc/res/images/charger/battery_overheat.png:$(TARGET_COPY_OUT_VENDOR)/etc/res/images/charger/battery_overheat.png \
     vendor/google_devices/rango/proprietary/vendor/etc/res/images/charger/battery_scale.png:$(TARGET_COPY_OUT_VENDOR)/etc/res/images/charger/battery_scale.png \
     vendor/google_devices/rango/proprietary/vendor/etc/res/images/charger/main_font.png:$(TARGET_COPY_OUT_VENDOR)/etc/res/images/charger/main_font.png \
     vendor/google_devices/rango/proprietary/vendor/etc/res/values/charger/animation.txt:$(TARGET_COPY_OUT_VENDOR)/etc/res/values/charger/animation.txt \
@@ -1836,7 +1901,10 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/etc/tcm_test_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/tcm_test_cfg.ini \
     vendor/google_devices/rango/proprietary/vendor/etc/telephony/satellite_access_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/telephony/satellite_access_config.json \
     vendor/google_devices/rango/proprietary/vendor/etc/telephony/sats2.dat:$(TARGET_COPY_OUT_VENDOR)/etc/telephony/sats2.dat \
+    vendor/google_devices/rango/proprietary/vendor/etc/thermal_info_config_aa_throttling.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_aa_throttling.json \
+    vendor/google_devices/rango/proprietary/vendor/etc/thermal_info_config_bg_tasks_throttling.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_bg_tasks_throttling.json \
     vendor/google_devices/rango/proprietary/vendor/etc/thermal_info_config_charge.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_charge.json \
+    vendor/google_devices/rango/proprietary/vendor/etc/thermal_info_config_lpm.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_lpm.json \
     vendor/google_devices/rango/proprietary/vendor/etc/thermal_info_config_stats.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_stats.json \
     vendor/google_devices/rango/proprietary/vendor/etc/thermal_info_config_throttling.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_throttling.json \
     vendor/google_devices/rango/proprietary/vendor/etc/thermal_info_config_vt.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_vt.json \
@@ -1844,6 +1912,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/etc/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json \
     vendor/google_devices/rango/proprietary/vendor/etc/touchflow_inner.pb:$(TARGET_COPY_OUT_VENDOR)/etc/touchflow_inner.pb \
     vendor/google_devices/rango/proprietary/vendor/etc/touchflow_outer.pb:$(TARGET_COPY_OUT_VENDOR)/etc/touchflow_outer.pb \
+    vendor/google_devices/rango/proprietary/vendor/etc/tracing_descriptors.gz:$(TARGET_COPY_OUT_VENDOR)/etc/tracing_descriptors.gz \
     vendor/google_devices/rango/proprietary/vendor/etc/twoshay_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/twoshay_config.json \
     vendor/google_devices/rango/proprietary/vendor/etc/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc \
     vendor/google_devices/rango/proprietary/vendor/etc/uwb/samsung_uwb_cal_region-ce.json:$(TARGET_COPY_OUT_VENDOR)/etc/uwb/samsung_uwb_cal_region-ce.json \
@@ -1854,6 +1923,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/etc/uwb/samsung_uwb_hal_conf.json:$(TARGET_COPY_OUT_VENDOR)/etc/uwb/samsung_uwb_hal_conf.json \
     vendor/google_devices/rango/proprietary/vendor/etc/uwb/samsung_uwb_region.json:$(TARGET_COPY_OUT_VENDOR)/etc/uwb/samsung_uwb_region.json \
     vendor/google_devices/rango/proprietary/vendor/etc/vt_estimation_model_bottom_spk.tflite:$(TARGET_COPY_OUT_VENDOR)/etc/vt_estimation_model_bottom_spk.tflite \
+    vendor/google_devices/rango/proprietary/vendor/etc/vt_estimation_model_display.tflite:$(TARGET_COPY_OUT_VENDOR)/etc/vt_estimation_model_display.tflite \
     vendor/google_devices/rango/proprietary/vendor/etc/vt_estimation_model_top_spk.tflite:$(TARGET_COPY_OUT_VENDOR)/etc/vt_estimation_model_top_spk.tflite \
     vendor/google_devices/rango/proprietary/vendor/etc/vt_estimation_model.tflite:$(TARGET_COPY_OUT_VENDOR)/etc/vt_estimation_model.tflite \
     vendor/google_devices/rango/proprietary/vendor/etc/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
@@ -1872,12 +1942,10 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/cfg.db:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/cfg.db \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/cfg.sha2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/cfg.sha2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs_symbolic_link_mapping:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs_symbolic_link_mapping \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/0043366cac642467b6e30b72b6c00236ac75a4e5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0043366cac642467b6e30b72b6c00236ac75a4e5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/00863156ac680f7647a60dd6f3a36a4a623826e7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/00863156ac680f7647a60dd6f3a36a4a623826e7 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/01083369e79d86f62e3aadb2b3009f1aeb8ddd45:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/01083369e79d86f62e3aadb2b3009f1aeb8ddd45 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/01bcd13d69c1d96179c6504fdcb866c58214d904:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/01bcd13d69c1d96179c6504fdcb866c58214d904 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/01c8a8a9e56e4b15875c4669f81b8eb5e7dc3772:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/01c8a8a9e56e4b15875c4669f81b8eb5e7dc3772 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/0221d556f442d197d01bdb6a51e897f5b3300244:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0221d556f442d197d01bdb6a51e897f5b3300244 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/02537df3fc45267b59a891625a7e1c5a2a0bd33a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/02537df3fc45267b59a891625a7e1c5a2a0bd33a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/027a57ddd7d82a616e4874babddb588ebd9a85b1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/027a57ddd7d82a616e4874babddb588ebd9a85b1 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/02c28ec5efb3d631a49a851b89c89730db361a10:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/02c28ec5efb3d631a49a851b89c89730db361a10 \
@@ -1885,8 +1953,8 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/03068f64cb1f6a6a31015757c266f87b8a039be2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/03068f64cb1f6a6a31015757c266f87b8a039be2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/033153d33e045cabc3c33c9a9c0b3dfb25c54d56:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/033153d33e045cabc3c33c9a9c0b3dfb25c54d56 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/036fedb1108e5a70f586ad42303ebfba0c855311:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/036fedb1108e5a70f586ad42303ebfba0c855311 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/03a67257e6edcf560bc4abf344993d33ddce4d43:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/03a67257e6edcf560bc4abf344993d33ddce4d43 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/0412944d47aa0a124538a91d1661a826b07d91ef:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0412944d47aa0a124538a91d1661a826b07d91ef \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/04133ba9d6ce9f825b3bfbd76662ddb0f5b0d262:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/04133ba9d6ce9f825b3bfbd76662ddb0f5b0d262 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/0426ebb907026d10cfe5fb469713c16ff661ad5f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0426ebb907026d10cfe5fb469713c16ff661ad5f \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/049f9e339423d7ab8f17f9eab53325da1384ff48:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/049f9e339423d7ab8f17f9eab53325da1384ff48 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/04aa4ebec6774e7e7af8c9702aa5ae8783357c65:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/04aa4ebec6774e7e7af8c9702aa5ae8783357c65 \
@@ -1895,6 +1963,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/051b30eb1befd30321979b73e338f2ba73fdc90d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/051b30eb1befd30321979b73e338f2ba73fdc90d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/05571f4f5b49e2135fc90d53d26876fc7acf71fe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/05571f4f5b49e2135fc90d53d26876fc7acf71fe \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/0581e1cbc0051b13b8b1da89dda6a85b62fd5581:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0581e1cbc0051b13b8b1da89dda6a85b62fd5581 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/0581f639cc51b8081cad9bf97e969d660f6c3517:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0581f639cc51b8081cad9bf97e969d660f6c3517 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/059f473a12317ff55cf871d69771d49482855fb7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/059f473a12317ff55cf871d69771d49482855fb7 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/05bbd25db23ffc8a76da52ff834f8f080fcbcfba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/05bbd25db23ffc8a76da52ff834f8f080fcbcfba \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/05ef83fde520529a38061ba047ce11d97365bd26:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/05ef83fde520529a38061ba047ce11d97365bd26 \
@@ -1903,24 +1972,22 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/06d448fc4f337c6bdb2a546415f51336e9a4a789:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/06d448fc4f337c6bdb2a546415f51336e9a4a789 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/06e89b35ef2228d0b7f017e7c1a93a80a957b3f3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/06e89b35ef2228d0b7f017e7c1a93a80a957b3f3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/078f9b58b86931e1aab9e0c9af88d8d760f254cd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/078f9b58b86931e1aab9e0c9af88d8d760f254cd \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/080a6f4d62a8f3b77572844d48a520c2bf5490b2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/080a6f4d62a8f3b77572844d48a520c2bf5490b2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/08402c62bbb9b261e098e74c5e5e51bcc3dfebd5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/08402c62bbb9b261e098e74c5e5e51bcc3dfebd5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/087157d1cfbb20f5b07b1a5f30df938886356128:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/087157d1cfbb20f5b07b1a5f30df938886356128 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/08c264b3ee6387a299fcf7b2cc9bb24073df1c86:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/08c264b3ee6387a299fcf7b2cc9bb24073df1c86 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/08caf21cc2ab3498d10b4255260594cf8701ecaa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/08caf21cc2ab3498d10b4255260594cf8701ecaa \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/08e1a1db49322a7bcad18e9dd2ed55e139662ef8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/08e1a1db49322a7bcad18e9dd2ed55e139662ef8 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/09600f3f9f68a2712a82d55133a935643a1a1dd5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/09600f3f9f68a2712a82d55133a935643a1a1dd5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/098c9217466a392c0a12e17ae10a9d8631d31b7c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/098c9217466a392c0a12e17ae10a9d8631d31b7c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/09e34cb69419dfad484a20a3082bbd1dd82bc9c3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/09e34cb69419dfad484a20a3082bbd1dd82bc9c3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/0a42ef66b11d0c379f1a15390e4960bd62b84dd8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0a42ef66b11d0c379f1a15390e4960bd62b84dd8 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/0b2296dce9ce3a46168ec91fe0004906f824f26b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0b2296dce9ce3a46168ec91fe0004906f824f26b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/0b354db896e612aa36f98d78869bfb65b0382202:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0b354db896e612aa36f98d78869bfb65b0382202 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/0bf8ff8bd7e49461b23d825c0a7f7202666a5db3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0bf8ff8bd7e49461b23d825c0a7f7202666a5db3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/0c049730c9ac30dc65d21809f84fa7a834d73221:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0c049730c9ac30dc65d21809f84fa7a834d73221 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/0c4b88695ed324b89fb491f55ca93e4009e84755:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0c4b88695ed324b89fb491f55ca93e4009e84755 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/0c6091933aea2dc7acb1df388f8ff9e0ac55ea48:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0c6091933aea2dc7acb1df388f8ff9e0ac55ea48 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/0c82bc8d6624e9fd4fb3a323f79df1c0d1ed4c43:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0c82bc8d6624e9fd4fb3a323f79df1c0d1ed4c43 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/0d0600f38af79eb84619d687c4a82e77bbb156b5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0d0600f38af79eb84619d687c4a82e77bbb156b5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/0d12c459a1d0e0a23cce2e4ce75598617b84fbfb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0d12c459a1d0e0a23cce2e4ce75598617b84fbfb \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/0d299f0eb6d7621c34f0a9abd62846a76eda3cce:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0d299f0eb6d7621c34f0a9abd62846a76eda3cce \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/0d5147425f6a15b26b7fe9191cde73fe17e93eb2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0d5147425f6a15b26b7fe9191cde73fe17e93eb2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/0d6905ab635f1f407392a37a15bebb0ac875c5f5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0d6905ab635f1f407392a37a15bebb0ac875c5f5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/0d6969fb648019b6c5f41f2799493b94e263afeb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0d6969fb648019b6c5f41f2799493b94e263afeb \
@@ -1944,6 +2011,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/103d6d5f0968f8159091bbd2e39211d38717fb31:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/103d6d5f0968f8159091bbd2e39211d38717fb31 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/10b727ccb39e6c98b80a73bf0d41d39b9835322a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/10b727ccb39e6c98b80a73bf0d41d39b9835322a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/110ade132a49a38489c98107bd3e705bdfc64cf5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/110ade132a49a38489c98107bd3e705bdfc64cf5 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/111201df299cbbc36e6d61b321c7369cdef44375:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/111201df299cbbc36e6d61b321c7369cdef44375 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/118d1b9d53def6e86c9274ec7bd4bad65cfa08f2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/118d1b9d53def6e86c9274ec7bd4bad65cfa08f2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/119aa8ef803ab24b5368b496bbd3da73ec4f9507:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/119aa8ef803ab24b5368b496bbd3da73ec4f9507 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/11af4613fc5c242319581ee0395524b7277458ae:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/11af4613fc5c242319581ee0395524b7277458ae \
@@ -1951,18 +2019,18 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/11dce7336f5860c98509fe8a96181c9b89e33335:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/11dce7336f5860c98509fe8a96181c9b89e33335 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/12a48bd463db9442a3bf02b6850cb5c176bafa45:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/12a48bd463db9442a3bf02b6850cb5c176bafa45 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/12c38dc39947fced475fab030f63b6ac035b1116:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/12c38dc39947fced475fab030f63b6ac035b1116 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/13ca2ff324c049994fd865a70951ba18f7b6e19e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/13ca2ff324c049994fd865a70951ba18f7b6e19e \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/14ddc38a66a807981b325e2502ef725bcf543b82:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/14ddc38a66a807981b325e2502ef725bcf543b82 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/144dc58682fa7a4beb539d07084677663bf3687f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/144dc58682fa7a4beb539d07084677663bf3687f \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/14f357eb9fc0f2662511125535f4ff5725471d6e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/14f357eb9fc0f2662511125535f4ff5725471d6e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/16238f1b433f6b4f5d43edf543469f4210eff076:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/16238f1b433f6b4f5d43edf543469f4210eff076 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/1633ed9f5900d7fd5676d052a2abb6dfac587389:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1633ed9f5900d7fd5676d052a2abb6dfac587389 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/167e78557a162bb47ea3501ac8ce8fc80339d927:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/167e78557a162bb47ea3501ac8ce8fc80339d927 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/174b327660d8c6f3b254201f05b4c8def7e03cd8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/174b327660d8c6f3b254201f05b4c8def7e03cd8 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/178fab9bc0abb9d8335260f2b8ae1b974e7e9018:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/178fab9bc0abb9d8335260f2b8ae1b974e7e9018 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/17ae7a5b6c3b9c6796ed2f5db2558265f88e6943:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/17ae7a5b6c3b9c6796ed2f5db2558265f88e6943 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/17dda6106a2b38f15415b2785771bbf43ab8b903:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/17dda6106a2b38f15415b2785771bbf43ab8b903 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/183055938bfea12c5f15e218c31f6a112b5ab13c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/183055938bfea12c5f15e218c31f6a112b5ab13c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/183de664e2db120aeb33af14a9b0cc132d0c5f40:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/183de664e2db120aeb33af14a9b0cc132d0c5f40 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/189a8f3b232574a9fec94ec4f428c1f2ec70dafd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/189a8f3b232574a9fec94ec4f428c1f2ec70dafd \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/192b39c74056fd0b3b987ce0386cb6dcbdabd10b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/192b39c74056fd0b3b987ce0386cb6dcbdabd10b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/195f1cc3a40f27b6795ac69c8288725b501ef0a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/195f1cc3a40f27b6795ac69c8288725b501ef0a2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/1979ce4faa564a6a756a532a7df19b607a4ee277:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1979ce4faa564a6a756a532a7df19b607a4ee277 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/1990f610156d33d2b8ec1cf98445980bd7943b43:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1990f610156d33d2b8ec1cf98445980bd7943b43 \
@@ -1975,53 +2043,48 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/1c10925855096c98b7f1361114d4950159e707d8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1c10925855096c98b7f1361114d4950159e707d8 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/1c1da477e9c71f4794668a0a82f14d5bcd6ab0f9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1c1da477e9c71f4794668a0a82f14d5bcd6ab0f9 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/1ccbcb3e9dc9a2e59a4ad26ede5d82a3e2ab52c5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1ccbcb3e9dc9a2e59a4ad26ede5d82a3e2ab52c5 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/1d66d554c1d5bade192d6b51f9d111832100fc68:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1d66d554c1d5bade192d6b51f9d111832100fc68 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/1d5b63331159ce620cd990e55e712ceb708e473a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1d5b63331159ce620cd990e55e712ceb708e473a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/1d713241e4c4960ad4be5af83739d16a90525174:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1d713241e4c4960ad4be5af83739d16a90525174 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/1dc5667c87cbbb99c07eb0304b78cabb38592795:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1dc5667c87cbbb99c07eb0304b78cabb38592795 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/1e17023ac82194b47061f2114ef33d6750dc7b6c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1e17023ac82194b47061f2114ef33d6750dc7b6c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/1e20670d6c07a78a502f38636e74be2cebc0ad9b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1e20670d6c07a78a502f38636e74be2cebc0ad9b \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/1e35ac9a03b5ddb83be1664bb213b92d9aee93c0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1e35ac9a03b5ddb83be1664bb213b92d9aee93c0 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/1e65def430d65b4f15efa1f447416eb3d1781527:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1e65def430d65b4f15efa1f447416eb3d1781527 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/1ecd83e4e6b13a7bdc04b90b206065d5b68c1049:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1ecd83e4e6b13a7bdc04b90b206065d5b68c1049 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/1f72667f1a2ac7ad5c07e7b01cae2f1c64674075:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1f72667f1a2ac7ad5c07e7b01cae2f1c64674075 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/1fe2d6d0f0a3786c5df3be654fdecd47f88b50c1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1fe2d6d0f0a3786c5df3be654fdecd47f88b50c1 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/1fe4fcb912d1b1cca988474f27ed79533bae9a00:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1fe4fcb912d1b1cca988474f27ed79533bae9a00 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/20554fef6021f23ee05dae25ac426bbe14c068dd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/20554fef6021f23ee05dae25ac426bbe14c068dd \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/1ff7805a55541d673e0f594959036738916f62db:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1ff7805a55541d673e0f594959036738916f62db \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/209276c0e1df9f87add4bafaed172451fc6019ce:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/209276c0e1df9f87add4bafaed172451fc6019ce \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/20a0098a90c77e3525315600f95c0ad3e08c2872:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/20a0098a90c77e3525315600f95c0ad3e08c2872 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/20a5a2d776e0391ea7bcef717e109e7cfc83b0ff:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/20a5a2d776e0391ea7bcef717e109e7cfc83b0ff \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/20e4c6586fcd84f4f4f371fb2fa01cccb6e50725:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/20e4c6586fcd84f4f4f371fb2fa01cccb6e50725 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/21aae1828abbc2159ed4402a931fcfcd36bd9a32:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/21aae1828abbc2159ed4402a931fcfcd36bd9a32 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/21dd74599dc451b6802516ac295a53a39b17153b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/21dd74599dc451b6802516ac295a53a39b17153b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/21f9744415ccd13217aae6ef787e3260948638ca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/21f9744415ccd13217aae6ef787e3260948638ca \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/22104722f4d37539e5c28439124e3d8369588df4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/22104722f4d37539e5c28439124e3d8369588df4 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/22d5d736839b0a8b4c5ea89bdbe6c531cd8e4c28:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/22d5d736839b0a8b4c5ea89bdbe6c531cd8e4c28 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/231c33f06a3c5bce7c9f732d691b0297d524d4e9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/231c33f06a3c5bce7c9f732d691b0297d524d4e9 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2345362a2daf6ef25b4506c3a2e0d560f304e22d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2345362a2daf6ef25b4506c3a2e0d560f304e22d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/23a8e765df30cd651e590318ddaf0d375255bc92:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/23a8e765df30cd651e590318ddaf0d375255bc92 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2442419e2467912c81d6cbe02499489e2b473c5d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2442419e2467912c81d6cbe02499489e2b473c5d \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2470c94412169c82fcd18d481714a2bd565a492b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2470c94412169c82fcd18d481714a2bd565a492b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/249c922e09336eed0dd652984e771d43f37f3c95:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/249c922e09336eed0dd652984e771d43f37f3c95 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/24a87acd35b8040ce8a8971380bac00b8c493be2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/24a87acd35b8040ce8a8971380bac00b8c493be2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/24cc481ddcf4e0a6c99a71e92e4b725ffa5ac48a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/24cc481ddcf4e0a6c99a71e92e4b725ffa5ac48a \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/252c4018e480b43831c7c9a3c2597350430af355:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/252c4018e480b43831c7c9a3c2597350430af355 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/253688947bd2ed1b8258f1349e8d2068bd51971c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/253688947bd2ed1b8258f1349e8d2068bd51971c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/25613dfe4c1b66be6e2d45424f6181931d04ffac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/25613dfe4c1b66be6e2d45424f6181931d04ffac \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/25bc3def83bd5b7b16756dc635ed126fc548cd54:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/25bc3def83bd5b7b16756dc635ed126fc548cd54 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/25df33c0f9373c72061cc2382d8037a9b7f33636:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/25df33c0f9373c72061cc2382d8037a9b7f33636 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/25e47698106c211b5c2055b12a7f0ea47d005f55:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/25e47698106c211b5c2055b12a7f0ea47d005f55 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/25fd0a0e4fcb2ce93d8794dd3b3ae3c0a9b4e433:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/25fd0a0e4fcb2ce93d8794dd3b3ae3c0a9b4e433 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/26c3f201a9f9d4220e523fadb19b8973a5f3bba0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/26c3f201a9f9d4220e523fadb19b8973a5f3bba0 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2704f7db05660b61e47ace5ca2b98f5a52e7cb17:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2704f7db05660b61e47ace5ca2b98f5a52e7cb17 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/27255970fbf37e11a27898c72d399ed1a64f4d40:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/27255970fbf37e11a27898c72d399ed1a64f4d40 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/27ab9e0465c276915d3f7d1023ba10a563fcd965:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/27ab9e0465c276915d3f7d1023ba10a563fcd965 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/28129a209c4402313492dc681bb87a6217bd4847:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/28129a209c4402313492dc681bb87a6217bd4847 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2825f1d2e743f9a0b58025f9ec54efa9a05c0952:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2825f1d2e743f9a0b58025f9ec54efa9a05c0952 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/28543837c4431ee74504807d32101895f556135c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/28543837c4431ee74504807d32101895f556135c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/28ae3c9cb89fa290f48b76c3f1afcb8a6895d1fc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/28ae3c9cb89fa290f48b76c3f1afcb8a6895d1fc \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/29408153a411ba8f369cb7f5f519cede7bcad2f6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/29408153a411ba8f369cb7f5f519cede7bcad2f6 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/298b43f75fd3202ece1e51363af72ecbf0b841c2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/298b43f75fd3202ece1e51363af72ecbf0b841c2 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2a22e94c30d4f0a6f9b60bfc3adeb8c90a36f73f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2a22e94c30d4f0a6f9b60bfc3adeb8c90a36f73f \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2a349407e4a8f6b29e090908e4c2c18b8ec7c8b7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2a349407e4a8f6b29e090908e4c2c18b8ec7c8b7 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2a3f47b1c8d025b0ec27749c40f4abfb2162bfdb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2a3f47b1c8d025b0ec27749c40f4abfb2162bfdb \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2a81121a3b9ba763a274ca04063e2bfcad5cdbab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2a81121a3b9ba763a274ca04063e2bfcad5cdbab \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2ad82121fd7691133f594ef21b4fb57037c93e7a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2ad82121fd7691133f594ef21b4fb57037c93e7a \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2ae68aec08e1c8ac14ccebc78dcc4e3019fa87ee:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2ae68aec08e1c8ac14ccebc78dcc4e3019fa87ee \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2af03405877f4521d5d1bf9978c3ec8a0cd90e60:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2af03405877f4521d5d1bf9978c3ec8a0cd90e60 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2b2efd19b01da6bdb553ad3205cc0e6194e8ade5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2b2efd19b01da6bdb553ad3205cc0e6194e8ade5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2b518add72970e331dd47d0a1a00b60451040af8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2b518add72970e331dd47d0a1a00b60451040af8 \
@@ -2033,17 +2096,17 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2d924994da49adc2b8d52566483626aac52b6c9b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2d924994da49adc2b8d52566483626aac52b6c9b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2daa0a435e70e9a82ff9f225393638f205cac59a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2daa0a435e70e9a82ff9f225393638f205cac59a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2dd3a5707d75f8ebaf645527d2b0e3da35ea55ca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2dd3a5707d75f8ebaf645527d2b0e3da35ea55ca \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2de33ddae25249e5512246359d98e9dfd10d4756:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2de33ddae25249e5512246359d98e9dfd10d4756 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2e053916f0cd7d6bd57d80b7879e4eddee75836d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2e053916f0cd7d6bd57d80b7879e4eddee75836d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2e0beac640bf9b23b0fc0aacb32b9e1df22c4b1f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2e0beac640bf9b23b0fc0aacb32b9e1df22c4b1f \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2e6de9c78b1d79d68ac61527a19f80f740b42389:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2e6de9c78b1d79d68ac61527a19f80f740b42389 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2e84071c4fb3487eefbda60d42dacbab4d37d7c0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2e84071c4fb3487eefbda60d42dacbab4d37d7c0 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2e9d8bb08f80ddbb7985a9678b9f0d9929295879:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2e9d8bb08f80ddbb7985a9678b9f0d9929295879 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2ea62a2154bd16f4b081ffc2abd9a49b312a8f1e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2ea62a2154bd16f4b081ffc2abd9a49b312a8f1e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2ec7b925954d6c14842de2119ec26496e5c03105:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2ec7b925954d6c14842de2119ec26496e5c03105 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2eff67e29038bd02bf3832ded5202e8ae0556aca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2eff67e29038bd02bf3832ded5202e8ae0556aca \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2f32215066bf75e78af3eb4e5d9011294154936a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2f32215066bf75e78af3eb4e5d9011294154936a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2f6e83370ee2c0228c2e65c6595dc7798e85b15e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2f6e83370ee2c0228c2e65c6595dc7798e85b15e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2f78aa529400652e954561617e844cbb5a0c52d3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2f78aa529400652e954561617e844cbb5a0c52d3 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/2fe188ea4405e40595bcb51505b2c1134edd8ad0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2fe188ea4405e40595bcb51505b2c1134edd8ad0 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/3075226fab428570db9fba7eca593170558a1be5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3075226fab428570db9fba7eca593170558a1be5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/312a18cf4dbdedf0844cc603c238524b1dd0ecd4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/312a18cf4dbdedf0844cc603c238524b1dd0ecd4 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/319cae25bb3ff58018ab60a4939524ef09abd0f1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/319cae25bb3ff58018ab60a4939524ef09abd0f1 \
@@ -2055,10 +2118,13 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/32374d85eff3363d527a595027288e50cbbf7dd1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/32374d85eff3363d527a595027288e50cbbf7dd1 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/324385edc8d807c17c6dff408fa0fdb8ee3b13dc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/324385edc8d807c17c6dff408fa0fdb8ee3b13dc \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/32a24a2e18f317e6f4af5c25a5084dd7b17a88e8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/32a24a2e18f317e6f4af5c25a5084dd7b17a88e8 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/336485ee72f8d47a28931f13734091c7d214d9f9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/336485ee72f8d47a28931f13734091c7d214d9f9 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/33a34c971c4b3565769dc2d6efa2302c199d727d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/33a34c971c4b3565769dc2d6efa2302c199d727d \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/33abd0618d698df9eb4f8cb7a132c9e679807f9b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/33abd0618d698df9eb4f8cb7a132c9e679807f9b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/33cc325a0ae39fd0451b24d0767d7c8010ec0d4d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/33cc325a0ae39fd0451b24d0767d7c8010ec0d4d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/34a9cc4ba1ea006b150bf3b78bcab90797826137:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/34a9cc4ba1ea006b150bf3b78bcab90797826137 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/3528655397ae502669d54aea5798f31ab7ec4917:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3528655397ae502669d54aea5798f31ab7ec4917 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/3590d4f4d405607233b217899c216e59660d5124:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3590d4f4d405607233b217899c216e59660d5124 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/3607abefa2c223a80824116c8541a44766672f3a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3607abefa2c223a80824116c8541a44766672f3a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/3695cacb79e9c83f0cce4bda3d4d6182ea91e7c5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3695cacb79e9c83f0cce4bda3d4d6182ea91e7c5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/36bcdd585c945cd6257a705cb90f19cb9f827b6f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/36bcdd585c945cd6257a705cb90f19cb9f827b6f \
@@ -2070,12 +2136,12 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/37f603d7fa7b06c2ffb79621cbb0e4466ef0b964:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/37f603d7fa7b06c2ffb79621cbb0e4466ef0b964 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/3869cbfcd29fac8c17f5a52278986a883fc29399:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3869cbfcd29fac8c17f5a52278986a883fc29399 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/386b217ca5444777eee9911d6878eac2d13958bb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/386b217ca5444777eee9911d6878eac2d13958bb \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/390bba2fc42ebfb1a413e5da15c58817771eb8cf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/390bba2fc42ebfb1a413e5da15c58817771eb8cf \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/39ad3110b8f84821ca22cfbd995914f2149521d2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/39ad3110b8f84821ca22cfbd995914f2149521d2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/39ee49647bb20528b659d4ad32a8e3372b11bca2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/39ee49647bb20528b659d4ad32a8e3372b11bca2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/3a92a91836f24d220c1cc0cf35ab78fa8338e914:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3a92a91836f24d220c1cc0cf35ab78fa8338e914 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/3b9aa04f275f357d2721143b62e1067349397f05:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3b9aa04f275f357d2721143b62e1067349397f05 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/3bb23da71c3663de4964071976cb60f451752f34:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3bb23da71c3663de4964071976cb60f451752f34 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/3bd35cbf152e10392f80693281788fa7d3efe5af:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3bd35cbf152e10392f80693281788fa7d3efe5af \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/3bd40319de1f1fa26c11c510138ad3d99ce20af0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3bd40319de1f1fa26c11c510138ad3d99ce20af0 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/3bd6ce34a06cd16c78f2f31c4b0a540478bbf5e2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3bd6ce34a06cd16c78f2f31c4b0a540478bbf5e2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/3c1f5bce9b9c65239f0cc1ea96198484240a5671:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3c1f5bce9b9c65239f0cc1ea96198484240a5671 \
@@ -2109,13 +2175,13 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/41791d94797dd453e70107905a2b2e1c0a3a45f8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/41791d94797dd453e70107905a2b2e1c0a3a45f8 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/417b21ee082a7ccf6bb676d7b82be31d7fd1b82e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/417b21ee082a7ccf6bb676d7b82be31d7fd1b82e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/41c934afd668c1c0a01ea4d4b09c736216ac16e1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/41c934afd668c1c0a01ea4d4b09c736216ac16e1 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/41f3dc8abb00be482b3ceb75ea014e0d19c4701b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/41f3dc8abb00be482b3ceb75ea014e0d19c4701b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/42218c4033d2c2c899a0ace171e00000b6839527:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/42218c4033d2c2c899a0ace171e00000b6839527 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/42e69c694e72af57606514a5da1436dd7f5c483a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/42e69c694e72af57606514a5da1436dd7f5c483a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/42ffdd88f967782c15eed37ecf026ad0fc6353d3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/42ffdd88f967782c15eed37ecf026ad0fc6353d3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4308afa9d922bbfebab020badd569f1470f18bae:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4308afa9d922bbfebab020badd569f1470f18bae \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/430f97244f7a8fc8e3cf1faa8c9d4490738a2a67:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/430f97244f7a8fc8e3cf1faa8c9d4490738a2a67 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/43661d30c335a3268cb29e92e29cd307ee1b4fbe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/43661d30c335a3268cb29e92e29cd307ee1b4fbe \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/436824caae4876996b2fd6fc882f86f46cd48aee:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/436824caae4876996b2fd6fc882f86f46cd48aee \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/43b7aa5c20bb1eeadf4c71ca2b8d22ae9986db73:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/43b7aa5c20bb1eeadf4c71ca2b8d22ae9986db73 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/43be3782b459516fba74660385a106e12ee8ea90:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/43be3782b459516fba74660385a106e12ee8ea90 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/44110a0117dbf701d48b096174a214fc643941d3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/44110a0117dbf701d48b096174a214fc643941d3 \
@@ -2124,7 +2190,8 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4486a8da78591ca54066614690bd262ded6efaea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4486a8da78591ca54066614690bd262ded6efaea \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/455b5a07bd651900e82d93ec93083efdee9ec6f8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/455b5a07bd651900e82d93ec93083efdee9ec6f8 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/458357b68583458a2185c91c0306c7c07352a900:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/458357b68583458a2185c91c0306c7c07352a900 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/461748b3f483fc2dcfe52cefadd5f59dc5f0449f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/461748b3f483fc2dcfe52cefadd5f59dc5f0449f \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/46199f0acc0053e0fa304ec359c489bb58500d90:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/46199f0acc0053e0fa304ec359c489bb58500d90 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4626884ed9bc5785b684cc34d9d76af0cf468063:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4626884ed9bc5785b684cc34d9d76af0cf468063 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/462cbf4028a8937796055b85442b4bc47619003e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/462cbf4028a8937796055b85442b4bc47619003e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/46476cd23c24f10684bf6f269051e9907a8fe27b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/46476cd23c24f10684bf6f269051e9907a8fe27b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/465e40291aac3d321ebe4c276456eed603bc1ba1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/465e40291aac3d321ebe4c276456eed603bc1ba1 \
@@ -2132,12 +2199,10 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/474c78e76d473c5d19f08626bcec764b3c98985e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/474c78e76d473c5d19f08626bcec764b3c98985e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/47afabf23729e3911460d652144401fc820c2bba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/47afabf23729e3911460d652144401fc820c2bba \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/48ebdff8a8c0083f8c5f3272c19acd227a7420c6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/48ebdff8a8c0083f8c5f3272c19acd227a7420c6 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/48f140fb36f71d123b2ff4e4e1f32b9ef714a1d5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/48f140fb36f71d123b2ff4e4e1f32b9ef714a1d5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/48f71ca05ae51a7c197be3df0dd87b374fba28d5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/48f71ca05ae51a7c197be3df0dd87b374fba28d5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/496942b30fccba84eefbcee654953392395c451f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/496942b30fccba84eefbcee654953392395c451f \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4a0af9a0e6ecf8aad7e57292c090b3872278e761:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4a0af9a0e6ecf8aad7e57292c090b3872278e761 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4a0d255f1f2787d7a8ff390c192a113e330afd20:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4a0d255f1f2787d7a8ff390c192a113e330afd20 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4a13bbf3c382a5822d208f6186e52aa5986e02ef:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4a13bbf3c382a5822d208f6186e52aa5986e02ef \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4a2d55f656a8617558ca6f7969cd076ef34e0abf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4a2d55f656a8617558ca6f7969cd076ef34e0abf \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4a49178aa2971bde0ba51e5431a8f5a4b3aa8ebc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4a49178aa2971bde0ba51e5431a8f5a4b3aa8ebc \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4b2931ee099d5b7b82590c566ed3dec9e12e3383:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4b2931ee099d5b7b82590c566ed3dec9e12e3383 \
@@ -2147,43 +2212,45 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4bb2f5a133ab9babd4f4a32bfcf3d462468740c0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4bb2f5a133ab9babd4f4a32bfcf3d462468740c0 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4c9b943caecced7c9876ba4fe711d99c71e60d49:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4c9b943caecced7c9876ba4fe711d99c71e60d49 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4ca287ee04f236826074e6612a5bb751477ab6ec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4ca287ee04f236826074e6612a5bb751477ab6ec \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4cc6c13485450761f75fb5bfd578c56a5c00d4ea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4cc6c13485450761f75fb5bfd578c56a5c00d4ea \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4cd0d2087f5d4c87aca09ecdd340d00f36b0ad1a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4cd0d2087f5d4c87aca09ecdd340d00f36b0ad1a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4cd5106932210504ca2603fdf1648d031771cedb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4cd5106932210504ca2603fdf1648d031771cedb \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4cecc7f960b18e8caa861b52adc303f47c0209fa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4cecc7f960b18e8caa861b52adc303f47c0209fa \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4d0f9164357e8c4414d951ac10f23519eeb3fc0b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d0f9164357e8c4414d951ac10f23519eeb3fc0b \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4d1a352c3b172d6108623825ed409ea5029af5ec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d1a352c3b172d6108623825ed409ea5029af5ec \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4d22be4cdf34ac541f6c982df0cea5725ba05b43:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d22be4cdf34ac541f6c982df0cea5725ba05b43 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4d5c76164b7969fd1aa4dca415f8b9a973d4edaf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d5c76164b7969fd1aa4dca415f8b9a973d4edaf \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4d58c8bb5690c3103ee59ba031e5e3f3acc22940:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d58c8bb5690c3103ee59ba031e5e3f3acc22940 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4d6e89827da9a9e019973ca6450c6ff72da462cf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d6e89827da9a9e019973ca6450c6ff72da462cf \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4d86092d1a6451cb86c858ac0fea065539ffd8e4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d86092d1a6451cb86c858ac0fea065539ffd8e4 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4d967bf96eec7427e182e4cec9685708509557a9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d967bf96eec7427e182e4cec9685708509557a9 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4d98c43004dbc904db1ff32b0cbadf920f1f4ce7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d98c43004dbc904db1ff32b0cbadf920f1f4ce7 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4d9e6fc983d346e4f219910dabc376738eb0847b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d9e6fc983d346e4f219910dabc376738eb0847b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4dcc469c85546618839a674df019b32e9b89af0d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4dcc469c85546618839a674df019b32e9b89af0d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4dd0040862987e8428d596c40d5aed3cae5b3483:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4dd0040862987e8428d596c40d5aed3cae5b3483 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4de5e2e177d2dc863fbe1c34ee8f72b2ec0bc6b5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4de5e2e177d2dc863fbe1c34ee8f72b2ec0bc6b5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4e498e56b3af071affb004cd7aac891786656d96:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4e498e56b3af071affb004cd7aac891786656d96 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4e57c6cd490076665a94e3b7adfee4cea31c56a0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4e57c6cd490076665a94e3b7adfee4cea31c56a0 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4e5c96ee497511796634a38ee097ffa1921345a0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4e5c96ee497511796634a38ee097ffa1921345a0 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4eaf80ecb6c85abe44bb8eb193205f05cabe96e3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4eaf80ecb6c85abe44bb8eb193205f05cabe96e3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4ecf1fb965a7d4a1843a368feed8e359670deae5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4ecf1fb965a7d4a1843a368feed8e359670deae5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4f11778323302a45b98633df1306144c039bed42:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4f11778323302a45b98633df1306144c039bed42 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4f90593eb1cfb87a3b8c4abe4128c14257e1b09d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4f90593eb1cfb87a3b8c4abe4128c14257e1b09d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4fa3cd415743a992b865d42c4b7e24ceb3ff6afc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4fa3cd415743a992b865d42c4b7e24ceb3ff6afc \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4fb2d0b6446f2ed45fd7e660b156062dfb0fe8f4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4fb2d0b6446f2ed45fd7e660b156062dfb0fe8f4 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4fb5ab1dca1414b80c89b89e6e8e13b134b2d69b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4fb5ab1dca1414b80c89b89e6e8e13b134b2d69b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/4fd80955d6f6bdd5dfc108ee129b7cc7df25cff3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4fd80955d6f6bdd5dfc108ee129b7cc7df25cff3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/500329abac100a953a7396b54b36be57d333022f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/500329abac100a953a7396b54b36be57d333022f \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/504deda50a2c88b13e2b6897134a56aacc528338:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/504deda50a2c88b13e2b6897134a56aacc528338 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/50a06994be183ab77b14f75336cb4673d7308fe3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/50a06994be183ab77b14f75336cb4673d7308fe3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5109dcf62728e71521d9b6242bdf4eb299580ccd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5109dcf62728e71521d9b6242bdf4eb299580ccd \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/51209202eefa4becfe5ebbea942e718dfa21bb95:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/51209202eefa4becfe5ebbea942e718dfa21bb95 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/512f24f35937b9f9d4529a1cb58b9c8d1de33166:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/512f24f35937b9f9d4529a1cb58b9c8d1de33166 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/51346ba1af7626cde91a55eca5a9191f40501abf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/51346ba1af7626cde91a55eca5a9191f40501abf \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5138abafac76c4e022b9d5d90886ccf88257a200:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5138abafac76c4e022b9d5d90886ccf88257a200 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5144dd3c1849836328e7cbc60edbd8989c59b552:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5144dd3c1849836328e7cbc60edbd8989c59b552 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/515783771329a082dacff161f44fd44fb970571d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/515783771329a082dacff161f44fd44fb970571d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/51720cd65dd8d4ee5d02d7817bd0a40c53f49d54:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/51720cd65dd8d4ee5d02d7817bd0a40c53f49d54 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5290da7003c1cd8768271343875d423991c3ad50:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5290da7003c1cd8768271343875d423991c3ad50 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/52a66a9736284ae91717a297798cd732fb56a336:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/52a66a9736284ae91717a297798cd732fb56a336 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/52e7d6adce8c6d7217b0323514f04dff5c92928d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/52e7d6adce8c6d7217b0323514f04dff5c92928d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/53318313501ac2e67348d94c3136ed97601436a0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/53318313501ac2e67348d94c3136ed97601436a0 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5345534689ed5803aedf2cae9028402e66e7800c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5345534689ed5803aedf2cae9028402e66e7800c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/53555890e6d8dc159b9702b82f6bc0e34f3447de:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/53555890e6d8dc159b9702b82f6bc0e34f3447de \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/537bcb6dc7744f406d6c6dcff599538af8f9db52:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/537bcb6dc7744f406d6c6dcff599538af8f9db52 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/538fc1e59e21944090a45ba3d6f553e6ba9f7cc4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/538fc1e59e21944090a45ba3d6f553e6ba9f7cc4 \
@@ -2191,18 +2258,17 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/53b7b751bc027878ce11daade8b8a3c434a1c4a9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/53b7b751bc027878ce11daade8b8a3c434a1c4a9 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/53b954774b6a4f085bdd8edde2dc5c64c8bb37b6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/53b954774b6a4f085bdd8edde2dc5c64c8bb37b6 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/53cdd0f4b821311be6d64cf033f29be7fa50b5d4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/53cdd0f4b821311be6d64cf033f29be7fa50b5d4 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5403dae1acdb1da75ccb94fb4a35980829ffb948:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5403dae1acdb1da75ccb94fb4a35980829ffb948 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5416005ef78261859dcf1afb12c99977e09fb141:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5416005ef78261859dcf1afb12c99977e09fb141 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/543bb1325904b9aece275705bcc5e76f9bf138f1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/543bb1325904b9aece275705bcc5e76f9bf138f1 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/54889d9160131abd1e9c4aea21e2d52bde9708e6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/54889d9160131abd1e9c4aea21e2d52bde9708e6 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/54d56b8530b9e70560363087fe2cca562d85b9c7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/54d56b8530b9e70560363087fe2cca562d85b9c7 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/54e6f61f768502fb0898d3579744ddea5add73bb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/54e6f61f768502fb0898d3579744ddea5add73bb \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/551ab4332c58f92b3ec8fc0bc1d79ca1587d0b7c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/551ab4332c58f92b3ec8fc0bc1d79ca1587d0b7c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/55472686cd7af8381b1ce5328a4cc235102b9f71:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/55472686cd7af8381b1ce5328a4cc235102b9f71 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/554bae1c01cefef97b31efa9ab862d97cf09ca95:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/554bae1c01cefef97b31efa9ab862d97cf09ca95 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/555376f5273327137001b82690082493daf85eeb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/555376f5273327137001b82690082493daf85eeb \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/558fcebfaa056632c51695fe0d596b9dc8036e34:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/558fcebfaa056632c51695fe0d596b9dc8036e34 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/559222e3b109cd228e603703150419c010c6be64:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/559222e3b109cd228e603703150419c010c6be64 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/55f68c7ec7905e382217582b8319fbf1a3a45f16:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/55f68c7ec7905e382217582b8319fbf1a3a45f16 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/56152b56a0dd58217453eb33c6ceb38ad2e88da4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/56152b56a0dd58217453eb33c6ceb38ad2e88da4 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5644a4cf1ba93d081a65dd722cee9b6800827401:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5644a4cf1ba93d081a65dd722cee9b6800827401 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/56768342f090d45fad34b6965f07ac76a0943d7b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/56768342f090d45fad34b6965f07ac76a0943d7b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/56cb10847a0e6a2a3d4e0722891e9e33c6c448f6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/56cb10847a0e6a2a3d4e0722891e9e33c6c448f6 \
@@ -2214,40 +2280,41 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/588c361c5fe9acf444786ed898b201beb9c2b53f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/588c361c5fe9acf444786ed898b201beb9c2b53f \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/58dcbaf9fcec7e559cf32c71551b9676595710a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/58dcbaf9fcec7e559cf32c71551b9676595710a2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/592657f407917aa69f86fd996587f223e372ed69:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/592657f407917aa69f86fd996587f223e372ed69 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/595ae7b41d209b4dfcc940c0e9bc7cfa48532ddf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/595ae7b41d209b4dfcc940c0e9bc7cfa48532ddf \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/599bb09d0e033bc9ad5434131ed876c4cd677955:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/599bb09d0e033bc9ad5434131ed876c4cd677955 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/599fb43f38dd3f6a92cf3b4e90d0a63f52399677:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/599fb43f38dd3f6a92cf3b4e90d0a63f52399677 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/59ef1318ed95aaff87c6af0b99f17407d0edabe3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/59ef1318ed95aaff87c6af0b99f17407d0edabe3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5a22663031399aa12b02ce613bf75017394789c4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5a22663031399aa12b02ce613bf75017394789c4 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5ace0bda77342c678fbe0b3e6d55b0c5272fff17:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5ace0bda77342c678fbe0b3e6d55b0c5272fff17 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5afe23552c7c5f8a30c12e5944d9717f748b104b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5afe23552c7c5f8a30c12e5944d9717f748b104b \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5b155c2e13b1ccef7784cddec71eb3a3d0b84e4c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5b155c2e13b1ccef7784cddec71eb3a3d0b84e4c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5b2549b94b4944033826b4539c1575cbc81576b0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5b2549b94b4944033826b4539c1575cbc81576b0 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5bfd663fb32e17faa448d1e456567c4bb46bd166:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5bfd663fb32e17faa448d1e456567c4bb46bd166 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5c11e89cada221c6da115fbd4cde17117b1baf23:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5c11e89cada221c6da115fbd4cde17117b1baf23 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5c2a31d3bd7c728374f005c7fa5ba86006fa5e46:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5c2a31d3bd7c728374f005c7fa5ba86006fa5e46 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5c2efee31e70db8162a40f0288c489a322537c80:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5c2efee31e70db8162a40f0288c489a322537c80 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5c8c9ccbc0440c274056e53ab1e63ff425c2cba0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5c8c9ccbc0440c274056e53ab1e63ff425c2cba0 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5c9ba037931f23aa7ee6d2c408b08b360880b6bc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5c9ba037931f23aa7ee6d2c408b08b360880b6bc \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5cc087981ea28d4ccb0cac18fd54338f3de72b5a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5cc087981ea28d4ccb0cac18fd54338f3de72b5a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5cef7fe76ab35d90c79c862bfa1d92250d648a13:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5cef7fe76ab35d90c79c862bfa1d92250d648a13 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5d043f7c9bd64902915a1814f67a50a60d575499:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5d043f7c9bd64902915a1814f67a50a60d575499 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5d072b085c6d3854f58026525a0cc8d0aefaba67:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5d072b085c6d3854f58026525a0cc8d0aefaba67 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5d7b917483ff8955fdff4a05378fe18c14ceb68e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5d7b917483ff8955fdff4a05378fe18c14ceb68e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5dba8a5bd6d0f9299a1c9a6c4e41381146ee90c3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5dba8a5bd6d0f9299a1c9a6c4e41381146ee90c3 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5e40aa425d74ce457ee8d8c14303c8754715a659:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5e40aa425d74ce457ee8d8c14303c8754715a659 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5ea6e41f98f4157beada7ba36a7375ec5c7435d3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5ea6e41f98f4157beada7ba36a7375ec5c7435d3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5ea9fbd090e4c3a9a675dafec8d92d484c7bfe18:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5ea9fbd090e4c3a9a675dafec8d92d484c7bfe18 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5ec3d82e298c3a2776726f21759ebabc9097abc5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5ec3d82e298c3a2776726f21759ebabc9097abc5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5ec6417cdb20e4dd0bfb96da4a32c3c5e4dc9e8d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5ec6417cdb20e4dd0bfb96da4a32c3c5e4dc9e8d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5f399cacc91d9b38995d6af7cb944ff97c84e6ab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5f399cacc91d9b38995d6af7cb944ff97c84e6ab \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5f6e11fad338559b10a1c75e6beec725b924d32e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5f6e11fad338559b10a1c75e6beec725b924d32e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5f7d78b19eab0ae4f9421712391af1a827d65712:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5f7d78b19eab0ae4f9421712391af1a827d65712 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5f91c06b8810213123b627aca4aff7f7b79d3ea2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5f91c06b8810213123b627aca4aff7f7b79d3ea2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/5f9457cea42f4bcbe1036f31e3547770a9676535:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5f9457cea42f4bcbe1036f31e3547770a9676535 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/60028c313c72c913cd43208d3df750933f2a8632:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/60028c313c72c913cd43208d3df750933f2a8632 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/6025a477a0a8006d8882b7716987b403d365e6d8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6025a477a0a8006d8882b7716987b403d365e6d8 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/6050c39cfbac6f98905b6c105d4e3dc11546e745:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6050c39cfbac6f98905b6c105d4e3dc11546e745 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/60892de6f2ba352985d1dccdf543bd7627fc03db:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/60892de6f2ba352985d1dccdf543bd7627fc03db \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/60ab761a633ff71fc752341ca00596e119f8b67e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/60ab761a633ff71fc752341ca00596e119f8b67e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/61001c9df22670ba32d3bd6491a3c1cb2ffb7bff:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/61001c9df22670ba32d3bd6491a3c1cb2ffb7bff \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/61401e9363bc4e7af923684cb0e63b61d22f2a2b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/61401e9363bc4e7af923684cb0e63b61d22f2a2b \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/614d17759dd5bd39c4e50d2a4eb201a8750eeaec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/614d17759dd5bd39c4e50d2a4eb201a8750eeaec \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/618a7d95718fbd02e30f3c6caa4a1dc9cff90159:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/618a7d95718fbd02e30f3c6caa4a1dc9cff90159 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/62430813b792802b0f784de506019ca281b5bdca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/62430813b792802b0f784de506019ca281b5bdca \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/624cfaf10b497c876730608f6271c6b42cef51db:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/624cfaf10b497c876730608f6271c6b42cef51db \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/6252be89a7921f3dda8916b29c3042f5e3bdd7ab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6252be89a7921f3dda8916b29c3042f5e3bdd7ab \
@@ -2261,18 +2328,19 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/63e08ac4b36549aa8336d08e4976a256e4668ba3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/63e08ac4b36549aa8336d08e4976a256e4668ba3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/63eafae9ddfb2b628d15c53208c7c1b93841c013:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/63eafae9ddfb2b628d15c53208c7c1b93841c013 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/647e3626882ab96e6e2977c04acd6e31183f38b1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/647e3626882ab96e6e2977c04acd6e31183f38b1 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/6483a0762da43b2b434d2c71efeaf4075bc3cefb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6483a0762da43b2b434d2c71efeaf4075bc3cefb \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/64aa56f0be29bf092d7535cd211ff6405eb55b9c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/64aa56f0be29bf092d7535cd211ff6405eb55b9c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/64ee4171932026da12b2a956c61d5ee119ad4ca2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/64ee4171932026da12b2a956c61d5ee119ad4ca2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/652a66398c119e93731eb6c9596717db56f1b903:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/652a66398c119e93731eb6c9596717db56f1b903 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/65620497297f7932b43f041fbb6e08b26d7d62dd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/65620497297f7932b43f041fbb6e08b26d7d62dd \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/65807051ae4ef820a7ace28a6f01de71c3ba3323:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/65807051ae4ef820a7ace28a6f01de71c3ba3323 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/65a1e5d668a7f2fce0b9d08b53b1841d73cac9b8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/65a1e5d668a7f2fce0b9d08b53b1841d73cac9b8 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/65b227bdd21131bdcfbe30963ae9f22eba5f568e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/65b227bdd21131bdcfbe30963ae9f22eba5f568e \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/65ae73e8a9b2a78e0c5b08773a1295cf4f3e31a7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/65ae73e8a9b2a78e0c5b08773a1295cf4f3e31a7 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/66001f5b35b3778ed5b039c1c8b600b26ddea0eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/66001f5b35b3778ed5b039c1c8b600b26ddea0eb \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/6617b51b99c5ab3df239412a9b8c81d841acd796:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6617b51b99c5ab3df239412a9b8c81d841acd796 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/664ae6b1344432d4460d4716bcd10ba17931ee92:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/664ae6b1344432d4460d4716bcd10ba17931ee92 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/66a642db404c9c7b57346bba41d569fb975b1308:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/66a642db404c9c7b57346bba41d569fb975b1308 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/66b5e43fd2e0369739069ac52fd5074e452a1c25:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/66b5e43fd2e0369739069ac52fd5074e452a1c25 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/66dc6bfeff15f7d45900b3ecfdae04109ae652fd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/66dc6bfeff15f7d45900b3ecfdae04109ae652fd \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/67055767806f2d0dcc976e0774f79ced458972ad:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/67055767806f2d0dcc976e0774f79ced458972ad \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/675a7f9b7b4bda83baf59a32eadcfe9b95909c67:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/675a7f9b7b4bda83baf59a32eadcfe9b95909c67 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/67706a88eeaf3804ded3b520e199a648509ba228:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/67706a88eeaf3804ded3b520e199a648509ba228 \
@@ -2284,6 +2352,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/68a87c5a169b1ae61f3e571f6198b6e57e204a26:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/68a87c5a169b1ae61f3e571f6198b6e57e204a26 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/68aeb9bc2e9febd26bd634b925376c8553e71af8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/68aeb9bc2e9febd26bd634b925376c8553e71af8 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/68de59ad9ded07685da487632137ac3385838947:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/68de59ad9ded07685da487632137ac3385838947 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/69393542f14a383a355f05a0d1421f0cd157ebaa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/69393542f14a383a355f05a0d1421f0cd157ebaa \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/69c4305fd219440ebbf915540bb49c10d84d35bb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/69c4305fd219440ebbf915540bb49c10d84d35bb \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/6a043e4d698e4878c594dbd42cc47289cfff12a7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6a043e4d698e4878c594dbd42cc47289cfff12a7 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/6a28460b71b47a1ad208b142a58b42332499da83:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6a28460b71b47a1ad208b142a58b42332499da83 \
@@ -2304,10 +2373,9 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/6de0a76b8ea00a7c8da980108a5fdc94758e2a36:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6de0a76b8ea00a7c8da980108a5fdc94758e2a36 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/6e1fa20326c6d900cfca5ceb8daeae1c30b0fbe4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6e1fa20326c6d900cfca5ceb8daeae1c30b0fbe4 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/6e8f1d91e9be172a24836c3b4d253372d3fb7466:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6e8f1d91e9be172a24836c3b4d253372d3fb7466 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/6eb9f8fe2b171c568c7c5034f810e342bac46a0f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6eb9f8fe2b171c568c7c5034f810e342bac46a0f \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/6ec9eccd4bdd828812eebe70abecf13663c1066d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6ec9eccd4bdd828812eebe70abecf13663c1066d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/6f00359970eaa682de23ea38dd4e43ae3bfc3305:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6f00359970eaa682de23ea38dd4e43ae3bfc3305 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/6f03aff9d3c32a3ea1ddf32903587bb32b30500b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6f03aff9d3c32a3ea1ddf32903587bb32b30500b \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/6f3f31b95159bfa6493db2f214de558b33ea8ae1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6f3f31b95159bfa6493db2f214de558b33ea8ae1 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/6f92b6ccbbeb35d132e18aa2056b5269730df0ba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6f92b6ccbbeb35d132e18aa2056b5269730df0ba \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/6fb9137537239b67b2d938de1051c38da30fede3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6fb9137537239b67b2d938de1051c38da30fede3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/6fc57f2cc1a9c0b174a6443a26985efafad04b90:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6fc57f2cc1a9c0b174a6443a26985efafad04b90 \
@@ -2320,13 +2388,10 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/712dbdcc67a2aba66899e6242908307b9aac439f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/712dbdcc67a2aba66899e6242908307b9aac439f \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/71536e7617572d190cbc10f454725b1207c02c1a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/71536e7617572d190cbc10f454725b1207c02c1a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7159b61f1f287f4064181845ccb07e25666863a6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7159b61f1f287f4064181845ccb07e25666863a6 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/71775f6bacc57788cd0eb1b63113fafccb9ef2bc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/71775f6bacc57788cd0eb1b63113fafccb9ef2bc \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/71f1e2fa9237d93972bbf66dac3601584a68ef6a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/71f1e2fa9237d93972bbf66dac3601584a68ef6a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/728b8f387b090c09d9bdaafbfc81e32599a87556:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/728b8f387b090c09d9bdaafbfc81e32599a87556 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/72a0f15de29fd1a7720ec71bafbce4cd5de43142:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/72a0f15de29fd1a7720ec71bafbce4cd5de43142 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/72fb00e8feae4bbc228ec1c8bb1c9313a03fd759:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/72fb00e8feae4bbc228ec1c8bb1c9313a03fd759 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/734430dffde950512f806373f6706652c5c4bfc6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/734430dffde950512f806373f6706652c5c4bfc6 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/736cb4d4f2c442aee8cc22eeb38228741f0e6685:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/736cb4d4f2c442aee8cc22eeb38228741f0e6685 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/74337ba62414cf899ebf0278f479f698a49f921d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/74337ba62414cf899ebf0278f479f698a49f921d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7453fe8be92f01fd4b500ff8a6dba16db6ab2565:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7453fe8be92f01fd4b500ff8a6dba16db6ab2565 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/745bd29be45667514b4000e9cdb70cdecad0f02c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/745bd29be45667514b4000e9cdb70cdecad0f02c \
@@ -2341,24 +2406,27 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/762a17b362660225fad0019763e82ac6f5aa9c47:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/762a17b362660225fad0019763e82ac6f5aa9c47 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/764e288fb723cae740222a7d0c0b2e1035a172b2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/764e288fb723cae740222a7d0c0b2e1035a172b2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/76606a5f08c764f6c7edea0f8ca14d8902044768:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/76606a5f08c764f6c7edea0f8ca14d8902044768 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/76612c5163e223b2ed0e2de1a9f1c2d4cdebe502:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/76612c5163e223b2ed0e2de1a9f1c2d4cdebe502 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/766f46f712a0c944b54d9faccdfc6b911d335618:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/766f46f712a0c944b54d9faccdfc6b911d335618 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/767a8cfd4bfdbf6d73ed876eed469b05d53c4af7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/767a8cfd4bfdbf6d73ed876eed469b05d53c4af7 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/768939db7b32f9d355eb4ef216b6abd5d5011c68:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/768939db7b32f9d355eb4ef216b6abd5d5011c68 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/769c1fe3bda18d41d7ce99f015a0b6823a051a3a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/769c1fe3bda18d41d7ce99f015a0b6823a051a3a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/76a0d432a110797b3d53c1cb08e0296bc0986a3f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/76a0d432a110797b3d53c1cb08e0296bc0986a3f \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/772b03e14185892b5cdab57bc0a74befc7947452:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/772b03e14185892b5cdab57bc0a74befc7947452 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7762862fd9c359d9ebc7316d2d16bebbc196052e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7762862fd9c359d9ebc7316d2d16bebbc196052e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7775ca7a6fb9ce273abcf6f0a63baf1a9ce4c8d7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7775ca7a6fb9ce273abcf6f0a63baf1a9ce4c8d7 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/781ee01018a97af3215c88ce88ed6dccf11a1a1a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/781ee01018a97af3215c88ce88ed6dccf11a1a1a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/78859c3a2d2535559eb87938be13bf48c01ff4fd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/78859c3a2d2535559eb87938be13bf48c01ff4fd \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/78c01286712d6a98805e0a39dcd228a39201cc1b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/78c01286712d6a98805e0a39dcd228a39201cc1b \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/794fd88e53af3c0cb3e989a2c0ff8155268684bf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/794fd88e53af3c0cb3e989a2c0ff8155268684bf \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7992eb01a9bf66b4ca9595294890352adfb41053:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7992eb01a9bf66b4ca9595294890352adfb41053 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/79d1ff471da7c25fbfc4454638c7f82352f3515d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/79d1ff471da7c25fbfc4454638c7f82352f3515d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7a1b4ed93a67d601ef00a069c5fdfdbfd2d7a225:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7a1b4ed93a67d601ef00a069c5fdfdbfd2d7a225 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7a435f6175b566f0c68f5fbcbb65e3b5c88b583d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7a435f6175b566f0c68f5fbcbb65e3b5c88b583d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7a489ed0da8454ed9c41e34859fffd49fadd057b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7a489ed0da8454ed9c41e34859fffd49fadd057b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7a9af4088bd7b4de4d537dc4aef2afc6aa2953be:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7a9af4088bd7b4de4d537dc4aef2afc6aa2953be \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7b734a0ba74cc163ff759b9ce83ef41e1916918c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7b734a0ba74cc163ff759b9ce83ef41e1916918c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7b95597cce5986e53337950a08c079973552857a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7b95597cce5986e53337950a08c079973552857a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7ba3b7c57673cecda274993bf65896411b3cb114:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7ba3b7c57673cecda274993bf65896411b3cb114 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7bc2bab454a8e046f8499206ddc2bdeb03ecb3ec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7bc2bab454a8e046f8499206ddc2bdeb03ecb3ec \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7c14ac129463ca208eb05760a5c229ede5b6561c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7c14ac129463ca208eb05760a5c229ede5b6561c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7cbf22e36fdc0c969bad5a3d88e29f6a55ca1e00:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7cbf22e36fdc0c969bad5a3d88e29f6a55ca1e00 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7cd04dddcd5b81030f00cea30e458c9edc8c59de:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7cd04dddcd5b81030f00cea30e458c9edc8c59de \
@@ -2366,7 +2434,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7d683e19a003a69500afd87a0ae6f4a94c0a62a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7d683e19a003a69500afd87a0ae6f4a94c0a62a2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7d7d367dca5d7032e2cf64e03e52f1d6432a7b23:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7d7d367dca5d7032e2cf64e03e52f1d6432a7b23 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7e6c397988f83d6a01e8310560ec1147cdef4066:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7e6c397988f83d6a01e8310560ec1147cdef4066 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7e74e42f6702069259150aa194946ec4623a8623:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7e74e42f6702069259150aa194946ec4623a8623 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7f21aed629580e31e7474bbf04c5fd27ab87275b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7f21aed629580e31e7474bbf04c5fd27ab87275b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7f51966af5bb5876f5be44ef980265acacdfa628:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7f51966af5bb5876f5be44ef980265acacdfa628 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/7f5c0a64160f3598c6a526f23e321ceba258b654:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7f5c0a64160f3598c6a526f23e321ceba258b654 \
@@ -2377,8 +2444,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8014921c152253e2622f73851138d84732577655:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8014921c152253e2622f73851138d84732577655 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/806aefb3e4f5fe525129187602074c526ac91c28:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/806aefb3e4f5fe525129187602074c526ac91c28 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/80dae55a40d6b08bd30fd73e2daa5aa1322355a5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/80dae55a40d6b08bd30fd73e2daa5aa1322355a5 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/80efd9a2032bbbb546cf179089ab2f28324ea689:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/80efd9a2032bbbb546cf179089ab2f28324ea689 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/817712ad8092538d9896334eaa106654c6ca6b45:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/817712ad8092538d9896334eaa106654c6ca6b45 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8180933e678c3148327d439c8b117a40bdd8ecc6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8180933e678c3148327d439c8b117a40bdd8ecc6 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/81b23d875a4b39b66c62c4c4546e9aa324719883:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/81b23d875a4b39b66c62c4c4546e9aa324719883 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/826a2fc8d6418cc9e8aebf079a2ec15557667915:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/826a2fc8d6418cc9e8aebf079a2ec15557667915 \
@@ -2391,34 +2456,33 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/855ef136f21b87cf38cd80f2b8344ef3996b8ecb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/855ef136f21b87cf38cd80f2b8344ef3996b8ecb \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/856119f81cf3dab949551fbc07fdac6e7e0e3dfd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/856119f81cf3dab949551fbc07fdac6e7e0e3dfd \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8562b83f7829db3b37366494321712457a9d8035:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8562b83f7829db3b37366494321712457a9d8035 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8590aaec583ed115d4da87955af7096e7b74d3ac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8590aaec583ed115d4da87955af7096e7b74d3ac \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/85a472095e1513e269eb543ec8cd0c483a5bb32e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/85a472095e1513e269eb543ec8cd0c483a5bb32e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/85cae0fe162739fc5d9b452e1174d1e1dcc2c4eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/85cae0fe162739fc5d9b452e1174d1e1dcc2c4eb \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/85e9e88f92be563d8a1257a02284417a9472695d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/85e9e88f92be563d8a1257a02284417a9472695d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8607e7351da2aba567c0f007276440eb28230bf6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8607e7351da2aba567c0f007276440eb28230bf6 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/86d4a6dc5d567680ead3a8c0c646ccce15e933b5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/86d4a6dc5d567680ead3a8c0c646ccce15e933b5 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/86e97ab8d596ca51128a03d0ce7803075b952520:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/86e97ab8d596ca51128a03d0ce7803075b952520 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8753975cf8dadff36ae10ea1be1977775e5e6a4f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8753975cf8dadff36ae10ea1be1977775e5e6a4f \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/876767f6df0ade552dd8f4059194093b4bf58a56:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/876767f6df0ade552dd8f4059194093b4bf58a56 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/87a473d19ecbfae77e32e31dd170da81f50bd823:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/87a473d19ecbfae77e32e31dd170da81f50bd823 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/87a699020db486926b79d834b9dc32f029962863:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/87a699020db486926b79d834b9dc32f029962863 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/87a9c9439a74a22ce970df904804f9ad5ada32ee:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/87a9c9439a74a22ce970df904804f9ad5ada32ee \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/87aa5f6d246e2dfb7d64a8b7a9bac09f4d4f864b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/87aa5f6d246e2dfb7d64a8b7a9bac09f4d4f864b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8809b226d3a9e86814cc26f92c1ce1507db6c433:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8809b226d3a9e86814cc26f92c1ce1507db6c433 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8860f35a22497a263cfd0d3652572f871a20502f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8860f35a22497a263cfd0d3652572f871a20502f \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8873c45a0222b820f6fb0c313835255bdaf0d90c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8873c45a0222b820f6fb0c313835255bdaf0d90c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8899008f1cc486b82a59163e95a2894e83fa003c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8899008f1cc486b82a59163e95a2894e83fa003c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/889c5339106a035e82aebe586b0f81d75746e995:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/889c5339106a035e82aebe586b0f81d75746e995 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/88ab3303dbbda62a1c8c69c89e434ced5981b139:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/88ab3303dbbda62a1c8c69c89e434ced5981b139 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/88cfd6d9bf0ad33a2a5205a9da269f40e2520e83:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/88cfd6d9bf0ad33a2a5205a9da269f40e2520e83 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8912aa2fe06180035dbc7ff81d2f121f527c667a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8912aa2fe06180035dbc7ff81d2f121f527c667a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8971ab6b02e391b6be01a1d71b2ed74dc34c1555:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8971ab6b02e391b6be01a1d71b2ed74dc34c1555 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8980459f8a08b9b0648a130f80730e8c2b496d31:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8980459f8a08b9b0648a130f80730e8c2b496d31 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/89c976d452334e5c7f270247494834bf9ec9acdb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/89c976d452334e5c7f270247494834bf9ec9acdb \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/89d349baaeb0f9b76ed4e91344eb2a4b31e368f5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/89d349baaeb0f9b76ed4e91344eb2a4b31e368f5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8a71479ee4c3b238c2c5cd1b39e837ce4d29f648:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8a71479ee4c3b238c2c5cd1b39e837ce4d29f648 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8a7b53c9656f15e0283296d13239161e1a4a5fc1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8a7b53c9656f15e0283296d13239161e1a4a5fc1 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8ac2d46c99fb075330d6f1c74267dd450afa96d5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8ac2d46c99fb075330d6f1c74267dd450afa96d5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8acea1ca4136ddab95420169fa36b93da899d03c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8acea1ca4136ddab95420169fa36b93da899d03c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8aea88f3eeb3c144bdfaab638c9ca1f7703aaffc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8aea88f3eeb3c144bdfaab638c9ca1f7703aaffc \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8b52778c1e15fbe518b2c1ac5f1bf34c0ddf6e05:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8b52778c1e15fbe518b2c1ac5f1bf34c0ddf6e05 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8b698b844c306d2b06915c49f8bbaef4dd795d60:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8b698b844c306d2b06915c49f8bbaef4dd795d60 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8b73e032b748caebad65dd0ee2ffc92ef4e1866d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8b73e032b748caebad65dd0ee2ffc92ef4e1866d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8b8dd8bed1f095a6412972b16f540dc34d604d41:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8b8dd8bed1f095a6412972b16f540dc34d604d41 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8bf6ff0923ac68ca121498bbe77ec12e4fc1b6f3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8bf6ff0923ac68ca121498bbe77ec12e4fc1b6f3 \
@@ -2426,10 +2490,13 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8c27e578434a9a37069b018a463fe4233a97212a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8c27e578434a9a37069b018a463fe4233a97212a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8c2ec36f7c94186c28d4e16b66653065d8d9e274:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8c2ec36f7c94186c28d4e16b66653065d8d9e274 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8c40d1695cd69c56cfa6d65c60c5c7ecd418c9a9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8c40d1695cd69c56cfa6d65c60c5c7ecd418c9a9 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8c5643a6567665c03241c83558be1864519d292d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8c5643a6567665c03241c83558be1864519d292d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8cdd8e1930cb1f4f5882cc15729bc1fc473e9c29:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8cdd8e1930cb1f4f5882cc15729bc1fc473e9c29 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8d02f7116d930bc8feeedca15004b3f64bd296dd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8d02f7116d930bc8feeedca15004b3f64bd296dd \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8d2e616256c1e326632ef7f848df7308302f5baf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8d2e616256c1e326632ef7f848df7308302f5baf \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8d599212635bdf8ed4e396eefc80b0bacb5bc4b0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8d599212635bdf8ed4e396eefc80b0bacb5bc4b0 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8dc05120c45453eaa880c9443d00825bdd569d78:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8dc05120c45453eaa880c9443d00825bdd569d78 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8dcbe86c639051c81d88a381476dabd74cf0e844:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8dcbe86c639051c81d88a381476dabd74cf0e844 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8de5a5d7d86267f0b2106bb90049d570a17d795b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8de5a5d7d86267f0b2106bb90049d570a17d795b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8df9c1a1841553edad299f22407f592a58e41219:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8df9c1a1841553edad299f22407f592a58e41219 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8e0e0c29c88b7101596ac42e99a486fc7e05f4e4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8e0e0c29c88b7101596ac42e99a486fc7e05f4e4 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/8e2a9ae1482ecf1ee46f165fa755a672ff3f5f31:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8e2a9ae1482ecf1ee46f165fa755a672ff3f5f31 \
@@ -2445,6 +2512,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/907ce67f9b4fe86ca63118b217c8c9f55ac1ad5e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/907ce67f9b4fe86ca63118b217c8c9f55ac1ad5e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/907f39913b617a57ebdc7d8fa8e0c4565f0e696a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/907f39913b617a57ebdc7d8fa8e0c4565f0e696a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/90801fbaafe9cec8cfd5170226a781dc1dcfd8bc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/90801fbaafe9cec8cfd5170226a781dc1dcfd8bc \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/908eeb8b246264dd3fdfbaf734b42a2facd17561:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/908eeb8b246264dd3fdfbaf734b42a2facd17561 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/90a991190067115c9ab9304cbd8a6b973994f77d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/90a991190067115c9ab9304cbd8a6b973994f77d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/90b5c0e7a5b28c01ceda38818797f52c0822d824:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/90b5c0e7a5b28c01ceda38818797f52c0822d824 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/90e29b2d12c2d883b2d023623f36fcf749155a7d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/90e29b2d12c2d883b2d023623f36fcf749155a7d \
@@ -2452,15 +2520,16 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/90f9a63509d5b5825985905b8a850debb8eb86b6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/90f9a63509d5b5825985905b8a850debb8eb86b6 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/910a4970bc76a35889dd479a3a7a52432e934a3d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/910a4970bc76a35889dd479a3a7a52432e934a3d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9115600b3269a05ccd5560ff32b042f077666bc5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9115600b3269a05ccd5560ff32b042f077666bc5 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9127171a47f3077b065745787daeb71a4d7325eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9127171a47f3077b065745787daeb71a4d7325eb \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/914cff80f74a02c1fb66ccae1068fcbf6926afa5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/914cff80f74a02c1fb66ccae1068fcbf6926afa5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/915e7d6d6341d7b9e05f68cef1c20a3b4462bf6b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/915e7d6d6341d7b9e05f68cef1c20a3b4462bf6b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/917d8d6e548b92cbb85696ab9a88f61ae9e6c4c3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/917d8d6e548b92cbb85696ab9a88f61ae9e6c4c3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/918e03c51624be32536a9bf2ba4ac52880431231:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/918e03c51624be32536a9bf2ba4ac52880431231 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/91bee0b8421d3e716105996bc8909bbbc28a2b0a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/91bee0b8421d3e716105996bc8909bbbc28a2b0a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9204ba8b1966d76613f83a83705afcf9e51c9d56:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9204ba8b1966d76613f83a83705afcf9e51c9d56 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/92551bf520c5ae57449507305251f1dddeb36b86:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/92551bf520c5ae57449507305251f1dddeb36b86 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/92566c1ea499e46eec9205673871e951e7e87980:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/92566c1ea499e46eec9205673871e951e7e87980 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/926c8a027e86d70d2a12d3927128d3912edde2be:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/926c8a027e86d70d2a12d3927128d3912edde2be \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/929d77fb4ef88c2a63871ac50f21351ba6a21df2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/929d77fb4ef88c2a63871ac50f21351ba6a21df2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/929f28627801e830b1b0d8732179bee46ffb7eef:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/929f28627801e830b1b0d8732179bee46ffb7eef \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/92ba0d625d54a188616f430be1b7798d647b24ad:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/92ba0d625d54a188616f430be1b7798d647b24ad \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/935c994801c885714178cf941c1bbeae57042b58:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/935c994801c885714178cf941c1bbeae57042b58 \
@@ -2474,32 +2543,33 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9482859c7dc3d44d20a76a90e871e3588a18299b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9482859c7dc3d44d20a76a90e871e3588a18299b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/94e8491ffd59d3ced4beadfd62ce1bb708d1a685:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/94e8491ffd59d3ced4beadfd62ce1bb708d1a685 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/951120675391d3ebfc390d7a6186b560d3b74608:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/951120675391d3ebfc390d7a6186b560d3b74608 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/955408ec63b101a6fcbd24bd62c10709131003a7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/955408ec63b101a6fcbd24bd62c10709131003a7 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/95a813ca371fa52d6ef6e96b3246fee32404b0b3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/95a813ca371fa52d6ef6e96b3246fee32404b0b3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/95c39699d22aba1ce7aaf355e0a627f07410b8ae:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/95c39699d22aba1ce7aaf355e0a627f07410b8ae \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/961001be2a5b4534d758b00bee002cdee067e512:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/961001be2a5b4534d758b00bee002cdee067e512 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/963f59b99431785438cd4eed874fd318cbb816b8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/963f59b99431785438cd4eed874fd318cbb816b8 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/967e85e326fcd6c0527334f5ff329a9804f912bc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/967e85e326fcd6c0527334f5ff329a9804f912bc \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/96b07bffd11c7183a1065f60751ad713bf980b12:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/96b07bffd11c7183a1065f60751ad713bf980b12 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/96d6a71c0d8532db62222a2d4b40fea270564d96:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/96d6a71c0d8532db62222a2d4b40fea270564d96 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/97789c46ddc8c092ec60a51b09028b8ef38c469e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/97789c46ddc8c092ec60a51b09028b8ef38c469e \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/97fa6d591bd0bdffa9e25dbcc971a378ee54994d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/97fa6d591bd0bdffa9e25dbcc971a378ee54994d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/980fb36e4939355579178fada0ecc59d318c03f0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/980fb36e4939355579178fada0ecc59d318c03f0 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/981c3ac4aba5ebfa98a73d78ed6cec2f403221ab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/981c3ac4aba5ebfa98a73d78ed6cec2f403221ab \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/982262e7c3aae1b314649beb03fd5f89fab8fed5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/982262e7c3aae1b314649beb03fd5f89fab8fed5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/986dc82ebbf5e3496223c911a31f45926d2d33ac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/986dc82ebbf5e3496223c911a31f45926d2d33ac \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/987afecd2129893f5bff75121c64116948e5786d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/987afecd2129893f5bff75121c64116948e5786d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9892f49cdc9024c95860c135da90e209c03b3b99:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9892f49cdc9024c95860c135da90e209c03b3b99 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/98c088cb04201a571b170b2eff4aa1e2b2c2dcea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/98c088cb04201a571b170b2eff4aa1e2b2c2dcea \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/98f3e16b060806012195fe93e5f364d878fdcb1c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/98f3e16b060806012195fe93e5f364d878fdcb1c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/98fa00c6cde619a4a0c633854072404a0f43dea0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/98fa00c6cde619a4a0c633854072404a0f43dea0 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/990545959a489f7d66eedfb3264a3e0c526d8665:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/990545959a489f7d66eedfb3264a3e0c526d8665 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9985f44e67e5792bde3718577a8fbe5be528eb22:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9985f44e67e5792bde3718577a8fbe5be528eb22 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/998eed5e303a5c3f243940c9fce520f1737e9dca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/998eed5e303a5c3f243940c9fce520f1737e9dca \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/99f9227cee622dceda2b7e37e0fdb3edb3d7c17e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/99f9227cee622dceda2b7e37e0fdb3edb3d7c17e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9a7864049dac72ca1e76ed1877d15f74bd663c82:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9a7864049dac72ca1e76ed1877d15f74bd663c82 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9afb5b60a4ee71066f3bd2209156c24ba9d7a855:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9afb5b60a4ee71066f3bd2209156c24ba9d7a855 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9afcd35261099ecf2853ec990099a02dec29adc0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9afcd35261099ecf2853ec990099a02dec29adc0 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9b0f046657d0720f02811467ef5158aa27b35e46:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9b0f046657d0720f02811467ef5158aa27b35e46 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9b8f4fc5c35ffdc06263b4866375603f24783ae2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9b8f4fc5c35ffdc06263b4866375603f24783ae2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9b934bd51bdcbaea92a51c946e3a5baba270c923:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9b934bd51bdcbaea92a51c946e3a5baba270c923 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9bcad98767255b23a69a5a43ba3042c005dd196c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9bcad98767255b23a69a5a43ba3042c005dd196c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9be2df47e5eeaa40de0b8bcc312668372bd2a6e0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9be2df47e5eeaa40de0b8bcc312668372bd2a6e0 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9c49c8d1234452d8976ff427ccf5926afe382c0f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9c49c8d1234452d8976ff427ccf5926afe382c0f \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9ca98453eb56226c0daa3f3f2bdb85f0121845e5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9ca98453eb56226c0daa3f3f2bdb85f0121845e5 \
@@ -2513,22 +2583,24 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9d85402ad82999191b6defbbb41c3b1b867da48e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9d85402ad82999191b6defbbb41c3b1b867da48e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9d8871fd6618461ee2108cf5229bfb7dd6942590:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9d8871fd6618461ee2108cf5229bfb7dd6942590 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9dc73eaba51df836d82e1feaebad0456dcd99f00:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9dc73eaba51df836d82e1feaebad0456dcd99f00 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9dfff9ce2a71734349824d6e8f0538101de60b3a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9dfff9ce2a71734349824d6e8f0538101de60b3a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9e50237a7a789535f0983891b696f3692d8119a3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9e50237a7a789535f0983891b696f3692d8119a3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9f0c20f6dc583ad4b61cc7223e83a51b06cce8c9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9f0c20f6dc583ad4b61cc7223e83a51b06cce8c9 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9f0e12caab212c1885b0fdb544211b525f6cfb2a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9f0e12caab212c1885b0fdb544211b525f6cfb2a \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9f243e299683d6e3c534c3eda8141cb2f3832d10:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9f243e299683d6e3c534c3eda8141cb2f3832d10 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9f55887d4db8005304e059fb971af3562fdb3b20:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9f55887d4db8005304e059fb971af3562fdb3b20 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9f572f6610a7dd4e429e06c96a96c2968b9d8d03:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9f572f6610a7dd4e429e06c96a96c2968b9d8d03 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9f9408a1d76ffbed50bc08b757fe624e238fc9f7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9f9408a1d76ffbed50bc08b757fe624e238fc9f7 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/9fbd298f3504b85ae2573cf5a1257c607a4472f9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9fbd298f3504b85ae2573cf5a1257c607a4472f9 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a03a9ba8f58a18984e31db61b42715334f4175f2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a03a9ba8f58a18984e31db61b42715334f4175f2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a0a2b36926c0abdef1872645b19e0d040313e04d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a0a2b36926c0abdef1872645b19e0d040313e04d \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a0cfdb6fb470b5f4eb04c649940667ac5426ed0f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a0cfdb6fb470b5f4eb04c649940667ac5426ed0f \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a1441e72dc6aa3d47eea4e7747d6aad6b0162ed5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a1441e72dc6aa3d47eea4e7747d6aad6b0162ed5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a155996e1faff223b36f00bdd334799a9d8d2ec4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a155996e1faff223b36f00bdd334799a9d8d2ec4 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a15c1f665516617eecba8862ab06bce55b8f7c24:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a15c1f665516617eecba8862ab06bce55b8f7c24 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a171ebe05194b253327c468a3882a511f5170811:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a171ebe05194b253327c468a3882a511f5170811 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a17de7fa6c840a11c3e9461b2b5e12eee36e6f8d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a17de7fa6c840a11c3e9461b2b5e12eee36e6f8d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a2152f061ce5152103499b7baec66a84565a5eb4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a2152f061ce5152103499b7baec66a84565a5eb4 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a28c62e643316c1aa481a7054839cd17b056c842:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a28c62e643316c1aa481a7054839cd17b056c842 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a2bed7f9ff80f34bafa6e528d9bf7396f8824a21:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a2bed7f9ff80f34bafa6e528d9bf7396f8824a21 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a2e936096b1c170867efd1ea779a1aec695332c0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a2e936096b1c170867efd1ea779a1aec695332c0 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a2f40c1ebd31011497708f2d68287af4fd3263ad:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a2f40c1ebd31011497708f2d68287af4fd3263ad \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a32fe01962e7f02dcbd70b26ed3105768eb48adf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a32fe01962e7f02dcbd70b26ed3105768eb48adf \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a337c13e4646250984b4c392dfe59621a21f427f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a337c13e4646250984b4c392dfe59621a21f427f \
@@ -2547,7 +2619,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a73f7de579bb6304473db135c5f829641eb3d477:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a73f7de579bb6304473db135c5f829641eb3d477 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a765a42db239fd0216d2b2f4ffb7b49f12d52f3c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a765a42db239fd0216d2b2f4ffb7b49f12d52f3c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a796140124bbd9aa98de522a8990436a4b38eddc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a796140124bbd9aa98de522a8990436a4b38eddc \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a7de51c787e77142a5a7c9b2103b4da41ed2afb0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a7de51c787e77142a5a7c9b2103b4da41ed2afb0 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a7e798994fd1c7073f7c9577a13a4c2b8162bf12:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a7e798994fd1c7073f7c9577a13a4c2b8162bf12 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a8ce7ad9c8d2af43e9d8ef8b45277b96cda6dddf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a8ce7ad9c8d2af43e9d8ef8b45277b96cda6dddf \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/a953fa254c1508e8f15b0587ec82df50ce22d1c6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a953fa254c1508e8f15b0587ec82df50ce22d1c6 \
@@ -2564,7 +2635,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ad584b9d6d0d34b125a1355df38755630aa99989:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ad584b9d6d0d34b125a1355df38755630aa99989 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ad9b8f2368832a6383e9dc5f469401b0af8ff1c0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ad9b8f2368832a6383e9dc5f469401b0af8ff1c0 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ae9782148354ae5a706353b13329437bca7e9fa3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ae9782148354ae5a706353b13329437bca7e9fa3 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/aebf49be09c6d3ce9a484603dd42f629a30c1767:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/aebf49be09c6d3ce9a484603dd42f629a30c1767 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/aed28098f0dc12b29c2c70f789c0f7086d9ebf3e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/aed28098f0dc12b29c2c70f789c0f7086d9ebf3e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/af056bc1fac6f6596a5441cd29cf8a35890109e6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/af056bc1fac6f6596a5441cd29cf8a35890109e6 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/af7ee7e94e4fd531109ede0d1d37588bc284e0e7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/af7ee7e94e4fd531109ede0d1d37588bc284e0e7 \
@@ -2572,7 +2642,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/afbdadde1d4594c7ddce28cf49f50b2f45c4f5f3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/afbdadde1d4594c7ddce28cf49f50b2f45c4f5f3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/afc0ee7fcf3f71dd354e9596fbece2cdc2dfab69:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/afc0ee7fcf3f71dd354e9596fbece2cdc2dfab69 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/afc8d1fc0a804fd20ecee589a5952f08e53a4640:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/afc8d1fc0a804fd20ecee589a5952f08e53a4640 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/afcd6f3b665cbbdfa69266ba49a91c4e5777f5cf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/afcd6f3b665cbbdfa69266ba49a91c4e5777f5cf \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/affeb5eb11b4000ff9b81812e43e9592d5d176c8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/affeb5eb11b4000ff9b81812e43e9592d5d176c8 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b013b158c4cc62a465be77380435a90d90d5b4c3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b013b158c4cc62a465be77380435a90d90d5b4c3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b0274ad613c8ee071038fad6e08696173794dcb7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b0274ad613c8ee071038fad6e08696173794dcb7 \
@@ -2583,9 +2652,11 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b0f8298ffb978fd3879aaacfe3c83bdcee897058:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b0f8298ffb978fd3879aaacfe3c83bdcee897058 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b1e84f262dc13fe334a232554a237245a46f29b8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b1e84f262dc13fe334a232554a237245a46f29b8 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b222b1e3fdf52845c597bc35a623ce21c2013e27:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b222b1e3fdf52845c597bc35a623ce21c2013e27 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b29e3cb6d22dc459fb993bb975cb1f40117e301c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b29e3cb6d22dc459fb993bb975cb1f40117e301c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b2f916c3eac81fda4f440d84b45fb5dbbc360f2a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b2f916c3eac81fda4f440d84b45fb5dbbc360f2a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b35149e75d20ddcf80bde5ce9d6e1badb9ca053a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b35149e75d20ddcf80bde5ce9d6e1badb9ca053a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b3b614d27e4eccc5433026dd62d019e62d54910e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b3b614d27e4eccc5433026dd62d019e62d54910e \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b3de50451bacb48e5362b0f4ecb92360f6375d25:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b3de50451bacb48e5362b0f4ecb92360f6375d25 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b40ffa13cdc07ccb5c3f4b87f2d4086fd195e850:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b40ffa13cdc07ccb5c3f4b87f2d4086fd195e850 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b46d71e882b0807f2413309adc4c898293384fab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b46d71e882b0807f2413309adc4c898293384fab \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b47ea6fa463572a843398b3f4836524d3bf068ba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b47ea6fa463572a843398b3f4836524d3bf068ba \
@@ -2596,6 +2667,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b58d55d0a333515bdf86a9eca2bd51716e9a7d42:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b58d55d0a333515bdf86a9eca2bd51716e9a7d42 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b5cdef11db69622d8e84778cea20509098a16ef2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b5cdef11db69622d8e84778cea20509098a16ef2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b5f9e2d7bb05943cafbc8c7283e56f8f126568a1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b5f9e2d7bb05943cafbc8c7283e56f8f126568a1 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b6586a4c411bb2698b3f5c9c59eb7389e4134a46:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b6586a4c411bb2698b3f5c9c59eb7389e4134a46 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b6c77ca841a56a6a55c481870a67eb46da388c2b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b6c77ca841a56a6a55c481870a67eb46da388c2b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b6ce2343c3f15ee746022727b2cd2ca59fc21459:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b6ce2343c3f15ee746022727b2cd2ca59fc21459 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b6f5d4583d6b3d7b698b70f757239649427a2c17:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b6f5d4583d6b3d7b698b70f757239649427a2c17 \
@@ -2604,7 +2676,9 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b766590cfda9581223882e37e03d6f7a1d641733:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b766590cfda9581223882e37e03d6f7a1d641733 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b77837a41673531a47f7115472b760ab352ebb62:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b77837a41673531a47f7115472b760ab352ebb62 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b7c058741bd0921ea6bf422af88bdbd0a71ec891:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b7c058741bd0921ea6bf422af88bdbd0a71ec891 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b7d7052ae2f5ce27009021693d135fd52f708aa0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b7d7052ae2f5ce27009021693d135fd52f708aa0 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b7f12ba067a7d7c02458fffdd1f134a6befa1b2c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b7f12ba067a7d7c02458fffdd1f134a6befa1b2c \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b83533ca8d0c2fddb6ce636db30b057d4a36e39f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b83533ca8d0c2fddb6ce636db30b057d4a36e39f \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b8427811ec0967a98c828ecb842d49ac684bb958:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b8427811ec0967a98c828ecb842d49ac684bb958 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b8ed54075c5e18cbde995b98711d3ee73d547e23:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b8ed54075c5e18cbde995b98711d3ee73d547e23 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/b99cfc826500a8d0d4caa08b51be238ff4ad9899:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b99cfc826500a8d0d4caa08b51be238ff4ad9899 \
@@ -2617,6 +2691,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/baef61ee4e7ec5d8c1564119c535bd35c2a8d0a3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/baef61ee4e7ec5d8c1564119c535bd35c2a8d0a3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/bb008ac7b5d622ac88baf8d2ccee6f18fa606fe8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bb008ac7b5d622ac88baf8d2ccee6f18fa606fe8 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/bb0bd8194e0000671316468759d4dc39b24d89c0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bb0bd8194e0000671316468759d4dc39b24d89c0 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/bb14e8576d42f80242d71a5016fd507a94cac869:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bb14e8576d42f80242d71a5016fd507a94cac869 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/bb1635982c5ba693d8a529f8e2d902c1f3730922:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bb1635982c5ba693d8a529f8e2d902c1f3730922 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/bb47db64b2a83f7c406c0e7dd0336116b06b5e36:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bb47db64b2a83f7c406c0e7dd0336116b06b5e36 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/bb73c3d44ce7a585e8ec896235c3c5663898dfdc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bb73c3d44ce7a585e8ec896235c3c5663898dfdc \
@@ -2643,17 +2718,17 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/bf9cf9a782018dbf2ea7db3a4ca52d1ffa52b89d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bf9cf9a782018dbf2ea7db3a4ca52d1ffa52b89d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/bfad83fdcfd8bc22d3b5734889e4435e7579178d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bfad83fdcfd8bc22d3b5734889e4435e7579178d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c0027da62f2c69be7861d0c12d2f3ecd4f4cc728:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c0027da62f2c69be7861d0c12d2f3ecd4f4cc728 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c003e8c99adce8de3bd6e541f6b3c2506233af71:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c003e8c99adce8de3bd6e541f6b3c2506233af71 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c00c8e10f958bcd09e28313e6e1ef6b0b24f1fc5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c00c8e10f958bcd09e28313e6e1ef6b0b24f1fc5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c054768407a3f7ef58f6c3b1911575fe212d5f9c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c054768407a3f7ef58f6c3b1911575fe212d5f9c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c0887b00f31d267ce975d6d3864630a02a0ea83e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c0887b00f31d267ce975d6d3864630a02a0ea83e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c0b6742265d6982e313560458a658932255beaff:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c0b6742265d6982e313560458a658932255beaff \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c0fc260bff85932fbd1ed145dbcc81344dac0aa0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c0fc260bff85932fbd1ed145dbcc81344dac0aa0 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c122b2eb3b70e53642c05e3c45eca15cc87bd98c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c122b2eb3b70e53642c05e3c45eca15cc87bd98c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c1563c48a96e146a4c611d9bf083ef6678f89b6f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c1563c48a96e146a4c611d9bf083ef6678f89b6f \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c1a88d17054cc41fde020992a38f1c13e1bf7b95:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c1a88d17054cc41fde020992a38f1c13e1bf7b95 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c231931b347d70653aca6d6761ce6127dbe45761:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c231931b347d70653aca6d6761ce6127dbe45761 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c2bfe56ab21ea17cf2be210aabfd5b20db5ad923:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c2bfe56ab21ea17cf2be210aabfd5b20db5ad923 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c30d568882444fad6d23e6af6aeb726e1e7f5979:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c30d568882444fad6d23e6af6aeb726e1e7f5979 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c36840f5aa639ff7f2597f0b289705b69f527c6e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c36840f5aa639ff7f2597f0b289705b69f527c6e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c38fec0a6866a50f3b237a4e6eb92834383c41ec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c38fec0a6866a50f3b237a4e6eb92834383c41ec \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c3996aafb989fee3a0124dd90976208ac69cc107:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c3996aafb989fee3a0124dd90976208ac69cc107 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c3eb54af35948ca4148a2d3ff165e05062402429:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c3eb54af35948ca4148a2d3ff165e05062402429 \
@@ -2661,6 +2736,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c42e3fd43ce8e08b54bd62bee69bab92dd2e6b2e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c42e3fd43ce8e08b54bd62bee69bab92dd2e6b2e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c473021b673d138c34854eb87ba21da6032cc8c5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c473021b673d138c34854eb87ba21da6032cc8c5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c479a451e5c8eb980c3c5c0ad70ebe618fa084d9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c479a451e5c8eb980c3c5c0ad70ebe618fa084d9 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c494b77596caa6072eaaaa751c8bccc9b61cfa94:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c494b77596caa6072eaaaa751c8bccc9b61cfa94 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c4da57a2b929101acab789d1dc58ac24fa1de53e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c4da57a2b929101acab789d1dc58ac24fa1de53e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c56d254da564b6b72fb425b94367f1c99cb59389:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c56d254da564b6b72fb425b94367f1c99cb59389 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c60a45bf44bf99df6119858bffb00ccdf9e6e470:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c60a45bf44bf99df6119858bffb00ccdf9e6e470 \
@@ -2676,6 +2752,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c7f2c3bc828a59c54a8f52ec24dff04ec779646c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c7f2c3bc828a59c54a8f52ec24dff04ec779646c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c8341f8592d169666e3e2dfb6fb18551ab94f163:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c8341f8592d169666e3e2dfb6fb18551ab94f163 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c84c9fc6d117ed811f023a62175b0842e11470d0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c84c9fc6d117ed811f023a62175b0842e11470d0 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c9e5edfb5398bca87746c28cacb754653d3c5c8e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c9e5edfb5398bca87746c28cacb754653d3c5c8e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/c9f1032bd74ca1cc16fc102060302f7bd269d3e8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c9f1032bd74ca1cc16fc102060302f7bd269d3e8 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ca064cb0d2aa4b3d92f367408e61bfc6db122bdf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ca064cb0d2aa4b3d92f367408e61bfc6db122bdf \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ca3760ba63bf0a2c5dd0dc7fe897838cc58f12a3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ca3760ba63bf0a2c5dd0dc7fe897838cc58f12a3 \
@@ -2687,17 +2764,18 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/cb07d8c24d9533f10dfa73f70e32e0ee012b935d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cb07d8c24d9533f10dfa73f70e32e0ee012b935d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/cb260255e893d47106abcdb7e94258daf3bdecab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cb260255e893d47106abcdb7e94258daf3bdecab \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/cb2f041c1db1aababdc499155f6f8c43d01f45ed:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cb2f041c1db1aababdc499155f6f8c43d01f45ed \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/cb68eb42e7045d42819786fb0860f1f610ebdbb3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cb68eb42e7045d42819786fb0860f1f610ebdbb3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/cb6d6ea7d53fdcd0da6c1ba428a3b30a261b68f4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cb6d6ea7d53fdcd0da6c1ba428a3b30a261b68f4 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/cbe1e4baad65588200b05aa5ae726db80c8fa114:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cbe1e4baad65588200b05aa5ae726db80c8fa114 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/cc31c5e266916810ad141af97d06d13f8820ef62:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cc31c5e266916810ad141af97d06d13f8820ef62 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/cc3711dfc7ac8ae3e7be4f19054752c5a0f25688:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cc3711dfc7ac8ae3e7be4f19054752c5a0f25688 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/cc389f08ae70e7a2d5ec579ceb37188bbbd78374:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cc389f08ae70e7a2d5ec579ceb37188bbbd78374 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/cc7b2a0277135205da0e41c4794e76f51f5c62a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cc7b2a0277135205da0e41c4794e76f51f5c62a2 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ccaf27c2455f58557f5a425475b84c36dca14af3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ccaf27c2455f58557f5a425475b84c36dca14af3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ccd402e06f080350a450c6895926685692ee5c2d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ccd402e06f080350a450c6895926685692ee5c2d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/cd5f06c4f821a53d303a99f32417785862433e0d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cd5f06c4f821a53d303a99f32417785862433e0d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/cd72152f3de1edf20440e579275e453b5e643dd1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cd72152f3de1edf20440e579275e453b5e643dd1 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/cdb1bfdc9c213ab2bc309b735a47b7272febff49:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cdb1bfdc9c213ab2bc309b735a47b7272febff49 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/cdfb75fe53de9b3b16ba898704dcfbc2d212ccab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cdfb75fe53de9b3b16ba898704dcfbc2d212ccab \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ce114769510aba86b4bd5b5f67a72d404b2f6f58:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ce114769510aba86b4bd5b5f67a72d404b2f6f58 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ce131f2314d8aae3a04b22f31f893e15b8c0f737:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ce131f2314d8aae3a04b22f31f893e15b8c0f737 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ce5a4be95e79bab148b0f4c48ab21674c840ab6c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ce5a4be95e79bab148b0f4c48ab21674c840ab6c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/cea65fd064c848f226bdef0eb1e73379bd580469:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cea65fd064c848f226bdef0eb1e73379bd580469 \
@@ -2706,17 +2784,19 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/cf177d90b5fc108d697d1eedae6f4c24bd5ad7d6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cf177d90b5fc108d697d1eedae6f4c24bd5ad7d6 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/cf72f2743254993d66d0427b43835807acfad7e0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cf72f2743254993d66d0427b43835807acfad7e0 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/cf977631cefee849cd3803897996a4eb3d09b002:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cf977631cefee849cd3803897996a4eb3d09b002 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/d01a9e54aca97edf229c1204b1c2dbe1809a8043:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d01a9e54aca97edf229c1204b1c2dbe1809a8043 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/d0600981b2d36ced6edae0697ddcc5d78b9a31ab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d0600981b2d36ced6edae0697ddcc5d78b9a31ab \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/d095ae22d7c524819832e18dee50632d687fe921:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d095ae22d7c524819832e18dee50632d687fe921 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/d0a660ea3fc551d6364b79efbf2223b2baf74dcb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d0a660ea3fc551d6364b79efbf2223b2baf74dcb \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/d10badcb6e5d863396fb4b8cdc56007cb5f49493:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d10badcb6e5d863396fb4b8cdc56007cb5f49493 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/d122079b4c44a74fda4d231d2c18a0fa5467cf11:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d122079b4c44a74fda4d231d2c18a0fa5467cf11 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/d1c290ea1e4544dec1934931fbfa1fb2060eb3a0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d1c290ea1e4544dec1934931fbfa1fb2060eb3a0 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/d20a065d2d5b3be57c5b9f7e84bcc5d4bb2d479a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d20a065d2d5b3be57c5b9f7e84bcc5d4bb2d479a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/d219614c12c910302582075d28dce9e9c851a4d2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d219614c12c910302582075d28dce9e9c851a4d2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/d303afa26256233d37870c364f4ff42f09374c5e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d303afa26256233d37870c364f4ff42f09374c5e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/d320a2dd08f33ea5ecd9c430a1df3e5873ee749c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d320a2dd08f33ea5ecd9c430a1df3e5873ee749c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/d339f6007d1d6e3017e70b498e0142098f730087:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d339f6007d1d6e3017e70b498e0142098f730087 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/d356915f77034c4a42fb3b6d10d3d139a463e2ab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d356915f77034c4a42fb3b6d10d3d139a463e2ab \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/d38d8c05f18e087d8fff311843ac01264590e85a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d38d8c05f18e087d8fff311843ac01264590e85a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/d3a9c4b81a8c69726d4e78a3d2b28760fad87562:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d3a9c4b81a8c69726d4e78a3d2b28760fad87562 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/d3bec1425c1d188a67790f5eb9cd61d8a0232f9e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d3bec1425c1d188a67790f5eb9cd61d8a0232f9e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/d4813a46dc46c9b732ef7061563b65258ca41cbb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d4813a46dc46c9b732ef7061563b65258ca41cbb \
@@ -2742,8 +2822,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/d9949ec6b7e67c48cb017c9f7e85cb70b061d945:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d9949ec6b7e67c48cb017c9f7e85cb70b061d945 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/da1153acf76174f6f86e869f533cff7f087d1f7d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/da1153acf76174f6f86e869f533cff7f087d1f7d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/da22f1b3c78df4d55630d058cc35e16e903fd2eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/da22f1b3c78df4d55630d058cc35e16e903fd2eb \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/da5582fd5db7e1217bde0f07201e9d1f58b3deb2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/da5582fd5db7e1217bde0f07201e9d1f58b3deb2 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/da9c593fa6681db117a9f5c240d31ee9e410a1de:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/da9c593fa6681db117a9f5c240d31ee9e410a1de \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/da59e7dfa8ef7ac76d0420ed5b3ba3edef9f00f8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/da59e7dfa8ef7ac76d0420ed5b3ba3edef9f00f8 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/daaf71b74e66a763e284b2b7a74799b76fe227ca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/daaf71b74e66a763e284b2b7a74799b76fe227ca \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/dab2df8b52650bbeb63730d2c6f5b28de0f10da1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dab2df8b52650bbeb63730d2c6f5b28de0f10da1 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/dac3087902905ab72f45df6b07832322068ab219:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dac3087902905ab72f45df6b07832322068ab219 \
@@ -2759,18 +2838,21 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/dcec36adf0cfbbee90b615d90090fe6388e62d06:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dcec36adf0cfbbee90b615d90090fe6388e62d06 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/dd07ffbfece5965e4cea247990445462a5f13689:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dd07ffbfece5965e4cea247990445462a5f13689 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/dd1064e4a1b52f2e786fa6dab2ebcd58d09359f9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dd1064e4a1b52f2e786fa6dab2ebcd58d09359f9 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/dd6406550af4d12af752cccd459f45c976e7a693:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dd6406550af4d12af752cccd459f45c976e7a693 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/dd9706daa9a88025587934eeb4be75c1de1fbcf2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dd9706daa9a88025587934eeb4be75c1de1fbcf2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ddf0c2da63143a4ae31877b81fca49f5b265da9e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ddf0c2da63143a4ae31877b81fca49f5b265da9e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ddf1d3b85749f36f00db8f8d00bbc6743ec818ff:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ddf1d3b85749f36f00db8f8d00bbc6743ec818ff \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/de9a7fb23e08a8a70b2fe7fe3d8c5d9699797fa0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/de9a7fb23e08a8a70b2fe7fe3d8c5d9699797fa0 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/dead1a238c332554f329b8a4a2a35ae31399f719:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dead1a238c332554f329b8a4a2a35ae31399f719 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/deef8f3426cd13349b31af884af90de972fbd0e3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/deef8f3426cd13349b31af884af90de972fbd0e3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/df02198bf6e584fbc2f8ebbb853d749a501c7c33:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/df02198bf6e584fbc2f8ebbb853d749a501c7c33 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/df6adb258031b5c36bec61a919cc0b42eb9e0e0c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/df6adb258031b5c36bec61a919cc0b42eb9e0e0c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/dfaaf0cb3202a9ce2aaac2c4b6e3dc977808aa60:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dfaaf0cb3202a9ce2aaac2c4b6e3dc977808aa60 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/dfe8ef44431c6dbdbe10f0bcdef00b0893806221:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dfe8ef44431c6dbdbe10f0bcdef00b0893806221 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e0348e117d743052f961b5583823a77b9dc3a531:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e0348e117d743052f961b5583823a77b9dc3a531 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e041251829264aeec3e8cd4098c20a6db27b3142:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e041251829264aeec3e8cd4098c20a6db27b3142 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e0612be03069b3c721ee33511d39a29523cdce9d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e0612be03069b3c721ee33511d39a29523cdce9d \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e0724f1a15676bccfbefe1afc355a24f84fe7009:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e0724f1a15676bccfbefe1afc355a24f84fe7009 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e08240cfd6698bd7bd83ef78359df7583f9fa194:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e08240cfd6698bd7bd83ef78359df7583f9fa194 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e08e172a1b0b14aba332e495e4f06e3d17af6ceb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e08e172a1b0b14aba332e495e4f06e3d17af6ceb \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e0d495312e9be26cab3e11cef8ec5b69e32b827c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e0d495312e9be26cab3e11cef8ec5b69e32b827c \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e1175c2976f02ea602a7582cab4f4e2b4ea607b6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e1175c2976f02ea602a7582cab4f4e2b4ea607b6 \
@@ -2778,13 +2860,16 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e1a6f5c028c3802ce98d09e989ebfa9bbf7384b4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e1a6f5c028c3802ce98d09e989ebfa9bbf7384b4 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e1b94d21737ba7d976132cb152c7b3b1dc004f47:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e1b94d21737ba7d976132cb152c7b3b1dc004f47 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e214fdc28b95e893bf3cd8435ec3b134747f79eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e214fdc28b95e893bf3cd8435ec3b134747f79eb \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e26a5b49bff886de826735be22b2ac2c2e042974:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e26a5b49bff886de826735be22b2ac2c2e042974 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e2828f00c7b1d03ff31ddcca2c8cf02c203cce96:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e2828f00c7b1d03ff31ddcca2c8cf02c203cce96 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e287e6283d92c3d6921def9c22b7f111549bf155:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e287e6283d92c3d6921def9c22b7f111549bf155 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e28f9f5e2350791499ee87048daad444bc54a571:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e28f9f5e2350791499ee87048daad444bc54a571 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e371c49e26da8747f05c2711a82a3f73ef3cc0a4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e371c49e26da8747f05c2711a82a3f73ef3cc0a4 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e40c354843b6c19a0c462d0f3f3443de3d99a591:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e40c354843b6c19a0c462d0f3f3443de3d99a591 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e43638139315e42f673a52c8c112c7aa397c67a5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e43638139315e42f673a52c8c112c7aa397c67a5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e442012b6887280aaaaa4fa0098fc1a78cce27fc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e442012b6887280aaaaa4fa0098fc1a78cce27fc \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e45c8828d38ddb264338bff0d8f936f684a876e5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e45c8828d38ddb264338bff0d8f936f684a876e5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e46c9b888d31ba2f26ef18dc68582a2ccb97cdc0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e46c9b888d31ba2f26ef18dc68582a2ccb97cdc0 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e5220801a32b5ba55b001f26e86df5f150cad728:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e5220801a32b5ba55b001f26e86df5f150cad728 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e525660ea522931b7ea62685082a65f535a1ca22:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e525660ea522931b7ea62685082a65f535a1ca22 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e5a45191f6d223a90c2951930e515ad2f79c6eec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e5a45191f6d223a90c2951930e515ad2f79c6eec \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e5e8d0699595fe54de049c840bd77e6be7f6956c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e5e8d0699595fe54de049c840bd77e6be7f6956c \
@@ -2793,9 +2878,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e613646c144be88376a48ace714fcdef277ad2aa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e613646c144be88376a48ace714fcdef277ad2aa \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e6514e64fb4558c9ccc1b5ef69d283beef901010:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e6514e64fb4558c9ccc1b5ef69d283beef901010 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e6cf14092d8b7002fd1c120963bf0c6d44989747:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e6cf14092d8b7002fd1c120963bf0c6d44989747 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e6d41c0052168a1365312b498d45c294c6ccb01e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e6d41c0052168a1365312b498d45c294c6ccb01e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e7059c208a7a499036ae857a4d1d2472c87790fe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e7059c208a7a499036ae857a4d1d2472c87790fe \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e72a24eb9e6d5e2d51a773a8ef57c78a8cf04343:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e72a24eb9e6d5e2d51a773a8ef57c78a8cf04343 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e754d6e21a0cc723cd2aab948e768bedd1276175:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e754d6e21a0cc723cd2aab948e768bedd1276175 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e76e5ba3e7c0189b55056d89814bd4290c97eae5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e76e5ba3e7c0189b55056d89814bd4290c97eae5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e7850e1506ce2ddccd31caffdeb40a4ced6aa316:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e7850e1506ce2ddccd31caffdeb40a4ced6aa316 \
@@ -2807,27 +2890,23 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e93a46c53e4a2194a1c1de5bb1baf2b9976027dc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e93a46c53e4a2194a1c1de5bb1baf2b9976027dc \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e9452bfbdcbe850d7fa9951a13bbf7f58969f71a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e9452bfbdcbe850d7fa9951a13bbf7f58969f71a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e979a6baf0fdd28a1e27a77b31f504d59fb18866:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e979a6baf0fdd28a1e27a77b31f504d59fb18866 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/e9d3d85a123ce910b580aaa90218f1022ae2e21f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e9d3d85a123ce910b580aaa90218f1022ae2e21f \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ea1732ee48c5d1db96c3516e1f687877b062b816:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ea1732ee48c5d1db96c3516e1f687877b062b816 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ea382a776b0ea8fec5f4c71be8c0221b8561b9be:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ea382a776b0ea8fec5f4c71be8c0221b8561b9be \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ea8f84a92bdf0ed1004a0912f45f34a4ef58119e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ea8f84a92bdf0ed1004a0912f45f34a4ef58119e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ea96cf34b497608b3dfe8e35da179e3c858cab52:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ea96cf34b497608b3dfe8e35da179e3c858cab52 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/eb3d73c363d55b2faa3db83314ffe89edc7c95ea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/eb3d73c363d55b2faa3db83314ffe89edc7c95ea \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/eb433b27b9075b2175afc530e48bbd7295b7488d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/eb433b27b9075b2175afc530e48bbd7295b7488d \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/eb8645e9125db22496457225ccfdfbd76e3787e8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/eb8645e9125db22496457225ccfdfbd76e3787e8 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ebc7ca8575859721fa9d4c225a156ffaa4044a0b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ebc7ca8575859721fa9d4c225a156ffaa4044a0b \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ebdfeede95e60372af8a6f961ef116f18f49d4ca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ebdfeede95e60372af8a6f961ef116f18f49d4ca \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ebe0db14c8321e7b3a8eeec0d93d30aed50f529b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ebe0db14c8321e7b3a8eeec0d93d30aed50f529b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ebec7c3441d3180d160e414d4b770465d54645c8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ebec7c3441d3180d160e414d4b770465d54645c8 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ec2c35758d2a9faaf0aca0b27f37c2671dac9e5a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec2c35758d2a9faaf0aca0b27f37c2671dac9e5a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ec2d4c6db997b83bb16b2250b9468a5b17ca5fe9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec2d4c6db997b83bb16b2250b9468a5b17ca5fe9 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ec2df7ac09e51e3b7f702ef19a23e2333ef9ef87:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec2df7ac09e51e3b7f702ef19a23e2333ef9ef87 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ec456efadfc2b0caf1565d0f7355a0b8ddd37065:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec456efadfc2b0caf1565d0f7355a0b8ddd37065 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ec5a94a35a161ea250311a219d21ea5f18c57502:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec5a94a35a161ea250311a219d21ea5f18c57502 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ec5f376f6b0475d305d94656a1ab8ca13b368731:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec5f376f6b0475d305d94656a1ab8ca13b368731 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ec71cfa0dab51f19c13abebd4ea2fe32a55e731a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec71cfa0dab51f19c13abebd4ea2fe32a55e731a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ecddaf30e27de7d7224c709817471bee6e9b77f1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ecddaf30e27de7d7224c709817471bee6e9b77f1 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ecefb5b0255c170e10b201c0187a24798cf58903:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ecefb5b0255c170e10b201c0187a24798cf58903 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ecffecc4b6e0389af92f791ce5bd2a94a815a217:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ecffecc4b6e0389af92f791ce5bd2a94a815a217 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ed08ba9a116700ab7305981d1c2be07dc9f31c46:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ed08ba9a116700ab7305981d1c2be07dc9f31c46 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ed39f6db1bc9fbe0504525aac813284ba326080a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ed39f6db1bc9fbe0504525aac813284ba326080a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ed3fe2fe8ffd5413a4adf7ee5ae839beaa53e6f8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ed3fe2fe8ffd5413a4adf7ee5ae839beaa53e6f8 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ed56f54f6628072a9da932678c7997b4a0b94d9e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ed56f54f6628072a9da932678c7997b4a0b94d9e \
@@ -2840,6 +2919,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/eead5a2e5d496229afbfc3e67aa16efda12e97f3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/eead5a2e5d496229afbfc3e67aa16efda12e97f3 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/eed89537b96dd76c35e4119d75e14c8ea3734ca5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/eed89537b96dd76c35e4119d75e14c8ea3734ca5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/eeec786efd8c4aa78f93247b4ea74c0ccb8ba431:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/eeec786efd8c4aa78f93247b4ea74c0ccb8ba431 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ef23983ac387a18e37d62664928c3fe362445132:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ef23983ac387a18e37d62664928c3fe362445132 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ef75e7e308d5dac18f071d9ee14149677c8a5d31:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ef75e7e308d5dac18f071d9ee14149677c8a5d31 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ef80786640b2176865f9bdfe1f909f71b2aa7842:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ef80786640b2176865f9bdfe1f909f71b2aa7842 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ef8d40aa13ca34a9beb8b85908246f316f966c61:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ef8d40aa13ca34a9beb8b85908246f316f966c61 \
@@ -2859,9 +2939,9 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f20abbee94a5deae79dc38c31f58655bba559a68:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f20abbee94a5deae79dc38c31f58655bba559a68 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f22a74622a5045adfe6cb5a079d540585c866df4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f22a74622a5045adfe6cb5a079d540585c866df4 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f2653a2fdee59c9425e27434ba50db9cc64fa427:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f2653a2fdee59c9425e27434ba50db9cc64fa427 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f2682afc943988610b3d51869fe5b018a258d0b4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f2682afc943988610b3d51869fe5b018a258d0b4 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f2da6ac222ca146817dfe7d7b5b675c628a3b095:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f2da6ac222ca146817dfe7d7b5b675c628a3b095 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f2e6cda6bf4c38e9213cba7505e575904925eec9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f2e6cda6bf4c38e9213cba7505e575904925eec9 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f353b5910790fd931246759cb4778c3c8f771e59:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f353b5910790fd931246759cb4778c3c8f771e59 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f3742c561cc06c66effc9e918c38112eaed6cdf2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f3742c561cc06c66effc9e918c38112eaed6cdf2 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f3a15f7b663360187cf9fed6dfebb437b6086798:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f3a15f7b663360187cf9fed6dfebb437b6086798 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f3a3f7c51c21c3a72aae98ee26a476c59fb9b82e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f3a3f7c51c21c3a72aae98ee26a476c59fb9b82e \
@@ -2871,32 +2951,28 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f43af2dbe6f8d1c9a7778eb4319384bb43ef4081:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f43af2dbe6f8d1c9a7778eb4319384bb43ef4081 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f4b5df4ed71fbccd89536dddea0811cc53d32601:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f4b5df4ed71fbccd89536dddea0811cc53d32601 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f4b6c59ffe9cc23810ae4b0be49f72d0c52013dd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f4b6c59ffe9cc23810ae4b0be49f72d0c52013dd \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f58ce1311c74e9404ccc98b9a9fd984fdae42e1b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f58ce1311c74e9404ccc98b9a9fd984fdae42e1b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f593348c4801c045c723eff07a05a18954f5bab8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f593348c4801c045c723eff07a05a18954f5bab8 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f5bd6ae4f475aa8031a45a23e0bfde92331be14b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f5bd6ae4f475aa8031a45a23e0bfde92331be14b \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f5eaaf6006c3309daf656cb643798e7397597cd6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f5eaaf6006c3309daf656cb643798e7397597cd6 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f602182543d533bd0fb0edd01005115a65701517:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f602182543d533bd0fb0edd01005115a65701517 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f604f944ef742df43aeb9af245489bd0a2969b3f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f604f944ef742df43aeb9af245489bd0a2969b3f \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f670b5b0eec3b9cd44ddd74fb6f2e66e67265916:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f670b5b0eec3b9cd44ddd74fb6f2e66e67265916 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f697d82cc10f4021e6c7e0ad4453f6eefae0b4e6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f697d82cc10f4021e6c7e0ad4453f6eefae0b4e6 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f78771470e537cc3f8e00303aa4acf0bf0bf57e2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f78771470e537cc3f8e00303aa4acf0bf0bf57e2 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f793d505d7b4e8b97c669a41b5113f255192beb7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f793d505d7b4e8b97c669a41b5113f255192beb7 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f7a5c4575ecb6453735d99b6422c20ee4338b48f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f7a5c4575ecb6453735d99b6422c20ee4338b48f \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f7bf75f847825b786220a1f3614ebcb0d26158ff:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f7bf75f847825b786220a1f3614ebcb0d26158ff \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f7e98939989dd47e6b04e7a5f15eb2828a161a10:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f7e98939989dd47e6b04e7a5f15eb2828a161a10 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f817d2c471b4dc2f933786fb89c800509f8f8f04:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f817d2c471b4dc2f933786fb89c800509f8f8f04 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f81d6ed4d02f28898547976add3dbff711c98a3f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f81d6ed4d02f28898547976add3dbff711c98a3f \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f81ee840102ef5ef2054738c95b2e163e1486dad:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f81ee840102ef5ef2054738c95b2e163e1486dad \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f831d7f4efcbbe63dc535232957eb91a55fea629:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f831d7f4efcbbe63dc535232957eb91a55fea629 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f84a3359b8af6ea6abb8ad8425823ffb5cdd33d9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f84a3359b8af6ea6abb8ad8425823ffb5cdd33d9 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f86831db6b9c988892332f3274409043e751ef8e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f86831db6b9c988892332f3274409043e751ef8e \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f887c8bfbd844baa88f8c9155f2b458978458662:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f887c8bfbd844baa88f8c9155f2b458978458662 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f8a4b5d976e1d468dab419bf635e5d6fbbad2564:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f8a4b5d976e1d468dab419bf635e5d6fbbad2564 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f8c54d0fd227a8fa4c6e634c54e2127afcbd4ec4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f8c54d0fd227a8fa4c6e634c54e2127afcbd4ec4 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f91d6bbd2adb2b2fc4a7b424fb23153e244a3b50:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f91d6bbd2adb2b2fc4a7b424fb23153e244a3b50 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f9924352af6e239878fb8d4fd694f67e69f01677:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f9924352af6e239878fb8d4fd694f67e69f01677 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f9c6ae454a2287fb9a65305a1f7b436587a9398a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f9c6ae454a2287fb9a65305a1f7b436587a9398a \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/f9eb59fed5d73dbf177ff41b7592a6a6f5db6785:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f9eb59fed5d73dbf177ff41b7592a6a6f5db6785 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/fa415adff84d1e7a339fa0f79dcdcc9b68fcbf03:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fa415adff84d1e7a339fa0f79dcdcc9b68fcbf03 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/fa56a2e0f29bf51c5af36daa3cafdc28424f7bc3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fa56a2e0f29bf51c5af36daa3cafdc28424f7bc3 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/fa6accf679e856b33a025dd43aaaf7ca17b72684:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fa6accf679e856b33a025dd43aaaf7ca17b72684 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/fa876254d33cd9ef695dc5e1dd99b4b70791834f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fa876254d33cd9ef695dc5e1dd99b4b70791834f \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/fa8f5cdd49538609bb18351ec2ffd440f1927a29:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fa8f5cdd49538609bb18351ec2ffd440f1927a29 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/fa912e1b31049a911c7f5e55789e265831de3f8a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fa912e1b31049a911c7f5e55789e265831de3f8a \
@@ -2915,291 +2991,291 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/fd48ecda303ea0d8640b63279ff6ca59c67bad00:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fd48ecda303ea0d8640b63279ff6ca59c67bad00 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/fd8c463b6b717f184b447f31b170e9ecbc11baf6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fd8c463b6b717f184b447f31b170e9ecbc11baf6 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/fdc7f2392fe268e946e618215eb04cd420d57840:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fdc7f2392fe268e946e618215eb04cd420d57840 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/fdcd17e7ce9a0ee20d653534d401feeb503e0bd5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fdcd17e7ce9a0ee20d653534d401feeb503e0bd5 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/fddca762c06a537728227801872a861b283c04de:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fddca762c06a537728227801872a861b283c04de \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/fe6cb31c1de02834111af0a989b73fae5557c94e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fe6cb31c1de02834111af0a989b73fae5557c94e \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/feb303418f7b86b0a5f06d17bfd48c1cd21a428f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/feb303418f7b86b0a5f06d17bfd48c1cd21a428f \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ff4aeb6e68dc45c8d6d0517f26f17a196b1067f0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ff4aeb6e68dc45c8d6d0517f26f17a196b1067f0 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ff696a1b5f67f79247b2558833e54da1f17fbe5a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ff696a1b5f67f79247b2558833e54da1f17fbe5a \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ff76a55522eec7e1c31d315e492d910ccf146294:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ff76a55522eec7e1c31d315e492d910ccf146294 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/confseqs/ffdea22393030d9319b52384c8408c2190609db8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ffdea22393030d9319b52384c8408c2190609db8 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests_symbolic_link_mapping:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests_symbolic_link_mapping \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/0383cb50884404de97b3ce3725d2a0c5ef22622a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0383cb50884404de97b3ce3725d2a0c5ef22622a \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/050a22f4aed57df93704869b6475d59a7dae045d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/050a22f4aed57df93704869b6475d59a7dae045d \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/0586eb1354a580449a62892537b4a35593c3dd1f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0586eb1354a580449a62892537b4a35593c3dd1f \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/066b52c517d81f564ad4b50b3f357d99c5a966e0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/066b52c517d81f564ad4b50b3f357d99c5a966e0 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/06ffc6d6482837700be66aedb88bd28349672fc4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/06ffc6d6482837700be66aedb88bd28349672fc4 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/07487433ddd2d16b032dfd62cca08cbbb27c451f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/07487433ddd2d16b032dfd62cca08cbbb27c451f \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/07b1f9e6e0c34fca605b898237099c3498ff3ea3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/07b1f9e6e0c34fca605b898237099c3498ff3ea3 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/08bbd55595656764b2931013fde50c9399234d4b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/08bbd55595656764b2931013fde50c9399234d4b \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/09439ef396d32026606e5e65431446387a2673e3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/09439ef396d32026606e5e65431446387a2673e3 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/09e8ddd178015fa17119383ab6e4e20b54a1ce43:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/09e8ddd178015fa17119383ab6e4e20b54a1ce43 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/0b3b478913fcbbdac7e93bb8f42eadd1bbce7254:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0b3b478913fcbbdac7e93bb8f42eadd1bbce7254 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/0bad714f53b4f0ecbc8f96375199a1a350552bbb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0bad714f53b4f0ecbc8f96375199a1a350552bbb \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/0ee00a01958415f037b414953618cba6521ca7c6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0ee00a01958415f037b414953618cba6521ca7c6 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/11ba11d450dc767e8e55dc17b3be39bcd54c4a07:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/11ba11d450dc767e8e55dc17b3be39bcd54c4a07 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/12e833241034fab825d25fe40337106711e21933:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/12e833241034fab825d25fe40337106711e21933 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/13b9812ca63e9bf0c0180f5f1eb6be914a730d64:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/13b9812ca63e9bf0c0180f5f1eb6be914a730d64 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/140382c78c4f5fbec8a392e2dcbaed7dba2098e6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/140382c78c4f5fbec8a392e2dcbaed7dba2098e6 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/1457e3a42e250f9af52d472f12c6148bb0d474d1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1457e3a42e250f9af52d472f12c6148bb0d474d1 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/16cd765b480eb245daf08b1fd7c46343467c25b5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/16cd765b480eb245daf08b1fd7c46343467c25b5 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/173c1ecb3a2f7f5358660cfd11726fd857a7fae8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/173c1ecb3a2f7f5358660cfd11726fd857a7fae8 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/17a32e1d6178ed1f089056009b5631a24342761c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/17a32e1d6178ed1f089056009b5631a24342761c \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/17a703510fe91e230a66fcb30f3b1e37224c7c10:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/17a703510fe91e230a66fcb30f3b1e37224c7c10 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/17cb388d93762865d8b7c6e9787496a4bff96789:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/17cb388d93762865d8b7c6e9787496a4bff96789 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/18afa8dd54f42d82f8a021d17e220db6e0d7e17c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/18afa8dd54f42d82f8a021d17e220db6e0d7e17c \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/19357f5f531a20ada22a63b172e46e02fe02e674:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/19357f5f531a20ada22a63b172e46e02fe02e674 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/195e65176923d1c61eb598ca195b5e84072dbd12:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/195e65176923d1c61eb598ca195b5e84072dbd12 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/1ab718cdd407429ae894e26f146978c0b7fbc1bb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1ab718cdd407429ae894e26f146978c0b7fbc1bb \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/1abeabb88408dc8a9c9f991e8f22d7ae382b9cc9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1abeabb88408dc8a9c9f991e8f22d7ae382b9cc9 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/1c278ddd4abb7c6d6b4038573e0ccd725279a84b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1c278ddd4abb7c6d6b4038573e0ccd725279a84b \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/1f016aca66f1ab908e60badc243e0b0960551c03:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1f016aca66f1ab908e60badc243e0b0960551c03 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2019a2c71cb45077e24dcfab818d99b9a49f943e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2019a2c71cb45077e24dcfab818d99b9a49f943e \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/205153cfa1225303df9427e7e3640976135afb45:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/205153cfa1225303df9427e7e3640976135afb45 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2083912a36dbccfd0cfa6d7e33f7fb84937727ab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2083912a36dbccfd0cfa6d7e33f7fb84937727ab \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2370c91aa0f1529e8fd1aabb0ea0c684b37722ab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2370c91aa0f1529e8fd1aabb0ea0c684b37722ab \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/23e5649228f96e36b9244e4a6d525f02df79d125:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/23e5649228f96e36b9244e4a6d525f02df79d125 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2514ef60487f637743df4bf936e30cd100b42851:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2514ef60487f637743df4bf936e30cd100b42851 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/257341fbb9ba7f9b6efe354a059286b73f4becd5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/257341fbb9ba7f9b6efe354a059286b73f4becd5 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/25c3e7e51ca7db7c5c27d1bd56a840338b87af8e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/25c3e7e51ca7db7c5c27d1bd56a840338b87af8e \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2679f8e0f4329f3143c388b57c1f554c500943c3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2679f8e0f4329f3143c388b57c1f554c500943c3 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/29ce76b566a5b6f74b42e2bfaee4653f56a22261:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/29ce76b566a5b6f74b42e2bfaee4653f56a22261 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2ada6190e6bb31581009489ac52677147fbe8af1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2ada6190e6bb31581009489ac52677147fbe8af1 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2b36cb59cca9ddd46c29194f66e4801535e5cc9c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2b36cb59cca9ddd46c29194f66e4801535e5cc9c \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2b5826e7ae64c41ba911d15211c77d8678b9a295:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2b5826e7ae64c41ba911d15211c77d8678b9a295 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2b6ddb0179336cacb2531fc9a913adca05d49b6b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2b6ddb0179336cacb2531fc9a913adca05d49b6b \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2c3f34e7727ead0da042af7809e6f9a63b1bd673:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2c3f34e7727ead0da042af7809e6f9a63b1bd673 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2e7ea8a678da70c417e4d2c51290a98fdd2824d1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2e7ea8a678da70c417e4d2c51290a98fdd2824d1 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/30db635e8bd483ed9c8f5ff65dcc72ebee9ac814:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/30db635e8bd483ed9c8f5ff65dcc72ebee9ac814 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/31c3fb095243e2b6fc1a1ec408f1bc623a10ffc7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/31c3fb095243e2b6fc1a1ec408f1bc623a10ffc7 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/3380a60a4ef6d9ebd9a279c62c34c2c37f04a0e5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3380a60a4ef6d9ebd9a279c62c34c2c37f04a0e5 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/343df1bff86da2fb201d31a14ba91fdd594f9164:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/343df1bff86da2fb201d31a14ba91fdd594f9164 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/3514e98cb4388acf6ae4cf4c1988882e06aa342e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3514e98cb4388acf6ae4cf4c1988882e06aa342e \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/35bfe38b41decab2d0efd6b43d4dbd50539170d6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/35bfe38b41decab2d0efd6b43d4dbd50539170d6 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/360797f7347a95f960d7785b569beab08f45aa90:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/360797f7347a95f960d7785b569beab08f45aa90 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/361dd4374c49d3213d54d8dd20159a9363ea6329:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/361dd4374c49d3213d54d8dd20159a9363ea6329 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/373ff4d5a0b11dad197ccfa6408d6154659a4856:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/373ff4d5a0b11dad197ccfa6408d6154659a4856 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/39ca06ddf8e0ffd9fe882180fb73d9345bf7a170:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/39ca06ddf8e0ffd9fe882180fb73d9345bf7a170 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/3a0d5b9c9c47b38e2bd66f13263ed6e2336181dc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3a0d5b9c9c47b38e2bd66f13263ed6e2336181dc \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/3b117eb301cb4f7720743f717cb2806a78af0a09:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3b117eb301cb4f7720743f717cb2806a78af0a09 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/3b3296c4f2c552b2950b1b66f9a138ed8938a16e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3b3296c4f2c552b2950b1b66f9a138ed8938a16e \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/3bd76945a65e12c5e1e879f7ee4b01b80b132a36:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3bd76945a65e12c5e1e879f7ee4b01b80b132a36 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/3d4b4dfb68f901d1f1508e29490667221089a87f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3d4b4dfb68f901d1f1508e29490667221089a87f \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/3e11874b3457ec11ccbbf50e475338d9817899a4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3e11874b3457ec11ccbbf50e475338d9817899a4 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/3ef8079264a61527bcf31f9cb4e855c8829b2364:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3ef8079264a61527bcf31f9cb4e855c8829b2364 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/3fedce7fd8c02a41592aef824b269c364df8a417:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3fedce7fd8c02a41592aef824b269c364df8a417 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/40ab4d9b604b72fe5e8c7e9ac4542a93258e1b6d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/40ab4d9b604b72fe5e8c7e9ac4542a93258e1b6d \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/4198cc6d03d5cb8e83c999e3efd8fcd1e6c7c7be:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4198cc6d03d5cb8e83c999e3efd8fcd1e6c7c7be \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/420250412eafd175f4be2975ed65e94bc1e70258:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/420250412eafd175f4be2975ed65e94bc1e70258 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/4471de380f583c61a3733a8117f2c57e54abf9b2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4471de380f583c61a3733a8117f2c57e54abf9b2 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/44de43a37bf929bb6bac26e66b8be887063fd9d4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/44de43a37bf929bb6bac26e66b8be887063fd9d4 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/456802856af800750c0a8c698379ab77303d65d8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/456802856af800750c0a8c698379ab77303d65d8 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/45d417a958a982ae7df699e88354569dbacecd14:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/45d417a958a982ae7df699e88354569dbacecd14 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/46b623d3d53f7ad96fe34ddc6c54b6b31ad4d502:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/46b623d3d53f7ad96fe34ddc6c54b6b31ad4d502 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/46de04f6f1857f1da71a5b3a0a9eb55b24a49e6b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/46de04f6f1857f1da71a5b3a0a9eb55b24a49e6b \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/491771d3d89973a7a7db126f6d4bed040072ef4a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/491771d3d89973a7a7db126f6d4bed040072ef4a \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/4b4c46854b5183ffd570bfad964e8e8d1d2c848d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4b4c46854b5183ffd570bfad964e8e8d1d2c848d \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/4bc2d0c059f55c0f5244ab264099949c208e100a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4bc2d0c059f55c0f5244ab264099949c208e100a \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/4cd18395b9371bed0885a1efc2f4d3fd996ae3d8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4cd18395b9371bed0885a1efc2f4d3fd996ae3d8 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/4dcfd075c1dd74d1fd2c6f64a115cfab44f452d8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4dcfd075c1dd74d1fd2c6f64a115cfab44f452d8 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/4e541965a755677bc7880d9f60e7a6ad10c9e4a7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4e541965a755677bc7880d9f60e7a6ad10c9e4a7 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/4f5cbb86e2833a2e40eb2ebbd83860e6a078baed:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4f5cbb86e2833a2e40eb2ebbd83860e6a078baed \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/52200b51cc6f3b5489b25d96df47cdf8ee2acb73:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/52200b51cc6f3b5489b25d96df47cdf8ee2acb73 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/53056bee87259bfab8fe689bb52f6c5a2a463a68:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/53056bee87259bfab8fe689bb52f6c5a2a463a68 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/54574d5059e221b98f46abef0953e88c91e5b8d6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/54574d5059e221b98f46abef0953e88c91e5b8d6 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/55be9befd75c78b84f6e5d7b756764789f0b5ff7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/55be9befd75c78b84f6e5d7b756764789f0b5ff7 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/5627698cee744efd346bcda45ed2c808185a7623:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5627698cee744efd346bcda45ed2c808185a7623 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/562ddab24493e64506b7c3998edc303567d74be5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/562ddab24493e64506b7c3998edc303567d74be5 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/56a7f5ba8726c80d54aed84cdac8b4e36761cfe8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/56a7f5ba8726c80d54aed84cdac8b4e36761cfe8 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/575401b61eda7b44d7a346b1e1aa7a0e8ce88410:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/575401b61eda7b44d7a346b1e1aa7a0e8ce88410 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/5ba12a1c9484c477841a75ffe1a5aa6a6663e373:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5ba12a1c9484c477841a75ffe1a5aa6a6663e373 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/5c59ba515285626977ca2819754f3abea866db23:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5c59ba515285626977ca2819754f3abea866db23 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/5cd0adc166d29b1185222c169f09f1a7d90d7e4e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5cd0adc166d29b1185222c169f09f1a7d90d7e4e \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/5cf32965034ae87ce757856e666786c843b35b68:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5cf32965034ae87ce757856e666786c843b35b68 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/5d2e256f9137756b881ec59b6f3e9d845558b196:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5d2e256f9137756b881ec59b6f3e9d845558b196 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/5d3343cdb1a3ebc3c28ed2497d952225007cfc1a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5d3343cdb1a3ebc3c28ed2497d952225007cfc1a \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/5fbe98ca475f9ffcf57700a5760c4f6221ee4df6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5fbe98ca475f9ffcf57700a5760c4f6221ee4df6 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/62f7dbeb22b95a985c42461b7ec75dd33c680ed4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/62f7dbeb22b95a985c42461b7ec75dd33c680ed4 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/65d93dce70396431a1348a12bf9df03faf06d066:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/65d93dce70396431a1348a12bf9df03faf06d066 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/665da4d2a4ed98f05ade408fb11a174db617bb19:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/665da4d2a4ed98f05ade408fb11a174db617bb19 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/67fba4d39153b9549f401519de2f55ea323499ab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/67fba4d39153b9549f401519de2f55ea323499ab \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/68e48c8f27c70992326d7f7a2d65bc1d1f49b44c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/68e48c8f27c70992326d7f7a2d65bc1d1f49b44c \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/6a75a39ae55de9410cb1dc3ec0d64b5b67f52707:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6a75a39ae55de9410cb1dc3ec0d64b5b67f52707 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/6c15740237b9cfa6a6876eb752274647b83e6aaf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6c15740237b9cfa6a6876eb752274647b83e6aaf \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/6c43ec5f42d1301309f0aa6b442f996ec333cbaf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6c43ec5f42d1301309f0aa6b442f996ec333cbaf \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/6ebbe24eed40fa08f5dbfbed80d5244fa20f327a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6ebbe24eed40fa08f5dbfbed80d5244fa20f327a \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/71a3fdd6fdfbc8901ea89fd2efdeab9c102daf86:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/71a3fdd6fdfbc8901ea89fd2efdeab9c102daf86 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/7496747d7cfca921fe5f7ca38a06729cd4ca4eb2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7496747d7cfca921fe5f7ca38a06729cd4ca4eb2 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/7552b5cb30e7efcd1d1cbe27a21344f64ca848b7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7552b5cb30e7efcd1d1cbe27a21344f64ca848b7 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/7616fa8f188c080cb6cf96bb3dbf98ef4aebe705:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7616fa8f188c080cb6cf96bb3dbf98ef4aebe705 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/788a346a562c31fb4c861dcda1dedb4040a6d1fa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/788a346a562c31fb4c861dcda1dedb4040a6d1fa \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/7a042d85d93d6d34233354b85184e0babb42dea0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7a042d85d93d6d34233354b85184e0babb42dea0 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/7ba3b83880c61f7e828f712db5cca3cda5306b74:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7ba3b83880c61f7e828f712db5cca3cda5306b74 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/7deb5b415cfc1a76e21e2c9434fca686af762320:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7deb5b415cfc1a76e21e2c9434fca686af762320 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/7fe7b9aff98c3ec615e2d0143f1163362a5b01ba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7fe7b9aff98c3ec615e2d0143f1163362a5b01ba \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/81c17f12f60c332f5326f250ab6feab283377103:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/81c17f12f60c332f5326f250ab6feab283377103 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/82b7139727ea48a1855f0af80df3461e5bc698af:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/82b7139727ea48a1855f0af80df3461e5bc698af \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8339cd5a40b3b61c9bba22b4f28ea74954fffd8b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8339cd5a40b3b61c9bba22b4f28ea74954fffd8b \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/84a17be0c9f5567b7197364cfa31bfb6533a360a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/84a17be0c9f5567b7197364cfa31bfb6533a360a \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/84b5d885775e85154e6e3957a5cc2c5c3b98ca0b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/84b5d885775e85154e6e3957a5cc2c5c3b98ca0b \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/84b6c1d655b22675c03e680d8a2a7ee35915bf20:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/84b6c1d655b22675c03e680d8a2a7ee35915bf20 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/84f6287955c14e9fb972185d5df80ff0852adf7b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/84f6287955c14e9fb972185d5df80ff0852adf7b \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8689e4546f56e83fccf73ea7077d4d027eba64f2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8689e4546f56e83fccf73ea7077d4d027eba64f2 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8758330541329ba159d8585872a22043509ce57d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8758330541329ba159d8585872a22043509ce57d \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/87ab26c1b27330f794c2553a3056df1773933458:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/87ab26c1b27330f794c2553a3056df1773933458 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/87f492cd69252ee19d49c22f0921173b5a538d8c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/87f492cd69252ee19d49c22f0921173b5a538d8c \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/885b8bec3d94416fa863c7ccb5e221d9b02d12e8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/885b8bec3d94416fa863c7ccb5e221d9b02d12e8 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/888478741d791e8f714566c02817331ded143f17:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/888478741d791e8f714566c02817331ded143f17 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/89d8f06e2761ff355a5364efbe3d2da8f873aebd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/89d8f06e2761ff355a5364efbe3d2da8f873aebd \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8acfbe3997aa7a935e4743e66d21bae77911d197:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8acfbe3997aa7a935e4743e66d21bae77911d197 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8b559f1fbbc8e9dd61a6334f08a997ed65539238:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8b559f1fbbc8e9dd61a6334f08a997ed65539238 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8ce99fc827ba95d3ba7b079bf35f4a43b9f2bc2a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8ce99fc827ba95d3ba7b079bf35f4a43b9f2bc2a \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8cf2aeb481bfe8d1c288e2829876909516c01cb5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8cf2aeb481bfe8d1c288e2829876909516c01cb5 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8e2ee9825077900f3f748f260deaa5d605c97b47:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8e2ee9825077900f3f748f260deaa5d605c97b47 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8f32ff023c8929f2743eec5c02b91facd9201c46:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8f32ff023c8929f2743eec5c02b91facd9201c46 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8fb95f02c00d044682d686ad2693b6fe8e8c396e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8fb95f02c00d044682d686ad2693b6fe8e8c396e \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8fc8d11ca20621e3009b6f4a76299439f63a386b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8fc8d11ca20621e3009b6f4a76299439f63a386b \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/9001e4b50ab26f8fc98be9e50ae0c3d157dff623:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9001e4b50ab26f8fc98be9e50ae0c3d157dff623 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/900ccbc9de157f76f07a56eb155e032ac2dca2a8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/900ccbc9de157f76f07a56eb155e032ac2dca2a8 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/90173e998694312666bde9184ebbcc6e6aadbf8d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/90173e998694312666bde9184ebbcc6e6aadbf8d \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/92d9f82c20234a0bbccfa4704711597f9e4bec26:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/92d9f82c20234a0bbccfa4704711597f9e4bec26 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/930045f5b194f7a71bbeef0d59d8923cb9b1fdc8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/930045f5b194f7a71bbeef0d59d8923cb9b1fdc8 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/94c412835395a0b6851f860e3907af707dc30d1b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/94c412835395a0b6851f860e3907af707dc30d1b \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/95f9d7bc1c18869543eafe7d4cfa7490b4b0785c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/95f9d7bc1c18869543eafe7d4cfa7490b4b0785c \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/9a83b5f1d6e427b68390cc7d70ce1a21f72dce55:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9a83b5f1d6e427b68390cc7d70ce1a21f72dce55 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/9abab39f2692cb5a89939605c18f590a2bda74c9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9abab39f2692cb5a89939605c18f590a2bda74c9 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/9b0d842c407c79cc1d82ba02d77533ebbcc420c6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9b0d842c407c79cc1d82ba02d77533ebbcc420c6 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/9c9b48b585a0ca6235116be754a6aede2f23ed4d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9c9b48b585a0ca6235116be754a6aede2f23ed4d \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/9f895da171746e10fd4b35c0dd0731348873b3b7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9f895da171746e10fd4b35c0dd0731348873b3b7 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/a0331247a537799e710d49d20103d6d9c7da8902:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a0331247a537799e710d49d20103d6d9c7da8902 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/a0df5fc75735636f1be25affd39cc6b7e9c7eedc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a0df5fc75735636f1be25affd39cc6b7e9c7eedc \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/a17fbc3257b76531702f832473f7f2a8e7709e38:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a17fbc3257b76531702f832473f7f2a8e7709e38 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/a22fb93056989ca862a6b109392a437f1209fdde:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a22fb93056989ca862a6b109392a437f1209fdde \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/a3c19f38e399920df93e0c69321d2cc72e49762a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a3c19f38e399920df93e0c69321d2cc72e49762a \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/a53f283bdaa53e23101a3896d5b65f017a95be7c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a53f283bdaa53e23101a3896d5b65f017a95be7c \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/a6fe3e623dbeb3b6f29bf7da6383c89eac4c0c95:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a6fe3e623dbeb3b6f29bf7da6383c89eac4c0c95 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/a927dffe4111197c915498268bc3bb886a2445d1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a927dffe4111197c915498268bc3bb886a2445d1 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/a928bb16ba6dcde7f21b598844900f4e1a98614e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a928bb16ba6dcde7f21b598844900f4e1a98614e \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/aa1edc93afaa7441c9fdd3908258eb68c8813ce6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/aa1edc93afaa7441c9fdd3908258eb68c8813ce6 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/aa3caef9dc7a0a41c4a047765e08c76f362761be:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/aa3caef9dc7a0a41c4a047765e08c76f362761be \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/aacb16e627a63a7d398f37642af44362e8e2f93f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/aacb16e627a63a7d398f37642af44362e8e2f93f \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/abc3023a174466ab7dbd43a2ef51c451ab30766f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/abc3023a174466ab7dbd43a2ef51c451ab30766f \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/abd732a6779b216683c95e3bad726159fa1ef9f5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/abd732a6779b216683c95e3bad726159fa1ef9f5 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ad2faa7fe3f45f3368887984a3d93e4b2cfc3305:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ad2faa7fe3f45f3368887984a3d93e4b2cfc3305 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ad41ea24c94d5a001d520dd80073db6877ac4968:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ad41ea24c94d5a001d520dd80073db6877ac4968 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/adc1cbbe4ee7687950af10ce676f7870782110c3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/adc1cbbe4ee7687950af10ce676f7870782110c3 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/adcf4c845d76f33aa9b2bb8c9b8c0d1888ae2486:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/adcf4c845d76f33aa9b2bb8c9b8c0d1888ae2486 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ae3e3df28f9c82924353d284ee505686d2ab96b9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ae3e3df28f9c82924353d284ee505686d2ab96b9 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/aee60b7f02af7983db18f6ad9638031cdf7d9049:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/aee60b7f02af7983db18f6ad9638031cdf7d9049 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/af65d594cfeccb3dada2749c197eb255491d24e2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/af65d594cfeccb3dada2749c197eb255491d24e2 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/af8b495be58e9f07f6d74a6dd72729532187cfc2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/af8b495be58e9f07f6d74a6dd72729532187cfc2 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/afd6c05ca92a1ae6d5cb5e41b7edb3aed8a417ff:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/afd6c05ca92a1ae6d5cb5e41b7edb3aed8a417ff \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b004c15f7d89427e14cb6da5afa10a7f5c0527f0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b004c15f7d89427e14cb6da5afa10a7f5c0527f0 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b090684d3f673595826aa83d89a5860960a78718:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b090684d3f673595826aa83d89a5860960a78718 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b0e5242fdb3d998e5a8d0bd95ebd7ff2b5525136:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b0e5242fdb3d998e5a8d0bd95ebd7ff2b5525136 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b2478f4ad68d4cb3b0b08909ec2ad9d976cc8a85:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b2478f4ad68d4cb3b0b08909ec2ad9d976cc8a85 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b2885c32e65f4cfadd8686141b4164b3b8ca3dc8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b2885c32e65f4cfadd8686141b4164b3b8ca3dc8 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b51f789bf2102e8cea557690a382211acc3a367b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b51f789bf2102e8cea557690a382211acc3a367b \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b7d8d362c4a5ee2172840c91f9dfc437b89498d5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b7d8d362c4a5ee2172840c91f9dfc437b89498d5 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b8e2fceb0c6ab4c1f810149abd8eda25d2b157ee:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b8e2fceb0c6ab4c1f810149abd8eda25d2b157ee \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b8fc85284e3f833b87bc7fd498376c2f8b104e62:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b8fc85284e3f833b87bc7fd498376c2f8b104e62 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b8fdd9e8dcd1976658fa16a2ab89bc6f22d720b8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b8fdd9e8dcd1976658fa16a2ab89bc6f22d720b8 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b95bba33ed71ddc49835ea55665bc78bdf9271c6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b95bba33ed71ddc49835ea55665bc78bdf9271c6 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ba1413492398c1d1e7c80b9436127f51e7142f5d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ba1413492398c1d1e7c80b9436127f51e7142f5d \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/bae18fbf460a6a06f75f409ec2a68bffeab79cad:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bae18fbf460a6a06f75f409ec2a68bffeab79cad \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/bafd8de8eb31eacb0cf839dd9377d3a1c9910178:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bafd8de8eb31eacb0cf839dd9377d3a1c9910178 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/bbbc00dab8f5e6f6786010183865bd7dc5402e74:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bbbc00dab8f5e6f6786010183865bd7dc5402e74 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/bbc0af7f6607b2fcc0083f09aa7562fad1178bb0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bbc0af7f6607b2fcc0083f09aa7562fad1178bb0 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/bcc652c909f8802e5144b162d34da694f56b5efe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bcc652c909f8802e5144b162d34da694f56b5efe \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/bd214ef851973e0aca07afc81e34fcb0f5e2a525:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bd214ef851973e0aca07afc81e34fcb0f5e2a525 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/bd9d6db269f778f598f8d49a72bf8e1dd8ea125b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bd9d6db269f778f598f8d49a72bf8e1dd8ea125b \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/be45f5b5ff4d1b23a4522497da44942d6ca03961:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/be45f5b5ff4d1b23a4522497da44942d6ca03961 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/bf210021753bfa636d81adbaaa8d14439913a354:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bf210021753bfa636d81adbaaa8d14439913a354 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c12aeb39e88793a54fb5784041ab6f0a7e2b7237:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c12aeb39e88793a54fb5784041ab6f0a7e2b7237 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c13ec3621544c4a22d6c15d8309eac46ff518c7e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c13ec3621544c4a22d6c15d8309eac46ff518c7e \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c205c05adcbe8ebe0b42945ea4b793004bc4396d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c205c05adcbe8ebe0b42945ea4b793004bc4396d \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c2fea4d7199482b1a4485d34a54386477378b899:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c2fea4d7199482b1a4485d34a54386477378b899 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c3d4631ac6217e2026956528eb9d558c0e5aed7e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c3d4631ac6217e2026956528eb9d558c0e5aed7e \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c4564ccae076c15ee4a21385d0377bb4706fd3df:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c4564ccae076c15ee4a21385d0377bb4706fd3df \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c474848ab61561d089ebe567c7f2f06378d46dc5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c474848ab61561d089ebe567c7f2f06378d46dc5 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c5195bce8999d8c92dd654d27e206b59aeae502f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c5195bce8999d8c92dd654d27e206b59aeae502f \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c5fe8d885c9d7797a219c6181ba0321f71847c49:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c5fe8d885c9d7797a219c6181ba0321f71847c49 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c8655b9d14a852c30966141b0338102714180020:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c8655b9d14a852c30966141b0338102714180020 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c8d6235b64c662b388f4a4add1b88729674fcc42:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c8d6235b64c662b388f4a4add1b88729674fcc42 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c8fc8e5cf38814a1f400d281faaec0922d05f5be:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c8fc8e5cf38814a1f400d281faaec0922d05f5be \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ca1f89f384c4402199ca45db47e88a1321023ea3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ca1f89f384c4402199ca45db47e88a1321023ea3 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ca6e97200d51b4fccf6029aab9563e5085f1bfa3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ca6e97200d51b4fccf6029aab9563e5085f1bfa3 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/cae1c692b9be722caf93602214f272083dbc6925:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cae1c692b9be722caf93602214f272083dbc6925 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/cb108a3fb42f89159f28a9995798b76cf5ae91e7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cb108a3fb42f89159f28a9995798b76cf5ae91e7 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/cbd1955169c5912ca6f1b504d795a8bf9d799b44:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cbd1955169c5912ca6f1b504d795a8bf9d799b44 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/cbd6b72c40895cfdc8ec7af949d4027b36b92c3c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cbd6b72c40895cfdc8ec7af949d4027b36b92c3c \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/cc2fba7f7a9345368fc0aa1320a0506d194a4aae:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cc2fba7f7a9345368fc0aa1320a0506d194a4aae \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/cc37c1e7f20ff7e2753cd9500bc268fba7c2a2ca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cc37c1e7f20ff7e2753cd9500bc268fba7c2a2ca \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/cc4be66d373c83dc8854124661146d556c66f0a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cc4be66d373c83dc8854124661146d556c66f0a2 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/cca84dee14eb05037690fd6a63797a8741c9c326:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cca84dee14eb05037690fd6a63797a8741c9c326 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ccac83c3c3bcbbaf43daa49a7e459acb40f5525e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ccac83c3c3bcbbaf43daa49a7e459acb40f5525e \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/cd55c51141df5676877d477b9a13e3598ecb97b9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cd55c51141df5676877d477b9a13e3598ecb97b9 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ce368303bf4f44dec037da0070d2a6eb6e59bd80:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ce368303bf4f44dec037da0070d2a6eb6e59bd80 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d06ad5f8b7266e2fc86b8c3b789dce134743583a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d06ad5f8b7266e2fc86b8c3b789dce134743583a \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d17349fafdd29a89e7cd0c09bc70d5fe72dcdd51:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d17349fafdd29a89e7cd0c09bc70d5fe72dcdd51 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d17ce49c3b9ead043a1202f820075b3a7a9e74dd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d17ce49c3b9ead043a1202f820075b3a7a9e74dd \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d22e19b98966aae36c14b1bbaf1c90c1506193b7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d22e19b98966aae36c14b1bbaf1c90c1506193b7 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d47535c3f77369e66d9ec1494d8b94b3f23e5803:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d47535c3f77369e66d9ec1494d8b94b3f23e5803 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d5539772f29819fae0148ce343f148a820d28e63:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d5539772f29819fae0148ce343f148a820d28e63 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d681694f89c4f227a90d2cb122ef9d3c370e1c99:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d681694f89c4f227a90d2cb122ef9d3c370e1c99 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d76eb76b06332684f7e3899b920e1ff0623a003a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d76eb76b06332684f7e3899b920e1ff0623a003a \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d83e81a638359163e4739f223c9eee75f6fcdd4c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d83e81a638359163e4739f223c9eee75f6fcdd4c \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d9104cc80d3e3241b8532d307b186ddf9d29c8aa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d9104cc80d3e3241b8532d307b186ddf9d29c8aa \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d934e1c0a778fa49588676e7bfebb5fe35cada5b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d934e1c0a778fa49588676e7bfebb5fe35cada5b \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/da596ab3eaa2064940ba11f0eb1870aeba4e2cfa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/da596ab3eaa2064940ba11f0eb1870aeba4e2cfa \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/dad5d816f3bb83fa6ed88e17d7c5f9e1e9488027:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/dad5d816f3bb83fa6ed88e17d7c5f9e1e9488027 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/db51bc1653ce5580e9a1922f32c2d62f907b3586:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/db51bc1653ce5580e9a1922f32c2d62f907b3586 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/db570b342b533b884a6a7e1ad0ad3f93a2f58067:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/db570b342b533b884a6a7e1ad0ad3f93a2f58067 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/dbcc5efb03729a57f14b97acefdb4b56db94ad92:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/dbcc5efb03729a57f14b97acefdb4b56db94ad92 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/dcee2cfb5da83f0fbfed8948fff25f63a7f558bc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/dcee2cfb5da83f0fbfed8948fff25f63a7f558bc \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/dd0073834ac419e4556d4fce2695a6c63c5508d4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/dd0073834ac419e4556d4fce2695a6c63c5508d4 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/dd235335a14975ef14efacd7a1a0d2efb98b6e99:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/dd235335a14975ef14efacd7a1a0d2efb98b6e99 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/dd71b80f94aa7b1dbdfffb7991a3ed7fd6d224e1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/dd71b80f94aa7b1dbdfffb7991a3ed7fd6d224e1 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/de2a266c2a403f33702e1df5e8856889b4837204:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/de2a266c2a403f33702e1df5e8856889b4837204 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/de41041c3423ce57ca288e2514c7560e96f30ae6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/de41041c3423ce57ca288e2514c7560e96f30ae6 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/de4dccc0f139e266ced1b7c7e51360ffeeb4c789:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/de4dccc0f139e266ced1b7c7e51360ffeeb4c789 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/de81806c15e93b511591e9bc64b6b580a6aff88f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/de81806c15e93b511591e9bc64b6b580a6aff88f \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/debdc9a4f7d67d4a8322cd73b31b1eec35e437fb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/debdc9a4f7d67d4a8322cd73b31b1eec35e437fb \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/df41f5c8872fb0eaa15fdfd66b00fc5fed3a4d70:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/df41f5c8872fb0eaa15fdfd66b00fc5fed3a4d70 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/df55d424f87793dc0dcb14cacef0e15c92c11e17:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/df55d424f87793dc0dcb14cacef0e15c92c11e17 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/dfacfb94da57e7fe5a9059859309ac4a5e77b7b1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/dfacfb94da57e7fe5a9059859309ac4a5e77b7b1 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e178d41831cee999d01db0792e2f72c442f337ad:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e178d41831cee999d01db0792e2f72c442f337ad \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e1bcf615a29649f0e94e8c8a852420cf815694e8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e1bcf615a29649f0e94e8c8a852420cf815694e8 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e1da38a564eb69c976c04845176097b4cb36114b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e1da38a564eb69c976c04845176097b4cb36114b \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e308f04dfbd786e83893bd99214d4974b05e29a4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e308f04dfbd786e83893bd99214d4974b05e29a4 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e325716dca098e158024d3a4dfced94c93339621:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e325716dca098e158024d3a4dfced94c93339621 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e3c3e2e5cea9d6dfa3a4e1e2d774808023c0b447:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e3c3e2e5cea9d6dfa3a4e1e2d774808023c0b447 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e49312335e388feb6c873b333923790dde7f747a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e49312335e388feb6c873b333923790dde7f747a \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e4a61a36e9004565972751fe75f2bcc4454cb1e0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e4a61a36e9004565972751fe75f2bcc4454cb1e0 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e4f4be8a71beacf49362fd7e61285d25d7619ec7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e4f4be8a71beacf49362fd7e61285d25d7619ec7 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e521f19c321a2ebea327e00ed2c9d98d24987398:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e521f19c321a2ebea327e00ed2c9d98d24987398 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e57347f30d0839840021b3eb4f31156becff02d4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e57347f30d0839840021b3eb4f31156becff02d4 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e7f6bd8ac4c40820bfbcea6e0368bb658e2812eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e7f6bd8ac4c40820bfbcea6e0368bb658e2812eb \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ea7aaac27825fad5703c6dd29c5c63cc59116c60:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ea7aaac27825fad5703c6dd29c5c63cc59116c60 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/eadacdce0eeb5aa2247745689bfbe96cdad0ca61:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/eadacdce0eeb5aa2247745689bfbe96cdad0ca61 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/eb19a6a44b8aa7c9d1f24ef0c91be14c44287c47:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/eb19a6a44b8aa7c9d1f24ef0c91be14c44287c47 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ed246a335826c341a2740a1489590ada434c6fd6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ed246a335826c341a2740a1489590ada434c6fd6 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ed9569e7c340c48d1995332b8e9e46a55df0a21b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ed9569e7c340c48d1995332b8e9e46a55df0a21b \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ee60df403f0103773160e7dfd0caa5dec0c187b4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ee60df403f0103773160e7dfd0caa5dec0c187b4 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/eef107b3ef1dc43e1ef3a92f9dc405d501bb70da:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/eef107b3ef1dc43e1ef3a92f9dc405d501bb70da \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ef03d93fa51b9d1a55cfc6cde0f6d16f961eeeed:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ef03d93fa51b9d1a55cfc6cde0f6d16f961eeeed \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/efef0d6a882b3667e68409edaad0f8a804c2fe9f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/efef0d6a882b3667e68409edaad0f8a804c2fe9f \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/f012eae76ca237a358e58be86be37cdd30d5dded:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f012eae76ca237a358e58be86be37cdd30d5dded \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/f125bdf290ea10ecf3164a397b3db3afcdec2344:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f125bdf290ea10ecf3164a397b3db3afcdec2344 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/f17022482394bfc76cdb9c2301c431b8bab726f8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f17022482394bfc76cdb9c2301c431b8bab726f8 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/f4b516e427cbdc07196fa59a2db0b6dc34353321:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f4b516e427cbdc07196fa59a2db0b6dc34353321 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/f5126d23ef623122cfb4f595a161bb1604aa77bf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f5126d23ef623122cfb4f595a161bb1604aa77bf \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/f562b3dadaa4c2a7dae5b8c55a77562cb5fcba90:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f562b3dadaa4c2a7dae5b8c55a77562cb5fcba90 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/f63bd2ffb2f9bb7e48715de0b0ef5a796b29f982:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f63bd2ffb2f9bb7e48715de0b0ef5a796b29f982 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/f9d5f790866aab3253fe4ea98d68eefac17b0da5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f9d5f790866aab3253fe4ea98d68eefac17b0da5 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/fad9042b7d5112e6d1ea226f87a407347945735f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fad9042b7d5112e6d1ea226f87a407347945735f \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/fb283ea8f576994d191bd388157bad80e7594844:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fb283ea8f576994d191bd388157bad80e7594844 \
-    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/fe98f34db8e57dea2b9c6fd4efacdbec1297f7f4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fe98f34db8e57dea2b9c6fd4efacdbec1297f7f4 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/0009bf45acb6883239d420a78a2758b7b0c15af6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0009bf45acb6883239d420a78a2758b7b0c15af6 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/013c3107a2283924eb390381a0c5459fafd474a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/013c3107a2283924eb390381a0c5459fafd474a2 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/0271c5a661f127ad3379de9a754126f41cc25322:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0271c5a661f127ad3379de9a754126f41cc25322 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/05fcb41a7815a109ab3575c570473b29fe5f2207:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/05fcb41a7815a109ab3575c570473b29fe5f2207 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/071b2b2d5e19cfd11e40b1bd85aeea7b32ac29b7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/071b2b2d5e19cfd11e40b1bd85aeea7b32ac29b7 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/0929d3dd0c7287f3216d0762f8be7af357ae9408:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0929d3dd0c7287f3216d0762f8be7af357ae9408 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/0aab2bb369bb031469c10f77ee778fb40a81fadb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0aab2bb369bb031469c10f77ee778fb40a81fadb \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/0b88acc6c22166465151b98c11908cfc0291af79:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0b88acc6c22166465151b98c11908cfc0291af79 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/0c320f1573ddd5f1d43fcd4367f8327b06b7b087:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0c320f1573ddd5f1d43fcd4367f8327b06b7b087 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/0d7b4206da9452873d712b466493e3969d952a95:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0d7b4206da9452873d712b466493e3969d952a95 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/0e28c574d8ee91ff59bdc867c7dd8c9c93d6a878:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0e28c574d8ee91ff59bdc867c7dd8c9c93d6a878 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/0eda71195c4c1fedbf08b3e9d8f6b1346e5a3a4c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0eda71195c4c1fedbf08b3e9d8f6b1346e5a3a4c \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/0f1c2cb4211109bac4a792ffb1ad1e71181dd8c2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0f1c2cb4211109bac4a792ffb1ad1e71181dd8c2 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/0fab85b6acd1396881be1a1801050f387bf85c71:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0fab85b6acd1396881be1a1801050f387bf85c71 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/101e7003db9bd16960ba7514a4df2983ed26386d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/101e7003db9bd16960ba7514a4df2983ed26386d \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/10434337362c9e4b6531dcb5bb4eeb5d8fd5fe06:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/10434337362c9e4b6531dcb5bb4eeb5d8fd5fe06 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/1050ba2a298d11b3e3641fd6c7cd9cbbbeb1cab9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1050ba2a298d11b3e3641fd6c7cd9cbbbeb1cab9 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/10e112ef509b861a73cc7583005a1ec775694ddd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/10e112ef509b861a73cc7583005a1ec775694ddd \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/118a69cc9463da097abd0c072217f7ebab7e688e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/118a69cc9463da097abd0c072217f7ebab7e688e \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/12136676da0cd7d4c531917999672f5a4f08680c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/12136676da0cd7d4c531917999672f5a4f08680c \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/1292907b08aa4b1c9c58d19b040f6bbe336bdfbe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1292907b08aa4b1c9c58d19b040f6bbe336bdfbe \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/13c3e76e322ffc9c1ae51c7cd67ac823788e4bf2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/13c3e76e322ffc9c1ae51c7cd67ac823788e4bf2 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/143577ecd7f9e673e1a0f6980695c61897dfec62:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/143577ecd7f9e673e1a0f6980695c61897dfec62 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/14981c74d81628781b67da2cad340a672b583d8b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/14981c74d81628781b67da2cad340a672b583d8b \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/16c7abdafa75e33a90c6a771b3e1b0444cb58ede:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/16c7abdafa75e33a90c6a771b3e1b0444cb58ede \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/17c6d85c15016eab809e0013ced06f04cb1c5800:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/17c6d85c15016eab809e0013ced06f04cb1c5800 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/1aeb552d4a72e57d1afe110601a5a1030e0a4921:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1aeb552d4a72e57d1afe110601a5a1030e0a4921 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/1aec69d2004cc1f7f01bf68db821bd7d40b3f116:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1aec69d2004cc1f7f01bf68db821bd7d40b3f116 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/1c12b3bff59b61ddf21abba7c49c50e9b3e0d0ea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1c12b3bff59b61ddf21abba7c49c50e9b3e0d0ea \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/1d40e98b2c22245c86d23115db4c31a3a2880de6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1d40e98b2c22245c86d23115db4c31a3a2880de6 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/1f1daf8cb56b1f2569d1740cce009fabd3df4a05:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1f1daf8cb56b1f2569d1740cce009fabd3df4a05 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/1f3741484e829e888c56b4c8d26cfecda50e351c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1f3741484e829e888c56b4c8d26cfecda50e351c \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2356859c06f9c8d9846a00d5890d665aa5931a42:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2356859c06f9c8d9846a00d5890d665aa5931a42 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2431f809b1e15d99974af3331379f44302096d86:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2431f809b1e15d99974af3331379f44302096d86 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2656fcefdc9fbd021c05b867f79484cf29d9d7de:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2656fcefdc9fbd021c05b867f79484cf29d9d7de \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/27f5f04b6234e94218387678439ca8ba05ce0c12:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/27f5f04b6234e94218387678439ca8ba05ce0c12 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/28537d5091f9d45e539305d67140155afcf438d6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/28537d5091f9d45e539305d67140155afcf438d6 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/290be50ff9d4f4c134ba8e3a40397053079dc8ef:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/290be50ff9d4f4c134ba8e3a40397053079dc8ef \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2ac7d6fa82f08c47b97f4744d3255fb060a70bb1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2ac7d6fa82f08c47b97f4744d3255fb060a70bb1 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2ae88078bb3f619e827fd612cee0174a27c24601:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2ae88078bb3f619e827fd612cee0174a27c24601 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2ba0a3b370e9295c72fe1b38af05abcae20cd1ee:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2ba0a3b370e9295c72fe1b38af05abcae20cd1ee \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2c3b02df58539dade15d662a76840b51376b3f69:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2c3b02df58539dade15d662a76840b51376b3f69 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2d91d25cac59a398290ff8a5335158c985df3ddd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2d91d25cac59a398290ff8a5335158c985df3ddd \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2da79bf7b189cb8393998a391c69809298bd2f64:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2da79bf7b189cb8393998a391c69809298bd2f64 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2e15e78c42edf4a54cfc946d4a7fc34e0356cd44:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2e15e78c42edf4a54cfc946d4a7fc34e0356cd44 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/2ef5a8f8a15550adeb3c11b379e505bf51e7f283:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2ef5a8f8a15550adeb3c11b379e505bf51e7f283 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/31a049779c799a7a204a5b563c43c6c98ddfa864:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/31a049779c799a7a204a5b563c43c6c98ddfa864 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/32c03dd24bdd0e6308defef8635085d1d7ad50fc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/32c03dd24bdd0e6308defef8635085d1d7ad50fc \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/351e814942e46a064162572e34365faa5a17b89f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/351e814942e46a064162572e34365faa5a17b89f \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/353cdd29fdcb0d1566f02069f9222835bee0a369:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/353cdd29fdcb0d1566f02069f9222835bee0a369 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/3578bbf62fd446fcebda2f5b439573256474392c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3578bbf62fd446fcebda2f5b439573256474392c \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/36890421a4935ddf125ad5d3d2b80e0015d2c04d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/36890421a4935ddf125ad5d3d2b80e0015d2c04d \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/38a9cacfef7ac89e84a2bec8590f8ab482d53710:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/38a9cacfef7ac89e84a2bec8590f8ab482d53710 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/3a250bfee411a6a5a49495da68f530192a6d8ab6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3a250bfee411a6a5a49495da68f530192a6d8ab6 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/3a94e2de7380f19e1f38303c874dad500d27f913:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3a94e2de7380f19e1f38303c874dad500d27f913 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/3b306a7ecef4b16065bbdccad4ecab3916a86686:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3b306a7ecef4b16065bbdccad4ecab3916a86686 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/3c0d0bb46358e855a60186cf12b0b89a8ba26bf5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3c0d0bb46358e855a60186cf12b0b89a8ba26bf5 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/3c88c71de4f1eb1ed99fb62fb29009188ec95bda:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3c88c71de4f1eb1ed99fb62fb29009188ec95bda \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/3d9d0fed7472c4c5cb4405573deac9c0d3e3fb6e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3d9d0fed7472c4c5cb4405573deac9c0d3e3fb6e \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/3e1a04d039dc5b19df1173694a932e200bdf68f1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3e1a04d039dc5b19df1173694a932e200bdf68f1 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/3e207d10c597d3e28a69753659e77846425bad9d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3e207d10c597d3e28a69753659e77846425bad9d \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/404565553fcdb97e13894bc779e9a546c6733ef3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/404565553fcdb97e13894bc779e9a546c6733ef3 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/406aadccdd4559256f9ae2077bc0d7fe1f5fa9ec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/406aadccdd4559256f9ae2077bc0d7fe1f5fa9ec \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/40f029e9f7fd256d7f3a6088e1fd4ed514bc75ff:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/40f029e9f7fd256d7f3a6088e1fd4ed514bc75ff \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/45c2d23eda30be1b4977e9b48be9170eab6df701:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/45c2d23eda30be1b4977e9b48be9170eab6df701 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/463cb5b09882ad6579994b4401de3991bbaf5d69:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/463cb5b09882ad6579994b4401de3991bbaf5d69 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/463d393a661fb970c663e7a0a145e5679aa7e744:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/463d393a661fb970c663e7a0a145e5679aa7e744 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/4676e0c79f06f19accd6926a35e7f40b47e4ddb1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4676e0c79f06f19accd6926a35e7f40b47e4ddb1 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/497b9a710134ac8edcffc82db2f4c7095e2bbf0b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/497b9a710134ac8edcffc82db2f4c7095e2bbf0b \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/4a8bddb323637323acd7a8d3c321725a68833d9f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4a8bddb323637323acd7a8d3c321725a68833d9f \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/4bd0d39cc95cd8af38ba31d040ff60216dc39155:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4bd0d39cc95cd8af38ba31d040ff60216dc39155 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/4c5c285d8132b134c9cbeb290a50a1005263145a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4c5c285d8132b134c9cbeb290a50a1005263145a \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/4c6cec0b4c90a9b63be0912ffab3144d8d760c83:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4c6cec0b4c90a9b63be0912ffab3144d8d760c83 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/4d7f3465bea41ca911f86c4a11a67675176210d9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4d7f3465bea41ca911f86c4a11a67675176210d9 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/4eb3cd8a03f989dfc8ce139ca880d5ecad6f0c73:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4eb3cd8a03f989dfc8ce139ca880d5ecad6f0c73 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/50f5ff6b0a25498f8f868488faadab1b650d1a01:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/50f5ff6b0a25498f8f868488faadab1b650d1a01 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/52e4a522180e951c132ddfe8e6fe6366cfecdbed:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/52e4a522180e951c132ddfe8e6fe6366cfecdbed \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/53484633a4c33af17e0880163082b69248e4c711:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/53484633a4c33af17e0880163082b69248e4c711 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/542b1dd781119d17e1f9c196326358c8c3ab39ba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/542b1dd781119d17e1f9c196326358c8c3ab39ba \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/54755510c882749f8a1dd6bfafa89e2daea2df44:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/54755510c882749f8a1dd6bfafa89e2daea2df44 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/56a3545d6df1b776d6c71fda2b97a49a4fd9c476:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/56a3545d6df1b776d6c71fda2b97a49a4fd9c476 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/57d6f38b6c91e30159fe1c294cefa43d66678b2c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/57d6f38b6c91e30159fe1c294cefa43d66678b2c \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/57ffb80bf9d12b47cb1df0e09efb2299bd0d9a69:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/57ffb80bf9d12b47cb1df0e09efb2299bd0d9a69 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/591a8f326402146973b3829dfbffc41ce7391151:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/591a8f326402146973b3829dfbffc41ce7391151 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/592fc4099b0c962c349e92adc2b802ce753efec6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/592fc4099b0c962c349e92adc2b802ce753efec6 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/5f84e5e8dd57e0f0d411e2161db37506b9f29ebf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5f84e5e8dd57e0f0d411e2161db37506b9f29ebf \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/60584d3618a11bf44913327b1d5bb4271c14cfe7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/60584d3618a11bf44913327b1d5bb4271c14cfe7 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/62d7d91d6fd35493d119cf823f25ad6bf78aa941:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/62d7d91d6fd35493d119cf823f25ad6bf78aa941 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/642b60f1808751708e245543d255ba1eda38a142:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/642b60f1808751708e245543d255ba1eda38a142 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/64aa15840dd3d7bc2e6abfe6c38121446399cb88:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/64aa15840dd3d7bc2e6abfe6c38121446399cb88 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/64ab3d6e0198606c74a9d87cebcd2a9d6bffe93b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/64ab3d6e0198606c74a9d87cebcd2a9d6bffe93b \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/64baf1a9bc754113efa37e4a61ed615a7e4ced8f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/64baf1a9bc754113efa37e4a61ed615a7e4ced8f \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/65a0e9e0bf929fd236b8780e33660786126089c2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/65a0e9e0bf929fd236b8780e33660786126089c2 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/65bc37b882e339b615b35be2ba9a57debb8a02b9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/65bc37b882e339b615b35be2ba9a57debb8a02b9 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/672be7863dcaa8fb3392e9deeed621f90f63cc08:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/672be7863dcaa8fb3392e9deeed621f90f63cc08 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/6811fd992b807eddd232d9dd74fe79b3ad0a5b51:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6811fd992b807eddd232d9dd74fe79b3ad0a5b51 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/687f42dda9b396a92a74e72be5cc787ae205204a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/687f42dda9b396a92a74e72be5cc787ae205204a \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/68b5a26a47b086fae5ec239fe93e8b64afe7335c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/68b5a26a47b086fae5ec239fe93e8b64afe7335c \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/69cf7132206a65526c411ebace2816731a379715:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/69cf7132206a65526c411ebace2816731a379715 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/6ac4e950e02dd75b06e0f53cf6236e4b47432989:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6ac4e950e02dd75b06e0f53cf6236e4b47432989 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/6afd4c165d06cc6355e69561fc2518ff649a1d99:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6afd4c165d06cc6355e69561fc2518ff649a1d99 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/6c64a56d9ec54851f3a2e93b919026b97bb739dc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6c64a56d9ec54851f3a2e93b919026b97bb739dc \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/6cc0fa178f50937dfd639db63817e01dd4486e13:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6cc0fa178f50937dfd639db63817e01dd4486e13 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/6d0734c9c020158f3f8b7196b816216c6abbb859:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6d0734c9c020158f3f8b7196b816216c6abbb859 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/6def1234884a4c2e3917659f76a9943575d3b63a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6def1234884a4c2e3917659f76a9943575d3b63a \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/6e17e460c3c39985e9cfee56b77aebc9587f40b5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6e17e460c3c39985e9cfee56b77aebc9587f40b5 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/6f79b062af1123599490fa50c5c45206666a4014:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6f79b062af1123599490fa50c5c45206666a4014 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/6fb6ebaaf6e295e106fee30dbd554df901b2e9e4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6fb6ebaaf6e295e106fee30dbd554df901b2e9e4 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/70d23a7ebc4d57d7f319eeac8b6df011940539bd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/70d23a7ebc4d57d7f319eeac8b6df011940539bd \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/72267ff7bb4e589394f7724a51522bd9529bf9ee:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/72267ff7bb4e589394f7724a51522bd9529bf9ee \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/733f06884416ec1945f9ce56b3adacdae19384ba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/733f06884416ec1945f9ce56b3adacdae19384ba \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/749a35817577a5a97462ed02455008a85939746a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/749a35817577a5a97462ed02455008a85939746a \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/76555075721794eeaddd51e4e6a94af3c983b3f6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/76555075721794eeaddd51e4e6a94af3c983b3f6 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/79976e68ffd3a4a429b55e2c4207fa616d222d83:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/79976e68ffd3a4a429b55e2c4207fa616d222d83 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/7a7346c82b2403b061be482d8d206a34fc09b8ba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7a7346c82b2403b061be482d8d206a34fc09b8ba \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/7ae29b8a620dcda192b961ece48d7ee322b586c6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7ae29b8a620dcda192b961ece48d7ee322b586c6 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/7b85986d82a94aebd9a7aefc6da56355e6af74f4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7b85986d82a94aebd9a7aefc6da56355e6af74f4 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/7c6435fd91df7cda41ab4381c5a7170061c0d199:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7c6435fd91df7cda41ab4381c5a7170061c0d199 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/7d2377cee0522e8dbc2146452ffac9c53dd69692:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7d2377cee0522e8dbc2146452ffac9c53dd69692 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/7dabc6e0c8d88b8f7b621668602258ec443eede5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7dabc6e0c8d88b8f7b621668602258ec443eede5 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/80afc8e5c22b77ec35a88d03216290b72daccc54:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/80afc8e5c22b77ec35a88d03216290b72daccc54 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/81c33b99ac142f7e5f46b3b931c03a6358566784:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/81c33b99ac142f7e5f46b3b931c03a6358566784 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/820a98c1941ec60c6ff99e430dc2a04ff80ff3a9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/820a98c1941ec60c6ff99e430dc2a04ff80ff3a9 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/825f8ac9391e1561ef210db0a830c9bda245843a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/825f8ac9391e1561ef210db0a830c9bda245843a \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/83229668d26dc2e32f898cf9eeeeb07437bf914f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/83229668d26dc2e32f898cf9eeeeb07437bf914f \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/840f4046209d5d4a794ae8b9e2be344aa9e353fc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/840f4046209d5d4a794ae8b9e2be344aa9e353fc \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/85d2e034883b50340824e113e047d066813c8b73:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/85d2e034883b50340824e113e047d066813c8b73 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/87bf1c37b75e634ea32eedfd7d760393ceb1284f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/87bf1c37b75e634ea32eedfd7d760393ceb1284f \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/880b4606dbf9d7dcdf0a136b404d16ba92f430cc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/880b4606dbf9d7dcdf0a136b404d16ba92f430cc \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/88c4b94a742dccef41ae2d2fc1b804db22720498:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/88c4b94a742dccef41ae2d2fc1b804db22720498 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/89ef773e4554c3cb2992683dc026804a126b06af:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/89ef773e4554c3cb2992683dc026804a126b06af \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8a5aef7f63282a0d38c9dca36071db734f7ee57b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8a5aef7f63282a0d38c9dca36071db734f7ee57b \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8a6f36192657b360a44fa24080444a2497e1e2d7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8a6f36192657b360a44fa24080444a2497e1e2d7 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8aa6682e2fc9528adce8ed894ba10c8dd6a1627b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8aa6682e2fc9528adce8ed894ba10c8dd6a1627b \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8ae3f3137261cb6fcae42ee9b0187981ffc2bef2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8ae3f3137261cb6fcae42ee9b0187981ffc2bef2 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8b0e7c06b25a8a1de8f7f7c809e55140e757b13d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8b0e7c06b25a8a1de8f7f7c809e55140e757b13d \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8df27b12427a10ae1f52d84767c9671882dcffd1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8df27b12427a10ae1f52d84767c9671882dcffd1 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8f6d899b092ae93c5812c0a8bb6bbde27cb982b5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8f6d899b092ae93c5812c0a8bb6bbde27cb982b5 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8f6ed0e7b4ba553641ab972d8fb8d077bfb6ec22:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8f6ed0e7b4ba553641ab972d8fb8d077bfb6ec22 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8f89be6fd53732a2788529b13689fc7285a7514a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8f89be6fd53732a2788529b13689fc7285a7514a \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/8fbe1006dee66d5680b9094e49aa37d993361702:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8fbe1006dee66d5680b9094e49aa37d993361702 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/90b37a01d0481c5b8d69ee134feee1c07432e74e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/90b37a01d0481c5b8d69ee134feee1c07432e74e \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/90bd765c67558c50e3fbf28c51ff5a5f924e2e5a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/90bd765c67558c50e3fbf28c51ff5a5f924e2e5a \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/91f35608449427ef4d3e8eaed2709bc27c74ba07:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/91f35608449427ef4d3e8eaed2709bc27c74ba07 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/92213ce8f2999e19b42b4e3279d40887fd986ce7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/92213ce8f2999e19b42b4e3279d40887fd986ce7 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/928b439ffd0578ec50fb6db75ad68a84bfb8f4d9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/928b439ffd0578ec50fb6db75ad68a84bfb8f4d9 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/92b83830a6ba917265fe4ae92f8d1a9e6cab9f9e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/92b83830a6ba917265fe4ae92f8d1a9e6cab9f9e \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/9318dab6b8780fd5e23254e13be0e9056b29c354:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9318dab6b8780fd5e23254e13be0e9056b29c354 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/939782aa3f68ce7a552ffdb8829336a8ca5c1109:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/939782aa3f68ce7a552ffdb8829336a8ca5c1109 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/93c831afeac04bad3c19343c4db42e232878d9ca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/93c831afeac04bad3c19343c4db42e232878d9ca \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/93d459f3fe742cedab813a942aa3c083d77ccb76:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/93d459f3fe742cedab813a942aa3c083d77ccb76 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/9446b9bf7dcd4ed5966ff8ed41109017a5183cef:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9446b9bf7dcd4ed5966ff8ed41109017a5183cef \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/9907fe94ac84473929d34a935b7413628b3bdf44:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9907fe94ac84473929d34a935b7413628b3bdf44 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/9a043e0af95001e4c8be2e58f1866ea06ffd0672:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9a043e0af95001e4c8be2e58f1866ea06ffd0672 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/9a17029c236796c5edaec4573efdcf88bb3e4f2f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9a17029c236796c5edaec4573efdcf88bb3e4f2f \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/9ab1dba24126cc21de2639d02ce7dec371818857:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9ab1dba24126cc21de2639d02ce7dec371818857 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/9b1d1cdef6649f5650ff1b51a980d1937a4e8222:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9b1d1cdef6649f5650ff1b51a980d1937a4e8222 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/9c762d12bd86daa626bfa4289e4d6b6397392c6c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9c762d12bd86daa626bfa4289e4d6b6397392c6c \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/9fcd30297043b97ec17f56c516b7e32b93fc1264:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9fcd30297043b97ec17f56c516b7e32b93fc1264 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/a0a18ae247e832b9904b6477e80db9db72eaf313:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a0a18ae247e832b9904b6477e80db9db72eaf313 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/a238c42a32d34ab3ecd49c08ec2d19770a8ad2d9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a238c42a32d34ab3ecd49c08ec2d19770a8ad2d9 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/a3b25013694bcb1c05a2638c8af427cd5d4d1083:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a3b25013694bcb1c05a2638c8af427cd5d4d1083 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/a3d3ecc83e3a4d627769823ab860151e5724dd86:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a3d3ecc83e3a4d627769823ab860151e5724dd86 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/a539874bb87403ff5fae7c0f407aed8738a4fa29:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a539874bb87403ff5fae7c0f407aed8738a4fa29 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/a5ba959362769b30b97e00a392df4961f62c63d0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a5ba959362769b30b97e00a392df4961f62c63d0 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/a839b630a0cd1f5ab35575a574f8adab427ff295:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a839b630a0cd1f5ab35575a574f8adab427ff295 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/a86603c13e99f35b49726f429967419fbc82bd52:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a86603c13e99f35b49726f429967419fbc82bd52 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/a97a2c4bc60781b801dd4ffff97c8dfad847ab96:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a97a2c4bc60781b801dd4ffff97c8dfad847ab96 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/aa435d25af60a274e1031c4e428c174277afe964:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/aa435d25af60a274e1031c4e428c174277afe964 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/abcde79ce9744a5b673c8915701e7b7109eba897:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/abcde79ce9744a5b673c8915701e7b7109eba897 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ac3c65d2bb14594a6508896de3517c7a70776a3e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ac3c65d2bb14594a6508896de3517c7a70776a3e \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ac474f38ac1c19b9918f574007c5a363fbb897eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ac474f38ac1c19b9918f574007c5a363fbb897eb \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ac6008e9dbde411fe26763d33b6ebbabd5372bdd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ac6008e9dbde411fe26763d33b6ebbabd5372bdd \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/aceb4a80830307404164bc53c5d71e2cd9f6901c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/aceb4a80830307404164bc53c5d71e2cd9f6901c \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ad953e7707265af68d82aec743d555b43e6ab5d4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ad953e7707265af68d82aec743d555b43e6ab5d4 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ae77e69a58c5f07211607b47c4731607c470801e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ae77e69a58c5f07211607b47c4731607c470801e \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/af1eb53e0115b54383bb2ba65bdb2854667d25c8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/af1eb53e0115b54383bb2ba65bdb2854667d25c8 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/af92a24e33e809277df5d94f09d8fd0bf3a46170:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/af92a24e33e809277df5d94f09d8fd0bf3a46170 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b134d79d116c9fc4e8f041b233fbd8f2ba6d009f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b134d79d116c9fc4e8f041b233fbd8f2ba6d009f \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b155e7e0805f457dfc77aa6853bb9a5cd514c960:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b155e7e0805f457dfc77aa6853bb9a5cd514c960 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b1e8e07dce5f54d91837c7fd45065991a53b217d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b1e8e07dce5f54d91837c7fd45065991a53b217d \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b2911a87563098e4cad9c838a844fd5a509b4260:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b2911a87563098e4cad9c838a844fd5a509b4260 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b30b04c057d17f8745f729c9d76c88d53599847e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b30b04c057d17f8745f729c9d76c88d53599847e \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b333df228c53b4024c242b330dedaa776afd0887:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b333df228c53b4024c242b330dedaa776afd0887 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b4175b6217be0ea2694476ca6f501e95d4a7361e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b4175b6217be0ea2694476ca6f501e95d4a7361e \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b41bf6dc829f61761ef3490b7032506ce561086f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b41bf6dc829f61761ef3490b7032506ce561086f \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b5a4f6a434cc9ecac35d62beee09522ac39ea49d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b5a4f6a434cc9ecac35d62beee09522ac39ea49d \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b6e214b9ebdf643604265b3fda1b399d9205fcd8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b6e214b9ebdf643604265b3fda1b399d9205fcd8 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b6f27cd95c24582f590b0f3a060c3056b91fd6ba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b6f27cd95c24582f590b0f3a060c3056b91fd6ba \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b7be49d7cb9807674171bf7dbb174e051756400c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b7be49d7cb9807674171bf7dbb174e051756400c \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b87dd0661b538da9dda9c808ff32ff0f6c6fc097:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b87dd0661b538da9dda9c808ff32ff0f6c6fc097 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/b9c2bcebd9f682644d356d4815951910891c0c05:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b9c2bcebd9f682644d356d4815951910891c0c05 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ba66c195bfe0da34b254a331f8e3812fa30a90c1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ba66c195bfe0da34b254a331f8e3812fa30a90c1 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/bb428787b3a9ce125004aae60973fb822f01b09d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bb428787b3a9ce125004aae60973fb822f01b09d \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/bb81022a436510a738119e995072332f17b8b174:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bb81022a436510a738119e995072332f17b8b174 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/bb9c77105a44f729b8c279e7450fefd0d8722381:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bb9c77105a44f729b8c279e7450fefd0d8722381 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/bca8348eec333dcc4905ddee00b5e62c07c5a0c6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bca8348eec333dcc4905ddee00b5e62c07c5a0c6 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/bfb7b7e460a34556d87b3fd2c7e0fe25050f352d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bfb7b7e460a34556d87b3fd2c7e0fe25050f352d \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c1da9893693258cc0105bc942a24fbef09d42703:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c1da9893693258cc0105bc942a24fbef09d42703 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c2fb81464875e87d56fcf4ec55bc94b6b11235e9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c2fb81464875e87d56fcf4ec55bc94b6b11235e9 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c47e5870bbc9e46977dac831fdf0cfeba1e8f13c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c47e5870bbc9e46977dac831fdf0cfeba1e8f13c \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c4fa8f5b39c10b4db47b4a87707088a94bc393d4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c4fa8f5b39c10b4db47b4a87707088a94bc393d4 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c57a210b8343720184ceaa7d7e729485eca09a62:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c57a210b8343720184ceaa7d7e729485eca09a62 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c71cd9fb0c14dcb28c9a55c2e9961c0528455730:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c71cd9fb0c14dcb28c9a55c2e9961c0528455730 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c7f0e3209024774bbbb29798bdbff4679d49df8c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c7f0e3209024774bbbb29798bdbff4679d49df8c \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c8a6da0abc4d2994da543375ca63b01b1a564647:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c8a6da0abc4d2994da543375ca63b01b1a564647 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c994dad038a9c11b68fe5bb5c86794a80ffbb543:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c994dad038a9c11b68fe5bb5c86794a80ffbb543 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/c9985b0e333a13aef8aa3a2cfba3a2509723f75a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c9985b0e333a13aef8aa3a2cfba3a2509723f75a \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/cae8e9d51ba331d4fdc643a30fe20aba443b41c9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cae8e9d51ba331d4fdc643a30fe20aba443b41c9 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/cb4d56f18a84e8eba6e3a15da7be00380d460ee1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cb4d56f18a84e8eba6e3a15da7be00380d460ee1 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/cc4d7d26faaf130faf71afd632002765836c93a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cc4d7d26faaf130faf71afd632002765836c93a2 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/cc64b2d6aee44a8b3541dda07d22fffed52b72d1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cc64b2d6aee44a8b3541dda07d22fffed52b72d1 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/cc72380385477956efc76aef14d2c0b03e3126d8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cc72380385477956efc76aef14d2c0b03e3126d8 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/cd0432672c84406c9fbfe925787305b350308503:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cd0432672c84406c9fbfe925787305b350308503 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/cd2a3afa0c739970eea78b275c7eb016c4a850d3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cd2a3afa0c739970eea78b275c7eb016c4a850d3 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/cd3d303b35dbaea7e4fe298f051ab5f7f2cdb909:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cd3d303b35dbaea7e4fe298f051ab5f7f2cdb909 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/cd66ac6a5867eae31f470b030f0cd049d3da08fe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cd66ac6a5867eae31f470b030f0cd049d3da08fe \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ce7b1f7b7db3116b84eb4a9335d8e21123a420cc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ce7b1f7b7db3116b84eb4a9335d8e21123a420cc \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/cf472a35eb7fff5ac8b459ccb5cabbdc5a9a88a4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cf472a35eb7fff5ac8b459ccb5cabbdc5a9a88a4 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/cf5722141a78afcb72a97fc24a3932ed29eaf7e8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cf5722141a78afcb72a97fc24a3932ed29eaf7e8 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d0399fbb8d9b022a4886ac1bf5a833fd06d4fae1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d0399fbb8d9b022a4886ac1bf5a833fd06d4fae1 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d040dba46882b1964552fffac3ebdf0ab7267e2f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d040dba46882b1964552fffac3ebdf0ab7267e2f \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d09e5d2c9474f3b14c1634b858e3ad952e1308de:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d09e5d2c9474f3b14c1634b858e3ad952e1308de \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d174953dd066fb46e72fb4a056835385edcbfc88:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d174953dd066fb46e72fb4a056835385edcbfc88 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d1b017674658d3fd34cab0b0e2d0c47024a84009:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d1b017674658d3fd34cab0b0e2d0c47024a84009 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d1e6e28122af480f000009be5c8321c1235dd604:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d1e6e28122af480f000009be5c8321c1235dd604 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d2b76fe1775aadcfd192aa2802589a9d1bc0fa1c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d2b76fe1775aadcfd192aa2802589a9d1bc0fa1c \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d32b0ef3f58a54327b72b4564afbc82143194dce:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d32b0ef3f58a54327b72b4564afbc82143194dce \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d37c9d9ba3c318ba7210f6dd3b2d03dc5e80c646:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d37c9d9ba3c318ba7210f6dd3b2d03dc5e80c646 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d4437dfcc30eb8ab84c183b46e51226d0b0cca7e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d4437dfcc30eb8ab84c183b46e51226d0b0cca7e \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d6f6c89dd433c1880679c2436bcc44c1e51bcfa4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d6f6c89dd433c1880679c2436bcc44c1e51bcfa4 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d720e569fbf48fd67760047991f34b20c4fd383b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d720e569fbf48fd67760047991f34b20c4fd383b \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d72aecaa10bcec6b66a6f77e28a0529a49628eef:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d72aecaa10bcec6b66a6f77e28a0529a49628eef \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d8778ec8da38fae7a04b30cd15a0ec33ca367804:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d8778ec8da38fae7a04b30cd15a0ec33ca367804 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/d88e0ee54af31340cc9d30a2cb2d6d83ab3785b0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d88e0ee54af31340cc9d30a2cb2d6d83ab3785b0 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/daed1c661ec0fed117bec59db4e50ce9c2c8b877:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/daed1c661ec0fed117bec59db4e50ce9c2c8b877 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/dc8040b4cd321a2b7fabbc69fd00d0ee2da9d5ee:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/dc8040b4cd321a2b7fabbc69fd00d0ee2da9d5ee \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/dcdfca79f33848f2c99407899adb70d1b1f3346a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/dcdfca79f33848f2c99407899adb70d1b1f3346a \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/de2fbd47591a57eeb8ad710a1c2a0d0eb5b9e240:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/de2fbd47591a57eeb8ad710a1c2a0d0eb5b9e240 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/df739b327a8affb5119b558bc543641daf9af6c6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/df739b327a8affb5119b558bc543641daf9af6c6 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e0e274ecaed4ceb9705d2964b8514204e6eb3084:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e0e274ecaed4ceb9705d2964b8514204e6eb3084 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e1815caab56777784f4c5293ed3e64ba43208c12:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e1815caab56777784f4c5293ed3e64ba43208c12 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e1ab4216f2f9a7dc3701691765031a47fe54d350:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e1ab4216f2f9a7dc3701691765031a47fe54d350 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e1b89da871c0c1a359120e9d7cceb2961a3eba61:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e1b89da871c0c1a359120e9d7cceb2961a3eba61 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e22fd50291ac7fcea4cdd64237447167bcca0a68:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e22fd50291ac7fcea4cdd64237447167bcca0a68 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e32263967b454ccc3ef6d037d783f75d07eebc60:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e32263967b454ccc3ef6d037d783f75d07eebc60 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e32c3af6a77e554a9f660f70e87e2c7e3dee2242:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e32c3af6a77e554a9f660f70e87e2c7e3dee2242 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e361cb36b75bba8d328c499419db4f5001bdb0a3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e361cb36b75bba8d328c499419db4f5001bdb0a3 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e507e31150316de19c7e3b6f84e8b0cf4414c358:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e507e31150316de19c7e3b6f84e8b0cf4414c358 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e6225e6846c23092c2fda94b0e4b415fe761abca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e6225e6846c23092c2fda94b0e4b415fe761abca \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e785ee893b1e9932babd77cabb3f7891af3aa32e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e785ee893b1e9932babd77cabb3f7891af3aa32e \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e7ddf3139df2d3f19bae8f7c137086715851f85a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e7ddf3139df2d3f19bae8f7c137086715851f85a \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e83922a1a96ce5151fcd68ef0fbdef64f224cc4f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e83922a1a96ce5151fcd68ef0fbdef64f224cc4f \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/e9a9ef9bbfa28254d61c6b5d869e157c095029e8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e9a9ef9bbfa28254d61c6b5d869e157c095029e8 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/eb7d9f32611da11e8fb80448c351916d0fb91486:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/eb7d9f32611da11e8fb80448c351916d0fb91486 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ed3ecaa008e527ecf40e9f85dec0de806a79d357:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ed3ecaa008e527ecf40e9f85dec0de806a79d357 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/efd4d75b8265f6bb239e32043e0dcd33cc801247:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/efd4d75b8265f6bb239e32043e0dcd33cc801247 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/f1f74ead6a02a139b2666a654f045efc12ccfe5d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f1f74ead6a02a139b2666a654f045efc12ccfe5d \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/f34bd8bc8e1eec24dd928117a98a783d98e987a3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f34bd8bc8e1eec24dd928117a98a783d98e987a3 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/f351a90cc9df0753900038e2333163e5fe6a4324:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f351a90cc9df0753900038e2333163e5fe6a4324 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/f36ed01f01f1ebfd9f015817ce2674b52565184a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f36ed01f01f1ebfd9f015817ce2674b52565184a \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/f3b2654992d6f18b94c320cbc62acbabca35b754:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f3b2654992d6f18b94c320cbc62acbabca35b754 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/f3cd095faa0d75a2f964139b3a5bceadfaff66f2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f3cd095faa0d75a2f964139b3a5bceadfaff66f2 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/f402ef681e66c12ab883415fe7fd5f04ccbaa50a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f402ef681e66c12ab883415fe7fd5f04ccbaa50a \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/f5b82b398e8a6d8637171136eacddbb1900d72f6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f5b82b398e8a6d8637171136eacddbb1900d72f6 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/f67fb2d4a50eebebc913685f37633ebadb822ea6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f67fb2d4a50eebebc913685f37633ebadb822ea6 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/f78adeedf0a1897e1b611a379598dec5e77f81fe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f78adeedf0a1897e1b611a379598dec5e77f81fe \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/f98fc8e9a6b1fe089990472679b9639c6112d209:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f98fc8e9a6b1fe089990472679b9639c6112d209 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/fa5445f9c92d8c4e470a0dc17327495d0ac6fadf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fa5445f9c92d8c4e470a0dc17327495d0ac6fadf \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/fb79d5aa314a63cd685113e7b22e684dfe653baa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fb79d5aa314a63cd685113e7b22e684dfe653baa \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/fb947fceb9e9ac9505fbd3ca0b42f458f53a14a5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fb947fceb9e9ac9505fbd3ca0b42f458f53a14a5 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/fbbe280df7d97a7fd25dde3ccf8eb747a942cbd4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fbbe280df7d97a7fd25dde3ccf8eb747a942cbd4 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/fbf07e26b5b81c57ac85151b68d34bd335eeab0d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fbf07e26b5b81c57ac85151b68d34bd335eeab0d \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/fc947f2085f2a6f9893dfe897ced04ec746b1b8a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fc947f2085f2a6f9893dfe897ced04ec746b1b8a \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/fd9e7c4804d5e4747b9b01ce1c7c21c3ec76d321:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fd9e7c4804d5e4747b9b01ce1c7c21c3ec76d321 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/fdf84acf739789f7870b114b37b0e0eb4bc53477:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fdf84acf739789f7870b114b37b0e0eb4bc53477 \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/fe25088cb4a246a90ab3a4d093cdfe9c02fc46eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fe25088cb4a246a90ab3a4d093cdfe9c02fc46eb \
+    vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/manifests/ff9d50377802116d61b52c55cbbe16a6d09eb003:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ff9d50377802116d61b52c55cbbe16a6d09eb003 \
     vendor/google_devices/rango/proprietary/vendor/firmware/carrierconfig/release-label:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/release-label \
     vendor/google_devices/rango/proprietary/vendor/firmware/CPS4041_A0_04.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/CPS4041_A0_04.bin \
     vendor/google_devices/rango/proprietary/vendor/firmware/CPS4041_BL.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/CPS4041_BL.bin \
@@ -4659,13 +4735,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/firmware/uecapconfig/WINDTRE_8851100888085059077.binarypb:$(TARGET_COPY_OUT_VENDOR)/firmware/uecapconfig/WINDTRE_8851100888085059077.binarypb \
     vendor/google_devices/rango/proprietary/vendor/firmware/usb_phy_fw_2.27.0.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/usb_phy_fw_2.27.0.bin \
     vendor/google_devices/rango/proprietary/vendor/firmware/usb_phy_fw.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/usb_phy_fw.bin \
-    vendor/google_devices/rango/proprietary/vendor/lib64/libaconfig_storage_read_api_cc.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libaconfig_storage_read_api_cc.so \
-    vendor/google_devices/rango/proprietary/vendor/lib64/libc++.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libc++.so \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/bluenote/exported.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/bluenote/exported.xml \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/config/audio_platform_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/config/audio_platform_configuration.xml \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/config/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/config/audio_policy_volumes.xml \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/config/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/config/default_volume_tables.xml \
-    vendor/google_devices/rango/proprietary/vendor/etc/audio/config/mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/config/mixer_paths.xml \
     vendor/google_devices/rango/proprietary/vendor/etc/database/DbEcc_202.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_202.xml \
     vendor/google_devices/rango/proprietary/vendor/etc/database/DbEcc_204.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_204.xml \
     vendor/google_devices/rango/proprietary/vendor/etc/database/DbEcc_206.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_206.xml \
@@ -4674,6 +4743,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/etc/database/DbEcc_216.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_216.xml \
     vendor/google_devices/rango/proprietary/vendor/etc/database/DbEcc_218.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_218.xml \
     vendor/google_devices/rango/proprietary/vendor/etc/database/DbEcc_219.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_219.xml \
+    vendor/google_devices/rango/proprietary/vendor/etc/database/DbEcc_220.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_220.xml \
     vendor/google_devices/rango/proprietary/vendor/etc/database/DbEcc_222.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_222.xml \
     vendor/google_devices/rango/proprietary/vendor/etc/database/DbEcc_226.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_226.xml \
     vendor/google_devices/rango/proprietary/vendor/etc/database/DbEcc_228.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_228.xml \
@@ -4710,6 +4780,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/etc/database/DbEcc_460.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_460.xml \
     vendor/google_devices/rango/proprietary/vendor/etc/database/DbEcc_466.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_466.xml \
     vendor/google_devices/rango/proprietary/vendor/etc/database/DbEcc_505.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_505.xml \
+    vendor/google_devices/rango/proprietary/vendor/etc/database/DbEcc_520.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_520.xml \
     vendor/google_devices/rango/proprietary/vendor/etc/database/DbEcc_525.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_525.xml \
     vendor/google_devices/rango/proprietary/vendor/etc/database/DbEcc_647.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_647.xml \
     vendor/google_devices/rango/proprietary/vendor/etc/database/DbEcc_704.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_704.xml \
@@ -4746,5 +4817,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/rango/proprietary/vendor/etc/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml \
     vendor/google_devices/rango/proprietary/vendor/etc/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
     vendor/google_devices/rango/proprietary/vendor/etc/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml \
+    vendor/google_devices/rango/proprietary/vendor/etc/memory-limiter-config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/memory-limiter-config.xml \
     vendor/google_devices/rango/proprietary/vendor/etc/modem/default_metrics.xml:$(TARGET_COPY_OUT_VENDOR)/etc/modem/default_metrics.xml \
     vendor/google_devices/rango/proprietary/vendor/etc/wifi/coex_table.xml:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/coex_table.xml

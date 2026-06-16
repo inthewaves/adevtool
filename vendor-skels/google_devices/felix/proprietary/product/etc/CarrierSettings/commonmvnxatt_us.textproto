@@ -1,5 +1,5 @@
 canonical_name: "commonmvnxatt_us"
-version: 75000000003
+version: 77000000003
 apns {
   apn {
     name: "ereseller"
@@ -823,5 +823,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1769617571
+  seconds: 1770215808
 }

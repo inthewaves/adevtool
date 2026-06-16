@@ -1,5 +1,5 @@
 canonical_name: "tmobile_nl"
-version: 75000000003
+version: 77000000006
 apns {
   apn {
     name: "Internet"
@@ -79,6 +79,10 @@ configs {
   config {
     key: "hide_enhanced_4g_lte_bool"
     bool_value: true
+  }
+  config {
+    key: "hide_lte_plus_data_icon_bool"
+    bool_value: false
   }
   config {
     key: "ignore_rtt_mode_setting_bool"
@@ -260,6 +264,10 @@ configs {
     }
   }
   config {
+    key: "prefer_3g_visibility_bool"
+    bool_value: false
+  }
+  config {
     key: "qns.condition_rove_in_idle_wifi_pref_home_string_array"
     text_array {
       item: "Condition:WIFI_GOOD"
@@ -370,5 +378,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1747816853
+  seconds: 1770819167
 }

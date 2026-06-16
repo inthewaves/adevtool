@@ -6,6 +6,7 @@
         <item>Greška pri kalibrisanju</item>
         <item>Otključavanje licem nije dostupno. Telefon je previše zagrejan.</item>
         <item>Treba ponovo da podesite otključavanje licem</item>
+        <item>Prilagodite osvetljenje i budite mirni</item>
     </array>
     <string name="biometric_app_setting_name">Kor. lice ili otisak prsta</string>
     <string name="biometric_dialog_default_subtitle">Koristite lice ili otisak prsta da biste nastavili</string>

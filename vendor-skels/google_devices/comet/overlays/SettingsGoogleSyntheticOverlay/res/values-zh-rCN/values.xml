@@ -3,7 +3,7 @@
     <string name="battery_missing_link_message">了解详情</string>
     <string name="charging_optimization_charge_label">%1$s - %2$s 前充满电</string>
     <string name="charging_optimization_reach_limit_charge_label">%1$s - 充电完成</string>
-    <string name="charging_optimization_reach_limit_remaining_time_label">充电完成</string>
+    <string name="charging_optimization_reach_limit_remaining_time_label">完成充电</string>
     <string name="charging_optimization_remaining_time_label">%1$s 前充满电</string>
     <string name="emission_frequency_summary">调整发光频率，改善眼睛敏感者的查看体验</string>
     <string name="emission_frequency_title">为眼睛敏感者调整亮度</string>

@@ -1,5 +1,5 @@
 canonical_name: "telekom_si"
-version: 75000000015
+version: 77000000017
 apns {
   apn {
     name: "Mobilni Internet"
@@ -165,6 +165,10 @@ configs {
     }
   }
   config {
+    key: "maxMessageSize"
+    int_value: 3145728
+  }
+  config {
     key: "prefer_2g_bool"
     bool_value: true
   }
@@ -189,14 +193,10 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "wfc_spn_format_idx_int"
     int_value: 1
   }
 }
 last_updated {
-  seconds: 1762942384
+  seconds: 1770215833
 }

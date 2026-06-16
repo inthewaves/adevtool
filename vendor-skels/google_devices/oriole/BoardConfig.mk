@@ -20,9 +20,6 @@ BOARD_KERNEL_CMDLINE += \
     pcie-exynos-core.load_sequential=1 \
     g2d.load_sequential=1 \
     disable_dma32=on \
-    earlycon=exynos4210,0x10A00000 \
-    console=ttySAC0,115200 \
-    androidboot.console=ttySAC0 \
     printk.devkmsg=on \
     cma_sysfs.experimental=Y \
     rcupdate.rcu_expedited=1 \
@@ -38,7 +35,8 @@ BOARD_KERNEL_CMDLINE += \
 
 BOARD_BOOTCONFIG += \
     androidboot.load_modules_parallel=true \
-    androidboot.boot_devices=14700000.ufs
+    androidboot.boot_devices=14700000.ufs \
+    androidboot.wait_for_udc=true
 
 AB_OTA_PARTITIONS += \
     abl \
@@ -71,6 +69,3 @@ SELINUX_IGNORE_NEVERALLOWS := true
 
 # needed for overriding AOSP-available files with extracted prebuilts
 BUILD_BROKEN_DUP_RULES := true
-
-# needed for partially backporting multi-partition libraries, e.g. libc++
-BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true

@@ -1,5 +1,5 @@
 canonical_name: "verizon_us"
-version: 75000000028
+version: 77000000031
 apns {
   apn {
     name: "Verizon"
@@ -29,7 +29,6 @@ apns {
     max_conns: 20
     max_conns_time: 300
     modem_cognitive: true
-    infrastructure_bitmask: 1
   }
   apn {
     name: "Verizon"
@@ -43,7 +42,6 @@ apns {
     max_conns_time: 300
     modem_cognitive: true
     user_visible: false
-    infrastructure_bitmask: 1
   }
   apn {
     name: "Verizon"
@@ -59,7 +57,6 @@ apns {
     max_conns_time: 300
     modem_cognitive: true
     user_visible: false
-    infrastructure_bitmask: 1
   }
   apn {
     name: "Verizon"
@@ -75,7 +72,6 @@ apns {
     max_conns_time: 300
     modem_cognitive: true
     user_visible: false
-    infrastructure_bitmask: 1
   }
   apn {
     name: "Verizon Emergency"
@@ -1431,10 +1427,6 @@ configs {
     text_value: "Profile"
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "vendor.ims.carrier_video_avsync_mic_delay_millis_int"
     int_value: 55
   }
@@ -1493,5 +1485,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1762942401
+  seconds: 1774646582
 }

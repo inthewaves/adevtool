@@ -1,5 +1,5 @@
 canonical_name: "talkmobile_gb"
-version: 75000000022
+version: 77000000022
 apns {
   apn {
     name: "Talkmobile Data"

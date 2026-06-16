@@ -1,5 +1,5 @@
 canonical_name: "1and1_de"
-version: 75000000014
+version: 77000000017
 apns {
   apn {
     name: "1&1 Internet"
@@ -32,6 +32,7 @@ apns {
     name: "MMS"
     value: "mms"
     type: MMS
+    bearer_bitmask: "1|2|3|9|10|11|13|14|15|20"
     mmsc: "http://mms.1und1-mobilfunk.de/"
     mmsc_proxy: "2a00:0fbc:2200:c999:0109:1f87:2:1"
     mmsc_proxy_port: "80"
@@ -377,5 +378,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1762942417
+  seconds: 1771422504
 }

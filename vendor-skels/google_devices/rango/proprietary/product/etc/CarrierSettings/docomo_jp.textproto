@@ -1,5 +1,5 @@
 canonical_name: "docomo_jp"
-version: 75000000003
+version: 77000000004
 apns {
   apn {
     name: "sp\343\203\242\343\203\274\343\203\211"
@@ -82,6 +82,10 @@ configs {
   config {
     key: "carrier_cross_sim_ims_available_bool"
     bool_value: false
+  }
+  config {
+    key: "carrier_default_2g_protection_enabled_bool"
+    bool_value: true
   }
   config {
     key: "carrier_force_disable_etws_cmas_test_bool"
@@ -373,5 +377,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1760509240
+  seconds: 1769617073
 }

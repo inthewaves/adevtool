@@ -1,5 +1,5 @@
 canonical_name: "homobile_it"
-version: 75000000591
+version: 77000000591
 apns {
   apn {
     name: "ho."
@@ -321,5 +321,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1765368059
+  seconds: 1765981746
 }

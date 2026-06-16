@@ -4,6 +4,10 @@
 -->
 <manifest version="9.0" type="device">
     <hal format="aidl">
+        <name>android.hardware.security.timestamp</name>
+        <fqname>ITimeStamper/default</fqname>
+    </hal>
+    <hal format="aidl">
         <name>vendor.google.plat_security</name>
         <fqname>ISecureTimestamp/default</fqname>
         <fqname>ITrustyDecrypt/default</fqname>

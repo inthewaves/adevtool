@@ -1,5 +1,5 @@
 canonical_name: "cellcommno_us"
-version: 75000000017
+version: 77000000020
 apns {
   apn {
     name: "Cellcom"
@@ -1014,6 +1014,10 @@ configs {
     text_value: "confserver@ims.cellcom.com"
   }
   config {
+    key: "imsvoice.conference_subscribe_type_int"
+    int_value: 0
+  }
+  config {
     key: "imsvoice.evs_payload_description_bundle"
     bundle {
       config {
@@ -1372,5 +1376,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1762942351
+  seconds: 1777043941
 }

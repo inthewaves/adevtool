@@ -2,7 +2,7 @@
 <resources>
     <string name="charge_limit_indexing_keywords">punjenje, ograničenje, optimizacija punjenja, ograničenje punjenja</string>
     <string name="charging_optimization_entry_summary_charge_limit">Ograniči na %1$s</string>
-    <string name="charging_optimization_footer_message_charge_limit">Kako bi se produljio vijek trajanja baterije, baterija vašeg telefona puni se samo do %1$s. Telefon će se napuniti do %2$s jednom svakih tjedan do dva kako bi se razina baterije nastavila točno prikazivati.</string>
+    <string name="charging_optimization_footer_message_charging_limit">Time se produljuje vijek trajanja baterije. Telefon će se povremeno morati potpuno napuniti kako bi se osigurala točna procjena kapaciteta baterije.</string>
     <string name="charging_optimization_summary_off">Isključeno</string>
     <string name="charging_optimization_title">Optimizacija punjenja</string>
 </resources>

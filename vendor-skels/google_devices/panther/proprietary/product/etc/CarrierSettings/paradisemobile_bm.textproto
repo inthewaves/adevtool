@@ -1,5 +1,5 @@
 canonical_name: "paradisemobile_bm"
-version: 75000000009
+version: 77000000011
 apns {
   apn {
     name: "internet"
@@ -97,5 +97,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1734527046
+  seconds: 1770819080
 }

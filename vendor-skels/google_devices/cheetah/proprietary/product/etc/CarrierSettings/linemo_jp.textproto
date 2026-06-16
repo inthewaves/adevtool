@@ -1,5 +1,5 @@
 canonical_name: "linemo_jp"
-version: 75000000015
+version: 77000000017
 apns {
   apn {
     name: "IMS"
@@ -108,6 +108,10 @@ configs {
     }
   }
   config {
+    key: "carrier_default_2g_protection_enabled_bool"
+    bool_value: true
+  }
+  config {
     key: "carrier_force_disable_etws_cmas_test_bool"
     bool_value: true
   }
@@ -152,7 +156,11 @@ configs {
   }
   config {
     key: "gps.lpp_profile"
-    text_value: "0"
+    text_value: "3"
+  }
+  config {
+    key: "gps.supl_ver"
+    text_value: "0x20002"
   }
   config {
     key: "gps.use_emergency_pdn_for_emergency_supl"
@@ -469,5 +477,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1753863609
+  seconds: 1776867997
 }

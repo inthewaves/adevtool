@@ -10,6 +10,7 @@ GooglePermissionControllerOverlay
 GooglePermissionControllerSafetyCenterOverlay
 ManagedProvisioningPixelOverlay
 NetworkStackOverlay
+NfcOverlayTeguGsi
 PixelBatteryHealthOverlay
 PixelBatteryLotXOverlay
 PixelConfigOverlay2018

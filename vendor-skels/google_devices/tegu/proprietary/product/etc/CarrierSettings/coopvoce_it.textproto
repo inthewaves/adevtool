@@ -1,5 +1,5 @@
 canonical_name: "coopvoce_it"
-version: 75000000005
+version: 77000000007
 apns {
   apn {
     name: "WEB CoopVoce"
@@ -131,5 +131,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1736946304
+  seconds: 1770819156
 }

@@ -2,7 +2,7 @@
 <resources>
     <string name="charge_limit_indexing_keywords">φόρτιση, όριο, βελτιστοποίηση φόρτισης, όριο φόρτισης</string>
     <string name="charging_optimization_entry_summary_charge_limit">Περιορισμός στο %1$s</string>
-    <string name="charging_optimization_footer_message_charge_limit">Για την επέκταση της διάρκειας ζωής της μπαταρίας, η μπαταρία του τηλεφώνου σας θα φορτίζεται μόνο έως το %1$s. Το τηλέφωνό σας θα φορτίζεται στο %2$s μία φορά κάθε μία έως δύο εβδομάδες, για να διατηρείται η ακρίβεια των αναφορών για το επίπεδο της μπαταρίας.</string>
+    <string name="charging_optimization_footer_message_charging_limit">Αυτό συμβάλλει στην επέκταση της διάρκειας ζωής της μπαταρίας. Περιστασιακά, το τηλέφωνό σας θα πρέπει να φορτίζεται πλήρως, για να διασφαλίζεται η ακρίβεια της χωρητικότητας της μπαταρίας.</string>
     <string name="charging_optimization_summary_off">Ανενεργή</string>
     <string name="charging_optimization_title">Βελτιστοποίηση φόρτισης</string>
 </resources>

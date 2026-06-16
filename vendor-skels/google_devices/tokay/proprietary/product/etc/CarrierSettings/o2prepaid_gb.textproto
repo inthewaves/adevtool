@@ -1,5 +1,5 @@
 canonical_name: "o2prepaid_gb"
-version: 75000000007
+version: 77000000009
 apns {
   apn {
     name: "O2 Pay As You Go"
@@ -99,6 +99,10 @@ configs {
       item: "510|Call completed elsewhere|1014"
       item: "*|Call is dropped due to Wi-Fi signal is degraded|1407"
     }
+  }
+  config {
+    key: "imsemergency.prefer_ims_emergency_when_voice_calls_on_cs_bool"
+    bool_value: true
   }
   config {
     key: "imsss.network_initiated_ussd_over_ims_supported_bool"
@@ -287,14 +291,10 @@ configs {
     int_value: 10
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "wfc_spn_format_idx_int"
     int_value: 1
   }
 }
 last_updated {
-  seconds: 1761862550
+  seconds: 1773236731
 }

@@ -1,0 +1,53 @@
+canonical_name: "alkafeel_iq"
+version: 77000000001
+apns {
+  apn {
+    name: "Omnnea.net"
+    value: "internet"
+    type: DEFAULT
+    type: IA
+  }
+  apn {
+    name: "Omnnea.ims"
+    value: "ims"
+    type: IMS
+    bearer_bitmask: "14|20"
+    user_visible: false
+  }
+}
+configs {
+  config {
+    key: "imsvoice.audio_codec_capability_payload_types_bundle"
+    bundle {
+      config {
+        key: "imsvoice.amrnb_payload_type_int_array"
+        int_array {
+          item: 98
+          item: 103
+        }
+      }
+      config {
+        key: "imsvoice.amrwb_payload_type_int_array"
+        int_array {
+          item: 100
+          item: 105
+        }
+      }
+      config {
+        key: "imsvoice.dtmfnb_payload_type_int_array"
+        int_array {
+          item: 97
+        }
+      }
+      config {
+        key: "imsvoice.dtmfwb_payload_type_int_array"
+        int_array {
+          item: 96
+        }
+      }
+    }
+  }
+}
+last_updated {
+  seconds: 1769616990
+}

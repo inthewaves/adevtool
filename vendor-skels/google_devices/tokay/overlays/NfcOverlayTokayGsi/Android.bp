@@ -1,0 +1,1 @@
+runtime_resource_overlay { name: "NfcOverlayTokayGsi", soc_specific: true, }

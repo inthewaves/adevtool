@@ -1,5 +1,5 @@
 canonical_name: "truphone_zz"
-version: 75000000002
+version: 77000000004
 apns {
   apn {
     name: "1GLOBAL DATA"
@@ -89,5 +89,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1749615663
+  seconds: 1770819105
 }

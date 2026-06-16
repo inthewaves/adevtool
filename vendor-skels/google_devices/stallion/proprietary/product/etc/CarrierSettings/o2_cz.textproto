@@ -1,5 +1,5 @@
 canonical_name: "o2_cz"
-version: 75000000001
+version: 77000000002
 apns {
   apn {
     name: "O2 internet"
@@ -47,6 +47,10 @@ apns {
   }
 }
 configs {
+  config {
+    key: "allow_hold_in_rtt_call_bool"
+    bool_value: false
+  }
   config {
     key: "bsf.bsf_server_fqdn_string"
     text_value: "bsf.ims.mnc002.mcc230.pub.3gppnetwork.org"
@@ -189,5 +193,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1745372883
+  seconds: 1770819178
 }

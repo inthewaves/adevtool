@@ -1,5 +1,5 @@
 canonical_name: "h3_ie"
-version: 75000000014
+version: 77000000018
 apns {
   apn {
     name: "3"
@@ -92,7 +92,7 @@ configs {
   }
   config {
     key: "imsss.ut_as_server_port_int"
-    int_value: 443
+    int_value: 80
   }
   config {
     key: "imsss.ut_iptype_roaming_int"
@@ -101,10 +101,6 @@ configs {
   config {
     key: "imsss.ut_requires_ims_registration_bool"
     bool_value: true
-  }
-  config {
-    key: "imsss.ut_transport_type_int"
-    int_value: 3
   }
   config {
     key: "imsss.xcap_over_ut_supported_rats_int_array"
@@ -196,14 +192,10 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "wfc_spn_format_idx_int"
     int_value: 1
   }
 }
 last_updated {
-  seconds: 1764155460
+  seconds: 1770819142
 }

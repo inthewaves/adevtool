@@ -18,9 +18,9 @@
     <string name="kg_failed_attempts_almost_at_wipe">"Vous avez tenté de déverrouiller la tablette de façon incorrecte à %1$d reprises. Si vous échouez encore %2$d fois, ses paramètres par défaut seront rétablis, et toutes les données d'utilisateur seront perdues."</string>
     <string name="kg_failed_attempts_now_wiping">Vous avez tenté de déverrouiller la tablette de façon incorrecte à %d reprises. Ses paramètres par défaut vont être rétablis.</string>
     <string name="lockscreen_failed_attempts_almost_at_wipe">"Vous avez tenté de déverrouiller la tablette de façon incorrecte à %1$d reprises. Si vous échouez encore %2$d fois, ses paramètres par défaut seront rétablis, et toutes les données d'utilisateur seront perdues."</string>
-    <string name="lockscreen_failed_attempts_almost_glogin">"Vous avez dessiné un schéma de déverrouillage incorrect à %1$d reprises. Au bout de %2$d échecs supplémentaires, vous devrez déverrouiller votre tablette à l'aide de votre identifiant Google.
+    <string name="lockscreen_failed_attempts_almost_glogin">"Vous avez dessiné un schéma de déverrouillage incorrect à %1$d reprises. Au bout de %2$d échecs supplémentaires, vous devrez déverrouiller votre tablette à l'aide de votre identifiant Google.
 
-Veuillez réessayer dans %3$d secondes."</string>
+Veuillez réessayer dans %3$d secondes."</string>
     <string name="lockscreen_failed_attempts_now_wiping">Vous avez tenté de déverrouiller la tablette de façon incorrecte à %d reprises. Ses paramètres par défaut vont être rétablis.</string>
     <string name="lockscreen_missing_sim_message">Aucune carte SIM ne se trouve dans la tablette.</string>
     <string name="low_memory">"La mémoire de la tablette est pleine. Supprimez des fichiers pour libérer de l'espace."</string>

@@ -1,5 +1,5 @@
 canonical_name: "orange_es"
-version: 75000000020
+version: 77000000021
 apns {
   apn {
     name: "Orange Internet M\303\263vil"
@@ -327,6 +327,16 @@ configs {
     text_value: "[{\"ApnName\": \"*\",\"ErrorTypes\": [{\"ErrorType\": \"IKE_PROTOCOL_ERROR_TYPE\",\"ErrorDetails\": [\"*\"],\"RetryArray\": [\"4\", \"8\", \"43200\", \"-1\"],\"UnthrottlingEvents\": [\"WIFI_DISABLE_EVENT\"]}, {\"ErrorType\": \"IKE_PROTOCOL_ERROR_TYPE\",\"ErrorDetails\": [\"9000\", \"11001\", \"11011\"],\"RetryArray\": [\"43200\"],\"UnthrottlingEvents\": [\"APM_ENABLE_EVENT\", \"WIFI_DISABLE_EVENT\", \"WIFI_AP_CHANGED_EVENT\", \"WIFI_CALLING_DISABLE_EVENT\"]}, {\"ErrorType\": \"IKE_PROTOCOL_ERROR_TYPE\",\"ErrorDetails\": [\"9006\"],\"RetryArray\": [\"86400\"],\"UnthrottlingEvents\": [\"APM_ENABLE_EVENT\", \"WIFI_DISABLE_EVENT\", \"WIFI_AP_CHANGED_EVENT\", \"WIFI_CALLING_DISABLE_EVENT\"]}, {\"ErrorType\": \"IKE_PROTOCOL_ERROR_TYPE\",\"ErrorDetails\": [\"36\"],\"RetryArray\": [\"4\", \"8\", \"43200\", \"-1\"],\"UnthrottlingEvents\": [\"WIFI_DISABLE_EVENT\"],\"HandoverAttemptCount\": \"3\"}]}]"
   }
   config {
+    key: "iwlan_handover_policy_string_array"
+    text_array {
+      item: "source=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN|UNKNOWN, target=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN, type=disallowed, capabilities=EIMS|MMS|XCAP|CBS"
+      item: "source=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN|UNKNOWN, target=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN, roaming=true, type=disallowed, capabilities=IMS"
+      item: "source=IWLAN|UNKNOWN, target=GERAN|UTRAN, type=disallowed, capabilities=IMS"
+      item: "source=GERAN|UTRAN, target=IWLAN, type=disallowed, capabilities=IMS"
+      item: "source=EUTRAN|NGRAN|IWLAN, target=EUTRAN|NGRAN|IWLAN, type=allowed, capabilities=IMS"
+    }
+  }
+  config {
     key: "maxImageHeight"
     int_value: 1944
   }
@@ -409,5 +419,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1757476348
+  seconds: 1773841095
 }

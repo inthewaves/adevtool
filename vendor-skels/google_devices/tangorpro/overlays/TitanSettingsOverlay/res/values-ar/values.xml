@@ -6,7 +6,7 @@
     <string name="dream_no_screen_saver_preview_caption">صديق للبيئة</string>
     <string name="dream_secondary_button_title">التخطي</string>
     <string name="screensaver_settings_summary_dock_and_charging">أثناء الإرساء والشحن</string>
-    <string name="screensaver_settings_summary_off">تعرض تصاميم الغرافيك والساعات والصور المفضّلة لديك والمزيد عندما لا يتم استخدام الجهاز لفترة قصيرة</string>
+    <string name="screensaver_settings_summary_off">عرض الأعمال الفنية والساعات والصور المفضلة لديك والمزيد عند عدم استخدام الجهاز</string>
     <string name="screensaver_settings_summary_postured_and_charging">أثناء الشحن في وضع عمودي</string>
     <string name="screensaver_settings_summary_sleep">أثناء الشحن</string>
     <string name="when_to_show_hubmode_charging">أثناء الشحن</string>

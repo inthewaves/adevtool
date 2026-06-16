@@ -1,5 +1,5 @@
 canonical_name: "enreach_nl"
-version: 75000000006
+version: 77000000009
 apns {
   apn {
     name: "Enreach NL"
@@ -93,11 +93,7 @@ configs {
     key: "rtt_supported_while_roaming_bool"
     bool_value: true
   }
-  config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
 }
 last_updated {
-  seconds: 1736946287
+  seconds: 1770819129
 }

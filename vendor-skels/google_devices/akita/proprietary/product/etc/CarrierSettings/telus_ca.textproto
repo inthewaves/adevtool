@@ -1,5 +1,5 @@
 canonical_name: "telus_ca"
-version: 75000000022
+version: 77000000025
 apns {
   apn {
     name: "TELUS ISP"
@@ -509,10 +509,6 @@ configs {
     int_value: 5
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "voicemail_notification_persistent_bool"
     bool_value: true
   }
@@ -530,5 +526,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1761090349
+  seconds: 1772636213
 }

@@ -1,5 +1,5 @@
 canonical_name: "yesss_at"
-version: 75000000006
+version: 77000000008
 apns {
   apn {
     name: "yesss!"
@@ -87,10 +87,6 @@ configs {
     int_value: 443
   }
   config {
-    key: "imsss.ut_supported_when_ps_data_off_bool"
-    bool_value: false
-  }
-  config {
     key: "imsss.ut_transport_type_int"
     int_value: 3
   }
@@ -99,7 +95,6 @@ configs {
     int_array {
       item: 6
       item: 3
-      item: 5
       item: 1
       item: 2
     }
@@ -218,5 +213,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1730276150
+  seconds: 1772636182
 }

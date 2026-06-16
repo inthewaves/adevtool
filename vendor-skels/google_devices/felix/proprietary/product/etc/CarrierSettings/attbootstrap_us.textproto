@@ -1,5 +1,5 @@
 canonical_name: "attbootstrap_us"
-version: 75000000009
+version: 77000000009
 apns {
   apn {
     name: "ATT OEMSETUPB"
@@ -848,5 +848,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1769617571
+  seconds: 1770215808
 }

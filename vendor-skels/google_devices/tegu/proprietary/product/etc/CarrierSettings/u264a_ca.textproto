@@ -1,5 +1,5 @@
 canonical_name: "u264a_ca"
-version: 75000000006
+version: 77000000008
 apns {
   apn {
     name: "U+264A CA"
@@ -323,5 +323,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1761090361
+  seconds: 1772636225
 }

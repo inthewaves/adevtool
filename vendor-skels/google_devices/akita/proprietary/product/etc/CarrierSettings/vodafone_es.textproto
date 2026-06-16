@@ -1,5 +1,5 @@
 canonical_name: "vodafone_es"
-version: 75000000015
+version: 77000000016
 apns {
   apn {
     name: "INTERNET"
@@ -266,10 +266,6 @@ configs {
     }
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "volte_replacement_rat_int"
     int_value: 3
   }
@@ -279,5 +275,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1747202453
+  seconds: 1767187381
 }

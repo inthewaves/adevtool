@@ -1,5 +1,5 @@
 canonical_name: "docomo_jp"
-version: 75000000010
+version: 77000000012
 apns {
   apn {
     name: "sp\343\203\242\343\203\274\343\203\211"
@@ -74,6 +74,10 @@ configs {
   config {
     key: "carrier_cross_sim_ims_available_bool"
     bool_value: false
+  }
+  config {
+    key: "carrier_default_2g_protection_enabled_bool"
+    bool_value: true
   }
   config {
     key: "carrier_force_disable_etws_cmas_test_bool"
@@ -277,10 +281,6 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "vilte_data_is_metered_bool"
     bool_value: false
   }
@@ -300,5 +300,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1753863643
+  seconds: 1769617043
 }

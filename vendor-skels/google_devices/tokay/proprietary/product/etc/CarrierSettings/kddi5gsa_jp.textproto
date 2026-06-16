@@ -1,5 +1,5 @@
 canonical_name: "kddi5gsa_jp"
-version: 75000000011
+version: 77000000014
 apns {
   apn {
     name: "5G NET"
@@ -157,6 +157,14 @@ configs {
     bool_value: false
   }
   config {
+    key: "carrier_default_2g_protection_enabled_bool"
+    bool_value: true
+  }
+  config {
+    key: "carrier_default_data_roaming_enabled_bool"
+    bool_value: true
+  }
+  config {
     key: "carrier_name_override_bool"
     bool_value: true
   }
@@ -182,6 +190,13 @@ configs {
     key: "carrier_supported_satellite_services_per_provider_bundle"
     bundle {
       config {
+        key: "302723"
+        int_array {
+          item: 2
+          item: 3
+        }
+      }
+      config {
         key: "310830"
         int_array {
           item: 2
@@ -190,6 +205,20 @@ configs {
       }
       config {
         key: "44055"
+        int_array {
+          item: 2
+          item: 3
+        }
+      }
+      config {
+        key: "50511"
+        int_array {
+          item: 2
+          item: 3
+        }
+      }
+      config {
+        key: "53013"
         int_array {
           item: 2
           item: 3
@@ -587,10 +616,6 @@ configs {
     bool_value: false
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "wifi.carrier_profiles_version_int"
     int_value: 1
   }
@@ -602,5 +627,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1764155460
+  seconds: 1769617053
 }

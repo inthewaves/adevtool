@@ -1,5 +1,5 @@
 canonical_name: "telavox_se"
-version: 75000000005
+version: 77000000007
 apns {
   apn {
     name: "Telavox internet"
@@ -121,5 +121,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1736946272
+  seconds: 1770819105
 }

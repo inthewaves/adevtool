@@ -6,6 +6,7 @@
         <item>Error de calibratge</item>
         <item>El desbloqueig facial no està disponible perquè el telèfon està massa calent.</item>
         <item>"El desbloqueig facial s'ha de tornar a configurar"</item>
+        <item>Ajusta la il·luminació i no et moguis</item>
     </array>
     <string name="biometric_app_setting_name">Usa la cara o empremta digital</string>
     <string name="biometric_dialog_default_subtitle">"Utilitza la cara o l'empremta digital per continuar"</string>

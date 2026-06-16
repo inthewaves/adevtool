@@ -1,5 +1,5 @@
 canonical_name: "kddimvno_jp"
-version: 75000000009
+version: 77000000012
 apns {
   apn {
     name: "IMS"
@@ -15,10 +15,12 @@ apns {
     value: "a.rmobile.jp"
     type: DEFAULT
     type: SUPL
+    type: IA
     user: "rakuten@vdm"
     password: "0000"
     authtype: 3
     protocol: IPV4V6
+    roaming_protocol: IPV4V6
   }
   apn {
     name: "KDDI JP Emergency"
@@ -52,6 +54,10 @@ configs {
     text_array {
       item: "0xA003:type=other, emergency=true"
     }
+  }
+  config {
+    key: "carrier_default_2g_protection_enabled_bool"
+    bool_value: true
   }
   config {
     key: "carrier_ussd_method_int"
@@ -343,11 +349,7 @@ configs {
     key: "support_ims_conference_event_package_bool"
     bool_value: false
   }
-  config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
 }
 last_updated {
-  seconds: 1753863651
+  seconds: 1770215841
 }

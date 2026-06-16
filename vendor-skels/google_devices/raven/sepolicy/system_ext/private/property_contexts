@@ -1,3 +1,4 @@
+persist.sys.ssr.last_detection_time u:object_r:system_ssrdump_prop:s0 exact uint
 persist.vendor.radio.bootwithlpm u:object_r:sota_prop:s0
 ro.chipname u:object_r:deprecated_soc_prop:s0 exact string
 ro.hardware.chipname u:object_r:deprecated_soc_prop:s0 exact string

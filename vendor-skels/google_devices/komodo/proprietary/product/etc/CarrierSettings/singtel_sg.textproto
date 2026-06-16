@@ -1,5 +1,5 @@
 canonical_name: "singtel_sg"
-version: 75000000008
+version: 77000000010
 apns {
   apn {
     name: "Singtel (PostPaid)"
@@ -53,6 +53,10 @@ configs {
   config {
     key: "bsf.bsf_server_port_int"
     int_value: 8081
+  }
+  config {
+    key: "carrier_default_2g_protection_enabled_bool"
+    bool_value: true
   }
   config {
     key: "carrier_default_wfc_ims_enabled_bool"
@@ -329,14 +333,10 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "wfc_spn_format_idx_int"
     int_value: 1
   }
 }
 last_updated {
-  seconds: 1755679349
+  seconds: 1773236731
 }

@@ -1,5 +1,5 @@
 canonical_name: "sky_gb"
-version: 75000000018
+version: 77000000021
 apns {
   apn {
     name: "SKY MMS"
@@ -255,14 +255,10 @@ configs {
     text_value: "gb"
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "wfc_spn_format_idx_int"
     int_value: 1
   }
 }
 last_updated {
-  seconds: 1764155460
+  seconds: 1770819142
 }

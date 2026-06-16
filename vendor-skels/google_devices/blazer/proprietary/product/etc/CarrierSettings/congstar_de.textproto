@@ -1,5 +1,5 @@
 canonical_name: "congstar_de"
-version: 75000000007
+version: 77000000010
 apns {
   apn {
     name: "Internet"
@@ -406,7 +406,7 @@ configs {
   }
   config {
     key: "wfc_spn_format_idx_int"
-    int_value: 2
+    int_value: 1
   }
   config {
     key: "wifi.carrier_profiles_version_int"
@@ -419,5 +419,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1765368142
+  seconds: 1775048534
 }

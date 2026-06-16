@@ -3,8 +3,8 @@
 
 include vendor/google_devices/shiba/adevtool-version-check.mk
 
-ifneq ($(BUILD_ID),BP4A.260205.001)
-  $(error BUILD_ID: expected BP4A.260205.001, got $(BUILD_ID))
+ifneq ($(BUILD_ID),CP2A.260605.012)
+  $(error BUILD_ID: expected CP2A.260605.012, got $(BUILD_ID))
 endif
 
 $(call inherit-product, vendor/adevtool/config/mk/google_devices/device/shiba/device.mk)
@@ -22,6 +22,11 @@ PRODUCT_MODEL := Pixel 8
 PRODUCT_BRAND := google
 PRODUCT_MANUFACTURER := Google
 
+PRODUCT_BRAND_FOR_ATTESTATION := google
+PRODUCT_DEVICE_FOR_ATTESTATION := shiba
+PRODUCT_MANUFACTURER_FOR_ATTESTATION := Google
+PRODUCT_MODEL_FOR_ATTESTATION := Pixel 8
+PRODUCT_NAME_FOR_ATTESTATION := shiba
 PRODUCT_SHIPPING_API_LEVEL := 34
 TARGET_BOOTLOADER_BOARD_NAME := shiba
 TARGET_SCREEN_DENSITY := 420
@@ -33,6 +38,7 @@ TARGET_RECOVERY_WIPE := vendor/google_devices/shiba/proprietary/recovery/system/
 
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     vendor/google_devices/shiba/vintf/system_ext/aocx_framework_compatibility_matrix_system_ext \
+    vendor/google_devices/shiba/vintf/system_ext/camera_interference_avoidance_framework_compatibility_matrix_system_ext \
     vendor/google_devices/shiba/vintf/system_ext/imageprocessing_hal_framework_compatibility_matrix_system_ext
 
 # system_ext vintf_fragments
@@ -52,7 +58,6 @@ DEVICE_MANIFEST_FILE += vendor/google_devices/shiba/vintf/vendor/manifest.xml
 PRODUCT_PACKAGES += \
     adevtool_vintf_fragment_vendor_android.hardware.audio.service-aidl.aoc.xml \
     adevtool_vintf_fragment_vendor_android.hardware.authsecret-service.citadel.xml \
-    adevtool_vintf_fragment_vendor_android.hardware.camera.provider@2.7-service-google-apex.xml \
     adevtool_vintf_fragment_vendor_android.hardware.contexthub-service.generic.xml \
     adevtool_vintf_fragment_vendor_android.hardware.dumpstate.3-service.xml \
     adevtool_vintf_fragment_vendor_android.hardware.gnss@2.1-service-brcm.xml \
@@ -61,7 +66,8 @@ PRODUCT_PACKAGES += \
     adevtool_vintf_fragment_vendor_android.hardware.oemlock-service.citadel.xml \
     adevtool_vintf_fragment_vendor_android.hardware.power-service.pixel.xml \
     adevtool_vintf_fragment_vendor_android.hardware.power.stats-service.pixel.xml \
-    adevtool_vintf_fragment_vendor_android.hardware.security.keymint-service.citadel.xml \
+    adevtool_vintf_fragment_vendor_android.hardware.security.keymint-service-v3.citadel.xml \
+    adevtool_vintf_fragment_vendor_android.hardware.security.sharesecret-service.citadel.xml \
     adevtool_vintf_fragment_vendor_android.hardware.thermal-service.pixel.xml \
     adevtool_vintf_fragment_vendor_android.hardware.usb-service.xml \
     adevtool_vintf_fragment_vendor_android.hardware.usb.gadget-service.xml \
@@ -70,6 +76,7 @@ PRODUCT_PACKAGES += \
     adevtool_vintf_fragment_vendor_android.hardware.wifi.hostapd.xml \
     adevtool_vintf_fragment_vendor_android.hardware.wifi.supplicant.xml \
     adevtool_vintf_fragment_vendor_dmd.xml \
+    adevtool_vintf_fragment_vendor_fingerprint-goodix.xml \
     adevtool_vintf_fragment_vendor_flood_control.xml \
     adevtool_vintf_fragment_vendor_hwc3-default.xml \
     adevtool_vintf_fragment_vendor_liboemservice_proxy.xml \
@@ -81,10 +88,11 @@ PRODUCT_PACKAGES += \
     adevtool_vintf_fragment_vendor_memtrack.xml \
     adevtool_vintf_fragment_vendor_pixel-display-default.xml \
     adevtool_vintf_fragment_vendor_shared_modem_platform.xml \
-    adevtool_vintf_fragment_vendor_vendor.dolby.media.c2@1.0-service.xml \
+    adevtool_vintf_fragment_vendor_vendor.dolby.media.c2-default-service.xml \
     adevtool_vintf_fragment_vendor_vendor.google.battery_mitigation-default.xml \
     adevtool_vintf_fragment_vendor_vendor.google.edgetpu_vendor_service@1.0-service.xml \
     adevtool_vintf_fragment_vendor_vendor.google.google_battery-default.xml \
+    adevtool_vintf_fragment_vendor_vendor.google.plat_security-service.xml \
     adevtool_vintf_fragment_vendor_vendor.google.wireless_charger-default.xml \
     adevtool_vintf_fragment_vendor_vendor.google.wireless_charger.service-default.xml
 
@@ -133,24 +141,26 @@ PRODUCT_PACKAGES += \
     android.frameworks.stats-V1-cpp.vendor \
     android.frameworks.stats-V1-ndk.vendor \
     android.frameworks.stats-V2-ndk.vendor \
-    android.hardware.audio.common-V4-ndk.vendor \
+    android.hardware.audio.common-V5-ndk.vendor \
     android.hardware.audio.common@5.0.vendor \
     android.hardware.audio.core-V4-ndk.vendor \
-    android.hardware.audio.core.sounddose-V3-ndk.vendor \
-    android.hardware.audio.effect-V3-ndk.vendor \
+    android.hardware.audio.core.sounddose-V4-ndk.vendor \
+    android.hardware.audio.effect-V4-ndk.vendor \
     android.hardware.audio.low_latency.prebuilt.xml \
     android.hardware.audio.pro.prebuilt.xml \
     android.hardware.authsecret-V1-ndk.vendor \
     android.hardware.biometrics.common-V3-ndk.vendor \
     android.hardware.biometrics.fingerprint-V3-ndk.vendor \
     android.hardware.bluetooth-V1-ndk.vendor \
-    android.hardware.bluetooth.audio-V5-ndk.vendor \
+    android.hardware.bluetooth.audio-V6-ndk.vendor \
     android.hardware.bluetooth.audio-impl \
     android.hardware.bluetooth.audio@2.0.vendor \
     android.hardware.bluetooth.audio@2.1.vendor \
     android.hardware.bluetooth.finder-V1-ndk.vendor \
+    android.hardware.bluetooth.lmp_event-V1-ndk.vendor \
     android.hardware.bluetooth.prebuilt.xml \
-    android.hardware.bluetooth.ranging-V1-ndk.vendor \
+    android.hardware.bluetooth.ranging-V2-ndk.vendor \
+    android.hardware.bluetooth.socket-V2-ndk.vendor \
     android.hardware.bluetooth_le.prebuilt.xml \
     android.hardware.boot-V1-ndk.vendor \
     android.hardware.boot@1.0.vendor \
@@ -163,7 +173,7 @@ PRODUCT_PACKAGES += \
     android.hardware.common-V2-ndk.vendor \
     android.hardware.common.fmq-V1-ndk.vendor \
     android.hardware.context_hub.prebuilt.xml \
-    android.hardware.contexthub-V4-ndk.vendor \
+    android.hardware.contexthub-V5-ndk.vendor \
     android.hardware.device_unique_attestation.prebuilt.xml \
     android.hardware.drm-V1-ndk.vendor \
     android.hardware.drm-V2-ndk.vendor \
@@ -174,6 +184,7 @@ PRODUCT_PACKAGES += \
     android.hardware.fastboot-V1-ndk.recovery \
     android.hardware.fastboot@1.0.recovery \
     android.hardware.fastboot@1.1.recovery \
+    android.hardware.fingerprint.prebuilt.xml \
     android.hardware.gnss-V3-ndk.vendor \
     android.hardware.graphics.allocator-V2-ndk.vendor \
     android.hardware.graphics.allocator@2.0.vendor \
@@ -185,7 +196,7 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.common@1.0.vendor \
     android.hardware.graphics.common@1.1.vendor \
     android.hardware.graphics.common@1.2.vendor \
-    android.hardware.graphics.composer3-V4-ndk.vendor \
+    android.hardware.graphics.composer3-V5-ndk.vendor \
     android.hardware.graphics.composer@2.1-resources.vendor \
     android.hardware.graphics.composer@2.1.vendor \
     android.hardware.graphics.composer@2.2-resources.vendor \
@@ -198,6 +209,7 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@4.0.vendor \
     android.hardware.health-V1-ndk.vendor \
     android.hardware.health-V4-ndk.vendor \
+    android.hardware.health-V5-ndk.vendor \
     android.hardware.health.storage-V1-ndk.vendor \
     android.hardware.health.storage-service.default \
     android.hardware.input.common-V1-ndk.vendor \
@@ -206,7 +218,7 @@ PRODUCT_PACKAGES += \
     android.hardware.location.gps.prebuilt.xml \
     android.hardware.media.bufferpool2-V2-ndk.vendor \
     android.hardware.media.bufferpool@2.0.vendor \
-    android.hardware.media.c2-V1-ndk.vendor \
+    android.hardware.media.c2-V2-ndk.vendor \
     android.hardware.media.c2@1.0.vendor \
     android.hardware.media.c2@1.1.vendor \
     android.hardware.media.c2@1.2.vendor \
@@ -228,25 +240,24 @@ PRODUCT_PACKAGES += \
     android.hardware.opengles.aep.prebuilt.xml \
     android.hardware.power-V1-ndk.vendor \
     android.hardware.power-V2-ndk.vendor \
-    android.hardware.power-V6-ndk.vendor \
+    android.hardware.power-V7-ndk.vendor \
     android.hardware.power.stats-V2-ndk.vendor \
     android.hardware.power@1.0.vendor \
     android.hardware.power@1.1.vendor \
     android.hardware.power@1.2.vendor \
-    android.hardware.radio-V2-ndk.vendor \
-    android.hardware.radio.config-V2-ndk.vendor \
+    android.hardware.radio-V3-ndk.vendor \
+    android.hardware.radio.config-V3-ndk.vendor \
     android.hardware.radio.config@1.0.vendor \
     android.hardware.radio.config@1.1.vendor \
     android.hardware.radio.config@1.2.vendor \
-    android.hardware.radio.data-V2-ndk.vendor \
+    android.hardware.radio.data-V3-ndk.vendor \
     android.hardware.radio.deprecated@1.0.vendor \
-    android.hardware.radio.ims-V1-ndk.vendor \
-    android.hardware.radio.messaging-V2-ndk.vendor \
-    android.hardware.radio.modem-V2-ndk.vendor \
-    android.hardware.radio.network-V2-ndk.vendor \
+    android.hardware.radio.messaging-V3-ndk.vendor \
+    android.hardware.radio.modem-V3-ndk.vendor \
+    android.hardware.radio.network-V3-ndk.vendor \
     android.hardware.radio.sap-V1-ndk.vendor \
-    android.hardware.radio.sim-V2-ndk.vendor \
-    android.hardware.radio.voice-V2-ndk.vendor \
+    android.hardware.radio.sim-V3-ndk.vendor \
+    android.hardware.radio.voice-V3-ndk.vendor \
     android.hardware.radio@1.2.vendor \
     android.hardware.radio@1.3.vendor \
     android.hardware.radio@1.4.vendor \
@@ -263,6 +274,7 @@ PRODUCT_PACKAGES += \
     android.hardware.security.rkp-V3-ndk.vendor \
     android.hardware.security.secretkeeper.trusty \
     android.hardware.security.sharedsecret-V1-ndk.vendor \
+    android.hardware.security.timestamp-V1-ndk.vendor \
     android.hardware.sensor.accelerometer.prebuilt.xml \
     android.hardware.sensor.barometer.prebuilt.xml \
     android.hardware.sensor.compass.prebuilt.xml \
@@ -281,8 +293,7 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@2.0-ScopedWakelock.vendor \
     android.hardware.sensors@2.0.vendor \
     android.hardware.sensors@2.1.vendor \
-    android.hardware.soundtrigger3-V3-ndk.vendor \
-    android.hardware.strongbox_keystore.prebuilt.xml \
+    android.hardware.soundtrigger3-V4-ndk.vendor \
     android.hardware.telephony.carrierlock.prebuilt.xml \
     android.hardware.telephony.gsm.prebuilt.xml \
     android.hardware.telephony.ims.prebuilt.xml \
@@ -293,13 +304,15 @@ PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0.vendor \
     android.hardware.thermal@2.0.vendor \
     android.hardware.touchscreen.multitouch.jazzhand.prebuilt.xml \
-    android.hardware.usb-V3-ndk.vendor \
+    android.hardware.usb-V4-ndk.vendor \
     android.hardware.usb.accessory.prebuilt.xml \
+    android.hardware.usb.flags-aconfig-cc-lib.vendor \
     android.hardware.usb.gadget-V1-ndk.vendor \
+    android.hardware.usb.gadget-V2-ndk.vendor \
     android.hardware.usb.gadget@1.0.vendor \
     android.hardware.usb.host.prebuilt.xml \
     android.hardware.vibrator-V3-ndk.vendor \
-    android.hardware.weaver-V2-ndk.vendor \
+    android.hardware.weaver-V3-ndk.vendor \
     android.hardware.wifi.aware.prebuilt.xml \
     android.hardware.wifi.common-V2-ndk.vendor \
     android.hardware.wifi.direct.prebuilt.xml \
@@ -312,9 +325,9 @@ PRODUCT_PACKAGES += \
     android.hidl.safe_union@1.0.vendor \
     android.hidl.token@1.0-utils.vendor \
     android.hidl.token@1.0.vendor \
-    android.media.audio.common.types-V4-ndk.vendor \
-    android.media.audio.eraser.types-V1-ndk.vendor \
-    android.media.soundtrigger.types-V3-ndk.vendor \
+    android.media.audio.common.types-V5-ndk.vendor \
+    android.media.audio.eraser.types-V2-ndk.vendor \
+    android.media.soundtrigger.types-V4-ndk.vendor \
     android.software.angle.xml \
     android.software.device_id_attestation.prebuilt.xml \
     android.software.ipsec_tunnel_migration.prebuilt.xml \
@@ -327,17 +340,21 @@ PRODUCT_PACKAGES += \
     chre_atoms_log \
     chremetrics-cpp \
     com.android.hardware.biometrics.face.virtual \
-    com.android.hardware.biometrics.fingerprint.virtual \
     com.nxp.mifare.prebuilt.xml \
     fastbootd \
     fsck.f2fs.vendor \
     handheld_core_hardware.prebuilt.xml \
     hfp_codec_capabilities_xml \
     ld-android.vendor_ramdisk \
+    libaconfig_storage_file.vendor \
+    libaconfig_storage_protos.vendor \
+    libaconfig_storage_read_api.vendor \
     libaho_corasick.vendor \
     libalsautilsv2.vendor \
     libandroid_log_sys.vendor \
     libandroid_logger.vendor \
+    libanstyle.vendor \
+    libanyhow.vendor \
     libasyncio.recovery \
     libaudio_aidl_conversion_common_ndk.vendor \
     libaudioaidlcommon.vendor \
@@ -347,15 +364,21 @@ PRODUCT_PACKAGES += \
     libavservices_minijail.vendor \
     libbase.vendor_ramdisk \
     libbinder_trusty \
-    libbluetooth_audio_session_aidl \
+    libbionic_bindgen.vendor \
+    libbitflags.vendor \
+    libbluetooth_audio_session_aidl.vendor \
     libbundleaidl \
+    libbytes.vendor \
     libc++.vendor_ramdisk \
     libc.vendor_ramdisk \
     libcap.vendor \
     libcfg_if.vendor \
     libclang_rt.ubsan_standalone.vendor \
+    libclap.vendor \
+    libclap_builder.vendor \
+    libclap_lex.vendor \
     libcodec2.vendor \
-    libcodec2_aidl.vendor \
+    libcodec2_aidl_V2.vendor \
     libcodec2_aidl_noisurface.vendor \
     libcodec2_hal_common.vendor \
     libcodec2_hidl@1.0.vendor \
@@ -364,6 +387,8 @@ PRODUCT_PACKAGES += \
     libcodec2_vndk.vendor \
     libcppbor.vendor \
     libcppcose_rkp.vendor \
+    libcutils_bindgen.vendor \
+    libcxx.vendor \
     libdl.vendor_ramdisk \
     libdownmixaidl \
     libdrm.vendor \
@@ -371,6 +396,7 @@ PRODUCT_PACKAGES += \
     libdynamicsprocessingaidl \
     libeffectconfig \
     libenv_filter.vendor \
+    libenv_logger.vendor \
     libevent.vendor \
     libexpat.vendor \
     libext2_blkid.vendor_ramdisk \
@@ -382,7 +408,9 @@ PRODUCT_PACKAGES += \
     libext2fs.vendor_ramdisk \
     libflatbuffers-cpp.vendor \
     libfmq.vendor \
+    libfoldhash.vendor \
     libgralloctypes.vendor \
+    libgui.vendor \
     libhapticgeneratoraidl \
     libhidlmemory.vendor \
     libhidltransport.vendor \
@@ -394,29 +422,39 @@ PRODUCT_PACKAGES += \
     libkeymaster_portable.vendor \
     libkeymint_support_V3.vendor \
     libkeystore-engine-wifi-hidl \
-    liblibloading.vendor \
+    liblazy_static.vendor \
+    liblibc.vendor \
     liblog.vendor_ramdisk \
     liblog_rust.vendor \
+    liblogger.vendor \
     libloudnessenhanceraidl \
     liblzma.vendor \
     libm.vendor_ramdisk \
     libmedia_omx.vendor \
     libmediautils_vendor.vendor \
     libmemchr.vendor \
+    libmemmap2.vendor \
+    libmemoffset.vendor \
     libmemunreachable.vendor \
     libminijail.vendor \
     libnbaio_mono \
     libnetutils.vendor \
+    libnix.vendor \
     libnl.vendor \
     libonce_cell.vendor \
     libpng.vendor \
     libpower.vendor \
     libprocessgroup.vendor \
+    libprotobuf.vendor \
+    libprotobuf_support.vendor \
     libregex.vendor \
     libregex_automata.vendor \
     libregex_syntax.vendor \
     libreverbaidl \
+    librustutils.vendor \
     libsensorndkbridge \
+    libserde.vendor \
+    libserde_core.vendor \
     libsfplugin_ccodec_utils.vendor \
     libsparse.vendor \
     libsparse.vendor_ramdisk \
@@ -427,6 +465,9 @@ PRODUCT_PACKAGES += \
     libstagefright_omx_utils.vendor \
     libstagefright_xmlparser.vendor \
     libstd.vendor \
+    libstrsim.vendor \
+    libsystem_properties_bindgen_sys.vendor \
+    libthiserror.vendor \
     libtinyalsa.vendor \
     libtinyalsav2.vendor \
     libtinycompress \
@@ -469,11 +510,13 @@ PRODUCT_PACKAGES += \
 # sysconfig
 PRODUCT_PACKAGES += \
     adevtool_sysconfig_system_ext_default-permissions \
+    adevtool_sysconfig_system_ext_sysconfig \
     adevtool_sysconfig_system_ext_permissions \
     adevtool_sysconfig_product_default-permissions \
     adevtool_sysconfig_product_sysconfig \
     adevtool_sysconfig_product_permissions \
-    adevtool_sysconfig_vendor_permissions
+    adevtool_sysconfig_vendor_permissions \
+    adevtool_sysconfig_odm_sysconfig_sku_GZPF0
 
 # APK parser config
 PRODUCT_PACKAGES += \
@@ -492,6 +535,7 @@ PRODUCT_PACKAGES += \
     GooglePermissionControllerSafetyCenterOverlay \
     ManagedProvisioningPixelOverlay \
     NetworkStackOverlay \
+    NfcOverlayShibaGsi \
     PixelBatteryHealthOverlay \
     PixelConfigOverlay2018 \
     PixelConfigOverlay2021 \
@@ -517,7 +561,6 @@ PRODUCT_PACKAGES += \
     SystemUIGoogle__shiba__auto_generated_rro_vendor \
     TeleService__shiba__auto_generated_rro_product \
     TeleService__shiba__auto_generated_rro_vendor \
-    Telecom__shiba__auto_generated_rro_product \
     TrafficLightFaceOverlay \
     UdfpsOverlay \
     framework-res__shiba__auto_generated_rro_product \
@@ -532,7 +575,7 @@ PRODUCT_PACKAGES += \
     OemRilHookService \
     OemRilService \
     PersistentBackgroundCameraServices \
-    PixelCameraServicesConnectivityClient \
+    PixelCameraServices \
     PixelDisplayService \
     PixelImsMediaService \
     PixelNfc \
@@ -541,12 +584,14 @@ PRODUCT_PACKAGES += \
     ShannonIms \
     ShannonRcs \
     aconfig_gpu_flags_c_lib \
+    aconfig_gsc_flags_c_lib \
     activity \
     aidb_recorder \
     ambient_volume \
     android.hardware.audio.service-aidl.aoc \
     android.hardware.authsecret-impl.nos \
     android.hardware.authsecret-service.citadel \
+    android.hardware.biometrics.fingerprint-service.goodix \
     android.hardware.bluetooth-service.bcmbtlinux \
     android.hardware.boot-service.default-pixel \
     android.hardware.boot-service.default_recovery-pixel \
@@ -587,13 +632,15 @@ PRODUCT_PACKAGES += \
     android.hardware.weaver2-impl.nos \
     aoc_aconfig_flags_c_lib \
     aocd \
-    aocx-V2-ndk \
+    aocx-V3-ndk \
     aocxd \
     ar_bridge \
     arm.graphics-V1-ndk \
+    backup_ota_log.sh \
     battery_mitigation \
     biometricsuez \
     bipchmgr \
+    block_queue_depth \
     blue \
     capo \
     cbd \
@@ -605,19 +652,19 @@ PRODUCT_PACKAGES += \
     com.google.android.camera.experimental2023 \
     com.google.android.camera.extensions \
     com.google.android.camerax.extensions \
-    com.google.android.hardware.biometrics.fingerprint \
-    com.google.android.widevine-13130248 \
+    com.google.android.widevine-15027108-cp2a \
     com.google.edgetpu.tachyon-ndk \
     com.google.edgetpu.tachyon-service \
     com.google.edgetpu_app_service-V6-ndk \
     com.google.edgetpu_app_service-V6-ndk.system_ext \
     com.google.edgetpu_vendor_service-V2-ndk \
     com.google.edgetpu_vendor_service-V2-ndk.system_ext \
+    com.google.hardware.biometrics.fingerprint.fingerprint-ext-V1-ndk \
     com.google.hardware.pixel.display-V15-ndk \
-    com.google.hardware.pixel.display-V17-ndk \
+    com.google.hardware.pixel.display-V21-ndk \
     com.google.hardware.pixel.display-V4-ndk \
     com.google.input-V2-ndk \
-    com.google.input-V6-ndk \
+    com.google.input-V8-ndk \
     com.google.pixel.camera.connectivity \
     com.google.pixel.camera.hal \
     com.google.pixel.camera.services.cameraidremapper \
@@ -627,6 +674,7 @@ PRODUCT_PACKAGES += \
     com.google.pixel.wifi.ext \
     copy_efs_files_to_data \
     dck_gating \
+    devcoredump_action \
     disable_contaminant_detection.sh \
     dmd \
     drop \
@@ -660,7 +708,7 @@ PRODUCT_PACKAGES += \
     google.hardware.media.c2@2.0-service \
     gps.default \
     gpsd \
-    gpu_probe \
+    gpuflag \
     gs_watchdogd \
     gxp_metrics_logger \
     gxp_telemetry_reader \
@@ -673,6 +721,7 @@ PRODUCT_PACKAGES += \
     init.radio.sh \
     init_citadel \
     insmod.sh \
+    instant_sense \
     ip_health \
     lassen_dmd_constants \
     lhd \
@@ -702,17 +751,14 @@ PRODUCT_PACKAGES += \
     libacryl_hdr_plugin \
     libalertv3 \
     libaoc \
-    libaptXHD_encoder \
-    libaptX_encoder \
     libbw_av1dec \
     libbw_av1enc \
     libc2filterplugin \
     libcodec2_soft_ddpdec \
     libcodec2_store_dolby \
-    libdapparamstorage \
     libdarwinn_hal \
-    libdeccfg \
     libdeeptouch \
+    libdisplay_tflite \
     libdisplaycolor \
     libdisppower-pixel \
     libdmengine \
@@ -740,12 +786,12 @@ PRODUCT_PACKAGES += \
     libgooglerilaudio \
     libgooglerilmemmonitor \
     libgpudataproducer \
+    libgpuflag_aconfig_rust.dylib \
     libgril_oem-google \
     libgxp \
     libhwjpeg \
     libion_google \
     libjson \
-    liblmkd_flags_c \
     libmahalcontroller \
     libmedia_ecoservice \
     libmediaadaptor \
@@ -770,9 +816,8 @@ PRODUCT_PACKAGES += \
     libpixelhealth \
     libpixelimsmedia \
     libpixelstats \
+    libpixelstatsflags \
     libpowerstatshaldataprovider \
-    libprotobuf-cpp-full-6.33.1 \
-    libprotobuf-cpp-lite-6.33.1 \
     librecovery_ui_ext \
     libril-aidl \
     libril_gfeature \
@@ -821,10 +866,11 @@ PRODUCT_PACKAGES += \
     pcie_power_control \
     pixel-experiments-recovery.sh \
     pixel-power-ext-V1-ndk \
+    pixel-power-ext-V2-ndk \
     pixel_stateresidency_provider_aidl_interface-ndk \
     pixelatoms-cpp \
-    pixelpowerstats_provider_aidl_interface-cpp \
     pixelstats-vendor \
+    pixelstats_flags_c_lib \
     predump_gti0.sh \
     predump_touch.sh \
     rebalance_interrupts-vendor \
@@ -838,16 +884,20 @@ PRODUCT_PACKAGES += \
     sensorcollector \
     sensors.usf \
     shared_modem_platform \
+    storage_init.sh \
     structural_health \
     system_signal_hub \
+    thermal-budget-interface-ndk \
     thermal_symlinks \
     touch_gti_ical \
     trusty_metricsd \
     twoshay \
     umfw_stat_tool \
+    usb_accessory_utils \
+    usboffmode \
     usf_stats \
     uv_exposure \
-    vendor.dolby.media.c2@1.0-service \
+    vendor.dolby.media.c2-default-service \
     vendor.google.battery_mitigation-V1-ndk \
     vendor.google.battery_mitigation.service_static \
     vendor.google.bluetooth_ext-V1-ndk \
@@ -856,12 +906,14 @@ PRODUCT_PACKAGES += \
     vendor.google.edgetpu_vendor_service@1.0-service \
     vendor.google.google_battery-V5-ndk \
     vendor.google.google_battery-service \
+    vendor.google.plat_security-V1-ndk \
+    vendor.google.plat_security-service \
     vendor.google.radioext@1.0-service \
     vendor.google.whitechapel.audio.audioext@4.0 \
     vendor.google.whitechapel.audio.audioext@4.0.system_ext \
     vendor.google.whitechapel.audio.extension-V5-ndk \
-    vendor.google.whitechapel.audio.extension-V7-ndk \
-    vendor.google.whitechapel.audio.extension-V7-ndk.system_ext \
+    vendor.google.whitechapel.audio.extension-V8-ndk \
+    vendor.google.whitechapel.audio.extension-V8-ndk.system_ext \
     vendor.google.whitechapel.audio.hal.parserservice \
     vendor.google.whitechapel.audio.hal.utils \
     vendor.google.whitechapel.audio.hal.utils.adaptedinfo \
@@ -870,7 +922,7 @@ PRODUCT_PACKAGES += \
     vendor.google.whitechapel.audio.hal.utils.bluenote \
     vendor.google.whitechapel.audio.hal.utils.pipe \
     vendor.google.whitechapel.audio_flags \
-    vendor.google.wireless_charger-V5-ndk \
+    vendor.google.wireless_charger-V7-ndk \
     vendor.google.wireless_charger-default \
     vendor.google.wireless_charger.service-V2-ndk \
     vendor.google.wireless_charger.service-default \
@@ -896,6 +948,7 @@ PRODUCT_PACKAGES += \
     device_symlinks
 
 PRODUCT_COPY_FILES += \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/019mobile_il.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/019mobile_il.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/1and1_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/1and1_de.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/1global_bootstrap.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/1global_bootstrap.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/2degrees_nz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/2degrees_nz.pb \
@@ -918,9 +971,11 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/alcom_fi.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/alcom_fi.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/alestra_mx.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/alestra_mx.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/aliv_bs.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/aliv_bs.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/alkafeel_iq.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/alkafeel_iq.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/altice_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/altice_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/alticeroaming_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/alticeroaming_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/andorratelecom_ad.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/andorratelecom_ad.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/annatel_il.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/annatel_il.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/antel_uy.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/antel_uy.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/appalachian_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/appalachian_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/apt_tw.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/apt_tw.pb \
@@ -937,21 +992,24 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/attbootstrap_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/attbootstrap_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/attmvnos_mx.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/attmvnos_mx.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/attmvnos_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/attmvnos_us.pb \
-    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/avatel_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/avatel_es.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/axis_id.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/axis_id.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/b1_ch.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/b1_ch.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/bait_mx.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bait_mx.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/bark_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bark_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/base_be.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/base_be.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/batelco_bh.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/batelco_bh.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/bbix_zz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bbix_zz.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/bell_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bell_ca.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/best_la.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/best_la.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/bhtelecom_ba.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bhtelecom_ba.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/bics_be.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bics_be.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/bite_lt.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bite_lt.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/bite_lv.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bite_lv.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/bluegrass_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bluegrass_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/bob_at.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bob_at.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/bonbon_hr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bonbon_hr.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/boost_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/boost_us.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/boostmobile_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/boostmobile_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/boosttmo_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/boosttmo_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/bouygues_fr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bouygues_fr.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/bouyguesb2b_fr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bouyguesb2b_fr.pb \
@@ -963,6 +1021,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/cablewireless_sc.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cablewireless_sc.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/cape_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cape_ca.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/cape_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cape_us.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/caribbean_vg.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/caribbean_vg.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/carolinawest_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/carolinawest_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/carrier_list.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/carrier_list.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/celcom_my.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/celcom_my.pb \
@@ -978,10 +1037,12 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/cht_tw.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cht_tw.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/citymesh_be.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/citymesh_be.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/citymesh_se.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/citymesh_se.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/cjsc_tj.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cjsc_tj.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/claro_ar.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_ar.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/claro_br.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_br.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/claro_cl.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_cl.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/claro_co.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_co.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/claro_pe.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_pe.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/claro_pr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_pr.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/cloud9_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cloud9_gb.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/cloudcore_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cloudcore_ca.pb \
@@ -1016,7 +1077,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/digimobil_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/digimobil_es.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/dish_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/dish_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/dish5gsa_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/dish5gsa_us.pb \
-    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/dishatt_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/dishatt_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/dito_ph.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/dito_ph.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/dna_fi.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/dna_fi.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/docomo_jp.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/docomo_jp.pb \
@@ -1030,19 +1090,23 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/eir_ie.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/eir_ie.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/elisa_ee.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/elisa_ee.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/elisa_fi.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/elisa_fi.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/emnify_br.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/emnify_br.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/emnify_li.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/emnify_li.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/emnify_zz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/emnify_zz.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/enetworks_gy.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/enetworks_gy.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/enreach_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/enreach_de.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/enreach_nl.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/enreach_nl.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/entel_cl.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/entel_cl.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/entel_pe.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/entel_pe.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/epic_mt.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/epic_mt.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/eplus_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/eplus_de.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/erate_no.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/erate_no.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/esimgo_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/esimgo_gb.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/esimgotravel_zz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/esimgotravel_zz.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/esn_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/esn_gb.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/etisalat_ae.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/etisalat_ae.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/etisalat_af.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/etisalat_af.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/etl_ls.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/etl_ls.pb \
-    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/eureka_jp.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/eureka_jp.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/evolve_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/evolve_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/execulink_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/execulink_ca.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/faiba_ke.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/faiba_ke.pb \
@@ -1065,7 +1129,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/free_re.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/free_re.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/freedommobile_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/freedommobile_ca.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/gamma_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/gamma_gb.pb \
-    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/gbrli_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/gbrli_gb.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/gci_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/gci_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/gibtel_gi.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/gibtel_gi.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/giffgaff_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/giffgaff_gb.pb \
@@ -1133,7 +1196,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/linemo_jp.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/linemo_jp.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/lmt_lv.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/lmt_lv.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/lobster_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/lobster_es.pb \
-    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/lobster_gi.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/lobster_gi.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/lowi_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/lowi_es.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/luckymobile_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/luckymobile_ca.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/lum_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/lum_ca.pb \
@@ -1170,16 +1232,21 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/movistar_co.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/movistar_co.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/movistar_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/movistar_es.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/movistar_mx.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/movistar_mx.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/movistar_pe.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/movistar_pe.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/mtel_at.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtel_at.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/mtel_ba.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtel_ba.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/mtel_ch.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtel_ch.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/mtel_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtel_de.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/mtel_me.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtel_me.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/mtn_gh.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtn_gh.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/mtn_ng.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtn_ng.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/mtn_zm.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtn_zm.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/mtx_lu.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtx_lu.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/mtx_zz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtx_zz.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/mucho_ch.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mucho_ch.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/mvnoconnect_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mvnoconnect_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/naf_no.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/naf_no.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/natcom_ht.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/natcom_ht.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/ncell_np.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/ncell_np.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/nema_fo.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/nema_fo.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/neotel_nr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/neotel_nr.pb \
@@ -1233,18 +1300,20 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/orangentn_fr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/orangentn_fr.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/others.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/others.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/otz_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/otz_us.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/ourtelekom_sb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/ourtelekom_sb.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/oxio_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/oxio_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/paradisemobile_bm.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/paradisemobile_bm.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/paradisemobile_ky.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/paradisemobile_ky.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/partner_il.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/partner_il.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/pcmobilebell_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pcmobilebell_ca.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/pelephone_il.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pelephone_il.pb \
-    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/pivotel_au.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pivotel_au.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/pinebelt_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pinebelt_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/play_pl.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/play_pl.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/plintron_it.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/plintron_it.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/plintron_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/plintron_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/plus_pl.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/plus_pl.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/pmci_pw.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pmci_pw.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/pn_xx.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pn_xx.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/popcorn_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/popcorn_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/post_lu.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/post_lu.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/postemobile_it.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/postemobile_it.pb \
@@ -1316,6 +1385,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/sprintwholesale_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/sprintwholesale_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/spusu_at.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/spusu_at.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/spusu_ch.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/spusu_ch.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/spusu_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/spusu_de.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/spusu_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/spusu_gb.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/spusu_it.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/spusu_it.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/ssimobile_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/ssimobile_ca.pb \
@@ -1374,11 +1444,11 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/telia_lt.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telia_lt.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/telia_no.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telia_no.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/telia_se.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telia_se.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/teliab2b_se.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/teliab2b_se.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/telkomsel_id.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telkomsel_id.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/tello_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/tello_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/telna_zz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telna_zz.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/telnyx_be.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telnyx_be.pb \
-    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/telnyx_it.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telnyx_it.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/telnyx_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telnyx_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/telstra_au.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telstra_au.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/telus_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telus_ca.pb \
@@ -1441,6 +1511,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/vinaphone_vn.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vinaphone_vn.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/virgin_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/virgin_ca.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/virgin_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/virgin_gb.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/virgin_kw.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/virgin_kw.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/virgin_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/virgin_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/visible_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/visible_us.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/visiblev_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/visiblev_us.pb \
@@ -1449,6 +1520,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/vivo_br.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vivo_br.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/vodafone_al.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_al.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/vodafone_au.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_au.pb \
+    vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/vodafone_ck.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_ck.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/vodafone_cz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_cz.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/vodafone_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_de.pb \
     vendor/google_devices/shiba/proprietary/product/etc/CarrierSettings/vodafone_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_es.pb \
@@ -1511,6 +1583,8 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/system_ext/etc/public.libraries-google.txt:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/public.libraries-google.txt \
     vendor/google_devices/shiba/proprietary/system_ext/priv-app/EuiccSupportPixel-P23/DKA_0203_23.up:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel-P23/DKA_0203_23.up \
     vendor/google_devices/shiba/proprietary/system_ext/priv-app/EuiccSupportPixel-P23/DKA_0302_23.up:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel-P23/DKA_0302_23.up \
+    vendor/google_devices/shiba/proprietary/system_ext/priv-app/EuiccSupportPixel-P23/DKA_0303_02x_23.up:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel-P23/DKA_0303_02x_23.up \
+    vendor/google_devices/shiba/proprietary/system_ext/priv-app/EuiccSupportPixel-P23/DKA_0303_03x_23.up:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel-P23/DKA_0303_03x_23.up \
     vendor/google_devices/shiba/proprietary/system_ext/priv-app/EuiccSupportPixel-P23/esim-full-v1-m40.img:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel-P23/esim-full-v1-m40.img \
     vendor/google_devices/shiba/proprietary/system_ext/priv-app/EuiccSupportPixel-P23/esim-full-v1-m41.img:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel-P23/esim-full-v1-m41.img \
     vendor/google_devices/shiba/proprietary/system_ext/priv-app/EuiccSupportPixel-P23/esim-full-v1.img:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel-P23/esim-full-v1.img \
@@ -1552,6 +1626,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/etc/chre/gesture.napp_header:$(TARGET_COPY_OUT_VENDOR)/etc/chre/gesture.napp_header \
     vendor/google_devices/shiba/proprietary/vendor/etc/chre/health.napp_header:$(TARGET_COPY_OUT_VENDOR)/etc/chre/health.napp_header \
     vendor/google_devices/shiba/proprietary/vendor/etc/chre/imu_cal.napp_header:$(TARGET_COPY_OUT_VENDOR)/etc/chre/imu_cal.napp_header \
+    vendor/google_devices/shiba/proprietary/vendor/etc/chre/instant_sense.napp_header:$(TARGET_COPY_OUT_VENDOR)/etc/chre/instant_sense.napp_header \
     vendor/google_devices/shiba/proprietary/vendor/etc/chre/ip_health.napp_header:$(TARGET_COPY_OUT_VENDOR)/etc/chre/ip_health.napp_header \
     vendor/google_devices/shiba/proprietary/vendor/etc/chre/libchre_log_database.bin:$(TARGET_COPY_OUT_VENDOR)/etc/chre/libchre_log_database.bin \
     vendor/google_devices/shiba/proprietary/vendor/etc/chre/location.napp_header:$(TARGET_COPY_OUT_VENDOR)/etc/chre/location.napp_header \
@@ -1571,6 +1646,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/etc/display_golden_google-bigsurf_cal0.pb:$(TARGET_COPY_OUT_VENDOR)/etc/display_golden_google-bigsurf_cal0.pb \
     vendor/google_devices/shiba/proprietary/vendor/etc/display_golden_google-shoreline_cal0.pb:$(TARGET_COPY_OUT_VENDOR)/etc/display_golden_google-shoreline_cal0.pb \
     vendor/google_devices/shiba/proprietary/vendor/etc/earcheek_classifier.tflite:$(TARGET_COPY_OUT_VENDOR)/etc/earcheek_classifier.tflite \
+    vendor/google_devices/shiba/proprietary/vendor/etc/edgetpu/custom_kernel.pbtxt:$(TARGET_COPY_OUT_VENDOR)/etc/edgetpu/custom_kernel.pbtxt \
     vendor/google_devices/shiba/proprietary/vendor/etc/fstab.efs:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.efs \
     vendor/google_devices/shiba/proprietary/vendor/etc/fstab.efs.from_data:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.efs.from_data \
     vendor/google_devices/shiba/proprietary/vendor/etc/fstab.modem:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.modem \
@@ -1622,10 +1698,13 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/cbd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/cbd.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/citadeld.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/citadeld.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/com.google.edgetpu.tachyon-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/com.google.edgetpu.tachyon-service.rc \
+    vendor/google_devices/shiba/proprietary/vendor/etc/init/devcoredump_action.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/devcoredump_action.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/dmd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/dmd.rc \
+    vendor/google_devices/shiba/proprietary/vendor/etc/init/dump_power.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/dump_power.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/Exynos_C2.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/Exynos_C2.rc \
+    vendor/google_devices/shiba/proprietary/vendor/etc/init/fingerprint-goodix.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/fingerprint-goodix.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/google.hardware.media.c2@2.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/google.hardware.media.c2@2.0-service.rc \
-    vendor/google_devices/shiba/proprietary/vendor/etc/init/gpu_probe.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/gpu_probe.rc \
+    vendor/google_devices/shiba/proprietary/vendor/etc/init/gpuflag.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/gpuflag.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/hostapd.android.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hostapd.android.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/hw/init.shiba.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.shiba.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/hw/init.zuma.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.zuma.rc \
@@ -1651,31 +1730,38 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/init.shared_modem_platform_l.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.shared_modem_platform_l.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/init.storage.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.storage.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/init.touch.gti0.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.touch.gti0.rc \
+    vendor/google_devices/shiba/proprietary/vendor/etc/init/init.touch.ical0.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.touch.ical0.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/init.touch.predump.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.touch.predump.rc \
+    vendor/google_devices/shiba/proprietary/vendor/etc/init/init.usboffmode.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.usboffmode.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/init.usf.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.usf.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/init.vendor_telephony.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.vendor_telephony.rc \
+    vendor/google_devices/shiba/proprietary/vendor/etc/init/init.watermark-scale-factor.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.watermark-scale-factor.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/libg3a_gabc.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/libg3a_gabc.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/libg3a_gaf.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/libg3a_gaf.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/libg3a_ghawb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/libg3a_ghawb.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/memtrack.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/memtrack.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/pcie_power.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pcie_power.rc \
+    vendor/google_devices/shiba/proprietary/vendor/etc/init/pixel-bgtasks-experiment.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-bgtasks-experiment.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/pixel-experiments-recovery.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-experiments-recovery.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/pixel-mm-gki.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-mm-gki.rc \
+    vendor/google_devices/shiba/proprietary/vendor/etc/init/pixel-sched-proxy-exec-experiment.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-sched-proxy-exec-experiment.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/pixel-thermal-symlinks.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-thermal-symlinks.rc \
-    vendor/google_devices/shiba/proprietary/vendor/etc/init/pixel-ubp-experiment.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-ubp-experiment.rc \
+    vendor/google_devices/shiba/proprietary/vendor/etc/init/pixel-zram-comp-algorithm-experiment.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-zram-comp-algorithm-experiment.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/pixelstats-vendor.zuma.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixelstats-vendor.zuma.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/pktrouter.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pktrouter.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/rebalance_interrupts-vendor.gs101.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/rebalance_interrupts-vendor.gs101.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/rfsd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/rfsd.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/rild_exynos.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/rild_exynos.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/samsung.hardware.media.c2@1.2-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/samsung.hardware.media.c2@1.2-service.rc \
+    vendor/google_devices/shiba/proprietary/vendor/etc/init/storage.init.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/storage.init.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/trusty_metricsd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/trusty_metricsd.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/twoshay.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/twoshay.rc \
-    vendor/google_devices/shiba/proprietary/vendor/etc/init/vendor.dolby.media.c2@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.dolby.media.c2@1.0-service.rc \
+    vendor/google_devices/shiba/proprietary/vendor/etc/init/vendor.dolby.media.c2-default-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.dolby.media.c2-default-service.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/vendor.google.battery_mitigation-default.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.battery_mitigation-default.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/vendor.google.edgetpu_vendor_service@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.edgetpu_vendor_service@1.0-service.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/vendor.google.google_battery-default.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.google_battery-default.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/vendor.google.modem_ml_svc_sit.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.modem_ml_svc_sit.rc \
+    vendor/google_devices/shiba/proprietary/vendor/etc/init/vendor.google.plat_security-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.plat_security-service.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/vendor.google.radioext@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.radioext@1.0-service.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/vendor.google.wireless_charger-default.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.wireless_charger-default.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/init/vendor.google.wireless_charger.service-default.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.wireless_charger.service-default.rc \
@@ -1711,6 +1797,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/etc/radio/log_masks/empty/empty_modem_log_mask.nprf:$(TARGET_COPY_OUT_VENDOR)/etc/radio/log_masks/empty/empty_modem_log_mask.nprf \
     vendor/google_devices/shiba/proprietary/vendor/etc/radio/log_masks/lassen_default/lassen_default.conf:$(TARGET_COPY_OUT_VENDOR)/etc/radio/log_masks/lassen_default/lassen_default.conf \
     vendor/google_devices/shiba/proprietary/vendor/etc/res/images/charger/battery_fail.png:$(TARGET_COPY_OUT_VENDOR)/etc/res/images/charger/battery_fail.png \
+    vendor/google_devices/shiba/proprietary/vendor/etc/res/images/charger/battery_overheat.png:$(TARGET_COPY_OUT_VENDOR)/etc/res/images/charger/battery_overheat.png \
     vendor/google_devices/shiba/proprietary/vendor/etc/res/images/charger/battery_scale.png:$(TARGET_COPY_OUT_VENDOR)/etc/res/images/charger/battery_scale.png \
     vendor/google_devices/shiba/proprietary/vendor/etc/res/images/charger/main_font.png:$(TARGET_COPY_OUT_VENDOR)/etc/res/images/charger/main_font.png \
     vendor/google_devices/shiba/proprietary/vendor/etc/res/values/charger/animation.txt:$(TARGET_COPY_OUT_VENDOR)/etc/res/values/charger/animation.txt \
@@ -1734,6 +1821,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/etc/thermal_info_config_charge.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_charge.json \
     vendor/google_devices/shiba/proprietary/vendor/etc/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json \
     vendor/google_devices/shiba/proprietary/vendor/etc/touchflow.pb:$(TARGET_COPY_OUT_VENDOR)/etc/touchflow.pb \
+    vendor/google_devices/shiba/proprietary/vendor/etc/tracing_descriptors.gz:$(TARGET_COPY_OUT_VENDOR)/etc/tracing_descriptors.gz \
     vendor/google_devices/shiba/proprietary/vendor/etc/twoshay_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/twoshay_config.json \
     vendor/google_devices/shiba/proprietary/vendor/etc/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc \
     vendor/google_devices/shiba/proprietary/vendor/etc/waves_config.ini:$(TARGET_COPY_OUT_VENDOR)/etc/waves_config.ini \
@@ -1772,7 +1860,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/cfg.sha2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/cfg.sha2 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs_symbolic_link_mapping:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs_symbolic_link_mapping \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/01083369e79d86f62e3aadb2b3009f1aeb8ddd45:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/01083369e79d86f62e3aadb2b3009f1aeb8ddd45 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/012a3153d79cb57b14689c6367d2148c021acb65:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/012a3153d79cb57b14689c6367d2148c021acb65 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/01bcd13d69c1d96179c6504fdcb866c58214d904:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/01bcd13d69c1d96179c6504fdcb866c58214d904 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/026fe381212d553d82ad53288774e73f814ecd82:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/026fe381212d553d82ad53288774e73f814ecd82 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/027a57ddd7d82a616e4874babddb588ebd9a85b1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/027a57ddd7d82a616e4874babddb588ebd9a85b1 \
@@ -1780,7 +1867,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0305c481bacd02a84eccebbe1c16bce59a0a18d2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0305c481bacd02a84eccebbe1c16bce59a0a18d2 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0388bdfd8075a3f19bfffb00b78f7c01204d26d2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0388bdfd8075a3f19bfffb00b78f7c01204d26d2 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/03f9f80013c866ac4f03580a991b81efdaf2fcdc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/03f9f80013c866ac4f03580a991b81efdaf2fcdc \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0425f0e06405ce282bfec57064d0292f4791d742:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0425f0e06405ce282bfec57064d0292f4791d742 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/045c04c32078b294a4a8733a13ac99bba58e7a57:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/045c04c32078b294a4a8733a13ac99bba58e7a57 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/049f9e339423d7ab8f17f9eab53325da1384ff48:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/049f9e339423d7ab8f17f9eab53325da1384ff48 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/04aa4ebec6774e7e7af8c9702aa5ae8783357c65:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/04aa4ebec6774e7e7af8c9702aa5ae8783357c65 \
@@ -1794,16 +1880,15 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/078f9b58b86931e1aab9e0c9af88d8d760f254cd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/078f9b58b86931e1aab9e0c9af88d8d760f254cd \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/079e45c65362444e31d96883914d89e25522215a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/079e45c65362444e31d96883914d89e25522215a \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/07c67d4b510350f5d5e79cef89ceea2803b6000d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/07c67d4b510350f5d5e79cef89ceea2803b6000d \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/07ed04b5db985dadb97322987c75c45751298fda:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/07ed04b5db985dadb97322987c75c45751298fda \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0843c88408f555d730c349b63933286488773687:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0843c88408f555d730c349b63933286488773687 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/087157d1cfbb20f5b07b1a5f30df938886356128:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/087157d1cfbb20f5b07b1a5f30df938886356128 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/08caf21cc2ab3498d10b4255260594cf8701ecaa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/08caf21cc2ab3498d10b4255260594cf8701ecaa \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/08d15fad2f6281613a8530a376ec2578388ff1b3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/08d15fad2f6281613a8530a376ec2578388ff1b3 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/08d8f3bd5993d87ad13bb0108c5af8c27c72ee29:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/08d8f3bd5993d87ad13bb0108c5af8c27c72ee29 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/08e1a1db49322a7bcad18e9dd2ed55e139662ef8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/08e1a1db49322a7bcad18e9dd2ed55e139662ef8 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/098c29bda96b34a6ecee242a6915789e50de8a17:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/098c29bda96b34a6ecee242a6915789e50de8a17 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/09e421c58c6a766ae1503690b15427f29b6ea337:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/09e421c58c6a766ae1503690b15427f29b6ea337 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/09e4eeec0bf8a0df491d123965a3df2495a87f6d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/09e4eeec0bf8a0df491d123965a3df2495a87f6d \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0a5a1c51cb92ee2795091e367d8cd56bc28af68e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0a5a1c51cb92ee2795091e367d8cd56bc28af68e \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0a992ae4659c39a7fa098eb552e73475b5695105:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0a992ae4659c39a7fa098eb552e73475b5695105 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0b0cb4025098ba6ef12f19da5c43e3ea11ae4b55:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0b0cb4025098ba6ef12f19da5c43e3ea11ae4b55 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0b2296dce9ce3a46168ec91fe0004906f824f26b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0b2296dce9ce3a46168ec91fe0004906f824f26b \
@@ -1812,6 +1897,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0bcd3aa5b71e3f54d8bbb5c187cceca9384c3265:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0bcd3aa5b71e3f54d8bbb5c187cceca9384c3265 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0be07e983327246c29af9d94860b322c736f4104:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0be07e983327246c29af9d94860b322c736f4104 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0c049730c9ac30dc65d21809f84fa7a834d73221:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0c049730c9ac30dc65d21809f84fa7a834d73221 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0c4b88695ed324b89fb491f55ca93e4009e84755:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0c4b88695ed324b89fb491f55ca93e4009e84755 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0cd569c15fd8cc9bd5b2ee72e51d0c7680716799:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0cd569c15fd8cc9bd5b2ee72e51d0c7680716799 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0d12c459a1d0e0a23cce2e4ce75598617b84fbfb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0d12c459a1d0e0a23cce2e4ce75598617b84fbfb \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0d54c13a411e9abd34a93c950c70854fb09ea594:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0d54c13a411e9abd34a93c950c70854fb09ea594 \
@@ -1823,7 +1909,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0ea40ae28af5f39eeb0bd7ec01606f3e4664ba82:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0ea40ae28af5f39eeb0bd7ec01606f3e4664ba82 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0ecf1868de5165c6b9778ee2682ae0140f2ea3c6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0ecf1868de5165c6b9778ee2682ae0140f2ea3c6 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0ed5709298d09749f64c350857cff7ec8a4703ce:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0ed5709298d09749f64c350857cff7ec8a4703ce \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0ed7eb66567d4faaf726defb8d69e082cc0c27b0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0ed7eb66567d4faaf726defb8d69e082cc0c27b0 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0ee505329d33c720bde08643199b7bece79a276a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0ee505329d33c720bde08643199b7bece79a276a \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0f290329e337e68f8bed4a0a9020fe42bdd2ce39:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0f290329e337e68f8bed4a0a9020fe42bdd2ce39 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/0f808415e733577489dc0e56bf8406f3f0ec8ca1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0f808415e733577489dc0e56bf8406f3f0ec8ca1 \
@@ -1835,11 +1920,12 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/108972510abccc4f686a123c58b821e5695ee1c6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/108972510abccc4f686a123c58b821e5695ee1c6 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/10c56a7166587cdedbd68a12e38b4a448c3d5431:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/10c56a7166587cdedbd68a12e38b4a448c3d5431 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/11583206d5f957edb3a17edf66519a98f6e6fbb8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/11583206d5f957edb3a17edf66519a98f6e6fbb8 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/1196cf66aaf4c678404de585dbc35d3379e50a8a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1196cf66aaf4c678404de585dbc35d3379e50a8a \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/11d5ecd79e6155ec6db8a67b5806c4a9325d158e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/11d5ecd79e6155ec6db8a67b5806c4a9325d158e \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/11ff9846eff058fc629140c174d3d620f4af9e9e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/11ff9846eff058fc629140c174d3d620f4af9e9e \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/12013faa4a3d3488ca251b0395d07411e3558f17:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/12013faa4a3d3488ca251b0395d07411e3558f17 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/1279203468e3a451f10c8039422140ccc7acb37c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1279203468e3a451f10c8039422140ccc7acb37c \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/12970073e7a1cd4b7040755d0f638fcc4088af0e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/12970073e7a1cd4b7040755d0f638fcc4088af0e \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/134a4a9329ad0182edc61d647a59e3675a70775d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/134a4a9329ad0182edc61d647a59e3675a70775d \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/13678f4671b07c2aa33c8e12ec97e128b0121435:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/13678f4671b07c2aa33c8e12ec97e128b0121435 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/13d396a6480ce164d089ebc144d3d0c2c9d16e43:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/13d396a6480ce164d089ebc144d3d0c2c9d16e43 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/13f6e7f8317832b1431f65c9bf93726a2b0c87d2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/13f6e7f8317832b1431f65c9bf93726a2b0c87d2 \
@@ -1852,22 +1938,21 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/166dce2cddf1b059b810effb423e1c07a7596c1b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/166dce2cddf1b059b810effb423e1c07a7596c1b \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/169a76a933fe96a94fcd9d5a785408397869d5a6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/169a76a933fe96a94fcd9d5a785408397869d5a6 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/16a9ea3d12a86d9f4f7e265b02548b92dae28e9d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/16a9ea3d12a86d9f4f7e265b02548b92dae28e9d \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/1735d67d3555fd1b347ef1bd795d90c46ce268fe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1735d67d3555fd1b347ef1bd795d90c46ce268fe \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/174b327660d8c6f3b254201f05b4c8def7e03cd8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/174b327660d8c6f3b254201f05b4c8def7e03cd8 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/178fab9bc0abb9d8335260f2b8ae1b974e7e9018:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/178fab9bc0abb9d8335260f2b8ae1b974e7e9018 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/1827b452d45be296681284549fffc5aa386658a3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1827b452d45be296681284549fffc5aa386658a3 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/193304d87777e13a3c521b0dcc5b5700c0934de1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/193304d87777e13a3c521b0dcc5b5700c0934de1 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/18a9edf410c50d0f769961cf3a4a96ada2500587:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/18a9edf410c50d0f769961cf3a4a96ada2500587 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/195d160643d5a878c43fb53158bbe57b563941a4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/195d160643d5a878c43fb53158bbe57b563941a4 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/195f1cc3a40f27b6795ac69c8288725b501ef0a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/195f1cc3a40f27b6795ac69c8288725b501ef0a2 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/1979ce4faa564a6a756a532a7df19b607a4ee277:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1979ce4faa564a6a756a532a7df19b607a4ee277 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/19a505375144eceec48a99734ebfadbe3f54ac2d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/19a505375144eceec48a99734ebfadbe3f54ac2d \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/19c517734822a34f2d0aee3859f1d5cb58deb517:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/19c517734822a34f2d0aee3859f1d5cb58deb517 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/19c987c953ceb1844f2383c8ee143d0f73a46343:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/19c987c953ceb1844f2383c8ee143d0f73a46343 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/19cab0491c2c4eb450b889ad7fbac7381f57bf4c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/19cab0491c2c4eb450b889ad7fbac7381f57bf4c \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/1a19f9977f70c5dea136141d3f80635cbc478e25:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1a19f9977f70c5dea136141d3f80635cbc478e25 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/1a3f64bc7f0c4aecd0ca4d1da5d02d5baf54e8b4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1a3f64bc7f0c4aecd0ca4d1da5d02d5baf54e8b4 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/1a4dcefdc6eb8d3e3d204aff1c90439a5d4cae17:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1a4dcefdc6eb8d3e3d204aff1c90439a5d4cae17 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/1a705d1e3046afdc6524a5774b7d5aab58ee6f28:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1a705d1e3046afdc6524a5774b7d5aab58ee6f28 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/1a99f996f42f93fe77898f7ef777774acc929d24:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1a99f996f42f93fe77898f7ef777774acc929d24 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/1b05bdb2e1e6ea83024cecc2cc476a4113526577:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1b05bdb2e1e6ea83024cecc2cc476a4113526577 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/1b262893eb86a5931339d55629eb7cad61272a81:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1b262893eb86a5931339d55629eb7cad61272a81 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/1b4135ba9708f41a158e6c13ebe3d6f9857a2c6b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1b4135ba9708f41a158e6c13ebe3d6f9857a2c6b \
@@ -1900,21 +1985,20 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/20e4c6586fcd84f4f4f371fb2fa01cccb6e50725:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/20e4c6586fcd84f4f4f371fb2fa01cccb6e50725 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/20f7e0a568714736f013315889594546337439f7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/20f7e0a568714736f013315889594546337439f7 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/2112b005227980cfb1405cfb8658d0119cedebac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2112b005227980cfb1405cfb8658d0119cedebac \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/216da52f09730438c6bd8d7851960b1e433536fe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/216da52f09730438c6bd8d7851960b1e433536fe \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/21587e2fb98c26eadffee3b4d106edeb4c6ea20f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/21587e2fb98c26eadffee3b4d106edeb4c6ea20f \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/21f9744415ccd13217aae6ef787e3260948638ca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/21f9744415ccd13217aae6ef787e3260948638ca \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/220e0043df3a90fe318d4d2e77fd478e1e064d1a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/220e0043df3a90fe318d4d2e77fd478e1e064d1a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/225f34c2312c9fcfe6d3b0eda8da3f15525df650:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/225f34c2312c9fcfe6d3b0eda8da3f15525df650 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/227643287e1633604823585a11ccc2053d6107b3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/227643287e1633604823585a11ccc2053d6107b3 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/22e429d7feb85674105e4710f81a76a99c276fb2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/22e429d7feb85674105e4710f81a76a99c276fb2 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/233522a8edce708d7652b129c678d02059893c59:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/233522a8edce708d7652b129c678d02059893c59 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/234ea458e53c94eadf55fc611b4c22c0759f4141:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/234ea458e53c94eadf55fc611b4c22c0759f4141 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/236bfaad1bd3e12b22fa6ad3e0c638222af0c0b8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/236bfaad1bd3e12b22fa6ad3e0c638222af0c0b8 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/2442419e2467912c81d6cbe02499489e2b473c5d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2442419e2467912c81d6cbe02499489e2b473c5d \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/24a87acd35b8040ce8a8971380bac00b8c493be2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/24a87acd35b8040ce8a8971380bac00b8c493be2 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/255aaf81ba0a87bea32a163f79960da9e112d8ae:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/255aaf81ba0a87bea32a163f79960da9e112d8ae \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/26569f307b903a35d7adeaaab600c3465acf0379:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/26569f307b903a35d7adeaaab600c3465acf0379 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/267ceaf423d2e74ba67df560d9b69df2b0e6aecd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/267ceaf423d2e74ba67df560d9b69df2b0e6aecd \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/267f74fb6105837da4a3428d431c8daa3fcaa8f8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/267f74fb6105837da4a3428d431c8daa3fcaa8f8 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/26cbded07cc2872256da1887b59411c04034437c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/26cbded07cc2872256da1887b59411c04034437c \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/2704f7db05660b61e47ace5ca2b98f5a52e7cb17:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2704f7db05660b61e47ace5ca2b98f5a52e7cb17 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/27a235593d7f1733fca32cdc213cd66972595d76:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/27a235593d7f1733fca32cdc213cd66972595d76 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/27d966202ac684674b52412aa30037bbfeda96ef:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/27d966202ac684674b52412aa30037bbfeda96ef \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/27f41e66ab4119556c49dd4b85439a384f09e38d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/27f41e66ab4119556c49dd4b85439a384f09e38d \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/281262177d2f2f51e01448256919049cc52b4e74:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/281262177d2f2f51e01448256919049cc52b4e74 \
@@ -1936,6 +2020,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/2af03405877f4521d5d1bf9978c3ec8a0cd90e60:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2af03405877f4521d5d1bf9978c3ec8a0cd90e60 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/2afe0d06170a72d9e0c2d01ac0928786505857f5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2afe0d06170a72d9e0c2d01ac0928786505857f5 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/2b1832861cc87b44ca765967d38bf3a7d261530f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2b1832861cc87b44ca765967d38bf3a7d261530f \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/2b6c0054a7442327ca19f6afcb23ce5e9cc83d6c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2b6c0054a7442327ca19f6afcb23ce5e9cc83d6c \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/2b9509b40003a6eb8f1541c8b80180675a9425dd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2b9509b40003a6eb8f1541c8b80180675a9425dd \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/2bc4a3f11785fd4b49703a53621c2650d6817510:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2bc4a3f11785fd4b49703a53621c2650d6817510 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/2c0394decb4e7f0cdada1bf9185e96c0497702de:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2c0394decb4e7f0cdada1bf9185e96c0497702de \
@@ -1972,7 +2057,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/325ada9526b1f24184ae3af63105290b1fa91176:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/325ada9526b1f24184ae3af63105290b1fa91176 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/32a24a2e18f317e6f4af5c25a5084dd7b17a88e8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/32a24a2e18f317e6f4af5c25a5084dd7b17a88e8 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/32b5f4bd74e3716d9ce63e504895e81bf4b1f864:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/32b5f4bd74e3716d9ce63e504895e81bf4b1f864 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/32e0d54a5b7ea26e1d75a13a9e6a075945dbf71c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/32e0d54a5b7ea26e1d75a13a9e6a075945dbf71c \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/332cd6e316e13e45402f2a45b878739961331ad0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/332cd6e316e13e45402f2a45b878739961331ad0 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/3363a2e460c8fcec825c73a28e50d8051d687fd7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3363a2e460c8fcec825c73a28e50d8051d687fd7 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/3375c955c630fbe1566c107f9aed94225fca555b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3375c955c630fbe1566c107f9aed94225fca555b \
@@ -2003,6 +2087,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/39b7252d505dec039d76c12731c60538bc261f06:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/39b7252d505dec039d76c12731c60538bc261f06 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/3a1ae37bf288d53e2f0c6864d60a597e429c19ff:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3a1ae37bf288d53e2f0c6864d60a597e429c19ff \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/3a1d5359d8a212512cddbdf9df52f050ba884603:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3a1d5359d8a212512cddbdf9df52f050ba884603 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/3a5541133d5a442d9a9fdfd43516c0016e03a481:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3a5541133d5a442d9a9fdfd43516c0016e03a481 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/3a9b8f8e0471a1d9583a5541b21731bab9f06517:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3a9b8f8e0471a1d9583a5541b21731bab9f06517 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/3aa617ec4f6d727ddc123b6e7ca38c0b1e2f67b9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3aa617ec4f6d727ddc123b6e7ca38c0b1e2f67b9 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/3ace0ac60825bfe6f36f8e3b9f61b7b7897a402b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3ace0ac60825bfe6f36f8e3b9f61b7b7897a402b \
@@ -2025,14 +2110,12 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/3f3d161a590207bbce08b385628907ea0ab9c575:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3f3d161a590207bbce08b385628907ea0ab9c575 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/3f42f70b8867153575bbd7994d4e0401517e0b29:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3f42f70b8867153575bbd7994d4e0401517e0b29 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/3f5e3800c5e988dc3e79d38bc81c55f77739a1cd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3f5e3800c5e988dc3e79d38bc81c55f77739a1cd \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/3f6121e7fce7b9b77a8b4f3d99b63c1160225e52:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3f6121e7fce7b9b77a8b4f3d99b63c1160225e52 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/3f9529c7b098d57ad692a363ceab4196a31fb04b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3f9529c7b098d57ad692a363ceab4196a31fb04b \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/402745e4e31a2cbe5cf0780e2f8ca35ce76464a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/402745e4e31a2cbe5cf0780e2f8ca35ce76464a2 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/405126a2845b9a2ceb9bf3f4bc35333ba1bdbac9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/405126a2845b9a2ceb9bf3f4bc35333ba1bdbac9 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/406c82157908608dc6746d52ab5fd6350a10624d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/406c82157908608dc6746d52ab5fd6350a10624d \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/40804c3e57f042fbfaa7ca60a7cd706a7b1c7503:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/40804c3e57f042fbfaa7ca60a7cd706a7b1c7503 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/40c66f6422aa8240050770180acf7498081f4e58:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/40c66f6422aa8240050770180acf7498081f4e58 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/40f05dd5db3f50e0fb1e6c666ba2362b768dd0ef:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/40f05dd5db3f50e0fb1e6c666ba2362b768dd0ef \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/41216795a0369120dd51df58392ea0d437997015:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/41216795a0369120dd51df58392ea0d437997015 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/417b21ee082a7ccf6bb676d7b82be31d7fd1b82e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/417b21ee082a7ccf6bb676d7b82be31d7fd1b82e \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4237aacc9f74313b393e2470713d4e8440f6fb78:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4237aacc9f74313b393e2470713d4e8440f6fb78 \
@@ -2058,6 +2141,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/44b04a3f853de6174a545aa56773e50c23d973d3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/44b04a3f853de6174a545aa56773e50c23d973d3 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/452f54be00b1bf44db4a12b32dd4a5aab04b217b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/452f54be00b1bf44db4a12b32dd4a5aab04b217b \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/45462cf08511de3c68522fa5ce56bda83a43f30a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/45462cf08511de3c68522fa5ce56bda83a43f30a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/459ac9b2097e005adb9bb1318774f752ee404b28:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/459ac9b2097e005adb9bb1318774f752ee404b28 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/45be2b130124c23949d1c2cee2b40f2fcb5edb88:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/45be2b130124c23949d1c2cee2b40f2fcb5edb88 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/45e5c3db4897aa0e5cf69119577e5c7ffd474339:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/45e5c3db4897aa0e5cf69119577e5c7ffd474339 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/45eaaebac925fdc8bad87da310e5e022d3d12131:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/45eaaebac925fdc8bad87da310e5e022d3d12131 \
@@ -2070,7 +2154,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/48103b3a4f9974d6b8f08c6505d61a8ecfd37a7e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/48103b3a4f9974d6b8f08c6505d61a8ecfd37a7e \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/48e7bc84ea46b2551e106c496d73dc2e7eb2720d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/48e7bc84ea46b2551e106c496d73dc2e7eb2720d \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/48ebdff8a8c0083f8c5f3272c19acd227a7420c6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/48ebdff8a8c0083f8c5f3272c19acd227a7420c6 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/48f140fb36f71d123b2ff4e4e1f32b9ef714a1d5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/48f140fb36f71d123b2ff4e4e1f32b9ef714a1d5 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/48f71ca05ae51a7c197be3df0dd87b374fba28d5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/48f71ca05ae51a7c197be3df0dd87b374fba28d5 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/48fd22c9b9360964697cb6a662c7713c64e9e6b9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/48fd22c9b9360964697cb6a662c7713c64e9e6b9 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/496942b30fccba84eefbcee654953392395c451f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/496942b30fccba84eefbcee654953392395c451f \
@@ -2083,7 +2166,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4b846dc3437731bf067c0a4615248c443cd83df6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4b846dc3437731bf067c0a4615248c443cd83df6 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4b9772ca5b521c15f8a428ec21735bf35d93a6b8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4b9772ca5b521c15f8a428ec21735bf35d93a6b8 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4bb2f5a133ab9babd4f4a32bfcf3d462468740c0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4bb2f5a133ab9babd4f4a32bfcf3d462468740c0 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4bc9a956dc8e8558fee3d245b6330fd22d8b7957:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4bc9a956dc8e8558fee3d245b6330fd22d8b7957 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4bd11a8d01a2eb2370a9b019b11ced3000770496:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4bd11a8d01a2eb2370a9b019b11ced3000770496 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4c48bb69cb15048effd2f3203ca4ff4899d6eb86:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4c48bb69cb15048effd2f3203ca4ff4899d6eb86 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4c67d258edbe740cb8c6c8dca0467d1b51b8e89f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4c67d258edbe740cb8c6c8dca0467d1b51b8e89f \
@@ -2091,6 +2173,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4c9b943caecced7c9876ba4fe711d99c71e60d49:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4c9b943caecced7c9876ba4fe711d99c71e60d49 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4ca287ee04f236826074e6612a5bb751477ab6ec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4ca287ee04f236826074e6612a5bb751477ab6ec \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4cc5979d6c106e641d3a1e0f9744811ba4ae663b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4cc5979d6c106e641d3a1e0f9744811ba4ae663b \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4cc6c13485450761f75fb5bfd578c56a5c00d4ea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4cc6c13485450761f75fb5bfd578c56a5c00d4ea \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4ce6788f2eebfd29ccdf6705feb18e49b6dac7b9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4ce6788f2eebfd29ccdf6705feb18e49b6dac7b9 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4d45c74520bb78899b6f9fd686ff0eaf9339d3d4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d45c74520bb78899b6f9fd686ff0eaf9339d3d4 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4d6e89827da9a9e019973ca6450c6ff72da462cf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d6e89827da9a9e019973ca6450c6ff72da462cf \
@@ -2103,17 +2186,16 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4eaf80ecb6c85abe44bb8eb193205f05cabe96e3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4eaf80ecb6c85abe44bb8eb193205f05cabe96e3 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4ec487ce34f4bbecfb3ba026c7b66de15b6b29f5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4ec487ce34f4bbecfb3ba026c7b66de15b6b29f5 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4ecf1fb965a7d4a1843a368feed8e359670deae5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4ecf1fb965a7d4a1843a368feed8e359670deae5 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4ee5918b078eeff1bf7f5dec92aca52480ef2de0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4ee5918b078eeff1bf7f5dec92aca52480ef2de0 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4f11778323302a45b98633df1306144c039bed42:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4f11778323302a45b98633df1306144c039bed42 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4f531ed5a0f94cd5ccd75a9e98c2d9acb91412f6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4f531ed5a0f94cd5ccd75a9e98c2d9acb91412f6 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4f5f7ba6a8f9af44185715cad4b32f97ba8421e2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4f5f7ba6a8f9af44185715cad4b32f97ba8421e2 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4f90593eb1cfb87a3b8c4abe4128c14257e1b09d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4f90593eb1cfb87a3b8c4abe4128c14257e1b09d \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4f9c09cc2bc23a7e174a79f6746335fd49c1b396:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4f9c09cc2bc23a7e174a79f6746335fd49c1b396 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/4fb2d0b6446f2ed45fd7e660b156062dfb0fe8f4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4fb2d0b6446f2ed45fd7e660b156062dfb0fe8f4 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/500329abac100a953a7396b54b36be57d333022f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/500329abac100a953a7396b54b36be57d333022f \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/503449ec12b0a93a569a95e9bc9d492be520b4b3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/503449ec12b0a93a569a95e9bc9d492be520b4b3 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/51120a75671e9834564daf885b68cd7da6787429:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/51120a75671e9834564daf885b68cd7da6787429 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/511c0062e66af2f3aaa0e3b3bea667c1cbe4384e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/511c0062e66af2f3aaa0e3b3bea667c1cbe4384e \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/511ced3df9a8ebaa7854f9b9ce80aaedcd5e8fc9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/511ced3df9a8ebaa7854f9b9ce80aaedcd5e8fc9 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/51209202eefa4becfe5ebbea942e718dfa21bb95:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/51209202eefa4becfe5ebbea942e718dfa21bb95 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/5123d2ef9f003c479015ad00df7c7dd19ca1d8ef:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5123d2ef9f003c479015ad00df7c7dd19ca1d8ef \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/512b4e536b36b51814fe660ba657dde901bb3c22:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/512b4e536b36b51814fe660ba657dde901bb3c22 \
@@ -2124,25 +2206,24 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/51ba6b8b82cd5efcde0385d66869502f816e48eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/51ba6b8b82cd5efcde0385d66869502f816e48eb \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/51dcf81032ff6087103afeb66cb17da7b993c476:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/51dcf81032ff6087103afeb66cb17da7b993c476 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/51e228e60857192d3cbc808a8598d1509ee648e7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/51e228e60857192d3cbc808a8598d1509ee648e7 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/51e6e89135b8b104055afc094d85e92dad3082cc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/51e6e89135b8b104055afc094d85e92dad3082cc \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/51f69226fda9e4d2170c9cbb150ef4dca4e02666:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/51f69226fda9e4d2170c9cbb150ef4dca4e02666 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/52b4ab222749746124cc57ea26fac451b06afcfb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/52b4ab222749746124cc57ea26fac451b06afcfb \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/52e7d6adce8c6d7217b0323514f04dff5c92928d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/52e7d6adce8c6d7217b0323514f04dff5c92928d \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/53555890e6d8dc159b9702b82f6bc0e34f3447de:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/53555890e6d8dc159b9702b82f6bc0e34f3447de \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/537bcb6dc7744f406d6c6dcff599538af8f9db52:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/537bcb6dc7744f406d6c6dcff599538af8f9db52 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/538fc1e59e21944090a45ba3d6f553e6ba9f7cc4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/538fc1e59e21944090a45ba3d6f553e6ba9f7cc4 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/53b254a43accdeccc11034349145594a3ae872d8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/53b254a43accdeccc11034349145594a3ae872d8 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/53bd0f8529af561c9bb9b2546b6030a401c72f65:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/53bd0f8529af561c9bb9b2546b6030a401c72f65 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/53f38393e36a35dab233cccd4c51191458fc5eb3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/53f38393e36a35dab233cccd4c51191458fc5eb3 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/5403dae1acdb1da75ccb94fb4a35980829ffb948:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5403dae1acdb1da75ccb94fb4a35980829ffb948 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/541e7a55bb469d1d01eb7da171c5a87baf5698f0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/541e7a55bb469d1d01eb7da171c5a87baf5698f0 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/54342c2022c2be0043faa6d690085aa1295580ec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/54342c2022c2be0043faa6d690085aa1295580ec \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/5528b1d0fdb48fbcf167d23ff9c7ad2132fbf872:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5528b1d0fdb48fbcf167d23ff9c7ad2132fbf872 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/556a98640a0e6f205939a4520a9c0a21402989ce:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/556a98640a0e6f205939a4520a9c0a21402989ce \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/558fcebfaa056632c51695fe0d596b9dc8036e34:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/558fcebfaa056632c51695fe0d596b9dc8036e34 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/559222e3b109cd228e603703150419c010c6be64:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/559222e3b109cd228e603703150419c010c6be64 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/565c5ea99d933e676760dcdd2ecb951522b5546e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/565c5ea99d933e676760dcdd2ecb951522b5546e \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/56768342f090d45fad34b6965f07ac76a0943d7b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/56768342f090d45fad34b6965f07ac76a0943d7b \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/56cb10847a0e6a2a3d4e0722891e9e33c6c448f6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/56cb10847a0e6a2a3d4e0722891e9e33c6c448f6 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/57202f0f3c07f2cfe2e6b817980a7f4b1b9e9692:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/57202f0f3c07f2cfe2e6b817980a7f4b1b9e9692 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/573f9c470e9e9de6b5733fa146186826112213e5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/573f9c470e9e9de6b5733fa146186826112213e5 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/578d4d31b4c0eb0a207d49a18fd2f6e4830c1574:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/578d4d31b4c0eb0a207d49a18fd2f6e4830c1574 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/57d9bae9613347669b07262bfc39dc7903a075f8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/57d9bae9613347669b07262bfc39dc7903a075f8 \
@@ -2152,7 +2233,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/584cb56ed7af5af9308a9fde8a489e72aea20164:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/584cb56ed7af5af9308a9fde8a489e72aea20164 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/588c361c5fe9acf444786ed898b201beb9c2b53f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/588c361c5fe9acf444786ed898b201beb9c2b53f \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/5900a309b539823d5c1718d6f881cf66da08d53a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5900a309b539823d5c1718d6f881cf66da08d53a \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/592477c640d4fab3b1f5e873ee56ae5c4c91bf5d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/592477c640d4fab3b1f5e873ee56ae5c4c91bf5d \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/592657f407917aa69f86fd996587f223e372ed69:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/592657f407917aa69f86fd996587f223e372ed69 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/599bb09d0e033bc9ad5434131ed876c4cd677955:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/599bb09d0e033bc9ad5434131ed876c4cd677955 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/599fb43f38dd3f6a92cf3b4e90d0a63f52399677:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/599fb43f38dd3f6a92cf3b4e90d0a63f52399677 \
@@ -2174,7 +2254,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/5cb014908a947ff955d413d34fb9e2633ec2356b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5cb014908a947ff955d413d34fb9e2633ec2356b \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/5cc087981ea28d4ccb0cac18fd54338f3de72b5a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5cc087981ea28d4ccb0cac18fd54338f3de72b5a \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/5d043f7c9bd64902915a1814f67a50a60d575499:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5d043f7c9bd64902915a1814f67a50a60d575499 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/5d5804b87f0f69c94fdef6379ba18c34d4958f1c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5d5804b87f0f69c94fdef6379ba18c34d4958f1c \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/5d66d2552c846eeaf124825c1b07456633450a16:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5d66d2552c846eeaf124825c1b07456633450a16 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/5db653304f344cc36f3567a7cf01ecaab30d5733:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5db653304f344cc36f3567a7cf01ecaab30d5733 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/5dba8a5bd6d0f9299a1c9a6c4e41381146ee90c3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5dba8a5bd6d0f9299a1c9a6c4e41381146ee90c3 \
@@ -2190,9 +2269,12 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/5fab4bc131693d2a953bd7c6f14773c42f257548:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5fab4bc131693d2a953bd7c6f14773c42f257548 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/5fb175feb9995531d488b2e38a66c0a5f41de93c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5fb175feb9995531d488b2e38a66c0a5f41de93c \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/6025a477a0a8006d8882b7716987b403d365e6d8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6025a477a0a8006d8882b7716987b403d365e6d8 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/604e6a93fe502bed7f0696868f4d56bc45d0d7c2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/604e6a93fe502bed7f0696868f4d56bc45d0d7c2 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/6050c39cfbac6f98905b6c105d4e3dc11546e745:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6050c39cfbac6f98905b6c105d4e3dc11546e745 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/60ab761a633ff71fc752341ca00596e119f8b67e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/60ab761a633ff71fc752341ca00596e119f8b67e \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/60f766a02511ef4537c5f450416c551e5f1c02d7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/60f766a02511ef4537c5f450416c551e5f1c02d7 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/6109e91f449bc45108183c93142171455f04b624:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6109e91f449bc45108183c93142171455f04b624 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/618713be0596031659afebd1b3f4817ae778e3bd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/618713be0596031659afebd1b3f4817ae778e3bd \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/62430813b792802b0f784de506019ca281b5bdca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/62430813b792802b0f784de506019ca281b5bdca \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/6252be89a7921f3dda8916b29c3042f5e3bdd7ab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6252be89a7921f3dda8916b29c3042f5e3bdd7ab \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/62fb5b04fd5048af6d31bd713a7f1cceb641d1fc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/62fb5b04fd5048af6d31bd713a7f1cceb641d1fc \
@@ -2226,9 +2308,10 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/6878901c84bc4cfa2850214dfdabe7f95507628e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6878901c84bc4cfa2850214dfdabe7f95507628e \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/68a67496ea83fda867378d9bdba5523f5a7cd98f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/68a67496ea83fda867378d9bdba5523f5a7cd98f \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/68de59ad9ded07685da487632137ac3385838947:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/68de59ad9ded07685da487632137ac3385838947 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/6915b4ddba0bf05cc347c09db4849d1c27bf32fe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6915b4ddba0bf05cc347c09db4849d1c27bf32fe \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/6991da62eceda0fc53bceb3c214f16cbf6ce5b80:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6991da62eceda0fc53bceb3c214f16cbf6ce5b80 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/699603b8b98846f9ef65c5e2e73534aab54cf955:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/699603b8b98846f9ef65c5e2e73534aab54cf955 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/699b7f753a1222047c2e67a1eed5a343db1bb9e7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/699b7f753a1222047c2e67a1eed5a343db1bb9e7 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/6a02109dd68aea2bb7e150b9fba92af39a028f89:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6a02109dd68aea2bb7e150b9fba92af39a028f89 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/6a44209235299b5fb508688796c711d1ad43ca78:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6a44209235299b5fb508688796c711d1ad43ca78 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/6a63b7b5a4effc178f133c7faeafec6fac038fbd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6a63b7b5a4effc178f133c7faeafec6fac038fbd \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/6a8e439e2c1fe3a5c2859e57516a88e12cbace0d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6a8e439e2c1fe3a5c2859e57516a88e12cbace0d \
@@ -2249,7 +2332,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/6d57078cb8a78308ab517eca6051bb64965950fd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6d57078cb8a78308ab517eca6051bb64965950fd \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/6d9c017cda4070a17f5990fc2322cd0aadca1a54:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6d9c017cda4070a17f5990fc2322cd0aadca1a54 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/6db3a4c3c9ad5e611c378b8b97b538ad80194604:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6db3a4c3c9ad5e611c378b8b97b538ad80194604 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/6de94a0c46d353e5f6fa040670ee00a5aaa2c3ea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6de94a0c46d353e5f6fa040670ee00a5aaa2c3ea \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/6e1fa20326c6d900cfca5ceb8daeae1c30b0fbe4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6e1fa20326c6d900cfca5ceb8daeae1c30b0fbe4 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/6e432c7faab0134f537937831f51c0a50dce1345:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6e432c7faab0134f537937831f51c0a50dce1345 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/6e8f1d91e9be172a24836c3b4d253372d3fb7466:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6e8f1d91e9be172a24836c3b4d253372d3fb7466 \
@@ -2260,6 +2342,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/6f6298590030e351a892bb008fc3d56f3cce8996:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6f6298590030e351a892bb008fc3d56f3cce8996 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/6fcd844f87de4d2ed6faf12b73376719215bfd23:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6fcd844f87de4d2ed6faf12b73376719215bfd23 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/70007ef48f324c4e76df7adeb4370456906adaf8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/70007ef48f324c4e76df7adeb4370456906adaf8 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/701173743be205298c3cbffc0e4c04deca73bc18:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/701173743be205298c3cbffc0e4c04deca73bc18 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/70347859cd441f5c6fe33e8c7979d7e5b463df92:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/70347859cd441f5c6fe33e8c7979d7e5b463df92 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/705176c0b2bcdd1d425e09013c08e340c7615a71:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/705176c0b2bcdd1d425e09013c08e340c7615a71 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/70c59bf03a5619102907954bd14e40f2dbc09783:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/70c59bf03a5619102907954bd14e40f2dbc09783 \
@@ -2282,6 +2365,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/73ca9eaf14b4388be0fa82c7d0487ea31f2b4f86:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/73ca9eaf14b4388be0fa82c7d0487ea31f2b4f86 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/74337ba62414cf899ebf0278f479f698a49f921d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/74337ba62414cf899ebf0278f479f698a49f921d \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/745bd29be45667514b4000e9cdb70cdecad0f02c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/745bd29be45667514b4000e9cdb70cdecad0f02c \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/749bb5b8d51206c563a6cd9f0908d11428b5387e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/749bb5b8d51206c563a6cd9f0908d11428b5387e \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/74a33158136ff9bf2c0efbe64f1bf41757e75464:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/74a33158136ff9bf2c0efbe64f1bf41757e75464 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/74d1fca875b383bef4da338a1541e5c4acbfbd2c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/74d1fca875b383bef4da338a1541e5c4acbfbd2c \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/74d281701f2dd91c87e7ab66ffb9cdd4ef1b44dc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/74d281701f2dd91c87e7ab66ffb9cdd4ef1b44dc \
@@ -2307,7 +2391,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/78edfa627409879d46587c231276c785afd3a56a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/78edfa627409879d46587c231276c785afd3a56a \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/78ef1d7d15c3208010967e2174636222de6d677c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/78ef1d7d15c3208010967e2174636222de6d677c \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/795a84113198f68baef0813651e19706c8b69f90:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/795a84113198f68baef0813651e19706c8b69f90 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/79a05feaf6a780df874f72a208027ae4fd86c29e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/79a05feaf6a780df874f72a208027ae4fd86c29e \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/79a43516dd8efb01df007e365939dae64555fcc0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/79a43516dd8efb01df007e365939dae64555fcc0 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/79d1ff471da7c25fbfc4454638c7f82352f3515d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/79d1ff471da7c25fbfc4454638c7f82352f3515d \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/7a94e684855a212be73e326109f25042509b2386:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7a94e684855a212be73e326109f25042509b2386 \
@@ -2348,7 +2431,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/823f4ae998ff258e2caa29f5f8265c1d4903547a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/823f4ae998ff258e2caa29f5f8265c1d4903547a \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/826a2fc8d6418cc9e8aebf079a2ec15557667915:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/826a2fc8d6418cc9e8aebf079a2ec15557667915 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/826ebb453eeebd197740346cbacb7f69378993d8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/826ebb453eeebd197740346cbacb7f69378993d8 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/8273152524aec70f02aba3723ca95933b07a0f59:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8273152524aec70f02aba3723ca95933b07a0f59 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/834bb6a810121642b3e5e763bf0ede509b3bdef4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/834bb6a810121642b3e5e763bf0ede509b3bdef4 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/837abe01017e96f035a5e22116e8792de3b338e0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/837abe01017e96f035a5e22116e8792de3b338e0 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/83e4bc01b0398306b4e68e127c0974c458d8b5fd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/83e4bc01b0398306b4e68e127c0974c458d8b5fd \
@@ -2371,6 +2453,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/86a7398aba038b56a2fad5c764261eb84ad251c0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/86a7398aba038b56a2fad5c764261eb84ad251c0 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/86caec493f406577aadc8cde751fcb83df992a0f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/86caec493f406577aadc8cde751fcb83df992a0f \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/86d31677504bdb9069901b98ea91b23ec946fbf3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/86d31677504bdb9069901b98ea91b23ec946fbf3 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/86d432b6b376ed516084a4b3722093d657f450cd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/86d432b6b376ed516084a4b3722093d657f450cd \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/8711697a77e748e19e67fcfee3b67dde2f2a15cd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8711697a77e748e19e67fcfee3b67dde2f2a15cd \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/8753975cf8dadff36ae10ea1be1977775e5e6a4f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8753975cf8dadff36ae10ea1be1977775e5e6a4f \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/8790d26a3eeac02375ffc0170141b9c6c9f3c86d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8790d26a3eeac02375ffc0170141b9c6c9f3c86d \
@@ -2399,7 +2482,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/8de584c18ee1938152e8a6e83d387d6ebd6febc4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8de584c18ee1938152e8a6e83d387d6ebd6febc4 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/8df9c1a1841553edad299f22407f592a58e41219:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8df9c1a1841553edad299f22407f592a58e41219 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/8e2a9ae1482ecf1ee46f165fa755a672ff3f5f31:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8e2a9ae1482ecf1ee46f165fa755a672ff3f5f31 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/8e3cdc323e4670d7afce0e235cb7b5f6795f1ca6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8e3cdc323e4670d7afce0e235cb7b5f6795f1ca6 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/8e7bf5c0e36f306b4e23b5b14ffa84329d4a1133:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8e7bf5c0e36f306b4e23b5b14ffa84329d4a1133 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/8e9206a22e372628431c47d903e1d184ae803dce:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8e9206a22e372628431c47d903e1d184ae803dce \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/8e9b81488b6a0b426aa54c275476c314edaa3e52:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8e9b81488b6a0b426aa54c275476c314edaa3e52 \
@@ -2407,6 +2489,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/8ea294ba7e8974c9a530dc2f91c99c37ea1f9da6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8ea294ba7e8974c9a530dc2f91c99c37ea1f9da6 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/8eb0af89d3bb0a911343a67add8a1aaff558db82:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8eb0af89d3bb0a911343a67add8a1aaff558db82 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/8ef1cfdaf87fff03774075e2276366a60d1052d4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8ef1cfdaf87fff03774075e2276366a60d1052d4 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/8f7f4220c691ff3f62d341cdae22841439a7deed:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8f7f4220c691ff3f62d341cdae22841439a7deed \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/90112ea5cfecbbf882424ce80e3745a4ae9f4d15:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/90112ea5cfecbbf882424ce80e3745a4ae9f4d15 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9058ba530783451627f418601b63596c4360b147:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9058ba530783451627f418601b63596c4360b147 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/90a991190067115c9ab9304cbd8a6b973994f77d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/90a991190067115c9ab9304cbd8a6b973994f77d \
@@ -2436,11 +2519,13 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/952689a81906beaa4d9cfb5bb7ea7f80d330a00b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/952689a81906beaa4d9cfb5bb7ea7f80d330a00b \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9548a5bdc56fd35944c4ac2dda426bc1678e7457:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9548a5bdc56fd35944c4ac2dda426bc1678e7457 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/958b4d24d84d21709b5a40d2397abd77a31ee489:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/958b4d24d84d21709b5a40d2397abd77a31ee489 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9599839564e3e77019049633f80631e54de0078e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9599839564e3e77019049633f80631e54de0078e \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/95d01e88d15611907af0c26d27f0f7b2859ec2e1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/95d01e88d15611907af0c26d27f0f7b2859ec2e1 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/967b922191c37a3e09f5921750e4a31846f02e3b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/967b922191c37a3e09f5921750e4a31846f02e3b \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9705033e0c7cf225c82a8396a817e7f266641b74:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9705033e0c7cf225c82a8396a817e7f266641b74 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/970db18b2ba25cd8ca3dfa9527933c8f9fd25bce:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/970db18b2ba25cd8ca3dfa9527933c8f9fd25bce \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/975e0a54bf3fc70e29d4b6d3ab20a86402388181:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/975e0a54bf3fc70e29d4b6d3ab20a86402388181 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/979727e86a66f8e8858e51879d014f987f6bdf8e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/979727e86a66f8e8858e51879d014f987f6bdf8e \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/97d2d668ddfd67c8c81136fd0fac4dadb4f3c4a1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/97d2d668ddfd67c8c81136fd0fac4dadb4f3c4a1 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/980f829dfe40ace2cec3566ba6c31864f9e08f36:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/980f829dfe40ace2cec3566ba6c31864f9e08f36 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/986dc82ebbf5e3496223c911a31f45926d2d33ac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/986dc82ebbf5e3496223c911a31f45926d2d33ac \
@@ -2452,12 +2537,14 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/99819af2a27a5e5d7ac95510b5868d4c15d8856b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/99819af2a27a5e5d7ac95510b5868d4c15d8856b \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/99a9b25ec39d9c776efa85de73ad056b84dcbb22:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/99a9b25ec39d9c776efa85de73ad056b84dcbb22 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9b0f046657d0720f02811467ef5158aa27b35e46:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9b0f046657d0720f02811467ef5158aa27b35e46 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9b6d80f849eac9b8c6ce20013433837502cf74e9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9b6d80f849eac9b8c6ce20013433837502cf74e9 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9b8f4fc5c35ffdc06263b4866375603f24783ae2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9b8f4fc5c35ffdc06263b4866375603f24783ae2 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9b934bd51bdcbaea92a51c946e3a5baba270c923:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9b934bd51bdcbaea92a51c946e3a5baba270c923 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9be3b78b17869fa51a59a154e50a83babaa333e1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9be3b78b17869fa51a59a154e50a83babaa333e1 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9be6643a6cbb2381eb40bccb83992efedc608532:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9be6643a6cbb2381eb40bccb83992efedc608532 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9c157a4a818e7151d37de22f5f1323c95827d763:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9c157a4a818e7151d37de22f5f1323c95827d763 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9c306bb1e22f1aa84e95f09f8cba5e98fd853f7a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9c306bb1e22f1aa84e95f09f8cba5e98fd853f7a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9c8c864f29c68e84365645a7f21aaff207395a29:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9c8c864f29c68e84365645a7f21aaff207395a29 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9ca98453eb56226c0daa3f3f2bdb85f0121845e5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9ca98453eb56226c0daa3f3f2bdb85f0121845e5 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9d1c2da6e94307a2b95129896dc0047ee085c9d4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9d1c2da6e94307a2b95129896dc0047ee085c9d4 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9d2869bad82a6288dbfeb1c37e1ccbce6a9cb31b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9d2869bad82a6288dbfeb1c37e1ccbce6a9cb31b \
@@ -2475,7 +2562,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9f378a4a69a62c0ca251c50c58319f46a8b7cf18:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9f378a4a69a62c0ca251c50c58319f46a8b7cf18 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9f40d88075a93245c299abe4eb8195f51d52f81e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9f40d88075a93245c299abe4eb8195f51d52f81e \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9f572f6610a7dd4e429e06c96a96c2968b9d8d03:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9f572f6610a7dd4e429e06c96a96c2968b9d8d03 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9f9ea7385f1c0580b8dd3d81f9b56b70511edde2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9f9ea7385f1c0580b8dd3d81f9b56b70511edde2 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/9fdfbd2416304be3fa4093469a3d8e1b947b89db:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9fdfbd2416304be3fa4093469a3d8e1b947b89db \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a003ea11eb4dbdc9f50ab31325e6b86a37b396bc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a003ea11eb4dbdc9f50ab31325e6b86a37b396bc \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a0507371af4a5d2114f7a8b70c7bd47c771bbd65:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a0507371af4a5d2114f7a8b70c7bd47c771bbd65 \
@@ -2501,7 +2587,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a621d3e9fcbb1628498fd6399be6d4dfff13fb30:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a621d3e9fcbb1628498fd6399be6d4dfff13fb30 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a642e04c2d7b1db402b577a948c75bdee9b2f9b9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a642e04c2d7b1db402b577a948c75bdee9b2f9b9 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a655a0f243b8f4e3363dd9746e337f806d0b11d4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a655a0f243b8f4e3363dd9746e337f806d0b11d4 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a65f3eb51faa87e8cb646288ed5b2903f231956e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a65f3eb51faa87e8cb646288ed5b2903f231956e \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a65671c0d41225ee1e693787966b0c18e239b531:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a65671c0d41225ee1e693787966b0c18e239b531 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a66ddacab7317673a9a9d208a76f29742c3e4f2d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a66ddacab7317673a9a9d208a76f29742c3e4f2d \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a6be41f7341db492c755d7db6ae91716928b296e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a6be41f7341db492c755d7db6ae91716928b296e \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a73f7de579bb6304473db135c5f829641eb3d477:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a73f7de579bb6304473db135c5f829641eb3d477 \
@@ -2510,11 +2596,13 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a796140124bbd9aa98de522a8990436a4b38eddc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a796140124bbd9aa98de522a8990436a4b38eddc \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a79ee2ebedf10e63a885e5f36d4588b54a6143db:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a79ee2ebedf10e63a885e5f36d4588b54a6143db \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a7b0798cc1a98c1382d5493c9e9edb6b7723369e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a7b0798cc1a98c1382d5493c9e9edb6b7723369e \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a7c460d97d5c2e59d28389c7cae092a69288189b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a7c460d97d5c2e59d28389c7cae092a69288189b \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a7e4f65929cfd500c93740ed12fcef8c96d2cb2b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a7e4f65929cfd500c93740ed12fcef8c96d2cb2b \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a8ce7ad9c8d2af43e9d8ef8b45277b96cda6dddf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a8ce7ad9c8d2af43e9d8ef8b45277b96cda6dddf \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a90e6f481dacdcd9b774992000ca3049a8100de5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a90e6f481dacdcd9b774992000ca3049a8100de5 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a91610c3ee72224e6cbec64a16937b29b7dd9294:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a91610c3ee72224e6cbec64a16937b29b7dd9294 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a97d3774ba59f622352c1a2e06dec4a14bec5d11:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a97d3774ba59f622352c1a2e06dec4a14bec5d11 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a99f4344964eeced6bab328b34f68558d20cd272:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a99f4344964eeced6bab328b34f68558d20cd272 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a9a4d8680d28f834d5dca2a3827627549ccd81ee:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a9a4d8680d28f834d5dca2a3827627549ccd81ee \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a9b45f440003691d9dbd8f3cf035d92e5fcf79d3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a9b45f440003691d9dbd8f3cf035d92e5fcf79d3 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/a9dde30ce046cfc7eda862a5fb01ad8f4d13a180:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a9dde30ce046cfc7eda862a5fb01ad8f4d13a180 \
@@ -2527,7 +2615,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ac0f1523cbfbf43fbc7747a406488b41f2927bb8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ac0f1523cbfbf43fbc7747a406488b41f2927bb8 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ac71f52c5e2510452736e3a041e86c862b981f94:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ac71f52c5e2510452736e3a041e86c862b981f94 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ad057bd572b1a7f91bd3649948090e5ba733ead2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ad057bd572b1a7f91bd3649948090e5ba733ead2 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ad11bf0efc95742e672ecc818fc3ccddc0499b19:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ad11bf0efc95742e672ecc818fc3ccddc0499b19 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ad28ed2fbf81bcb9a9c77555d35aee0c6e7595f7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ad28ed2fbf81bcb9a9c77555d35aee0c6e7595f7 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ad9b8f2368832a6383e9dc5f469401b0af8ff1c0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ad9b8f2368832a6383e9dc5f469401b0af8ff1c0 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ada19009d88610b931c851a178000ac4765c9a79:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ada19009d88610b931c851a178000ac4765c9a79 \
@@ -2554,7 +2641,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/b3743a5af79cfc8442cdb25f429db906b974ec0b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b3743a5af79cfc8442cdb25f429db906b974ec0b \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/b46d71e882b0807f2413309adc4c898293384fab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b46d71e882b0807f2413309adc4c898293384fab \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/b4e75158ddc9d3dcbe92033c8f1a619807d06c0c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b4e75158ddc9d3dcbe92033c8f1a619807d06c0c \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/b52ccc9e24f43c90e74ccf97a1afbd85c50b0fe9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b52ccc9e24f43c90e74ccf97a1afbd85c50b0fe9 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/b4e8b599003895e67f4b048eb2bd1449dd3e1af5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b4e8b599003895e67f4b048eb2bd1449dd3e1af5 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/b56c05a801bb0aaac8eb22e4bb598603797fa725:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b56c05a801bb0aaac8eb22e4bb598603797fa725 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/b588c1de833f398eab01480fae9f41c5397977b5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b588c1de833f398eab01480fae9f41c5397977b5 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/b58d55d0a333515bdf86a9eca2bd51716e9a7d42:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b58d55d0a333515bdf86a9eca2bd51716e9a7d42 \
@@ -2571,13 +2658,11 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/b8b35dca99a90ea1d4e633065d2f2697ff65a063:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b8b35dca99a90ea1d4e633065d2f2697ff65a063 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/b8cc1b88c5e27e85553047549af1c4d21081dd67:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b8cc1b88c5e27e85553047549af1c4d21081dd67 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/b8d4aa2111c1261409dba5d200e729d1c3dda1f4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b8d4aa2111c1261409dba5d200e729d1c3dda1f4 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/b8fc3cac242855885970b3f1ad49b2012d9272e5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b8fc3cac242855885970b3f1ad49b2012d9272e5 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/b91a8adf126572dd1548ebc3b7811bcec1c9fb5a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b91a8adf126572dd1548ebc3b7811bcec1c9fb5a \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/b99cfc826500a8d0d4caa08b51be238ff4ad9899:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b99cfc826500a8d0d4caa08b51be238ff4ad9899 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/b9ddc223139c3b50450a2be037875a81a7075908:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b9ddc223139c3b50450a2be037875a81a7075908 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/b9e43c93c57fe062ef714e64898535f47a1eb2b4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b9e43c93c57fe062ef714e64898535f47a1eb2b4 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ba765d7b0fe429146cdcd76a8caf4e3f481e4db1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ba765d7b0fe429146cdcd76a8caf4e3f481e4db1 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ba7de4fefbc77640c6d39003a6d41bff24ebef68:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ba7de4fefbc77640c6d39003a6d41bff24ebef68 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/baab169a9f81f95b635f4dfa844f1a3fdac9828a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/baab169a9f81f95b635f4dfa844f1a3fdac9828a \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/bacb68ae8ec7a4f7da6de9a09a930d4ba95c492f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bacb68ae8ec7a4f7da6de9a09a930d4ba95c492f \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/bacca7a889e56d4c45809521ce44ed09cd40c17d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bacca7a889e56d4c45809521ce44ed09cd40c17d \
@@ -2596,13 +2681,13 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/bc98319ae3ae36fbcdcd0c28ba9fb32c30f5053c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bc98319ae3ae36fbcdcd0c28ba9fb32c30f5053c \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/bca6b70a584d95308f251d14e2367b2d3ef900b0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bca6b70a584d95308f251d14e2367b2d3ef900b0 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/bcfcb7cb7fdb92891b7091881f523150cc868ae5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bcfcb7cb7fdb92891b7091881f523150cc868ae5 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/bd20d33bee05ce34106dd5139b5a34c94cb4f8d9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bd20d33bee05ce34106dd5139b5a34c94cb4f8d9 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/bd7257025f8d5084ce16ed2e561ce6c4e8de8836:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bd7257025f8d5084ce16ed2e561ce6c4e8de8836 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/bd7e2738851391a6ed7ee93ff1c6fbf1ca8d71cd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bd7e2738851391a6ed7ee93ff1c6fbf1ca8d71cd \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/bd8004ae985789827ad1399188e510e15e3dcc94:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bd8004ae985789827ad1399188e510e15e3dcc94 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/bd8cb799967c24d3bda4631ca4714f943edabcf3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bd8cb799967c24d3bda4631ca4714f943edabcf3 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/bda41d58e26f1c88d59f16f4a650d5d42793693d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bda41d58e26f1c88d59f16f4a650d5d42793693d \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/bdcf18a3477d92447472f8030a8e4a11859585f0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bdcf18a3477d92447472f8030a8e4a11859585f0 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/be0f0593dcd0232daf55e244fe8ecceb5178e61d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/be0f0593dcd0232daf55e244fe8ecceb5178e61d \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/be2787523e5fe8553183bbfa068f337e138c0d3c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/be2787523e5fe8553183bbfa068f337e138c0d3c \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/be2ced1989278d90950257e24058d9b4d102797c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/be2ced1989278d90950257e24058d9b4d102797c \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/be2f7b82fa5a2a80d37a65cbf4df29c43c21acb6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/be2f7b82fa5a2a80d37a65cbf4df29c43c21acb6 \
@@ -2611,6 +2696,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/bec6652df75aa7dd5315256e0359baf11c3ea2ce:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bec6652df75aa7dd5315256e0359baf11c3ea2ce \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/bec7e734b51b00c4f18a428b9d2bbebe4a2f899f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bec7e734b51b00c4f18a428b9d2bbebe4a2f899f \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/bee6f0cb65a3eace3300fe95ecd0d98febc85312:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bee6f0cb65a3eace3300fe95ecd0d98febc85312 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/bf159b7b02128fb69ff52e49f228b40f28d83d90:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bf159b7b02128fb69ff52e49f228b40f28d83d90 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/bf306f3cabfed7a8839c5f9f5f691d77601ac663:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bf306f3cabfed7a8839c5f9f5f691d77601ac663 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/bf41bac23bc5a84d49962054b7cfac7145add72c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bf41bac23bc5a84d49962054b7cfac7145add72c \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/bf818c431c83a14e35ae56e758b9cbad435820da:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bf818c431c83a14e35ae56e758b9cbad435820da \
@@ -2625,9 +2711,9 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/c06314977701618fa1c2e04c8cd87c118cd361a1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c06314977701618fa1c2e04c8cd87c118cd361a1 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/c072f88fd936b7be20331d0408dbc37c668ab95d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c072f88fd936b7be20331d0408dbc37c668ab95d \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/c0887b00f31d267ce975d6d3864630a02a0ea83e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c0887b00f31d267ce975d6d3864630a02a0ea83e \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/c0a89105085457e137d66bbb86c42e8f36d3d77d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c0a89105085457e137d66bbb86c42e8f36d3d77d \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/c0b6742265d6982e313560458a658932255beaff:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c0b6742265d6982e313560458a658932255beaff \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/c0fc260bff85932fbd1ed145dbcc81344dac0aa0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c0fc260bff85932fbd1ed145dbcc81344dac0aa0 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/c11edde5d73a1ed976a64daecca6c0685bce6f1c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c11edde5d73a1ed976a64daecca6c0685bce6f1c \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/c1a29051cc02074138a10433f4398754102df4db:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c1a29051cc02074138a10433f4398754102df4db \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/c1ce2871957bfefb7fa80bbf8410ee47911b1711:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c1ce2871957bfefb7fa80bbf8410ee47911b1711 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/c2def3eeb22e15ee2fdb64fb08c2407cf5b938ef:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c2def3eeb22e15ee2fdb64fb08c2407cf5b938ef \
@@ -2658,6 +2744,8 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/c7f2c3bc828a59c54a8f52ec24dff04ec779646c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c7f2c3bc828a59c54a8f52ec24dff04ec779646c \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/c8142a68ff2acb3330b79f3c4ab355650256298b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c8142a68ff2acb3330b79f3c4ab355650256298b \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/c843d3415eb40e3b81766714f68b364383e9eb9d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c843d3415eb40e3b81766714f68b364383e9eb9d \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/c893666d19539dbebccecc15113b3c2bad045e03:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c893666d19539dbebccecc15113b3c2bad045e03 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/c8f7442153af92533bac7072f2e971153e740840:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c8f7442153af92533bac7072f2e971153e740840 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/c93f8565053e603ec2fb9e56f750f57ef4f712a5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c93f8565053e603ec2fb9e56f750f57ef4f712a5 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/c97ff67271b1ee133a1038d5b8bdf328bfc1af69:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c97ff67271b1ee133a1038d5b8bdf328bfc1af69 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/c9915d0a1a6904be1fac38311f318c828bb05ee5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c9915d0a1a6904be1fac38311f318c828bb05ee5 \
@@ -2686,7 +2774,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/cd72152f3de1edf20440e579275e453b5e643dd1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cd72152f3de1edf20440e579275e453b5e643dd1 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/cd8c3a8231d409de5b88ede27f3dfdb1bfdc9058:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cd8c3a8231d409de5b88ede27f3dfdb1bfdc9058 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/cdb2c5e9baef7c5f07cd2bc891c49fc1be9dca24:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cdb2c5e9baef7c5f07cd2bc891c49fc1be9dca24 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ce1d22667a31615f46362c927ba69973386cff1f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ce1d22667a31615f46362c927ba69973386cff1f \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/cf159f86dce93d67804e5942453f742f8d9e1594:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cf159f86dce93d67804e5942453f742f8d9e1594 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/cf177d90b5fc108d697d1eedae6f4c24bd5ad7d6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cf177d90b5fc108d697d1eedae6f4c24bd5ad7d6 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/cf182434a1310c64851bb7c2e7eea190cc5b028b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cf182434a1310c64851bb7c2e7eea190cc5b028b \
@@ -2726,20 +2813,22 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/d6a478414148a86fbcd0890a456506ec72cd8951:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d6a478414148a86fbcd0890a456506ec72cd8951 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/d793fa68ee6b3a9596bf55804660d96f3b61b004:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d793fa68ee6b3a9596bf55804660d96f3b61b004 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/d81cb8cce52a62990541dd2a5a8b25879222f09e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d81cb8cce52a62990541dd2a5a8b25879222f09e \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/d85d13d0f4fe757f1406ce922a73b32647ac53d6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d85d13d0f4fe757f1406ce922a73b32647ac53d6 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/d8c07f416e2d8254e449a2859776ad129566cf53:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d8c07f416e2d8254e449a2859776ad129566cf53 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/d907b1e639125e86a82cf44be5b76a0aa5bf2c5e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d907b1e639125e86a82cf44be5b76a0aa5bf2c5e \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/d92b9dd176dfda690ef8a568af64e32c7fbe6d42:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d92b9dd176dfda690ef8a568af64e32c7fbe6d42 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/d93aa54f2dbf001d75c0632b3e889f7ba07b5d48:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d93aa54f2dbf001d75c0632b3e889f7ba07b5d48 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/d941cbd1cd14ecd34163a6d1a3cc757abbd59290:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d941cbd1cd14ecd34163a6d1a3cc757abbd59290 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/d9949ec6b7e67c48cb017c9f7e85cb70b061d945:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d9949ec6b7e67c48cb017c9f7e85cb70b061d945 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/d9bc765bbedc0cb6fff10c4d3ed691e3c80ed0eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d9bc765bbedc0cb6fff10c4d3ed691e3c80ed0eb \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/da22f1b3c78df4d55630d058cc35e16e903fd2eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/da22f1b3c78df4d55630d058cc35e16e903fd2eb \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/da5582fd5db7e1217bde0f07201e9d1f58b3deb2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/da5582fd5db7e1217bde0f07201e9d1f58b3deb2 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/da7c377625414533a0d3f0b85a41cd0f46fd417c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/da7c377625414533a0d3f0b85a41cd0f46fd417c \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/da97abb50c00461b735ca12abdac52fe67ff2a1b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/da97abb50c00461b735ca12abdac52fe67ff2a1b \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/dac3087902905ab72f45df6b07832322068ab219:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dac3087902905ab72f45df6b07832322068ab219 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/dac58b04e46a8c64b5bde28de2d29c8db0423928:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dac58b04e46a8c64b5bde28de2d29c8db0423928 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/dae132b886a7373eeb6a71607f74bdad55a3cad1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dae132b886a7373eeb6a71607f74bdad55a3cad1 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/dafc308a5ec9a4af05e89d97ad1d32924597faf4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dafc308a5ec9a4af05e89d97ad1d32924597faf4 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/db379276f69724ab8ff5a2a7d28d64499a06e2aa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/db379276f69724ab8ff5a2a7d28d64499a06e2aa \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/db4ffc67ed72753d331a01cd13e39e82fa878a1a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/db4ffc67ed72753d331a01cd13e39e82fa878a1a \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/dbad37857c6ef29b72ac0bb0610491e35e75d72b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dbad37857c6ef29b72ac0bb0610491e35e75d72b \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/dbb85488dfcd7195a3f1f759048c52205b4f4541:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dbb85488dfcd7195a3f1f759048c52205b4f4541 \
@@ -2805,8 +2894,8 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/e707be95e42281f427dd883b07ca047a8bf35017:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e707be95e42281f427dd883b07ca047a8bf35017 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/e72a24eb9e6d5e2d51a773a8ef57c78a8cf04343:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e72a24eb9e6d5e2d51a773a8ef57c78a8cf04343 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/e7602bcbf83ef183338d06fa557cbecc4029ec14:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e7602bcbf83ef183338d06fa557cbecc4029ec14 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/e76a071ce89a5cf832882aa3ccf47e5625f23d4f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e76a071ce89a5cf832882aa3ccf47e5625f23d4f \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/e7c5efc9f775e8d78e59d1a75fbc2a36adc9d88d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e7c5efc9f775e8d78e59d1a75fbc2a36adc9d88d \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/e7eef9f9776449968f3ae89ed81533cbec149ea9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e7eef9f9776449968f3ae89ed81533cbec149ea9 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/e7fe61b6e26871ca6638dc376f0f2089d4b07bd2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e7fe61b6e26871ca6638dc376f0f2089d4b07bd2 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/e8286024bbe60d6284af8ffef901fb5824777445:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e8286024bbe60d6284af8ffef901fb5824777445 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/e83223e7380722ac3257795f0b2628daa075d9cb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e83223e7380722ac3257795f0b2628daa075d9cb \
@@ -2834,17 +2923,17 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ebe0db14c8321e7b3a8eeec0d93d30aed50f529b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ebe0db14c8321e7b3a8eeec0d93d30aed50f529b \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ebec7c3441d3180d160e414d4b770465d54645c8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ebec7c3441d3180d160e414d4b770465d54645c8 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ebf4a915096ea6059114d836eb105041e3c6db5a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ebf4a915096ea6059114d836eb105041e3c6db5a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ec08eb2af6d223684626dd346e0ef80b8734f75b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec08eb2af6d223684626dd346e0ef80b8734f75b \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ec2c35758d2a9faaf0aca0b27f37c2671dac9e5a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec2c35758d2a9faaf0aca0b27f37c2671dac9e5a \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ec2df7ac09e51e3b7f702ef19a23e2333ef9ef87:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec2df7ac09e51e3b7f702ef19a23e2333ef9ef87 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ec4ada9e46a1509e4538ec045fa487b04d6a5436:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec4ada9e46a1509e4538ec045fa487b04d6a5436 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ec5f376f6b0475d305d94656a1ab8ca13b368731:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec5f376f6b0475d305d94656a1ab8ca13b368731 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ec71cfa0dab51f19c13abebd4ea2fe32a55e731a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec71cfa0dab51f19c13abebd4ea2fe32a55e731a \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ec8091b57b3f177b81e52bfd9890e44fa4689061:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec8091b57b3f177b81e52bfd9890e44fa4689061 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ec89aeddc9675094254bbe1898601a08f3b7f5c4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec89aeddc9675094254bbe1898601a08f3b7f5c4 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ece9e4a8d1b3c13c69daa3afbfde1e4be8a14811:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ece9e4a8d1b3c13c69daa3afbfde1e4be8a14811 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ecefb5b0255c170e10b201c0187a24798cf58903:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ecefb5b0255c170e10b201c0187a24798cf58903 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ecfe63912eacb3202f1da3809993a61faf55529e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ecfe63912eacb3202f1da3809993a61faf55529e \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ed01070a7a866e7eb217dd7b3ae2e9dbb258c553:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ed01070a7a866e7eb217dd7b3ae2e9dbb258c553 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ed08ba9a116700ab7305981d1c2be07dc9f31c46:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ed08ba9a116700ab7305981d1c2be07dc9f31c46 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ed3fe2fe8ffd5413a4adf7ee5ae839beaa53e6f8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ed3fe2fe8ffd5413a4adf7ee5ae839beaa53e6f8 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ed56f54f6628072a9da932678c7997b4a0b94d9e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ed56f54f6628072a9da932678c7997b4a0b94d9e \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ed889bcc7333d4f71cbda0fa86942157aaead99f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ed889bcc7333d4f71cbda0fa86942157aaead99f \
@@ -2871,9 +2960,9 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/f2e6cda6bf4c38e9213cba7505e575904925eec9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f2e6cda6bf4c38e9213cba7505e575904925eec9 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/f2ed8ed6a9392ce7d257c6cea6d3713fb0937d3d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f2ed8ed6a9392ce7d257c6cea6d3713fb0937d3d \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/f3438d4f0d167742ede096ca2e7d6e991fd461a3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f3438d4f0d167742ede096ca2e7d6e991fd461a3 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/f362c838b72ba0fd53850ade1824a2dd4439d07d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f362c838b72ba0fd53850ade1824a2dd4439d07d \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/f3742c561cc06c66effc9e918c38112eaed6cdf2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f3742c561cc06c66effc9e918c38112eaed6cdf2 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/f3abe57baf680a091cbdb2ca91fb9d96e4a7e2ec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f3abe57baf680a091cbdb2ca91fb9d96e4a7e2ec \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/f3bd70b50d23f07268def7762bdf9a22ecd7aa8d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f3bd70b50d23f07268def7762bdf9a22ecd7aa8d \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/f3c1c8a9e212e8a654c6ebd20c74300ba1554cbf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f3c1c8a9e212e8a654c6ebd20c74300ba1554cbf \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/f3ccd98ca8ac3a8d57a21b61819b563a1663cb6e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f3ccd98ca8ac3a8d57a21b61819b563a1663cb6e \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/f43af2dbe6f8d1c9a7778eb4319384bb43ef4081:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f43af2dbe6f8d1c9a7778eb4319384bb43ef4081 \
@@ -2882,6 +2971,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/f4fbb3d7bfd0c9e92db59bd34b46732ed4ef1f79:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f4fbb3d7bfd0c9e92db59bd34b46732ed4ef1f79 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/f554ff5f07d64766157fcb0621db65983e9517ec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f554ff5f07d64766157fcb0621db65983e9517ec \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/f5bd6ae4f475aa8031a45a23e0bfde92331be14b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f5bd6ae4f475aa8031a45a23e0bfde92331be14b \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/f5e86f20dca25f7528284e34d57cc7ff31fed55c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f5e86f20dca25f7528284e34d57cc7ff31fed55c \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/f697d82cc10f4021e6c7e0ad4453f6eefae0b4e6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f697d82cc10f4021e6c7e0ad4453f6eefae0b4e6 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/f6ad0fda1ed9cc5e4eab64b414fcf2000b008573:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f6ad0fda1ed9cc5e4eab64b414fcf2000b008573 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/f770cbe0140de2c98bba433183188a4eaa613d0f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f770cbe0140de2c98bba433183188a4eaa613d0f \
@@ -2900,7 +2990,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/f9eb59fed5d73dbf177ff41b7592a6a6f5db6785:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f9eb59fed5d73dbf177ff41b7592a6a6f5db6785 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/fa32e5974a684d84e29e471a27b2c81a7673d1b4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fa32e5974a684d84e29e471a27b2c81a7673d1b4 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/fa56a2e0f29bf51c5af36daa3cafdc28424f7bc3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fa56a2e0f29bf51c5af36daa3cafdc28424f7bc3 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/fa7c63dbe71cf8bf1cddd3c1d0ce398b7867af66:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fa7c63dbe71cf8bf1cddd3c1d0ce398b7867af66 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/fa876254d33cd9ef695dc5e1dd99b4b70791834f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fa876254d33cd9ef695dc5e1dd99b4b70791834f \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/fa912e1b31049a911c7f5e55789e265831de3f8a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fa912e1b31049a911c7f5e55789e265831de3f8a \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/fa9e5596ca388371ebe673e2d64c5ff3073a4f5d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fa9e5596ca388371ebe673e2d64c5ff3073a4f5d \
@@ -2918,7 +3007,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/fc47b6445adbfa02e37c7f39adbb7985b5b113d1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fc47b6445adbfa02e37c7f39adbb7985b5b113d1 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/fc5f125e2a51f9dead11f8bb289f4edc63764980:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fc5f125e2a51f9dead11f8bb289f4edc63764980 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/fcd874811fa4ab93f7466e67e8f708a1796fcd8f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fcd874811fa4ab93f7466e67e8f708a1796fcd8f \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/fce720317a1a1cd26374ab3aa09f3d5e45163363:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fce720317a1a1cd26374ab3aa09f3d5e45163363 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/fcf77e35832a2ee166e0d35551e7fecafa561983:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fcf77e35832a2ee166e0d35551e7fecafa561983 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/fd425daefebd7d60fbb9334106ca33d6186935b8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fd425daefebd7d60fbb9334106ca33d6186935b8 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/fdcd17e7ce9a0ee20d653534d401feeb503e0bd5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fdcd17e7ce9a0ee20d653534d401feeb503e0bd5 \
@@ -2935,275 +3023,275 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/ffe2d4e553306bb6d34b4d5572b70e7dc99b01a3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ffe2d4e553306bb6d34b4d5572b70e7dc99b01a3 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/confseqs/fffa16643461abba717686cb2e26a5fa64619dac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fffa16643461abba717686cb2e26a5fa64619dac \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests_symbolic_link_mapping:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests_symbolic_link_mapping \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/01088a1ceb1e2237e3b9e46f528db6412c699bfe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/01088a1ceb1e2237e3b9e46f528db6412c699bfe \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/0393bb5c310d28c3d3c1d5c4a678bea3263a065e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0393bb5c310d28c3d3c1d5c4a678bea3263a065e \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/03a8e5bca5490b6dff8818652ca690b8a16f4485:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/03a8e5bca5490b6dff8818652ca690b8a16f4485 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/03d6ab5d8a11f5dd36f54371c3b78cd6008309e2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/03d6ab5d8a11f5dd36f54371c3b78cd6008309e2 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/03d9cfeaddef094ba388a0aa0f0a855919a203e9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/03d9cfeaddef094ba388a0aa0f0a855919a203e9 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/05e979c9a161fddc8a2d23fddbe30364bde3d2a5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/05e979c9a161fddc8a2d23fddbe30364bde3d2a5 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/06898589f90e21d6a7940580370d283b8bffdd76:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/06898589f90e21d6a7940580370d283b8bffdd76 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/07b0c5d108e3bec3a64555bb2482e03aede01377:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/07b0c5d108e3bec3a64555bb2482e03aede01377 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/0802f4d35e0da77cc0c84b7a80cfc9d5246ab21f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0802f4d35e0da77cc0c84b7a80cfc9d5246ab21f \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/082e7da2b97940d923cb47d8728b2d9408208619:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/082e7da2b97940d923cb47d8728b2d9408208619 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/0adc243f786f11c58dc2a8a7af9c50ca0830f27f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0adc243f786f11c58dc2a8a7af9c50ca0830f27f \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/0aedc763f7c680112be6b194ccf018534ad2caaf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0aedc763f7c680112be6b194ccf018534ad2caaf \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/0b87e9afedb9d0d64b1a2a969c4bafae7e301d5e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0b87e9afedb9d0d64b1a2a969c4bafae7e301d5e \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/0d6be8f5ff30cc6ceacb24c2f4422bb183ca01e4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0d6be8f5ff30cc6ceacb24c2f4422bb183ca01e4 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/0d7b8f04c1a39e28ec01583b987751365f5f8ae1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0d7b8f04c1a39e28ec01583b987751365f5f8ae1 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/0d952dedb346b17fc0c7a48122081b2d4061dce1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0d952dedb346b17fc0c7a48122081b2d4061dce1 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/0df2f65c950057dd018765603e06dddc40f882e4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0df2f65c950057dd018765603e06dddc40f882e4 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/0fd440e14fa6f4543cc1c2787253288afd91dbef:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0fd440e14fa6f4543cc1c2787253288afd91dbef \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/10a1409925aea610981487d7e3349844fde5f951:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/10a1409925aea610981487d7e3349844fde5f951 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/10c2b3d62af7c12eed649b2984b4d41d198d15a6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/10c2b3d62af7c12eed649b2984b4d41d198d15a6 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/117daa35e6b1f69b5ef9576be47eca42eeb2e1ef:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/117daa35e6b1f69b5ef9576be47eca42eeb2e1ef \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/11f23ace91bfa8a7d7da257cdebe08a82977222b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/11f23ace91bfa8a7d7da257cdebe08a82977222b \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/1245e8d1f435c078eb8c6a3b1315678f43101175:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1245e8d1f435c078eb8c6a3b1315678f43101175 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/1287f8b711b11ec7abb5e18b9ba8ec9287bec50e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1287f8b711b11ec7abb5e18b9ba8ec9287bec50e \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/12b4a02f00abfb5b32713c0de640e901e744805f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/12b4a02f00abfb5b32713c0de640e901e744805f \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/13ae4c004d977d1490ed0436d58d0dcba873eddd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/13ae4c004d977d1490ed0436d58d0dcba873eddd \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/1451c12961f4b7ff8fe5b02046b54e2fc1789342:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1451c12961f4b7ff8fe5b02046b54e2fc1789342 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/14b66a6bc27ed51abdd4b9476480a645375f39a9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/14b66a6bc27ed51abdd4b9476480a645375f39a9 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/166268c52d50c906d08027d90c1d019d092ccd0e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/166268c52d50c906d08027d90c1d019d092ccd0e \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/190dd58c9a7d5e43f90c02fca363bbb228417994:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/190dd58c9a7d5e43f90c02fca363bbb228417994 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/1920fd6874079831a8046008f4bdf93b60cd30c7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1920fd6874079831a8046008f4bdf93b60cd30c7 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/195f063f4f206a6633902309e0b166afa7a4f44c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/195f063f4f206a6633902309e0b166afa7a4f44c \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/1a8afb8adf49994ca1e0fb536ac1f221f06798a4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1a8afb8adf49994ca1e0fb536ac1f221f06798a4 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/1bfcea9c018bba382fe626ab2f556f8001c49078:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1bfcea9c018bba382fe626ab2f556f8001c49078 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/1c965a48c76c30150953f55fa43cee9e9aa85972:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1c965a48c76c30150953f55fa43cee9e9aa85972 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/1cc9cb9b1c3349490694929b3e4fbd22e11b1b8b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1cc9cb9b1c3349490694929b3e4fbd22e11b1b8b \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/1ce9c66678c7ccc7db74c9b3c22711c1c1c25403:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1ce9c66678c7ccc7db74c9b3c22711c1c1c25403 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/1e96903a0396c336961a264f82a5a25da03677bd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1e96903a0396c336961a264f82a5a25da03677bd \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/1fe62c12fe151474b5d49f81b2a98cf830c9e352:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1fe62c12fe151474b5d49f81b2a98cf830c9e352 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/222d30c9bcc5828aaadd311d711321252c184f70:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/222d30c9bcc5828aaadd311d711321252c184f70 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/223e9e05359554a093c242bebdde0bf2bf5c2204:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/223e9e05359554a093c242bebdde0bf2bf5c2204 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/2356d7db322eb6a9c2af8d21c4dcc099b6a23444:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2356d7db322eb6a9c2af8d21c4dcc099b6a23444 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/23bca61ad941866e79ec8a66de9e47a657ccdb25:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/23bca61ad941866e79ec8a66de9e47a657ccdb25 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/244e05502cde41a24f577547ea0dbf33a8ea37eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/244e05502cde41a24f577547ea0dbf33a8ea37eb \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/247cd59b141f238194cdf40512c7d5b512556bca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/247cd59b141f238194cdf40512c7d5b512556bca \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/26393bec25a4ef7be2cbc90a6d8e5e9838ccbe53:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/26393bec25a4ef7be2cbc90a6d8e5e9838ccbe53 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/2643b77ea4b3914955b4936303a72e89503a98c1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2643b77ea4b3914955b4936303a72e89503a98c1 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/27f320e36166d9286ab9714d8c344fc43754ad39:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/27f320e36166d9286ab9714d8c344fc43754ad39 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/28230c93e2fba221726e0151f5ce30e77eb0b9bf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/28230c93e2fba221726e0151f5ce30e77eb0b9bf \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/2824a624b81c7fc098a4d7c8f4bf60f7f0d1ca49:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2824a624b81c7fc098a4d7c8f4bf60f7f0d1ca49 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/283dfdddac9fc68adbeca92281b06d7b5cbaa123:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/283dfdddac9fc68adbeca92281b06d7b5cbaa123 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/2a4117322b3bbdda54bbee671339378e4d7b16de:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2a4117322b3bbdda54bbee671339378e4d7b16de \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/2b6e88b4b92fb2b0e67e16f1e835e6a9caa02391:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2b6e88b4b92fb2b0e67e16f1e835e6a9caa02391 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/2c1e777e888f8a5aa9359df0aaaa22bf03bd9b36:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2c1e777e888f8a5aa9359df0aaaa22bf03bd9b36 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/2c58fb04aaa20d83dcca5df3e052320ee79eb9a8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2c58fb04aaa20d83dcca5df3e052320ee79eb9a8 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/2cc2e4b1f08e37ca102e83848069bcb37229f509:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2cc2e4b1f08e37ca102e83848069bcb37229f509 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/2d101c5d7879444d06a7bb17e1af5e190c6c032e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2d101c5d7879444d06a7bb17e1af5e190c6c032e \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/2d9e088b1a4f2c74475cf77e558817861b2ad146:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2d9e088b1a4f2c74475cf77e558817861b2ad146 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/2eab91c81fc66cfd4ab75e495437f65e38035973:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2eab91c81fc66cfd4ab75e495437f65e38035973 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/3197d7da993f304a5241cf760f2159db9c0f35a1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3197d7da993f304a5241cf760f2159db9c0f35a1 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/31a3ab1639930f1f172141f68b6ffbd0dfe6a084:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/31a3ab1639930f1f172141f68b6ffbd0dfe6a084 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/327bad3daaba77623c5020453ac89cbf6757b369:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/327bad3daaba77623c5020453ac89cbf6757b369 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/3801a742291ec52e5b66ce8ad16539a30f4cbb09:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3801a742291ec52e5b66ce8ad16539a30f4cbb09 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/388db0cbf63c10eb11be81a5745e26ce9d6a52e6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/388db0cbf63c10eb11be81a5745e26ce9d6a52e6 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/38c0ea4cfb97ad87b1fd1ab21982ef2d65db8d8d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/38c0ea4cfb97ad87b1fd1ab21982ef2d65db8d8d \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/39c60f2459021116df5447b7d4886c7f1e4cd6d2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/39c60f2459021116df5447b7d4886c7f1e4cd6d2 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/39ece3a196665a7f6a03a0091b0ea2d48efb406d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/39ece3a196665a7f6a03a0091b0ea2d48efb406d \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/3d48de0765b3dd4fceee895b1afc08c2accc8671:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3d48de0765b3dd4fceee895b1afc08c2accc8671 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/3dee340acd2c4b687d918f9db65335653bdc5b3d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3dee340acd2c4b687d918f9db65335653bdc5b3d \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/3e1d62166d4fa7c1f0b7cb29b0f2ed9958a7d007:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3e1d62166d4fa7c1f0b7cb29b0f2ed9958a7d007 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/3e4df77520438039a72f95ee0ec3033f5490cccb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3e4df77520438039a72f95ee0ec3033f5490cccb \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/3f241380647475515f204e23f5fe2524a43cfcf2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3f241380647475515f204e23f5fe2524a43cfcf2 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/3fc090ff8f66459aac15416af3a5b8f1d707ed52:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3fc090ff8f66459aac15416af3a5b8f1d707ed52 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/40ca78815b2203ca6787f15e66d75e9633c8fcca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/40ca78815b2203ca6787f15e66d75e9633c8fcca \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/42652d4a7f2087adff4f4a3a5c88ecb8d0172b5f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/42652d4a7f2087adff4f4a3a5c88ecb8d0172b5f \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/44973aee01afcde7f40574d33ed7303887c9dd59:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/44973aee01afcde7f40574d33ed7303887c9dd59 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/450586d017981d0fa103e2a9e08a1023389cc230:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/450586d017981d0fa103e2a9e08a1023389cc230 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/455747ba1b42bbb48fa865f73cf3da78dedfe5c5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/455747ba1b42bbb48fa865f73cf3da78dedfe5c5 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/467fe3d9f120b4d1934ede2d383e6aec21fd9ad4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/467fe3d9f120b4d1934ede2d383e6aec21fd9ad4 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/46e828bf702ef724ffad3125e6ed55ad65b17cd4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/46e828bf702ef724ffad3125e6ed55ad65b17cd4 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/4716f61bc0be89ac0e2d7d1f0a11a255efde5f74:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4716f61bc0be89ac0e2d7d1f0a11a255efde5f74 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/477c568d664dfbae371bc479340918db3fb37a46:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/477c568d664dfbae371bc479340918db3fb37a46 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/4c275c619bee8a90875b3d90437a13db827ead9e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4c275c619bee8a90875b3d90437a13db827ead9e \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/4c3e5fa30b6f7210f0cc036765f740bb260fc2ad:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4c3e5fa30b6f7210f0cc036765f740bb260fc2ad \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/4d438ff803ea90f864a7207594ac428d2ef46174:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4d438ff803ea90f864a7207594ac428d2ef46174 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/4fcf3530512231055079de50a050d203d109d205:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4fcf3530512231055079de50a050d203d109d205 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/51a18d828383345249e133eef8f1af304d1b8f28:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/51a18d828383345249e133eef8f1af304d1b8f28 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/522163b72d2bc3034bb89586fd91a7c05ad462cf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/522163b72d2bc3034bb89586fd91a7c05ad462cf \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/52d106a6b5b8065b6f98cae477690cb1d4fbb2cf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/52d106a6b5b8065b6f98cae477690cb1d4fbb2cf \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/576029e5c59a627f3e7e16abf1716b2e0785eb2c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/576029e5c59a627f3e7e16abf1716b2e0785eb2c \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/5cc0e380bd0f0de25c7a7c3bbf0f633a0a89b15a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5cc0e380bd0f0de25c7a7c3bbf0f633a0a89b15a \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/5cfd3076cad193a02e3474e72428d22a10d8a991:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5cfd3076cad193a02e3474e72428d22a10d8a991 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/5dc7c16b2e211d64827b567af61e1f5e529b3d18:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5dc7c16b2e211d64827b567af61e1f5e529b3d18 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/60c61b63177dc2f6b236d94ab9d1af8ecb97c3a8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/60c61b63177dc2f6b236d94ab9d1af8ecb97c3a8 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/6179158b0bb7c847e2c7630286c1d17160de15a5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6179158b0bb7c847e2c7630286c1d17160de15a5 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/61d5042455d5a1b33b2f5eb415d2c99abc847cca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/61d5042455d5a1b33b2f5eb415d2c99abc847cca \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/61e01a6a2c7ac62c24e2a8f73001732bc4b71c8a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/61e01a6a2c7ac62c24e2a8f73001732bc4b71c8a \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/6266637f9ae1255a18564849a1472ff0f5be5eed:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6266637f9ae1255a18564849a1472ff0f5be5eed \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/62844514290d6aaa8edf389e3ff985d2bc9e6214:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/62844514290d6aaa8edf389e3ff985d2bc9e6214 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/628d7d24e0d44ad2b8d4e5c43b7bd66e12bf1575:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/628d7d24e0d44ad2b8d4e5c43b7bd66e12bf1575 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/628f9e7521c9329cd687cb6c444c25829db049a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/628f9e7521c9329cd687cb6c444c25829db049a2 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/62f21891a7c82a6d28a5c592f320ce52e9c901e7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/62f21891a7c82a6d28a5c592f320ce52e9c901e7 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/656d91fd6738e7492a504be463aead81f967eb1c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/656d91fd6738e7492a504be463aead81f967eb1c \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/67ac826c9bad6d748d0d35b354476d3fc3a86641:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/67ac826c9bad6d748d0d35b354476d3fc3a86641 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/69559872b7f28bac7e21506f8cd5722a07a89de8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/69559872b7f28bac7e21506f8cd5722a07a89de8 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/6a517ccdeace2fb36947ef700cf37d2b354fa110:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6a517ccdeace2fb36947ef700cf37d2b354fa110 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/6b57a4f6f69eaec2884ac8e6e41c23db54a0192d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6b57a4f6f69eaec2884ac8e6e41c23db54a0192d \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/6c8e9ae28d184bad14994556f14ed832ec9edabb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6c8e9ae28d184bad14994556f14ed832ec9edabb \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/6ec81dc4ca53d8d8d7007b462590234ccaa605ef:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6ec81dc4ca53d8d8d7007b462590234ccaa605ef \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/6f93325df9d100b1207e799282fd5b51b7f939df:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6f93325df9d100b1207e799282fd5b51b7f939df \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/708207f08ae36c509424c075f7de55743ef464fe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/708207f08ae36c509424c075f7de55743ef464fe \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/70fd4ecd02becbd35f407dfe6796910ea6269761:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/70fd4ecd02becbd35f407dfe6796910ea6269761 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7333279fc483b154bf5b358a5819653d8966ca30:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7333279fc483b154bf5b358a5819653d8966ca30 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7600d975371a20439be93e438f62105fa3c67ca6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7600d975371a20439be93e438f62105fa3c67ca6 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7683bdf491d604dd2ee321d15eed35eae3605644:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7683bdf491d604dd2ee321d15eed35eae3605644 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/769ebb838de3cae409aeab62510f583844a454c1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/769ebb838de3cae409aeab62510f583844a454c1 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/76e8004f554ced8854877b846c83a4b72ee83842:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/76e8004f554ced8854877b846c83a4b72ee83842 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/77b78a9cee8fcac4ddc37c888bd836562a39cef3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/77b78a9cee8fcac4ddc37c888bd836562a39cef3 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7896890ecd32c4445e36557f8a2e3d63a2045e8d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7896890ecd32c4445e36557f8a2e3d63a2045e8d \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/78c9cbb80fe8ec115002984c77587306ee8f2809:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/78c9cbb80fe8ec115002984c77587306ee8f2809 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/790bf52aaad8e78d027d882f7ed32ba1eb1cb2dd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/790bf52aaad8e78d027d882f7ed32ba1eb1cb2dd \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7a1b6a3adf1cc4f4d525c4147114460ff61ca1a8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7a1b6a3adf1cc4f4d525c4147114460ff61ca1a8 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7ae3edae3a224e09716edff144a1d1d07e8efb92:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7ae3edae3a224e09716edff144a1d1d07e8efb92 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7d02e691637b444eab3580275e492cb3c0d17cdf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7d02e691637b444eab3580275e492cb3c0d17cdf \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7da36f70853605e4d7b03712fea1ae5f2979e04d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7da36f70853605e4d7b03712fea1ae5f2979e04d \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7eae006172b61bb95c6bcf3906ae799681951301:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7eae006172b61bb95c6bcf3906ae799681951301 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7ee36f4d2dbee6f5b6e55d74165dd562a101484a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7ee36f4d2dbee6f5b6e55d74165dd562a101484a \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7ee8717ac0e2ecdf2dc07955c5d7fe4fa8f72a9f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7ee8717ac0e2ecdf2dc07955c5d7fe4fa8f72a9f \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7f4efaa387bb1d5c566481c91443e85625b1c495:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7f4efaa387bb1d5c566481c91443e85625b1c495 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/80799d92b6b90cdd108e4cb8bf6f0eba2fd7702f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/80799d92b6b90cdd108e4cb8bf6f0eba2fd7702f \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/822bc2aa697b011c516ad97bd29093a1c77b28a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/822bc2aa697b011c516ad97bd29093a1c77b28a2 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/833b6e6b4082f2873a5d301470183df6a4141823:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/833b6e6b4082f2873a5d301470183df6a4141823 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/83a6408640164f6eed804f4fac30caf1ea82f694:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/83a6408640164f6eed804f4fac30caf1ea82f694 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/84a86037308c28470e5fd59d98fad2c74e45f33e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/84a86037308c28470e5fd59d98fad2c74e45f33e \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/84dc4cd9c6273367959642f2859092d368b1423f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/84dc4cd9c6273367959642f2859092d368b1423f \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/858059e4c75b23afae819df9b5e8b688a8a9333b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/858059e4c75b23afae819df9b5e8b688a8a9333b \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/86672631cbbca39bbf29c6abc63f29aa08b72e4a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/86672631cbbca39bbf29c6abc63f29aa08b72e4a \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/869fdcd389bcaed2ba46c52178cf83e20c6b80ff:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/869fdcd389bcaed2ba46c52178cf83e20c6b80ff \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/86ed49270ca601f6e6b2be1f1b5d18e01fbe38ff:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/86ed49270ca601f6e6b2be1f1b5d18e01fbe38ff \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/86ed978571776aabbd4f18a2840f17584bb43eec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/86ed978571776aabbd4f18a2840f17584bb43eec \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/89bc36356f0e5e2582130f6bf4de7b8d1f65080a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/89bc36356f0e5e2582130f6bf4de7b8d1f65080a \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/8a9c47f169fa528fa9da4168626ec44c442c16a4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8a9c47f169fa528fa9da4168626ec44c442c16a4 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/8bdbc844117159c0582a97488fcb68b814882181:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8bdbc844117159c0582a97488fcb68b814882181 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/8cb68e550051f2ef08c6fb62c7780b1510e86c81:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8cb68e550051f2ef08c6fb62c7780b1510e86c81 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/8cb925d05a249279280e76ff4230b791094e0b96:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8cb925d05a249279280e76ff4230b791094e0b96 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/8e385d31bd36ea3953ffa9121ad7e8191c09a0af:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8e385d31bd36ea3953ffa9121ad7e8191c09a0af \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/8e473331ebcfc037eeed7459bb16264874b0d13a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8e473331ebcfc037eeed7459bb16264874b0d13a \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/8fb791005a7caa684678a1b7fb1de51403a72ab0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8fb791005a7caa684678a1b7fb1de51403a72ab0 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/916f3881c17afc52b0d01bfa1c1eef7bfe19ef06:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/916f3881c17afc52b0d01bfa1c1eef7bfe19ef06 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/91e84a9579a3b157674a037a1e01e2db3d4e4ab5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/91e84a9579a3b157674a037a1e01e2db3d4e4ab5 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/95ba761548bd03480daf9d7fad522e9d6117d082:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/95ba761548bd03480daf9d7fad522e9d6117d082 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/9624a8c836ad01ed5a54aed56129790777b3d24c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9624a8c836ad01ed5a54aed56129790777b3d24c \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/96884ce12f0654ece89ab641e6233cada9865b31:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/96884ce12f0654ece89ab641e6233cada9865b31 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/970e3cce5b9483fc25e37347e2b4795cd90fd6d4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/970e3cce5b9483fc25e37347e2b4795cd90fd6d4 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/97893373fcb3864130ee2e3fabfb019c1d8c6c66:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/97893373fcb3864130ee2e3fabfb019c1d8c6c66 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/985db1789754ed3623ff99e68fa912596f884157:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/985db1789754ed3623ff99e68fa912596f884157 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/9a15e465582dd61810a044be8191be62117d1a4c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9a15e465582dd61810a044be8191be62117d1a4c \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/9baf234ae0e5a4ac15711dcd3b5bf673ba4a1f00:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9baf234ae0e5a4ac15711dcd3b5bf673ba4a1f00 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/9cfa896b6ed8f81f1726a8ad883e52e51cefbc1f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9cfa896b6ed8f81f1726a8ad883e52e51cefbc1f \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/9e1d4e9147f391e0fe1e2099cb81fd2ef550c4c3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9e1d4e9147f391e0fe1e2099cb81fd2ef550c4c3 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/9e4ec0edf30bf269b799e646d6957db4120d25a9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9e4ec0edf30bf269b799e646d6957db4120d25a9 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/9ef4929699c70c6d9465de4efd1103675a6e685f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9ef4929699c70c6d9465de4efd1103675a6e685f \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/9f3ededc4de88973467e2dcb7f96b287bdefeadf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9f3ededc4de88973467e2dcb7f96b287bdefeadf \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/9f6836bac1eb898b97c7ef4a8b66aa66a30b7779:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9f6836bac1eb898b97c7ef4a8b66aa66a30b7779 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/a08f84d280705fe7dababbe5b2ab74c1f05e0692:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a08f84d280705fe7dababbe5b2ab74c1f05e0692 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/a0dd21acb6603368a1bc8829cce8b00c946b3d3a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a0dd21acb6603368a1bc8829cce8b00c946b3d3a \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/a47f99cc4bd95166edad80a0690bda012306ad0f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a47f99cc4bd95166edad80a0690bda012306ad0f \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/a5f42baab09f980d2954721d6ad7f7cb7887e842:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a5f42baab09f980d2954721d6ad7f7cb7887e842 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/a6784e26a97fc328aea3aab4ca577ae48cd6f3e1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a6784e26a97fc328aea3aab4ca577ae48cd6f3e1 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/a96cf1712f002cdfd7cf699b11e4e3eb59e2f6da:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a96cf1712f002cdfd7cf699b11e4e3eb59e2f6da \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/aa4bb18198ca624154851b9859a60910d4797970:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/aa4bb18198ca624154851b9859a60910d4797970 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/aa5ce9cee4b6092035bb5058ea6893f1606afd44:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/aa5ce9cee4b6092035bb5058ea6893f1606afd44 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/aaae99c5888122c31cdf16d48bb61a1f72b47838:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/aaae99c5888122c31cdf16d48bb61a1f72b47838 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/abbe16d84f999baf353a8880ef655042a32926fc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/abbe16d84f999baf353a8880ef655042a32926fc \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/abc2c7b7a80b31a1b9cf34556e769b45a63406eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/abc2c7b7a80b31a1b9cf34556e769b45a63406eb \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/abe95bb4db692e554e1e87bc13a4cbcc100259ab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/abe95bb4db692e554e1e87bc13a4cbcc100259ab \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/acfac9675ea16b3522beb40542e15f7c97e61692:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/acfac9675ea16b3522beb40542e15f7c97e61692 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/ae004f97f463b7f2d78d18c1d4459e2b0e3e2dde:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ae004f97f463b7f2d78d18c1d4459e2b0e3e2dde \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/b154a835e86189c12ef12549a575343b4d2d2650:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b154a835e86189c12ef12549a575343b4d2d2650 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/b1f8ab39c23e0d18614f98a7f6603468fbaa7fe6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b1f8ab39c23e0d18614f98a7f6603468fbaa7fe6 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/b3d039e94cfacacff62868914a0fd8fc00970195:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b3d039e94cfacacff62868914a0fd8fc00970195 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/b3f67a5330aade90b88c2f168c73697c499a9157:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b3f67a5330aade90b88c2f168c73697c499a9157 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/b454db5ba248aaf1101a78c9d93345eeff23bb26:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b454db5ba248aaf1101a78c9d93345eeff23bb26 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/b520932c50b3ea366929a5ab413e9aa10087210a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b520932c50b3ea366929a5ab413e9aa10087210a \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/b5f35db90fd506f00557f8841120cdc0a247fa66:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b5f35db90fd506f00557f8841120cdc0a247fa66 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/b76e517a0d44dc94f9f9a9e25aa6b895a8858a40:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b76e517a0d44dc94f9f9a9e25aa6b895a8858a40 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/b8178e538047c332e4c5619af3ba9776565d173a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b8178e538047c332e4c5619af3ba9776565d173a \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/b966386973553a25480ce36e48f64ab90bb32623:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b966386973553a25480ce36e48f64ab90bb32623 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/b98ccfd8f23e7e9e09ef0dd3fd0f971010b6c71d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b98ccfd8f23e7e9e09ef0dd3fd0f971010b6c71d \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/bac3328876bbfb5a9308313725f71b59d2894f2d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bac3328876bbfb5a9308313725f71b59d2894f2d \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/bb529bacd24526f8fd410175a6d84cec6de4e114:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bb529bacd24526f8fd410175a6d84cec6de4e114 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/bb5e35adde7e505a69222cd135d8ae3a427bea9f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bb5e35adde7e505a69222cd135d8ae3a427bea9f \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/bbc4c15cd835a926e068cdcc26393ca074a3b425:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bbc4c15cd835a926e068cdcc26393ca074a3b425 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/bf14374b23066b7d32bcd2c6fbb09797eb2862db:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bf14374b23066b7d32bcd2c6fbb09797eb2862db \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/bf24eb264dab5e4f07144d1009f4b617ae079b67:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bf24eb264dab5e4f07144d1009f4b617ae079b67 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c259a32b2634ab282019694465f76fa77c1463bf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c259a32b2634ab282019694465f76fa77c1463bf \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c2c9ba31f89bbe9bda58edae17aa6dc9e9424e60:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c2c9ba31f89bbe9bda58edae17aa6dc9e9424e60 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c3306206341d6b6c1e4ee316b7c0c864196564ba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c3306206341d6b6c1e4ee316b7c0c864196564ba \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c3622a9f29c2f7a3d4d4059ab16761933407a139:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c3622a9f29c2f7a3d4d4059ab16761933407a139 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c363c7a934f317100e8c4c81f1b36065654884d6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c363c7a934f317100e8c4c81f1b36065654884d6 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c3b66faf922dca60e0d8eb3691e7f9541ed0b111:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c3b66faf922dca60e0d8eb3691e7f9541ed0b111 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c4b998174445561c9d20d24bc0c76b0361f700b9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c4b998174445561c9d20d24bc0c76b0361f700b9 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c5c8fee40ccd66b4f169fafe7547585f1b511fd0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c5c8fee40ccd66b4f169fafe7547585f1b511fd0 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/ca5e0f77c517be57966d1e494bd9041be7a7fcb9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ca5e0f77c517be57966d1e494bd9041be7a7fcb9 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/cb48bbbcbd70cf7ecc234ff93bdcdb275ea34b79:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cb48bbbcbd70cf7ecc234ff93bdcdb275ea34b79 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/cb63c26955f524f1e7aa6b714502d82c4bdc7930:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cb63c26955f524f1e7aa6b714502d82c4bdc7930 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/cb7aec97dc94c54ec8dfd842fa6dd1d74fd5171b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cb7aec97dc94c54ec8dfd842fa6dd1d74fd5171b \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/cd461e87b45f7ddd51ab316bcea7df2602e1d522:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cd461e87b45f7ddd51ab316bcea7df2602e1d522 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/cd4d3fb0a04fae65bcf4c9dd732cf8c069c4a40a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cd4d3fb0a04fae65bcf4c9dd732cf8c069c4a40a \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/cd8ffcef8dca4b89d4cc24779fc8c4260c7a33dc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cd8ffcef8dca4b89d4cc24779fc8c4260c7a33dc \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/cd91ea526c1d50d51c3aab2e31c52b2af64a6e04:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cd91ea526c1d50d51c3aab2e31c52b2af64a6e04 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/cd9895f8676916ccfa1bf713d46bc4431d95eb21:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cd9895f8676916ccfa1bf713d46bc4431d95eb21 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/cf4ae4ecff53d0dde6227d1b1e6c6fdb1e73c740:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cf4ae4ecff53d0dde6227d1b1e6c6fdb1e73c740 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/cfa019647c819cf90a3ddaa6ca8bc33d244fde9a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cfa019647c819cf90a3ddaa6ca8bc33d244fde9a \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/cfa20145aac226f49cb82cb9bb13bfa922067c52:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cfa20145aac226f49cb82cb9bb13bfa922067c52 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d1242af047cbbfb3a8d792ac21f3814546ebdcf7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d1242af047cbbfb3a8d792ac21f3814546ebdcf7 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d1cee5c357e325e3fc48593b397acfe7ff021d57:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d1cee5c357e325e3fc48593b397acfe7ff021d57 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d217ee3d688c37fab18d4e5f8dedb0ea5ab648b0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d217ee3d688c37fab18d4e5f8dedb0ea5ab648b0 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d300f7087a6b0bd30c3b87aa0ad24fea8541b5ce:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d300f7087a6b0bd30c3b87aa0ad24fea8541b5ce \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d36514226404a9178743f955dc647267b55bdee8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d36514226404a9178743f955dc647267b55bdee8 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d4020c610b652646282848a6b48c4b99a0f120c9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d4020c610b652646282848a6b48c4b99a0f120c9 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d6155294b3a10974643bfc8e3a28d51b6a382b87:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d6155294b3a10974643bfc8e3a28d51b6a382b87 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d71a6f9198280af8e4d65882301db082a5f8a85d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d71a6f9198280af8e4d65882301db082a5f8a85d \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d86dd88e46280f8c4d788aa4961d33af35d384ec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d86dd88e46280f8c4d788aa4961d33af35d384ec \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d87d425b0aa700e56d9cf250c3317e8dddb7b12a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d87d425b0aa700e56d9cf250c3317e8dddb7b12a \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d880767459e3831179c4767bff30e4e5fd0e336b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d880767459e3831179c4767bff30e4e5fd0e336b \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d8d8c7d1a60d8d3670b7066ecfffe5e5cf531fa1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d8d8c7d1a60d8d3670b7066ecfffe5e5cf531fa1 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d967d3349b41a50e80884dfcae4055291c04bd7b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d967d3349b41a50e80884dfcae4055291c04bd7b \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d9b3fc7dae8362c7efedd99a98c8d3db48e0ad34:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d9b3fc7dae8362c7efedd99a98c8d3db48e0ad34 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/dab6901d03d3d86861226c8aaf80d5733bc8777b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/dab6901d03d3d86861226c8aaf80d5733bc8777b \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/db82de7fd326eb4817e718bfe15a4cc07e2eb882:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/db82de7fd326eb4817e718bfe15a4cc07e2eb882 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/dc251d35f3e0f7469dece848a3f8110a4327b8ad:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/dc251d35f3e0f7469dece848a3f8110a4327b8ad \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/dc884759cb77a7d4fcc2e8e3ba8eb10d14b5a3d9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/dc884759cb77a7d4fcc2e8e3ba8eb10d14b5a3d9 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/de2f3c5d8c0fa38e3b1c00a6f3924203348ad7ca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/de2f3c5d8c0fa38e3b1c00a6f3924203348ad7ca \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/de6d1e940880e1760bc1c863fef89bc0b665c58d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/de6d1e940880e1760bc1c863fef89bc0b665c58d \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e2b10cf1ae4470e824647ac048ea277489b75c54:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e2b10cf1ae4470e824647ac048ea277489b75c54 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e56fbee9f8c6b503cf48a14b2ec7d994c6e45166:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e56fbee9f8c6b503cf48a14b2ec7d994c6e45166 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e5a7ed9c8c8fe3286a9aea0ecca9e55d6f9766b0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e5a7ed9c8c8fe3286a9aea0ecca9e55d6f9766b0 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e79bbd9835f26055acf304524cd774332871de47:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e79bbd9835f26055acf304524cd774332871de47 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e90a5f38897b47a019324da40aa2f9fad4696696:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e90a5f38897b47a019324da40aa2f9fad4696696 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e9d2cf63d0b4660c843a2842070fd20e62f7a9c3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e9d2cf63d0b4660c843a2842070fd20e62f7a9c3 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/ea28f76647954caf25ddc94a517320bcf89b400d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ea28f76647954caf25ddc94a517320bcf89b400d \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/ed11fea80d81a9f31336bb5e9d94bb355222964e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ed11fea80d81a9f31336bb5e9d94bb355222964e \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/eea98b9f082f1f41544876acf32cb04439d34e8c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/eea98b9f082f1f41544876acf32cb04439d34e8c \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/ef3d8e9ccf46d2bb5972aeea8d419ab963345f1d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ef3d8e9ccf46d2bb5972aeea8d419ab963345f1d \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f07a8bec244a3d2b96ac37e02d785a2d5e69a700:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f07a8bec244a3d2b96ac37e02d785a2d5e69a700 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f0b1396d76117fca4ae17bacad4d9f89b36e26b2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f0b1396d76117fca4ae17bacad4d9f89b36e26b2 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f107b631a894dce6946c65d684216316f4ff420a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f107b631a894dce6946c65d684216316f4ff420a \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f174536c1232627c01a9fc58ac52b350badeeb2c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f174536c1232627c01a9fc58ac52b350badeeb2c \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f41579e481acffa8bb3b1edd51d6e854beb4b758:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f41579e481acffa8bb3b1edd51d6e854beb4b758 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f540abd6ff5939e060924b048c2d597cfaa20905:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f540abd6ff5939e060924b048c2d597cfaa20905 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f5c24f3c8074de3ba1b263b97349df4f0ecded12:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f5c24f3c8074de3ba1b263b97349df4f0ecded12 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f65cfb2c473dadad8f8637970ad687314d04e04c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f65cfb2c473dadad8f8637970ad687314d04e04c \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f67c8cfb9e250233d3efebad6c6f602efb775848:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f67c8cfb9e250233d3efebad6c6f602efb775848 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f699ec8671c368a37362cd6f2f1b3912577c95df:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f699ec8671c368a37362cd6f2f1b3912577c95df \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f7067dc8b6b7dc2304ce44298065bfbd4fbd20e6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f7067dc8b6b7dc2304ce44298065bfbd4fbd20e6 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f7593dc6a5299d68d6471aa124f75f6c07198fb9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f7593dc6a5299d68d6471aa124f75f6c07198fb9 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f7ffa93375dd24a9c573330f01ed868460663b8c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f7ffa93375dd24a9c573330f01ed868460663b8c \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f8699ee7fd14bfc4626b35cc0e3d4aa673c5b2bd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f8699ee7fd14bfc4626b35cc0e3d4aa673c5b2bd \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f879331bfc9d8b77a156de079dc95b93fd6881ac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f879331bfc9d8b77a156de079dc95b93fd6881ac \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f898ef3b604ca6673d02b1767920c96df491d5ca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f898ef3b604ca6673d02b1767920c96df491d5ca \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f998fc72f04cd5a19342313f518c2b423e1ef5fe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f998fc72f04cd5a19342313f518c2b423e1ef5fe \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/fa7f707a3e7a593a21aa6d129dcabd1a74c5be32:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fa7f707a3e7a593a21aa6d129dcabd1a74c5be32 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/fb7d2d3ba592ba8d6326ca94c12381849f25c20b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fb7d2d3ba592ba8d6326ca94c12381849f25c20b \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/fbe43db6d74974d19035ab811028f51975a62036:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fbe43db6d74974d19035ab811028f51975a62036 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/fceedd74b157b953ac16cf827e745be1a0603d67:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fceedd74b157b953ac16cf827e745be1a0603d67 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/fcf009d788e9083ee23b52412444de1f733664ed:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fcf009d788e9083ee23b52412444de1f733664ed \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/fd2c985214e15eb36e53ecae074fc7d0cb49be50:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fd2c985214e15eb36e53ecae074fc7d0cb49be50 \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/fe61a10f269ad6390687b7cb393410aa4ab99c63:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fe61a10f269ad6390687b7cb393410aa4ab99c63 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/0273763eb1b8089059668cd6416a70421fab94ea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0273763eb1b8089059668cd6416a70421fab94ea \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/02e2f925d07828ee82ebf395c5beb0a1d93aa0ba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/02e2f925d07828ee82ebf395c5beb0a1d93aa0ba \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/034b8de305f69478a7194139267f8d65091d964f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/034b8de305f69478a7194139267f8d65091d964f \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/036edd9d4b391cc8f41277a3c8a85fd9530f0824:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/036edd9d4b391cc8f41277a3c8a85fd9530f0824 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/037d51a73ffd8602bfce558f9d14f00fac8ce8ad:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/037d51a73ffd8602bfce558f9d14f00fac8ce8ad \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/0483b11e91fcdf11cdceac7f27f9fcb0545f27f5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0483b11e91fcdf11cdceac7f27f9fcb0545f27f5 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/0871cd88518e9370efb4a35e58f07737ba090160:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0871cd88518e9370efb4a35e58f07737ba090160 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/088fda3eb5423248a94a4fed239dcf2d58cbb26b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/088fda3eb5423248a94a4fed239dcf2d58cbb26b \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/0aa468f09c98cd559df65da652349bc830f4cec9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0aa468f09c98cd559df65da652349bc830f4cec9 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/0b081cfcdcaf9a36089977edb3bd5a8c7874c8ec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0b081cfcdcaf9a36089977edb3bd5a8c7874c8ec \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/0b18fa62b95c1782ae1619e5f5aea8b04fe37c8b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0b18fa62b95c1782ae1619e5f5aea8b04fe37c8b \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/0cfefba395bdea41516f4a018ff4f6f4ea0106eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0cfefba395bdea41516f4a018ff4f6f4ea0106eb \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/0e4f1f89c4cdd75bd0617036dd8d285b35d01125:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0e4f1f89c4cdd75bd0617036dd8d285b35d01125 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/0e6fa925a38709d6c53aa10d9df17de759b567e5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0e6fa925a38709d6c53aa10d9df17de759b567e5 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/13d4a8ac49a2c8ba2acb9847345d5ba7dbcc858a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/13d4a8ac49a2c8ba2acb9847345d5ba7dbcc858a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/13fdbd57ee8c4d154f4d6466f0b8d76933c19396:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/13fdbd57ee8c4d154f4d6466f0b8d76933c19396 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/143710b5df209a34a423b0e91010504eec92971c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/143710b5df209a34a423b0e91010504eec92971c \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/16488bd5cff2b5a95692cecb05eae4e89833bf7a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/16488bd5cff2b5a95692cecb05eae4e89833bf7a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/16e81a4994dc933f0aab62b84e28d071adc6488f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/16e81a4994dc933f0aab62b84e28d071adc6488f \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/178e09ce3235e67da6caa878945af0cce9805c5b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/178e09ce3235e67da6caa878945af0cce9805c5b \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/180bc64606992c46ea11c38cc26f0db5c63fc97c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/180bc64606992c46ea11c38cc26f0db5c63fc97c \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/185d26ac5f16f4df88428e0c6442324032a0e91f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/185d26ac5f16f4df88428e0c6442324032a0e91f \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/189673428dc04e5484fc07daf9bb71aa67c2bbf9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/189673428dc04e5484fc07daf9bb71aa67c2bbf9 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/18dc46ee52c938eb70f73802920abd134f64b708:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/18dc46ee52c938eb70f73802920abd134f64b708 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/19efaf4baab6c831cd2615884152c69436dd7837:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/19efaf4baab6c831cd2615884152c69436dd7837 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/1a9c15f59d8bb5c0f010bee5a6c842e36239cac4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1a9c15f59d8bb5c0f010bee5a6c842e36239cac4 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/1b56c458f94a3f505f7b67138dd935a4b5e679ac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1b56c458f94a3f505f7b67138dd935a4b5e679ac \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/1b76d0bf946f6eaa7639108f4a660f50e8a63c0a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1b76d0bf946f6eaa7639108f4a660f50e8a63c0a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/1e326e1a003fcc7fa4d32470b1b082eafdb9719f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1e326e1a003fcc7fa4d32470b1b082eafdb9719f \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/20787673cf582a156c2aac658bdca30f798d302d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/20787673cf582a156c2aac658bdca30f798d302d \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/21470c9cad1f4547bf372d8112a13886b5b7578b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/21470c9cad1f4547bf372d8112a13886b5b7578b \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/22f7c97c95fc4da8a624cec2cd717e1d047b085a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/22f7c97c95fc4da8a624cec2cd717e1d047b085a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/27ed280abdd5bf696dde613e506ac6dab54b979d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/27ed280abdd5bf696dde613e506ac6dab54b979d \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/282c6d8dee5af7b4e3c96e35508ba38fbf731929:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/282c6d8dee5af7b4e3c96e35508ba38fbf731929 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/284621a684dfb4f88ba0920fd828f1c082f5947b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/284621a684dfb4f88ba0920fd828f1c082f5947b \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/2b8843b254f5a87f86f24ebdb0e6996d0b48eb5b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2b8843b254f5a87f86f24ebdb0e6996d0b48eb5b \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/2db2b323f74e81b54d4e13326f1c3cf838e0b51d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2db2b323f74e81b54d4e13326f1c3cf838e0b51d \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/2e7c80ebead108addf39b8ba59d4ea10315f3233:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2e7c80ebead108addf39b8ba59d4ea10315f3233 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/2f762dd0260e9712f5193d2e9014d96870d79121:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2f762dd0260e9712f5193d2e9014d96870d79121 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/2f8284b7251f08c11c9e1bdd59ad62e7f3629cc2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2f8284b7251f08c11c9e1bdd59ad62e7f3629cc2 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/30bf24d7080d39a04861aaf63179ba405dad685a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/30bf24d7080d39a04861aaf63179ba405dad685a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/324539475efb899e42e035a6197a5a7210ece7c3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/324539475efb899e42e035a6197a5a7210ece7c3 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/329d812816242c68ea5e1e626828d94d702fd94e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/329d812816242c68ea5e1e626828d94d702fd94e \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/334c41f3f212d0c46f3d36703d2639e485ecb0c6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/334c41f3f212d0c46f3d36703d2639e485ecb0c6 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/34649eb64c50d6e971a1ab9fef60c8c4fb99ec31:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/34649eb64c50d6e971a1ab9fef60c8c4fb99ec31 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/3472ecb564e2117775ad653c93c0af73e5aa8559:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3472ecb564e2117775ad653c93c0af73e5aa8559 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/3489cab4964ad9a195f9e637de4f55760301fb4b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3489cab4964ad9a195f9e637de4f55760301fb4b \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/34df84f998f9c9ff55210f162c0c2bfe13c6b95b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/34df84f998f9c9ff55210f162c0c2bfe13c6b95b \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/3541832bef63ca46698bb9aec55739478e6fb1cd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3541832bef63ca46698bb9aec55739478e6fb1cd \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/35f8aebb27b7fde75a3601ef26b24a8091e498b1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/35f8aebb27b7fde75a3601ef26b24a8091e498b1 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/369cf8cdc98ba2b5e4bdf1901fdbf050a3eb4f18:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/369cf8cdc98ba2b5e4bdf1901fdbf050a3eb4f18 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/37268ac415c8bd60725d2c8c6b29cf023f6cae15:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/37268ac415c8bd60725d2c8c6b29cf023f6cae15 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/38bc37dfc1c1e4639d9b51a5c303b0e029d6e285:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/38bc37dfc1c1e4639d9b51a5c303b0e029d6e285 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/38c180d1e701a0359579d31815f49712fbeff9be:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/38c180d1e701a0359579d31815f49712fbeff9be \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/3908589dbd6245a445c220023bfb34d0597c2cdb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3908589dbd6245a445c220023bfb34d0597c2cdb \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/3d34519947c3632defbc99a6acbb7ed0455d2c23:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3d34519947c3632defbc99a6acbb7ed0455d2c23 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/3d802d4c0d967cb45b0c6940bdfdeecffe1281fd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3d802d4c0d967cb45b0c6940bdfdeecffe1281fd \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/3d90647b748207078e7fe8a5ec098edbfa6cd5f9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3d90647b748207078e7fe8a5ec098edbfa6cd5f9 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/3dc0d48eed4c34cd0bcab72a84791f3cdf417dc3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3dc0d48eed4c34cd0bcab72a84791f3cdf417dc3 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/3e33fd819531d16e65b3b646d4306781dac47590:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3e33fd819531d16e65b3b646d4306781dac47590 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/43e042417512611b7ec081f6f4116b3aac5cb9bd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/43e042417512611b7ec081f6f4116b3aac5cb9bd \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/448f5e7503f49566f6d47cc5a6ebf25d252eb9f0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/448f5e7503f49566f6d47cc5a6ebf25d252eb9f0 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/44f5bbd98af2cb8290dc19be359ae34d255d650d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/44f5bbd98af2cb8290dc19be359ae34d255d650d \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/45aec7dee3050cb28016c66e4295238168394d11:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/45aec7dee3050cb28016c66e4295238168394d11 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/488d3e23b6e29b7b090235663f584ed1f5b9c2ce:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/488d3e23b6e29b7b090235663f584ed1f5b9c2ce \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/49f13317d24aaa95ae9c8cccb379481b54f6a101:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/49f13317d24aaa95ae9c8cccb379481b54f6a101 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/4b659d7eeab474f60a51eb57aa0f1d8d6cf0c589:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4b659d7eeab474f60a51eb57aa0f1d8d6cf0c589 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/4c4bd60c0f1053b3a6945522c2b94158c515bac5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4c4bd60c0f1053b3a6945522c2b94158c515bac5 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/4e2ca88c1fb1380a670ff35e6e8b8f1b0c3b504c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4e2ca88c1fb1380a670ff35e6e8b8f1b0c3b504c \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/4eda84e2badfbe57e9930a953da24379dedc8860:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4eda84e2badfbe57e9930a953da24379dedc8860 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/4f6f193cef23ee62da9396317fce646fdf77e9e9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4f6f193cef23ee62da9396317fce646fdf77e9e9 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/4f9e80090281fe8c9dc3670ec04c7cd16a96602b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4f9e80090281fe8c9dc3670ec04c7cd16a96602b \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/525ba6baffa264cc74011409560b62d9c5cff345:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/525ba6baffa264cc74011409560b62d9c5cff345 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/529e8756ce0a6fa2a43b3ce6119a83a45eeeff60:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/529e8756ce0a6fa2a43b3ce6119a83a45eeeff60 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/5320fd0b52b840e3f9e72846b7746f1fa75d987f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5320fd0b52b840e3f9e72846b7746f1fa75d987f \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/53a0296679c9b735e35402127874c691fcff3489:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/53a0296679c9b735e35402127874c691fcff3489 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/55b8a7c845bb0fdc90cfefdf362d96fb9bb5baa7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/55b8a7c845bb0fdc90cfefdf362d96fb9bb5baa7 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/55f4b024fbf05bec44cae7a5f9ea72949bf96d68:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/55f4b024fbf05bec44cae7a5f9ea72949bf96d68 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/56cc1556228e1b883a4aaba04ef96792b1df2180:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/56cc1556228e1b883a4aaba04ef96792b1df2180 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/5707e7e1cf7df624ae62a222d6646a126c53048f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5707e7e1cf7df624ae62a222d6646a126c53048f \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/57b1409029e863ebc07ed709f987e054ca9cf69b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/57b1409029e863ebc07ed709f987e054ca9cf69b \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/586ab8970a40ac2ba86236d5e092b70cd4d405d7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/586ab8970a40ac2ba86236d5e092b70cd4d405d7 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/5a6f9157b836f2fbc57420607a8b5d9aacc2292e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5a6f9157b836f2fbc57420607a8b5d9aacc2292e \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/5ba02ca649e0eead204797b81840de939158598a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5ba02ca649e0eead204797b81840de939158598a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/5c7946316406bf6aad6aeaa6e3962a3c83a7b3e3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5c7946316406bf6aad6aeaa6e3962a3c83a7b3e3 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/5ce3580c925d993d49ca99b8885d411f8f2c4da8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5ce3580c925d993d49ca99b8885d411f8f2c4da8 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/5d6c22606b75638002db7fdaa1216d84e7777740:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5d6c22606b75638002db7fdaa1216d84e7777740 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/5d7571c6fd3cf5e68610238143632a152d14c16a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5d7571c6fd3cf5e68610238143632a152d14c16a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/5eebdc859632c6f4ef461ee1565bd0f431944475:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5eebdc859632c6f4ef461ee1565bd0f431944475 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/5f8adb73c4a2c1a56b07167110b303997599215b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5f8adb73c4a2c1a56b07167110b303997599215b \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/60772aff4ece2a68409ae59e33c1ab90c673d119:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/60772aff4ece2a68409ae59e33c1ab90c673d119 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/60b18b4a6350ee57b5979ef1da3c9d9955fae456:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/60b18b4a6350ee57b5979ef1da3c9d9955fae456 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/6432d581fcad21a88b2e8aa78ffbc01a7ba3cfa8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6432d581fcad21a88b2e8aa78ffbc01a7ba3cfa8 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/648d3277200035b1dd5bc848fce3fccb2a8ecbeb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/648d3277200035b1dd5bc848fce3fccb2a8ecbeb \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/64ed93254e2e73cbd9649632251aedddb039fa78:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/64ed93254e2e73cbd9649632251aedddb039fa78 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/6561c857b96573eedded7e42ebe88c6bd04a04c5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6561c857b96573eedded7e42ebe88c6bd04a04c5 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/65b12a943694f5e48d8fe3e8c0fd5d523e9cded0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/65b12a943694f5e48d8fe3e8c0fd5d523e9cded0 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/694f0e496cdc162594d40538e68049f143156e18:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/694f0e496cdc162594d40538e68049f143156e18 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/6b373f6c28b1b49470c85148e19738bb2d12adf8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6b373f6c28b1b49470c85148e19738bb2d12adf8 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/6b87629719c296605b4ce26b502494705e10c2d1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6b87629719c296605b4ce26b502494705e10c2d1 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/6b8f0c3f656c8f9b88c30e2a1aee8892bdd40c4b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6b8f0c3f656c8f9b88c30e2a1aee8892bdd40c4b \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/6c7acb3b3dfa61b696dab087644ae34d2f82875a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6c7acb3b3dfa61b696dab087644ae34d2f82875a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/6c8c825b20c37850ed8b98a7cfe4050149617b0c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6c8c825b20c37850ed8b98a7cfe4050149617b0c \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/6d34c1ab6c25a72fd18773ce7cf90223d982e555:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6d34c1ab6c25a72fd18773ce7cf90223d982e555 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/6e871ee49616bac9af37ac3adc9de17cbe82df55:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6e871ee49616bac9af37ac3adc9de17cbe82df55 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/70ee458288ecd8485a3a552dde3de40722e6e5c5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/70ee458288ecd8485a3a552dde3de40722e6e5c5 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/71b6620ca3223579470806ff5fa7099d501e5551:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/71b6620ca3223579470806ff5fa7099d501e5551 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/71e8c877d5e20bd77aac1860ba9881fb3f2a4f72:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/71e8c877d5e20bd77aac1860ba9881fb3f2a4f72 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/74225eff1f2a3fafa8bc811225253adb8539ce7d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/74225eff1f2a3fafa8bc811225253adb8539ce7d \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7435283d6fd6ae1b6e9e5dff4ba3f8b70e2961b2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7435283d6fd6ae1b6e9e5dff4ba3f8b70e2961b2 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/748726f9e4e0ebb141a47fcd7f4b30ee221a1184:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/748726f9e4e0ebb141a47fcd7f4b30ee221a1184 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/751284954ff81a2b50175ed59dc8717658243983:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/751284954ff81a2b50175ed59dc8717658243983 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/75b560095ffa3d3be0d27e52a2c13bdb2119a4eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/75b560095ffa3d3be0d27e52a2c13bdb2119a4eb \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/76ba8783ca1c13e7bcc56a68a0e5abcd3b133a15:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/76ba8783ca1c13e7bcc56a68a0e5abcd3b133a15 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/77005b0b01de183165eb452904a440aef09aa685:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/77005b0b01de183165eb452904a440aef09aa685 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7751e245d07082d9523c4c6603c32f34138fb75e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7751e245d07082d9523c4c6603c32f34138fb75e \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7779d685252dbe18cc5a5fac4e73ee211f62bb7a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7779d685252dbe18cc5a5fac4e73ee211f62bb7a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/794f7ae51b52e5953a5218d99c66a4f3d17c2872:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/794f7ae51b52e5953a5218d99c66a4f3d17c2872 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7995c7a139b29db4a69a0d4edc8acc1b6c79b7f9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7995c7a139b29db4a69a0d4edc8acc1b6c79b7f9 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7a7717a1a5434f510e499f998a38ab9cc85e0454:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7a7717a1a5434f510e499f998a38ab9cc85e0454 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7ae741e7d8d4bc8bb6b529b0a1678a248109889a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7ae741e7d8d4bc8bb6b529b0a1678a248109889a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7c33ad7c5b63cf567c997b56f98b98afbda65123:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7c33ad7c5b63cf567c997b56f98b98afbda65123 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7f5dfd55169524946d3d3dcf8d2bc0168a20aa70:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7f5dfd55169524946d3d3dcf8d2bc0168a20aa70 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7fe80e2e06cb450f39a421df7339a7dd900e6f55:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7fe80e2e06cb450f39a421df7339a7dd900e6f55 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/7ff0c785cf9f907988f9be0393834aa1e3df2cbf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7ff0c785cf9f907988f9be0393834aa1e3df2cbf \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/80efb62c95e9679c706d112b5f9a25e97eaedbb4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/80efb62c95e9679c706d112b5f9a25e97eaedbb4 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/81e48901ce92d0e95d3eeb2ad1cbd31070e3257c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/81e48901ce92d0e95d3eeb2ad1cbd31070e3257c \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/826ccde7285846ef807b78b54c9e4cc7136ae133:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/826ccde7285846ef807b78b54c9e4cc7136ae133 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/848c47b625d7cc1a762cd9bee9645c2efa6e8a9c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/848c47b625d7cc1a762cd9bee9645c2efa6e8a9c \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/84e6b191bd9302b49f0a9a5b22fe8867e23ecd83:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/84e6b191bd9302b49f0a9a5b22fe8867e23ecd83 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/8620c4195c3c99e4dc92320a67a423c4847f5166:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8620c4195c3c99e4dc92320a67a423c4847f5166 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/8660664be9c470d3c2e152a1c0125294bd66e40b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8660664be9c470d3c2e152a1c0125294bd66e40b \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/868caf5403e1fe19c95dd298d54a09bc10d8488c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/868caf5403e1fe19c95dd298d54a09bc10d8488c \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/86d5fb4ac7b47f9c507cf21e8d22f1c9289fc1d6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/86d5fb4ac7b47f9c507cf21e8d22f1c9289fc1d6 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/86f877e241aa7c5f49df6eb9e6f74b1e9fe43502:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/86f877e241aa7c5f49df6eb9e6f74b1e9fe43502 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/87726641ce9b1e926d11845638db887c98ae7836:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/87726641ce9b1e926d11845638db887c98ae7836 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/87f967b6987425edc77ae46009de48aed67b219d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/87f967b6987425edc77ae46009de48aed67b219d \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/889443fcca0a58648afdf12bed1983dcd529cb0a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/889443fcca0a58648afdf12bed1983dcd529cb0a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/89824b4af18592828825c4d8481c8661cda8a027:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/89824b4af18592828825c4d8481c8661cda8a027 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/8ac4a23d833086e027bc5b1ee7683fd833ec1c48:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8ac4a23d833086e027bc5b1ee7683fd833ec1c48 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/8b782acdbcba3e1075c51bf8746bfdb2820608db:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8b782acdbcba3e1075c51bf8746bfdb2820608db \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/8bac6062f3902fe1c807cce2a2e6d2e78e361f50:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8bac6062f3902fe1c807cce2a2e6d2e78e361f50 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/8c24208a06977c4ade3fea111d85e0eb157650af:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8c24208a06977c4ade3fea111d85e0eb157650af \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/8c321fdd7ad6dc61e3f3cec170e9e6a4ec541d8b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8c321fdd7ad6dc61e3f3cec170e9e6a4ec541d8b \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/8d3110292db3f5813dac8063c743ac5cbb00fa3f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8d3110292db3f5813dac8063c743ac5cbb00fa3f \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/8d93623cc37a0c63c333c31d540eebde14d62783:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8d93623cc37a0c63c333c31d540eebde14d62783 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/8daccad9c7b39b6e3f56d8c79fa888c12cf0e53a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8daccad9c7b39b6e3f56d8c79fa888c12cf0e53a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/8df1b2756a870cc6c1c5cd2360c04aa5edaf96be:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8df1b2756a870cc6c1c5cd2360c04aa5edaf96be \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/939f65828b7ea6713b8ef1bd798a05391f123d63:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/939f65828b7ea6713b8ef1bd798a05391f123d63 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/93ca5ff4a79d588e2ff09d6afd297c1508e18193:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/93ca5ff4a79d588e2ff09d6afd297c1508e18193 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/93d475b6fa25f549a3518d80dac8f12712fc1cea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/93d475b6fa25f549a3518d80dac8f12712fc1cea \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/94b0c01324b95df3f323a3f0e0af037be0c0d9bc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/94b0c01324b95df3f323a3f0e0af037be0c0d9bc \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/94bb58cbf05fce9c3534d0329bc8faef757fcd38:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/94bb58cbf05fce9c3534d0329bc8faef757fcd38 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/9772960aefc6e9eeffbbe5af16d9aea4cc40354b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9772960aefc6e9eeffbbe5af16d9aea4cc40354b \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/97cae8ca0bd84a4d0415f1e0bdeaaa5e12c85487:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/97cae8ca0bd84a4d0415f1e0bdeaaa5e12c85487 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/98e47aabf42d3d70af5dacd52bbb2de2e8d6e0b0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/98e47aabf42d3d70af5dacd52bbb2de2e8d6e0b0 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/991b6d088315cc038ec92880fc39a5494bafa2b9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/991b6d088315cc038ec92880fc39a5494bafa2b9 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/997315825f67a013924c177b7c8fdb458ac16368:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/997315825f67a013924c177b7c8fdb458ac16368 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/9c291e92f4142e2de32b105348c958347b4864e6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9c291e92f4142e2de32b105348c958347b4864e6 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/9d8420c5edd34e38ed432327d1e7a90d380229f7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9d8420c5edd34e38ed432327d1e7a90d380229f7 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/9f328d18a25a73b35673ab942114ee3847c8aa1b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9f328d18a25a73b35673ab942114ee3847c8aa1b \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/9f3393ef035bfe9bcacb4171acc8a4e246ead0e2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9f3393ef035bfe9bcacb4171acc8a4e246ead0e2 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/9faa72518555c7a7552d8ab958f3c50b7cd32a19:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9faa72518555c7a7552d8ab958f3c50b7cd32a19 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/9fbf7ba11bc3d859c9f03834b691786120830156:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9fbf7ba11bc3d859c9f03834b691786120830156 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/a2f3ae8b82b3cfd322e52afa6b761095d27ea5df:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a2f3ae8b82b3cfd322e52afa6b761095d27ea5df \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/a3bc807bec2898d09da213b990b22b49b35a6cfe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a3bc807bec2898d09da213b990b22b49b35a6cfe \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/a49d8a67ee6645e739b1146daaea5e041990972c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a49d8a67ee6645e739b1146daaea5e041990972c \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/a5f9a7237020bbd162adf3fd2581a4713108f4f9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a5f9a7237020bbd162adf3fd2581a4713108f4f9 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/a62d36892ddb442eba9921186584923067b8f7b7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a62d36892ddb442eba9921186584923067b8f7b7 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/a69241c4ab316be6ff1520e373cf938986ef0120:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a69241c4ab316be6ff1520e373cf938986ef0120 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/a75be505de5bc901c44e7142e546cbf679ca5ca0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a75be505de5bc901c44e7142e546cbf679ca5ca0 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/a9c3233def569751df37698eb71c6e614e0277ba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a9c3233def569751df37698eb71c6e614e0277ba \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/aa052fc4035e95df4c88bb2868d802b20b8471ed:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/aa052fc4035e95df4c88bb2868d802b20b8471ed \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/ab3decdb91848de3c966364d9bd5caf45271f5dc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ab3decdb91848de3c966364d9bd5caf45271f5dc \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/ac2c894865a0334a176c109ef3119250e8ceff03:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ac2c894865a0334a176c109ef3119250e8ceff03 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/ad7929284ac16137458c1e191ef15951aefe3662:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ad7929284ac16137458c1e191ef15951aefe3662 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/ae6de29423d8887e1c3bb798783b45e6432a2267:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ae6de29423d8887e1c3bb798783b45e6432a2267 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/ae8303680d1fcbab2a412b8f70d1c34725972a5a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ae8303680d1fcbab2a412b8f70d1c34725972a5a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/af1342ddb8b8cfca7315ad675b5298cf5e1a2684:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/af1342ddb8b8cfca7315ad675b5298cf5e1a2684 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/b188e579de01fc2930e5237ce5141133b3416924:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b188e579de01fc2930e5237ce5141133b3416924 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/b252e608f0d9bb4a8917bc476b79dc38a9f30639:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b252e608f0d9bb4a8917bc476b79dc38a9f30639 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/b2576121941b2990d065795688f0efbaab47b163:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b2576121941b2990d065795688f0efbaab47b163 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/b2a8d87a81b5023ef6a01eb83ced217fc492e6bf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b2a8d87a81b5023ef6a01eb83ced217fc492e6bf \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/b32abe2fc6fa32944adebb5cb61b70e9d6fa6f42:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b32abe2fc6fa32944adebb5cb61b70e9d6fa6f42 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/b3e4e3b1eac29d6ce6d3e7b4f910119105eeb52a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b3e4e3b1eac29d6ce6d3e7b4f910119105eeb52a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/b67b5439704115539ec0fb3ac0877f29643c5e64:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b67b5439704115539ec0fb3ac0877f29643c5e64 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/b71d237cc325e8bc3f0ca31918542035aa7de8b8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b71d237cc325e8bc3f0ca31918542035aa7de8b8 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/bac9329a0335b63e9509b06ff506462ee70d933a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bac9329a0335b63e9509b06ff506462ee70d933a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/bb916b8f8838a9381185362895e6e17ab1e7128a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bb916b8f8838a9381185362895e6e17ab1e7128a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/bc059f99a85ec3a15d96b114338d0e70003cdd0c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bc059f99a85ec3a15d96b114338d0e70003cdd0c \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/bcc65cb7d3ca31f4d421e974f9e537f749902a62:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bcc65cb7d3ca31f4d421e974f9e537f749902a62 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/bce699faf822f3a6eed90382f0f61468178976c9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bce699faf822f3a6eed90382f0f61468178976c9 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/be7ab42a6fcc413f3cf17f5e96b33e920b18295c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/be7ab42a6fcc413f3cf17f5e96b33e920b18295c \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/be9f80da2970018bfcfa3ae4629de2d722b004e8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/be9f80da2970018bfcfa3ae4629de2d722b004e8 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/beb9662ed6861e4457db7dbfb57d465b47dee4f4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/beb9662ed6861e4457db7dbfb57d465b47dee4f4 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/bfff9c82b0afb4e8ce323f3ace60227025c12337:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bfff9c82b0afb4e8ce323f3ace60227025c12337 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c0b1204de4e8ce6503d4b2391f66a53839103e4c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c0b1204de4e8ce6503d4b2391f66a53839103e4c \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c24f7e2a1a5a7e9c06432b0c4e9f00aa81b5e31c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c24f7e2a1a5a7e9c06432b0c4e9f00aa81b5e31c \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c27eb49f536205705caa8e10b9f34de9befeb7a3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c27eb49f536205705caa8e10b9f34de9befeb7a3 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c286ad6a9eb5bc35b430ccdb87016135565621e5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c286ad6a9eb5bc35b430ccdb87016135565621e5 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c35481c5d92078f720b2d24e68de61cc74957977:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c35481c5d92078f720b2d24e68de61cc74957977 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c439e5ec3110d7d2be9a1fcacb6f71ae067be6af:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c439e5ec3110d7d2be9a1fcacb6f71ae067be6af \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c47bd50d1ba79a32ad21a2b0fcdb3278735ed6d3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c47bd50d1ba79a32ad21a2b0fcdb3278735ed6d3 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c5338781d3e1881cbe39aa1bc7c694995219a9d8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c5338781d3e1881cbe39aa1bc7c694995219a9d8 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c84c65b79a424a6147c5bccfe4c5370a61e6a7a0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c84c65b79a424a6147c5bccfe4c5370a61e6a7a0 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c85ff5cd5783608e7583de2c8d2b71d98499b053:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c85ff5cd5783608e7583de2c8d2b71d98499b053 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c899d8fb2d2a7f51ce7167bb55c7e7dac30b4680:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c899d8fb2d2a7f51ce7167bb55c7e7dac30b4680 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c8d35ec9477a26db93ca473a1935d571227565a7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c8d35ec9477a26db93ca473a1935d571227565a7 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/c9f5384f536f60780675502924c645ce3f0ff72e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c9f5384f536f60780675502924c645ce3f0ff72e \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/cb392882595a76492aa575b073a057eefb3686d3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cb392882595a76492aa575b073a057eefb3686d3 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/cbee6647ceefd3d58a467602592f0fd6865b1a49:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cbee6647ceefd3d58a467602592f0fd6865b1a49 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/ccd308752ebda8ee902080245417947291778fc1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ccd308752ebda8ee902080245417947291778fc1 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/cd9da77f886cc3ef67e53c2e3730b62602f8443c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cd9da77f886cc3ef67e53c2e3730b62602f8443c \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/cda105917f7d5317cd3599cbd9e202419f00de1b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cda105917f7d5317cd3599cbd9e202419f00de1b \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/ce7767726dbd4e73eb2486a1e74856826d7bb37a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ce7767726dbd4e73eb2486a1e74856826d7bb37a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/ce9c5221bb6ee69f9eaab14da77b80e7892df1e1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ce9c5221bb6ee69f9eaab14da77b80e7892df1e1 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/cf52d624fda25b7e63d70cfb06129918b078f88e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cf52d624fda25b7e63d70cfb06129918b078f88e \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d08b4499d59dc03502dac878230eb91c9030ade0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d08b4499d59dc03502dac878230eb91c9030ade0 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d18b514b1e5dad88792ab89e8a6887502a4095f3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d18b514b1e5dad88792ab89e8a6887502a4095f3 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d237e338d2b4d789fc7c9946f08d0528f2907647:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d237e338d2b4d789fc7c9946f08d0528f2907647 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d3da5268e346ff10bbd2245e7d58571abce28735:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d3da5268e346ff10bbd2245e7d58571abce28735 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d3f08ec9fd7df86c3def50622d836d9b17f76d00:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d3f08ec9fd7df86c3def50622d836d9b17f76d00 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d4289dea1df5f3e65f8795177f1ebe07cbdf7e3f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d4289dea1df5f3e65f8795177f1ebe07cbdf7e3f \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d5bdf28cfec7aefaab13f11b137b0ebc248f562a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d5bdf28cfec7aefaab13f11b137b0ebc248f562a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d5c844a6a5d018d49fb5cd2b1dfc75af47139409:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d5c844a6a5d018d49fb5cd2b1dfc75af47139409 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d66b026e3654b326d41e5b490998d93925a6c294:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d66b026e3654b326d41e5b490998d93925a6c294 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d68b87463535763444067554092139effc377d50:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d68b87463535763444067554092139effc377d50 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d716023e2faf5dc0c15283634a9cffaf6594f209:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d716023e2faf5dc0c15283634a9cffaf6594f209 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/d796dff893cf33c7aa0ff74d4838e648b9681c8a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d796dff893cf33c7aa0ff74d4838e648b9681c8a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/dbdc50e7e131ce4fb6764161621f94ed7f7d8c37:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/dbdc50e7e131ce4fb6764161621f94ed7f7d8c37 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/ddc210aaaa9395f81013efffa7b810b1d5acb357:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ddc210aaaa9395f81013efffa7b810b1d5acb357 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/de30aec142fae930a946d93a5a76c33a37e31051:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/de30aec142fae930a946d93a5a76c33a37e31051 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/de61608ef3c4e15e6110f8239454309d327c6d64:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/de61608ef3c4e15e6110f8239454309d327c6d64 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e008a5446ea4b020eaf0d331b5d4e0dd88490589:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e008a5446ea4b020eaf0d331b5d4e0dd88490589 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e040abb03407e3f9a877692ff3caa97edaad67f1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e040abb03407e3f9a877692ff3caa97edaad67f1 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e07157b1bac2a5349427244261c7c43c226c6c0e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e07157b1bac2a5349427244261c7c43c226c6c0e \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e128d3574be3a306102932084ddcf462cea0a724:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e128d3574be3a306102932084ddcf462cea0a724 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e29e2e91c20bde350f7b6d9515cf018d9faefc02:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e29e2e91c20bde350f7b6d9515cf018d9faefc02 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e300a0bdfb9552c3bcdb29d8fa1d6f71ffc6cbb1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e300a0bdfb9552c3bcdb29d8fa1d6f71ffc6cbb1 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e3a14f42d2d46e1663fd300afbda79caf6d270ed:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e3a14f42d2d46e1663fd300afbda79caf6d270ed \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e45318d3d1e56d507f2976132abc611540fda54b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e45318d3d1e56d507f2976132abc611540fda54b \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e58444e0c521100669f962fce9f5f5dd6214b190:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e58444e0c521100669f962fce9f5f5dd6214b190 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e6814f3eee0ffc6bac1097b76ca22107730efa06:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e6814f3eee0ffc6bac1097b76ca22107730efa06 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e69b7b181e4f4b50b433aba74e199efd8a93fe74:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e69b7b181e4f4b50b433aba74e199efd8a93fe74 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e6ac13eb3bf2978971e5952fc4d4857ad6ea896d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e6ac13eb3bf2978971e5952fc4d4857ad6ea896d \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e9494c10ee0f6053d71a9020df8c5bf42a2b196e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e9494c10ee0f6053d71a9020df8c5bf42a2b196e \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e96a153cd5b0d719bf89a74efdc38aefabc4b64d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e96a153cd5b0d719bf89a74efdc38aefabc4b64d \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/e992a91159b5fc97d3267fc11f8a226ce4639b44:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e992a91159b5fc97d3267fc11f8a226ce4639b44 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/eb38ae941447a7121d0c22411ae3c79676997974:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/eb38ae941447a7121d0c22411ae3c79676997974 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/ebfb20447e3c8e2f4c6b79670b9beb244a04fe86:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ebfb20447e3c8e2f4c6b79670b9beb244a04fe86 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/ec1794b3e377ed6a0af6c7bddf2717a69af176dd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ec1794b3e377ed6a0af6c7bddf2717a69af176dd \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/ec43c396a8938c70e5833e19897e59e8f1905586:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ec43c396a8938c70e5833e19897e59e8f1905586 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/eeff77f9dbbdbf6c11386c0fa91d433e763a380a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/eeff77f9dbbdbf6c11386c0fa91d433e763a380a \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/ef45e1df8540299672ce67612f530cf76fcdedae:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ef45e1df8540299672ce67612f530cf76fcdedae \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f04952633e68ca6945a3b537f31cd71ee7b32360:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f04952633e68ca6945a3b537f31cd71ee7b32360 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f15c307340be8da68167258e8fb2e1ce23a82235:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f15c307340be8da68167258e8fb2e1ce23a82235 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f19daf7c5151e3ac16feaccc16ab7dfd4285f7d3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f19daf7c5151e3ac16feaccc16ab7dfd4285f7d3 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f2cec6681667a4d8c3057d42cf4110f0af2dc493:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f2cec6681667a4d8c3057d42cf4110f0af2dc493 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f371df54caf20b0f789e3305f528f37e30c2b335:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f371df54caf20b0f789e3305f528f37e30c2b335 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f47470ee21c935e118dbe2cec7511254ea6841bf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f47470ee21c935e118dbe2cec7511254ea6841bf \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f501c0cb5c2e5730cb27d35e607fb740c0f256ee:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f501c0cb5c2e5730cb27d35e607fb740c0f256ee \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f649a2904096c17e2692c69ce303d5618feb9d44:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f649a2904096c17e2692c69ce303d5618feb9d44 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f7bccdf7540bb45c33edfa389d8d0850ada9bcf9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f7bccdf7540bb45c33edfa389d8d0850ada9bcf9 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f7d2a413e5951be0d1cbafe17e7831905b3808fb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f7d2a413e5951be0d1cbafe17e7831905b3808fb \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/f98d4335e859fa2c4a029fcf31ed6579ff902304:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f98d4335e859fa2c4a029fcf31ed6579ff902304 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/faf3098c05209e0b9e3bac79dffad4df7076c1fc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/faf3098c05209e0b9e3bac79dffad4df7076c1fc \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/fc5f26410a74006d24abc7ea713197a934975b9f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fc5f26410a74006d24abc7ea713197a934975b9f \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/fd3d6561e6399ecd80453191b0636107f3aba94d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fd3d6561e6399ecd80453191b0636107f3aba94d \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/manifests/ff24628c9581f63068732353fa7bdafd2b575f64:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ff24628c9581f63068732353fa7bdafd2b575f64 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/carrierconfig/release-label:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/release-label \
     vendor/google_devices/shiba/proprietary/vendor/firmware/cs35l41-dsp1-spk-cali.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/cs35l41-dsp1-spk-cali.bin \
     vendor/google_devices/shiba/proprietary/vendor/firmware/cs35l41-dsp1-spk-cali.wmfw:$(TARGET_COPY_OUT_VENDOR)/firmware/cs35l41-dsp1-spk-cali.wmfw \
@@ -3231,6 +3319,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/fw_bcmdhd.map_4398_b0:$(TARGET_COPY_OUT_VENDOR)/firmware/fw_bcmdhd.map_4398_b0 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/fw_bcmdhd.map_4398_c0:$(TARGET_COPY_OUT_VENDOR)/firmware/fw_bcmdhd.map_4398_c0 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/fw_bcmdhd.map_4398_d0:$(TARGET_COPY_OUT_VENDOR)/firmware/fw_bcmdhd.map_4398_d0 \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/g7.app:$(TARGET_COPY_OUT_VENDOR)/firmware/g7.app \
     vendor/google_devices/shiba/proprietary/vendor/firmware/goodix_firmware_bigsurf.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/goodix_firmware_bigsurf.bin \
     vendor/google_devices/shiba/proprietary/vendor/firmware/goodix_firmware_shoreline.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/goodix_firmware_shoreline.bin \
     vendor/google_devices/shiba/proprietary/vendor/firmware/goodix_test_limits_bigsurf.csv:$(TARGET_COPY_OUT_VENDOR)/firmware/goodix_test_limits_bigsurf.csv \
@@ -3243,11 +3332,10 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/gxp_callisto_fw_core2:$(TARGET_COPY_OUT_VENDOR)/firmware/gxp_callisto_fw_core2 \
     vendor/google_devices/shiba/proprietary/vendor/firmware/KIOXIATHGJFJT1E45BATPC0100.img:$(TARGET_COPY_OUT_VENDOR)/firmware/KIOXIATHGJFJT1E45BATPC0100.img \
     vendor/google_devices/shiba/proprietary/vendor/firmware/KIOXIATHGJFJT2T85BAT0C0100.img:$(TARGET_COPY_OUT_VENDOR)/firmware/KIOXIATHGJFJT2T85BAT0C0100.img \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/mali_csffw-r52p0.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-r52p0.bin \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/mali_csffw-r53p0.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-r53p0.bin \
-    vendor/google_devices/shiba/proprietary/vendor/firmware/mali_csffw-r54p0.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-r54p0.bin \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/mali_csffw-legacy-r56p0.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-legacy-r56p0.bin \
     vendor/google_devices/shiba/proprietary/vendor/firmware/mali_csffw-r54p1.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-r54p1.bin \
     vendor/google_devices/shiba/proprietary/vendor/firmware/mali_csffw-r54p2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-r54p2.bin \
+    vendor/google_devices/shiba/proprietary/vendor/firmware/mali_csffw-r54p3.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-r54p3.bin \
     vendor/google_devices/shiba/proprietary/vendor/firmware/mfc_fw.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mfc_fw.bin \
     vendor/google_devices/shiba/proprietary/vendor/firmware/MICRONMT128GBCAV2U310103.img:$(TARGET_COPY_OUT_VENDOR)/firmware/MICRONMT128GBCAV2U310103.img \
     vendor/google_devices/shiba/proprietary/vendor/firmware/MICRONMT128GBCAV2U310104.img:$(TARGET_COPY_OUT_VENDOR)/firmware/MICRONMT128GBCAV2U310104.img \
@@ -3348,8 +3436,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/firmware/uecapconfig/VZW.binarypb:$(TARGET_COPY_OUT_VENDOR)/firmware/uecapconfig/VZW.binarypb \
     vendor/google_devices/shiba/proprietary/vendor/firmware/uecapconfig/WILDCARD.binarypb:$(TARGET_COPY_OUT_VENDOR)/firmware/uecapconfig/WILDCARD.binarypb \
     vendor/google_devices/shiba/proprietary/vendor/firmware/uecapconfig/WINDTRE.binarypb:$(TARGET_COPY_OUT_VENDOR)/firmware/uecapconfig/WINDTRE.binarypb \
-    vendor/google_devices/shiba/proprietary/vendor/lib64/libaconfig_storage_read_api_cc.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libaconfig_storage_read_api_cc.so \
-    vendor/google_devices/shiba/proprietary/vendor/lib64/libc++.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libc++.so \
     vendor/google_devices/shiba/proprietary/vendor/etc/audio_platform_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_platform_configuration.xml \
     vendor/google_devices/shiba/proprietary/vendor/etc/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml \
     vendor/google_devices/shiba/proprietary/vendor/etc/database/DbEcc_202.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_202.xml \
@@ -3360,6 +3446,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/etc/database/DbEcc_216.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_216.xml \
     vendor/google_devices/shiba/proprietary/vendor/etc/database/DbEcc_218.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_218.xml \
     vendor/google_devices/shiba/proprietary/vendor/etc/database/DbEcc_219.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_219.xml \
+    vendor/google_devices/shiba/proprietary/vendor/etc/database/DbEcc_220.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_220.xml \
     vendor/google_devices/shiba/proprietary/vendor/etc/database/DbEcc_222.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_222.xml \
     vendor/google_devices/shiba/proprietary/vendor/etc/database/DbEcc_226.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_226.xml \
     vendor/google_devices/shiba/proprietary/vendor/etc/database/DbEcc_228.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_228.xml \
@@ -3396,6 +3483,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/etc/database/DbEcc_460.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_460.xml \
     vendor/google_devices/shiba/proprietary/vendor/etc/database/DbEcc_466.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_466.xml \
     vendor/google_devices/shiba/proprietary/vendor/etc/database/DbEcc_505.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_505.xml \
+    vendor/google_devices/shiba/proprietary/vendor/etc/database/DbEcc_520.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_520.xml \
     vendor/google_devices/shiba/proprietary/vendor/etc/database/DbEcc_525.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_525.xml \
     vendor/google_devices/shiba/proprietary/vendor/etc/database/DbEcc_647.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_647.xml \
     vendor/google_devices/shiba/proprietary/vendor/etc/database/DbEcc_704.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_704.xml \
@@ -3434,6 +3522,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/shiba/proprietary/vendor/etc/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml \
     vendor/google_devices/shiba/proprietary/vendor/etc/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
     vendor/google_devices/shiba/proprietary/vendor/etc/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml \
+    vendor/google_devices/shiba/proprietary/vendor/etc/memory-limiter-config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/memory-limiter-config.xml \
     vendor/google_devices/shiba/proprietary/vendor/etc/mixer_paths_aidl.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths_aidl.xml \
     vendor/google_devices/shiba/proprietary/vendor/etc/modem/default_metrics.xml:$(TARGET_COPY_OUT_VENDOR)/etc/modem/default_metrics.xml \
     vendor/google_devices/shiba/proprietary/vendor/etc/radio/log_masks/default/default_modem_log_mask.xml:$(TARGET_COPY_OUT_VENDOR)/etc/radio/log_masks/default/default_modem_log_mask.xml \

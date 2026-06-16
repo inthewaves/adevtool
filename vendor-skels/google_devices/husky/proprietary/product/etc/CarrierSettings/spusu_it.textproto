@@ -1,5 +1,5 @@
 canonical_name: "spusu_it"
-version: 75000000003
+version: 77000000004
 apns {
   apn {
     name: "spusu"
@@ -63,12 +63,6 @@ configs {
     text_value: "epdg.epc.mnc056.mcc222.pub.3gppnetwork.org"
   }
   config {
-    key: "iwlan_handover_policy_string_array"
-    text_array {
-      item: "source=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN|UNKNOWN, target=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN, type=disallowed, capabilities=IMS|EIMS|MMS|XCAP|CBS"
-    }
-  }
-  config {
     key: "rtt_downgrade_supported_bool"
     bool_value: true
   }
@@ -86,5 +80,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1746619443
+  seconds: 1773236714
 }

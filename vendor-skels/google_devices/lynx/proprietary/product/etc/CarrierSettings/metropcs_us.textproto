@@ -1,5 +1,5 @@
 canonical_name: "metropcs_us"
-version: 75000000043
+version: 77000000044
 apns {
   apn {
     name: "MetroPCS Tethering"
@@ -203,6 +203,12 @@ configs {
   config {
     key: "data_limit_threshold_bytes_long"
     long_value: 107374182400
+  }
+  config {
+    key: "disconnect_cause_network_busy_int_array"
+    int_array {
+      item: 60
+    }
   }
   config {
     key: "editable_voicemail_number_setting_bool"
@@ -778,5 +784,5 @@ vendor_configs {
   }
 }
 last_updated {
-  seconds: 1761862521
+  seconds: 1777512326
 }

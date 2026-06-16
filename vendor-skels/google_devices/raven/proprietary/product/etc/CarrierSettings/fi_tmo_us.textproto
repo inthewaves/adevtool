@@ -1,5 +1,5 @@
 canonical_name: "fi_tmo_us"
-version: 75000000011
+version: 77000000012
 apns {
 }
 configs {
@@ -198,6 +198,12 @@ configs {
   config {
     key: "data_warning_threshold_bytes_long"
     long_value: -2
+  }
+  config {
+    key: "disconnect_cause_network_busy_int_array"
+    int_array {
+      item: 60
+    }
   }
   config {
     key: "display_hd_audio_property_bool"
@@ -719,5 +725,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1761862486
+  seconds: 1777512285
 }

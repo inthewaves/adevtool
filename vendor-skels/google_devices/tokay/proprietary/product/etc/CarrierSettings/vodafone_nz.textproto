@@ -1,5 +1,5 @@
 canonical_name: "vodafone_nz"
-version: 75000000009
+version: 77000000010
 apns {
   apn {
     name: "VFNZ Gateway"
@@ -130,14 +130,10 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "wfc_spn_format_idx_int"
     int_value: 1
   }
 }
 last_updated {
-  seconds: 1747202462
+  seconds: 1767187386
 }

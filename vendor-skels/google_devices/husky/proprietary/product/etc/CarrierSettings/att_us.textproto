@@ -1,5 +1,5 @@
 canonical_name: "att_us"
-version: 75000000022
+version: 77000000022
 apns {
   apn {
     name: "ATT Nextgenphone"
@@ -851,5 +851,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1769617597
+  seconds: 1770215825
 }

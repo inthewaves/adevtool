@@ -1,5 +1,5 @@
 canonical_name: "koodo_ca"
-version: 75000000007
+version: 77000000009
 apns {
   apn {
     name: "Koodo SP"
@@ -511,5 +511,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1761090366
+  seconds: 1772636232
 }

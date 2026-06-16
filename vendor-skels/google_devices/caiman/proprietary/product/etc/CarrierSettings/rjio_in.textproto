@@ -1,5 +1,5 @@
 canonical_name: "rjio_in"
-version: 75000000013
+version: 77000000014
 apns {
   apn {
     name: "Jio 4G"
@@ -347,10 +347,6 @@ configs {
     text_value: "com.qti.xdivert/com.qti.xdivert.XDivertSetting"
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "volte_replacement_rat_int"
     int_value: 3
   }
@@ -364,5 +360,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1762942401
+  seconds: 1767187386
 }

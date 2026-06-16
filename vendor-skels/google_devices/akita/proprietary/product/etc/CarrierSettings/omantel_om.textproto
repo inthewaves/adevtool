@@ -1,5 +1,5 @@
 canonical_name: "omantel_om"
-version: 75000000004
+version: 77000000005
 apns {
   apn {
     name: "Oman Mobile MMS"
@@ -78,11 +78,7 @@ configs {
       }
     }
   }
-  config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
 }
 last_updated {
-  seconds: 1706100394
+  seconds: 1767187381
 }

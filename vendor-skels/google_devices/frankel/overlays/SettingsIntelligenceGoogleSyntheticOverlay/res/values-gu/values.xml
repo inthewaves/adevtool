@@ -2,7 +2,7 @@
 <resources>
     <string name="charge_limit_indexing_keywords">ચાર્જિંગ, મર્યાદા, ચાર્જિંગ ઑપ્ટિમાઇઝેશન, ચાર્જિંગની મર્યાદા</string>
     <string name="charging_optimization_entry_summary_charge_limit">%1$s સુધી મર્યાદિત રાખો</string>
-    <string name="charging_optimization_footer_message_charge_limit">બૅટરીની આવરદા વધારવામાં મદદ કરવા માટે, તમારો ફોન માત્ર %1$s બૅટરી સુધી ચાર્જ થશે. બૅટરીના લેવલની જાણ કરવામાં સચોટતા જાળવવા માટે તમારો ફોન દર એકથી બે અઠવાડિયામાં એકવાર %2$s ચાર્જ થશે.</string>
+    <string name="charging_optimization_footer_message_charging_limit">આનાથી બૅટરીની આવરદામાં વધારો કરવામાં મદદ મળે છે. બૅટરીની સચોટ ક્ષમતાની ખાતરી કરવા માટે, તમારા ફોનને અવારનવાર સંપૂર્ણપણે ચાર્જ કરવાની જરૂર પડશે.</string>
     <string name="charging_optimization_summary_off">બંધ છે</string>
     <string name="charging_optimization_title">ચાર્જિંગ ઑપ્ટિમાઇઝેશન</string>
 </resources>

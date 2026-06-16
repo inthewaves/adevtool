@@ -13,6 +13,7 @@ HbmSVManager__lynx__auto_generated_rro_product
 ManagedProvisioningPixelOverlay
 NetworkStackOverlay
 NexusLauncherRelease__lynx__auto_generated_rro_vendor
+NfcOverlayLynxGsi
 PixelBatteryHealthOverlay
 PixelConfigOverlay2018
 PixelConfigOverlay2021

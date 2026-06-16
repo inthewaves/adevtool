@@ -1,5 +1,5 @@
 canonical_name: "1global_bootstrap"
-version: 75000000001
+version: 77000000002
 apns {
   apn {
     name: "1Global Bootstrap"
@@ -23,10 +23,14 @@ configs {
     text_value: ""
   }
   config {
+    key: "cellular_usage_setting_int"
+    int_value: 2
+  }
+  config {
     key: "operator_name_filter_pattern_string"
     text_value: "()"
   }
 }
 last_updated {
-  seconds: 1765368123
+  seconds: 1773841135
 }

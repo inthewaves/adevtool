@@ -6,6 +6,6 @@
     <string name="battery_replacement_notify_des">Емкость батареи и эффективность зарядки снижены из-за возможной проблемы с перегревом. Рекомендуем заменить батарею. Чтобы узнать больше, перейдите по ссылке &lt;u&gt;g.co/pixel/6abattery&lt;/u&gt;.</string>
     <string name="battery_replacement_notify_title">Рекомендуем заменить батарею</string>
     <string name="keyguard_indication_charging_time_charge_limit">%2$s • Зарядка завершится к %1$s</string>
-    <string name="keyguard_indication_charging_time_charge_limit_v1">%2$s • Зарядка завершится через %1$s</string>
+    <string name="keyguard_indication_charging_time_charge_limit_v1">%2$s • Зарядится через %1$s</string>
     <string name="keyguard_indication_charging_time_reach_charge_limit">%1$s • Зарядка завершена</string>
 </resources>

@@ -58,3 +58,11 @@ prebuilt_etc {
     sub_dir: "permissions",
     soc_specific: true,
 }
+
+prebuilt_etc {
+    name: "adevtool_sysconfig_odm_sysconfig_sku_GV0BP",
+    srcs: [ "odm/sysconfig/sku_GV0BP/*.xml" ],
+    owner: "google_devices",
+    sub_dir: "sysconfig/sku_GV0BP",
+    device_specific: true,
+}

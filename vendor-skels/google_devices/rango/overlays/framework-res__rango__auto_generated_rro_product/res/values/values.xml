@@ -130,7 +130,6 @@
     <bool name="config_letterboxIsEducationEnabled">false</bool>
     <bool name="config_letterboxIsSplitScreenAspectRatioForUnresizableAppsEnabled">false</bool>
     <bool name="config_matchSecondaryInternalDisplaysOrientationToReverseDefaultDisplay">true</bool>
-    <bool name="config_offsetWallpaperToCenterOfLargestDisplay">true</bool>
     <bool name="config_refreshRateSynchronizationEnabled">true</bool>
     <bool name="config_ringtoneVibrationSettingsSupported">true</bool>
     <bool name="config_showUserSwitcherByDefault">false</bool>
@@ -157,6 +156,8 @@
     <string name="config_display_features">fold-[1038,0,1038,2152]</string>
     <string name="config_qualified_networks_service_package">com.android.qns</string>
     <string name="config_rearDisplayPhysicalAddress">4619827677550801153</string>
+    <string name="config_virtual_gamepad_activity_name">com.android.virtualgamepad.GamepadActivity</string>
+    <string name="config_virtual_gamepad_package_name">com.android.virtualgamepad</string>
     <string name="fingerprint_acquired_immobile">Reposition finger. You already touched with this area of your fingerprint.</string>
     <string name="fingerprint_acquired_immobile_short">Reposition finger. You already touched with this area.</string>
     <string name="fingerprint_acquired_partial">Make sure your finger covers the sensor</string>

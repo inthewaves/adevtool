@@ -1,5 +1,5 @@
 canonical_name: "redpockettmo_us"
-version: 75000000009
+version: 77000000010
 apns {
   apn {
     name: "Red Pocket Mobile"
@@ -302,10 +302,6 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "volte_replacement_rat_int"
     int_value: 3
   }
@@ -321,5 +317,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1742382160
+  seconds: 1767187386
 }

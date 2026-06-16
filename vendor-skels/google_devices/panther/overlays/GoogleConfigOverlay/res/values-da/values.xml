@@ -6,6 +6,7 @@
         <item>Kalibreringsfejl</item>
         <item>Ansigtsoplåsning er utilgængelig. Telefonen er for varm.</item>
         <item>Ansigtsoplåsning skal konfigureres igen</item>
+        <item>Juster belysningen, og hold enheden stille</item>
     </array>
     <string name="biometric_app_setting_name">Brug ansigt eller fingeraftryk</string>
     <string name="biometric_dialog_default_subtitle">Brug dit ansigt eller dit fingeraftryk for at fortsætte</string>

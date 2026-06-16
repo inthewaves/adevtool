@@ -1,5 +1,5 @@
 canonical_name: "telco_re"
-version: 75000000002
+version: 77000000003
 apns {
   apn {
     name: "Telco OI Re"
@@ -9,6 +9,8 @@ apns {
     type: SUPL
     type: MMS
     mmsc: "http://mms.telco.re"
+    protocol: IPV4V6
+    roaming_protocol: IPV4V6
   }
 }
 configs {
@@ -23,5 +25,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1710930013
+  seconds: 1769617043
 }

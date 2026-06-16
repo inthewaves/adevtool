@@ -1,5 +1,5 @@
 canonical_name: "optus_au"
-version: 75000000017
+version: 77000000018
 apns {
   apn {
     name: "Optus Yes Internet"
@@ -130,14 +130,6 @@ configs {
       item: 2
       item: 4
     }
-  }
-  config {
-    key: "imsvoice.audio_rtcp_inactivity_timer_millis_int"
-    int_value: 10000
-  }
-  config {
-    key: "imsvoice.audio_rtp_inactivity_timer_millis_int"
-    int_value: 10000
   }
   config {
     key: "imsvoice.minimum_session_expires_timer_sec_int"
@@ -271,5 +263,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1762942302
+  seconds: 1770215790
 }

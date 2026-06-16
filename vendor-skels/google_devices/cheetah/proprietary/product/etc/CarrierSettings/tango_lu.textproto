@@ -1,22 +1,22 @@
 canonical_name: "tango_lu"
-version: 75000000005
+version: 77000000007
 apns {
   apn {
     name: "Tango Internet"
     value: "internet"
     type: DEFAULT
     type: SUPL
-    proxy: "130.244.196.90"
-    port: "8080"
+    type: MMS
     user: "tango"
     password: "tango"
+    mmsc: "http://mms.tango.lu"
+    mmsc_proxy: "212.66.75.3"
+    mmsc_proxy_port: "8080"
   }
   apn {
     name: "Tango MMS"
     value: "mms"
     type: MMS
-    user: "tango"
-    password: "tango"
     mmsc: "http://mms.tango.lu"
     mmsc_proxy: "212.66.75.3"
     mmsc_proxy_port: "8080"
@@ -135,5 +135,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1732098879
+  seconds: 1770819080
 }

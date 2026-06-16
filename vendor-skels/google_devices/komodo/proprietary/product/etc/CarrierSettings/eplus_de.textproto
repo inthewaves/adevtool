@@ -1,5 +1,5 @@
 canonical_name: "eplus_de"
-version: 75000000014
+version: 77000000015
 apns {
   apn {
     name: "o2 Internet"
@@ -317,10 +317,6 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "vonr_enabled_bool"
     bool_value: true
   }
@@ -330,5 +326,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1764155460
+  seconds: 1767187386
 }

@@ -1,5 +1,5 @@
 canonical_name: "zain_bh"
-version: 75000000007
+version: 77000000008
 apns {
   apn {
     name: "Zain BH Internet"
@@ -154,11 +154,7 @@ configs {
     key: "prefer_3g_visibility_bool"
     bool_value: false
   }
-  config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
 }
 last_updated {
-  seconds: 1724912524
+  seconds: 1767187386
 }

@@ -1,5 +1,5 @@
 canonical_name: "sprintwholesale_us"
-version: 75000000007
+version: 77000000008
 apns {
   apn {
     name: "Internet"
@@ -282,10 +282,6 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "voicemail_notification_persistent_bool"
     bool_value: true
   }
@@ -303,5 +299,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1721964292
+  seconds: 1767187381
 }

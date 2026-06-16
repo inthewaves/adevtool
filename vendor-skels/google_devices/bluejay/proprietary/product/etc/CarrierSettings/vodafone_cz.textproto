@@ -1,5 +1,5 @@
 canonical_name: "vodafone_cz"
-version: 75000000021
+version: 77000000021
 apns {
   apn {
     name: "IMS"
@@ -175,5 +175,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1765368067
+  seconds: 1765981758
 }

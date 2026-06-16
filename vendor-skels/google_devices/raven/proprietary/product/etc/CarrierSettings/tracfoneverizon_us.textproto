@@ -1,5 +1,5 @@
 canonical_name: "tracfoneverizon_us"
-version: 75000000507
+version: 77000000509
 apns {
   apn {
     name: "Verizon"
@@ -1196,5 +1196,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1762942285
+  seconds: 1771422444
 }

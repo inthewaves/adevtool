@@ -1,5 +1,5 @@
 canonical_name: "spectrumbusiness_us"
-version: 75000000005
+version: 77000000008
 apns {
   apn {
     name: "Spectrum"
@@ -73,6 +73,10 @@ configs {
       item: 260
       item: 261
     }
+  }
+  config {
+    key: "allow_adding_apns_bool"
+    bool_value: false
   }
   config {
     key: "bsf.bsf_server_fqdn_string"
@@ -188,6 +192,12 @@ configs {
       item: "611:+18443934166"
       item: "*611:+18443934166"
       item: "#611:+18443934166"
+    }
+  }
+  config {
+    key: "disconnect_cause_network_busy_int_array"
+    int_array {
+      item: 60
     }
   }
   config {
@@ -743,10 +753,6 @@ configs {
     int_value: 3
   }
   config {
-    key: "vonr_setting_visibility_bool"
-    bool_value: false
-  }
-  config {
     key: "wfc_carrier_name_override_by_pnn_bool"
     bool_value: true
   }
@@ -783,5 +789,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1769617635
+  seconds: 1777512366
 }

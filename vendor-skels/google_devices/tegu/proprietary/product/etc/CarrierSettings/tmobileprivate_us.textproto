@@ -1,11 +1,11 @@
 canonical_name: "tmobileprivate_us"
-version: 75000000004
+version: 77000000005
 apns {
   apn {
     name: "T-Mobile US"
     value: "fast.t-mobile.com"
     type: DEFAULT
-    protocol: IPV6
+    protocol: IPV4V6
     mtu: 1440
   }
 }
@@ -22,6 +22,14 @@ configs {
     int_value: 2
   }
   config {
+    key: "imsemergency.emergency_over_ims_supported_rats_int_array"
+    int_array {
+      item: 6
+      item: 3
+      item: 5
+    }
+  }
+  config {
     key: "vonr_enabled_bool"
     bool_value: true
   }
@@ -31,5 +39,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1761862558
+  seconds: 1773841148
 }

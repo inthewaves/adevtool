@@ -8,6 +8,12 @@
     <array name="config_carrier_for_wifi_scorer_toggle_off">
         <item>1839</item>
     </array>
+    <array name="config_settableAutoRotationDeviceStatesDescriptions">
+        <item>@string/setting_auto_rotate_folded</item>
+        <item>@null</item>
+        <item>@string/setting_auto_rotate_unfolded</item>
+        <item>@null</item>
+    </array>
     <array name="config_userAspectRatioOverrideEntries">
         <item>@null</item>
         <item>@null</item>
@@ -50,5 +56,7 @@ Note: You can’t use your fingerprint to unlock this device. For more informati
     <string name="security_settings_fingerprint_enroll_introduction_title">Set up Pixel Imprint</string>
     <string name="security_settings_fingerprint_enroll_introduction_title_unlock_disabled">Pixel Imprint</string>
     <string name="security_settings_fingerprint_preference_title">Pixel Imprint</string>
+    <string name="setting_auto_rotate_folded">Auto-rotate when folded</string>
+    <string name="setting_auto_rotate_unfolded">Auto-rotate when unfolded</string>
     <string name="suggested_fingerprint_lock_settings_summary">Use Pixel Imprint to unlock your phone</string>
 </resources>

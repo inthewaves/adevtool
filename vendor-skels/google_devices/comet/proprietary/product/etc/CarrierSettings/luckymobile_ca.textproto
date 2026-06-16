@@ -1,5 +1,5 @@
 canonical_name: "luckymobile_ca"
-version: 75000000008
+version: 77000000009
 apns {
   apn {
     name: "Lucky Mobile"
@@ -358,10 +358,6 @@ configs {
     int_value: 8
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
-  config {
     key: "voicemail_notification_persistent_bool"
     bool_value: true
   }
@@ -383,5 +379,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1730898284
+  seconds: 1767187386
 }

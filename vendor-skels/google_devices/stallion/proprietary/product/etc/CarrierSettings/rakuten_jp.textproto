@@ -1,5 +1,5 @@
 canonical_name: "rakuten_jp"
-version: 75000000002
+version: 77000000004
 apns {
   apn {
     name: "Internet"
@@ -78,6 +78,10 @@ configs {
     bool_value: false
   }
   config {
+    key: "carrier_default_2g_protection_enabled_bool"
+    bool_value: true
+  }
+  config {
     key: "carrier_supports_ss_over_ut_bool"
     bool_value: true
   }
@@ -88,6 +92,10 @@ configs {
   config {
     key: "carrier_volte_available_bool"
     bool_value: true
+  }
+  config {
+    key: "default_vm_number_string"
+    text_value: "1417"
   }
   config {
     key: "enabledMMS"
@@ -311,5 +319,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1753863675
+  seconds: 1774646604
 }

@@ -6,6 +6,7 @@
         <item>کیلیبریشن کی خرابی</item>
         <item>فیس اَنلاک غیر دستیاب ہے۔ فون بہت گرم ہے۔</item>
         <item>فیس اَنلاک کو دوبارہ سیٹ اپ کرنے کی ضرورت ہے</item>
+        <item>لائٹنگ کو ایڈجسٹ کریں اور مضبوطی سے پکڑیں</item>
     </array>
     <string name="biometric_app_setting_name">چہرہ یا فنگر پرنٹ استعمال کریں</string>
     <string name="biometric_dialog_default_subtitle">جاری رکھنے کیلئے اپنا چہرہ یا فنگر پرنٹ استعمال کریں</string>

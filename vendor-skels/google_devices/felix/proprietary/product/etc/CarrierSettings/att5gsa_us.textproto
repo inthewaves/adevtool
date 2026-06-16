@@ -1,5 +1,5 @@
 canonical_name: "att5gsa_us"
-version: 75000000021
+version: 77000000020
 apns {
   apn {
     name: "ATT Nrphone"
@@ -837,5 +837,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1769617571
+  seconds: 1770215808
 }

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <array name="low_light_display_behavior_supported_values">
+        <item>low_light_display_behavior_low_light_clock_dream</item>
+    </array>
     <array name="when_to_start_hubmode_entries">
         <item>@string/when_to_show_hubmode_never</item>
         <item>@string/when_to_show_hubmode_charging</item>
@@ -18,9 +21,7 @@
         <item>while_charging_only</item>
         <item>while_postured_only</item>
     </array>
-    <bool name="config_show_communal_settings_mobile">true</bool>
     <bool name="config_show_glanceable_hub_toggle_setting_mobile">true</bool>
-    <bool name="config_show_restrict_to_wireless_charging">true</bool>
     <string name="screensaver_settings_summary_postured_and_charging">While upright and charging</string>
     <string name="screensaver_settings_summary_sleep">While charging</string>
     <string name="when_to_show_hubmode_charging">While charging</string>

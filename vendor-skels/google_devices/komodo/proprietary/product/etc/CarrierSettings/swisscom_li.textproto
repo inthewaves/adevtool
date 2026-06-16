@@ -1,5 +1,5 @@
 canonical_name: "swisscom_li"
-version: 75000000011
+version: 77000000013
 apns {
   apn {
     name: "Swisscom MMS"
@@ -125,6 +125,10 @@ configs {
   config {
     key: "imsi_key_download_url_string"
     text_value: "https://preview.pwlan.ch/assets/cer/imsiencrypt.json"
+  }
+  config {
+    key: "imsserviceentitlement.entitlement_server_url_string"
+    text_value: "https://ses.node.mnc001.mcc228.pub.3gppnetwork.org:10024"
   }
   config {
     key: "imsss.network_initiated_ussd_over_ims_supported_bool"
@@ -455,7 +459,7 @@ configs {
     bool_value: true
   }
   config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
+    key: "support_phone_number_source_ts43_bool"
     bool_value: true
   }
   config {
@@ -474,5 +478,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1739493494
+  seconds: 1767187386
 }

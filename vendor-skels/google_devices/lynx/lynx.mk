@@ -3,8 +3,8 @@
 
 include vendor/google_devices/lynx/adevtool-version-check.mk
 
-ifneq ($(BUILD_ID),BP4A.260205.001)
-  $(error BUILD_ID: expected BP4A.260205.001, got $(BUILD_ID))
+ifneq ($(BUILD_ID),CP2A.260605.012)
+  $(error BUILD_ID: expected CP2A.260605.012, got $(BUILD_ID))
 endif
 
 $(call inherit-product, vendor/adevtool/config/mk/google_devices/device/lynx/device.mk)
@@ -33,6 +33,7 @@ TARGET_RECOVERY_WIPE := vendor/google_devices/lynx/proprietary/recovery/system/e
 
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     vendor/google_devices/lynx/vintf/system_ext/aocx_framework_compatibility_matrix_system_ext \
+    vendor/google_devices/lynx/vintf/system_ext/camera_interference_avoidance_framework_compatibility_matrix_system_ext \
     vendor/google_devices/lynx/vintf/system_ext/imageprocessing_hal_framework_compatibility_matrix_system_ext
 
 # system_ext vintf_fragments
@@ -51,7 +52,6 @@ DEVICE_MANIFEST_FILE += vendor/google_devices/lynx/vintf/vendor/manifest.xml
 # vendor vintf_fragments
 PRODUCT_PACKAGES += \
     adevtool_vintf_fragment_vendor_android.hardware.authsecret-service.citadel.xml \
-    adevtool_vintf_fragment_vendor_android.hardware.camera.provider@2.7-service-google-apex.xml \
     adevtool_vintf_fragment_vendor_android.hardware.contexthub-service.generic.xml \
     adevtool_vintf_fragment_vendor_android.hardware.dumpstate.3-service.xml \
     adevtool_vintf_fragment_vendor_android.hardware.gnss@2.1-service-brcm.xml \
@@ -60,7 +60,8 @@ PRODUCT_PACKAGES += \
     adevtool_vintf_fragment_vendor_android.hardware.oemlock-service.citadel.xml \
     adevtool_vintf_fragment_vendor_android.hardware.power-service.pixel.xml \
     adevtool_vintf_fragment_vendor_android.hardware.power.stats-service.pixel.xml \
-    adevtool_vintf_fragment_vendor_android.hardware.security.keymint-service.citadel.xml \
+    adevtool_vintf_fragment_vendor_android.hardware.security.keymint-service-v3.citadel.xml \
+    adevtool_vintf_fragment_vendor_android.hardware.security.sharesecret-service.citadel.xml \
     adevtool_vintf_fragment_vendor_android.hardware.thermal-service.pixel.xml \
     adevtool_vintf_fragment_vendor_android.hardware.usb-service.xml \
     adevtool_vintf_fragment_vendor_android.hardware.usb.gadget-service.xml \
@@ -131,7 +132,7 @@ PRODUCT_PACKAGES += \
     android.frameworks.stats-V1-cpp.vendor \
     android.frameworks.stats-V1-ndk.vendor \
     android.frameworks.stats-V2-ndk.vendor \
-    android.hardware.audio.common-V4-ndk.vendor \
+    android.hardware.audio.common-V5-ndk.vendor \
     android.hardware.audio.common-util.vendor \
     android.hardware.audio.common@2.0.vendor \
     android.hardware.audio.common@5.0.vendor \
@@ -153,11 +154,12 @@ PRODUCT_PACKAGES += \
     android.hardware.authsecret-V1-ndk.vendor \
     android.hardware.biometrics.common-V3-ndk.vendor \
     android.hardware.biometrics.fingerprint-V3-ndk.vendor \
-    android.hardware.bluetooth.audio-V5-ndk.vendor \
+    android.hardware.bluetooth.audio-V6-ndk.vendor \
     android.hardware.bluetooth.audio-impl \
     android.hardware.bluetooth.audio@2.0.vendor \
     android.hardware.bluetooth.audio@2.1.vendor \
     android.hardware.bluetooth.prebuilt.xml \
+    android.hardware.bluetooth.socket-V2-ndk.vendor \
     android.hardware.bluetooth@1.0.vendor \
     android.hardware.bluetooth@1.1.vendor \
     android.hardware.bluetooth_le.prebuilt.xml \
@@ -172,7 +174,7 @@ PRODUCT_PACKAGES += \
     android.hardware.common-V2-ndk.vendor \
     android.hardware.common.fmq-V1-ndk.vendor \
     android.hardware.context_hub.prebuilt.xml \
-    android.hardware.contexthub-V4-ndk.vendor \
+    android.hardware.contexthub-V5-ndk.vendor \
     android.hardware.device_unique_attestation.prebuilt.xml \
     android.hardware.drm-V1-ndk.vendor \
     android.hardware.drm-V2-ndk.vendor \
@@ -195,7 +197,7 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.common@1.0.vendor \
     android.hardware.graphics.common@1.1.vendor \
     android.hardware.graphics.common@1.2.vendor \
-    android.hardware.graphics.composer3-V4-ndk.vendor \
+    android.hardware.graphics.composer3-V5-ndk.vendor \
     android.hardware.graphics.composer@2.1-resources.vendor \
     android.hardware.graphics.composer@2.1.vendor \
     android.hardware.graphics.composer@2.2-resources.vendor \
@@ -208,6 +210,7 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@4.0.vendor \
     android.hardware.health-V1-ndk.vendor \
     android.hardware.health-V4-ndk.vendor \
+    android.hardware.health-V5-ndk.vendor \
     android.hardware.health.storage-V1-ndk.vendor \
     android.hardware.health.storage-service.default \
     android.hardware.input.common-V1-ndk.vendor \
@@ -216,7 +219,7 @@ PRODUCT_PACKAGES += \
     android.hardware.location.gps.prebuilt.xml \
     android.hardware.media.bufferpool2-V2-ndk.vendor \
     android.hardware.media.bufferpool@2.0.vendor \
-    android.hardware.media.c2-V1-ndk.vendor \
+    android.hardware.media.c2-V2-ndk.vendor \
     android.hardware.media.c2@1.0.vendor \
     android.hardware.media.omx@1.0.vendor \
     android.hardware.media@1.0.vendor \
@@ -236,23 +239,24 @@ PRODUCT_PACKAGES += \
     android.hardware.opengles.aep.prebuilt.xml \
     android.hardware.power-V1-ndk.vendor \
     android.hardware.power-V2-ndk.vendor \
-    android.hardware.power-V6-ndk.vendor \
+    android.hardware.power-V7-ndk.vendor \
     android.hardware.power.stats-V2-ndk.vendor \
     android.hardware.power@1.0.vendor \
     android.hardware.power@1.1.vendor \
     android.hardware.power@1.2.vendor \
-    android.hardware.radio-V1-ndk.vendor \
-    android.hardware.radio.config-V1-ndk.vendor \
+    android.hardware.radio-V3-ndk.vendor \
+    android.hardware.radio.config-V3-ndk.vendor \
     android.hardware.radio.config@1.0.vendor \
     android.hardware.radio.config@1.1.vendor \
     android.hardware.radio.config@1.2.vendor \
-    android.hardware.radio.data-V1-ndk.vendor \
+    android.hardware.radio.data-V3-ndk.vendor \
     android.hardware.radio.deprecated@1.0.vendor \
-    android.hardware.radio.messaging-V1-ndk.vendor \
-    android.hardware.radio.modem-V1-ndk.vendor \
-    android.hardware.radio.network-V1-ndk.vendor \
-    android.hardware.radio.sim-V1-ndk.vendor \
-    android.hardware.radio.voice-V1-ndk.vendor \
+    android.hardware.radio.messaging-V3-ndk.vendor \
+    android.hardware.radio.modem-V3-ndk.vendor \
+    android.hardware.radio.network-V3-ndk.vendor \
+    android.hardware.radio.sap-V1-ndk.vendor \
+    android.hardware.radio.sim-V3-ndk.vendor \
+    android.hardware.radio.voice-V3-ndk.vendor \
     android.hardware.radio@1.2.vendor \
     android.hardware.radio@1.3.vendor \
     android.hardware.radio@1.4.vendor \
@@ -293,7 +297,6 @@ PRODUCT_PACKAGES += \
     android.hardware.soundtrigger@2.2.vendor \
     android.hardware.soundtrigger@2.3-impl \
     android.hardware.soundtrigger@2.3.vendor \
-    android.hardware.strongbox_keystore.prebuilt.xml \
     android.hardware.telephony.carrierlock.prebuilt.xml \
     android.hardware.telephony.gsm.prebuilt.xml \
     android.hardware.telephony.ims.prebuilt.xml \
@@ -303,13 +306,13 @@ PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0.vendor \
     android.hardware.thermal@2.0.vendor \
     android.hardware.touchscreen.multitouch.jazzhand.prebuilt.xml \
-    android.hardware.usb-V3-ndk.vendor \
+    android.hardware.usb-V4-ndk.vendor \
     android.hardware.usb.accessory.prebuilt.xml \
     android.hardware.usb.gadget-V1-ndk.vendor \
     android.hardware.usb.gadget@1.0.vendor \
     android.hardware.usb.host.prebuilt.xml \
     android.hardware.vibrator-V3-ndk.vendor \
-    android.hardware.weaver-V2-ndk.vendor \
+    android.hardware.weaver-V3-ndk.vendor \
     android.hardware.wifi.aware.prebuilt.xml \
     android.hardware.wifi.common-V2-ndk.vendor \
     android.hardware.wifi.direct.prebuilt.xml \
@@ -322,7 +325,7 @@ PRODUCT_PACKAGES += \
     android.hidl.safe_union@1.0.vendor \
     android.hidl.token@1.0-utils.vendor \
     android.hidl.token@1.0.vendor \
-    android.media.audio.common.types-V4-ndk.vendor \
+    android.media.audio.common.types-V5-ndk.vendor \
     android.software.angle.xml \
     android.software.device_id_attestation.prebuilt.xml \
     android.software.ipsec_tunnel_migration.prebuilt.xml \
@@ -339,41 +342,54 @@ PRODUCT_PACKAGES += \
     chre_atoms_log \
     chremetrics-cpp \
     com.android.hardware.biometrics.face.virtual \
-    com.android.hardware.biometrics.fingerprint.virtual \
     com.nxp.mifare.prebuilt.xml \
     fastbootd \
     handheld_core_hardware.prebuilt.xml \
     hfp_codec_capabilities_xml \
     ld-android.vendor_ramdisk \
+    libaconfig_storage_file.vendor \
+    libaconfig_storage_protos.vendor \
+    libaconfig_storage_read_api.vendor \
     libaho_corasick.vendor \
     libalsautils.vendor \
     libalsautilsv2.vendor \
     libandroid_log_sys.vendor \
     libandroid_logger.vendor \
+    libanstyle.vendor \
+    libanyhow.vendor \
     libasyncio.recovery \
     libaudioroutev2.vendor \
     libavservices_minijail.vendor \
     libbase.vendor_ramdisk \
     libbinder_trusty \
+    libbionic_bindgen.vendor \
+    libbitflags.vendor \
     libbluetooth_audio_session \
-    libbluetooth_audio_session_aidl \
+    libbluetooth_audio_session_aidl.vendor \
+    libbytes.vendor \
     libc++.vendor_ramdisk \
     libc.vendor_ramdisk \
     libcap.vendor \
     libcfg_if.vendor \
     libclang_rt.ubsan_standalone.vendor \
+    libclap.vendor \
+    libclap_builder.vendor \
+    libclap_lex.vendor \
     libcodec2.vendor \
-    libcodec2_aidl.vendor \
+    libcodec2_aidl_V2.vendor \
     libcodec2_hal_common.vendor \
     libcodec2_hidl@1.0.vendor \
     libcodec2_hidl_plugin \
     libcodec2_vndk.vendor \
     libcppbor.vendor \
     libcppcose_rkp.vendor \
+    libcutils_bindgen.vendor \
+    libcxx.vendor \
     libdl.vendor_ramdisk \
     libdrm.vendor \
     libdumpstateutil.vendor \
     libenv_filter.vendor \
+    libenv_logger.vendor \
     libevent.vendor \
     libexpat.vendor \
     libext2_blkid.vendor_ramdisk \
@@ -384,7 +400,9 @@ PRODUCT_PACKAGES += \
     libext2fs.vendor_ramdisk \
     libflatbuffers-cpp.vendor \
     libfmq.vendor \
+    libfoldhash.vendor \
     libgralloctypes.vendor \
+    libgui.vendor \
     libhidltransport.vendor \
     libhidparser \
     libhwbinder.vendor \
@@ -393,27 +411,37 @@ PRODUCT_PACKAGES += \
     libkeymaster_portable.vendor \
     libkeymint_support_V3.vendor \
     libkeystore-engine-wifi-hidl \
-    liblibloading.vendor \
+    liblazy_static.vendor \
+    liblibc.vendor \
     liblog.vendor_ramdisk \
     liblog_rust.vendor \
+    liblogger.vendor \
     liblzma.vendor \
     libm.vendor_ramdisk \
     libmedia_omx.vendor \
     libmediautils_vendor.vendor \
     libmemchr.vendor \
+    libmemmap2.vendor \
+    libmemoffset.vendor \
     libmemunreachable.vendor \
     libminijail.vendor \
     libnbaio_mono \
     libnetutils.vendor \
+    libnix.vendor \
     libnl.vendor \
     libonce_cell.vendor \
     libpng.vendor \
     libpower.vendor \
     libprocessgroup.vendor \
+    libprotobuf.vendor \
+    libprotobuf_support.vendor \
     libregex.vendor \
     libregex_automata.vendor \
     libregex_syntax.vendor \
+    librustutils.vendor \
     libsensorndkbridge \
+    libserde.vendor \
+    libserde_core.vendor \
     libsfplugin_ccodec_utils.vendor \
     libsparse.vendor_ramdisk \
     libsqlite.vendor \
@@ -423,6 +451,9 @@ PRODUCT_PACKAGES += \
     libstagefright_omx_utils.vendor \
     libstagefright_xmlparser.vendor \
     libstd.vendor \
+    libstrsim.vendor \
+    libsystem_properties_bindgen_sys.vendor \
+    libthiserror.vendor \
     libtinyalsa.vendor \
     libtinyalsav2.vendor \
     libtinycompress \
@@ -465,11 +496,13 @@ PRODUCT_PACKAGES += \
 # sysconfig
 PRODUCT_PACKAGES += \
     adevtool_sysconfig_system_ext_default-permissions \
+    adevtool_sysconfig_system_ext_sysconfig \
     adevtool_sysconfig_system_ext_permissions \
     adevtool_sysconfig_product_default-permissions \
     adevtool_sysconfig_product_sysconfig \
     adevtool_sysconfig_product_permissions \
-    adevtool_sysconfig_vendor_permissions
+    adevtool_sysconfig_vendor_permissions \
+    adevtool_sysconfig_odm_sysconfig_sku_G82U8
 
 # APK parser config
 PRODUCT_PACKAGES += \
@@ -492,6 +525,7 @@ PRODUCT_PACKAGES += \
     ManagedProvisioningPixelOverlay \
     NetworkStackOverlay \
     NexusLauncherRelease__lynx__auto_generated_rro_vendor \
+    NfcOverlayLynxGsi \
     PixelBatteryHealthOverlay \
     PixelConfigOverlay2018 \
     PixelConfigOverlay2021 \
@@ -536,13 +570,14 @@ PRODUCT_PACKAGES += \
     OemRilHookService \
     OemRilService \
     PersistentBackgroundCameraServices \
-    PixelCameraServicesConnectivityClient \
+    PixelCameraServices \
     PixelNfc \
     PixelQualifiedNetworksService \
     PixelVibratorFlagsL26 \
     ShannonIms \
     ShannonRcs \
     aconfig_gpu_flags_c_lib \
+    aconfig_gsc_flags_c_lib \
     activity \
     ambient_volume \
     android.hardware.authsecret-impl.nos \
@@ -593,7 +628,7 @@ PRODUCT_PACKAGES += \
     aoc_aud_ext \
     aoc_audio_stereo_spatializer \
     aocd \
-    aocx-V2-ndk \
+    aocx-V3-ndk \
     aocxd \
     ar_bridge \
     arm.graphics-V1-ndk \
@@ -609,9 +644,11 @@ PRODUCT_PACKAGES += \
     audio_tunnel_aoc \
     audio_usb_aoc \
     audio_waves_aoc \
+    backup_ota_log.sh \
     battery_mitigation \
     biometricsuez \
     bipchmgr \
+    block_queue_depth \
     blue \
     boringssl_self_test32 \
     capo \
@@ -625,7 +662,7 @@ PRODUCT_PACKAGES += \
     com.google.android.camera.experimental2022 \
     com.google.android.camera.extensions \
     com.google.android.camerax.extensions \
-    com.google.android.widevine-13130248 \
+    com.google.android.widevine-15027108-cp2a \
     com.google.edgetpu.tachyon-ndk \
     com.google.edgetpu.tachyon-service \
     com.google.edgetpu_app_service-V3-ndk \
@@ -634,10 +671,10 @@ PRODUCT_PACKAGES += \
     com.google.edgetpu_vendor_service-V2-ndk.system_ext \
     com.google.hardware.biometrics.fingerprint.fingerprint-ext-V1-ndk \
     com.google.hardware.pixel.display-V15-ndk \
-    com.google.hardware.pixel.display-V17-ndk \
+    com.google.hardware.pixel.display-V21-ndk \
     com.google.hardware.pixel.display-V4-ndk \
     com.google.input-V2-ndk \
-    com.google.input-V6-ndk \
+    com.google.input-V8-ndk \
     com.google.pixel.camera.connectivity \
     com.google.pixel.camera.hal \
     com.google.pixel.camera.services.cameraidremapper \
@@ -676,7 +713,7 @@ PRODUCT_PACKAGES += \
     google.hardware.media.c2@1.0-service \
     gps.default \
     gpsd \
-    gpu_probe \
+    gpuflag \
     gs_watchdogd \
     gxp_metrics_logger \
     gxp_telemetry_reader \
@@ -758,6 +795,7 @@ PRODUCT_PACKAGES += \
     libgooglerilmemmonitor \
     libgps.utils \
     libgpudataproducer \
+    libgpuflag_aconfig_rust.dylib \
     libgril_oem-google \
     libgxp \
     libhbmsvmanager_jni \
@@ -765,7 +803,6 @@ PRODUCT_PACKAGES += \
     libidl \
     libion_google \
     libjson \
-    liblmkd_flags_c \
     libloc_base_util \
     libloc_mq_client \
     liblowi_client \
@@ -794,9 +831,8 @@ PRODUCT_PACKAGES += \
     libpixelatoms_defs \
     libpixelhealth \
     libpixelstats \
+    libpixelstatsflags \
     libpowerstatshaldataprovider \
-    libprotobuf-cpp-full-6.33.1 \
-    libprotobuf-cpp-lite-6.33.1 \
     libqmi_cci \
     libqmi_common_so \
     libqmi_encdec \
@@ -843,10 +879,11 @@ PRODUCT_PACKAGES += \
     nos_app_weaver \
     oemrilhook \
     pixel-power-ext-V1-ndk \
+    pixel-power-ext-V2-ndk \
     pixel_stateresidency_provider_aidl_interface-ndk \
     pixelatoms-cpp \
-    pixelpowerstats_provider_aidl_interface-cpp \
     pixelstats-vendor \
+    pixelstats_flags_c_lib \
     predump_gti0.sh \
     predump_touch.sh \
     rebalance_interrupts-vendor \
@@ -860,13 +897,16 @@ PRODUCT_PACKAGES += \
     sensors.usf \
     shared_modem_platform \
     sound_trigger.primary.gs201 \
+    storage_init.sh \
     system_signal_hub \
+    thermal-budget-interface-ndk \
     thermal_symlinks \
     touch_gti_ical \
     trusty_metricsd \
     twoshay \
     ufs_firmware_update.sh \
     umfw_stat_tool \
+    usboffmode \
     usf_stats \
     uv_exposure \
     vendor.google.audiometricext@1.0 \
@@ -882,8 +922,8 @@ PRODUCT_PACKAGES += \
     vendor.google.whitechapel.audio.audioext@4.0 \
     vendor.google.whitechapel.audio.audioext@4.0-impl \
     vendor.google.whitechapel.audio.extension-V5-ndk \
-    vendor.google.whitechapel.audio.extension-V7-ndk \
-    vendor.google.wireless_charger-V5-ndk \
+    vendor.google.whitechapel.audio.extension-V8-ndk \
+    vendor.google.wireless_charger-V7-ndk \
     vendor.google.wireless_charger-default \
     vendor.google.wireless_charger.service-V2-ndk \
     vendor.google.wireless_charger.service-default \
@@ -908,6 +948,7 @@ PRODUCT_PACKAGES += \
     device_symlinks
 
 PRODUCT_COPY_FILES += \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/019mobile_il.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/019mobile_il.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/1and1_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/1and1_de.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/1global_bootstrap.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/1global_bootstrap.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/2degrees_nz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/2degrees_nz.pb \
@@ -930,9 +971,11 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/alcom_fi.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/alcom_fi.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/alestra_mx.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/alestra_mx.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/aliv_bs.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/aliv_bs.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/alkafeel_iq.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/alkafeel_iq.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/altice_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/altice_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/alticeroaming_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/alticeroaming_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/andorratelecom_ad.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/andorratelecom_ad.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/annatel_il.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/annatel_il.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/antel_uy.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/antel_uy.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/appalachian_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/appalachian_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/apt_tw.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/apt_tw.pb \
@@ -949,21 +992,24 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/attbootstrap_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/attbootstrap_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/attmvnos_mx.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/attmvnos_mx.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/attmvnos_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/attmvnos_us.pb \
-    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/avatel_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/avatel_es.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/axis_id.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/axis_id.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/b1_ch.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/b1_ch.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/bait_mx.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bait_mx.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/bark_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bark_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/base_be.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/base_be.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/batelco_bh.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/batelco_bh.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/bbix_zz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bbix_zz.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/bell_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bell_ca.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/best_la.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/best_la.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/bhtelecom_ba.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bhtelecom_ba.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/bics_be.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bics_be.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/bite_lt.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bite_lt.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/bite_lv.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bite_lv.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/bluegrass_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bluegrass_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/bob_at.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bob_at.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/bonbon_hr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bonbon_hr.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/boost_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/boost_us.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/boostmobile_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/boostmobile_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/boosttmo_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/boosttmo_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/bouygues_fr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bouygues_fr.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/bouyguesb2b_fr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/bouyguesb2b_fr.pb \
@@ -975,6 +1021,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/cablewireless_sc.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cablewireless_sc.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/cape_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cape_ca.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/cape_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cape_us.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/caribbean_vg.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/caribbean_vg.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/carolinawest_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/carolinawest_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/carrier_list.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/carrier_list.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/celcom_my.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/celcom_my.pb \
@@ -990,10 +1037,12 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/cht_tw.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cht_tw.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/citymesh_be.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/citymesh_be.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/citymesh_se.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/citymesh_se.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/cjsc_tj.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cjsc_tj.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/claro_ar.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_ar.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/claro_br.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_br.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/claro_cl.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_cl.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/claro_co.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_co.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/claro_pe.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_pe.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/claro_pr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/claro_pr.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/cloud9_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cloud9_gb.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/cloudcore_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/cloudcore_ca.pb \
@@ -1028,7 +1077,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/digimobil_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/digimobil_es.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/dish_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/dish_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/dish5gsa_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/dish5gsa_us.pb \
-    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/dishatt_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/dishatt_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/dito_ph.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/dito_ph.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/dna_fi.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/dna_fi.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/docomo_jp.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/docomo_jp.pb \
@@ -1042,19 +1090,23 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/eir_ie.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/eir_ie.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/elisa_ee.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/elisa_ee.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/elisa_fi.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/elisa_fi.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/emnify_br.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/emnify_br.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/emnify_li.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/emnify_li.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/emnify_zz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/emnify_zz.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/enetworks_gy.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/enetworks_gy.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/enreach_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/enreach_de.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/enreach_nl.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/enreach_nl.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/entel_cl.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/entel_cl.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/entel_pe.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/entel_pe.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/epic_mt.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/epic_mt.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/eplus_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/eplus_de.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/erate_no.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/erate_no.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/esimgo_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/esimgo_gb.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/esimgotravel_zz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/esimgotravel_zz.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/esn_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/esn_gb.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/etisalat_ae.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/etisalat_ae.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/etisalat_af.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/etisalat_af.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/etl_ls.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/etl_ls.pb \
-    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/eureka_jp.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/eureka_jp.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/evolve_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/evolve_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/execulink_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/execulink_ca.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/faiba_ke.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/faiba_ke.pb \
@@ -1077,7 +1129,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/free_re.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/free_re.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/freedommobile_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/freedommobile_ca.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/gamma_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/gamma_gb.pb \
-    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/gbrli_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/gbrli_gb.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/gci_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/gci_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/gibtel_gi.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/gibtel_gi.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/giffgaff_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/giffgaff_gb.pb \
@@ -1145,7 +1196,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/linemo_jp.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/linemo_jp.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/lmt_lv.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/lmt_lv.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/lobster_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/lobster_es.pb \
-    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/lobster_gi.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/lobster_gi.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/lowi_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/lowi_es.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/luckymobile_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/luckymobile_ca.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/lum_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/lum_ca.pb \
@@ -1182,16 +1232,21 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/movistar_co.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/movistar_co.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/movistar_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/movistar_es.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/movistar_mx.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/movistar_mx.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/movistar_pe.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/movistar_pe.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/mtel_at.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtel_at.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/mtel_ba.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtel_ba.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/mtel_ch.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtel_ch.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/mtel_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtel_de.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/mtel_me.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtel_me.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/mtn_gh.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtn_gh.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/mtn_ng.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtn_ng.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/mtn_zm.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtn_zm.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/mtx_lu.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtx_lu.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/mtx_zz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mtx_zz.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/mucho_ch.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mucho_ch.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/mvnoconnect_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/mvnoconnect_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/naf_no.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/naf_no.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/natcom_ht.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/natcom_ht.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/ncell_np.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/ncell_np.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/nema_fo.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/nema_fo.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/neotel_nr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/neotel_nr.pb \
@@ -1245,18 +1300,20 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/orangentn_fr.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/orangentn_fr.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/others.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/others.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/otz_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/otz_us.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/ourtelekom_sb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/ourtelekom_sb.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/oxio_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/oxio_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/paradisemobile_bm.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/paradisemobile_bm.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/paradisemobile_ky.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/paradisemobile_ky.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/partner_il.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/partner_il.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/pcmobilebell_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pcmobilebell_ca.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/pelephone_il.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pelephone_il.pb \
-    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/pivotel_au.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pivotel_au.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/pinebelt_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pinebelt_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/play_pl.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/play_pl.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/plintron_it.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/plintron_it.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/plintron_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/plintron_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/plus_pl.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/plus_pl.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/pmci_pw.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pmci_pw.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/pn_xx.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/pn_xx.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/popcorn_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/popcorn_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/post_lu.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/post_lu.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/postemobile_it.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/postemobile_it.pb \
@@ -1328,6 +1385,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/sprintwholesale_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/sprintwholesale_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/spusu_at.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/spusu_at.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/spusu_ch.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/spusu_ch.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/spusu_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/spusu_de.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/spusu_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/spusu_gb.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/spusu_it.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/spusu_it.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/ssimobile_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/ssimobile_ca.pb \
@@ -1386,11 +1444,11 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/telia_lt.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telia_lt.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/telia_no.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telia_no.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/telia_se.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telia_se.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/teliab2b_se.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/teliab2b_se.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/telkomsel_id.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telkomsel_id.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/tello_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/tello_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/telna_zz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telna_zz.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/telnyx_be.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telnyx_be.pb \
-    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/telnyx_it.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telnyx_it.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/telnyx_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telnyx_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/telstra_au.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telstra_au.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/telus_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/telus_ca.pb \
@@ -1453,6 +1511,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/vinaphone_vn.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vinaphone_vn.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/virgin_ca.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/virgin_ca.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/virgin_gb.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/virgin_gb.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/virgin_kw.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/virgin_kw.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/virgin_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/virgin_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/visible_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/visible_us.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/visiblev_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/visiblev_us.pb \
@@ -1461,6 +1520,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/vivo_br.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vivo_br.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/vodafone_al.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_al.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/vodafone_au.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_au.pb \
+    vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/vodafone_ck.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_ck.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/vodafone_cz.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_cz.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/vodafone_de.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_de.pb \
     vendor/google_devices/lynx/proprietary/product/etc/CarrierSettings/vodafone_es.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/vodafone_es.pb \
@@ -1582,6 +1642,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/etc/display_colordata_cal0.pb:$(TARGET_COPY_OUT_VENDOR)/etc/display_colordata_cal0.pb \
     vendor/google_devices/lynx/proprietary/vendor/etc/display_colordata_dev_cal0.pb:$(TARGET_COPY_OUT_VENDOR)/etc/display_colordata_dev_cal0.pb \
     vendor/google_devices/lynx/proprietary/vendor/etc/display_golden_cal0.pb:$(TARGET_COPY_OUT_VENDOR)/etc/display_golden_cal0.pb \
+    vendor/google_devices/lynx/proprietary/vendor/etc/edgetpu/custom_kernel.pbtxt:$(TARGET_COPY_OUT_VENDOR)/etc/edgetpu/custom_kernel.pbtxt \
     vendor/google_devices/lynx/proprietary/vendor/etc/fstab.gs201:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.gs201 \
     vendor/google_devices/lynx/proprietary/vendor/etc/fstab.gs201-fips:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.gs201-fips \
     vendor/google_devices/lynx/proprietary/vendor/etc/fstab.modem:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.modem \
@@ -1632,10 +1693,11 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/citadeld.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/citadeld.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/com.google.edgetpu.tachyon-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/com.google.edgetpu.tachyon-service.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/dmd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/dmd.rc \
+    vendor/google_devices/lynx/proprietary/vendor/etc/init/dump_power.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/dump_power.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/Exynos_C2.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/Exynos_C2.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/fingerprint-goodix.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/fingerprint-goodix.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/google.hardware.media.c2@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/google.hardware.media.c2@1.0-service.rc \
-    vendor/google_devices/lynx/proprietary/vendor/etc/init/gpu_probe.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/gpu_probe.rc \
+    vendor/google_devices/lynx/proprietary/vendor/etc/init/gpuflag.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/gpuflag.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/hostapd.android.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hostapd.android.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/hw/init.gs201.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.gs201.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/hw/init.gs201.storage.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.gs201.storage.rc \
@@ -1657,9 +1719,12 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/init.shared_modem_platform_l.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.shared_modem_platform_l.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/init.storage.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.storage.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/init.touch.gti0.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.touch.gti0.rc \
+    vendor/google_devices/lynx/proprietary/vendor/etc/init/init.touch.ical0.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.touch.ical0.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/init.touch.predump.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.touch.predump.rc \
+    vendor/google_devices/lynx/proprietary/vendor/etc/init/init.usboffmode.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.usboffmode.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/init.usf.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.usf.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/init.vendor_telephony.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.vendor_telephony.rc \
+    vendor/google_devices/lynx/proprietary/vendor/etc/init/init.watermark-scale-factor.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.watermark-scale-factor.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/libg3a_gabc.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/libg3a_gabc.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/libg3a_gaf.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/libg3a_gaf.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/libg3a_ghawb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/libg3a_ghawb.rc \
@@ -1673,6 +1738,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/rild_exynos.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/rild_exynos.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/samsung.hardware.media.c2@1.2-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/samsung.hardware.media.c2@1.2-service.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/storage.gs201.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/storage.gs201.rc \
+    vendor/google_devices/lynx/proprietary/vendor/etc/init/storage.init.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/storage.init.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/trusty_metricsd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/trusty_metricsd.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/twoshay.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/twoshay.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/init/vendor.google.audiometricext@1.0-service-vendor.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.google.audiometricext@1.0-service-vendor.rc \
@@ -1704,6 +1770,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/etc/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json \
     vendor/google_devices/lynx/proprietary/vendor/etc/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt \
     vendor/google_devices/lynx/proprietary/vendor/etc/res/images/charger/battery_fail.png:$(TARGET_COPY_OUT_VENDOR)/etc/res/images/charger/battery_fail.png \
+    vendor/google_devices/lynx/proprietary/vendor/etc/res/images/charger/battery_overheat.png:$(TARGET_COPY_OUT_VENDOR)/etc/res/images/charger/battery_overheat.png \
     vendor/google_devices/lynx/proprietary/vendor/etc/res/images/charger/battery_scale.png:$(TARGET_COPY_OUT_VENDOR)/etc/res/images/charger/battery_scale.png \
     vendor/google_devices/lynx/proprietary/vendor/etc/res/images/charger/main_font.png:$(TARGET_COPY_OUT_VENDOR)/etc/res/images/charger/main_font.png \
     vendor/google_devices/lynx/proprietary/vendor/etc/res/values/charger/animation.txt:$(TARGET_COPY_OUT_VENDOR)/etc/res/values/charger/animation.txt \
@@ -1723,6 +1790,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/etc/thermal_info_config_charge.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_charge.json \
     vendor/google_devices/lynx/proprietary/vendor/etc/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json \
     vendor/google_devices/lynx/proprietary/vendor/etc/touchflow.pb:$(TARGET_COPY_OUT_VENDOR)/etc/touchflow.pb \
+    vendor/google_devices/lynx/proprietary/vendor/etc/tracing_descriptors.gz:$(TARGET_COPY_OUT_VENDOR)/etc/tracing_descriptors.gz \
     vendor/google_devices/lynx/proprietary/vendor/etc/twoshay_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/twoshay_config.json \
     vendor/google_devices/lynx/proprietary/vendor/etc/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc \
     vendor/google_devices/lynx/proprietary/vendor/etc/waves_config.ini:$(TARGET_COPY_OUT_VENDOR)/etc/waves_config.ini \
@@ -1748,6 +1816,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/026fe381212d553d82ad53288774e73f814ecd82:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/026fe381212d553d82ad53288774e73f814ecd82 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/027a57ddd7d82a616e4874babddb588ebd9a85b1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/027a57ddd7d82a616e4874babddb588ebd9a85b1 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/02a4861c874c8660c0f8f57e273fecd2bc6c021e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/02a4861c874c8660c0f8f57e273fecd2bc6c021e \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/02c8c1fc45fe161500af78d506b63a82755892b8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/02c8c1fc45fe161500af78d506b63a82755892b8 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/02d1fb2245d8f17b4198e32e167189d5a072ed1b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/02d1fb2245d8f17b4198e32e167189d5a072ed1b \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/0305c481bacd02a84eccebbe1c16bce59a0a18d2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0305c481bacd02a84eccebbe1c16bce59a0a18d2 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/0434db9927939496cd5995b7b5ef16103383c71b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0434db9927939496cd5995b7b5ef16103383c71b \
@@ -1764,7 +1833,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/068d91ba5ec760e6af7591aec64ef0efab5443d1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/068d91ba5ec760e6af7591aec64ef0efab5443d1 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/0714f45396647de5e4ddff60875f7a1ac2af408d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0714f45396647de5e4ddff60875f7a1ac2af408d \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/078f9b58b86931e1aab9e0c9af88d8d760f254cd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/078f9b58b86931e1aab9e0c9af88d8d760f254cd \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/080b80581916e1304a36a91493d1b57b8ca56cbb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/080b80581916e1304a36a91493d1b57b8ca56cbb \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/0843c88408f555d730c349b63933286488773687:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0843c88408f555d730c349b63933286488773687 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/08aeae2a6d4d8876b2a4224fca318a8cdd90d8a1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/08aeae2a6d4d8876b2a4224fca318a8cdd90d8a1 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/08caf21cc2ab3498d10b4255260594cf8701ecaa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/08caf21cc2ab3498d10b4255260594cf8701ecaa \
@@ -1779,6 +1847,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/0b2296dce9ce3a46168ec91fe0004906f824f26b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0b2296dce9ce3a46168ec91fe0004906f824f26b \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/0b93cab880702802ca199e58fd71a64ac3334758:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0b93cab880702802ca199e58fd71a64ac3334758 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/0c049730c9ac30dc65d21809f84fa7a834d73221:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0c049730c9ac30dc65d21809f84fa7a834d73221 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/0c4b88695ed324b89fb491f55ca93e4009e84755:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0c4b88695ed324b89fb491f55ca93e4009e84755 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/0c57b889d34b36ee1de5214f6fb5e77ab070462f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0c57b889d34b36ee1de5214f6fb5e77ab070462f \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/0cd569c15fd8cc9bd5b2ee72e51d0c7680716799:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0cd569c15fd8cc9bd5b2ee72e51d0c7680716799 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/0ce437126654810a7fe222248c6e4bb0d9176b27:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/0ce437126654810a7fe222248c6e4bb0d9176b27 \
@@ -1802,10 +1871,11 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/10c56a7166587cdedbd68a12e38b4a448c3d5431:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/10c56a7166587cdedbd68a12e38b4a448c3d5431 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/11d5ecd79e6155ec6db8a67b5806c4a9325d158e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/11d5ecd79e6155ec6db8a67b5806c4a9325d158e \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/11f40de17db7758fa26e490854cad78565a60572:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/11f40de17db7758fa26e490854cad78565a60572 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/11ff9846eff058fc629140c174d3d620f4af9e9e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/11ff9846eff058fc629140c174d3d620f4af9e9e \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/1279203468e3a451f10c8039422140ccc7acb37c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1279203468e3a451f10c8039422140ccc7acb37c \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/128816800761c19b24c9748fc315f56acd09db15:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/128816800761c19b24c9748fc315f56acd09db15 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/12d623fe9a8def8043c68ae18c4cd7a1d5b518b0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/12d623fe9a8def8043c68ae18c4cd7a1d5b518b0 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/134a4a9329ad0182edc61d647a59e3675a70775d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/134a4a9329ad0182edc61d647a59e3675a70775d \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/145a56001c895e6f0875aefbd9aac071e2a6b641:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/145a56001c895e6f0875aefbd9aac071e2a6b641 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/14d9bea820ed1dadab7bc81d0f21d90ae4148fac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/14d9bea820ed1dadab7bc81d0f21d90ae4148fac \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/1518d5db78798c937a1fa460508a897f18fc538d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/1518d5db78798c937a1fa460508a897f18fc538d \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/16280c83e1a88b8afc24d28b842f046e4279b77d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/16280c83e1a88b8afc24d28b842f046e4279b77d \
@@ -1841,20 +1911,20 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/2084e84dabf78a7f6b2ca28534774225b4dcf156:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2084e84dabf78a7f6b2ca28534774225b4dcf156 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/20a0098a90c77e3525315600f95c0ad3e08c2872:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/20a0098a90c77e3525315600f95c0ad3e08c2872 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/20e4c6586fcd84f4f4f371fb2fa01cccb6e50725:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/20e4c6586fcd84f4f4f371fb2fa01cccb6e50725 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/20f423d6f28162370b0eeffb27d308f3c2da8604:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/20f423d6f28162370b0eeffb27d308f3c2da8604 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/216da52f09730438c6bd8d7851960b1e433536fe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/216da52f09730438c6bd8d7851960b1e433536fe \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/21b68e90a58fa966b5b988f97a260e12f903b96e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/21b68e90a58fa966b5b988f97a260e12f903b96e \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/21c69bf9b600c6dd87ee38470be433f192b3635c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/21c69bf9b600c6dd87ee38470be433f192b3635c \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/21f9744415ccd13217aae6ef787e3260948638ca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/21f9744415ccd13217aae6ef787e3260948638ca \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/2261661c4c01ba4ac43e12f573357049d7ee85df:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2261661c4c01ba4ac43e12f573357049d7ee85df \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/227643287e1633604823585a11ccc2053d6107b3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/227643287e1633604823585a11ccc2053d6107b3 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/228ab9bc936bcb2fff55cef3e85ccf51abc690cc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/228ab9bc936bcb2fff55cef3e85ccf51abc690cc \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/2327b11b588768d5d36761674d1b55bea5cc37c8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2327b11b588768d5d36761674d1b55bea5cc37c8 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/239b9939d6003ada3998730bfcf80059d8beb5b0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/239b9939d6003ada3998730bfcf80059d8beb5b0 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/23c9d43f25d3569bedcc20aba98b2d4396aec924:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/23c9d43f25d3569bedcc20aba98b2d4396aec924 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/23f7224b399b2d1ed3691b0b13caec84e8c637a9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/23f7224b399b2d1ed3691b0b13caec84e8c637a9 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/2442419e2467912c81d6cbe02499489e2b473c5d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2442419e2467912c81d6cbe02499489e2b473c5d \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/24a87acd35b8040ce8a8971380bac00b8c493be2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/24a87acd35b8040ce8a8971380bac00b8c493be2 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/2526c8760c437ef2932bf5b3959ebfd689eda815:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2526c8760c437ef2932bf5b3959ebfd689eda815 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/255aaf81ba0a87bea32a163f79960da9e112d8ae:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/255aaf81ba0a87bea32a163f79960da9e112d8ae \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/25613dfe4c1b66be6e2d45424f6181931d04ffac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/25613dfe4c1b66be6e2d45424f6181931d04ffac \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/25bc1fcf128d95a2959a02ba18418f3d6eae510f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/25bc1fcf128d95a2959a02ba18418f3d6eae510f \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/266053306579f08647f301ae3a810ebd79419b63:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/266053306579f08647f301ae3a810ebd79419b63 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/26b18720a3168adb6cfe4f634fcc858ba4c24ab5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/26b18720a3168adb6cfe4f634fcc858ba4c24ab5 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/2704f7db05660b61e47ace5ca2b98f5a52e7cb17:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2704f7db05660b61e47ace5ca2b98f5a52e7cb17 \
@@ -1873,6 +1943,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/29e9584b700de48b6cae00c7ad8cfa869c104467:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/29e9584b700de48b6cae00c7ad8cfa869c104467 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/2a349407e4a8f6b29e090908e4c2c18b8ec7c8b7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2a349407e4a8f6b29e090908e4c2c18b8ec7c8b7 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/2a3f47b1c8d025b0ec27749c40f4abfb2162bfdb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2a3f47b1c8d025b0ec27749c40f4abfb2162bfdb \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/2a637149958ea9b73a55a35e1a8dd06f56fff677:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2a637149958ea9b73a55a35e1a8dd06f56fff677 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/2acaced6e3955264ecba4dd2625acadd5617c7bf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2acaced6e3955264ecba4dd2625acadd5617c7bf \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/2af03405877f4521d5d1bf9978c3ec8a0cd90e60:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2af03405877f4521d5d1bf9978c3ec8a0cd90e60 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/2afe0d06170a72d9e0c2d01ac0928786505857f5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/2afe0d06170a72d9e0c2d01ac0928786505857f5 \
@@ -1910,9 +1981,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/324385edc8d807c17c6dff408fa0fdb8ee3b13dc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/324385edc8d807c17c6dff408fa0fdb8ee3b13dc \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/325ada9526b1f24184ae3af63105290b1fa91176:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/325ada9526b1f24184ae3af63105290b1fa91176 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/32a24a2e18f317e6f4af5c25a5084dd7b17a88e8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/32a24a2e18f317e6f4af5c25a5084dd7b17a88e8 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/32e0d54a5b7ea26e1d75a13a9e6a075945dbf71c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/32e0d54a5b7ea26e1d75a13a9e6a075945dbf71c \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/334ee79512467277a5c157cb090eb434b7ef3c47:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/334ee79512467277a5c157cb090eb434b7ef3c47 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/334f4ae6a68e3f14dad5b29edd98d3cd6a42fc6b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/334f4ae6a68e3f14dad5b29edd98d3cd6a42fc6b \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/337e7572b12443f0a4a638c5e32841ea4bd58088:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/337e7572b12443f0a4a638c5e32841ea4bd58088 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/33dbccf80b2eebb30e78da3751ea9fe3e3d80c19:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/33dbccf80b2eebb30e78da3751ea9fe3e3d80c19 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/343065795d97081acb24c959fc06ff3c80f2e63a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/343065795d97081acb24c959fc06ff3c80f2e63a \
@@ -1934,7 +2003,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/3869cbfcd29fac8c17f5a52278986a883fc29399:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3869cbfcd29fac8c17f5a52278986a883fc29399 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/388d5681e1d8690a228ac8add81718a3a84417d3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/388d5681e1d8690a228ac8add81718a3a84417d3 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/38f5c05e5a2f63ecf20a1dd1b3f09f58e03c3f30:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/38f5c05e5a2f63ecf20a1dd1b3f09f58e03c3f30 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/3927213ffba7177512ead411d953343f1a9c99ac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3927213ffba7177512ead411d953343f1a9c99ac \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/3966ebcdb40d6ebc809fa026f56491b677e24359:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3966ebcdb40d6ebc809fa026f56491b677e24359 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/396c362d5f4b1bbfd01e0f6ae408bd86a43a42d9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/396c362d5f4b1bbfd01e0f6ae408bd86a43a42d9 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/398a95bcd656d96e8bb30cbf9817624c2c2584d7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/398a95bcd656d96e8bb30cbf9817624c2c2584d7 \
@@ -1961,7 +2029,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/3f3d161a590207bbce08b385628907ea0ab9c575:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3f3d161a590207bbce08b385628907ea0ab9c575 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/3f42f70b8867153575bbd7994d4e0401517e0b29:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3f42f70b8867153575bbd7994d4e0401517e0b29 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/3f5e3800c5e988dc3e79d38bc81c55f77739a1cd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3f5e3800c5e988dc3e79d38bc81c55f77739a1cd \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/3f6121e7fce7b9b77a8b4f3d99b63c1160225e52:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3f6121e7fce7b9b77a8b4f3d99b63c1160225e52 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/3ff38f34581c45a842583aefb32ff216121670af:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/3ff38f34581c45a842583aefb32ff216121670af \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/405126a2845b9a2ceb9bf3f4bc35333ba1bdbac9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/405126a2845b9a2ceb9bf3f4bc35333ba1bdbac9 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/406c82157908608dc6746d52ab5fd6350a10624d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/406c82157908608dc6746d52ab5fd6350a10624d \
@@ -1988,7 +2055,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/441e6d80df46e04ee15adec6d3a0e00ca41e30fd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/441e6d80df46e04ee15adec6d3a0e00ca41e30fd \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/4445e73e00a5a716ac543037189542c4cde677d7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4445e73e00a5a716ac543037189542c4cde677d7 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/44b9a843b01d3ef84da93fe16a291fe31b4f556a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/44b9a843b01d3ef84da93fe16a291fe31b4f556a \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/45095c404c9cd428715d83c1ee127e26f0aaacba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/45095c404c9cd428715d83c1ee127e26f0aaacba \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/459ac9b2097e005adb9bb1318774f752ee404b28:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/459ac9b2097e005adb9bb1318774f752ee404b28 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/45e5c3db4897aa0e5cf69119577e5c7ffd474339:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/45e5c3db4897aa0e5cf69119577e5c7ffd474339 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/45eaaebac925fdc8bad87da310e5e022d3d12131:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/45eaaebac925fdc8bad87da310e5e022d3d12131 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/462cbf4028a8937796055b85442b4bc47619003e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/462cbf4028a8937796055b85442b4bc47619003e \
@@ -1997,7 +2064,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/473c8696fb93a6de72b85fa9573d853528476ff6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/473c8696fb93a6de72b85fa9573d853528476ff6 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/47fa06e9059928c7b33e9a5be5a66ba30d1ae0f2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/47fa06e9059928c7b33e9a5be5a66ba30d1ae0f2 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/48ebdff8a8c0083f8c5f3272c19acd227a7420c6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/48ebdff8a8c0083f8c5f3272c19acd227a7420c6 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/48f140fb36f71d123b2ff4e4e1f32b9ef714a1d5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/48f140fb36f71d123b2ff4e4e1f32b9ef714a1d5 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/48f71ca05ae51a7c197be3df0dd87b374fba28d5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/48f71ca05ae51a7c197be3df0dd87b374fba28d5 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/48fd22c9b9360964697cb6a662c7713c64e9e6b9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/48fd22c9b9360964697cb6a662c7713c64e9e6b9 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/496942b30fccba84eefbcee654953392395c451f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/496942b30fccba84eefbcee654953392395c451f \
@@ -2014,6 +2080,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/4c906a9a92c5132328ec0c964aa52837d0fb4ad1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4c906a9a92c5132328ec0c964aa52837d0fb4ad1 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/4c9b943caecced7c9876ba4fe711d99c71e60d49:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4c9b943caecced7c9876ba4fe711d99c71e60d49 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/4ca287ee04f236826074e6612a5bb751477ab6ec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4ca287ee04f236826074e6612a5bb751477ab6ec \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/4cc6c13485450761f75fb5bfd578c56a5c00d4ea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4cc6c13485450761f75fb5bfd578c56a5c00d4ea \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/4cecc7f960b18e8caa861b52adc303f47c0209fa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4cecc7f960b18e8caa861b52adc303f47c0209fa \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/4d45c74520bb78899b6f9fd686ff0eaf9339d3d4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d45c74520bb78899b6f9fd686ff0eaf9339d3d4 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/4d6b8fa9fb1ff31f5e2c4d142ade22bcdc89cabc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4d6b8fa9fb1ff31f5e2c4d142ade22bcdc89cabc \
@@ -2028,6 +2095,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/4f11778323302a45b98633df1306144c039bed42:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4f11778323302a45b98633df1306144c039bed42 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/4f531ed5a0f94cd5ccd75a9e98c2d9acb91412f6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4f531ed5a0f94cd5ccd75a9e98c2d9acb91412f6 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/4f71d32e2e150b895291c1360af23703abafcb01:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4f71d32e2e150b895291c1360af23703abafcb01 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/4f90593eb1cfb87a3b8c4abe4128c14257e1b09d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4f90593eb1cfb87a3b8c4abe4128c14257e1b09d \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/4fb2d0b6446f2ed45fd7e660b156062dfb0fe8f4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/4fb2d0b6446f2ed45fd7e660b156062dfb0fe8f4 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/500329abac100a953a7396b54b36be57d333022f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/500329abac100a953a7396b54b36be57d333022f \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/5085750a8c3ba3dba5f8da2af7e8aa80084f7e07:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5085750a8c3ba3dba5f8da2af7e8aa80084f7e07 \
@@ -2056,7 +2124,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/5672d0f24cf968b0b1752771376c4d914933b014:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5672d0f24cf968b0b1752771376c4d914933b014 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/568b6762624db1a5e576150cc2039b9a5932feb2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/568b6762624db1a5e576150cc2039b9a5932feb2 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/56cb10847a0e6a2a3d4e0722891e9e33c6c448f6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/56cb10847a0e6a2a3d4e0722891e9e33c6c448f6 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/57202f0f3c07f2cfe2e6b817980a7f4b1b9e9692:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/57202f0f3c07f2cfe2e6b817980a7f4b1b9e9692 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/578d4d31b4c0eb0a207d49a18fd2f6e4830c1574:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/578d4d31b4c0eb0a207d49a18fd2f6e4830c1574 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/5794ae7d91e1f24793a73988f2569a8569d67976:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5794ae7d91e1f24793a73988f2569a8569d67976 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/57d9bae9613347669b07262bfc39dc7903a075f8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/57d9bae9613347669b07262bfc39dc7903a075f8 \
@@ -2064,9 +2131,9 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/5837e1608cc4d79354e22c7757339d0099a01535:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5837e1608cc4d79354e22c7757339d0099a01535 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/584cb56ed7af5af9308a9fde8a489e72aea20164:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/584cb56ed7af5af9308a9fde8a489e72aea20164 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/588c361c5fe9acf444786ed898b201beb9c2b53f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/588c361c5fe9acf444786ed898b201beb9c2b53f \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/58be4a97c7c62bfbdc959619772c560cfd8f5777:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/58be4a97c7c62bfbdc959619772c560cfd8f5777 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/58dcbaf9fcec7e559cf32c71551b9676595710a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/58dcbaf9fcec7e559cf32c71551b9676595710a2 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/5900a309b539823d5c1718d6f881cf66da08d53a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/5900a309b539823d5c1718d6f881cf66da08d53a \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/592477c640d4fab3b1f5e873ee56ae5c4c91bf5d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/592477c640d4fab3b1f5e873ee56ae5c4c91bf5d \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/592657f407917aa69f86fd996587f223e372ed69:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/592657f407917aa69f86fd996587f223e372ed69 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/59685a5fd5a53a703e6b194415ecf6d87fbee0d9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/59685a5fd5a53a703e6b194415ecf6d87fbee0d9 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/599bb09d0e033bc9ad5434131ed876c4cd677955:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/599bb09d0e033bc9ad5434131ed876c4cd677955 \
@@ -2104,9 +2171,11 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/6109e91f449bc45108183c93142171455f04b624:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6109e91f449bc45108183c93142171455f04b624 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/61789d18a5a5a30d3527d1bab0d9873f2412d89b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/61789d18a5a5a30d3527d1bab0d9873f2412d89b \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/61997dcebf1563490f0f06291ff37f6d2386af18:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/61997dcebf1563490f0f06291ff37f6d2386af18 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/61bf31bc1ae76429b5d0c87c0af4f298d172609d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/61bf31bc1ae76429b5d0c87c0af4f298d172609d \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/62430813b792802b0f784de506019ca281b5bdca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/62430813b792802b0f784de506019ca281b5bdca \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/6252be89a7921f3dda8916b29c3042f5e3bdd7ab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6252be89a7921f3dda8916b29c3042f5e3bdd7ab \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/62fb5b04fd5048af6d31bd713a7f1cceb641d1fc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/62fb5b04fd5048af6d31bd713a7f1cceb641d1fc \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/63146f16db7df7a27d8be5d11d028a3d08249c9d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/63146f16db7df7a27d8be5d11d028a3d08249c9d \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/6364fd8e9ac4e7f21c4a60ffa5d5acbd6a5383ca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6364fd8e9ac4e7f21c4a60ffa5d5acbd6a5383ca \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/638cee3aaf5b087f0b28125782366570d8443703:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/638cee3aaf5b087f0b28125782366570d8443703 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/63ca53f740233d825879f520f83d56f502285c79:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/63ca53f740233d825879f520f83d56f502285c79 \
@@ -2140,8 +2209,8 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/694fb18f2502a3c7613977987665d18c17f36d19:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/694fb18f2502a3c7613977987665d18c17f36d19 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/699603b8b98846f9ef65c5e2e73534aab54cf955:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/699603b8b98846f9ef65c5e2e73534aab54cf955 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/69b78a43937d9f50f703c647272ab5bad726e912:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/69b78a43937d9f50f703c647272ab5bad726e912 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/69f5a4515fab0e9b872bffc7b4519c3d1c28a295:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/69f5a4515fab0e9b872bffc7b4519c3d1c28a295 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/6a44209235299b5fb508688796c711d1ad43ca78:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6a44209235299b5fb508688796c711d1ad43ca78 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/6a49785cf6192026ba9bc51f3bd8ce43dc9426f7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6a49785cf6192026ba9bc51f3bd8ce43dc9426f7 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/6a63b7b5a4effc178f133c7faeafec6fac038fbd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6a63b7b5a4effc178f133c7faeafec6fac038fbd \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/6a9ea4eca422a513612ab1c06ef7b0a9246b2986:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6a9ea4eca422a513612ab1c06ef7b0a9246b2986 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/6ab6715b20f06b28c4c9bc1ddff6477ace42fbe1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/6ab6715b20f06b28c4c9bc1ddff6477ace42fbe1 \
@@ -2202,16 +2271,14 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/77611a370206f3f6b3fd7936e62030d14be05e7a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/77611a370206f3f6b3fd7936e62030d14be05e7a \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/7775785f1345b77f0b4d3cc1638ea07d7c34d6b7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7775785f1345b77f0b4d3cc1638ea07d7c34d6b7 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/7775ca7a6fb9ce273abcf6f0a63baf1a9ce4c8d7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7775ca7a6fb9ce273abcf6f0a63baf1a9ce4c8d7 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/7849681430f443a306d1f6fd9b7987968603df29:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7849681430f443a306d1f6fd9b7987968603df29 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/78ef1d7d15c3208010967e2174636222de6d677c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/78ef1d7d15c3208010967e2174636222de6d677c \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/78f25a2dcbae1ca6ca5d18dc02bd6ca86bf62312:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/78f25a2dcbae1ca6ca5d18dc02bd6ca86bf62312 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/79c5c063b41f113aaee5611f94b75985e9a0afe0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/79c5c063b41f113aaee5611f94b75985e9a0afe0 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/79d1ff471da7c25fbfc4454638c7f82352f3515d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/79d1ff471da7c25fbfc4454638c7f82352f3515d \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/7a94e684855a212be73e326109f25042509b2386:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7a94e684855a212be73e326109f25042509b2386 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/7ab86419c6383067651a81f698bc0c98b0276d1d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7ab86419c6383067651a81f698bc0c98b0276d1d \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/7b00f5e84762445874be0e4f326521d897ab4549:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7b00f5e84762445874be0e4f326521d897ab4549 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/7b17671f863b38cc50e52ae9a8f223462ad6f51e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7b17671f863b38cc50e52ae9a8f223462ad6f51e \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/7b486f68b5519501a76101dd5dca0f156b6f40f4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7b486f68b5519501a76101dd5dca0f156b6f40f4 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/7b855c25671caa809209de3b2529c694d3628ad5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7b855c25671caa809209de3b2529c694d3628ad5 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/7b88b87f6eafa369777b438f960db698ad5596bd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7b88b87f6eafa369777b438f960db698ad5596bd \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/7ba3b7c57673cecda274993bf65896411b3cb114:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7ba3b7c57673cecda274993bf65896411b3cb114 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/7bb1c98dc9dc74e3c250a5b1c8ac53bb47ab5186:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7bb1c98dc9dc74e3c250a5b1c8ac53bb47ab5186 \
@@ -2223,7 +2290,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/7d3bf07533a3b271e23a8aa132eb76f6106b3d60:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7d3bf07533a3b271e23a8aa132eb76f6106b3d60 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/7d683e19a003a69500afd87a0ae6f4a94c0a62a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7d683e19a003a69500afd87a0ae6f4a94c0a62a2 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/7d6db2e19d2f482343d9b3ab81473b39ba770c85:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7d6db2e19d2f482343d9b3ab81473b39ba770c85 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/7dae8d767aebafc0ac465b92929934f2ec5899ef:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7dae8d767aebafc0ac465b92929934f2ec5899ef \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/7e3c233f161bc92eb24be7ead67aabafeb730c9b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7e3c233f161bc92eb24be7ead67aabafeb730c9b \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/7e4c163543a72668bc92bc2795e3acc4ed13baa0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7e4c163543a72668bc92bc2795e3acc4ed13baa0 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/7e5f5041cb6cbb7aab580be0c5574c2f6578c8d1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/7e5f5041cb6cbb7aab580be0c5574c2f6578c8d1 \
@@ -2261,7 +2327,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/855ef136f21b87cf38cd80f2b8344ef3996b8ecb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/855ef136f21b87cf38cd80f2b8344ef3996b8ecb \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/856119f81cf3dab949551fbc07fdac6e7e0e3dfd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/856119f81cf3dab949551fbc07fdac6e7e0e3dfd \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/8580a0b092e6c0c8494a564b8a902aea02cf268c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8580a0b092e6c0c8494a564b8a902aea02cf268c \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/85a4836c1a135eb7e150f468953a50b49c439acd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/85a4836c1a135eb7e150f468953a50b49c439acd \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/85cae0fe162739fc5d9b452e1174d1e1dcc2c4eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/85cae0fe162739fc5d9b452e1174d1e1dcc2c4eb \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/85ceefd3cc680f355a8d77f7e1aeb206e06b5f4b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/85ceefd3cc680f355a8d77f7e1aeb206e06b5f4b \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/85ebd1b52a3ba2e87e64fd3b86fbbb6dbf9bbaf3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/85ebd1b52a3ba2e87e64fd3b86fbbb6dbf9bbaf3 \
@@ -2273,6 +2338,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/86a7398aba038b56a2fad5c764261eb84ad251c0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/86a7398aba038b56a2fad5c764261eb84ad251c0 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/86caec493f406577aadc8cde751fcb83df992a0f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/86caec493f406577aadc8cde751fcb83df992a0f \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/86d31677504bdb9069901b98ea91b23ec946fbf3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/86d31677504bdb9069901b98ea91b23ec946fbf3 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/872eac5d447d002d56fded4f63c555b7262d3088:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/872eac5d447d002d56fded4f63c555b7262d3088 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/8753975cf8dadff36ae10ea1be1977775e5e6a4f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8753975cf8dadff36ae10ea1be1977775e5e6a4f \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/8790d26a3eeac02375ffc0170141b9c6c9f3c86d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8790d26a3eeac02375ffc0170141b9c6c9f3c86d \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/87a473d19ecbfae77e32e31dd170da81f50bd823:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/87a473d19ecbfae77e32e31dd170da81f50bd823 \
@@ -2299,6 +2365,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/8cdc5b1a13e3895ccbf2b61ab67565149c79e8a4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8cdc5b1a13e3895ccbf2b61ab67565149c79e8a4 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/8d02f7116d930bc8feeedca15004b3f64bd296dd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8d02f7116d930bc8feeedca15004b3f64bd296dd \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/8d43fc82a8df59cb90c36b6c603a3222382617c6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8d43fc82a8df59cb90c36b6c603a3222382617c6 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/8d92dc700a2916c09d32016509b29f3837617a4a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8d92dc700a2916c09d32016509b29f3837617a4a \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/8dc05120c45453eaa880c9443d00825bdd569d78:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8dc05120c45453eaa880c9443d00825bdd569d78 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/8de539ffa3194781083842a9b7e8a4719ce6a155:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8de539ffa3194781083842a9b7e8a4719ce6a155 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/8df9c1a1841553edad299f22407f592a58e41219:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8df9c1a1841553edad299f22407f592a58e41219 \
@@ -2311,7 +2378,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/8ef1cfdaf87fff03774075e2276366a60d1052d4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8ef1cfdaf87fff03774075e2276366a60d1052d4 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/8f367a3607d544b06fc22b8ebc6bdb040415b3a5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8f367a3607d544b06fc22b8ebc6bdb040415b3a5 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/8f66e3557c2ee03b671b0737b39f9c863f57b2cb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8f66e3557c2ee03b671b0737b39f9c863f57b2cb \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/8ff72ec08cd2c6732250636462463c46c6235bc3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/8ff72ec08cd2c6732250636462463c46c6235bc3 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/90112ea5cfecbbf882424ce80e3745a4ae9f4d15:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/90112ea5cfecbbf882424ce80e3745a4ae9f4d15 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/90525ae7adce9ea9c0dfd31e3909ed27c913d267:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/90525ae7adce9ea9c0dfd31e3909ed27c913d267 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/9058ba530783451627f418601b63596c4360b147:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9058ba530783451627f418601b63596c4360b147 \
@@ -2332,8 +2398,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/93b7c29bf98bee4c2a5f94ee031bcd44bc094e1e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/93b7c29bf98bee4c2a5f94ee031bcd44bc094e1e \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/93f87ed21462f812da4298f7ff2fccd2751ce11f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/93f87ed21462f812da4298f7ff2fccd2751ce11f \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/94207b1013229359ed710df74af648be4e16cef9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/94207b1013229359ed710df74af648be4e16cef9 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/946f99ea0583ff176dea93b431a51de15aa0638d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/946f99ea0583ff176dea93b431a51de15aa0638d \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/94a7c329a3d6c282b564e5457e6d38cb8cdc083e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/94a7c329a3d6c282b564e5457e6d38cb8cdc083e \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/950d94837d99b62331e173793e6ce0cbc6ba2478:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/950d94837d99b62331e173793e6ce0cbc6ba2478 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/951120675391d3ebfc390d7a6186b560d3b74608:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/951120675391d3ebfc390d7a6186b560d3b74608 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/956343b8f1c8d49a9e5611205ec6b2258bc399cf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/956343b8f1c8d49a9e5611205ec6b2258bc399cf \
@@ -2365,6 +2429,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/9d424d1447dc27759ae0da3fb559fbcb17fcde09:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9d424d1447dc27759ae0da3fb559fbcb17fcde09 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/9d6eaf8def8b67d6e6aef9301832bc5332d8a938:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9d6eaf8def8b67d6e6aef9301832bc5332d8a938 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/9d8871fd6618461ee2108cf5229bfb7dd6942590:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9d8871fd6618461ee2108cf5229bfb7dd6942590 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/9dfa2de1a084af8c28a73424934c7d0677b4f5e6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9dfa2de1a084af8c28a73424934c7d0677b4f5e6 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/9e50237a7a789535f0983891b696f3692d8119a3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9e50237a7a789535f0983891b696f3692d8119a3 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/9e7babef99315702060500a9082918ac00abdb5d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9e7babef99315702060500a9082918ac00abdb5d \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/9eba9ebfcf23c0897d95073be8b72631d549e8e8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/9eba9ebfcf23c0897d95073be8b72631d549e8e8 \
@@ -2376,6 +2441,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/a0299aa9f188e99df829f79a3f5a25d10be5114a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a0299aa9f188e99df829f79a3f5a25d10be5114a \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/a0507371af4a5d2114f7a8b70c7bd47c771bbd65:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a0507371af4a5d2114f7a8b70c7bd47c771bbd65 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/a063c0f3a16af0c42c26b33345170d26ffaa6fc7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a063c0f3a16af0c42c26b33345170d26ffaa6fc7 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/a0922c39102a163788a8822bf9cb0d331a444c5a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a0922c39102a163788a8822bf9cb0d331a444c5a \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/a0a2b36926c0abdef1872645b19e0d040313e04d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a0a2b36926c0abdef1872645b19e0d040313e04d \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/a1789edaf8294d356c20698d8fb8f900fa161cb3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a1789edaf8294d356c20698d8fb8f900fa161cb3 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/a22cdabf278ada809e49a8de2fa9bdd2f21333f4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/a22cdabf278ada809e49a8de2fa9bdd2f21333f4 \
@@ -2421,6 +2487,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/abda6a67eb18a8c29793fd84275573aa4c69ba31:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/abda6a67eb18a8c29793fd84275573aa4c69ba31 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/ac0f1523cbfbf43fbc7747a406488b41f2927bb8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ac0f1523cbfbf43fbc7747a406488b41f2927bb8 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/ac3407bd63843781eba5e0f3046d6917b1e0911a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ac3407bd63843781eba5e0f3046d6917b1e0911a \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/acc3ef46e58293ff78bda0d7a47895cd742fc316:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/acc3ef46e58293ff78bda0d7a47895cd742fc316 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/acd508aebea65752ef9288d532140e36dbe462c8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/acd508aebea65752ef9288d532140e36dbe462c8 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/ad057bd572b1a7f91bd3649948090e5ba733ead2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ad057bd572b1a7f91bd3649948090e5ba733ead2 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/ad4fa138e27ab21af0c410a925e57a71222cfbf7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ad4fa138e27ab21af0c410a925e57a71222cfbf7 \
@@ -2447,8 +2514,8 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/b40c0c9c504a536d710c4db7361403c9acf6369c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b40c0c9c504a536d710c4db7361403c9acf6369c \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/b46d71e882b0807f2413309adc4c898293384fab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b46d71e882b0807f2413309adc4c898293384fab \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/b4e75158ddc9d3dcbe92033c8f1a619807d06c0c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b4e75158ddc9d3dcbe92033c8f1a619807d06c0c \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/b4e8b599003895e67f4b048eb2bd1449dd3e1af5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b4e8b599003895e67f4b048eb2bd1449dd3e1af5 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/b52a3d06b8e7ac91e39ab19164eda21029017d5c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b52a3d06b8e7ac91e39ab19164eda21029017d5c \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/b52ccc9e24f43c90e74ccf97a1afbd85c50b0fe9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b52ccc9e24f43c90e74ccf97a1afbd85c50b0fe9 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/b564d7e04ebab8fbbc46a5a1ce08cd566499ef5b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b564d7e04ebab8fbbc46a5a1ce08cd566499ef5b \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/b588c1de833f398eab01480fae9f41c5397977b5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b588c1de833f398eab01480fae9f41c5397977b5 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/b58d55d0a333515bdf86a9eca2bd51716e9a7d42:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/b58d55d0a333515bdf86a9eca2bd51716e9a7d42 \
@@ -2484,6 +2551,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/bc926c1eccf3aaf6ec1feaf0619ba4c140d2114e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bc926c1eccf3aaf6ec1feaf0619ba4c140d2114e \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/bc98319ae3ae36fbcdcd0c28ba9fb32c30f5053c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bc98319ae3ae36fbcdcd0c28ba9fb32c30f5053c \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/bca6b70a584d95308f251d14e2367b2d3ef900b0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bca6b70a584d95308f251d14e2367b2d3ef900b0 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/bceb8748e53b236a816ce882a4e27704881afb1e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bceb8748e53b236a816ce882a4e27704881afb1e \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/bd64d41271eb67f7cc2a4265b22f4e366d83cddb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bd64d41271eb67f7cc2a4265b22f4e366d83cddb \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/bd8004ae985789827ad1399188e510e15e3dcc94:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bd8004ae985789827ad1399188e510e15e3dcc94 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/bd8cb799967c24d3bda4631ca4714f943edabcf3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/bd8cb799967c24d3bda4631ca4714f943edabcf3 \
@@ -2518,6 +2586,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/c47881068701661e6aa7200ac910bb12faffb8a1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c47881068701661e6aa7200ac910bb12faffb8a1 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/c479a451e5c8eb980c3c5c0ad70ebe618fa084d9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c479a451e5c8eb980c3c5c0ad70ebe618fa084d9 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/c4da57a2b929101acab789d1dc58ac24fa1de53e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c4da57a2b929101acab789d1dc58ac24fa1de53e \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/c5087178273bf1c871012473283d1d75c73e3d3a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c5087178273bf1c871012473283d1d75c73e3d3a \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/c5149b3c4644440af3fbdf34fd29c78430239546:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c5149b3c4644440af3fbdf34fd29c78430239546 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/c52691e559e0ff361431a02a0ca5010bd701905c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c52691e559e0ff361431a02a0ca5010bd701905c \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/c54b0742b4c2b4d856e2cdbf28f117c7122d1e7d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c54b0742b4c2b4d856e2cdbf28f117c7122d1e7d \
@@ -2530,6 +2599,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/c6fe58c7855ecc2c762bc516e8fd16c5c4424b7b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c6fe58c7855ecc2c762bc516e8fd16c5c4424b7b \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/c74c18652451135ee76d8583307d949636782d7e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c74c18652451135ee76d8583307d949636782d7e \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/c79953abc6bef7b48caf5b82d89b489162aab3da:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c79953abc6bef7b48caf5b82d89b489162aab3da \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/c893666d19539dbebccecc15113b3c2bad045e03:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c893666d19539dbebccecc15113b3c2bad045e03 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/c8da714c5b55cc44bfcb65625a7c46d1d69ec99a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c8da714c5b55cc44bfcb65625a7c46d1d69ec99a \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/c97f21a94980b3531817fed148fadd0ab0620d60:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c97f21a94980b3531817fed148fadd0ab0620d60 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/c9915d0a1a6904be1fac38311f318c828bb05ee5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/c9915d0a1a6904be1fac38311f318c828bb05ee5 \
@@ -2559,6 +2629,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/cf41e0b2f9f320e1375e35c46fcd490d4ddedb0a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cf41e0b2f9f320e1375e35c46fcd490d4ddedb0a \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/cff291f5f7dfb9840b3d1f42ec3963790733889c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/cff291f5f7dfb9840b3d1f42ec3963790733889c \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/d00076096f572a60103c0ced9ee557dfdff74077:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d00076096f572a60103c0ced9ee557dfdff74077 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/d05b51c4ec7ba285d68b8873d05b3a2dbb5c0731:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d05b51c4ec7ba285d68b8873d05b3a2dbb5c0731 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/d130dc06b575154637b68c3eb01fa8b8cda05232:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d130dc06b575154637b68c3eb01fa8b8cda05232 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/d1c290ea1e4544dec1934931fbfa1fb2060eb3a0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d1c290ea1e4544dec1934931fbfa1fb2060eb3a0 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/d1ee08ada7eabc88177c3d595eb80c3d15fd01d6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d1ee08ada7eabc88177c3d595eb80c3d15fd01d6 \
@@ -2578,6 +2649,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/d530fa91787ec44de56baf6baada560ddcbcb2e3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d530fa91787ec44de56baf6baada560ddcbcb2e3 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/d53234a0f23f5c6453d90c0ce296e83bfe166ecd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d53234a0f23f5c6453d90c0ce296e83bfe166ecd \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/d5884b2bee023fcb584281cadc1f7976003df226:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d5884b2bee023fcb584281cadc1f7976003df226 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/d59ca0704395448cca2c45514a153fdf0251b066:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d59ca0704395448cca2c45514a153fdf0251b066 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/d5ea79169803c2d68fd841ca238a88a83dfaa5c2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d5ea79169803c2d68fd841ca238a88a83dfaa5c2 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/d6566622bf53fd94f880369236e462c2eeb35e6f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d6566622bf53fd94f880369236e462c2eeb35e6f \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/d65ea1f481d883f228410434ce53f03244f228c5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/d65ea1f481d883f228410434ce53f03244f228c5 \
@@ -2608,7 +2680,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/dc532be4d9abd29bb8a8df1d1c4a2896ce63c40d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dc532be4d9abd29bb8a8df1d1c4a2896ce63c40d \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/dc62814c6d380cc7320ce78e50f8a9dc3c0c6ba2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dc62814c6d380cc7320ce78e50f8a9dc3c0c6ba2 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/dc6336622872c67b0f2dc9421a73b8563d4cf2cd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dc6336622872c67b0f2dc9421a73b8563d4cf2cd \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/dc71581d7048939925c56d190295c8eb5c8ed0a7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dc71581d7048939925c56d190295c8eb5c8ed0a7 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/dc9d16118bc6fe01b871135f7d5259a87c4fd820:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dc9d16118bc6fe01b871135f7d5259a87c4fd820 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/dca2f2baee1edc1387f7fe4c9471127e927d4952:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dca2f2baee1edc1387f7fe4c9471127e927d4952 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/dca9943ae777600ec7b1c7cdf2e8253cb72b6c92:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dca9943ae777600ec7b1c7cdf2e8253cb72b6c92 \
@@ -2630,7 +2701,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/dfc408c7dde1032717faffbb69b532e6da35c385:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dfc408c7dde1032717faffbb69b532e6da35c385 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/dfdee763e98f77f9d77e9d670b5f437163fc0fb1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dfdee763e98f77f9d77e9d670b5f437163fc0fb1 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/dffa939a94efc85094991760dfb442624d90b71a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/dffa939a94efc85094991760dfb442624d90b71a \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e02770cfcb6fc991ace888b3ed10a627c6bd809a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e02770cfcb6fc991ace888b3ed10a627c6bd809a \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e0578dde76f53ce117b8fd90e19e5948720b435d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e0578dde76f53ce117b8fd90e19e5948720b435d \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e0cdd913911faf861c4a2f114a4f65b70fc15b15:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e0cdd913911faf861c4a2f114a4f65b70fc15b15 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e0d495312e9be26cab3e11cef8ec5b69e32b827c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e0d495312e9be26cab3e11cef8ec5b69e32b827c \
@@ -2640,7 +2710,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e15768e040ec29d403725898f15bb21a08492eba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e15768e040ec29d403725898f15bb21a08492eba \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e1d7eaac9029fc3ebf9a3a2c8fb736998398f271:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e1d7eaac9029fc3ebf9a3a2c8fb736998398f271 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e214fdc28b95e893bf3cd8435ec3b134747f79eb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e214fdc28b95e893bf3cd8435ec3b134747f79eb \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e22dbfed3dac1dbe9408a69aeb6d580f81e0d6c6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e22dbfed3dac1dbe9408a69aeb6d580f81e0d6c6 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e26eebb150467895cf8a8da0f06d8fc01a1637d1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e26eebb150467895cf8a8da0f06d8fc01a1637d1 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e287e6283d92c3d6921def9c22b7f111549bf155:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e287e6283d92c3d6921def9c22b7f111549bf155 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e3312180f33b08ea24116c85f92e0fa29bcbac32:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e3312180f33b08ea24116c85f92e0fa29bcbac32 \
@@ -2650,15 +2719,18 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e442012b6887280aaaaa4fa0098fc1a78cce27fc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e442012b6887280aaaaa4fa0098fc1a78cce27fc \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e45f7b3b84dd7188aba61446b892c1e384a33da1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e45f7b3b84dd7188aba61446b892c1e384a33da1 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e46c9b888d31ba2f26ef18dc68582a2ccb97cdc0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e46c9b888d31ba2f26ef18dc68582a2ccb97cdc0 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e4734d8b139488bcb37c036180b509032472f2ba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e4734d8b139488bcb37c036180b509032472f2ba \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e4f959a08150fe15dbdfa6ac8473289e4c944dcc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e4f959a08150fe15dbdfa6ac8473289e4c944dcc \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e5a45191f6d223a90c2951930e515ad2f79c6eec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e5a45191f6d223a90c2951930e515ad2f79c6eec \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e5f812b51f6b25c6bc954a21a83a07160efe6d35:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e5f812b51f6b25c6bc954a21a83a07160efe6d35 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e613646c144be88376a48ace714fcdef277ad2aa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e613646c144be88376a48ace714fcdef277ad2aa \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e6cf14092d8b7002fd1c120963bf0c6d44989747:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e6cf14092d8b7002fd1c120963bf0c6d44989747 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e6fe5a23376d9003736d73731de306b875ddd269:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e6fe5a23376d9003736d73731de306b875ddd269 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e7059c208a7a499036ae857a4d1d2472c87790fe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e7059c208a7a499036ae857a4d1d2472c87790fe \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e707be95e42281f427dd883b07ca047a8bf35017:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e707be95e42281f427dd883b07ca047a8bf35017 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e709542b369743db6fe632750aa364fd176115e1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e709542b369743db6fe632750aa364fd176115e1 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e72a24eb9e6d5e2d51a773a8ef57c78a8cf04343:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e72a24eb9e6d5e2d51a773a8ef57c78a8cf04343 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e76a071ce89a5cf832882aa3ccf47e5625f23d4f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e76a071ce89a5cf832882aa3ccf47e5625f23d4f \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e76b7c45fe0e7c61d369fe5444aef5e8cb06d5bd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e76b7c45fe0e7c61d369fe5444aef5e8cb06d5bd \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e78c9662dfee276a9f5cfb599816b79a352ca60b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e78c9662dfee276a9f5cfb599816b79a352ca60b \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/e7fe61b6e26871ca6638dc376f0f2089d4b07bd2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/e7fe61b6e26871ca6638dc376f0f2089d4b07bd2 \
@@ -2687,7 +2759,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/ec71cfa0dab51f19c13abebd4ea2fe32a55e731a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ec71cfa0dab51f19c13abebd4ea2fe32a55e731a \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/ecefb5b0255c170e10b201c0187a24798cf58903:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ecefb5b0255c170e10b201c0187a24798cf58903 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/ecfe63912eacb3202f1da3809993a61faf55529e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ecfe63912eacb3202f1da3809993a61faf55529e \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/ed08ba9a116700ab7305981d1c2be07dc9f31c46:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ed08ba9a116700ab7305981d1c2be07dc9f31c46 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/ed3fe2fe8ffd5413a4adf7ee5ae839beaa53e6f8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ed3fe2fe8ffd5413a4adf7ee5ae839beaa53e6f8 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/ed4ccb121ab4c36383cfa9a16751bb9300e3ee52:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ed4ccb121ab4c36383cfa9a16751bb9300e3ee52 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/ed56f54f6628072a9da932678c7997b4a0b94d9e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ed56f54f6628072a9da932678c7997b4a0b94d9e \
@@ -2704,7 +2775,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/ef7bddbfa104e829da83980e463eecdca8311ac7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ef7bddbfa104e829da83980e463eecdca8311ac7 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/ef8d40aa13ca34a9beb8b85908246f316f966c61:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ef8d40aa13ca34a9beb8b85908246f316f966c61 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/efe967487f6874fb96d2cd00046ca95e7a46854e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/efe967487f6874fb96d2cd00046ca95e7a46854e \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/f04fb36c8ae4ccf9acbda0064af4447f577465b7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f04fb36c8ae4ccf9acbda0064af4447f577465b7 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/f08ec6cc7e6f5ef34ad6c329d3c4c02ec0e5299d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f08ec6cc7e6f5ef34ad6c329d3c4c02ec0e5299d \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/f0d04219c5398e931f2b4f0d2f79f1001e718b80:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f0d04219c5398e931f2b4f0d2f79f1001e718b80 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/f121914771abcf9b7a771f65498352206e69e8c6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f121914771abcf9b7a771f65498352206e69e8c6 \
@@ -2724,13 +2794,12 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/f41ebc7bd6dadb4377daed102c3bd0d7e823853f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f41ebc7bd6dadb4377daed102c3bd0d7e823853f \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/f423eac804ae666aeda8d295d18918c902bdd07c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f423eac804ae666aeda8d295d18918c902bdd07c \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/f43af2dbe6f8d1c9a7778eb4319384bb43ef4081:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f43af2dbe6f8d1c9a7778eb4319384bb43ef4081 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/f43f42c98912d85e6a907b920755474800dc82f3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f43f42c98912d85e6a907b920755474800dc82f3 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/f4ec739286f9796fe71d4b70f8ba2a79bf00fef1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f4ec739286f9796fe71d4b70f8ba2a79bf00fef1 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/f4fbb3d7bfd0c9e92db59bd34b46732ed4ef1f79:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f4fbb3d7bfd0c9e92db59bd34b46732ed4ef1f79 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/f5d15f8d8a2d37d46c67e9909b873dfa1486b7bd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f5d15f8d8a2d37d46c67e9909b873dfa1486b7bd \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/f5e86f20dca25f7528284e34d57cc7ff31fed55c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f5e86f20dca25f7528284e34d57cc7ff31fed55c \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/f647d4b2e4118334d105b74e9313a2672ef1648c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f647d4b2e4118334d105b74e9313a2672ef1648c \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/f6b6625d4ac4a19cf1c3e05953795b61fd888533:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f6b6625d4ac4a19cf1c3e05953795b61fd888533 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/f6eb3f10b546f24657f344bfbc7363880a979549:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f6eb3f10b546f24657f344bfbc7363880a979549 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/f7d92ba6ec0f68b32879df5630f2bf60cad86387:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f7d92ba6ec0f68b32879df5630f2bf60cad86387 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/f812764d27efa03ff3458bb85cde9cb9512a9401:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f812764d27efa03ff3458bb85cde9cb9512a9401 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/f81d6ed4d02f28898547976add3dbff711c98a3f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/f81d6ed4d02f28898547976add3dbff711c98a3f \
@@ -2755,7 +2824,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/fca91e4ab09b9fa19654e76f1266d26839881db6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fca91e4ab09b9fa19654e76f1266d26839881db6 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/fcd874811fa4ab93f7466e67e8f708a1796fcd8f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fcd874811fa4ab93f7466e67e8f708a1796fcd8f \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/fcf77e35832a2ee166e0d35551e7fecafa561983:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fcf77e35832a2ee166e0d35551e7fecafa561983 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/fcfbe577f4c4927728b09931748b0bc14a8c9df0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fcfbe577f4c4927728b09931748b0bc14a8c9df0 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/fd20c45eeb7b621994d607223b41b5661d3d2208:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fd20c45eeb7b621994d607223b41b5661d3d2208 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/fdcd17e7ce9a0ee20d653534d401feeb503e0bd5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fdcd17e7ce9a0ee20d653534d401feeb503e0bd5 \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/fddca762c06a537728227801872a861b283c04de:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/fddca762c06a537728227801872a861b283c04de \
@@ -2767,275 +2835,275 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/ff91dcd796802ddfca1bf424d7ab0527e7d0820f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ff91dcd796802ddfca1bf424d7ab0527e7d0820f \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/confseqs/ffdc577197c6baf35338916b69a7268a5fe6160c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/confseqs/ffdc577197c6baf35338916b69a7268a5fe6160c \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests_symbolic_link_mapping:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests_symbolic_link_mapping \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/00709aa805c7127e5dc80c6ed17f18e2c520a3f4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/00709aa805c7127e5dc80c6ed17f18e2c520a3f4 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/00837a19962928fdf97c40146ab3a8895e5b63e2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/00837a19962928fdf97c40146ab3a8895e5b63e2 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0146a49083347118778a3bc3316de37ffe2d9b9b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0146a49083347118778a3bc3316de37ffe2d9b9b \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/04ca9b6f579c567d48dd154f5c881c751c10d14c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/04ca9b6f579c567d48dd154f5c881c751c10d14c \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0653c69d7bdd5afaf840e67ee72839dbbeecc64f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0653c69d7bdd5afaf840e67ee72839dbbeecc64f \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0685d2ff9bd307a8244f240c14af6f824855790b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0685d2ff9bd307a8244f240c14af6f824855790b \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0755eeec4f762c1a10f16ee6317169423582f14b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0755eeec4f762c1a10f16ee6317169423582f14b \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/07806494c96c5e66882e0e29d27e1a865db1c8bf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/07806494c96c5e66882e0e29d27e1a865db1c8bf \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/08029d46ccf4d9613e9a9741c0932149efd376ab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/08029d46ccf4d9613e9a9741c0932149efd376ab \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0903ace23a48614879f7783f14d57ffa2d5cf5c8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0903ace23a48614879f7783f14d57ffa2d5cf5c8 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0a3087a3f5ff4f47d3888b0d90567f944769668d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0a3087a3f5ff4f47d3888b0d90567f944769668d \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0d7fadde3d1b78fdbfdea6161e7269206adca9c4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0d7fadde3d1b78fdbfdea6161e7269206adca9c4 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0d852ab4bba3d008c88aafde6a725b859e00c8f8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0d852ab4bba3d008c88aafde6a725b859e00c8f8 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0e19f28cff4272579fe7fa24a196cc3f91901205:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0e19f28cff4272579fe7fa24a196cc3f91901205 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0e888cfe8bc9e2f8bcf08ae06a10b3ec35fae6a3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0e888cfe8bc9e2f8bcf08ae06a10b3ec35fae6a3 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0fdf0a37c9dce56ca4b923d89293b05bf144d36b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0fdf0a37c9dce56ca4b923d89293b05bf144d36b \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/102007c4832951d181436f649c941e58ee527c9f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/102007c4832951d181436f649c941e58ee527c9f \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/11a282ff28d29ab9b6e753c242537ebc28831067:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/11a282ff28d29ab9b6e753c242537ebc28831067 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/11bdfed38e55eddd4a92f7de5181c46fa68a3c5d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/11bdfed38e55eddd4a92f7de5181c46fa68a3c5d \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/122f861799e7ad58814292c6b31236f209276b71:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/122f861799e7ad58814292c6b31236f209276b71 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/131756a5b0f3b22e0d5f262c24f2fda1843d6fc9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/131756a5b0f3b22e0d5f262c24f2fda1843d6fc9 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/13550c81c4345a64dccdd97822ffc8bb34e25042:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/13550c81c4345a64dccdd97822ffc8bb34e25042 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/1375d8a80db39a232862ed302c5cc52876533378:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1375d8a80db39a232862ed302c5cc52876533378 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/14ad5eb172433f4426fc3d44df034804a061741b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/14ad5eb172433f4426fc3d44df034804a061741b \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/15a433291857b7361613f4e644ed9ad7d6e9b11f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/15a433291857b7361613f4e644ed9ad7d6e9b11f \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/19a88f01c758dcd45c42d3c3359cccdd07afbdb7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/19a88f01c758dcd45c42d3c3359cccdd07afbdb7 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/1af38dc437615278618e44bfa50570b867f5ce25:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1af38dc437615278618e44bfa50570b867f5ce25 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/1afab5f8c873b117975414827e66f34e0cb8580d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1afab5f8c873b117975414827e66f34e0cb8580d \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/1b96be7620e83a149f0e9be4160411ddab440701:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1b96be7620e83a149f0e9be4160411ddab440701 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/1bdb4ed5485475d7920e4eb2ee0c53ee2e81843f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1bdb4ed5485475d7920e4eb2ee0c53ee2e81843f \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/1e7dde594e4d51fa1ffbb8375b0fb10455fd4a31:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1e7dde594e4d51fa1ffbb8375b0fb10455fd4a31 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/1fae5e28be7b3f33bea54f70727e0dbb284b0e99:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1fae5e28be7b3f33bea54f70727e0dbb284b0e99 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/202acb87f2adeb2540733bd90c4cebda74350dd5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/202acb87f2adeb2540733bd90c4cebda74350dd5 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/2051ac55b16dda672872b6ef21300db9964719f5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2051ac55b16dda672872b6ef21300db9964719f5 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/20aa7c261fdfdb35a47a7ed1760f5235b548e6d6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/20aa7c261fdfdb35a47a7ed1760f5235b548e6d6 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/214ace165c6e90df80af611d0254c2659e0e27e0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/214ace165c6e90df80af611d0254c2659e0e27e0 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/218f4bab2ceab98133c1aecfd7d141af338e717e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/218f4bab2ceab98133c1aecfd7d141af338e717e \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/225a0ccdbef5e3e2e816638b81db9ba7c84aefea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/225a0ccdbef5e3e2e816638b81db9ba7c84aefea \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/23f95e9076002c47be968200ffecb2ccf55dfb3a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/23f95e9076002c47be968200ffecb2ccf55dfb3a \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/242db35b113c482ffccc7ae547868a34bf7b6e0f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/242db35b113c482ffccc7ae547868a34bf7b6e0f \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/24f7c551d46d2c86dc644ce85d3596ec6505b7fd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/24f7c551d46d2c86dc644ce85d3596ec6505b7fd \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/259d9a3da4f843cfd8ff1c688c69ca048c5409b2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/259d9a3da4f843cfd8ff1c688c69ca048c5409b2 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/25a9e7c29cb47be2c99915b623fbe5c5ec6f7d10:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/25a9e7c29cb47be2c99915b623fbe5c5ec6f7d10 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/263d8a353e47f4f77cfa6c678847c6aa8c5c90ca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/263d8a353e47f4f77cfa6c678847c6aa8c5c90ca \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/266886b41c34cb51f26a734473c281e0b4381238:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/266886b41c34cb51f26a734473c281e0b4381238 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/2954390c71d1a6c76768660fe8f5ac541f585c73:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2954390c71d1a6c76768660fe8f5ac541f585c73 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/2d7fc72de0aaf17bd7b3c5694aa4ed5f8482a948:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2d7fc72de0aaf17bd7b3c5694aa4ed5f8482a948 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/2e07d55b1131674435d1e18daef05eac256a9637:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2e07d55b1131674435d1e18daef05eac256a9637 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/2f217193554ddcac209c9b8af263b10660b63a3b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2f217193554ddcac209c9b8af263b10660b63a3b \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/2fadd0db889a722c450b555c22677b55a3682a5f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2fadd0db889a722c450b555c22677b55a3682a5f \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/2fdf6081e1d1579fdfafa174d8215101c56488d5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2fdf6081e1d1579fdfafa174d8215101c56488d5 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/2fe0b192fd57e9eafd12a98654c843240816ed7b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2fe0b192fd57e9eafd12a98654c843240816ed7b \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/301ccd52ab135210aa4b19e14b9c24ee743e48bf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/301ccd52ab135210aa4b19e14b9c24ee743e48bf \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/3337c08b89a2a1389c0f57576a51bd38d54fc0bd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3337c08b89a2a1389c0f57576a51bd38d54fc0bd \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/342f58023a530992fe5f601e089f895dc243fcca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/342f58023a530992fe5f601e089f895dc243fcca \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/3522a81b32d3e11f516b6d6c02521ba77ab6b629:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3522a81b32d3e11f516b6d6c02521ba77ab6b629 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/3522b0c35e2d77e021ab12f5b3869755864e7fea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3522b0c35e2d77e021ab12f5b3869755864e7fea \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/354e72e6eaafe972f3a7ea7e2be7cb0e12f16352:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/354e72e6eaafe972f3a7ea7e2be7cb0e12f16352 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/35cfda417a0c1390e32b54644aee907934a1cd1e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/35cfda417a0c1390e32b54644aee907934a1cd1e \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/35deb25783fdd8a1b8ebc3f855c9dfa7199215ae:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/35deb25783fdd8a1b8ebc3f855c9dfa7199215ae \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/3739ab03f971b787b615eba6140a7e7ede1fc1b1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3739ab03f971b787b615eba6140a7e7ede1fc1b1 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/37b9ef45165a30017a66fbe75765f9815b9f9e00:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/37b9ef45165a30017a66fbe75765f9815b9f9e00 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/3838c5e5936664fa31b0806a25f3707cf50cba49:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3838c5e5936664fa31b0806a25f3707cf50cba49 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/3873ad0f9565555c607882f48a1b9bcbcbed7dba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3873ad0f9565555c607882f48a1b9bcbcbed7dba \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/3891d6d02d7f7f4093ef38c0241320cac02f8e26:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3891d6d02d7f7f4093ef38c0241320cac02f8e26 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/39472f197a2d7373528f594279cafe74962bb7f7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/39472f197a2d7373528f594279cafe74962bb7f7 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/3972a3ca3700ea07330ab3772b2ec11a171724a8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3972a3ca3700ea07330ab3772b2ec11a171724a8 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/39a732d5c7419171db95e704275b14260323ebee:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/39a732d5c7419171db95e704275b14260323ebee \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/3ad15bf0dbf399f1a5f8e04e3af704717948636c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3ad15bf0dbf399f1a5f8e04e3af704717948636c \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/3ad318ccf612ab6abe57c664876146f14503011f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3ad318ccf612ab6abe57c664876146f14503011f \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/3b679a60b0955644890baaa3124147125761a73f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3b679a60b0955644890baaa3124147125761a73f \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/3e115e8baff7d60fa4e9441602e070eb89871dd8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3e115e8baff7d60fa4e9441602e070eb89871dd8 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/3e85f4c0062f484acc492ddd64f89c8dbc570b22:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3e85f4c0062f484acc492ddd64f89c8dbc570b22 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4136acf12f656506bf27df078c0ec9ccd1a9544f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4136acf12f656506bf27df078c0ec9ccd1a9544f \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/418121de85e671deb9d8a55c941c06ba63f31231:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/418121de85e671deb9d8a55c941c06ba63f31231 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/423d6871aa7df7614f6f2ff0fac73562428fec30:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/423d6871aa7df7614f6f2ff0fac73562428fec30 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4394b3bfce3cd5e54b5cbc1fd7fdf8b074eaffb5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4394b3bfce3cd5e54b5cbc1fd7fdf8b074eaffb5 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/439fdaf5023c7c470822decae2a3b61a03ec7580:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/439fdaf5023c7c470822decae2a3b61a03ec7580 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/43e72a398232d5802b1f7ab0dc921fa334f4b0be:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/43e72a398232d5802b1f7ab0dc921fa334f4b0be \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/447283b8f5c9ec77b81b5db22bb17f3431beab5a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/447283b8f5c9ec77b81b5db22bb17f3431beab5a \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/451466b2b943cad77e3ba0a6b0beba77748294d7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/451466b2b943cad77e3ba0a6b0beba77748294d7 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/46829aa62164b4a2ca5fb0c8f66b5bed956ad35a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/46829aa62164b4a2ca5fb0c8f66b5bed956ad35a \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/468c4ad62b0afcac2581aacd3dcc46219b94bd65:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/468c4ad62b0afcac2581aacd3dcc46219b94bd65 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/46c54824f8782361b6e755b94e941076751e5a6b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/46c54824f8782361b6e755b94e941076751e5a6b \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/47d1d662a9754c3a75aad474dd1f10ba36a4bc84:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/47d1d662a9754c3a75aad474dd1f10ba36a4bc84 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/48980bd5cecbd93157c3e72d977ffdddb785722a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/48980bd5cecbd93157c3e72d977ffdddb785722a \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4906d45949477b62cc8d9cb674bf914fdbab7aa6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4906d45949477b62cc8d9cb674bf914fdbab7aa6 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4925318202c1ec39e7064cd3b3ebd2ced7b75f7d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4925318202c1ec39e7064cd3b3ebd2ced7b75f7d \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/49a566d1bf5a16c34e4e4d053e9d375e97ea14b6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/49a566d1bf5a16c34e4e4d053e9d375e97ea14b6 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/49d2c45792fc8aa1f86b149f8906e51be0b5a555:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/49d2c45792fc8aa1f86b149f8906e51be0b5a555 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4ab178576c9767f8f1bc0df56897b9d9635dc236:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4ab178576c9767f8f1bc0df56897b9d9635dc236 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4b327a05f73eb9d01b80f760ff8c6bbd1e0c75f8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4b327a05f73eb9d01b80f760ff8c6bbd1e0c75f8 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4b6793bdac8b8e5291e78d713483141db6fd58bb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4b6793bdac8b8e5291e78d713483141db6fd58bb \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4b6ff5e840faacc095c4cbfdd547e56853ded226:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4b6ff5e840faacc095c4cbfdd547e56853ded226 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4bf6d4ce0a3706dcd12845b3cf3d4e29bfa9fdb9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4bf6d4ce0a3706dcd12845b3cf3d4e29bfa9fdb9 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4c9e92bbf0667976cff0621ea16d318311a8a5cb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4c9e92bbf0667976cff0621ea16d318311a8a5cb \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4dea998a46d4b56682ca87af6114d124a2f4b4d4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4dea998a46d4b56682ca87af6114d124a2f4b4d4 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/505605cee3a10762c9d4eec2d67d6264e1d47813:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/505605cee3a10762c9d4eec2d67d6264e1d47813 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/51278a54ff3585a24ba71829be32d1625c32124b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/51278a54ff3585a24ba71829be32d1625c32124b \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/51bee16d50a2b74e486cd8fea85a895eec128366:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/51bee16d50a2b74e486cd8fea85a895eec128366 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/5268f270302ba473a62a1bc3989c5c1fc9ab6247:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5268f270302ba473a62a1bc3989c5c1fc9ab6247 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/5323cff7cd92eb97ea1acccfd6390f745ad965b9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5323cff7cd92eb97ea1acccfd6390f745ad965b9 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/544a49a95b4e4f52a3d6e02a1a483d82d4ff2462:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/544a49a95b4e4f52a3d6e02a1a483d82d4ff2462 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/560f56c5f99d09f85530be77e4a19a6bfeab1423:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/560f56c5f99d09f85530be77e4a19a6bfeab1423 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/57d7b8d1d75a935e1de3be349ce8cbb1d0c860f6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/57d7b8d1d75a935e1de3be349ce8cbb1d0c860f6 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/57e8490c0e7a58c280b9a7e1a35df4ecec487998:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/57e8490c0e7a58c280b9a7e1a35df4ecec487998 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/587ca774271aeacd8e225b7fd748682e3ed814fb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/587ca774271aeacd8e225b7fd748682e3ed814fb \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/58b7d8adc787fb0f77280cc04a0608e7c8efbdf4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/58b7d8adc787fb0f77280cc04a0608e7c8efbdf4 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/59a23a4cea6ac3f5b865202b8011e65c14d01a66:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/59a23a4cea6ac3f5b865202b8011e65c14d01a66 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/5a7348c8e8c034d102e10847d2a7c67a5c0c4311:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5a7348c8e8c034d102e10847d2a7c67a5c0c4311 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/5b16f2b240a569fddaaddf78ef38893992659c00:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5b16f2b240a569fddaaddf78ef38893992659c00 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/5c0b53ca29d6764e05d353aa554ccbd76a8cb0cc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5c0b53ca29d6764e05d353aa554ccbd76a8cb0cc \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/5ce56db3486501ec0754cecdb087834579ab5dc9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5ce56db3486501ec0754cecdb087834579ab5dc9 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/5ef62079866520f6405191bf0e40b9687d39cdc7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5ef62079866520f6405191bf0e40b9687d39cdc7 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/5f6e8a8dcbd470e1d73960906208b2c651a2ffda:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5f6e8a8dcbd470e1d73960906208b2c651a2ffda \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/5fe768a35d735f3a0ff51a6c0d5def698fd0f353:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5fe768a35d735f3a0ff51a6c0d5def698fd0f353 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/6211d43aca57196c0561a2e2aec0d49332dca395:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6211d43aca57196c0561a2e2aec0d49332dca395 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/629f7d100c7aa7885550ed9198fc8a22f71d7525:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/629f7d100c7aa7885550ed9198fc8a22f71d7525 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/640275b92db9318ee4c537b4369ef6c8c39868d6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/640275b92db9318ee4c537b4369ef6c8c39868d6 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/6490f4cf7ec3b069756d58bc2cb017538f698fb4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6490f4cf7ec3b069756d58bc2cb017538f698fb4 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/67b7848abace0d355fa4558a2ed75f5a36084104:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/67b7848abace0d355fa4558a2ed75f5a36084104 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/681e0d4e224f509271c0128526d28ea82ae0db9f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/681e0d4e224f509271c0128526d28ea82ae0db9f \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/68a08b0b46f54d428b83c1ed0754e92eff1b4ca0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/68a08b0b46f54d428b83c1ed0754e92eff1b4ca0 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/68cfb84122040ba6d49fa8f8d2bdbdb5eaaebe02:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/68cfb84122040ba6d49fa8f8d2bdbdb5eaaebe02 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/6936410691c5c34d72484090016a3f156a652dcf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6936410691c5c34d72484090016a3f156a652dcf \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/695c753a8889432696ff81ebd306366516e83c3f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/695c753a8889432696ff81ebd306366516e83c3f \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/69b4255e6f01e605fcd7cfee32b36f5a62937e28:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/69b4255e6f01e605fcd7cfee32b36f5a62937e28 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/6ab2e6be96e8ad48cfbef88b638fee909a076a4a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6ab2e6be96e8ad48cfbef88b638fee909a076a4a \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/6d5afd14c3279bed9b191383a60035703ca9cebb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6d5afd14c3279bed9b191383a60035703ca9cebb \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/6e3e4797da604dd7b149bc444dbafa189acfa82d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6e3e4797da604dd7b149bc444dbafa189acfa82d \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/6f1f2cf4dd3efdd8463b14a4e7e8c844789f0eab:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6f1f2cf4dd3efdd8463b14a4e7e8c844789f0eab \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/7070fb39e5d9d79b7291030e27c542119a040cff:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7070fb39e5d9d79b7291030e27c542119a040cff \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/714ebca66b2eb7e680bdd34b3b27b9dcd55881da:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/714ebca66b2eb7e680bdd34b3b27b9dcd55881da \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/721953f6e482c2dd27704004791eed03aaacda4d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/721953f6e482c2dd27704004791eed03aaacda4d \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/723da27d1570be90f210a84671131b059fa603f0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/723da27d1570be90f210a84671131b059fa603f0 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/7456ea35340dff6c04e28d46f053850f26c20f37:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7456ea35340dff6c04e28d46f053850f26c20f37 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/758f7c9006488a3b0ed4d325c0d4437f65b8ec99:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/758f7c9006488a3b0ed4d325c0d4437f65b8ec99 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/76c0b797b54d3293dcf92a321ef086f5c7947c5f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/76c0b797b54d3293dcf92a321ef086f5c7947c5f \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/76e519600570e47f1a1ce798658c0c7c9db7be82:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/76e519600570e47f1a1ce798658c0c7c9db7be82 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/76f7e646f4e8c026f5770b0b0ba653a1a93b31d8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/76f7e646f4e8c026f5770b0b0ba653a1a93b31d8 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/778b8ec4f60eb074bd56172be6827fb30b89bb88:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/778b8ec4f60eb074bd56172be6827fb30b89bb88 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/781346d420bea8bf26536232c4c2b79c8dd3f35f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/781346d420bea8bf26536232c4c2b79c8dd3f35f \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/786439d5e0167a94faa8da3b996f042cd0d97224:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/786439d5e0167a94faa8da3b996f042cd0d97224 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/7a9331c20516349257d675d0cb784113b5f431a8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7a9331c20516349257d675d0cb784113b5f431a8 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/7abe93c90e9832151494f5a515228f35401f707c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7abe93c90e9832151494f5a515228f35401f707c \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/7c3237bacb8f0b96276ae7a2123c7c1f85cfedaa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7c3237bacb8f0b96276ae7a2123c7c1f85cfedaa \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/7f8d59e1526f746ef975017c7d23df413a7f5f48:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7f8d59e1526f746ef975017c7d23df413a7f5f48 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/8128fb0fb3e08f9d72a0945c23311d1aadbc10ba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8128fb0fb3e08f9d72a0945c23311d1aadbc10ba \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/8225f5c87d327a4aedde7acff03f6259ac1d4da4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8225f5c87d327a4aedde7acff03f6259ac1d4da4 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/8312d60019013918d8b7d8d32aa3d82f16e134e9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8312d60019013918d8b7d8d32aa3d82f16e134e9 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/83292f5d0587af5cedca8149fbcefaa507073f40:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/83292f5d0587af5cedca8149fbcefaa507073f40 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/83f2d47a1985b8ddf8ad757fc285f2afd6d44c6f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/83f2d47a1985b8ddf8ad757fc285f2afd6d44c6f \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/8431e22fa4a96550d4fb4a0b0031e56366f6313e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8431e22fa4a96550d4fb4a0b0031e56366f6313e \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/856f65887b0020fcc75478184b92b2837c3e65c9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/856f65887b0020fcc75478184b92b2837c3e65c9 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/864b33c858618ae2d165b9a2426f4534d641ce07:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/864b33c858618ae2d165b9a2426f4534d641ce07 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/86d575a16e851339e79a25aaa9068b5d25756512:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/86d575a16e851339e79a25aaa9068b5d25756512 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/86e641b52913020cc4a62610147794c1ad1cf9d3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/86e641b52913020cc4a62610147794c1ad1cf9d3 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/8930ca9191004d70ce658e767bb2af03bbfc0a6c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8930ca9191004d70ce658e767bb2af03bbfc0a6c \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/898aa6b4f9f3e872aeaae9575cacb752d64c3b55:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/898aa6b4f9f3e872aeaae9575cacb752d64c3b55 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/89d444f09e45e43ba9f0d435c6a1dc2394c60f0d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/89d444f09e45e43ba9f0d435c6a1dc2394c60f0d \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/8a3872010ecc58adb55710d5c01aebb775e4dbef:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8a3872010ecc58adb55710d5c01aebb775e4dbef \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/8aeacc7ed5345ef573651ca3f9e5e1db125d068a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8aeacc7ed5345ef573651ca3f9e5e1db125d068a \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/8bccda13eaadb4104170ef2f4b069d39223bf4c9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8bccda13eaadb4104170ef2f4b069d39223bf4c9 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/8be42a6353c3ff5e0ae8f30d9b7bf7f33729eb28:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8be42a6353c3ff5e0ae8f30d9b7bf7f33729eb28 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/8e462fe8257bfb468208f00e38c024ed2b640eac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8e462fe8257bfb468208f00e38c024ed2b640eac \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/8fe3f91e4c9394f112ce25ecdf59c05a2caf8730:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8fe3f91e4c9394f112ce25ecdf59c05a2caf8730 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/90cd0e55d220b788a85c57a2b5582e7e5cc02424:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/90cd0e55d220b788a85c57a2b5582e7e5cc02424 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/910341d70e35b2cb95f5cbd1d378ee1437a9c1d3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/910341d70e35b2cb95f5cbd1d378ee1437a9c1d3 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/929779b882e5a8eeb840a340866591dbee9a331e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/929779b882e5a8eeb840a340866591dbee9a331e \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/930fcd8dc2db89ab7594131b8f0c139e2c2d4f8b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/930fcd8dc2db89ab7594131b8f0c139e2c2d4f8b \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/9366a90e6322302ec1cf84d5dd9d4461a31bd5c6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9366a90e6322302ec1cf84d5dd9d4461a31bd5c6 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/937b2d1e364149cd97137871c6207ba841ca1736:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/937b2d1e364149cd97137871c6207ba841ca1736 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/96bad84c18a5b07a80fdc06dbb4418f035379847:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/96bad84c18a5b07a80fdc06dbb4418f035379847 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/96ea777218e662204067db2b2734e4aab5c8aaa2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/96ea777218e662204067db2b2734e4aab5c8aaa2 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/97cb19469262649eb1d57348778c318212d05cbe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/97cb19469262649eb1d57348778c318212d05cbe \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/986c5647c075166265f3161dd794278fd90c0941:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/986c5647c075166265f3161dd794278fd90c0941 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/9879c7a66a1d0e6a8cf46fa82fe52c5f27aea7f8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9879c7a66a1d0e6a8cf46fa82fe52c5f27aea7f8 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/98b9a8a92cab2e81fd74115d91b2226acbe67989:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/98b9a8a92cab2e81fd74115d91b2226acbe67989 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/99a9b4be21e6b3701843471d8d676ded8ffa2e37:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/99a9b4be21e6b3701843471d8d676ded8ffa2e37 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/9a8b0bed62d804bdbdf593bede430b18152388fb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9a8b0bed62d804bdbdf593bede430b18152388fb \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/9b016603e1d6b20f60b5616d53de1934fbd5a6e8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9b016603e1d6b20f60b5616d53de1934fbd5a6e8 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/9b0192d8f15f837605597e76d3cabb085ef294a8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9b0192d8f15f837605597e76d3cabb085ef294a8 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/9c69d6e97d7de2c59c5e49a42b400e7b2db810d6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9c69d6e97d7de2c59c5e49a42b400e7b2db810d6 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/9ea44cb49446259e369c8d112b9b57867c0fd763:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9ea44cb49446259e369c8d112b9b57867c0fd763 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/a2a69e03aab3332fa1aedd9b2bbdf6f543f5f3cf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a2a69e03aab3332fa1aedd9b2bbdf6f543f5f3cf \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/a346e430b5d0e14e83feaf44908f769766afbe32:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a346e430b5d0e14e83feaf44908f769766afbe32 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/a3e40911a828435cae2e832fd1329c5901fc7b3d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a3e40911a828435cae2e832fd1329c5901fc7b3d \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/a56934233a46f95793e0ec824e2a89d49bcd19a5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a56934233a46f95793e0ec824e2a89d49bcd19a5 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/a97b119b710c34b4e990767123f72e8fbbcc02d7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a97b119b710c34b4e990767123f72e8fbbcc02d7 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/ad09297da9d59a43ae27f240759186542d024e0f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ad09297da9d59a43ae27f240759186542d024e0f \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/ad72cda8cc8986db55010eb8c018b34b7a543920:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ad72cda8cc8986db55010eb8c018b34b7a543920 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/adaf5589e4c62463534556b73c3dc0fbef189735:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/adaf5589e4c62463534556b73c3dc0fbef189735 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/af30efb2f03ca2d71d6774644fb8ab9c5a87303f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/af30efb2f03ca2d71d6774644fb8ab9c5a87303f \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/b1b4dab9f8f04a228c2304c816ec506216db74a6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b1b4dab9f8f04a228c2304c816ec506216db74a6 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/b1c41b3e8bc9dd6f4e5cb2b5cc9eeab0f9b11442:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b1c41b3e8bc9dd6f4e5cb2b5cc9eeab0f9b11442 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/b3124ec5402bff1b9036a57a9f4ba5028e73e27c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b3124ec5402bff1b9036a57a9f4ba5028e73e27c \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/b4b50c16f8ff7653ec073d9fbecedd7777e41cb2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b4b50c16f8ff7653ec073d9fbecedd7777e41cb2 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/b59af9d9a38d4d0e589b4ed9f614550080a8bbcc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b59af9d9a38d4d0e589b4ed9f614550080a8bbcc \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/b645f90a5ed45fdd137528fac5dff037a8267fac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b645f90a5ed45fdd137528fac5dff037a8267fac \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/b75f10928282c74ac7efd180f007b5e494856318:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b75f10928282c74ac7efd180f007b5e494856318 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/b7ff744d2c55f99e0f4e0e5aa6c76f9d7b67929d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b7ff744d2c55f99e0f4e0e5aa6c76f9d7b67929d \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/b8679122bdc26bb0b1c1ba68beeb281f7af897c4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b8679122bdc26bb0b1c1ba68beeb281f7af897c4 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/bc771b655e7cf7d46cd6c3c0dfcf18c4102557bd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bc771b655e7cf7d46cd6c3c0dfcf18c4102557bd \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/bcaffd1546a3e80874cdb3a42470ed7ba7c136a9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bcaffd1546a3e80874cdb3a42470ed7ba7c136a9 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/bd4bc2bfb18696c45987d9943cd2f2d074e3cbc8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bd4bc2bfb18696c45987d9943cd2f2d074e3cbc8 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/bd6343f038a4165a16a56d539eac11d2f7accd86:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bd6343f038a4165a16a56d539eac11d2f7accd86 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/bd9f7175b6587212bf70c8d4fec4f9be2e76f2b9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bd9f7175b6587212bf70c8d4fec4f9be2e76f2b9 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/be2265a0c2575bef086268f56129e60bc583bb01:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/be2265a0c2575bef086268f56129e60bc583bb01 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c0d6d9ae2bfd3f7936ab508ce24a3575647d1c41:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c0d6d9ae2bfd3f7936ab508ce24a3575647d1c41 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c1c5759c05ea38d3a4f3fe161d64e8bb33226b36:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c1c5759c05ea38d3a4f3fe161d64e8bb33226b36 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c2baf596b4622f40630dc7586d8beff4a8c24f4e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c2baf596b4622f40630dc7586d8beff4a8c24f4e \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c340cf1dec058b6b7c3cd6980ec7faca6db3a6a6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c340cf1dec058b6b7c3cd6980ec7faca6db3a6a6 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c431480cc730ddff80ea60e5edb8bee07ea2eeb3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c431480cc730ddff80ea60e5edb8bee07ea2eeb3 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c61d572424d37ac129376e6c6719c8f67d95f577:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c61d572424d37ac129376e6c6719c8f67d95f577 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c68bc63c280f63377acca01be46e87737c81f87b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c68bc63c280f63377acca01be46e87737c81f87b \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c8afd8a57851b2e47a6f12e5b0581f22ae4f2c93:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c8afd8a57851b2e47a6f12e5b0581f22ae4f2c93 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c9f2a005766d585c336804f0162a94f64f0eee72:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c9f2a005766d585c336804f0162a94f64f0eee72 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/cbb01c68c7498b1221dbb4347c9697da6a788cfc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cbb01c68c7498b1221dbb4347c9697da6a788cfc \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/cc2fea0d39efdc52bce3968054db9eac80f3251c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cc2fea0d39efdc52bce3968054db9eac80f3251c \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/cd594275256091d896be9ebfa9e7914ecc686bd6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cd594275256091d896be9ebfa9e7914ecc686bd6 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/cd63b31573e4622955f3f893903db08eb5e37c6f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cd63b31573e4622955f3f893903db08eb5e37c6f \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/cdad6197adf237d7a62dc76f698a5ec6d66c2919:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cdad6197adf237d7a62dc76f698a5ec6d66c2919 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/cfcfc2092bbe924a32d544f568615b67a41c245c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cfcfc2092bbe924a32d544f568615b67a41c245c \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/d2580353d97b6ae96b1173fb6cb5206fa70a1890:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d2580353d97b6ae96b1173fb6cb5206fa70a1890 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/d3270b6f89ace9222b397289b8e80d50dbf8fdfa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d3270b6f89ace9222b397289b8e80d50dbf8fdfa \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/d41eada72fa7214cab8bacd59a9572ba91d2b192:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d41eada72fa7214cab8bacd59a9572ba91d2b192 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/d6581c9114c5c9e817623a8866bac311092a876b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d6581c9114c5c9e817623a8866bac311092a876b \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/d746d5f6148778e958b15e8e72819a5ea222a5d5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d746d5f6148778e958b15e8e72819a5ea222a5d5 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/d76ac165d39d5fd7e8cfbcc8544a14e8d261b97f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d76ac165d39d5fd7e8cfbcc8544a14e8d261b97f \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/dd5a8daf82618fe540652f9157857ad1326666cd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/dd5a8daf82618fe540652f9157857ad1326666cd \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e0985cd9d6b5595111af25085e2678f779b77b32:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e0985cd9d6b5595111af25085e2678f779b77b32 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e3a15344309ad8dae44cd06335179513cf3e99a1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e3a15344309ad8dae44cd06335179513cf3e99a1 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e5941a687e30b35036b574253cc58d823664fa14:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e5941a687e30b35036b574253cc58d823664fa14 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e5bd694a019b45d983e9c724923f9b110f96f4cd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e5bd694a019b45d983e9c724923f9b110f96f4cd \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e60d23db0f1f6b4a73cd4268d423398fc739683e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e60d23db0f1f6b4a73cd4268d423398fc739683e \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e60dc5f396d33641e792dddd8432e49e35bf17ca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e60dc5f396d33641e792dddd8432e49e35bf17ca \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e84d894ef1188f045d380354d0c3417511875e8a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e84d894ef1188f045d380354d0c3417511875e8a \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/ea01831b4702451ef0d412cfe539b1c20e6cec94:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ea01831b4702451ef0d412cfe539b1c20e6cec94 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/eaa4f656726aaaa1f0de0a5323da7c7c9221b8ae:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/eaa4f656726aaaa1f0de0a5323da7c7c9221b8ae \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/ebb9facf1af35441b07bf1f1107df76b62f1c977:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ebb9facf1af35441b07bf1f1107df76b62f1c977 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/ec4c7da3a45f03205db3127264b117e684633e98:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ec4c7da3a45f03205db3127264b117e684633e98 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/ed49fea3c8726b65071c1c40dfdb88f174bf1d71:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ed49fea3c8726b65071c1c40dfdb88f174bf1d71 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/edb9b0191ec2913816b7c5e1ae92cd7a784677a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/edb9b0191ec2913816b7c5e1ae92cd7a784677a2 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/ee2d8e37bc6f6ed81b09d0aee10d9e4fed8feac8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ee2d8e37bc6f6ed81b09d0aee10d9e4fed8feac8 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/ee88b173a40b077aa09272411f25a6493954ecca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ee88b173a40b077aa09272411f25a6493954ecca \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/ef87f0f60260072e2c15b13284726c4b625febd0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ef87f0f60260072e2c15b13284726c4b625febd0 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f00c9a843e6a09ea06ecbc02443a38d5c5f616da:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f00c9a843e6a09ea06ecbc02443a38d5c5f616da \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f0be7fd9f8840032ad6f6c225c495c5496ababb0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f0be7fd9f8840032ad6f6c225c495c5496ababb0 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f17c52a38614b1f882d6db5a09e570fb38df74fc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f17c52a38614b1f882d6db5a09e570fb38df74fc \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f1ff0a02c6cc800b625540199286896d286c32f5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f1ff0a02c6cc800b625540199286896d286c32f5 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f25529ae8db751e300345330454d86dc70448b08:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f25529ae8db751e300345330454d86dc70448b08 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f32bb9ede1f4796f1573907ff9ac666ba84e14df:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f32bb9ede1f4796f1573907ff9ac666ba84e14df \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f50b264410693a3cfe8fa05b35564db8b7c4a558:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f50b264410693a3cfe8fa05b35564db8b7c4a558 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f680f7d3a5d2292156c2621ce2fe3fe914e4a5d8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f680f7d3a5d2292156c2621ce2fe3fe914e4a5d8 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f6aca44ce0d598fe0b1bb0e6eadb8363adf069fc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f6aca44ce0d598fe0b1bb0e6eadb8363adf069fc \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f742db76ce78433d01186736af9c4ff2a1a5ebb5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f742db76ce78433d01186736af9c4ff2a1a5ebb5 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f82a2b214f0e09579897dbb966eb93f4b3ebb066:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f82a2b214f0e09579897dbb966eb93f4b3ebb066 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f8a1fc25953e457ca0a1fcae13c730508b5122f9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f8a1fc25953e457ca0a1fcae13c730508b5122f9 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f8e96caecd8c5febd756e06d4cf2e2c91f6d28f9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f8e96caecd8c5febd756e06d4cf2e2c91f6d28f9 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/fa949be25d98f087033c2e15c16fd81d53604d83:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fa949be25d98f087033c2e15c16fd81d53604d83 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/fabed22752c7020ac290f5cf417653a19f9a0a7b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fabed22752c7020ac290f5cf417653a19f9a0a7b \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/fb0378770afff3e7b9769f3866f51aa8ef413b01:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fb0378770afff3e7b9769f3866f51aa8ef413b01 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/fb9debc2ec33759f663c87d9ece929b373ba2454:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fb9debc2ec33759f663c87d9ece929b373ba2454 \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/fbfb6052bab55c57edb2b4adeaf2f74ac5447aae:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fbfb6052bab55c57edb2b4adeaf2f74ac5447aae \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/fc9ef01a91ad5bb89b3434d999c03072f91220ca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fc9ef01a91ad5bb89b3434d999c03072f91220ca \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/fd475814b9514c9d80a758ae08578e87263ca9bf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fd475814b9514c9d80a758ae08578e87263ca9bf \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/fe1ce584b156729efacdc58da72a2b2586d2c61c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fe1ce584b156729efacdc58da72a2b2586d2c61c \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/fed01e83a2bbef16cc5721f4f71a84bbb2af6d5a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fed01e83a2bbef16cc5721f4f71a84bbb2af6d5a \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/ff14f6f27fb3eea5444445404c1e585cb3b740bc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ff14f6f27fb3eea5444445404c1e585cb3b740bc \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/028f4d86d146be944c063a8370f52155fed5c2dc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/028f4d86d146be944c063a8370f52155fed5c2dc \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/038868f4c0a110515d4f7fe5ec9c4aaf26745d82:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/038868f4c0a110515d4f7fe5ec9c4aaf26745d82 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/043e40d03497ec1c031dce4766113414b0ef1171:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/043e40d03497ec1c031dce4766113414b0ef1171 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/06256edeaada61f66d882e818aa512e1dddb9fbb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/06256edeaada61f66d882e818aa512e1dddb9fbb \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/06e0d501e1542ddb26dab57889da9e15bb9d8b9c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/06e0d501e1542ddb26dab57889da9e15bb9d8b9c \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/09ae92ea42a364315c80679cb8a50ec0a1344da8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/09ae92ea42a364315c80679cb8a50ec0a1344da8 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0a5a12ecbed693f2581b94d22646118d7e4a3326:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0a5a12ecbed693f2581b94d22646118d7e4a3326 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0a64ddd70ebc19422e166ff2f60e7d8fadf16fb6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0a64ddd70ebc19422e166ff2f60e7d8fadf16fb6 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0ca2b5a737f171fe16715a67f42e4f387e25e6bb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0ca2b5a737f171fe16715a67f42e4f387e25e6bb \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0d37dffde6460c4d4d9a8ce7cceb9ed309f7e181:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0d37dffde6460c4d4d9a8ce7cceb9ed309f7e181 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0e9b7795a65e7b4c672d44b07ecd3742362c92c4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0e9b7795a65e7b4c672d44b07ecd3742362c92c4 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0edfa780d5de430b8b52fe87d5cc9f59b583c93f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0edfa780d5de430b8b52fe87d5cc9f59b583c93f \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0f12ed1d6246dfc976aa21f5aead49ac47171f52:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0f12ed1d6246dfc976aa21f5aead49ac47171f52 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0f2d5d374bf267a3c4e74d17f7e698878c7ef34d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0f2d5d374bf267a3c4e74d17f7e698878c7ef34d \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0f6f721b993a8c9c4d215d32a90821a7e64f5704:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0f6f721b993a8c9c4d215d32a90821a7e64f5704 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0febeb458eb40e999c54f52ef429bb75bdbaee45:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0febeb458eb40e999c54f52ef429bb75bdbaee45 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/0ffaab1984384491c4dc835457f92a1d642018b1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/0ffaab1984384491c4dc835457f92a1d642018b1 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/10c69c452e19a363c2a8525edceb67531905617b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/10c69c452e19a363c2a8525edceb67531905617b \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/119ddef9b8c3fb92b02e0bac8d4d8fbda4a059b5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/119ddef9b8c3fb92b02e0bac8d4d8fbda4a059b5 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/123d3567e72607cd5eb5e7d93f51fc7dc2630190:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/123d3567e72607cd5eb5e7d93f51fc7dc2630190 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/12f2eb29c5c0b203988a1d28f8508fba85129c6d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/12f2eb29c5c0b203988a1d28f8508fba85129c6d \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/14bf9e51376495b4d414cf74017de9d5d815a18b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/14bf9e51376495b4d414cf74017de9d5d815a18b \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/17e22ee5bde6b09d92eb986fbd9cc6813eb6ba99:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/17e22ee5bde6b09d92eb986fbd9cc6813eb6ba99 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/17f976fabbc21df617714e4af1e1f514ec7f1823:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/17f976fabbc21df617714e4af1e1f514ec7f1823 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/18b447952b3184a0dae4115814683ea863907b35:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/18b447952b3184a0dae4115814683ea863907b35 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/18ecb92a8370f633ea0ce5673a411db1b7a682d0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/18ecb92a8370f633ea0ce5673a411db1b7a682d0 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/18f6577f58c8081992c65c6249fdfddf835a676a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/18f6577f58c8081992c65c6249fdfddf835a676a \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/1b14e35c14ddf01bcdddfdfc5c859eff2cb01c98:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1b14e35c14ddf01bcdddfdfc5c859eff2cb01c98 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/1c5d804807420d37e3f1996fb818c0de3997df62:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1c5d804807420d37e3f1996fb818c0de3997df62 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/1cb64c550792f6ee1b0cfe1f6d64d474321e8acc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1cb64c550792f6ee1b0cfe1f6d64d474321e8acc \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/1cd7d74bde4ecf231a680b78182ad6872683af2e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1cd7d74bde4ecf231a680b78182ad6872683af2e \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/1d11bd835f1de231f5058d51c73733dc501ecd5a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1d11bd835f1de231f5058d51c73733dc501ecd5a \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/1d20945907ff68c890f74c89ccc0b821d31db593:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1d20945907ff68c890f74c89ccc0b821d31db593 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/1e0547d2db4120451068fd5d22cf04b5efacb3db:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1e0547d2db4120451068fd5d22cf04b5efacb3db \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/1e6755856802271b8c9c771104a72bab3845d881:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1e6755856802271b8c9c771104a72bab3845d881 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/1ed6c642be844f428d46ed3a1183fc461eb6de00:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/1ed6c642be844f428d46ed3a1183fc461eb6de00 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/2154af1561f5371f0be420afe2ba1a05dcbfc4c5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2154af1561f5371f0be420afe2ba1a05dcbfc4c5 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/2238a8101ec3ca0eb7c5be5e8d3d682fccac7d84:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2238a8101ec3ca0eb7c5be5e8d3d682fccac7d84 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/23493e219e5ddcee311ff3a7f0504d0f6e724383:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/23493e219e5ddcee311ff3a7f0504d0f6e724383 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/252829ccc73ccffb804e0865012a45ae736d46ea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/252829ccc73ccffb804e0865012a45ae736d46ea \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/253fd0c655f7796308562863c2a75e8916edb53a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/253fd0c655f7796308562863c2a75e8916edb53a \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/2584cd7b8f2ba981ee4336d567a2d53f294203cd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2584cd7b8f2ba981ee4336d567a2d53f294203cd \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/26b607c3f2df6a54867edf6904d74905b2bf6c14:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/26b607c3f2df6a54867edf6904d74905b2bf6c14 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/27fcaf2dcf6a019a4cef4c8cd5036ca7508c97b8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/27fcaf2dcf6a019a4cef4c8cd5036ca7508c97b8 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/2837dda16fd48ac76d15fd103003ceb27ee27ae2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2837dda16fd48ac76d15fd103003ceb27ee27ae2 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/2854ac829088c4c2c1beb91fd332b07cf8ea1390:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2854ac829088c4c2c1beb91fd332b07cf8ea1390 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/291d8c8f34e472f1315990e724376fb64a5fdf66:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/291d8c8f34e472f1315990e724376fb64a5fdf66 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/29fd27d041038249373bf113e9ebeeb1b5aa5628:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/29fd27d041038249373bf113e9ebeeb1b5aa5628 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/2acfc36de51f8bbc3b18c70e58011a3439d605f0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2acfc36de51f8bbc3b18c70e58011a3439d605f0 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/2bb762d598da850acca6509ebca10bde501e7498:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2bb762d598da850acca6509ebca10bde501e7498 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/2cb44d6d2ea60696fc292f1111d69a986c3eec7f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2cb44d6d2ea60696fc292f1111d69a986c3eec7f \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/2fe938dc43ff884f8a68dd45e7e881cab4f52ae7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/2fe938dc43ff884f8a68dd45e7e881cab4f52ae7 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/300ecd0bdb5874acd1814678de4bf54cec74826e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/300ecd0bdb5874acd1814678de4bf54cec74826e \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/30729b81c0417d0f87e60165654fb06568c7e459:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/30729b81c0417d0f87e60165654fb06568c7e459 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/3458ecd048874a0232b72f30791242dc8dcc4e08:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3458ecd048874a0232b72f30791242dc8dcc4e08 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/355bb3ee47b70c43b5a0ff008da1424f6a811a29:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/355bb3ee47b70c43b5a0ff008da1424f6a811a29 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/35b76f0f741fbd4ad774284e9e956048559fd010:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/35b76f0f741fbd4ad774284e9e956048559fd010 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/35e4b211a4e2c9d9c88d6b68f9f4e2b76c2f7abf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/35e4b211a4e2c9d9c88d6b68f9f4e2b76c2f7abf \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/37590090c0b87bcbacdd53dc7027a94f79277d97:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/37590090c0b87bcbacdd53dc7027a94f79277d97 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/3a138e5c4f1c22964837c8c2559b069a477e654c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3a138e5c4f1c22964837c8c2559b069a477e654c \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/3b04bc75e7b70c7a85d59ba9d664929f2fbf64a9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3b04bc75e7b70c7a85d59ba9d664929f2fbf64a9 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/3bd8e6e3498ee718053d1ed9065e503f24eb7d72:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3bd8e6e3498ee718053d1ed9065e503f24eb7d72 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/3c34fd47846facc38d5d9103d2339e1b01de4be1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3c34fd47846facc38d5d9103d2339e1b01de4be1 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/3c6b32126e3f2fe8079fbd29c95456af30ced2f3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3c6b32126e3f2fe8079fbd29c95456af30ced2f3 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/3da4174bf4816a93dc6ccb486fa51d2e02dc131f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/3da4174bf4816a93dc6ccb486fa51d2e02dc131f \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/40f3cb78d7a9a97b8d80fe5635fcfc92226c1859:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/40f3cb78d7a9a97b8d80fe5635fcfc92226c1859 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4200c054b10fec840e623c885a76d99f31f06854:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4200c054b10fec840e623c885a76d99f31f06854 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/43dc377375012f5987cb6b79b74d1b714ee5e87c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/43dc377375012f5987cb6b79b74d1b714ee5e87c \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/463cf9539576845dbf47a77cacda4da98489a364:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/463cf9539576845dbf47a77cacda4da98489a364 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4666b8ea6ad7117f4764611e51ed5d91a796d8a9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4666b8ea6ad7117f4764611e51ed5d91a796d8a9 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/46869a03b6e1cd18c8d923dcce341ff570bcb2f2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/46869a03b6e1cd18c8d923dcce341ff570bcb2f2 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/474c6f24a1aaad2a47a2df746fd8b329576cb03f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/474c6f24a1aaad2a47a2df746fd8b329576cb03f \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/47dd262890faa91a856f62a333bcb9f54dca68d6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/47dd262890faa91a856f62a333bcb9f54dca68d6 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4828c14cba3c2d4a4b742fd577ccf9c07e278040:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4828c14cba3c2d4a4b742fd577ccf9c07e278040 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4a7adc27be18c9c4ca8d539e1374495eb8a3f293:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4a7adc27be18c9c4ca8d539e1374495eb8a3f293 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4b9808a0d5a2a098e63193762b39e564d8cdc10f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4b9808a0d5a2a098e63193762b39e564d8cdc10f \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4be528f3fc9c6b3952634bfde0e7c91af24a9ab0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4be528f3fc9c6b3952634bfde0e7c91af24a9ab0 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4c672b082fd18f5e8b2f6b6331f519eb299c8787:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4c672b082fd18f5e8b2f6b6331f519eb299c8787 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4cbb3fee8272014ebcc51c55309854863450f098:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4cbb3fee8272014ebcc51c55309854863450f098 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4cf8e388b368377820ea8c9a38aaa1a5a6a636db:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4cf8e388b368377820ea8c9a38aaa1a5a6a636db \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4de9eedfb1f5187d65d08712f231378cd8ab69c9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4de9eedfb1f5187d65d08712f231378cd8ab69c9 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4dfb6dd56b5ea633a36711ebde97a368685f4347:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4dfb6dd56b5ea633a36711ebde97a368685f4347 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/4f5e1e5a3ef99e29e532dc19416ea97d13f19fa1:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/4f5e1e5a3ef99e29e532dc19416ea97d13f19fa1 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/50cc1774159194da3c3d89f93b2b0912cff7144e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/50cc1774159194da3c3d89f93b2b0912cff7144e \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/5274bcf7163fdaa24885a3dfda4ebe68f447984b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5274bcf7163fdaa24885a3dfda4ebe68f447984b \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/543e91ad37818d6f5ff7ad48ca1f3ad22208856e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/543e91ad37818d6f5ff7ad48ca1f3ad22208856e \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/544609ccbe1909af81ccf17d76d08b46c47c96fb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/544609ccbe1909af81ccf17d76d08b46c47c96fb \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/5500f6ef6d1870cc578ff6ebced7d184e0395c30:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5500f6ef6d1870cc578ff6ebced7d184e0395c30 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/5753ba255f271b20d30b3885caa184e204da8021:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5753ba255f271b20d30b3885caa184e204da8021 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/575bb1f72e35a3f900b8c8f6b479b65c9d482d96:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/575bb1f72e35a3f900b8c8f6b479b65c9d482d96 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/582ebbffe3e9b3b60f8c6bc9ca927020516ed16a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/582ebbffe3e9b3b60f8c6bc9ca927020516ed16a \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/5871174044511204566853106fb50fbd9fa0f256:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5871174044511204566853106fb50fbd9fa0f256 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/58bfe02646e06ac9d67180ebbc5d236fe85f3ff7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/58bfe02646e06ac9d67180ebbc5d236fe85f3ff7 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/59ca3958658320b8ffd6ef1e9e3f82ad378619f6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/59ca3958658320b8ffd6ef1e9e3f82ad378619f6 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/5b3fa12536c42a321a893d5b025751dba10e0ac6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5b3fa12536c42a321a893d5b025751dba10e0ac6 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/5e87ffe02cf2ccb27ce50301bd8fc80bdaad52d2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5e87ffe02cf2ccb27ce50301bd8fc80bdaad52d2 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/5ff23b1c4cf9f1dd3c0c24be3889abaaa720c801:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/5ff23b1c4cf9f1dd3c0c24be3889abaaa720c801 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/612a2e9c8153ab59aa835ad797e913dd14984d5a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/612a2e9c8153ab59aa835ad797e913dd14984d5a \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/62390d056199da1b26c3515b7ac739772dfaa628:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/62390d056199da1b26c3515b7ac739772dfaa628 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/62ee41f4cb46c8570ff84d146b3f81a98ce9b6e9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/62ee41f4cb46c8570ff84d146b3f81a98ce9b6e9 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/63672dc8b4d2f92a0b003ca1557f0d71ec35c093:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/63672dc8b4d2f92a0b003ca1557f0d71ec35c093 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/63d1dd49d60b71818dd519b71c68c80df9120df7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/63d1dd49d60b71818dd519b71c68c80df9120df7 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/64ed306967f46e3da8757ad5f4f06f48858583f5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/64ed306967f46e3da8757ad5f4f06f48858583f5 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/64f3e4a4ae94e487620a20029c7535b8d1b5f441:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/64f3e4a4ae94e487620a20029c7535b8d1b5f441 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/65d009f3fd9f8cda698a74e61f108c36022da58d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/65d009f3fd9f8cda698a74e61f108c36022da58d \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/673f5a46a373c3aff2f63e7cf3a18dc05301fd64:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/673f5a46a373c3aff2f63e7cf3a18dc05301fd64 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/681747d2760de9cb3676b1f4936be4732c4a1055:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/681747d2760de9cb3676b1f4936be4732c4a1055 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/68352ba355f19f2fa98b702c90964d471b83b337:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/68352ba355f19f2fa98b702c90964d471b83b337 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/68e4ccfbc74f45bf67b9ff822ed65ca947fd57a2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/68e4ccfbc74f45bf67b9ff822ed65ca947fd57a2 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/6b1d3ce2f85ed4113ec970262a4e7e2f3edc9341:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6b1d3ce2f85ed4113ec970262a4e7e2f3edc9341 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/6ccfbafdc0131c8eefa651629465b814c94e2a31:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6ccfbafdc0131c8eefa651629465b814c94e2a31 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/6cf8a7cfa6881352ea6e769547b5151750795cd6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/6cf8a7cfa6881352ea6e769547b5151750795cd6 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/704ca60c0a03f0ac66e01794c7cdb0a97d10bb93:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/704ca60c0a03f0ac66e01794c7cdb0a97d10bb93 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/71e43d128b7ff3b4b76e9f1f4885366a59eecfc0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/71e43d128b7ff3b4b76e9f1f4885366a59eecfc0 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/758bcd2d6bf443ef0f76641693ff8dfbb6a737e4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/758bcd2d6bf443ef0f76641693ff8dfbb6a737e4 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/7643db245f21a8fb4beaa3f3c5b8d8753cc36975:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7643db245f21a8fb4beaa3f3c5b8d8753cc36975 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/76ae4447621f9023ab4e936820aaa3bbda975602:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/76ae4447621f9023ab4e936820aaa3bbda975602 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/77095b3516e476d89e6d4056360b7e50bd590b03:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/77095b3516e476d89e6d4056360b7e50bd590b03 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/773ca1dfb9989000f1b27d4ef94c61d931e2e1fc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/773ca1dfb9989000f1b27d4ef94c61d931e2e1fc \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/77a6b7ecc9e2daa766f545c33d950a07f78ac0a5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/77a6b7ecc9e2daa766f545c33d950a07f78ac0a5 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/79838f90dfd033dca9490a0036dfe04316d36e62:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/79838f90dfd033dca9490a0036dfe04316d36e62 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/79b6a6777ecbbdad7263133ea58d9b9b5055a715:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/79b6a6777ecbbdad7263133ea58d9b9b5055a715 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/79d7ad7090d06983cdd21f64c2737795d8707190:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/79d7ad7090d06983cdd21f64c2737795d8707190 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/7a1691fcdd37e9789e8d8bed27b906be20cf6a53:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7a1691fcdd37e9789e8d8bed27b906be20cf6a53 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/7a25d4c97f852ea38164d9d040a91fdc1f3f555a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7a25d4c97f852ea38164d9d040a91fdc1f3f555a \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/7a4a68ac64a6f42854c7b8ea5bdbbefd8ea3f1ec:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7a4a68ac64a6f42854c7b8ea5bdbbefd8ea3f1ec \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/7b212d649dac270570fad677b25e2c98ff4256b8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7b212d649dac270570fad677b25e2c98ff4256b8 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/7b8cdad858a7ae9dc2fc13a2540fbe3bdd34fa1a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7b8cdad858a7ae9dc2fc13a2540fbe3bdd34fa1a \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/7cf88940851fc692698823e8265a418e82f7c749:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7cf88940851fc692698823e8265a418e82f7c749 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/7d33a3e470ef76cc7cca41f9ec0aee5d009fd8c5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7d33a3e470ef76cc7cca41f9ec0aee5d009fd8c5 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/7e0e5e0221d0b5ea5c789f16f9a50bc3f1e99681:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7e0e5e0221d0b5ea5c789f16f9a50bc3f1e99681 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/7e4c96a2fb52dc921af687817dfa5594b14e608a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/7e4c96a2fb52dc921af687817dfa5594b14e608a \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/80379a9bff1e683937a849390a787ddaf6c91710:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/80379a9bff1e683937a849390a787ddaf6c91710 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/80673d82692119a137c3cca0449225f9d39eb9f9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/80673d82692119a137c3cca0449225f9d39eb9f9 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/82a294d3e4f237938b409a6d25afab10e372ee7f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/82a294d3e4f237938b409a6d25afab10e372ee7f \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/82d1588889b8302b7c7d2c1878074fa8972ca02a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/82d1588889b8302b7c7d2c1878074fa8972ca02a \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/83af4f25a2cd144da3b43887279d0f90d479ff63:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/83af4f25a2cd144da3b43887279d0f90d479ff63 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/849c451269d79451d2353f4da2c8b8ab073b287e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/849c451269d79451d2353f4da2c8b8ab073b287e \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/84d1252f4ff1029f19e7c4a6b57a17282b1bc41b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/84d1252f4ff1029f19e7c4a6b57a17282b1bc41b \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/857cfae8a15752d23ab461c0d6067890bf3744c9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/857cfae8a15752d23ab461c0d6067890bf3744c9 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/864b8c96b4ad1c391c1baee737c0ae9622beee19:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/864b8c96b4ad1c391c1baee737c0ae9622beee19 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/8845628d2ea15feee72d16d78842b51259082830:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8845628d2ea15feee72d16d78842b51259082830 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/884a7512134dc4abe07080d0c556bc39ab967b9f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/884a7512134dc4abe07080d0c556bc39ab967b9f \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/8903730c4a10fea3183af644ccb11fdd31d663fb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8903730c4a10fea3183af644ccb11fdd31d663fb \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/893f6fc4a6607a21f8ab2d09b73e465267b0752f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/893f6fc4a6607a21f8ab2d09b73e465267b0752f \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/896fd776a25b42c51ce8b6f01858bc06f5355e13:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/896fd776a25b42c51ce8b6f01858bc06f5355e13 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/8a838365644438d2a6c86bcc1c201462f80bdb77:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8a838365644438d2a6c86bcc1c201462f80bdb77 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/8b3de816dd5eafb83baf64f3d8c6352d8e59dbc3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8b3de816dd5eafb83baf64f3d8c6352d8e59dbc3 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/8bb83f28e743fa50e43b0e02a4478c1311cc5ec4:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8bb83f28e743fa50e43b0e02a4478c1311cc5ec4 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/8d7bbc63b6cb0154880eef82c0a5cc4288479467:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8d7bbc63b6cb0154880eef82c0a5cc4288479467 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/8e489fba3a6b676df5061818e7b7a5b48e9af89c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8e489fba3a6b676df5061818e7b7a5b48e9af89c \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/8e7a7df020ed333b037148ae340f4ca8b288c4f7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8e7a7df020ed333b037148ae340f4ca8b288c4f7 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/8efd2b2962c240ef67ca41c0315804be07d3293f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/8efd2b2962c240ef67ca41c0315804be07d3293f \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/9106092dfb839eea12dbcc6d60d548c3d0a9b98d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9106092dfb839eea12dbcc6d60d548c3d0a9b98d \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/9234ecb5e6270d16f7dd975bf2cd2a5544730a48:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9234ecb5e6270d16f7dd975bf2cd2a5544730a48 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/92cbc2244906f4c3580c31906bc3d8324e501c0d:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/92cbc2244906f4c3580c31906bc3d8324e501c0d \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/93bec8619544250e90261dbaf19ac3e786abe2ac:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/93bec8619544250e90261dbaf19ac3e786abe2ac \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/9765274f651d1430d6200cb13d55b0a150474dbe:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9765274f651d1430d6200cb13d55b0a150474dbe \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/98cd4220160978ee43d2ec80db4b2d7d4abe343f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/98cd4220160978ee43d2ec80db4b2d7d4abe343f \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/995a837d381b293e5ea197c1ff74474a2e9db092:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/995a837d381b293e5ea197c1ff74474a2e9db092 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/99a463590d89667f18b1b86dd031208441b5e938:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/99a463590d89667f18b1b86dd031208441b5e938 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/9bf4eb0421677a57445cee832bc8d16dad5a0061:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9bf4eb0421677a57445cee832bc8d16dad5a0061 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/9ce13d11f254c1a10243a7143944f56026345bc9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9ce13d11f254c1a10243a7143944f56026345bc9 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/9d313ee3aacc31230a585b07dd46b138acac9432:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/9d313ee3aacc31230a585b07dd46b138acac9432 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/a0c37c7afcf0d267e4bdd7049098ed3c0a251580:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a0c37c7afcf0d267e4bdd7049098ed3c0a251580 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/a1633af8c13a784daf7023b5740a527523a75f19:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a1633af8c13a784daf7023b5740a527523a75f19 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/a233d71b16cae2f5021c46ce9efbc87a7d7d4216:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a233d71b16cae2f5021c46ce9efbc87a7d7d4216 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/a346f6133b25b4dde774ed7f590680e12bbc7c65:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a346f6133b25b4dde774ed7f590680e12bbc7c65 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/a4227a76f1ab9d74a7dde096188ec5bf2432568b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a4227a76f1ab9d74a7dde096188ec5bf2432568b \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/a422b5e5c426b80a53d062586cd3f3283c85b715:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a422b5e5c426b80a53d062586cd3f3283c85b715 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/a4246cd8ce2c9404f0ece778cbf2d1e15f45aadd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a4246cd8ce2c9404f0ece778cbf2d1e15f45aadd \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/a49f3123ffbabc4003f695353008b5a86367c0fc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a49f3123ffbabc4003f695353008b5a86367c0fc \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/a4b34adf3dfb3ff2b165ce34bb2f9611ce38dbfd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a4b34adf3dfb3ff2b165ce34bb2f9611ce38dbfd \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/a505beedd6e2541fea470f7f9afa12f882cde689:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a505beedd6e2541fea470f7f9afa12f882cde689 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/a85b1fc087b46bfe5d5c9c3706bf6c35ad873c83:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a85b1fc087b46bfe5d5c9c3706bf6c35ad873c83 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/a8717645eb4e306feadc3f3743cc2802159de9ea:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a8717645eb4e306feadc3f3743cc2802159de9ea \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/a9bbd65f327b9893363fc7da5d45010797f1efe2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a9bbd65f327b9893363fc7da5d45010797f1efe2 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/a9d7c198a29ba350d27d8a93ec32f26e66b2a868:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/a9d7c198a29ba350d27d8a93ec32f26e66b2a868 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/aab7b545027c93d8e1cbad15ec195427b8bfc183:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/aab7b545027c93d8e1cbad15ec195427b8bfc183 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/aafc9c5e9151921f84309bb9e1e90dfa58dc9f5c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/aafc9c5e9151921f84309bb9e1e90dfa58dc9f5c \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/ab2851b950793e5bacc4029626ae5710397d525f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ab2851b950793e5bacc4029626ae5710397d525f \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/ad30a9a5ad4cb6a78f03495010eae75d6b7df330:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ad30a9a5ad4cb6a78f03495010eae75d6b7df330 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/ae750661d2caefdc9707dc718c0b66c1e0dced44:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ae750661d2caefdc9707dc718c0b66c1e0dced44 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/afcd97638b1508e7a05d27aa434bf27b4f38fea8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/afcd97638b1508e7a05d27aa434bf27b4f38fea8 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/afd1e1087ad09b88662c1356a7514a981686d671:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/afd1e1087ad09b88662c1356a7514a981686d671 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/afe70aec8c4c8bd92a3ac8dd04a83ea1d4b1f792:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/afe70aec8c4c8bd92a3ac8dd04a83ea1d4b1f792 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/b12dbae90f543db478b0ae72550d1bd7dbdc6969:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b12dbae90f543db478b0ae72550d1bd7dbdc6969 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/b21eadb516847c69fbda42acd5afdc9157aa5fae:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b21eadb516847c69fbda42acd5afdc9157aa5fae \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/b432511411a611479eb91668499788a26a3821a8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b432511411a611479eb91668499788a26a3821a8 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/b4a52557b95017ec432f54c79e3f3ceb53e5c3b8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b4a52557b95017ec432f54c79e3f3ceb53e5c3b8 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/b58c42c8284d09713f4ad1936c783ab49588c623:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b58c42c8284d09713f4ad1936c783ab49588c623 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/b5ac376dc4aac6f84ccfabc468726d42fc58831c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b5ac376dc4aac6f84ccfabc468726d42fc58831c \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/b6aa6386e517ca145787ab649482008e859685d0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b6aa6386e517ca145787ab649482008e859685d0 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/b6d983d23084a155502162af346326a8a260faca:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b6d983d23084a155502162af346326a8a260faca \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/b9b90cca6a95d10d3d1dd5d20ef600788961d5d7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/b9b90cca6a95d10d3d1dd5d20ef600788961d5d7 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/ba662c2853084a9b1f34ebb4544cdc45ccf14747:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ba662c2853084a9b1f34ebb4544cdc45ccf14747 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/ba7dfc265cc69eae44426629d9ad26178f4a76ee:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ba7dfc265cc69eae44426629d9ad26178f4a76ee \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/bac2c59dce2cc37ff0f7b748bcc9e9a88b360ee0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bac2c59dce2cc37ff0f7b748bcc9e9a88b360ee0 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/bac595476c409b0f05809fb97d4d77ef6b7686b5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bac595476c409b0f05809fb97d4d77ef6b7686b5 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/bc0a01d61c265edd771b0c4ce464701923ab3f09:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bc0a01d61c265edd771b0c4ce464701923ab3f09 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/bcb1668fc79555ae2626f30f6901c8eebf587dfa:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bcb1668fc79555ae2626f30f6901c8eebf587dfa \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/bce0972d3e468cc088471299d8c5e2ff2bf34af3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bce0972d3e468cc088471299d8c5e2ff2bf34af3 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/bec79b431d11e6bd32409adc03d0fc23646e30ce:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bec79b431d11e6bd32409adc03d0fc23646e30ce \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/bf4d9b59d488607760387be5c91d766bc962b301:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/bf4d9b59d488607760387be5c91d766bc962b301 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c08cdff0d3b05233934973e1536a041dfb775124:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c08cdff0d3b05233934973e1536a041dfb775124 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c0f1b77bac67202fb5293fb870bfad6248fc13d2:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c0f1b77bac67202fb5293fb870bfad6248fc13d2 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c117a848bd5d357fa07aa62ec8addf7eb836b444:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c117a848bd5d357fa07aa62ec8addf7eb836b444 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c1297ccf93afa11f754aca6a5fc0c3d817649f79:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c1297ccf93afa11f754aca6a5fc0c3d817649f79 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c14c405f2fd1ca6d7f2a725289013825ea5bfadf:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c14c405f2fd1ca6d7f2a725289013825ea5bfadf \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c218eda52656861e1727cf4637bb8a574a25556f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c218eda52656861e1727cf4637bb8a574a25556f \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c2820022ad7370dbb45300b78d6cdbe4fcb22c4e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c2820022ad7370dbb45300b78d6cdbe4fcb22c4e \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c3b6e875b0b67b375b879d1c3628f460119726b7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c3b6e875b0b67b375b879d1c3628f460119726b7 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c46535324b57bbec178ec0950f9743e587a240ba:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c46535324b57bbec178ec0950f9743e587a240ba \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c5cfcba1e6c0ef45b331f2d30ebe87cf2e9fb9ad:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c5cfcba1e6c0ef45b331f2d30ebe87cf2e9fb9ad \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c72b9261a8dba175b07d1b372205cee4abff44a6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c72b9261a8dba175b07d1b372205cee4abff44a6 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c81d8389bbff2f06af47a524a76d81ed2780a92c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c81d8389bbff2f06af47a524a76d81ed2780a92c \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c8453c2fae876b501888e346c75ccecdd34c2b03:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c8453c2fae876b501888e346c75ccecdd34c2b03 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/c944e282cd483d6aec4d336d5b089b0f69b0b5bb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/c944e282cd483d6aec4d336d5b089b0f69b0b5bb \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/cac3cd73f8a9dc7337e129dacdf2db5c92ecb474:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cac3cd73f8a9dc7337e129dacdf2db5c92ecb474 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/cd29e298cc29d17bd2d77d8e43535fd143851238:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/cd29e298cc29d17bd2d77d8e43535fd143851238 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/d0c8110453aa0162ef213305752d05e49fb99d1e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d0c8110453aa0162ef213305752d05e49fb99d1e \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/d153e0778c6a76a11df3b9ea9eda3abf3aea4425:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d153e0778c6a76a11df3b9ea9eda3abf3aea4425 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/d18b0af137481b1adc01d44501c878d0cc77e433:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d18b0af137481b1adc01d44501c878d0cc77e433 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/d2480c446b51cf21726794aaea21d6232cf25863:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d2480c446b51cf21726794aaea21d6232cf25863 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/d37d50711d0a840fc8911ffb3dd1ab1f7fa5161b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d37d50711d0a840fc8911ffb3dd1ab1f7fa5161b \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/d3d84fe49c65e718911b72ed4b9eec356af39f50:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d3d84fe49c65e718911b72ed4b9eec356af39f50 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/d48a01d3627db7c29af21b3eb8797c3db7674436:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d48a01d3627db7c29af21b3eb8797c3db7674436 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/d552348bfc3a8617cd3a6dbb0687d40b4c277cc8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d552348bfc3a8617cd3a6dbb0687d40b4c277cc8 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/d5912d0fa01c079ac8696e839e86af03d4dd25c0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d5912d0fa01c079ac8696e839e86af03d4dd25c0 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/d5a3f7fc90b0479fc039092a12780fafbc79c977:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d5a3f7fc90b0479fc039092a12780fafbc79c977 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/d6ebf990c67e52a06937de9493ab3823c51d2a4c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d6ebf990c67e52a06937de9493ab3823c51d2a4c \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/d7764b9483222a8243215667cd051435527e95e3:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d7764b9483222a8243215667cd051435527e95e3 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/d8dac5a26460afa01fc3a62cf654c33e8ddc6409:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d8dac5a26460afa01fc3a62cf654c33e8ddc6409 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/d91c662d65ef01ecbf05bd6b46bba479072ec772:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/d91c662d65ef01ecbf05bd6b46bba479072ec772 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/dbfc312de07469a7e12862b0adcd2861198c8712:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/dbfc312de07469a7e12862b0adcd2861198c8712 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/de4441739e3e71eedd2a5fa9e558a5d9d6617a0c:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/de4441739e3e71eedd2a5fa9e558a5d9d6617a0c \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/de8434c44009c2bee1b17b2b1b5c201ea331c6d9:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/de8434c44009c2bee1b17b2b1b5c201ea331c6d9 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e02820b1a974a4ab14884572c7f2bb2a8da105af:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e02820b1a974a4ab14884572c7f2bb2a8da105af \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e0a7827659736c940e51fa59a63110caec6db7e7:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e0a7827659736c940e51fa59a63110caec6db7e7 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e0a897b8ef26f9819bea79f1534c63ea44e9f99b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e0a897b8ef26f9819bea79f1534c63ea44e9f99b \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e1b3deabab48e7fc77059e2ebbdadd5ae852e59e:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e1b3deabab48e7fc77059e2ebbdadd5ae852e59e \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e2189d440d5d9026c88e8f92ff6eb1b1080f6f5b:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e2189d440d5d9026c88e8f92ff6eb1b1080f6f5b \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e218c0f898a6cc4dcefb543fafd0088e3aa12466:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e218c0f898a6cc4dcefb543fafd0088e3aa12466 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e230df273f8f48f17301588ba58518316a294825:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e230df273f8f48f17301588ba58518316a294825 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e34d1de0393024319abc280035932b5245d775e5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e34d1de0393024319abc280035932b5245d775e5 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e36778949bc19eee5a800c8ec4744e90a05a7d53:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e36778949bc19eee5a800c8ec4744e90a05a7d53 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e3eef9e71f2c0e86f1c7e2e7eadb6dfc5058b9a8:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e3eef9e71f2c0e86f1c7e2e7eadb6dfc5058b9a8 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e4b26a8b6387862b10f0862485b4e39aec03e84a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e4b26a8b6387862b10f0862485b4e39aec03e84a \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e56aa173771293718b8e2fb393e00a5bedb771ef:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e56aa173771293718b8e2fb393e00a5bedb771ef \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e5bc4bac0a8d608bda33bfbfd1b8c025974582e6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e5bc4bac0a8d608bda33bfbfd1b8c025974582e6 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e815ea5268831f46cdf18d7adf33daacb917cdfc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e815ea5268831f46cdf18d7adf33daacb917cdfc \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/e945a59180cc5c8d0da9b990a9d19013822aadf5:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/e945a59180cc5c8d0da9b990a9d19013822aadf5 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/ec240eab2ad28f0ab0ce28d73048558a63bad953:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ec240eab2ad28f0ab0ce28d73048558a63bad953 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/ec8a8b432ff33143c9f33df68c90a7472a259240:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ec8a8b432ff33143c9f33df68c90a7472a259240 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/eceae50f2e513dde38a6b7f3c60139e8e3e2eb66:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/eceae50f2e513dde38a6b7f3c60139e8e3e2eb66 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/ee432f4abb65f6ecb73342bf413c622d7c011465:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ee432f4abb65f6ecb73342bf413c622d7c011465 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/ee8a73ff1528f3927ac49946b55092850b307ee6:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/ee8a73ff1528f3927ac49946b55092850b307ee6 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f06bbef738ae09a78c9d8dd8cd250b7d7f951926:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f06bbef738ae09a78c9d8dd8cd250b7d7f951926 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f19d27c128f77084483b8c7a79a6ac136ff58346:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f19d27c128f77084483b8c7a79a6ac136ff58346 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f2426a36e2b4bc60153857346b88db77688d08e0:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f2426a36e2b4bc60153857346b88db77688d08e0 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f3923dfb78bfc6571d20e3b67a21312709040c49:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f3923dfb78bfc6571d20e3b67a21312709040c49 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f469f6bd11cb1da3d04ec9de3a987d09d3faa54f:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f469f6bd11cb1da3d04ec9de3a987d09d3faa54f \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f46a4bbbcedfea84a05a82b25060d23d0c924005:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f46a4bbbcedfea84a05a82b25060d23d0c924005 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f49a0e50b9808d0adff4873c5c47f39e1c350a06:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f49a0e50b9808d0adff4873c5c47f39e1c350a06 \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f59a03fae312d5ff11633bcbdd6cd07dbe36c3cc:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f59a03fae312d5ff11633bcbdd6cd07dbe36c3cc \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/f5f850816970b53d7877badf5c323b93ca932efb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/f5f850816970b53d7877badf5c323b93ca932efb \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/faf345b853b2a55e31d511faef0a6464cb322abb:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/faf345b853b2a55e31d511faef0a6464cb322abb \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/fc83d98ba8c549dc012b3a0c0eb74b4fb69e99dd:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fc83d98ba8c549dc012b3a0c0eb74b4fb69e99dd \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/manifests/fc8e1f84a6f59b63f915314be1c9c63ede3ac16a:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/manifests/fc8e1f84a6f59b63f915314be1c9c63ede3ac16a \
     vendor/google_devices/lynx/proprietary/vendor/firmware/carrierconfig/release-label:$(TARGET_COPY_OUT_VENDOR)/firmware/carrierconfig/release-label \
     vendor/google_devices/lynx/proprietary/vendor/firmware/cs35l41-dsp1-spk-cali.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/cs35l41-dsp1-spk-cali.bin \
     vendor/google_devices/lynx/proprietary/vendor/firmware/cs35l41-dsp1-spk-cali.wmfw:$(TARGET_COPY_OUT_VENDOR)/firmware/cs35l41-dsp1-spk-cali.wmfw \
@@ -3072,11 +3140,11 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/hpnv21.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/hpnv21.bin \
     vendor/google_devices/lynx/proprietary/vendor/firmware/hpnv21g.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/hpnv21g.bin \
     vendor/google_devices/lynx/proprietary/vendor/firmware/m3.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/m3.bin \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/mali_csffw-r52p0.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-r52p0.bin \
-    vendor/google_devices/lynx/proprietary/vendor/firmware/mali_csffw-r53p0.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-r53p0.bin \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/mali_csffw-legacy-r56p0.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-legacy-r56p0.bin \
     vendor/google_devices/lynx/proprietary/vendor/firmware/mali_csffw-r54p0.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-r54p0.bin \
     vendor/google_devices/lynx/proprietary/vendor/firmware/mali_csffw-r54p1.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-r54p1.bin \
     vendor/google_devices/lynx/proprietary/vendor/firmware/mali_csffw-r54p2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-r54p2.bin \
+    vendor/google_devices/lynx/proprietary/vendor/firmware/mali_csffw-r54p3.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mali_csffw-r54p3.bin \
     vendor/google_devices/lynx/proprietary/vendor/firmware/mfc_fw.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/mfc_fw.bin \
     vendor/google_devices/lynx/proprietary/vendor/firmware/MICRONMT128GAXAT2U310104_MICRONMT256GAXAT4U310104.img:$(TARGET_COPY_OUT_VENDOR)/firmware/MICRONMT128GAXAT2U310104_MICRONMT256GAXAT4U310104.img \
     vendor/google_devices/lynx/proprietary/vendor/firmware/R-cs35l41-dsp1-spk-cali.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/R-cs35l41-dsp1-spk-cali.bin \
@@ -3176,8 +3244,6 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/firmware/uecapconfig/WILDCARD.binarypb:$(TARGET_COPY_OUT_VENDOR)/firmware/uecapconfig/WILDCARD.binarypb \
     vendor/google_devices/lynx/proprietary/vendor/firmware/uecapconfig/WINDTRE.binarypb:$(TARGET_COPY_OUT_VENDOR)/firmware/uecapconfig/WINDTRE.binarypb \
     vendor/google_devices/lynx/proprietary/vendor/firmware/wlan/qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qcom_cfg.ini \
-    vendor/google_devices/lynx/proprietary/vendor/lib64/libaconfig_storage_read_api_cc.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libaconfig_storage_read_api_cc.so \
-    vendor/google_devices/lynx/proprietary/vendor/lib64/libc++.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libc++.so \
     vendor/google_devices/lynx/proprietary/vendor/etc/a2dp_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_audio_policy_configuration_7_0.xml \
     vendor/google_devices/lynx/proprietary/vendor/etc/a2dp_in_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_in_audio_policy_configuration_7_0.xml \
     vendor/google_devices/lynx/proprietary/vendor/etc/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
@@ -3196,6 +3262,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/etc/database/DbEcc_216.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_216.xml \
     vendor/google_devices/lynx/proprietary/vendor/etc/database/DbEcc_218.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_218.xml \
     vendor/google_devices/lynx/proprietary/vendor/etc/database/DbEcc_219.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_219.xml \
+    vendor/google_devices/lynx/proprietary/vendor/etc/database/DbEcc_220.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_220.xml \
     vendor/google_devices/lynx/proprietary/vendor/etc/database/DbEcc_222.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_222.xml \
     vendor/google_devices/lynx/proprietary/vendor/etc/database/DbEcc_226.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_226.xml \
     vendor/google_devices/lynx/proprietary/vendor/etc/database/DbEcc_228.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_228.xml \
@@ -3232,6 +3299,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/etc/database/DbEcc_460.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_460.xml \
     vendor/google_devices/lynx/proprietary/vendor/etc/database/DbEcc_466.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_466.xml \
     vendor/google_devices/lynx/proprietary/vendor/etc/database/DbEcc_505.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_505.xml \
+    vendor/google_devices/lynx/proprietary/vendor/etc/database/DbEcc_520.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_520.xml \
     vendor/google_devices/lynx/proprietary/vendor/etc/database/DbEcc_525.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_525.xml \
     vendor/google_devices/lynx/proprietary/vendor/etc/database/DbEcc_647.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_647.xml \
     vendor/google_devices/lynx/proprietary/vendor/etc/database/DbEcc_704.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_704.xml \
@@ -3265,6 +3333,7 @@ PRODUCT_COPY_FILES += \
     vendor/google_devices/lynx/proprietary/vendor/etc/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml \
     vendor/google_devices/lynx/proprietary/vendor/etc/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
     vendor/google_devices/lynx/proprietary/vendor/etc/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml \
+    vendor/google_devices/lynx/proprietary/vendor/etc/memory-limiter-config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/memory-limiter-config.xml \
     vendor/google_devices/lynx/proprietary/vendor/etc/mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths.xml \
     vendor/google_devices/lynx/proprietary/vendor/etc/modem/default_metrics.xml:$(TARGET_COPY_OUT_VENDOR)/etc/modem/default_metrics.xml \
     vendor/google_devices/lynx/proprietary/vendor/etc/modem/Pixel_Default_metrics.xml:$(TARGET_COPY_OUT_VENDOR)/etc/modem/Pixel_Default_metrics.xml \

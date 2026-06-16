@@ -1,5 +1,5 @@
 canonical_name: "dtac_th"
-version: 75000000004
+version: 77000000005
 apns {
   apn {
     name: "dtac Internet"
@@ -19,8 +19,8 @@ apns {
     name: "IMS"
     value: "ims"
     type: IMS
-    bearer_bitmask: "14|20"
-    protocol: IPV4V6
+    bearer_bitmask: "14|18|20"
+    protocol: IPV6
     roaming_protocol: IPV4V6
     user_visible: false
   }
@@ -42,5 +42,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1721185451
+  seconds: 1770215800
 }

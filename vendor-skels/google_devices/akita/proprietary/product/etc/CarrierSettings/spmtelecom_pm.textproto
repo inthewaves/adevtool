@@ -1,5 +1,5 @@
 canonical_name: "spmtelecom_pm"
-version: 75000000006
+version: 77000000007
 apns {
   apn {
     name: "St. Pierre-et-Miquelon T\303\251l\303\251com IMS"
@@ -133,11 +133,7 @@ configs {
     key: "imsvoice.ringing_timer_millis_int"
     int_value: 180000
   }
-  config {
-    key: "vendor.ims.carrier_config_use_aosp_ims_config_bool"
-    bool_value: true
-  }
 }
 last_updated {
-  seconds: 1706100394
+  seconds: 1767187381
 }

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="face_error_vendor">
-        <item>証明書の有効期限が切れています</item>
+        <item>証明書の期限が切れています</item>
         <item>センサーが一時的に無効になっています</item>
         <item>調整エラー</item>
-        <item>顔認証を利用できません。スマートフォンが過熱しています。</item>
+        <item>顔認証を利用できません。スマートフォンが熱くなっています。</item>
         <item>顔認証をもう一度設定してください</item>
+        <item>明るさを調整し、ぶれないようにしてください</item>
     </array>
     <string name="biometric_app_setting_name">顔認証または指紋認証の使用</string>
     <string name="biometric_dialog_default_subtitle">続行するには、顔認証または指紋認証を使用してください</string>

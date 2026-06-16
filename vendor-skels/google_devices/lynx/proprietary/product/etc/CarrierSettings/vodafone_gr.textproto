@@ -1,5 +1,5 @@
 canonical_name: "vodafone_gr"
-version: 75000000014
+version: 77000000015
 apns {
   apn {
     name: "Vodafone GR"
@@ -73,6 +73,10 @@ configs {
   config {
     key: "default_vm_number_string"
     text_value: "121"
+  }
+  config {
+    key: "ignore_rtt_mode_setting_bool"
+    bool_value: true
   }
   config {
     key: "imsss.ut_as_server_fqdn_string"
@@ -175,10 +179,22 @@ configs {
     int_value: 2
   }
   config {
+    key: "rtt_downgrade_supported_bool"
+    bool_value: true
+  }
+  config {
+    key: "rtt_supported_bool"
+    bool_value: true
+  }
+  config {
+    key: "rtt_supported_while_roaming_bool"
+    bool_value: true
+  }
+  config {
     key: "wfc_spn_format_idx_int"
     int_value: 1
   }
 }
 last_updated {
-  seconds: 1764766951
+  seconds: 1770819105
 }

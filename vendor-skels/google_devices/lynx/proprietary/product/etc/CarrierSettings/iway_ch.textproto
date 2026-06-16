@@ -1,5 +1,5 @@
 canonical_name: "iway_ch"
-version: 75000000001
+version: 77000000003
 apns {
   apn {
     name: "internet"
@@ -30,5 +30,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1761862521
+  seconds: 1770819105
 }

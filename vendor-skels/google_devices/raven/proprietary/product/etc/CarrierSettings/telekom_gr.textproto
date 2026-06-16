@@ -1,5 +1,5 @@
 canonical_name: "telekom_gr"
-version: 75000000016
+version: 77000000016
 apns {
   apn {
     name: "Cosmote Internet"
@@ -143,5 +143,5 @@ configs {
   }
 }
 last_updated {
-  seconds: 1765368059
+  seconds: 1765981746
 }
