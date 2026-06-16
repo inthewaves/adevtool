@@ -11,6 +11,7 @@ filters:
       - DisplayCutoutEmulationTallOverlay
       - FontNotoSerifSourceOverlay
       - GoogleWebViewOverlay
+      - IdentityCheckSettingsOverlay # For GmsCore
       # already included in fw/base
       - NavigationBarMode3ButtonOverlay
       - NavigationBarModeGesturalOverlay
@@ -49,17 +50,27 @@ filters:
       - string/config_headlineFontFamily = google-sans
     match:
       - "android:array/config_notificationMsgPkgsAllowedAsConvos =\ " # already empty in fw/base
+      - "android:string/config_satellite_service_package =\ " # already empty in fw/base
       - "android:string/config_secondaryLocationTimeZoneProviderPackageName =\ "
       - android:array/config_accessComputerControlKnownSigners = 1975B2F17177BC89A5DFF31F9E64A6CAE281A53DC1D1D59B1D147FE1C82AFA00;7075F275C3B82619A37B1FA393B8F9D793F0B3F55148C6251AA959C340BB74B4;103938EE4537E59E8EE792F654504FB8346FC6B346D0BBC4415FC339FCFC8EC1
       - android:array/config_accessComputerControlKnownSigners = 1975B2F17177BC89A5DFF31F9E64A6CAE281A53DC1D1D59B1D147FE1C82AFA00;7075F275C3B82619A37B1FA393B8F9D793F0B3F55148C6251AA959C340BB74B4;B8EAA018CA7394FD47A3FA7F1FEB7A6C570CD55D9FE968BC3829062B6656AE32;103938EE4537E59E8EE792F654504FB8346FC6B346D0BBC4415FC339FCFC8EC1
       - android:array/config_allowedSecureInstantAppSettings = advertising_id;limit_ad_tracking
+      - android:array/config_allowlistPersonalContextHintPublishing = com.google.android.as;com.google.android.apps.pixel.psi;com.google.android.dialer;com.google.android.apps.messaging;com.google.android.apps.weather;com.google.android.apps.pixel.relationships;com.google.android.contacts
+      - android:array/config_allowlistPersonalContextHintReceiving = com.google.android.as;com.google.android.apps.pixel.psi;com.android.personalcontext
+      - android:array/config_allowlistPersonalContextInsightFiltering = com.google.android.apps.nexuslauncher;com.android.systemui
+      - android:array/config_allowlistPersonalContextInsightPublishing = com.google.android.apps.pixel.psi;com.android.personalcontext
+      - android:array/config_allowlistPersonalContextInsightReceiving = com.google.android.apps.nexuslauncher;com.google.android.dialer;com.google.android.apps.messaging;com.google.android.apps.weather;com.google.android.apps.pixel.relationships;com.google.android.contacts;com.google.android.apps.pixel.psi;com.google.android.projection.gearhead;com.android.systemui;com.google.android.as.oss
+      - android:array/config_allowlistPersonalContextVisualizers = com.google.android.apps.pixel.psi;com.android.systemui;com.google.android.as.oss
       - android:array/config_appFunctionDeviceSettingsPackages = com.android.settings;com.google.android.permissioncontroller;com.google.android.apps.wellbeing
       - android:array/config_appFunctionsDeviceSettingsPackages = com.android.settings;com.google.android.permission;com.google.android.apps.wellbeing
+      - android:array/config_appInteractionDeviceAssistancePackages = com.android.settings;com.google.android.permissioncontroller;com.google.android.apps.wellbeing
       - android:array/config_backupHealthConnectDataAndSettingsKnownSigners = 4F59009D33D5B8C60E4B14623A771EBA08E5C02D2F0A124DE8D184AA9DAF00B4;5F2391277B1DBD489000467E4C2FA6AF802430080457DCE2F618992E9DFB5402;3B062A8FD947C2574749F6609E51D29C4C86525248DD94A3D5D6CD8C338A4D84
       - android:array/config_batteryPackageTypeService = com.google.android.gms
       - android:array/config_biometric_protected_package_names = com.google.android.crossdeviceaccessservice
       - android:array/config_companionDeviceCerts = 48:ED:00:58:D1:B6:63:8E:39:A6:E4:C2:DF:1C:4D:5F:DF:59:3F:69:6B:F3:1B:09:A8:8F:93:14:1E:AF:60:0F
+      - android:array/config_companionDeviceCerts = 48:ED:00:58:D1:B6:63:8E:39:A6:E4:C2:DF:1C:4D:5F:DF:59:3F:69:6B:F3:1B:09:A8:8F:93:14:1E:AF:60:0F;B0:CC:8F:45:4E:F3:42:C5:81:A2:EC:ED:1C:AD:BD:D4:ED:32:03:F4:E0:21:15:0C:97:53:6D:B9:6E:F8:60:FE
       - android:array/config_companionDevicePackages = com.google.android.apps.wear.companion
+      - android:array/config_companionDevicePackages = com.google.android.apps.wear.companion;com.google.android.glasses.companion
       - android:array/config_defaultAppFunctionAgentAllowlist = com.google.android.googlequicksearchbox
       - android:array/config_defaultCloudSearchServices = com.android.vending/com.google.android.finsky.cloudsearch.PlayCloudSearchService;com.android.chrome/com.google.android.apps.chrome.cloudsearch.ChromeCloudSearchService;com.chrome.canary/com.google.android.apps.chrome.cloudsearch.ChromeCloudSearchService;com.chrome.dev/com.google.android.apps.chrome.cloudsearch.ChromeCloudSearchService;com.chrome.beta/com.google.android.apps.chrome.cloudsearch.ChromeCloudSearchService
       - android:array/config_defaultFirstUserRestrictions = no_oem_unlock
@@ -76,6 +87,7 @@ filters:
       - android:array/config_hideWhenDisabled_packageNames|mcc311-mnc480 = com.google.android.talk
       - android:array/config_integrityRuleProviderPackages = com.android.vending;com.google.android.gms
       - android:array/config_keep_warming_services = com.google.android.GoogleCamera/com.google.android.apps.camera.prewarm.NoOpPrewarmService
+      - android:array/config_listenerHintsExemptPackages = com.google.android.soundpicker
       - android:array/config_locationExtraPackageNames = com.google.android.gms.location.history
       - android:array/config_locationProviderPackageNames = com.google.android.gms;com.android.location.fused
       - android:array/config_loggable_dream_prefixes = com.google.;com.android.
@@ -106,6 +118,7 @@ filters:
       - android:array/config_notificationDefaultUnsupportedAdjustments = key_type;key_summarization
       - android:array/config_oem_enabled_satellite_country_codes|*
       - android:array/config_packagesExemptFromSuspension = com.google.android.apps.wellbeing;com.android.vending;com.google.android.gms;com.android.systemui;com.android.settings;com.google.android.apps.pixelmigrate;com.google.android.apps.restore
+      - android:array/config_pr_dexopt_sync_forced_packages = com.android.vending
       - android:array/config_primaryCredentialProviderService = com.google.android.gms/.auth.api.credentials.credman.service.PasswordAndPasskeyService
       - android:array/config_priorityOnlyDndExemptPackages
       - android:array/config_priorityOnlyDndExemptPackages = com.google.android.dialer;com.android.server.telecom;android;com.android.systemui
@@ -141,8 +154,10 @@ filters:
       - android:bool/config_enableGeofenceOverlay = true
       - android:bool/config_enableGeolocationTimeZoneDetection = true
       - android:bool/config_enableNetworkLocationOverlay = true
+      - android:bool/config_enablePersonalContextManagerService = true
       - android:bool/config_enablePrimaryLocationTimeZoneProvider = true
       - android:bool/config_enableSecondaryLocationTimeZoneProvider = false
+      - android:bool/config_enableStrictPersonalContextPccNextCheck = false
       - android:bool/config_fusedLocationOverlayUnstableFallback = true # TODO investigate
       - android:bool/config_gnssLocationOverlayUnstableFallback = true # TODO investigate
       - android:bool/config_honor_data_retry_timer_for_emergency_network = true
@@ -167,6 +182,7 @@ filters:
       - android:bool/config_smart_battery_available = true
       - android:bool/config_sms_utf8_support|mcc310-mnc120 = true
       - android:bool/config_sms_utf8_support|mcc312-mnc530 = true
+      - android:bool/config_speechCompassAvailable = true # not read anywhere as of AOSP 17, probably related to https://github.com/google-deepmind/speech-compass
       - android:bool/config_use_sim_language_file|mcc404-mnc1 = false
       - android:bool/config_useGnssHardwareProvider = false
       - android:bool/config_volumeAdjustmentForRemoteGroupSessions
@@ -184,7 +200,10 @@ filters:
       - android:integer/config_multiuserMaximumUsers = 4
       - android:integer/config_multiuserMaximumUsers = 8
       - android:integer/config_storageManagerDaystoRetainDefault = 60
+      - android:integer/config_textClassifierPersonalContextMergeStrategy = 2
+      - android:integer/config_textClassifierPersonalContextTimeoutMillis = 1000
       - android:string/battery_saver_description_with_learn_more|* # contains reference to "Hey Google" hotword
+      - android:string/config_allowlistProviderServicePackage = com.google.android.gms
       - android:string/config_appsAuthorizedForSharedAccounts = ;com.android.vending;com.android.settings;
       - android:string/config_bodyFontFamily = google-sans-text
       - android:string/config_bodyFontFamilyMedium = google-sans-text-medium
@@ -229,6 +248,7 @@ filters:
       - android:string/config_defaultProfcollectReportUploaderAction = com.google.android.apps.betterbug.intent.action.UPLOAD_PROFILE
       - android:string/config_defaultProfcollectReportUploaderApp = com.google.android.apps.internal.betterbug
       - android:string/config_defaultQrCodeComponent = com.google.android.gms/.mlkit.barcode.ui.PlatformBarcodeScanningActivityProxy
+      - android:string/config_defaultQrCodeComponentIntentAction = com.google.android.gms.mlkit_barcode_ui.SCAN_QR_CODE
       - android:string/config_defaultRetailDemo = com.google.android.retaildemo:6547c73dee150c103980bfdffe55cc9a011d785dd694a5f99afd8205bcaf1f80
       - android:string/config_defaultRotationResolverService = com.google.android.as/com.google.android.apps.miphone.aiai.app.AiAiRotationResolverService
       - android:string/config_defaultSearchSelectorPackageName = com.google.android.apps.setupwizard.searchselector
@@ -253,6 +273,7 @@ filters:
       - android:string/config_deviceProvisioningPackage = com.google.android.apps.work.oobconfig
       - android:string/config_dreamsDefaultComponent = com.google.android.deskclock/com.android.deskclock.Screensaver
       - android:string/config_dreamsDefaultComponent = com.google.assistant.hubui/com.google.assistant.hubui.dream.CuratedPhotoDreamService
+      - android:string/config_dynamicInstrumentationEventConsumer = com.google.android.odad/com.google.android.apps.miphone.odad.hb.HummingbirdEventService
       - android:string/config_emergency_dialer_package = com.google.android.apps.safetyhub
       - android:string/config_feedbackIntentExtraKey = EXTRA_FEEDBACK_PSD_KEYS
       - android:string/config_feedbackIntentNameKey = EXTRA_FEEDBACK_PSD_VALUES
@@ -269,6 +290,7 @@ filters:
       - android:string/config_helpPackageNameValue = com.google.android.settings.gphone
       - android:string/config_incidentReportApproverPackage = com.google.android.permissioncontroller
       - android:string/config_intrusionDetectionEventTransport = com.google.android.gms/.intrusiondetection.service.IntrusionDetectionEventTransportService
+      - android:string/config_lockscreenLockoutShortlink = g.co/pixel/unlock
       - android:string/config_loggable_dream_prefixes|*
       - android:string/config_mobile_hotspot_provision_app_no_ui|mcc204-mnc4 = com.google.android.carrierentitlement.SILENT_ENTITLEMENT_CHECK
       - android:string/config_mobile_hotspot_provision_app_no_ui|mcc310-mnc120 = com.google.android.carrierentitlement.SILENT_ENTITLEMENT_CHECK
@@ -506,8 +528,10 @@ filters:
       - com.android.settings:array/slice_allowlist_package_names_for_dev = com.google.android.apps.search.assistant.surfaces.voice.devapp
       - com.android.settings:bool/config_auto_rotate_face_detection_available|*
       - com.android.settings:bool/config_early_screen_timeout_detector_enabled = true
+      - com.android.settings:bool/config_gazeEnabled = true
       - com.android.settings:bool/config_show_communal_settings = true
       - com.android.settings:bool/config_suw_support_face_enroll|*
+      - com.android.settings:string/personal_context_title = Magic Cue
       - com.android.settings:xml/overlays|*
       - com.android.simappdialog:bool/show_sim_app_dialog_illo = true
       - com.android.simappdialog:drawable/$illo_sim_app_dialog__0|*
@@ -538,12 +562,18 @@ filters:
       - com.android.systemui:bool/config_touch_context_enabled = true # not checked by AOSP SystemUI
       - com.android.systemui:bool/config_wlc_support_enabled = true # not checked by AOSP SystemUI
       - com.android.systemui:bool/custom_lockscreen_shortcuts_enabled
+      - com.android.systemui:color/assistant_color|*
+      - com.android.systemui:drawable/$a11ymenu_intro__0 = 17a6267d1bc144ead449ada35b2b5806cf6d92771f9038d5566461a6de7998cc
+      - com.android.systemui:drawable/$ic_logo_a11y_assistant__0 = 0ff9230fa088f1e32081634ae6cf13c2707aad4aa3cbe1abd5a89e0bc87f5d9a
+      - com.android.systemui:drawable/a11ymenu_intro|*
+      - com.android.systemui:drawable/ic_logo_a11y_assistant|*
       - com.android.systemui:drawable/notification_24|*
       - com.android.systemui:drawable/saved_24|*
       - com.android.systemui:drawable/saving_24|*
       - com.android.systemui:drawable/unsaved_24|*
       - com.android.systemui:integer/config_keyguardRefreshRate
       - com.android.systemui:string/ambientcue_first_time_edu_text|*
+      - com.android.systemui:string/assistant_utterance|* # "Google Assistant"
       - com.android.systemui:string/branded_monitoring_description_app_personal|*
       - com.android.systemui:string/config_action_service = com.google.android.apps.pixel.agent/.app.service.PearlActionService
       - com.android.systemui:string/config_cameraProtectionExcludedPackages = com.google.android.as
@@ -567,3 +597,15 @@ filters:
       - com.android.traceur:drawable/ic_5g_plus_mobiledata_updated|*
       - com.android.traceur:drawable/ic_5g_plus_mobiledata|*
       - com.android.traceur:string/data_connection_5g_plus|*
+      - com.google.android.crossdeviceaccessservice:array/entryvalues_font_size = 1.0;1.05;1.1;1.20;1.30;1.50;1.80;2.0
+      - com.google.android.crossdeviceaccessservice:bool/config_hspa_data_distinguishable|*
+      - com.google.android.crossdeviceaccessservice:bool/config_showMin3G|*
+      - com.google.android.crossdeviceaccessservice:drawable/ic_5g_plus_mobiledata_updated|*
+      - com.google.android.crossdeviceaccessservice:drawable/ic_5g_plus_mobiledata|*
+      - com.google.android.crossdeviceaccessservice:fraction/display_density_max_scale = 138.49792%
+      - com.google.android.crossdeviceaccessservice:string/data_connection_5g_plus|*
+      - com.google.android.telecomresources/TelecomLibCustomization:bool/enable_logcat_collection_for_all_emergency_calls = true
+      - com.google.android.telecomresources/TelecomLibCustomization:bool/grant_location_permission_enabled = true # auto-grant of location permission to the default dialer during emenrgency calls
+      - com.google.android.telecomresources/TelecomLibCustomization:mipmap/ic_launcher_phone|*
+      - com.google.android.telecomresources/TelecomLibCustomization:string/call_diagnostic_service_package_name = com.google.android.apps.scone
+      - com.google.android.telecomresources/TelecomLibCustomization:string/dialer_default_class = com.google.android.dialer.extensions.GoogleDialtactsActivity

@@ -1,28 +1,43 @@
 sysconfig_exclusions:
-  - <allow-association target="com.google.android.as.oss" allowed="com.google.android.googlequicksearchbox"/>
-  - <allow-association target="com.google.android.as.oss" allowed="com.google.android.inputmethod.latin"/>
+  - <allow-association target="com.google.android.apps.pixel.nowplaying" allowed="com.google.android.as"/>
+  - <allow-association target="com.google.android.apps.pixel.nowplaying" allowed="com.google.android.as.oss"/>
+  - <allow-association target="com.google.android.apps.pixel.psi" allowed="com.google.android.apps.pixel.psi"/>
+  - <allow-association target="com.google.android.apps.pixel.psi" allowed="com.google.android.as"/>
+  - <allow-association target="com.google.android.apps.pixel.psi" allowed="com.google.android.as.oss"/>
+  - <allow-association target="com.google.android.apps.pixel.psi" allowed="com.google.android.providers.media.module"/>
+  - <allow-association target="com.google.android.apps.pixel.psi" allowed="com.google.android.settings.intelligence"/>
   - <allow-association target="com.google.android.as" allowed="com.android.bluetooth"/>
   - <allow-association target="com.google.android.as" allowed="com.android.bluetooth.services"/>
   - <allow-association target="com.google.android.as" allowed="com.android.phone"/>
+  - <allow-association target="com.google.android.as" allowed="com.android.providers.blockednumber"/>
   - <allow-association target="com.google.android.as" allowed="com.android.providers.contacts"/>
   - <allow-association target="com.google.android.as" allowed="com.android.providers.media"/>
   - <allow-association target="com.google.android.as" allowed="com.android.providers.telephony"/>
   - <allow-association target="com.google.android.as" allowed="com.android.systemui"/>
-  - <allow-association target="com.google.android.apps.pixel.nowplaying" allowed="com.google.android.as"/>
-  - <allow-association target="com.google.android.apps.pixel.nowplaying" allowed="com.google.android.as.oss"/>
   - <allow-association target="com.google.android.as" allowed="com.google.android.apps.pixel.nowplaying"/>
-  - <allow-association target="com.google.android.as.oss" allowed="com.google.android.apps.pixel.nowplaying"/>
-  - <allow-association target="com.google.android.glasses.secure" allowed="com.google.android.as.oss"/>
+  - <allow-association target="com.google.android.as" allowed="com.google.android.apps.pixel.psi"/>
   - <allow-association target="com.google.android.as" allowed="com.google.android.as.oss"/>
   - <allow-association target="com.google.android.as" allowed="com.google.android.bluetooth"/>
   - <allow-association target="com.google.android.as" allowed="com.google.android.bluetooth.services"/>
   - <allow-association target="com.google.android.as" allowed="com.google.android.providers.media.module"/>
+  - <allow-association target="com.google.android.as" allowed="com.google.android.settings.intelligence"/>
+  - <allow-association target="com.google.android.as.oss" allowed="com.android.systemui"/>
   - <allow-association target="com.google.android.as.oss" allowed="com.google.android.aicore"/>
+  - <allow-association target="com.google.android.as.oss" allowed="com.google.android.apps.messaging"/>
   - <allow-association target="com.google.android.as.oss" allowed="com.google.android.apps.nexuslauncher"/>
+  - <allow-association target="com.google.android.as.oss" allowed="com.google.android.apps.pixel.nowplaying"/>
+  - <allow-association target="com.google.android.as.oss" allowed="com.google.android.apps.pixel.psi"/>
+  - <allow-association target="com.google.android.as.oss" allowed="com.google.android.apps.pixel.subzero"/>
+  - <allow-association target="com.google.android.as.oss" allowed="com.google.android.apps.weather"/>
   - <allow-association target="com.google.android.as.oss" allowed="com.google.android.as"/>
+  - <allow-association target="com.google.android.as.oss" allowed="com.google.android.dialer"/>-
+  - <allow-association target="com.google.android.as.oss" allowed="com.google.android.googlequicksearchbox"/>
+  - <allow-association target="com.google.android.as.oss" allowed="com.google.android.inputmethod.latin"/>
   - <allow-association target="com.google.android.as.oss" allowed="com.google.android.odad"/>
+  - <allow-association target="com.google.android.glasses.secure" allowed="com.google.android.as.oss"/>
   - <allow-association target="com.google.android.odad" allowed="com.android.providers.telephony"/>
   - <allow-association target="com.google.android.odad" allowed="com.google.android.as.oss"/>
+  - <allow-ignore-location-settings package="com.shannon.imsservice" attributionTag="*"/> # TODO look into this
   - <allow-implicit-broadcast action="com.google.android.c2dm.intent.RECEIVE"/>
   - <allow-implicit-broadcast action="com.google.android.checkin.CHECKIN_COMPLETE"/>
   - <allow-implicit-broadcast action="com.google.android.onetimeinitializer.ONE_TIME_INITIALIZED"/>
@@ -61,6 +76,7 @@ sysconfig_exclusions:
   - <feature name="com.google.android.feature.KIDS_HOME_EXPERIENCE"/>
   - <feature name="com.google.android.feature.KIDS_HOME_EXPERIENCE_KIDUSER"/>
   - <feature name="com.google.android.feature.NEXT_GENERATION_ASSISTANT"/>
+  - <feature name="com.google.android.feature.NOW_PLAYING_APP_26Q1"/>
   - <feature name="com.google.android.feature.QUICK_TAP"/>
   - <feature name="com.google.android.feature.SATELLITE_SOS_PROVIDER_1"/>
   - <feature name="com.google.android.feature.TURBO_PRELOAD"/>
@@ -248,6 +264,23 @@ sysconfig_exclusions:
     </privapp-permissions>
   - |-
     <privapp-permissions package="com.android.systemui">
+      <permission name="android.permission.ALLOW_SLIPPERY_TOUCHES"/>
+      <permission name="android.permission.WRITE_EMBEDDED_SUBSCRIPTIONS"/>
+      <permission name="android.permission.SET_WALLPAPER_COMPONENT"/>
+      <permission name="android.permission.SET_WALLPAPER_DIM_AMOUNT"/>
+      <permission name="android.permission.READ_WALLPAPER_INTERNAL"/>
+      <permission name="android.permission.LOCATION_HARDWARE"/>
+      <permission name="android.permission.ACCESS_CONTEXT_HUB"/>
+      <permission name="android.permission.REGISTER_STATS_PULL_ATOM"/>
+      <permission name="android.permission.REQUEST_NETWORK_SCORES"/>
+      <permission name="android.permission.ACCESS_AMBIENT_CONTEXT_EVENT"/>
+      <permission name="android.permission.CONTROL_UI_TRACING"/>
+      <permission name="android.permission.START_FOREGROUND_SERVICES_FROM_BACKGROUND"/>
+      <permission name="android.permission.READ_SYSTEM_GRAMMATICAL_GENDER"/>
+      <permission name="android.permission.REPORT_UI_LATENCY_STATS"/>
+    </privapp-permissions>
+  - |-
+    <privapp-permissions package="com.android.systemui">
       <permission name="android.permission.CAPTURE_AUDIO_OUTPUT"/>
       <permission name="android.permission.ALLOW_SLIPPERY_TOUCHES"/>
       <permission name="android.permission.BATTERY_STATS"/>
@@ -331,6 +364,15 @@ sysconfig_exclusions:
       <permission name="android.permission.NETWORK_FACTORY"/>
     </privapp-permissions>
   - <allowed-vendor-apex package="com.google.pixel.camera.hal" installerPackage="com.google.android.GoogleCamera"/>
+  - |-
+    <permission name="com.google.android.aicore.permission.VENDOR_INTELLIGENCE">
+      <group gid="vendor_intelligence"/>
+    </permission>
+  - |-
+    <privapp-permissions package="com.android.phone">
+      <permission name="android.permission.NETWORK_FACTORY"/>
+    </privapp-permissions>
+
   # SapService is not a manifest service since https://android.googlesource.com/platform/packages/modules/Bluetooth/+/571b25f8a7805a0205695532c2277078dd08e948
   - |-
     <component-override package="com.android.bluetooth">

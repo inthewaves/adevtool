@@ -3,12 +3,10 @@ vintf_manifest_inclusions:
     - <kernel target-level="6"/>
     - |-
       <sepolicy>
-        <version>202504</version>
+        <version>202604</version>
       </sepolicy>
 
 vintf_inclusions:
-  - vendor.google.ambience_hub.IAmbienceHubConsumerManager/default
-  - vendor.google.ambience_hub.IAmbienceHubProducerManager/default
   - android.frameworks.displayservice::IDisplayService/default
   - android.frameworks.schedulerservice::ISchedulingPolicyService/default
   - android.frameworks.sensorservice::ISensorManager/default
@@ -23,12 +21,15 @@ vintf_inclusions:
   - android.hardware.biometrics.fingerprint.IFingerprint/default
   - android.hardware.bluetooth.finder.IBluetoothFinder/default
   - android.hardware.bluetooth.IBluetoothHci/default
+  - android.hardware.bluetooth.lmp_event.IBluetoothLmpEvent/default
   - android.hardware.bluetooth.ranging.IBluetoothChannelSounding/default
+  - android.hardware.bluetooth.socket.IBluetoothSocket/lpp
   - android.hardware.bluetooth::IBluetoothHci/default
   - android.hardware.boot.IBootControl/default
   - android.hardware.camera.provider.ICameraProvider/internal/0
   - android.hardware.contexthub.IContextHub/default
   - android.hardware.drm.IDrmFactory/castkey
+  - android.hardware.drm.IDrmFactory/clearkey
   - android.hardware.dumpstate.IDumpstateDevice/default
   - android.hardware.gnss.IGnss/default
   - android.hardware.gnss.IGnss/vendor
@@ -37,15 +38,19 @@ vintf_inclusions:
   - android.hardware.graphics.composer::IComposer/default
   - android.hardware.graphics.composer::IComposer/vr
   - android.hardware.health.IHealth/default
+  - android.hardware.health.storage.IStorage/default
   - android.hardware.input.processor.IInputProcessor/default
   - android.hardware.light.ILights/default
   - android.hardware.media.c2.IComponentStore/default
   - android.hardware.media.c2.IComponentStore/default1
   - android.hardware.media.c2.IComponentStore/default2
+  - android.hardware.media.c2.IComponentStore/default9
   - android.hardware.media.omx::IOmx/default
   - android.hardware.media.omx::IOmxStore/default
   - android.hardware.memtrack.IMemtrack/default
   - android.hardware.neuralnetworks.IDevice/google-edgetpu
+  - android.hardware.nfc.INfc/default
+  - android.hardware.npu.IScheduling/default
   - android.hardware.oemlock.IOemLock/default
   - android.hardware.power.IPower/default
   - android.hardware.power.stats.IPowerStats/default
@@ -77,7 +82,10 @@ vintf_inclusions:
   - android.hardware.secure_element::ISecureElement/SIM2
   - android.hardware.security.keymint.IKeyMintDevice/strongbox
   - android.hardware.security.keymint.IRemotelyProvisionedComponent/strongbox
+  - android.hardware.security.secretkeeper.ISecretkeeper/default
   - android.hardware.security.sharedsecret.ISharedSecret/strongbox
+  - android.hardware.security.timestamp.ITimeStamper/default
+  - android.hardware.sensors.ISensors/default
   - android.hardware.soundtrigger3.ISoundTriggerHw/default
   - android.hardware.soundtrigger::ISoundTriggerHw/default
   - android.hardware.tetheroffload.config::IOffloadConfig/default
@@ -90,6 +98,7 @@ vintf_inclusions:
   - android.hardware.vibrator.IVibrator/dual
   - android.hardware.weaver.IWeaver/default
   - android.hardware.wifi.hostapd.IHostapd/default
+  - android.hardware.wifi.supplicant.ISupplicant/default
   - android.hidl.allocator::IAllocator/ashmem
   - android.hidl.memory::IMapper/ashmem
   - android.hidl.token::ITokenManager/default
@@ -112,6 +121,7 @@ vintf_inclusions:
   - com.fingerprints42.extension::IFingerprintSenseTouch/default
   - com.fingerprints42.extension::IFingerprintSensorTest/default
   - com.google.android.imageprocessing.hal.IImageProcessingHal/default
+  - com.google.android.moseyservice.IMoseyService/default
   - com.google.edgetpu.dba.IDevice/default
   - com.google.edgetpu.IEdgeTpuAppService/default
   - com.google.edgetpu.IEdgeTpuVendorService/default
@@ -124,6 +134,8 @@ vintf_inclusions:
   - com.google.hardware.pixel.display.IDisplay/secondary
   - com.google.input.algos.gril.IGrilAntennaTuningService/default
   - com.google.input.algos.spd.IScreenProtectorDetectorService/default
+  - com.google.input.algos.touchflow.ITouchflowLoggerService/default_touchflow
+  - com.google.input.algos.touchflow.ITouchflowLoggerService/outer_touchflow
   - com.google.input.gia.core.IGiaService/default
   - com.google.input.ITouchContextService/default
   - com.google.input.ITwoshayFileDumpService/touchflow_default
@@ -147,6 +159,8 @@ vintf_inclusions:
   - mapper.@5.0/pixel
   - vendor.goodix.hardware.biometrics.fingerprint::IGoodixFingerprintDaemon/default
   - vendor.google.aam.IAam/default
+  - vendor.google.ambience_hub.IAmbienceHubConsumerManager/default
+  - vendor.google.ambience_hub.IAmbienceHubProducerManager/default
   - vendor.google.audiometricext::IAudioMetricExt/default
   - vendor.google.battery_mitigation.IBatteryMitigation/default
   - vendor.google.bluetooth_ext.IBluetoothCcc/default
@@ -156,7 +170,11 @@ vintf_inclusions:
   - vendor.google.bluetooth_ext.IBluetoothFinder/default
   - vendor.google.bluetooth_ext.IBluetoothSar/default
   - vendor.google.bluetooth_ext.IBTChannelAvoidance/default
+  - vendor.google.camera_ext.ICameraInterferenceAvoidance/default
   - vendor.google.google_battery.IGoogleBattery/default
+  - vendor.google.hardware.biometrics.face.IFaceExt/default
+  - vendor.google.plat_security.ISecureTimestamp/default
+  - vendor.google.plat_security.ITrustyDecrypt/default
   - vendor.google.radio_ext.IRadioExt/default
   - vendor.google.radioext::IRadioExt/default
   - vendor.google.whitechapel.audio.audioext::IAudioExt/default
@@ -175,9 +193,3 @@ vintf_inclusions:
   - vendor.samsung_slsi.telephony.hardware.oemservice::IOemService/sced0
   - vendor.samsung_slsi.telephony.hardware.radioExternal.IOemSlsiRadioExternal/default
   - vendor.samsung_slsi.telephony.hardware.radioExternal::IOemSlsiRadioExternal/rilExternal
-  - android.hardware.security.secretkeeper.ISecretkeeper/default
-  - android.hardware.drm.IDrmFactory/clearkey
-  - android.hardware.sensors.ISensors/default
-  - android.hardware.wifi.supplicant.ISupplicant/default
-  - android.hardware.health.storage.IStorage/default
-  - android.hardware.nfc.INfc/default

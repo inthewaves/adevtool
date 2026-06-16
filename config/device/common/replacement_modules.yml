@@ -2,6 +2,7 @@ replacement_module_exclusions:
   - android.hardware.wifi.hostapd.xml # external/wpa_supplicant_8/hostapd | vendor/etc/vintf/manifest/android.hardware.wifi.hostapd.xml
   - android.hardware.wifi.supplicant.xml # external/wpa_supplicant_8/wpa_supplicant/aidl/vendor | vendor/etc/vintf/manifest/android.hardware.wifi.supplicant.xml
   - fstab.cf.f2fs.cts.recovery # device/google/cuttlefish/shared/config | recovery/system/etc/recovery.fstab
+  - GoogleAppSearchAiSealConfig # packages/modules/AppSearch/AppSearchAiSealConfig | system/app/GoogleAppSearchAiSealConfig/GoogleAppSearchAiSealConfig.apk
   - libwpa_client # external/wpa_supplicant_8/wpa_supplicant | vendor/lib64/libwpa_client.so
   - q-developer-gsi.avbpubkey # system/core/rootdir/avb | vendor_ramdisk/avb/q-developer-gsi.avbpubkey
   - r-developer-gsi.avbpubkey # system/core/rootdir/avb | vendor_ramdisk/avb/r-developer-gsi.avbpubkey
@@ -21,6 +22,7 @@ replacement_module_inclusions:
   - android.frameworks.stats-V2-ndk.vendor # frameworks/hardware/interfaces/stats/aidl | vendor/lib64/android.frameworks.stats-V2-ndk.so
   - android.hardware.audio.common-util.vendor # hardware/interfaces/audio/common/all-versions/default | vendor/lib64/android.hardware.audio.common-util.so
   - android.hardware.audio.common-V4-ndk.vendor # hardware/interfaces/audio/aidl | vendor/lib64/android.hardware.audio.common-V4-ndk.so
+  - android.hardware.audio.common-V5-ndk.vendor # hardware/interfaces/audio/aidl | vendor/lib64/android.hardware.audio.common-V5-ndk.so
   - android.hardware.audio.common@2.0.vendor # hardware/interfaces/audio/common/2.0 | vendor/lib64/android.hardware.audio.common@2.0.so
   - android.hardware.audio.common@5.0.vendor # hardware/interfaces/audio/common/5.0 | vendor/lib64/android.hardware.audio.common@5.0.so
   - android.hardware.audio.common@7.0-enums.vendor # hardware/interfaces/audio/common/7.0 | vendor/lib64/android.hardware.audio.common@7.0-enums.so
@@ -31,7 +33,9 @@ replacement_module_inclusions:
   - android.hardware.audio.core-V3-ndk.vendor # hardware/interfaces/audio/aidl | vendor/lib64/android.hardware.audio.core-V3-ndk.so
   - android.hardware.audio.core-V4-ndk.vendor # hardware/interfaces/audio/aidl | vendor/lib64/android.hardware.audio.core-V4-ndk.so
   - android.hardware.audio.core.sounddose-V3-ndk.vendor # hardware/interfaces/audio/aidl | vendor/lib64/android.hardware.audio.core.sounddose-V3-ndk.so
+  - android.hardware.audio.core.sounddose-V4-ndk.vendor # hardware/interfaces/audio/aidl | vendor/lib64/android.hardware.audio.core.sounddose-V4-ndk.so
   - android.hardware.audio.effect-V3-ndk.vendor # hardware/interfaces/audio/aidl | vendor/lib64/android.hardware.audio.effect-V3-ndk.so
+  - android.hardware.audio.effect-V4-ndk.vendor # hardware/interfaces/audio/aidl | vendor/lib64/android.hardware.audio.effect-V4-ndk.so
   - android.hardware.audio.effect@7.0-impl # hardware/interfaces/audio/effect/all-versions/default | vendor/lib64/hw/android.hardware.audio.effect@7.0-impl.so
   - android.hardware.audio.effect@7.0-util.vendor # hardware/interfaces/audio/effect/all-versions/default/util | vendor/lib64/android.hardware.audio.effect@7.0-util.so
   - android.hardware.audio.effect@7.0.vendor # hardware/interfaces/audio/effect/7.0 | vendor/lib64/android.hardware.audio.effect@7.0.so
@@ -48,13 +52,18 @@ replacement_module_inclusions:
   - android.hardware.bluetooth-V1-ndk.vendor # hardware/interfaces/bluetooth/aidl | vendor/lib64/android.hardware.bluetooth-V1-ndk.so
   - android.hardware.bluetooth.audio-impl # hardware/interfaces/bluetooth/audio/aidl/default | vendor/etc/vintf/manifest/bluetooth_audio.xml,vendor/lib64/android.hardware.bluetooth.o
   - android.hardware.bluetooth.audio-V5-ndk.vendor # hardware/interfaces/bluetooth/audio/aidl | vendor/lib64/android.hardware.bluetooth.audio-V5-ndk.so
+  - android.hardware.bluetooth.audio-V6-ndk.vendor # hardware/interfaces/bluetooth/audio/aidl | vendor/lib64/android.hardware.bluetooth.audio-V6-ndk.so
   - android.hardware.bluetooth.audio@2.0.vendor # hardware/interfaces/bluetooth/audio/2.0 | vendor/lib64/android.hardware.bluetooth.audio@2.0.so
   - android.hardware.bluetooth.audio@2.1.vendor # hardware/interfaces/bluetooth/audio/2.1 | vendor/lib64/android.hardware.bluetooth.audio@2.1.so
   - android.hardware.bluetooth.finder-V1-ndk.vendor # hardware/interfaces/bluetooth/finder/aidl | vendor/lib64/android.hardware.bluetooth.finder-V1-ndk.so
+  - android.hardware.bluetooth.lmp_event-V1-ndk.vendor # hardware/interfaces/bluetooth/lmp_event/aidl | vendor/lib64/android.hardware.bluetooth.lmp_event-V1-ndk.so
   - android.hardware.bluetooth.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/android.hardware.bluetooth.prebuilt.xml
   - android.hardware.bluetooth.ranging-V1-ndk.vendor # hardware/interfaces/bluetooth/ranging/aidl | vendor/lib64/android.hardware.bluetooth.ranging-V1-ndk.so
+  - android.hardware.bluetooth.ranging-V2-ndk.vendor # hardware/interfaces/bluetooth/ranging/aidl | vendor/lib64/android.hardware.bluetooth.ranging-V2-ndk.so
+  - android.hardware.bluetooth.socket-V2-ndk.vendor # hardware/interfaces/bluetooth/socket/aidl | vendor/lib64/android.hardware.bluetooth.socket-V2-ndk.so
   - android.hardware.bluetooth@1.0.vendor # hardware/interfaces/bluetooth/1.0 | vendor/lib64/android.hardware.bluetooth@1.0.so
   - android.hardware.bluetooth@1.1.vendor # hardware/interfaces/bluetooth/1.1 | vendor/lib64/android.hardware.bluetooth@1.1.so
+  - android.hardware.bluetooth_le.channel_sounding.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/android.hardware.bluetooth_le.channel_sounding.prebuilt.xml
   - android.hardware.bluetooth_le.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/android.hardware.bluetooth_le.prebuilt.xml
   - android.hardware.boot-V1-ndk.vendor # hardware/interfaces/boot/aidl | vendor/lib64/android.hardware.boot-V1-ndk.so
   - android.hardware.boot@1.0.vendor # hardware/interfaces/boot/1.0 | vendor/lib64/android.hardware.boot@1.0.so
@@ -69,6 +78,7 @@ replacement_module_inclusions:
   - android.hardware.context_hub.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/android.hardware.context_hub.prebuilt.xml
   - android.hardware.contexthub-V3-ndk.vendor # hardware/interfaces/contexthub/aidl | vendor/lib64/android.hardware.contexthub-V3-ndk.so
   - android.hardware.contexthub-V4-ndk.vendor # hardware/interfaces/contexthub/aidl | vendor/lib64/android.hardware.contexthub-V4-ndk.so
+  - android.hardware.contexthub-V5-ndk.vendor # hardware/interfaces/contexthub/aidl | vendor/lib64/android.hardware.contexthub-V5-ndk.so
   - android.hardware.device_unique_attestation.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/android.hardware.device_unique_attestation.prebuilt.xml
   - android.hardware.drm-service.clearkey # frameworks/av/drm/mediadrm/plugins/clearkey/aidl | vendor/bin/hw/android.hardware.drm-service.clearkey,vendor/etc/init/android.hardware.dc
   - android.hardware.drm-service.clearkey.xml_vintf # frameworks/av/drm/mediadrm/plugins/clearkey/aidl | vendor/etc/vintf/manifest/android.hardware.drm-service.clearkey.xml
@@ -101,6 +111,7 @@ replacement_module_inclusions:
   - android.hardware.graphics.common@1.1.vendor # hardware/interfaces/graphics/common/1.1 | vendor/lib64/android.hardware.graphics.common@1.1.so
   - android.hardware.graphics.common@1.2.vendor # hardware/interfaces/graphics/common/1.2 | vendor/lib64/android.hardware.graphics.common@1.2.so
   - android.hardware.graphics.composer3-V4-ndk.vendor # hardware/interfaces/graphics/composer/aidl | vendor/lib64/android.hardware.graphics.composer3-V4-ndk.so
+  - android.hardware.graphics.composer3-V5-ndk.vendor # hardware/interfaces/graphics/composer/aidl | vendor/lib64/android.hardware.graphics.composer3-V5-ndk.so
   - android.hardware.graphics.composer@2.1-resources.vendor # hardware/interfaces/graphics/composer/2.1/utils/resources | vendor/lib64/android.hardware.graphics.composer@2.1-resourco
   - android.hardware.graphics.composer@2.1.vendor # hardware/interfaces/graphics/composer/2.1 | vendor/lib64/android.hardware.graphics.composer@2.1.so
   - android.hardware.graphics.composer@2.2-resources.vendor # hardware/interfaces/graphics/composer/2.2/utils/resources | vendor/lib64/android.hardware.graphics.composer@2.2-resourco
@@ -113,6 +124,7 @@ replacement_module_inclusions:
   - android.hardware.graphics.mapper@4.0.vendor # hardware/interfaces/graphics/mapper/4.0 | vendor/lib64/android.hardware.graphics.mapper@4.0.so
   - android.hardware.health-V1-ndk.vendor # hardware/interfaces/health/aidl | vendor/lib64/android.hardware.health-V1-ndk.so
   - android.hardware.health-V4-ndk.vendor # hardware/interfaces/health/aidl | vendor/lib64/android.hardware.health-V4-ndk.so
+  - android.hardware.health-V5-ndk.vendor # hardware/interfaces/health/aidl | vendor/lib64/android.hardware.health-V5-ndk.so
   - android.hardware.health.storage-service.default # hardware/interfaces/health/storage/aidl/default | vendor/bin/hw/android.hardware.health.storage-service.default,vendor/etc/initl
   - android.hardware.health.storage-V1-ndk.vendor # hardware/interfaces/health/storage/aidl | vendor/lib64/android.hardware.health.storage-V1-ndk.so
   - android.hardware.input.common-V1-ndk.vendor # hardware/interfaces/input/common/aidl | vendor/lib64/android.hardware.input.common-V1-ndk.so
@@ -123,6 +135,7 @@ replacement_module_inclusions:
   - android.hardware.media.bufferpool2-V2-ndk.vendor # hardware/interfaces/media/bufferpool/aidl | vendor/lib64/android.hardware.media.bufferpool2-V2-ndk.so
   - android.hardware.media.bufferpool@2.0.vendor # hardware/interfaces/media/bufferpool/2.0 | vendor/lib64/android.hardware.media.bufferpool@2.0.so
   - android.hardware.media.c2-V1-ndk.vendor # hardware/interfaces/media/c2/aidl | vendor/lib64/android.hardware.media.c2-V1-ndk.so
+  - android.hardware.media.c2-V2-ndk.vendor # hardware/interfaces/media/c2/aidl | vendor/lib64/android.hardware.media.c2-V2-ndk.so
   - android.hardware.media.c2@1.0.vendor # hardware/interfaces/media/c2/1.0 | vendor/lib64/android.hardware.media.c2@1.0.so
   - android.hardware.media.c2@1.1.vendor # hardware/interfaces/media/c2/1.1 | vendor/lib64/android.hardware.media.c2@1.1.so
   - android.hardware.media.c2@1.2.vendor # hardware/interfaces/media/c2/1.2 | vendor/lib64/android.hardware.media.c2@1.2.so
@@ -140,11 +153,13 @@ replacement_module_inclusions:
   - android.hardware.nfc.hce.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/android.hardware.nfc.hce.prebuilt.xml
   - android.hardware.nfc.hcef.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/android.hardware.nfc.hcef.prebuilt.xml
   - android.hardware.nfc.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/android.hardware.nfc.prebuilt.xml
+  - android.hardware.npu-V1-ndk.vendor # hardware/interfaces/npu/aidl | vendor/lib64/android.hardware.npu-V1-ndk.so
   - android.hardware.oemlock-V1-ndk.vendor # hardware/interfaces/oemlock/aidl | vendor/lib64/android.hardware.oemlock-V1-ndk.so
   - android.hardware.opengles.aep.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/android.hardware.opengles.aep.prebuilt.xml
   - android.hardware.power-V1-ndk.vendor # hardware/interfaces/power/aidl | vendor/lib64/android.hardware.power-V1-ndk.so
   - android.hardware.power-V2-ndk.vendor # hardware/interfaces/power/aidl | vendor/lib64/android.hardware.power-V2-ndk.so
   - android.hardware.power-V6-ndk.vendor # hardware/interfaces/power/aidl | vendor/lib64/android.hardware.power-V6-ndk.so
+  - android.hardware.power-V7-ndk.vendor # hardware/interfaces/power/aidl | vendor/lib64/android.hardware.power-V7-ndk.so
   - android.hardware.power.stats-V2-ndk.vendor # hardware/interfaces/power/stats/aidl | vendor/lib64/android.hardware.power.stats-V2-ndk.so
   - android.hardware.power@1.0.vendor # hardware/interfaces/power/1.0 | vendor/lib64/android.hardware.power@1.0.so
   - android.hardware.power@1.1.vendor # hardware/interfaces/power/1.1 | vendor/lib64/android.hardware.power@1.1.so
@@ -200,6 +215,7 @@ replacement_module_inclusions:
   - android.hardware.security.rkp-V3-ndk.vendor # hardware/interfaces/security/rkp/aidl | vendor/lib64/android.hardware.security.rkp-V3-ndk.so
   - android.hardware.security.secretkeeper.trusty # system/core/trusty/secretkeeper | vendor/bin/hw/android.hardware.security.secretkeeper.trusty,vendor/etc/init/android.hardware.sel
   - android.hardware.security.sharedsecret-V1-ndk.vendor # hardware/interfaces/security/sharedsecret/aidl | vendor/lib64/android.hardware.security.sharedsecret-V1-ndk.so
+  - android.hardware.security.timestamp-V1-ndk.vendor # hardware/interfaces/security/timestamp/aidl | vendor/lib64/android.hardware.security.timestamp-V1-ndk.so
   - android.hardware.sensor.accelerometer.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/android.hardware.sensor.accelerometer.prebuilt.xml
   - android.hardware.sensor.barometer.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/android.hardware.sensor.barometer.prebuilt.xml
   - android.hardware.sensor.compass.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/android.hardware.sensor.compass.prebuilt.xml
@@ -220,6 +236,7 @@ replacement_module_inclusions:
   - android.hardware.sensors@2.0.vendor # hardware/interfaces/sensors/2.0 | vendor/lib64/android.hardware.sensors@2.0.so
   - android.hardware.sensors@2.1.vendor # hardware/interfaces/sensors/2.1 | vendor/lib64/android.hardware.sensors@2.1.so
   - android.hardware.soundtrigger3-V3-ndk.vendor # hardware/interfaces/soundtrigger/aidl | vendor/lib64/android.hardware.soundtrigger3-V3-ndk.so
+  - android.hardware.soundtrigger3-V4-ndk.vendor # hardware/interfaces/soundtrigger/aidl | vendor/lib64/android.hardware.soundtrigger3-V4-ndk.so
   - android.hardware.soundtrigger@2.0-core.vendor # hardware/interfaces/soundtrigger/2.0/default | vendor/lib64/android.hardware.soundtrigger@2.0-core.so
   - android.hardware.soundtrigger@2.0.vendor # hardware/interfaces/soundtrigger/2.0 | vendor/lib64/android.hardware.soundtrigger@2.0.so
   - android.hardware.soundtrigger@2.1.vendor # hardware/interfaces/soundtrigger/2.1 | vendor/lib64/android.hardware.soundtrigger@2.1.so
@@ -240,13 +257,18 @@ replacement_module_inclusions:
   - android.hardware.thermal@2.0.vendor # hardware/interfaces/thermal/2.0 | vendor/lib64/android.hardware.thermal@2.0.so
   - android.hardware.touchscreen.multitouch.jazzhand.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.prebuilt.xml
   - android.hardware.usb-V3-ndk.vendor # hardware/interfaces/usb/aidl | vendor/lib64/android.hardware.usb-V3-ndk.so
+  - android.hardware.usb-V4-ndk.vendor # hardware/interfaces/usb/aidl | vendor/lib64/android.hardware.usb-V4-ndk.so
   - android.hardware.usb.accessory.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/android.hardware.usb.accessory.prebuilt.xml
+  - android.hardware.usb.flags-aconfig-cc-lib.vendor # frameworks/base | vendor/lib64/android.hardware.usb.flags-aconfig-cc-lib.so
   - android.hardware.usb.gadget-V1-ndk.vendor # hardware/interfaces/usb/gadget/aidl | vendor/lib64/android.hardware.usb.gadget-V1-ndk.so
+  - android.hardware.usb.gadget-V2-ndk.vendor # hardware/interfaces/usb/gadget/aidl | vendor/lib64/android.hardware.usb.gadget-V2-ndk.so
   - android.hardware.usb.gadget@1.0.vendor # hardware/interfaces/usb/gadget/1.0 | vendor/lib64/android.hardware.usb.gadget@1.0.so
   - android.hardware.usb.host.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/android.hardware.usb.host.prebuilt.xml
+  - android.hardware.uwb.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/android.hardware.uwb.prebuilt.xml
   - android.hardware.vibrator-V2-ndk.vendor # hardware/interfaces/vibrator/aidl | vendor/lib64/android.hardware.vibrator-V2-ndk.so
   - android.hardware.vibrator-V3-ndk.vendor # hardware/interfaces/vibrator/aidl | vendor/lib64/android.hardware.vibrator-V3-ndk.so
   - android.hardware.weaver-V2-ndk.vendor # hardware/interfaces/weaver/aidl | vendor/lib64/android.hardware.weaver-V2-ndk.so
+  - android.hardware.weaver-V3-ndk.vendor # hardware/interfaces/weaver/aidl | vendor/lib64/android.hardware.weaver-V3-ndk.so
   - android.hardware.wifi.aware.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/android.hardware.wifi.aware.prebuilt.xml
   - android.hardware.wifi.common-V2-ndk.vendor # hardware/interfaces/wifi/common/aidl | vendor/lib64/android.hardware.wifi.common-V2-ndk.so
   - android.hardware.wifi.direct.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/android.hardware.wifi.direct.prebuilt.xml
@@ -266,8 +288,11 @@ replacement_module_inclusions:
   - android.hidl.token@1.0-utils.vendor # system/libhidl/transport/token/1.0/utils | vendor/lib64/android.hidl.token@1.0-utils.so
   - android.hidl.token@1.0.vendor # system/libhidl/transport/token/1.0 | vendor/lib64/android.hidl.token@1.0.so
   - android.media.audio.common.types-V4-ndk.vendor # system/hardware/interfaces/media | vendor/lib64/android.media.audio.common.types-V4-ndk.so
+  - android.media.audio.common.types-V5-ndk.vendor # system/hardware/interfaces/media | vendor/lib64/android.media.audio.common.types-V5-ndk.so
   - android.media.audio.eraser.types-V1-ndk.vendor # system/hardware/interfaces/media | vendor/lib64/android.media.audio.eraser.types-V1-ndk.so
+  - android.media.audio.eraser.types-V2-ndk.vendor # system/hardware/interfaces/media | vendor/lib64/android.media.audio.eraser.types-V2-ndk.so
   - android.media.soundtrigger.types-V3-ndk.vendor # system/hardware/interfaces/media | vendor/lib64/android.media.soundtrigger.types-V3-ndk.so
+  - android.media.soundtrigger.types-V4-ndk.vendor # system/hardware/interfaces/media | vendor/lib64/android.media.soundtrigger.types-V4-ndk.so
   - android.software.angle.xml # external/angle | product/etc/permissions/android.software.angle.xml
   - android.software.device_id_attestation.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/android.software.device_id_attestation.prebuilt.xml
   - android.software.ipsec_tunnel_migration.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/android.software.ipsec_tunnel_migration.prebuilt.xml
@@ -289,9 +314,11 @@ replacement_module_inclusions:
   - checkpoint_gc # system/extras/checkpoint_gc | vendor/bin/checkpoint_gc
   - chre_atoms_log # system/chre | vendor/lib64/chre_atoms_log.so
   - chremetrics-cpp # system/chre | vendor/lib64/chremetrics-cpp.so
+  - com.android.extensions.computercontrol # frameworks/base/libs/computercontrol | system_ext/framework/com.android.extensions.computercontrol.jar
   - com.android.hardware.biometrics.face.virtual # hardware/interfaces/biometrics/face/aidl/default/apex | system_ext/apex/com.android.hardware.biometrics.face.virtual.apex
   - com.android.hardware.biometrics.fingerprint.virtual # hardware/interfaces/biometrics/fingerprint/aidl/default | system_ext/apex/com.android.hardware.biometrics.fingerprint.virtual.apex
   - com.nxp.mifare.prebuilt.xml # frameworks/native/data/etc | vendor/etc/permissions/com.nxp.mifare.prebuilt.xml
+  - computercontrol.extension.xml # frameworks/base/libs/computercontrol | system_ext/etc/permissions/computercontrol.extension.xml
   - fastbootd # system/core/fastboot | recovery/system/bin/fastbootd
   - Fraunces-Regular.ttf # external/google-fonts/fraunces | product/fonts/Fraunces-Regular.ttf
   - Fraunces-SemiBold.ttf # external/google-fonts/fraunces | product/fonts/Fraunces-SemiBold.ttf
@@ -308,11 +335,16 @@ replacement_module_inclusions:
   - Lato-MediumItalic.ttf # external/google-fonts/lato | product/fonts/Lato-MediumItalic.ttf
   - Lato-Regular.ttf # external/google-fonts/lato | product/fonts/Lato-Regular.ttf
   - ld-android.vendor_ramdisk # bionic/linker | vendor_ramdisk/system/lib64/ld-android.so
+  - libaconfig_storage_file.vendor # build/make/tools/aconfig/aconfig_storage_file | vendor/lib64/libaconfig_storage_file.dylib.so
+  - libaconfig_storage_protos.vendor # build/make/tools/aconfig/aconfig_storage_file | vendor/lib64/libaconfig_storage_protos.dylib.so
+  - libaconfig_storage_read_api.vendor # build/make/tools/aconfig/aconfig_storage_read_api | vendor/lib64/libaconfig_storage_read_api.dylib.so
   - libaho_corasick.vendor # external/rust/android-crates-io/crates/aho-corasick | vendor/lib64/libaho_corasick.dylib.so
   - libalsautils.vendor # system/media/alsa_utils | vendor/lib64/libalsautils.so
   - libalsautilsv2.vendor # system/media/alsa_utils | vendor/lib64/libalsautilsv2.so
   - libandroid_log_sys.vendor # external/rust/android-crates-io/crates/android_log-sys | vendor/lib64/libandroid_log_sys.dylib.so
   - libandroid_logger.vendor # external/rust/android-crates-io/crates/android_logger | vendor/lib64/libandroid_logger.dylib.so
+  - libanstyle.vendor # external/rust/android-crates-io/crates/anstyle | vendor/lib64/libanstyle.dylib.so
+  - libanyhow.vendor # external/rust/android-crates-io/crates/anyhow | vendor/lib64/libanyhow.dylib.so
   - libasyncio.recovery # system/core/libasyncio | recovery/system/lib64/libasyncio.so
   - libaudio_aidl_conversion_common_ndk.vendor # frameworks/av/media/audioaidlconversion | vendor/lib64/libaudio_aidl_conversion_common_ndk.so
   - libaudioaidlcommon.vendor # hardware/interfaces/audio/aidl/common | vendor/lib64/libaudioaidlcommon.so
@@ -322,17 +354,25 @@ replacement_module_inclusions:
   - libavservices_minijail.vendor # frameworks/av/media/module/minijail | vendor/lib64/libavservices_minijail.so
   - libbase.vendor_ramdisk # system/libbase | vendor_ramdisk/system/lib64/libbase.so
   - libbinder_trusty # frameworks/native/libs/binder | vendor/lib64/libbinder_trusty.so
+  - libbionic_bindgen.vendor # system/librustutils/rustutils | vendor/lib64/libbionic_bindgen.dylib.so
+  - libbitflags.vendor # external/rust/android-crates-io/crates/bitflags | vendor/lib64/libbitflags.dylib.so
   - libbluetooth_audio_session # hardware/interfaces/bluetooth/audio/utils | vendor/lib64/libbluetooth_audio_session.so
   - libbluetooth_audio_session_aidl # hardware/interfaces/bluetooth/audio/utils | vendor/lib64/libbluetooth_audio_session_aidl.so
+  - libbluetooth_audio_session_aidl.vendor # hardware/interfaces/bluetooth/audio/utils | vendor/lib64/libbluetooth_audio_session_aidl.so
   - libbundleaidl # frameworks/av/media/libeffects/lvm/wrapper | vendor/lib64/soundfx/libbundleaidl.so
+  - libbytes.vendor # external/rust/android-crates-io/crates/bytes | vendor/lib64/libbytes.dylib.so
   - libc++.vendor_ramdisk # prebuilts/clang/host/linux-x86 | vendor_ramdisk/system/lib64/libc++.so
   - libc.vendor_ramdisk # bionic/libc | vendor_ramdisk/system/lib64/libc.so
   - libcap.vendor # external/libcap | vendor/lib64/libcap.so
   - libcfg_if.vendor # external/rust/android-crates-io/crates/cfg-if | vendor/lib64/libcfg_if.dylib.so
   - libclang_rt.ubsan_standalone.vendor # prebuilts/clang/host/linux-x86 | vendor/lib64/libclang_rt.ubsan_standalone-aarch64-android.so
+  - libclap.vendor # external/rust/android-crates-io/crates/clap | vendor/lib64/libclap.dylib.so
+  - libclap_builder.vendor # external/rust/android-crates-io/crates/clap_builder | vendor/lib64/libclap_builder.dylib.so
+  - libclap_lex.vendor # external/rust/android-crates-io/crates/clap_lex | vendor/lib64/libclap_lex.dylib.so
   - libcodec2.vendor # frameworks/av/media/codec2/core | vendor/lib64/libcodec2.so
   - libcodec2_aidl.vendor # frameworks/av/media/codec2/hal/aidl | vendor/lib64/libcodec2_aidl.so
   - libcodec2_aidl_noisurface.vendor # frameworks/av/media/codec2/hal/aidl | vendor/lib64/libcodec2_aidl_noisurface.so
+  - libcodec2_aidl_V2.vendor # frameworks/av/media/codec2/hal/aidl | vendor/lib64/libcodec2_aidl_V2.so
   - libcodec2_hal_common.vendor # frameworks/av/media/codec2/hal/common | vendor/lib64/libcodec2_hal_common.so
   - libcodec2_hidl@1.0.vendor # frameworks/av/media/codec2/hal/hidl/1.0/utils | vendor/lib64/libcodec2_hidl@1.0.so
   - libcodec2_hidl_plugin # frameworks/av/media/codec2/hal/plugin | vendor/lib64/libcodec2_hidl_plugin.so
@@ -341,6 +381,8 @@ replacement_module_inclusions:
   - libcppbor.vendor # system/libcppbor | vendor/lib64/libcppbor.so
   - libcppcose_rkp.vendor # system/keymaster | vendor/lib64/libcppcose_rkp.so
   - libcurl.vendor # external/curl | vendor/lib64/libcurl.so
+  - libcutils_bindgen.vendor # system/librustutils/rustutils | vendor/lib64/libcutils_bindgen.dylib.so
+  - libcxx.vendor # external/rust/cxx | vendor/lib64/libcxx.dylib.so
   - libdl.vendor_ramdisk # bionic/libdl | vendor_ramdisk/system/lib64/libdl.so
   - libdownmixaidl # frameworks/av/media/libeffects/downmix | vendor/lib64/soundfx/libdownmixaidl.so
   - libdrm.vendor # external/libdrm | vendor/lib64/libdrm.so
@@ -348,6 +390,7 @@ replacement_module_inclusions:
   - libdynamicsprocessingaidl # frameworks/av/media/libeffects/dynamicsproc | vendor/lib64/soundfx/libdynamicsprocessingaidl.so
   - libeffectconfig # hardware/interfaces/audio/aidl/default | vendor/lib64/libeffectconfig.so
   - libenv_filter.vendor # external/rust/android-crates-io/crates/env_filter | vendor/lib64/libenv_filter.dylib.so
+  - libenv_logger.vendor # external/rust/android-crates-io/crates/env_logger | vendor/lib64/libenv_logger.dylib.so
   - libevent.vendor # external/libevent | vendor/lib64/libevent.so
   - libexpat.vendor # external/expat | vendor/lib64/libexpat.so
   - libext2_blkid.vendor_ramdisk # external/e2fsprogs/lib/blkid | vendor_ramdisk/system/lib64/libext2_blkid.so
@@ -359,7 +402,9 @@ replacement_module_inclusions:
   - libext2fs.vendor_ramdisk # external/e2fsprogs/lib/ext2fs | vendor_ramdisk/system/lib64/libext2fs.so
   - libflatbuffers-cpp.vendor # external/flatbuffers | vendor/lib64/libflatbuffers-cpp.so
   - libfmq.vendor # system/libfmq | vendor/lib64/libfmq.so
+  - libfoldhash.vendor # external/rust/android-crates-io/crates/foldhash | vendor/lib64/libfoldhash.dylib.so
   - libgralloctypes.vendor # frameworks/native/libs/gralloc/types | vendor/lib64/libgralloctypes.so
+  - libgui.vendor # frameworks/native/libs/gui | vendor/lib64/libgui.so
   - libhapticgeneratoraidl # frameworks/av/media/libeffects/hapticgenerator | vendor/lib64/soundfx/libhapticgeneratoraidl.so
   - libhidlmemory.vendor # system/libhidl/libhidlmemory | vendor/lib64/libhidlmemory.so
   - libhidltransport.vendor # system/libhidl | vendor/lib64/libhidltransport.so
@@ -371,29 +416,40 @@ replacement_module_inclusions:
   - libkeymaster_portable.vendor # system/keymaster | vendor/lib64/libkeymaster_portable.so
   - libkeymint_support_V3.vendor # hardware/interfaces/security/keymint/support | vendor/lib64/libkeymint_support_V3.so
   - libkeystore-engine-wifi-hidl # system/security/keystore-engine | vendor/lib64/libkeystore-engine-wifi-hidl.so
+  - liblazy_static.vendor # external/rust/android-crates-io/crates/lazy_static | vendor/lib64/liblazy_static.dylib.so
+  - liblibc.vendor # external/rust/android-crates-io/crates/libc | vendor/lib64/liblibc.dylib.so
   - liblibloading.vendor # external/rust/android-crates-io/crates/libloading | vendor/lib64/liblibloading.dylib.so
   - liblog.vendor_ramdisk # system/logging/liblog | vendor_ramdisk/system/lib64/liblog.so
   - liblog_rust.vendor # external/rust/android-crates-io/crates/log | vendor/lib64/liblog_rust.dylib.so
+  - liblogger.vendor # system/logging/rust | vendor/lib64/liblogger.dylib.so
   - libloudnessenhanceraidl # frameworks/av/media/libeffects/loudness | vendor/lib64/soundfx/libloudnessenhanceraidl.so
   - liblzma.vendor # external/lzma # vendor/lib64/liblzma.so
   - libm.vendor_ramdisk # bionic/libm | vendor_ramdisk/system/lib64/libm.so
   - libmedia_omx.vendor # frameworks/av/media/libmedia | vendor/lib64/libmedia_omx.so
   - libmediautils_vendor.vendor # frameworks/av/media/utils | vendor/lib64/libmediautils_vendor.so
   - libmemchr.vendor # external/rust/android-crates-io/crates/memchr | vendor/lib64/libmemchr.dylib.so
+  - libmemmap2.vendor # external/rust/android-crates-io/crates/memmap2 | vendor/lib64/libmemmap2.dylib.so
+  - libmemoffset.vendor # external/rust/android-crates-io/crates/memoffset | vendor/lib64/libmemoffset.dylib.so
   - libmemunreachable.vendor # system/memory/libmemunreachable | vendor/lib64/libmemunreachable.so
   - libminijail.vendor # external/minijail | vendor/lib64/libminijail.so
   - libnbaio_mono # frameworks/av/media/libnbaio | vendor/lib64/libnbaio_mono.so
   - libnetutils.vendor # system/core/libnetutils | vendor/lib64/libnetutils.so
+  - libnix.vendor # external/rust/android-crates-io/crates/nix | vendor/lib64/libnix.dylib.so
   - libnl.vendor # external/libnl | vendor/lib64/libnl.so
   - libonce_cell.vendor # external/rust/android-crates-io/crates/once_cell | vendor/lib64/libonce_cell.dylib.so
   - libpng.vendor # external/libpng | vendor/lib64/libpng.so
   - libpower.vendor # hardware/libhardware_legacy | vendor/lib64/libpower.so
   - libprocessgroup.vendor # system/core/libprocessgroup | vendor/lib64/libprocessgroup.so
+  - libprotobuf.vendor # external/rust/android-crates-io/crates/protobuf | vendor/lib64/libprotobuf.dylib.so
+  - libprotobuf_support.vendor # external/rust/android-crates-io/crates/protobuf-support | vendor/lib64/libprotobuf_support.dylib.so
   - libregex.vendor # external/rust/android-crates-io/crates/regex | vendor/lib64/libregex.dylib.so
   - libregex_automata.vendor # external/rust/android-crates-io/crates/regex-automata | vendor/lib64/libregex_automata.dylib.so
   - libregex_syntax.vendor # external/rust/android-crates-io/crates/regex-syntax | vendor/lib64/libregex_syntax.dylib.so
   - libreverbaidl # frameworks/av/media/libeffects/lvm/wrapper | vendor/lib64/soundfx/libreverbaidl.so
+  - librustutils.vendor # system/librustutils/rustutils | vendor/lib64/librustutils.dylib.so
   - libsensorndkbridge # frameworks/hardware/interfaces/sensorservice/libsensorndkbridge | vendor/lib64/libsensorndkbridge.so
+  - libserde.vendor # external/rust/android-crates-io/crates/serde | vendor/lib64/libserde.dylib.so
+  - libserde_core.vendor # external/rust/android-crates-io/crates/serde_core | vendor/lib64/libserde_core.dylib.so
   - libsfplugin_ccodec_utils.vendor # frameworks/av/media/codec2/sfplugin/utils | vendor/lib64/libsfplugin_ccodec_utils.so
   - libsparse.vendor # system/core/libsparse | vendor/lib64/libsparse.so
   - libsparse.vendor_ramdisk # system/core/libsparse | vendor_ramdisk/system/lib64/libsparse.so
@@ -405,6 +461,9 @@ replacement_module_inclusions:
   - libstagefright_omx_utils.vendor # frameworks/av/media/libstagefright/omx | vendor/lib64/libstagefright_omx_utils.so
   - libstagefright_xmlparser.vendor # frameworks/av/media/libstagefright/xmlparser | vendor/lib64/libstagefright_xmlparser.so
   - libstd.vendor # prebuilts/rust | vendor/lib64/libstd.dylib.so
+  - libstrsim.vendor # external/rust/android-crates-io/crates/strsim | vendor/lib64/libstrsim.dylib.so
+  - libsystem_properties_bindgen_sys.vendor # system/librustutils/rustutils | vendor/lib64/libsystem_properties_bindgen_sys.dylib.so
+  - libthiserror.vendor # external/rust/android-crates-io/crates/thiserror | vendor/lib64/libthiserror.dylib.so
   - libtinyalsa.vendor # external/tinyalsa | vendor/lib64/libtinyalsa.so
   - libtinyalsav2.vendor # external/tinyalsa_new | vendor/lib64/libtinyalsav2.so
   - libtinycompress # external/tinycompress | vendor/lib64/libtinycompress.so
@@ -453,6 +512,9 @@ replacement_module_inclusions:
   - vendor_file_contexts.recovery # system/sepolicy/contexts | recovery/vendor_file_contexts
   - vendor_property_contexts.recovery # system/sepolicy/contexts | recovery/vendor_property_contexts
   - vendor_service_contexts.recovery # system/sepolicy/contexts | recovery/vendor_service_contexts
+  - VirtualDeviceManager # frameworks/base/packages/VirtualDeviceManager | system/app/VirtualDeviceManager/VirtualDeviceManager.apk
+  - VirtualDeviceManager__nosdcard__auto_generated_characteristics_rro # frameworks/base/packages/VirtualDeviceManager | product/overlay/VirtualDeviceManager__nosdcard__auto_generated_characteristics_rro.apk
+  - VirtualGamepad # packages/apps/VirtualGamepad | system_ext/app/VirtualGamepad/VirtualGamepad.apk
   - vndservice # frameworks/native/cmds/service | vendor/bin/vndservice
   - vndservicemanager # frameworks/native/cmds/servicemanager | vendor/bin/vndservicemanager,vendor/etc/init/vndservicemanager.rc
   - ZillaSlab-Medium.ttf # external/google-fonts/zilla-slab | product/fonts/ZillaSlab-Medium.ttf

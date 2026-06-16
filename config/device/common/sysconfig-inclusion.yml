@@ -4,7 +4,13 @@ sysconfig_inclusions:
     <component-override package="com.android.settings">
       <component class=".RegulatoryInfoDisplayActivity" enabled="true"/>
     </component-override>
+  - |-
+    <component-override package="com.android.systemui">
+      <component class=".dreams.DreamOverlayService" enabled="true"/>
+      <component class="com.android.systemui.lowlightclock.LowLightClockDreamService" enabled="true"/>
+    </component-override>
   - <feature name="android.hardware.bluetooth_le.channel_sounding"/>
+  - <feature name="android.hardware.felica"/>
   - <feature name="android.hardware.nfc.uicc"/>
   - <feature name="android.hardware.strongbox_keystore" version="300"/>
   - <feature name="android.hardware.telephony.euicc"/>
@@ -16,7 +22,9 @@ sysconfig_inclusions:
   - <feature name="android.hardware.vulkan.version" version="4210688"/>
   - <feature name="android.software.freeform_window_management"/>
   - <feature name="android.software.opengles.deqp.level" version="132711169"/>
+  - <feature name="android.software.opengles.deqp.level" version="132776705"/>
   - <feature name="android.software.vulkan.deqp.level" version="132711169"/>
+  - <feature name="android.software.vulkan.deqp.level" version="132776705"/>
   - <feature name="com.google.android.apps.dialer.SUPPORTED"/>
   - <feature name="com.google.android.feature.AER_OPTIMIZED"/>
   - <feature name="com.google.android.feature.CONTEXTUAL_SEARCH_LIVE_TRANSLATE"/>
@@ -46,6 +54,91 @@ sysconfig_inclusions:
   - <feature name="com.google.pixel.camera.concurrent_foldable_dual_front"/>
   - <feature name="vendor.android.hardware.camera.preview-dis.back"/>
   - <feature name="vendor.android.hardware.camera.preview-dis.front"/>
+  - |-
+    <install-in-user-type package="com.google.android.euicc">
+      <install-in user-type="SYSTEM"/>
+      <install-in user-type="FULL"/>
+      <install-in user-type="PROFILE"/>
+    </install-in-user-type>
+  - |-
+    <install-in-user-type package="com.google.euiccpixel.permissions">
+      <install-in user-type="SYSTEM"/>
+    </install-in-user-type>
+  - |-
+    <install-in-user-type package="com.shannon.rcsservice">
+      <install-in user-type="SYSTEM"/>
+      <install-in user-type="FULL"/>
+    </install-in-user-type>
+  - |-
+    <install-in-user-type package="com.shannon.imsservice">
+      <install-in user-type="SYSTEM"/>
+      <install-in user-type="FULL"/>
+    </install-in-user-type>
+  - |-
+    <install-in-user-type package="com.samsung.slsi.telephony.oemril">
+      <install-in user-type="SYSTEM"/>
+      <install-in user-type="FULL"/>
+    </install-in-user-type>
+  - |-
+    <install-in-user-type package="com.samsung.slsi.telephony.oem.oemrilhookservice">
+      <install-in user-type="SYSTEM"/>
+      <install-in user-type="FULL"/>
+    </install-in-user-type>
+  - |-
+    <install-in-user-type package="com.google.pixel.camera.services">
+      <install-in user-type="SYSTEM"/>
+      <install-in user-type="FULL"/>
+      <install-in user-type="android.os.usertype.profile.MANAGED"/>
+      <install-in user-type="android.os.usertype.profile.PRIVATE"/>
+    </install-in-user-type>
+  - |-
+    <install-in-user-type package="com.google.android.apps.camera.services">
+      <install-in user-type="SYSTEM"/>
+      <install-in user-type="FULL"/>
+      <install-in user-type="android.os.usertype.profile.MANAGED"/>
+      <install-in user-type="android.os.usertype.profile.PRIVATE"/>
+    </install-in-user-type>
+  - |-
+    <install-in-user-type package="com.android.pixeldisplayservice">
+      <install-in user-type="SYSTEM"/>
+      <install-in user-type="FULL"/>
+      <install-in user-type="android.os.usertype.profile.MANAGED"/>
+    </install-in-user-type>
+  - |-
+    <install-in-user-type package="com.android.telephony.imsmedia">
+      <install-in user-type="SYSTEM"/>
+      <install-in user-type="FULL"/>
+    </install-in-user-type>
+  - |-
+    <install-in-user-type package="com.google.android.rilextension">
+      <install-in user-type="SYSTEM"/>
+    </install-in-user-type>
+  - |-
+    <install-in-user-type package="com.android.qns">
+      <install-in user-type="SYSTEM"/>
+    </install-in-user-type>
+  - |-
+    <install-in-user-type package="com.google.android.pixelnfc">
+      <install-in user-type="FULL"/>
+      <install-in user-type="PROFILE"/>
+    </install-in-user-type>
+  - |-
+    <install-in-user-type package="com.google.android.iwlan">
+      <install-in user-type="SYSTEM"/>
+    </install-in-user-type>
+  - |-
+    <install-in-user-type package="com.android.angle">
+      <install-in user-type="FULL"/>
+      <install-in user-type="PROFILE"/>
+    </install-in-user-type>
+  - |-
+    <install-in-user-type package="com.android.providers.contacts">
+      <install-in user-type="SYSTEM"/>
+      <install-in user-type="FULL"/>
+      <install-in user-type="android.os.usertype.profile.MANAGED"/>
+      <install-in user-type="android.os.usertype.profile.CLONE"/>
+      <install-in user-type="android.os.usertype.profile.PRIVATE"/>
+    </install-in-user-type>
   - <library name="androidx.camera.extensions.impl" file="/system_ext/framework/com.google.android.camerax.extensions.jar"/>
   - <library name="com.google.android.camera.experimental2021" file="/vendor/framework/com.google.android.camera.experimental2021.jar"/>
   - <library name="com.google.android.camera.experimental2022" file="/vendor/framework/com.google.android.camera.experimental2022.jar"/>

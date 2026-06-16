@@ -160,6 +160,7 @@ filters:
       - android:bool/config_dozeAlwaysOnEnabled = false
       - android:bool/config_dozePickupGestureEnabled = false
       - android:bool/config_dozePulsePickup = true
+      - android:bool/config_dozeSupportsAodInactivityDetection = true
       - android:bool/config_dozeSupportsAodWallpaper = true
       - android:bool/config_dreamsActivatedOnDockByDefault = false
       - android:bool/config_dreamsActivatedOnDockByDefault = true
@@ -169,9 +170,12 @@ filters:
       - android:bool/config_dreamsDisabledByAmbientModeSuppressionConfig = true
       - android:bool/config_dreamsEnabledByDefault = false
       - android:bool/config_dreamsOnlyEnabledForDockUser = true
+      - android:bool/config_dreamSwitcherEnabled = true
       - android:bool/config_dropboxmanager_persistent_logging_enabled = true
       - android:bool/config_emergencyGestureEnabled = false
+      - android:bool/config_enableAppLaunchBlur = false
       - android:bool/config_enableAutoPowerModes = true
+      - android:bool/config_enableBlurExpansion = false
       - android:bool/config_enableHapticTextHandle = true
       - android:bool/config_enableIdleScreenBrightnessMode = true
       - android:bool/config_enableMotionPrediction = true
@@ -180,7 +184,6 @@ filters:
       - android:bool/config_enableProximityService = true
       - android:bool/config_enableTimeoutToDockUserWhenDocked = true
       - android:bool/config_enableUdcSysfsUsbStateUpdate = true
-      - android:bool/config_enterDesktopByDefaultOnFreeformDisplay = true
       - android:bool/config_enterDesktopByDefaultOnFreeformDisplay = true
       - android:bool/config_evenDimmerEnabled = true
       - android:bool/config_faceAuthDismissesKeyguard = false
@@ -201,6 +204,7 @@ filters:
       - android:bool/config_imeDrawsImeNavBar = true
       - android:bool/config_is_powerbutton_fps = true
       - android:bool/config_isCameraCompatControlForStretchedIssuesEnabled = true
+      - android:bool/config_isCameraCompatSimulateRequestedOrientationTreatmentEnabled = false
       - android:bool/config_isCompatFakeFocusEnabled = true
       - android:bool/config_isDesktopModeSupported = true
       - android:bool/config_isWindowManagerCameraCompatSplitScreenAspectRatioEnabled = true
@@ -246,7 +250,6 @@ filters:
       - android:bool/config_screen_off_udfps_default_on = true
       - android:bool/config_screen_off_udfps_enabled = false
       - android:bool/config_screen_off_udfps_enabled = true
-      - android:bool/config_screen_off_udfps_enabled = true
       - android:bool/config_setColorTransformAccelerated = true
       - android:bool/config_settingsHelpLinksEnabled = true
       - android:bool/config_showMenuShortcutsWhenKeyboardPresent = true
@@ -262,6 +265,8 @@ filters:
       - android:bool/config_startDreamImmediatelyOnDock = false
       - android:bool/config_support_disable_satellite_while_enable_in_progress = false
       - android:bool/config_supportDoubleTapSleep = true
+      - android:bool/config_supportDreamWirelessChargingRestriction = false
+      - android:bool/config_supportDreamWirelessChargingRestriction = true
       - android:bool/config_supportLongPressPowerWhenNonInteractive = true
       - android:bool/config_supportsCamToggle = true
       - android:bool/config_supportsConcurrentInternalDisplays = false
@@ -276,6 +281,7 @@ filters:
       - android:bool/config_unfoldTransitionHapticsEnabled|*
       - android:bool/config_unfoldTransitionHingeAngle = true
       - android:bool/config_unplugTurnsOnScreen = true
+      - android:bool/config_update_operator_name_after_carrier_config_loaded = true
       - android:bool/config_use_tiered_cached_adj = false
       - android:bool/config_useCurrentRotationOnRotationLockChange|*
       - android:bool/config_useDevInputEventForAudioJack = true
@@ -399,9 +405,11 @@ filters:
       - android:integer/config_dreamsBatteryLevelDrainCutoff = 2
       - android:integer/config_esim_bootstrap_data_limit_bytes = 235929600
       - android:integer/config_externalDisplayPeakHeight = 1080
+      - android:integer/config_externalDisplayPeakHeight = 1600
       - android:integer/config_externalDisplayPeakHeight = 2160
       - android:integer/config_externalDisplayPeakRefreshRate = 61
       - android:integer/config_externalDisplayPeakWidth = 1920
+      - android:integer/config_externalDisplayPeakWidth = 3440
       - android:integer/config_externalDisplayPeakWidth = 3840
       - android:integer/config_fingerprintMaxTemplatesPerUser = 4
       - android:integer/config_fixedRefreshRateInHighZone = 60
@@ -472,6 +480,7 @@ filters:
       - android:string/concurrent_display_notification_thermal_content|*
       - android:string/config_ambientContextEventArrayExtraKey = EVENT_ARRAY
       - android:string/config_ambientContextPackageNameExtraKey = PACKAGE_NAME
+      - android:string/config_computerControlReferenceDisplayPhysicalAddress = 4619827677550801153
       - android:string/config_defaultAccessibilityNotificationSound = Effect_Tick.ogg
       - android:string/config_deviceSpecificDeviceStatePolicyProvider|*
       - android:string/config_display_features|*
@@ -485,6 +494,7 @@ filters:
       - android:string/config_mainDisplayShape|*
       - android:string/config_mms_user_agent_profile_url|*
       - android:string/config_mms_user_agent|*
+      - android:string/config_pluginsProviderJarPath = /system_ext/framework/laguna-plugin-provider.jar
       - android:string/config_qualified_networks_service_package = com.android.qns
       - android:string/config_qualified_networks_service_package = com.shannon.qualifiednetworksservice
       - android:string/config_quickPickupSensorType = com.google.sensor.quick_pickup
@@ -495,6 +505,8 @@ filters:
       - android:string/config_secondaryBuiltInDisplayCutoutRectApproximation|*
       - android:string/config_secondaryBuiltInDisplayCutout|*
       - android:string/config_secondaryDisplayShape|*
+      - android:string/config_virtual_gamepad_activity_name = com.android.virtualgamepad.GamepadActivity
+      - android:string/config_virtual_gamepad_package_name = com.android.virtualgamepad
       - android:string/config_wlan_data_service_package = com.google.android.iwlan
       - android:string/config_wlan_data_service_package = com.google.pixel.iwlan
       - android:string/config_wlan_network_service_package = com.google.android.iwlan
@@ -568,9 +580,197 @@ filters:
       - com.android.documentsui/DocumentsUICustomization:bool/config_button_all_caps = false
       - com.android.documentsui/DocumentsUICustomization:bool/handle_view_downloads_intent = false
       - com.android.documentsui/DocumentsUICustomization:bool/show_search_bar = true
+      - com.android.documentsui/DocumentsUICustomization:color/customColorBrandA = @*android:color/system_brand_a_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorBrandA|night = @*android:color/system_brand_a_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorBrandB = @*android:color/system_brand_b_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorBrandB|night = @*android:color/system_brand_b_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorBrandC = @*android:color/system_brand_c_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorBrandC|night = @*android:color/system_brand_c_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorBrandD = @*android:color/system_brand_d_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorBrandD|night = @*android:color/system_brand_d_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorClockHour = @*android:color/system_clock_hour_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorClockHour|night = @*android:color/system_clock_hour_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorClockMinute = @*android:color/system_clock_minute_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorClockMinute|night = @*android:color/system_clock_minute_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorClockSecond = @*android:color/system_clock_second_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorClockSecond|night = @*android:color/system_clock_second_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorOnShadeActive = @*android:color/system_on_shade_active_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorOnShadeActiveVariant = @*android:color/system_on_shade_active_variant_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorOnShadeActiveVariant|night = @*android:color/system_on_shade_active_variant_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorOnShadeActive|night = @*android:color/system_on_shade_active_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorOnShadeInactive = @*android:color/system_on_shade_inactive_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorOnShadeInactiveVariant = @*android:color/system_on_shade_inactive_variant_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorOnShadeInactiveVariant|night = @*android:color/system_on_shade_inactive_variant_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorOnShadeInactive|night = @*android:color/system_on_shade_inactive_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorOnThemeApp = @*android:color/system_on_theme_app_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorOnThemeApp|night = @*android:color/system_on_theme_app_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorOverviewBackground = @*android:color/system_overview_background_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorOverviewBackground|night = @*android:color/system_overview_background_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorShadeActive = @*android:color/system_shade_active_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorShadeActive|night = @*android:color/system_shade_active_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorShadeDisabled = @*android:color/system_shade_disabled_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorShadeDisabled|night = @*android:color/system_shade_disabled_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorShadeInactive = @*android:color/system_shade_inactive_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorShadeInactive|night = @*android:color/system_shade_inactive_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorSurfaceEffect0 = @*android:color/system_surface_effect_0_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorSurfaceEffect0Fallback = @*android:color/system_surface_effect_0_fallback_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorSurfaceEffect0Fallback|night = @*android:color/system_surface_effect_0_fallback_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorSurfaceEffect0|night = @*android:color/system_surface_effect_0_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorSurfaceEffect1 = @*android:color/system_surface_effect_1_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorSurfaceEffect1|night = @*android:color/system_surface_effect_1_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorSurfaceEffect2 = @*android:color/system_surface_effect_2_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorSurfaceEffect2|night = @*android:color/system_surface_effect_2_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorSurfaceEffect3 = @*android:color/system_surface_effect_3_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorSurfaceEffect3|night = @*android:color/system_surface_effect_3_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorThemeApp = @*android:color/system_theme_app_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorThemeAppRing = @*android:color/system_theme_app_ring_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorThemeAppRing|night = @*android:color/system_theme_app_ring_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorThemeApp|night = @*android:color/system_theme_app_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorThemeNotif = @*android:color/system_theme_notif_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorThemeNotif|night = @*android:color/system_theme_notif_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorUnderSurface = @*android:color/system_under_surface_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorUnderSurface|night = @*android:color/system_under_surface_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorWeatherTemp = @*android:color/system_weather_temp_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorWeatherTemp|night = @*android:color/system_weather_temp_dark
+      - com.android.documentsui/DocumentsUICustomization:color/customColorWidgetBackground = @*android:color/system_widget_background_light
+      - com.android.documentsui/DocumentsUICustomization:color/customColorWidgetBackground|night = @*android:color/system_widget_background_dark
       - com.android.documentsui/DocumentsUICustomization:color/dynamic_color_surface_2_light = 6028848d3a0244c2b933eede1340e1b3849292d76fdf7fbe28759b22317334e8
       - com.android.documentsui/DocumentsUICustomization:color/list_item_selected_background_color = @color/dynamic_color_surface_2_light
       - com.android.documentsui/DocumentsUICustomization:color/list_item_selected_background_color|night = @android:color/system_accent1_900
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorBackground = @android:color/system_background_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorBackground|night = @android:color/system_background_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorControlActivated = @android:color/system_control_activated_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorControlActivated|night = @android:color/system_control_activated_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorControlHighlight = @android:color/system_control_highlight_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorControlHighlight|night = @android:color/system_control_highlight_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorControlNormal = @android:color/system_control_normal_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorControlNormal|night = @android:color/system_control_normal_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorError = @android:color/system_error_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorErrorContainer = @android:color/system_error_container_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorErrorContainer|night = @android:color/system_error_container_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorErrorDim = @android:color/system_error_dim_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorErrorDim|night = @android:color/system_error_dim_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorError|night = @android:color/system_error_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorInverseOnSurface = @android:color/system_inverse_on_surface_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorInverseOnSurface|night = @android:color/system_inverse_on_surface_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorInversePrimary = @android:color/system_inverse_primary_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorInversePrimary|night = @android:color/system_inverse_primary_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorInverseSurface = @android:color/system_inverse_surface_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorInverseSurface|night = @android:color/system_inverse_surface_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnBackground = @android:color/system_on_background_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnBackground|night = @android:color/system_on_background_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnError = @android:color/system_on_error_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnErrorContainer = @android:color/system_on_error_container_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnErrorContainer|night = @android:color/system_on_error_container_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnError|night = @android:color/system_on_error_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnPrimary = @android:color/system_on_primary_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnPrimaryContainer = @android:color/system_on_primary_container_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnPrimaryContainer|night = @android:color/system_on_primary_container_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnPrimaryFixed = @android:color/system_on_primary_fixed_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnPrimaryFixedVariant = @android:color/system_on_primary_fixed_variant_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnPrimaryFixedVariant|night = @android:color/system_on_primary_fixed_variant_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnPrimaryFixed|night = @android:color/system_on_primary_fixed_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnPrimary|night = @android:color/system_on_primary_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnSecondary = @android:color/system_on_secondary_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnSecondaryContainer = @android:color/system_on_secondary_container_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnSecondaryContainer|night = @android:color/system_on_secondary_container_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnSecondaryFixed = @android:color/system_on_secondary_fixed_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnSecondaryFixedVariant = @android:color/system_on_secondary_fixed_variant_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnSecondaryFixedVariant|night = @android:color/system_on_secondary_fixed_variant_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnSecondaryFixed|night = @android:color/system_on_secondary_fixed_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnSecondary|night = @android:color/system_on_secondary_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnSurface = @android:color/system_on_surface_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnSurfaceVariant = @android:color/system_on_surface_variant_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnSurfaceVariant|night = @android:color/system_on_surface_variant_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnSurface|night = @android:color/system_on_surface_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnTertiary = @android:color/system_on_tertiary_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnTertiaryContainer = @android:color/system_on_tertiary_container_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnTertiaryContainer|night = @android:color/system_on_tertiary_container_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnTertiaryFixed = @android:color/system_on_tertiary_fixed_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnTertiaryFixedVariant = @android:color/system_on_tertiary_fixed_variant_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnTertiaryFixedVariant|night = @android:color/system_on_tertiary_fixed_variant_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnTertiaryFixed|night = @android:color/system_on_tertiary_fixed_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOnTertiary|night = @android:color/system_on_tertiary_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOutline = @android:color/system_outline_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOutlineVariant = @android:color/system_outline_variant_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOutlineVariant|night = @android:color/system_outline_variant_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorOutline|night = @android:color/system_outline_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPaletteKeyColorError = @android:color/system_palette_key_color_error_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPaletteKeyColorError|night = @android:color/system_palette_key_color_error_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPaletteKeyColorNeutral = @android:color/system_palette_key_color_neutral_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPaletteKeyColorNeutralVariant = @android:color/system_palette_key_color_neutral_variant_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPaletteKeyColorNeutralVariant|night = @android:color/system_palette_key_color_neutral_variant_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPaletteKeyColorNeutral|night = @android:color/system_palette_key_color_neutral_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPaletteKeyColorPrimary = @android:color/system_palette_key_color_primary_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPaletteKeyColorPrimary|night = @android:color/system_palette_key_color_primary_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPaletteKeyColorSecondary = @android:color/system_palette_key_color_secondary_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPaletteKeyColorSecondary|night = @android:color/system_palette_key_color_secondary_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPaletteKeyColorTertiary = @android:color/system_palette_key_color_tertiary_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPaletteKeyColorTertiary|night = @android:color/system_palette_key_color_tertiary_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPrimary = @android:color/system_primary_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPrimaryContainer = @android:color/system_primary_container_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPrimaryContainer|night = @android:color/system_primary_container_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPrimaryDim = @android:color/system_primary_dim_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPrimaryDim|night = @android:color/system_primary_dim_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPrimaryFixed = @android:color/system_primary_fixed_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPrimaryFixedDim = @android:color/system_primary_fixed_dim_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPrimaryFixedDim|night = @android:color/system_primary_fixed_dim_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPrimaryFixed|night = @android:color/system_primary_fixed_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorPrimary|night = @android:color/system_primary_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorScrim = @android:color/system_scrim_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorScrim|night = @android:color/system_scrim_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSecondary = @android:color/system_secondary_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSecondaryContainer = @android:color/system_secondary_container_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSecondaryContainer|night = @android:color/system_secondary_container_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSecondaryDim = @android:color/system_secondary_dim_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSecondaryDim|night = @android:color/system_secondary_dim_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSecondaryFixed = @android:color/system_secondary_fixed_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSecondaryFixedDim = @android:color/system_secondary_fixed_dim_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSecondaryFixedDim|night = @android:color/system_secondary_fixed_dim_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSecondaryFixed|night = @android:color/system_secondary_fixed_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSecondary|night = @android:color/system_secondary_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorShadow = @android:color/system_shadow_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorShadow|night = @android:color/system_shadow_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSurface = @android:color/system_surface_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSurfaceBright = @android:color/system_surface_bright_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSurfaceBright|night = @android:color/system_surface_bright_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSurfaceContainer = @android:color/system_surface_container_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSurfaceContainerHigh = @android:color/system_surface_container_high_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSurfaceContainerHighest = @android:color/system_surface_container_highest_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSurfaceContainerHighest|night = @android:color/system_surface_container_highest_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSurfaceContainerHigh|night = @android:color/system_surface_container_high_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSurfaceContainerLow = @android:color/system_surface_container_low_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSurfaceContainerLowest = @android:color/system_surface_container_lowest_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSurfaceContainerLowest|night = @android:color/system_surface_container_lowest_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSurfaceContainerLow|night = @android:color/system_surface_container_low_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSurfaceContainer|night = @android:color/system_surface_container_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSurfaceDim = @android:color/system_surface_dim_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSurfaceDim|night = @android:color/system_surface_dim_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSurfaceTint = @android:color/system_surface_tint_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSurfaceTint|night = @android:color/system_surface_tint_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSurfaceVariant = @android:color/system_surface_variant_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSurfaceVariant|night = @android:color/system_surface_variant_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorSurface|night = @android:color/system_surface_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorTertiary = @android:color/system_tertiary_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorTertiaryContainer = @android:color/system_tertiary_container_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorTertiaryContainer|night = @android:color/system_tertiary_container_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorTertiaryDim = @android:color/system_tertiary_dim_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorTertiaryDim|night = @android:color/system_tertiary_dim_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorTertiaryFixed = @android:color/system_tertiary_fixed_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorTertiaryFixedDim = @android:color/system_tertiary_fixed_dim_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorTertiaryFixedDim|night = @android:color/system_tertiary_fixed_dim_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorTertiaryFixed|night = @android:color/system_tertiary_fixed_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorTertiary|night = @android:color/system_tertiary_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorTextHintInverse = @android:color/system_text_hint_inverse_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorTextHintInverse|night = @android:color/system_text_hint_inverse_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorTextPrimaryInverse = @android:color/system_text_primary_inverse_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorTextPrimaryInverseDisableOnly = @android:color/system_text_primary_inverse_disable_only_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorTextPrimaryInverseDisableOnly|night = @android:color/system_text_primary_inverse_disable_only_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorTextPrimaryInverse|night = @android:color/system_text_primary_inverse_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorTextSecondaryAndTertiaryInverse = @android:color/system_text_secondary_and_tertiary_inverse_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorTextSecondaryAndTertiaryInverseDisabled = @android:color/system_text_secondary_and_tertiary_inverse_disabled_light
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorTextSecondaryAndTertiaryInverseDisabled|night = @android:color/system_text_secondary_and_tertiary_inverse_disabled_dark
+      - com.android.documentsui/DocumentsUICustomization:color/materialColorTextSecondaryAndTertiaryInverse|night = @android:color/system_text_secondary_and_tertiary_inverse_dark
       - com.android.documentsui/DocumentsUICustomization:color/primary|*
       - com.android.documentsui/DocumentsUICustomization:dimen/grid_item_radius = 8.0dp
       - com.android.documentsui/DocumentsUICustomization:dimen/search_chip_radius = 8.0dp
@@ -742,6 +942,7 @@ filters:
       - com.android.settings:array/entryvalues_font_size|*
       - com.android.settings:array/face_enroll_primary_buckets = 2;7;12;17
       - com.android.settings:array/fingerprint_acquired_vendor|*
+      - com.android.settings:array/low_light_display_behavior_supported_values = low_light_display_behavior_low_light_clock_dream
       - com.android.settings:array/sp_config_001_first_party_hals|*
       - com.android.settings:array/sp_config_001_ui_model_names|*
       - com.android.settings:array/udfps_enroll_enrolling = .error:@sud_system_error_light;.primary:@sud_system_primary_light;.inverseOnSurface:@sud_system_on_surface_inverse_light;.outlineVariant:@sud_system_outline_variant_light;.onSecondary:@sud_system_on_secondary_dark
@@ -790,7 +991,9 @@ filters:
       - com.android.settings:dimen/biometric_enroll_introduction_title_padding_vertical|*
       - com.android.settings:dimen/config_activity_embed_split_ratio|*
       - com.android.settings:dimen/dream_item_min_column_width|*
+      - com.android.settings:dimen/dream_preference_card_fixed_space_around = 10.0dp
       - com.android.settings:dimen/dream_preference_card_padding|*
+      - com.android.settings:dimen/dream_preference_card_space_compensation = -10.0dp
       - com.android.settings:dimen/face_enroll_education_lottie_frame_margin_top|*
       - com.android.settings:dimen/face_enroll_icon_large_height|*
       - com.android.settings:dimen/face_enroll_icon_large_width|*
@@ -806,7 +1009,6 @@ filters:
       - com.android.settings:dimen/limited_vision_button_margin_bottom|*
       - com.android.settings:dimen/limited_vision_button_margin_top|*
       - com.android.settings:dimen/limited_vision_button_toggle_margin_top|*
-      - com.android.settings:dimen/lottie_animation_view_margin_top|*
       - com.android.settings:dimen/lottie_animation_view_margin_top|*
       - com.android.settings:dimen/sfps_enroll_find_sensor_lottie_margin|*
       - com.android.settings:dimen/sfps_enroll_finish_icon_margin_top|*
@@ -882,7 +1084,7 @@ filters:
       - com.android.settings:string/charging_optimization_charge_label|*
       - com.android.settings:string/charging_optimization_entry_summary_charge_limit|*
       - com.android.settings:string/charging_optimization_footer_charge_limit|*
-      - com.android.settings:string/charging_optimization_footer_message_charge_limit|*
+      - com.android.settings:string/charging_optimization_footer_message_charging_limit|*
       - com.android.settings:string/charging_optimization_footer_off|*
       - com.android.settings:string/charging_optimization_reach_limit_charge_label|*
       - com.android.settings:string/charging_optimization_reach_limit_remaining_time_label|*
@@ -918,7 +1120,6 @@ filters:
       - com.android.settings:string/fingerprint_unlock_skip_fingerprint|*
       - com.android.settings:string/fingerprint_unlock_title|*
       - com.android.settings:string/fingerprint_v2_delete_message|*
-      - com.android.settings:string/frr_notification_reset_fingerprint_description|*
       - com.android.settings:string/frr_notification_reset_fingerprint_description|*
       - com.android.settings:string/help_uri_5g_dsds = intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=pixel_5G_and_DSDS;end
       - com.android.settings:string/help_uri_about = intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_about;end
@@ -1185,6 +1386,7 @@ filters:
       - com.android.systemui:dimen/controls_content_padding|*
       - com.android.systemui:dimen/controls_header_horizontal_padding|*
       - com.android.systemui:dimen/controls_panel_corner_radius|*
+      - com.android.systemui:dimen/doze_activity_sensor_threshold = 5.0
       - com.android.systemui:dimen/dream_overlay_complication_margin|*
       - com.android.systemui:dimen/half_opened_bouncer_height_ratio|*
       - com.android.systemui:dimen/keyguard_affordance_fixed_height|*
@@ -1308,6 +1510,7 @@ filters:
       - com.android.systemui:string/data_connection_5g_plus|*
       - com.android.systemui:string/dock_setup_notification_text|*
       - com.android.systemui:string/dock_setup_notification_title|*
+      - com.android.systemui:string/doze_activity_sensor_type = com.google.sensor.prox_aad
       - com.android.systemui:string/doze_brightness_sensor_type = com.google.sensor.binned_brightness
       - com.android.systemui:string/fingerprint_dialog_touch_sensor|*
       - com.android.systemui:string/high_temp_dialog_help_url = https://support.google.com/pixelphone?p=overheat_emergency
@@ -1329,7 +1532,10 @@ filters:
       - com.android.traceur:array/entryvalues_font_size|*
       - com.android.traceur:fraction/display_density_max_scale|*
       - com.android.traceur:string/settingslib_learn_more_text|*
+      - com.android.uwb.resources/UwbCustomization:bool/android_specific_timesync_supported = true
       - com.android.uwb.resources/UwbCustomization:bool/background_ranging_enabled = true
+      - com.android.uwb.resources/UwbCustomization:bool/ccc_absolute_uwb_initiation_time_enabled = true
+      - com.android.uwb.resources/UwbCustomization:bool/enable_16_byte_hopmodekey = true
       - com.android.uwb.resources/UwbCustomization:bool/enable_azimuth_mirroring = false
       - com.android.uwb.resources/UwbCustomization:bool/enable_filters = true
       - com.android.uwb.resources/UwbCustomization:bool/enable_primer_aoa = false
@@ -1341,10 +1547,12 @@ filters:
       - com.android.uwb.resources/UwbCustomization:bool/is_multicast_list_update_ntf_v2_supported = true
       - com.android.uwb.resources/UwbCustomization:bool/is_multicast_list_update_rsp_v2_supported = true
       - com.android.uwb.resources/UwbCustomization:bool/persistent_cache_use_for_country_code_enabled = true
+      - com.android.uwb.resources/UwbCustomization:bool/timesync_accuracy_verified = true
       - com.android.uwb.resources/UwbCustomization:integer/filter_angle_window = 1
       - com.android.uwb.resources/UwbCustomization:integer/primer_fov_degrees = 0
+      - com.android.uwb.resources/UwbCustomization:integer/timesync_uncertainty_override = 0
       - com.android.uwb.resources/UwbCustomization:string/pose_source_type = NONE
-      - com.android.virtualization.terminal:bool/gfxstream_supported = true # TODO look into why this is not enabled for all Pixels
+      - com.android.virtualization.terminal/TerminalConfig:bool/gfxstream_supported = true # TODO look into why this is not enabled for all Pixels
       - com.android.wallpaper:dimen/keyguard_large_clock_top_margin|*
       - com.google.android.grilservice/GrilRadioCustomizable:bool/cap_sensor_support = true
       - com.google.android.grilservice/GrilRadioCustomizable:bool/ignore_twoshay_protective_case_enabled = true

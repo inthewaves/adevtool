@@ -23,6 +23,7 @@ filters:
       - vendor_dlkm/lib/modules/
 
     match:
+      - product/apex/com.google.android.gmssystem.prodvic.apex
       - product/etc/ambient/matcher_tah.leveldb # used by ambient music recognizer
       - product/etc/firmware/music_detector.descriptor
       - product/etc/firmware/music_detector.sound_model
@@ -75,6 +76,7 @@ filters:
       - product/priv-app/DMService/lib/arm64/libdmjavaplugin.so
       - product/wallpaper/image/default_wallpaper_BLK
       - product/wallpaper/image/default_wallpaper_BUE
+      - product/wallpaper/image/default_wallpaper_DBU
       - product/wallpaper/image/default_wallpaper_GLD
       - product/wallpaper/image/default_wallpaper_GRN
       - product/wallpaper/image/default_wallpaper_GRY
@@ -85,6 +87,24 @@ filters:
       - product/wallpaper/image/default_wallpaper_SLV
       - product/wallpaper/image/default_wallpaper_WHT
       - product/wallpaper/image/default_wallpaper_YEL
+      - product/wallpaper/image/fallback_green.jpg
+      - product/wallpaper/image/fallback_green_dark.jpg
+      - product/wallpaper/image/fallback_sterling.jpg
+      - product/wallpaper/image/fallback_sterling_dark.jpg
+      - product/wallpaper/image/front_green.jpg
+      - product/wallpaper/image/front_green_dark.jpg
+      - product/wallpaper/image/front_sterling.jpg
+      - product/wallpaper/image/front_sterling_dark.jpg
+      - product/wallpaper/image/unicorn/unicorn_wallpaper_BLK
+      - product/wallpaper/image/unicorn/unicorn_wallpaper_BUE
+      - product/wallpaper/image/unicorn/unicorn_wallpaper_DBU
+      - product/wallpaper/image/unicorn/unicorn_wallpaper_PPL
+      - product/wallpaper/image/unicorn/unicorn_wallpaper_RED
+      - product/wallpaper/image/unicorn/unicorn_wallpaper_WHT
+      - product/wallpaper/video/green.mp4
+      - product/wallpaper/video/green_dark.mp4
+      - product/wallpaper/video/sterling.mp4
+      - product/wallpaper/video/sterling_dark.mp4
       - recovery/adb_keys # symlink
       - recovery/bin # symlink
       - recovery/bugreports # symlink
@@ -92,6 +112,7 @@ filters:
       - recovery/default.prop # symlink
       - recovery/etc # symlink
       - recovery/init # symlink
+      - recovery/odm/apex # symlink
       - recovery/odm/app # symlink
       - recovery/odm/bin # symlink
       - recovery/odm/etc # symlink
@@ -105,6 +126,7 @@ filters:
       - recovery/odm_dlkm/etc # symlink
       - recovery/prop.default
       - recovery/vendor_dlkm/etc # symlink
+      - system/apex/com.android.npumanager.capex
       - system/apex/com.google.android.adbd.apex
       - system/apex/com.google.android.adservices.apex
       - system/apex/com.google.android.appsearch.apex
@@ -137,6 +159,8 @@ filters:
       - system/apex/com.google.android.uprobestats.apex
       - system/apex/com.google.android.uwb.apex
       - system/apex/com.google.android.virt.apex
+      - system/apex/com.google.android.webapp.apex
+      - system/apex/com.google.android.webapp.capex
       - system/apex/com.google.android.wifi.apex
       - system/app/GoogleBluetoothLegacyMigration/GoogleBluetoothLegacyMigration.apk
       - system/bin/tradeinmode
@@ -161,36 +185,15 @@ filters:
       - system_ext/priv-app/SystemUITitan/SystemUITitan.apk
       - system_ext/priv-app/TurboAdapter/lib/arm64/libpowerstatshaldataprovider.so
       - vendor/apex/com.google.android.hardware.biometrics.face.apex # Unused Face Unlock stuff
-      - vendor/bin/hw/android.hardware.biometrics.face-service.22.pixel
+      - vendor/bin/hw/vendor.google.mte_launcher # MTE is always enabled on GrapheneOS
       - vendor/bin/sscoredump
+      - vendor/bin/storage_intelligence.sh # TODO
       - vendor/boot_otas/boot_ota_16k.zip
       - vendor/boot_otas/boot_ota_4k.zip
-      - vendor/etc/faceauth_pipeline_input_pixel_22
-      - vendor/etc/init/android.hardware.biometrics.face-service.22.pixel.rc
-      - vendor/etc/init/init.faceauth.rc
       - vendor/etc/init/init.sscoredump.rc
-      - vendor/firmware/faceauth_p22.app
-      - vendor/lib64/com.google.face.debug-V1-ndk.so
-      - vendor/lib64/com.google.face.debug-V2-ndk.so
-      - vendor/lib64/libface_common_camera.so
-      - vendor/lib64/libface_common_capture.so
-      - vendor/lib64/libface_common_debug.so
-      - vendor/lib64/libface_common_fake_camera.so
-      - vendor/lib64/libface_common_frame.so
-      - vendor/lib64/libface_common_log.so
-      - vendor/lib64/libface_common_perf.so
-      - vendor/lib64/libface_common_task.so
-      - vendor/lib64/libface_common_thread.so
-      - vendor/lib64/libface_common_trustzone.so
-      - vendor/lib64/libface_common_user.so
-      - vendor/lib64/libface_common_user_proto.so
-      - vendor/lib64/libface_common_util.so
-      - vendor/lib64/libface_hal_trusty_tuscany.so
-      - vendor/lib64/libface_tuscany_cache_manager.so
-      - vendor/lib64/libface_tuscany_cache_proto.so
-      - vendor/lib64/libface_tuscany_proxy_util_trusty.so
-      - vendor/lib64/libface_tuscany_sensor_trusty.so
-      - vendor/lib64/libface_tuscany_trusty_debug_host.so
+      - vendor/etc/init/mte_launcher.rc # MTE is always enabled on GrapheneOS
+      - vendor/etc/init/storage.intelligence.rc # TODO
+      - vendor/lib64/libaconfig_mte_launcher_flags_rust.dylib.so # MTE is always enabled on GrapheneOS
       - vendor_boot/bootconfig
       - vendor_boot/vendor_ramdisk00
       - vendor_ramdisk/avb/q-developer-gsi.avbpubkey

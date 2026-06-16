@@ -27,7 +27,7 @@ package_inclusions:
       - android.permission.CONTROL_DISPLAY_COLOR_TRANSFORMS
 
   com.shannon.rcsservice:
-    max_known_version: 0
+    max_known_version: 40
     include_uses_permissions:
       - android.permission.ACCESS_COARSE_LOCATION
       - android.permission.ACCESS_FINE_LOCATION
@@ -102,7 +102,7 @@ package_inclusions:
       - com.google.android.apps.scone.connectivitymonitor.permission.WRITE_NIMBUS_DATA
 
   com.shannon.qualifiednetworksservice:
-    max_known_version: 0
+    max_known_version: 21
     pregrantable_permissions:
       - android.permission.CHANGE_NETWORK_STATE
       - android.permission.MODIFY_PHONE_STATE
@@ -136,9 +136,11 @@ package_inclusions:
       - android.permission.INTERNET
       - android.permission.MODIFY_PHONE_STATE
       - android.permission.NETWORK_SIGNAL_STRENGTH_WAKEUP
+      - android.permission.READ_BASIC_PHONE_STATE
       - android.permission.READ_PHONE_STATE
       - android.permission.READ_PRECISE_PHONE_STATE
       - android.permission.READ_PRIVILEGED_PHONE_STATE
+      - android.permission.SATELLITE_COMMUNICATION
       - android.permission.USE_EXACT_ALARM
 
   com.google.android.pixelnfc:
@@ -178,7 +180,7 @@ package_inclusions:
       - android.permission.MANAGE_USERS
 
   com.google.android.apps.camera.services:
-    max_known_version: 421585
+    max_known_version: 498598
     include_uses_permissions:
       - android.permission.ACCESS_NETWORK_STATE
       - android.permission.ACCESS_WIFI_STATE
@@ -207,7 +209,9 @@ package_inclusions:
       - android.permission.CHANGE_WIFI_STATE
       - android.permission.INTERNET
       - android.permission.INTERACT_ACROSS_USERS
+      - android.permission.MANAGE_USB
       - android.permission.MODIFY_AUDIO_ROUTING
+      - android.permission.MODIFY_AUDIO_SETTINGS
     flags:
       # Pixel Camera Services is a privileged app, block it from interacting with unprivileged
       # parts of sandboxed Google Play.
@@ -220,7 +224,7 @@ package_inclusions:
       - isolate_from_gmscore_and_finsky
 
   com.google.android.euicc:
-    max_known_version: 231071
+    max_known_version: 235496
     include_uses_permissions:
       - android.permission.ACCESS_NETWORK_STATE
       - android.permission.CAMERA
@@ -234,14 +238,17 @@ package_inclusions:
       - com.google.android.euicc.permission.INTERNAL_BROADCAST
       - com.google.android.providers.gsf.permission.READ_GSERVICES
       - com.google.android.providers.gsf.permission.READ_GSERVICES
+      - com.google.android.setupwizard.READ_DEVICE_ORIGIN_FIRST_PARTY
       - com.google.android.setupwizard.SETUP_COMPAT_SERVICE
       - com.qualcomm.permission.USE_QCRIL_MSG_TUNNEL
     pregrantable_permissions:
       - android.permission.CONNECTIVITY_USE_RESTRICTED_NETWORKS
+      - android.permission.MANAGE_SUBSCRIPTION_PLANS
       - android.permission.MODIFY_PHONE_STATE
       - android.permission.POST_NOTIFICATIONS
       - android.permission.READ_NETWORK_USAGE_HISTORY
       - android.permission.READ_PRIVILEGED_PHONE_STATE
+      - android.permission.READ_SUBSCRIPTION_PLANS
       - android.permission.REAL_GET_TASKS
       - android.permission.REBOOT
       - android.permission.START_ACTIVITIES_FROM_BACKGROUND
@@ -268,11 +275,14 @@ package_inclusions:
   com.google.android.modem.pms:
     max_known_version: 1
     include_uses_permissions:
+      - android.permission.ACCESS_NETWORK_STATE
       - android.permission.ACCESS_WIFI_STATE
       - android.permission.CHANGE_WIFI_STATE
       - android.permission.READ_PHONE_STATE
       - android.permission.READ_PRIVILEGED_PHONE_STATE
       - android.permission.RECEIVE_BOOT_COMPLETED
+    remove_permissions:
+      - android.permission.INTERNET # used for fetching dynamic config
 
   com.google.android.rilextension:
      max_known_version: auto
@@ -281,9 +291,10 @@ package_inclusions:
      pregrantable_permissions:
       - android.permission.READ_PHONE_STATE
       - android.permission.READ_PRIVILEGED_PHONE_STATE
+      - android.permission.UPDATE_DEVICE_STATS
 
   com.google.euiccpixel:
-    max_known_version: 20185
+    max_known_version: 20205
     include_uses_permissions:
       - com.google.android.c2dm.permission.RECEIVE
       - com.google.android.providers.gsf.permission.READ_GSERVICES
@@ -314,10 +325,15 @@ package_inclusions:
   com.google.pixel.camera.services:
     max_known_version: 1
     include_uses_permissions:
+      - android.permission.ACCESS_NETWORK_STATE
       - android.permission.CAMERA_INJECT_EXTERNAL_CAMERA
       - android.permission.CAMERA_OPEN_CLOSE_LISTENER
+      - android.permission.FOREGROUND_SERVICE
       - android.permission.INTERACT_ACROSS_USERS
       - android.permission.QUERY_ALL_PACKAGES
+      - android.permission.RECEIVE_BOOT_COMPLETED
+      - android.permission.WAKE_LOCK
+      - com.google.pixel.camera.services.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 
   com.google.pixel.iwlan:
     max_known_version: auto
@@ -417,6 +433,7 @@ installable_packages:
   - com.google.android.gms.location.history
   - com.google.android.gms.optional_homegraph
   - com.google.android.gms.optional_mlkit_barcode_ui
+  - com.google.android.gms.optional_spoon_pc
   - com.google.android.gms.optional_usonia
   - com.google.android.gms.optional_vision_barcode
   - com.google.android.gms.policy_ads_fdr_dynamite
@@ -442,10 +459,14 @@ installable_packages:
   - com.ustwo.lwp
 
 package_exclusions:
+  #- com.breel.wallpapers19
+  #- com.google.android.CatEngine # debug-build-only package
+  #- com.google.android.ims # CarrierServices; its package is not included on stock OS but there are leftover sysconfigs
   - android.autoinstalls.config.google.nexus
   - com.android.angle
   - com.android.apex.cts.shim
   - com.android.apps.tag
+  - com.android.appsearch.aiseal.config
   - com.android.auto.embedded.cts.verifier
   - com.android.backupconfirm
   - com.android.bips
@@ -460,6 +481,7 @@ package_exclusions:
   - com.android.certinstaller
   - com.android.companiondevicemanager
   - com.android.connectivity.metrics
+  - com.android.contactspicker
   - com.android.credentialmanager
   - com.android.cts.ctsshim
   - com.android.cts.priv.ctsshim
@@ -471,6 +493,7 @@ package_exclusions:
   - com.android.egg
   - com.android.emergency
   - com.android.externalstorage
+  - com.android.eyedropper
   - com.android.facelock
   - com.android.frameworks.core.batterystatsviewer
   - com.android.gallery3d
@@ -549,13 +572,14 @@ package_exclusions:
   - com.android.traceur
   - com.android.tv
   - com.android.tv.provision
+  - com.android.virtualdevicemanager
+  - com.android.virtualgamepad
   - com.android.virtualization.terminal
   - com.android.vpndialogs
   - com.android.vzwomatrigger
   - com.android.wallpaper.livepicker
   - com.android.wallpaperbackup
   - com.android.yadayada
-  #- com.breel.wallpapers19
   - com.google.ambient.streaming # Cross-Device Services
   - com.google.android.accessibility.soundamplifier
   - com.google.android.accessibility.switchaccess
@@ -563,6 +587,7 @@ package_exclusions:
   - com.google.android.adservices
   - com.google.android.adservices.api
   - com.google.android.apps.accessibility.voiceaccess
+  - com.google.android.apps.ai.icons
   - com.google.android.apps.bard # Gemini
   - com.google.android.apps.betterbug
   - com.google.android.apps.betterbug.partners
@@ -595,6 +620,8 @@ package_exclusions:
   - com.google.android.apps.pixel.nowplaying
   - com.google.android.apps.pixel.psi # PixelSense / Device Intelligence
   - com.google.android.apps.pixel.subzero
+  - com.google.android.apps.pixel.tabby # PixelAudioServices, depends on GmsCore, talks to the vendor.google.whitechapel.audio.extension.ITabbyHandler. TODO: consider including it
+  - com.google.android.apps.pulse
   - com.google.android.apps.retaildemo.preload
   - com.google.android.apps.scone # Adaptive Connectivity Services, see https://support.google.com/product-documentation/answer/12321563
   - com.google.android.apps.setupwizard.searchselector
@@ -615,7 +642,6 @@ package_exclusions:
   - com.google.android.carrier
   - com.google.android.carrierlocation
   - com.google.android.carriersetup
-  #- com.google.android.CatEngine # debug-build-only package
   - com.google.android.cellbroadcast
   - com.google.android.cellbroadcastreceiver
   - com.google.android.cellbroadcastservice
@@ -625,6 +651,7 @@ package_exclusions:
   - com.google.android.connectivitymonitor
   - com.google.android.connectivitythermalpowermanager # Manages thermal throttling of cellular and Wi-Fi connectivity
   - com.google.android.conscrypt
+  - com.google.android.crossdeviceaccessservice
   - com.google.android.desktop.setupwizard
   - com.google.android.devicedropmonitor
   - com.google.android.devicelockcontroller
@@ -649,7 +676,6 @@ package_exclusions:
   - com.google.android.healthconnect.controller
   - com.google.android.hiddenmenu
   - com.google.android.hotspot2.osulogin
-  #- com.google.android.ims # CarrierServices; its package is not included on stock OS but there are leftover sysconfigs
   - com.google.android.iphealthmonitor
   - com.google.android.ipsec
   - com.google.android.iwlan
@@ -699,6 +725,8 @@ package_exclusions:
   - com.google.android.storagemanager
   - com.google.android.tag
   - com.google.android.talk
+  - com.google.android.telecomresources
+  - com.google.android.telecomui
   - com.google.android.telephony
   - com.google.android.tethering
   - com.google.android.tetheringentitlement
@@ -716,6 +744,7 @@ package_exclusions:
   - com.google.android.volta
   - com.google.android.wallpaper.effects
   - com.google.android.wallpaper.weathereffects
+  - com.google.android.webapp.service
   - com.google.android.wifi
   - com.google.android.wifi.dialog
   - com.google.android.wifi.resources
@@ -748,7 +777,6 @@ package_exclusions:
   - com.verizon.mips.services
   - com.verizon.services
   - com.vzw.apnlib
-
 
 # GrapheneOS APK path to stock OS package
 apk_map:
@@ -784,8 +812,15 @@ apk_map:
   system_ext/priv-app/EmergencyInfo/EmergencyInfo.apk:
     stock_os_path: system_ext/app/EmergencyInfoGoogleNoUi/EmergencyInfoGoogleNoUi.apk
     aosp_apk_name: com.android.emergency
+  system/app/AppSearchAiSealConfig/AppSearchAiSealConfig.apk:
+    stock_os_path: system/app/GoogleAppSearchAiSealConfig/GoogleAppSearchAiSealConfig.apk
+    aosp_apk_name: com.android.appsearch.aiseal.config
+  product/app/talkback/talkback.apk:
+    stock_os_path: product/app/talkback/talkback.apk
+    aosp_apk_name: com.android.talkback
 
 unique_base_apks:
+  - product/app/SpeechServices/SpeechServices.apk
   - product/app/Auditor/Auditor.apk
   - product/app/Calendar/Calendar.apk
   - product/app/Camera/Camera.apk
@@ -830,4 +865,4 @@ unique_base_apks:
 
 apex_map:
   system/apex/com.android.tzdata.apex:
-   stock_os_path: system/apex/com.google.android.tzdata6.apex
+    stock_os_path: system/apex/com.google.android.tzdata6.apex

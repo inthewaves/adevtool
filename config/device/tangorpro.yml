@@ -20,6 +20,13 @@ filters:
     match:
       - android:bool/config_isDesktopModeDevOptionSupported = true
       - android:bool/config_isDesktopModeSupported = false
+      - com.android.systemui:dimen/config_ambientDarkModeThreshold = 0.4
+      - com.android.systemui:dimen/config_ambientLightModeThreshold = 0.8
+      - com.android.systemui:string/config_lowLightDreamComponent = com.android.systemui/com.android.systemui.lowlightclock.LowLightClockDreamService
+  overlay_keys:
+    match:
+      - com.android.systemui:array/quick_settings_large_tiles_default_split = wifi;bt;dnd;custom(com.google.android.gms/.nearby.sharing.SharingTileService)
+      - com.android.systemui:string/quick_settings_tiles_default_split = wifi,bt,dnd,custom(com.google.android.gms/.nearby.sharing.SharingTileService),cast,controls,airplane,rotation,battery,night,mictoggle,cameratoggle
 
 sysprop_exclusions:
   - ro.build.characteristics = tablet # TODO consider changing PRODUCT_CHARACTERISTICS := tablet,nosdcard to tablet instead

@@ -16,26 +16,46 @@ sepolicy_inclusions:
       system_ext_file_contexts:
         - /dev/watchdog[0-9] u:object_r:watchdog_device:s0
         - /metadata/repair-mode/config(/.*)? u:object_r:repair_mode_metadata_config_file:s0
+        - /system_ext/bin/backup_ota_log\.sh u:object_r:backup_ota_log_exec:s0
         - /system_ext/bin/bluetooth_gci u:object_r:bluetooth_gci_exec:s0
         - /system_ext/bin/convert_to_ext4\.sh u:object_r:convert-to-ext4-sh_exec:s0
         - /system_ext/bin/gs_watchdogd u:object_r:gs_watchdogd_exec:s0
-        - /system_ext/bin/hw/vendor\.google\.whitechapel\.audio\.hal\.parserservice u:object_r:hal_audio_parameter_parser_exec:s0
         - /system_ext/bin/hw/vendor\.google\.edgetpu_app_service@1\.0-service u:object_r:edgetpu_app_server_exec:s0
+        - /system_ext/bin/hw/vendor\.google\.whitechapel\.audio\.hal\.parserservice u:object_r:hal_audio_parameter_parser_exec:s0
+        - /system_ext/bin/mosey_server u:object_r:mosey_server_exec:s0
+        - /system_ext/bin/sconed u:object_r:sconed_exec:s0
+      system_ext_property_contexts:
+        - persist.device_config.pixel_faceauth. u:object_r:device_config_faceauth_native_prop:s0
+        - persist.rilext. u:object_r:system_ril_ext_prop:s0
+        - rilext. u:object_r:system_ril_ext_prop:s0
       system_ext_seapp_contexts:
-        - user=_app isPrivApp=true name=com.google.android.rilextension domain=rilextensionservice_app levelFrom=all
-        - user=_app isPrivApp=true name=com.shannon.rcsservice domain=vendor_rcs_app levelFrom=all
-        - user=_app isPrivApp=true name=com.shannon.rcsservice:shannonrcsservice domain=vendor_rcs_service_app levelFrom=all
         - user=_app isPrivApp=true name=com.google.android.euicc domain=euicc_app type=privapp_data_file levelFrom=user
+        - user=_app isPrivApp=true name=com.google.android.rilextension domain=rilextensionservice_app levelFrom=all
+        - user=_app isPrivApp=true name=com.samsung.slsi.telephony.oemril domain=oemrilservice_app levelFrom=all
+        - user=_app isPrivApp=true name=com.shannon.imsservice domain=vendor_ims_app levelFrom=all
+        - user=_app isPrivApp=true name=com.shannon.imsservice:remote domain=vendor_ims_app levelFrom=all
+        - user=_app isPrivApp=true name=com.shannon.imsservice:remote domain=vendor_ims_remote_app levelFrom=all
+        - user=_app isPrivApp=true name=com.shannon.qualifiednetworksservice domain=vendor_ims_app levelFrom=all
+        - user=_app isPrivApp=true name=com.shannon.rcsservice domain=vendor_rcs_app levelFrom=all
+        - user=_app isPrivApp=true name=com.shannon.rcsservice:shannonrcsservice domain=vendor_rcs_app levelFrom=all
+        - user=_app isPrivApp=true name=com.shannon.rcsservice:shannonrcsservice domain=vendor_rcs_service_app levelFrom=all
+        - user=_app isPrivApp=true seinfo=EuiccSupportPixel name=com.google.euiccpixel domain=euiccpixel_app type=app_data_file levelFrom=all
+        - user=_app isPrivApp=true seinfo=pms name=com.google.android.modem.pms domain=pixel_modem_app levelFrom=all
         - user=_app isPrivApp=true seinfo=uwb name=com.qorvo.uwb.vendorservice domain=uwb_vendor_app type=uwb_vendor_data_file levelFrom=all
         - user=_app seinfo=platform name=com.android.hbmsvmanager domain=hbmsvmanager_app type=app_data_file levelFrom=all
         - user=_app seinfo=platform name=com.android.pixeldisplayservice domain=pixeldisplayservice_app type=app_data_file levelFrom=all
         - user=_app seinfo=platform name=com.android.systemui domain=systemui_app type=app_data_file levelFrom=all
-        - user=_app isPrivApp=true name=com.shannon.rcsservice:shannonrcsservice domain=vendor_rcs_app levelFrom=all
         - user=_app seinfo=platform name=com.android.systemui:* domain=systemui_app type=app_data_file levelFrom=all
       system_ext_service_contexts:
-        - com.google.edgetpu.IEdgeTpuAppService/default u:object_r:edgetpu_app_service:s0
         - android.media.audio.IHalAdapterVendorExtension/default u:object_r:hal_audio_parameter_parser_service:s0
+        - com.google.android.moseyservice.IMoseyService/default u:object_r:mosey_service:s0
+        - com.google.edgetpu.IEdgeTpuAppService/default u:object_r:edgetpu_app_service:s0
+        - google.android.sconed.ISconeNetDaemon u:object_r:scone_aidl_service:s0
     mac_permissions_entries:
+      - |-
+        <signer signature="308205c6308203aea0030201020214447f8448295e730b0fd84b76810d51007c5a6d67300d06092a864886f70d01010b05003074310b3009060355040613025553311330110603550408130a43616c69666f726e6961311630140603550407130d4d6f756e7461696e205669657731143012060355040a130b476f6f676c6520496e632e3110300e060355040b1307416e64726f69643110300e06035504031307416e64726f6964301e170d3139303232383139323231365a170d3439303232383139323231365a3074310b3009060355040613025553311330110603550408130a43616c69666f726e6961311630140603550407130d4d6f756e7461696e205669657731143012060355040a130b476f6f676c6520496e632e3110300e060355040b1307416e64726f69643110300e06035504031307416e64726f696430820222300d06092a864886f70d01010105000382020f003082020a0282020100e4054e7b848a8823a74780d0d95dec228e4b3691ad99dcd9e783271c8aec497f27e37c6d093a5f4160d69c36450881d2991f0a00e43404dc4bf1a8edafaea053ab45cc3e55962b2dc25f4ff6e52561680669ec84a0e52ab623761edb090e97022d828ecfaa07d9ce4d7abb83a799ff678f71a575d72e0a0e4e5b284bae6db1371616b712bae384e34532149f91c218751225c63ef4fdf606973670eae5622c3cd35edfd8d5edfd35959b3f8398949f875503f0f12cc6a6fc2421eea42487aa969032fc928436d4df7111961347caaf1af833dd9775c9f4f43f51ec80968f5cae45a9bdaf2d5d4d3fc2a8608941d8aa9a7429fe1c98c8807f1421b07e47ca3a2ae5826332dbe6f3ecf3b1e45c6e7f63e181ec7ac2202fba6bc049e145328d4920fc7b4177b1a5122c5928bb5b709ddeadd7cbeee8a08c2244a806035ebd997acdf5f3df1e3dc9776103b9feb1e86c1edfe30de217f4f020003245194e71ea2c90211afef09b99bec8f0740826d85235e75670188a5277a8842b5f2d3dea4b42545597b088544c3950fc9b071916be28fd47d5b2511ef03a41a74597b3ff3739e10976d7d173ceb58dd389ec42327c39815fdd625a02c2060bfa697b4cbcfec2c20655ef2f82f966dbb236136128ec355480d6e7b154fa33b129088f1a2d7b46808aeebe6fc2c0abd6ead9ce9873a32895d801aa57dcc2f17394aaa59bdebaaba50203010001a350304e300c0603551d13040530030101ff301d0603551d0e04160414b87e4ada8bfff4bfbec7ef1486b08384d7499ba1301f0603551d23041830168014b87e4ada8bfff4bfbec7ef1486b08384d7499ba1300d06092a864886f70d01010b0500038202010085755b1fa2c1c873c71fa081b5a5989c7ea0fc9ad9ac6f8fc7206cb1ae8f123e9e6b58d9bed4bf36b3820b9b8a8c49256eebcde98b303c1f28f95f8999087909817b66098478b020f691001da3b994df40046c124778a98bdc203ba2e8f6db822b4b58e8779583437157bf73cf84c1b26e34d4aa8cfc0866f8f696875340d23bb94cb57dfe61cad1ecce739baffae1f8c78994a298e7a24be95133b03ebde22545c49edfe055cae58d298ea6261a3d64adc7cc168c473c09a3e7bc9fdd55737862b1e6b7bee5620c7b92b445907d216c5fbf1d43b315efcd579a1d85bf73a545ed3553fd1515fa22edb2dfb50354496de5c3bb7b8b1f13c00b8e1651bdc540e50a3d13f6708ba5ef489f2526efbbea8bbb27e0c25b57c9821e40c4ab530e162ba34c3586883e012ad415f8acb5252b1947e3168dc13e590962d345d5a8cd83f914548c75086139bd4a8bcd702a6af57fd1245e85bd786459063ded020f74934aa5b5e977d1e2e95ba8269cd83e95af389f26977c1177bd001b680b96e43dd300c591fd697a9c7a0f22d76b5c7932311bd0933c767b32b3eb564fdee0df119bcc2d74749657bcb3aa53641dc62d2e2663d2c541d0f03e5735c64f3211c76750066cfbd53acd9175f8529281bdd4372f358360c750ca741420574f2fa42e6d0b415614f7590b77e7d39268245a5e314b25de579837145ba2bfd6a197bfffbef086">
+          <seinfo value="EuiccSupportPixel"/>
+        </signer>
       - |-
         <signer signature="308205c9308203b1a003020102021500d5a471672665fe1a6ddbe8f41562caf09c93046b300d06092a864886f70d01010b05003074310b3009060355040613025553311330110603550408130a43616c69666f726e6961311630140603550407130d4d6f756e7461696e205669657731143012060355040a130b476f6f676c6520496e632e3110300e060355040b1307416e64726f69643110300e06035504031307416e64726f69643020170d3231303530343035303230385a180f32303531303530343035303230385a3074310b3009060355040613025553311330110603550408130a43616c69666f726e6961311630140603550407130d4d6f756e7461696e205669657731143012060355040a130b476f6f676c6520496e632e3110300e060355040b1307416e64726f69643110300e06035504031307416e64726f696430820222300d06092a864886f70d01010105000382020f003082020a0282020100b38d4bbabe6b89ce90e5b8aff26f200f34c97c66aeb1b909d1044d5d4384da6e41680b3d60ea04d4545a95895de95c7249f0cba6249a9c4d0edb51a4f5031135998dec0c9b722efdbb2585ef34cfacfd723530b450966ed647b93b33ada79acb1920d1b853f6a05fe6a26ac34fdc39d6e7032c69210abe5af7b3bbf3241188dd7a30fad18e2079fe94e5b7e77de5ab85e593677ec86ce7fcfde40c3c1c3fcc4f62a3cde17ac4036190b2f7a5c68f3770a34b116e8f4a3a5b8476ac87b36b0ef206f2a583652d55a1ccbcfa04beb4137df08e2fd3d978a591c70a8a5b0396706d2624d3185fd7333874bbd9439f604a402f9aea96b16c9431bea009b726ddfd699c3225722ee91bad5c3ab394f604faf5d82bc6d251e2ed04a925240d95cdf95d2218e0f3ff8b35b2c38d3608199a908c46dfdb9002aeef5ca1ea38f6c4c27a9140756d1e6feeb03e523dc6e2b40d6d5810a3f4c8944fb2f33b6de0b05883199d3fdda884dbe402d0236950ecc7f2e8e739ab90c1e5e89c84fef071ca5f3c6e6c96cf1eab4ef5271ed2505c2a817465cab913cecabe55a72150616cfb8138dc77852c3b0a740baf9cb067c70a48df70f03731150e77f8515a9cfe66e0b642e54ee6217aa1e7c8948953aaf3a9711ef2f0a34307399f3d0cad0d091c14c8109df9cb7b6540bcddf0a9be34eda7b29303640d1f44efd55daaabe597ed1025377c650203010001a350304e300c0603551d13040530030101ff301d0603551d0e04160414937f2c70d06d719f5d2021a58f2b4dcb23206a29301f0603551d23041830168014937f2c70d06d719f5d2021a58f2b4dcb23206a29300d06092a864886f70d01010b050003820201000b6187c25a0ce1052d4597bfb2610d6cbf6ec220db7a7b69d3ae8bcb9b5a6138f38defd9917cef8174f661dabcfea85dfabaf4fa6a1f42bcfaef3ebc3ba73cb16eb71488bf2f95086ab5ed3f7d2d113477d6a3d754cd7e56a794e373b7caa805c5b2ecc1287ea9715e4c71f6ea519543bcf404aac82afbafb51b5928d21899526a930f6ab317452cd184e24211d7efc9f00ca9360ca1e9119f2b5ca91dee8d421792d00baa465e5a6570244fa9b2cb6f3d14a00d2dd84798fe07ad6ed863416227b8c771709f4b5c4f98a8465386c69b4050db41fdcedd10c61e63278cc3fae0486c330b7977710ac920e6ec3c9198ed3f41e9ef278cfdacb32b6b33b1318dd07d9dba081627e0069431358850a53e49c9133eca3eed0d39ba19d533b3113a6205f139aceab88885f8ad11029ad58fc66d973e7755b1c4b9b805adcd338dcf8a30d7460fb36fa4fed377848d91bea10cb80e08fe374a0763a4276a784a606612556036760bd2d79838c099c20358762dfbf597ecd10451181eb92349b4c812fbf4f12354805244853ec989aa84145f2c1024127c7d966fe5d35716bd02e460ea97f4636fb4b68c1e9139c1abd7028421a92b173d1514c8597ad0a880f662c1237721a113fd925983e3be79c91c6532213ceee8ee5fb8bae221fbca3b4cecb8a832625f8848deba582c9af69d3372a6c53c3968ea253a8ac466c95b31b956d8dc">
           <seinfo value="uwb"/>
@@ -43,28 +63,32 @@ sepolicy_inclusions:
   vendor:
     contexts:
       vendor_property_contexts:
-        - vendor.display. u:object_r:vendor_display_prop:s0
+        - persist.vendor.display.primary. u:object_r:vendor_display_prop:s0
         - persist.vendor.fingerprint. u:object_r:vendor_fingerprint_prop:s0
+        - persist.vendor.pixel_gralloc.compression u:object_r:vendor_pixel_gralloc_prop:s0
+        - persist.vendor.pixel_gralloc.compression.camera u:object_r:vendor_pixel_gralloc_prop:s0
+        - persist.vendor.pixel_gralloc.compression.cpu u:object_r:vendor_pixel_gralloc_prop:s0
+        - persist.vendor.pixel_gralloc.compression.dpu u:object_r:vendor_pixel_gralloc_prop:s0
+        - persist.vendor.pixel_gralloc.compression.gpu u:object_r:vendor_pixel_gralloc_prop:s0
+        - persist.vendor.pixel_gralloc.compression.tpu u:object_r:vendor_pixel_gralloc_prop:s0
+        - persist.vendor.pixel_gralloc.compression.video_decoder u:object_r:vendor_pixel_gralloc_prop:s0
+        - persist.vendor.pixel_gralloc.compression.video_encoder u:object_r:vendor_pixel_gralloc_prop:s0
+        - ro.vendor.camera. u:object_r:vendor_camera_prop:s0
+        - ro.vendor.display. u:object_r:vendor_display_prop:s0
+        - ro.vendor.primarydisplay. u:object_r:vendor_display_prop:s0
+        - ro.vendor.ril. u:object_r:vendor_rild_prop:s0
+        - ro.vendor.secondarydisplay. u:object_r:vendor_display_prop:s0
+        - ro.vendor.trusty.storage.fs_ready_rw u:object_r:vendor_trusty_storage_prop:s0
+        - vendor.devcoredump. u:object_r:vendor_devcoredump_prop:s0
+        - vendor.display. u:object_r:vendor_display_prop:s0
+        - vendor.sys.usb.adb.disabled u:object_r:vendor_usb_config_prop:s0
+        - vendor.zram.nr_tags u:object_r:vendor_zram_nr_tags_prop:s0 exact int
       vendor_file_contexts:
-        - /data/vendor/trusty/coverage(/.*)? u:object_r:trusty_coverage_data_file:s0
-        - /vendor/bin/hw/vendor\.google\.ambience_hub-service u:object_r:ambience_hub_default_exec:s0
-        - /vendor/bin/hw/vendor\.google\.google_battery.ekf.service u:object_r:hal_googlebattery_ekf_exec:s0
-        - /vendor/bin/trusty-coverage-controller u:object_r:trusty_coverage_controller_exec:s0
-        - /data/vendor/sensors(/.*)? u:object_r:sensor_data_file:s0
-        - /dev/acd-chre_data_rx_nonwake u:object_r:aoc_device:s0
-        - /dev/acd-com.google.usf.a3 u:object_r:aoc_device:s0
-        - /dev/acd-com.google.usf.a3.non_wake_up u:object_r:aoc_device:s0
-        - /dev/acd-com.google.usf.sc u:object_r:aoc_device:s0
-        - /dev/acd-com.google.usf.sc.non_wake_up u:object_r:aoc_device:s0
-        - /dev/logbuffer_btwakelock0 u:object_r:logbuffer_device:s0
-        - /dev/logbuffer_btwakelock1 u:object_r:logbuffer_device:s0
-        - /vendor/bin/hw/android\.hardware\.dumpstate\.3-service u:object_r:hal_dumpstate_default_exec:s0
-        - /vendor/bin/hw/cs40l26_vibrator_server u:object_r:hal_vibrator_default_exec:s0
-        - /vendor/lib64/com\.google\.edgetpu_app_service-V[1-6]-ndk\.so u:object_r:same_process_hal_file:s0
         - /(vendor|sustem/vendor)/bin/hw/android\.hardware\.confirmationui@1\.0-service u:object_r:hal_confirmationui_default_exec:s0
         - /(vendor|system/vendor)/bin/bipchmgr u:object_r:bipchmgr_exec:s0
         - /(vendor|system/vendor)/bin/cbd u:object_r:cbd_exec:s0
         - /(vendor|system/vendor)/bin/chre u:object_r:chre_exec:s0
+        - /(vendor|system/vendor)/bin/etraced u:object_r:etraced_exec:s0
         - /(vendor|system/vendor)/bin/hw/android\.hardware\.atrace@1\.0-service u:object_r:hal_atrace_default_exec:s0
         - /(vendor|system/vendor)/bin/hw/android\.hardware\.audio(@2\.0-|\.)service u:object_r:hal_audio_default_exec:s0
         - /(vendor|system/vendor)/bin/hw/android\.hardware\.audio@7\.0-service\.example u:object_r:hal_audio_default_exec:s0
@@ -232,12 +256,12 @@ sepolicy_inclusions:
         - /(vendor|system/vendor)/lib(64)?/android\.hardware\.common\.fmq-V1-ndk\.so u:object_r:same_process_hal_file:s0
         - /(vendor|system/vendor)/lib(64)?/android\.hardware\.graphics\.allocator-V2-ndk\.so u:object_r:same_process_hal_file:s0
         - /(vendor|system/vendor)/lib(64)?/android\.hardware\.graphics\.common-V[0-9]+-ndk\.so u:object_r:same_process_hal_file:s0
+        - /(vendor|system/vendor)/lib(64)?/android\.hardware\.graphics\.common@1\.0\.so u:object_r:same_process_hal_file:s0
         - /(vendor|system/vendor)/lib(64)?/android\.hardware\.graphics\.common@1\.1\.so u:object_r:same_process_hal_file:s0
         - /(vendor|system/vendor)/lib(64)?/android\.hardware\.graphics\.common@1\.2\.so u:object_r:same_process_hal_file:s0
-        - /(vendor|system/vendor)/lib(64)?/android\.hardware\.graphics\.common@1\.0\.so u:object_r:same_process_hal_file:s0
         - /(vendor|system/vendor)/lib(64)?/android\.hardware\.graphics\.composer3-V1-ndk\.so u:object_r:same_process_hal_file:s0
-        - /(vendor|system/vendor)/lib(64)?/android\.hardware\.graphics\.mapper@2\.1\.so u:object_r:same_process_hal_file:s0
         - /(vendor|system/vendor)/lib(64)?/android\.hardware\.graphics\.mapper@2\.0\.so u:object_r:same_process_hal_file:s0
+        - /(vendor|system/vendor)/lib(64)?/android\.hardware\.graphics\.mapper@2\.1\.so u:object_r:same_process_hal_file:s0
         - /(vendor|system/vendor)/lib(64)?/android\.hardware\.graphics\.mapper@3\.0\.so u:object_r:same_process_hal_file:s0
         - /(vendor|system/vendor)/lib(64)?/android\.hardware\.graphics\.mapper@4\.0\.so u:object_r:same_process_hal_file:s0
         - /(vendor|system/vendor)/lib(64)?/android\.hardware\.renderscript@1\.0\.so u:object_r:same_process_hal_file:s0
@@ -284,6 +308,7 @@ sepolicy_inclusions:
         - /(vendor|system/vendor)/lib(64)?/libz\.so u:object_r:same_process_hal_file:s0
         - /data/nfc(/.*)? u:object_r:nfc_data_file:s0
         - /data/per_boot(/.*)? u:object_r:per_boot_file:s0
+        - /data/vendor/android.hardware.camera.provider@2.7-service-google(/.*)? u:object_r:vendor_camera_data_file:s0
         - /data/vendor/audio(/.*)? u:object_r:audio_vendor_data_file:s0
         - /data/vendor/bluetooth(/.*)? u:object_r:vendor_bt_data_file:s0
         - /data/vendor/camera(/.*)? u:object_r:vendor_camera_data_file:s0
@@ -314,11 +339,14 @@ sepolicy_inclusions:
         - /data/vendor/modem_ml(/.*)? u:object_r:modem_ml_data_file:s0
         - /data/vendor/modem_stat(/.*)? u:object_r:modem_stat_data_file:s0
         - /data/vendor/nfc(/.*)? u:object_r:vendor_nfc_vendor_data_file:s0
+        - /data/vendor/pcie(/.*)? u:object_r:pcie_coredump_data_file:s0
+        - /data/vendor/powerhal(/.*)? u:object_r:powerhal_vendor_data_file:s0
         - /data/vendor/powerstats(/.*)? u:object_r:powerstats_vendor_data_file:s0
         - /data/vendor/radio(/.*)? u:object_r:radio_vendor_data_file:s0
         - /data/vendor/ramdump(/.*)? u:object_r:ramdump_vendor_data_file:s0
         - /data/vendor/rild(/.*)? u:object_r:rild_vendor_data_file:s0
         - /data/vendor/sensor(/.*)? u:object_r:sensor_vendor_data_file:s0
+        - /data/vendor/sensors(/.*)? u:object_r:sensor_data_file:s0
         - /data/vendor/sensors/debug(/.*)? u:object_r:sensor_debug_data_file:s0
         - /data/vendor/sensors/registry(/.*)? u:object_r:sensor_reg_data_file:s0
         - /data/vendor/slog(/.*)? u:object_r:vendor_slog_file:s0
@@ -329,6 +357,7 @@ sepolicy_inclusions:
         - /data/vendor/storage(/.*)? u:object_r:dump_storage_data_file:s0
         - /data/vendor/tcpdump_logger(/.*)? u:object_r:tcpdump_vendor_data_file:s0
         - /data/vendor/tombstones/fingerprint(/.*)? u:object_r:fingerprint_vendor_data_file:s0
+        - /data/vendor/trusty/coverage(/.*)? u:object_r:trusty_coverage_data_file:s0
         - /data/vendor/uwb(/.*)? u:object_r:uwb_data_vendor:s0
         - /data/vendor/VoWiFi(/.*)? u:object_r:vendor_ims_data_file:s0
         - /data/vendor/wifi(/.*)? u:object_r:vendor_wifi_vendor_data_file:s0
@@ -343,6 +372,7 @@ sepolicy_inclusions:
         - /dev/acd-aocx_tapout[0-9]* u:object_r:aoc_device:s0
         - /dev/acd-audio_ap_offload_rx u:object_r:aoc_device:s0
         - /dev/acd-audio_ap_offload_tx u:object_r:aoc_device:s0
+        - /dev/acd-audio_blueflax u:object_r:aoc_device:s0
         - /dev/acd-audio_bulk_rx u:object_r:aoc_device:s0
         - /dev/acd-audio_bulk_tx u:object_r:aoc_device:s0
         - /dev/acd-audio_dcdoff_ref u:object_r:aoc_device:s0
@@ -358,6 +388,7 @@ sepolicy_inclusions:
         - /dev/acd-chre_bt_offload_data_tx u:object_r:aoc_device:s0
         - /dev/acd-chre_ctl u:object_r:aoc_device:s0
         - /dev/acd-chre_data_rx u:object_r:aoc_device:s0
+        - /dev/acd-chre_data_rx_nonwake u:object_r:aoc_device:s0
         - /dev/acd-chre_data_tx u:object_r:aoc_device:s0
         - /dev/acd-com.google.bt u:object_r:aoc_device:s0
         - /dev/acd-com.google.bt.non_wake_up u:object_r:aoc_device:s0
@@ -365,7 +396,11 @@ sepolicy_inclusions:
         - /dev/acd-com.google.chre.non_wake_up u:object_r:aoc_device:s0
         - /dev/acd-com.google.umfw_stat u:object_r:aoc_device:s0
         - /dev/acd-com.google.usf u:object_r:aoc_device:s0
+        - /dev/acd-com.google.usf.a3 u:object_r:aoc_device:s0
+        - /dev/acd-com.google.usf.a3.non_wake_up u:object_r:aoc_device:s0
         - /dev/acd-com.google.usf.non_wake_up u:object_r:aoc_device:s0
+        - /dev/acd-com.google.usf.sc u:object_r:aoc_device:s0
+        - /dev/acd-com.google.usf.sc.non_wake_up u:object_r:aoc_device:s0
         - /dev/acd-debug u:object_r:aoc_device:s0
         - /dev/acd-hotword_notification u:object_r:aoc_device:s0
         - /dev/acd-hotword_pcm u:object_r:aoc_device:s0
@@ -381,7 +416,46 @@ sepolicy_inclusions:
         - /dev/bbd_pwrstat u:object_r:power_stats_device:s0
         - /dev/bigocean u:object_r:video_device:s0
         - /dev/bigwave u:object_r:video_device:s0
+        - /dev/block/by-name/fips u:object_r:fips_block_device:s0
+        - /dev/block/by-name/rdbl u:object_r:rdbl_block_device:s0
         - /dev/block/by-name/userdata_exp.* u:object_r:userdata_exp_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/abl_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/acpm_test_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/bl1_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/bl2_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/bl31_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/boot_[ab] u:object_r:boot_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/cache u:object_r:cache_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/devinfo u:object_r:devinfo_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/dram_train_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/dtb_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/dtbo_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/ect_test_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/efs u:object_r:efs_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/efs_backup u:object_r:efs_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/frp u:object_r:frp_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/gsa_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/hypervisor_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/keystorage_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/ldfw_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/metadata u:object_r:metadata_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/mfg_data u:object_r:mfg_data_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/misc u:object_r:misc_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/modem u:object_r:modem_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/modem_[ab] u:object_r:modem_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/modem_userdata u:object_r:modem_userdata_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/pbl_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/persist u:object_r:persist_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/pvmfw_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/reclaim_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/super u:object_r:super_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/system u:object_r:system_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/tzsw_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/userdata u:object_r:userdata_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/vbmeta_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/vbmeta_system_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/vbmeta_vendor_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/(soc@0/)?14700000\.ufs/by-name/vendor_boot_[ab] u:object_r:custom_ab_block_device:s0
         - /dev/block/platform/13200000\.ufs/by-name/abl_[ab] u:object_r:custom_ab_block_device:s0
         - /dev/block/platform/13200000\.ufs/by-name/bl1_[ab] u:object_r:custom_ab_block_device:s0
         - /dev/block/platform/13200000\.ufs/by-name/bl2_[ab] u:object_r:custom_ab_block_device:s0
@@ -458,6 +532,55 @@ sepolicy_inclusions:
         - /dev/block/platform/14700000\.ufs/by-name/vbmeta_vendor_[ab] u:object_r:custom_ab_block_device:s0
         - /dev/block/platform/14700000\.ufs/by-name/vendor_boot_[ab] u:object_r:custom_ab_block_device:s0
         - /dev/block/platform/14700000\.ufs/by-name/vendor_kernel_boot_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/abl_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/bl31_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/bl_data u:object_r:vendor_bootlogs_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/boot_[ab] u:object_r:boot_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/cap_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/cpm_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/dbc_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/dbl_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/devinfo u:object_r:devinfo_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/dpm_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/dram_init_0_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/dram_init_1_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/dram_init_2_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/dram_init_3_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/dram_init_4_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/dram_init_5_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/dram_init_6_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/dram_init_7_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/dram_init_8_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/dram_init_9_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/dram_phy_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/dram_train_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/dtbo_[ab] u:object_r:dtbo_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/efs u:object_r:efs_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/efs_backup u:object_r:efs_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/frp u:object_r:frp_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/gc_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/gdmc_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/gsa_bl1_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/gsa_fw_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/init_boot_[ab] u:object_r:boot_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/metadata u:object_r:metadata_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/mfg_data u:object_r:mfg_data_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/misc u:object_r:misc_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/modem_[ab] u:object_r:modem_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/modem_userdata u:object_r:modem_userdata_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/persist u:object_r:persist_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/pvmfw_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/super u:object_r:super_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/trusty_persist u:object_r:tee_persist_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/trusty_userdata u:object_r:tee_userdata_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/tzsw_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/ufs_internal u:object_r:ufs_internal_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/userdata u:object_r:userdata_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/vbmeta_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/vbmeta_system_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/vbmeta_vendor_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/vendor_boot_[ab] u:object_r:custom_ab_block_device:s0
+        - /dev/block/platform/3c400000\.ufs/by-name/vendor_kernel_boot_[ab] u:object_r:custom_ab_block_device:s0
         - /dev/block/sda u:object_r:sda_block_device:s0
         - /dev/btpower u:object_r:bt_device:s0
         - /dev/cpu_dma_latency u:object_r:latency_device:s0
@@ -478,7 +601,12 @@ sepolicy_inclusions:
         - /dev/dma_heap/vscaler-secure u:object_r:vscaler_secure_heap_device:s0
         - /dev/dma_heap/vstream-secure u:object_r:dmabuf_system_secure_heap_device:s0
         - /dev/dri/card0 u:object_r:graphics_device:s0
+        - /dev/dri/card[0-9] u:object_r:graphics_device:s0
+        - /dev/dri/renderD128 u:object_r:gpu_device:s0
+        - /dev/dri/renderD[0-9]* u:object_r:gpu_device:s0
+        - /dev/edgetpu-limited u:object_r:edgetpu_device:s0
         - /dev/edgetpu-soc u:object_r:edgetpu_device:s0
+        - /dev/esim_tracer u:object_r:radio_device:s0
         - /dev/fimg2d u:object_r:graphics_device:s0
         - /dev/fth_fd u:object_r:fingerprint_device:s0
         - /dev/g2d u:object_r:graphics_device:s0
@@ -487,20 +615,29 @@ sepolicy_inclusions:
         - /dev/gnss_ipc u:object_r:vendor_gnss_device:s0
         - /dev/goodix_fp u:object_r:fingerprint_device:s0
         - /dev/gpiochip44 u:object_r:vibrator_device:s0
+        - /dev/gsa_pm_stat0 u:object_r:gsa_char_device:s0
         - /dev/gsc0 u:object_r:citadel_device:s0
+        - /dev/gti_status_event.0 u:object_r:gti_ext_status_device:s0
+        - /dev/gti_status_event.1 u:object_r:gti_ext_status_device:s0
+        - /dev/gvdu u:object_r:vdu_device:s0
         - /dev/gxp u:object_r:gxp_device:s0
+        - /dev/iif u:object_r:iif_device:s0
         - /dev/ispolin_ranging u:object_r:lwis_device:s0
         - /dev/ispolin_ranging u:object_r:rls_device:s0
         - /dev/janeiro u:object_r:edgetpu_device:s0
         - /dev/logbuffer_bd u:object_r:logbuffer_device:s0
+        - /dev/logbuffer_bms_vimon u:object_r:logbuffer_device:s0
         - /dev/logbuffer_btlpm u:object_r:logbuffer_device:s0
         - /dev/logbuffer_btpower u:object_r:logbuffer_device:s0
+        - /dev/logbuffer_btwakelock0 u:object_r:logbuffer_device:s0
+        - /dev/logbuffer_btwakelock1 u:object_r:logbuffer_device:s0
         - /dev/logbuffer_cpif u:object_r:logbuffer_device:s0
         - /dev/logbuffer_cpm u:object_r:logbuffer_device:s0
         - /dev/logbuffer_dc_mains u:object_r:logbuffer_device:s0
         - /dev/logbuffer_dsim0 u:object_r:display_log_device:s0
         - /dev/logbuffer_dsim1 u:object_r:display_log_device:s0
         - /dev/logbuffer_dual_batt u:object_r:logbuffer_device:s0
+        - /dev/logbuffer_ggauge_health_monitor u:object_r:logbuffer_device:s0
         - /dev/logbuffer_ln8411 u:object_r:logbuffer_device:s0
         - /dev/logbuffer_max77779_fwupdate u:object_r:logbuffer_device:s0
         - /dev/logbuffer_max77779fg u:object_r:logbuffer_device:s0
@@ -525,13 +662,14 @@ sepolicy_inclusions:
         - /dev/logbuffer_ssoc u:object_r:logbuffer_device:s0
         - /dev/logbuffer_tcpm u:object_r:logbuffer_device:s0
         - /dev/logbuffer_ttf u:object_r:logbuffer_device:s0
+        - /dev/logbuffer_tty1 u:object_r:logbuffer_device:s0
         - /dev/logbuffer_tty16 u:object_r:logbuffer_device:s0
         - /dev/logbuffer_tty18 u:object_r:logbuffer_device:s0
         - /dev/logbuffer_usbpd u:object_r:logbuffer_device:s0
         - /dev/logbuffer_wc68 u:object_r:logbuffer_device:s0
         - /dev/logbuffer_wireless u:object_r:logbuffer_device:s0
         - /dev/logbuffer_wlc_fw_update u:object_r:logbuffer_device:s0
-        - /dev/lwis-act0 u:object_r:lwis_device:s0
+        - /dev/lwis-.* u:object_r:lwis_device:s0
         - /dev/lwis-act-ak7377 u:object_r:lwis_device:s0
         - /dev/lwis-act-cornerfolk u:object_r:lwis_device:s0
         - /dev/lwis-act-cornerfolk-dokkaebi u:object_r:lwis_device:s0
@@ -547,11 +685,11 @@ sepolicy_inclusions:
         - /dev/lwis-act-sem1215sa u:object_r:lwis_device:s0
         - /dev/lwis-act-slenderman u:object_r:lwis_device:s0
         - /dev/lwis-act-slenderman-sandworm u:object_r:lwis_device:s0
+        - /dev/lwis-act0 u:object_r:lwis_device:s0
         - /dev/lwis-act1 u:object_r:lwis_device:s0
         - /dev/lwis-be-core u:object_r:lwis_device:s0
         - /dev/lwis-csi u:object_r:lwis_device:s0
         - /dev/lwis-dpm u:object_r:lwis_device:s0
-        - /dev/lwis-eeprom0 u:object_r:lwis_device:s0
         - /dev/lwis-eeprom-djinn u:object_r:lwis_device:s0
         - /dev/lwis-eeprom-djinn-nautilus u:object_r:lwis_device:s0
         - /dev/lwis-eeprom-gargoyle u:object_r:lwis_device:s0
@@ -587,10 +725,11 @@ sepolicy_inclusions:
         - /dev/lwis-eeprom-smaug-svarog-outer u:object_r:lwis_device:s0
         - /dev/lwis-eeprom-smaug-taotie-front u:object_r:lwis_device:s0
         - /dev/lwis-eeprom-smaug-taotie-uw u:object_r:lwis_device:s0
+        - /dev/lwis-eeprom0 u:object_r:lwis_device:s0
         - /dev/lwis-eeprom1 u:object_r:lwis_device:s0
         - /dev/lwis-eeprom2 u:object_r:lwis_device:s0
-        - /dev/lwis-flash0 u:object_r:lwis_device:s0
         - /dev/lwis-flash-lm3644 u:object_r:lwis_device:s0
+        - /dev/lwis-flash0 u:object_r:lwis_device:s0
         - /dev/lwis-g3aa u:object_r:lwis_device:s0
         - /dev/lwis-gdc0 u:object_r:lwis_device:s0
         - /dev/lwis-gdc1 u:object_r:lwis_device:s0
@@ -613,7 +752,6 @@ sepolicy_inclusions:
         - /dev/lwis-ois-sem1215sa u:object_r:lwis_device:s0
         - /dev/lwis-pdp u:object_r:lwis_device:s0
         - /dev/lwis-scsc u:object_r:lwis_device:s0
-        - /dev/lwis-sensor0 u:object_r:lwis_device:s0
         - /dev/lwis-sensor-barghest u:object_r:lwis_device:s0
         - /dev/lwis-sensor-boitata u:object_r:lwis_device:s0
         - /dev/lwis-sensor-boitata-nautilus u:object_r:lwis_device:s0
@@ -652,6 +790,7 @@ sepolicy_inclusions:
         - /dev/lwis-sensor-taotie-front u:object_r:lwis_device:s0
         - /dev/lwis-sensor-taotie-tele u:object_r:lwis_device:s0
         - /dev/lwis-sensor-taotie-uw u:object_r:lwis_device:s0
+        - /dev/lwis-sensor0 u:object_r:lwis_device:s0
         - /dev/lwis-sensor1 u:object_r:lwis_device:s0
         - /dev/lwis-sensor2 u:object_r:lwis_device:s0
         - /dev/lwis-slc u:object_r:lwis_device:s0
@@ -663,6 +802,8 @@ sepolicy_inclusions:
         - /dev/oem_ipc[0-7] u:object_r:radio_device:s0
         - /dev/oem_test u:object_r:radio_device:s0
         - /dev/oem_test u:object_r:radio_test_device:s0
+        - /dev/pixelmd u:object_r:pixelmd_device:s0
+        - /dev/pvr_sync u:object_r:gpu_device:s0
         - /dev/qbt_fd u:object_r:fingerprint_device:s0
         - /dev/qbt_ipc u:object_r:fingerprint_device:s0
         - /dev/radio0 u:object_r:radio_device:s0
@@ -670,8 +811,8 @@ sepolicy_inclusions:
         - /dev/scsc_h4_0 u:object_r:radio_device:s0
         - /dev/sg1 u:object_r:sg_device:s0
         - /dev/sg[0-9] u:object_r:sg_device:s0
-        - /dev/snd/pcmC1D24p u:object_r:vibrator_snd_device:s0
         - /dev/snd/pcmC0D24p u:object_r:vibrator_snd_device:s0
+        - /dev/snd/pcmC1D24p u:object_r:vibrator_snd_device:s0
         - /dev/socket/chre u:object_r:chre_socket:s0
         - /dev/socket/location(/.*)? u:object_r:vendor_location_socket:s0
         - /dev/socket/pps u:object_r:pps_socket:s0
@@ -685,15 +826,18 @@ sepolicy_inclusions:
         - /dev/touch_offload u:object_r:touch_offload_device:s0
         - /dev/touch_offload_fts_ext u:object_r:touch_offload_device:s0
         - /dev/touch_offload_outer u:object_r:touch_offload_device:s0
+        - /dev/touch_sim.* u:object_r:touch_sim_device:s0
         - /dev/trusty-ipc-dev0 u:object_r:tee_device:s0
         - /dev/trusty-log0 u:object_r:trusty_log_device:s0
         - /dev/tsmux u:object_r:video_device:s0
         - /dev/ttyBCM u:object_r:vendor_gnss_device:s0
         - /dev/ttyGS[0-3] u:object_r:serial_device:s0
+        - /dev/ttyS1 u:object_r:hci_attach_dev:s0
         - /dev/ttySAC0 u:object_r:tty_device:s0
         - /dev/ttySAC16 u:object_r:hci_attach_dev:s0
         - /dev/ttySAC18 u:object_r:hci_attach_dev:s0
         - /dev/uci u:object_r:uci_device:s0
+        - /dev/ufs-bsg. u:object_r:ufs_bsg_device:s0
         - /dev/umts_boot0 u:object_r:radio_device:s0
         - /dev/umts_dm0 u:object_r:radio_device:s0
         - /dev/umts_ipc0 u:object_r:radio_device:s0
@@ -702,6 +846,7 @@ sepolicy_inclusions:
         - /dev/umts_router u:object_r:radio_device:s0
         - /dev/umts_wfc[01] u:object_r:pktrouter_device:s0
         - /dev/video12 u:object_r:hw_jpg_device:s0
+        - /dev/vpu u:object_r:video_device:s0
         - /dev/watchdog0 u:object_r:watchdog_device:s0
         - /dev/wbrc u:object_r:wb_coexistence_dev:s0
         - /dev/wlan u:object_r:vendor_wlan_device:s0
@@ -727,7 +872,13 @@ sepolicy_inclusions:
         - /persist(/.*)? u:object_r:persist_file:s0
         - /persist/haptics(/.*)? u:object_r:persist_haptics_file:s0
         - /persist/sensorcal\.json u:object_r:sensors_cal_file:s0
+        - /sys/devices/platform/([0-9A-Fa-f])+.gsa-ns/log_intermediate u:object_r:sysfs_gsa:s0
+        - /sys/devices/platform/([0-9A-Fa-f])+.gsa-ns/log_main u:object_r:sysfs_gsa:s0
+        - /sys/devices/platform/([0-9A-Fa-f])+.gsa-ns/rom_patch u:object_r:sysfs_gsa:s0
+        - /sys/devices/platform/9000000.aoc/.*/wakeup.* u:object_r:sysfs_wakeup:s0
         - /sys/devices/platform/[0-9a-z]+\.ufs/pixel/enable_pixel_ufs_logging u:object_r:sysfs_scsi_devices_0000:s0
+        - /sys/devices/platform/[0-9a-z]+\.ufs/pixel/read_boost u:object_r:sysfs_scsi_devices_0000:s0
+        - /sys/kernel/debug/dri/0 u:object_r:vendor_dri_debugfs:s0
         - /sys/module/cl_dsp_core/version u:object_r:sysfs_vibrator:s0
         - /sys/module/cs40l26_core/version u:object_r:sysfs_vibrator:s0
         - /system_ext/bin/hw/vendor\.google\.edgetpu_app_service@1\.0-service u:object_r:edgetpu_app_server_exec:s0
@@ -744,29 +895,41 @@ sepolicy_inclusions:
         - /vendor/bin/cnss-daemon u:object_r:cnss-daemon_exec:s0
         - /vendor/bin/copy_efs_files_to_data u:object_r:copy_efs_files_to_data_exec:s0
         - /vendor/bin/cp u:object_r:vendor_toolbox_exec:s0
+        - /vendor/bin/devcoredump_action u:object_r:devcoredump_action_exec:s0
         - /vendor/bin/dmd u:object_r:dmd_exec:s0
         - /vendor/bin/dump/dump_aoc u:object_r:dump_aoc_exec:s0
         - /vendor/bin/dump/dump_bcmbt u:object_r:dump_bcmbt_exec:s0
+        - /vendor/bin/dump/dump_bootlogs_bldr u:object_r:dump_bootlogs_bldr_exec:s0
         - /vendor/bin/dump/dump_camera u:object_r:dump_camera_exec:s0
+        - /vendor/bin/dump/dump_chip_info u:object_r:dump_chip_info_exec:s0
+        - /vendor/bin/dump/dump_clocks u:object_r:dump_clocks_exec:s0
         - /vendor/bin/dump/dump_devfreq u:object_r:dump_devfreq_exec:s0
         - /vendor/bin/dump/dump_display_logbuffer u:object_r:dump_display_logbuffer_exec:s0
         - /vendor/bin/dump/dump_display_userdebug\.sh u:object_r:dump_exynos_display_userdebug_exec:s0
+        - /vendor/bin/dump/dump_display_userdebug\.sh u:object_r:dump_pixel_display_userdebug_exec:s0
+        - /vendor/bin/dump/dump_dwc3\.sh u:object_r:dump_dwc3_exec:s0
         - /vendor/bin/dump/dump_exynos_display u:object_r:dump_exynos_display_exec:s0
         - /vendor/bin/dump/dump_exynos_second_display u:object_r:dump_exynos_second_display_exec:s0
         - /vendor/bin/dump/dump_fingerprint u:object_r:dump_fingerprint_exec:s0
         - /vendor/bin/dump/dump_focaltech\.sh u:object_r:dump_focaltech_exec:s0
         - /vendor/bin/dump/dump_gps u:object_r:dump_gps_exec:s0
+        - /vendor/bin/dump/dump_gsa u:object_r:dump_gsa_exec:s0
         - /vendor/bin/dump/dump_gsa\.sh u:object_r:dump_gsa_exec:s0
         - /vendor/bin/dump/dump_gsc\.sh u:object_r:dump_gsc_exec:s0
         - /vendor/bin/dump/dump_gxp u:object_r:dump_gxp_exec:s0
+        - /vendor/bin/dump/dump_interrupts_traces u:object_r:dump_interrupts_traces_exec:s0
+        - /vendor/bin/dump/dump_iommu u:object_r:dump_iommu_exec:s0
         - /vendor/bin/dump/dump_led u:object_r:dump_led_exec:s0
         - /vendor/bin/dump/dump_lsi\.sh u:object_r:dump_lsi_exec:s0
+        - /vendor/bin/dump/dump_mailbox u:object_r:dump_mailbox_exec:s0
         - /vendor/bin/dump/dump_memory u:object_r:dump_memory_exec:s0
         - /vendor/bin/dump/dump_modem u:object_r:dump_modem_exec:s0
         - /vendor/bin/dump/dump_modemlog u:object_r:dump_modemlog_exec:s0
         - /vendor/bin/dump/dump_pcie\.sh u:object_r:dump_pcie_exec:s0
         - /vendor/bin/dump/dump_perf u:object_r:dump_perf_exec:s0
+        - /vendor/bin/dump/dump_pixel_display u:object_r:dump_pixel_display_exec:s0
         - /vendor/bin/dump/dump_pixel_metrics u:object_r:dump_pixel_metrics_exec:s0
+        - /vendor/bin/dump/dump_pixel_second_display u:object_r:dump_pixel_second_display_exec:s0
         - /vendor/bin/dump/dump_power u:object_r:dump_power_exec:s0
         - /vendor/bin/dump/dump_radio u:object_r:dump_radio_exec:s0
         - /vendor/bin/dump/dump_ramdump u:object_r:dump_ramdump_exec:s0
@@ -775,21 +938,25 @@ sepolicy_inclusions:
         - /vendor/bin/dump/dump_stm\.sh u:object_r:dump_stm_exec:s0
         - /vendor/bin/dump/dump_storage u:object_r:dump_storage_exec:s0
         - /vendor/bin/dump/dump_syna\.sh u:object_r:dump_syna_exec:s0
+        - /vendor/bin/dump/dump_telemetry u:object_r:dump_telemetry_exec:s0
         - /vendor/bin/dump/dump_thermal\.sh u:object_r:dump_thermal_exec:s0
         - /vendor/bin/dump/dump_touch\.sh u:object_r:dump_touch_exec:s0
         - /vendor/bin/dump/dump_tpu u:object_r:dump_tpu_exec:s0
         - /vendor/bin/dump/dump_trusty\.sh u:object_r:dump_trusty_exec:s0
         - /vendor/bin/dump/dump_umfw_stat u:object_r:dump_umfw_stat_exec:s0
+        - /vendor/bin/dump/dump_uwb u:object_r:dump_uwb_exec:s0
         - /vendor/bin/dump/dump_wlan u:object_r:dump_wlan_exec:s0
         - /vendor/bin/dump/dump_wlan\.sh u:object_r:dump_wlan_exec:s0
-        - /vendor/bin/dump_touch/predump_gti1\.sh u:object_r:predump_touch_exec:s0
         - /vendor/bin/dump_touch/predump_gti0\.sh u:object_r:predump_touch_exec:s0
+        - /vendor/bin/dump_touch/predump_gti1\.sh u:object_r:predump_touch_exec:s0
         - /vendor/bin/dump_touch/predump_stm\.sh u:object_r:predump_touch_exec:s0
         - /vendor/bin/dump_touch/predump_syna\.sh u:object_r:predump_touch_exec:s0
         - /vendor/bin/dumpsys u:object_r:vendor_dumpsys:s0
         - /vendor/bin/flood\.control\.hal u:object_r:flood_control_exec:s0
         - /vendor/bin/gia u:object_r:gia_exec:s0
+        - /vendor/bin/giadiagnose u:object_r:giadiagnose_exec:s0
         - /vendor/bin/gpu_probe u:object_r:gpu_probe_exec:s0
+        - /vendor/bin/gpuflag u:object_r:gpuflag_exec:s0
         - /vendor/bin/grep u:object_r:vendor_toolbox_exec:s0
         - /vendor/bin/hw/android.hardware.gnss-service u:object_r:hal_gnss_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.atrace@1\.0-service.pixel u:object_r:hal_atrace_default_exec:s0
@@ -798,6 +965,7 @@ sepolicy_inclusions:
         - /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint-service\.fpc u:object_r:hal_fingerprint_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint-service\.fpc42 u:object_r:hal_fingerprint_capacitance_exec:s0
         - /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint-service\.fpc42_fw49 u:object_r:hal_fingerprint_capacitance_exec:s0
+        - /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint-service\.goodix u:object_r:hal_fingerprint_capacitance_exec:s0
         - /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint-service\.goodix u:object_r:hal_fingerprint_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service\.fpc u:object_r:fingerprint_factory_service_exec:s0
         - /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service\.fpc u:object_r:hal_fingerprint_default_exec:s0
@@ -806,20 +974,24 @@ sepolicy_inclusions:
         - /vendor/bin/hw/android\.hardware\.bluetooth@1\.1-service\.synabtlinux u:object_r:hal_bluetooth_synabtlinux_exec:s0
         - /vendor/bin/hw/android\.hardware\.boot-service\.default-pixel u:object_r:hal_bootctl_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.camera\.provider@2\.7-service-google u:object_r:hal_camera_default_exec:s0
+        - /vendor/bin/hw/android\.hardware\.composer\.drm-hwc3-service u:object_r:hal_graphics_composer_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.composer\.hwc3-service\.pixel u:object_r:hal_graphics_composer_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.contexthub-service\.generic u:object_r:hal_contexthub_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.drm-service\.castkey u:object_r:hal_drm_cast_exec:s0
         - /vendor/bin/hw/android\.hardware\.drm-service\.clearkey u:object_r:hal_drm_clearkey_exec:s0
         - /vendor/bin/hw/android\.hardware\.drm-service\.widevine u:object_r:hal_drm_widevine_exec:s0
         - /vendor/bin/hw/android\.hardware\.dumpstate-service u:object_r:hal_dumpstate_default_exec:s0
+        - /vendor/bin/hw/android\.hardware\.dumpstate\.3-service u:object_r:hal_dumpstate_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.edgetpu\.logging@service-edgetpu-logging u:object_r:edgetpu_logging_exec:s0
         - /vendor/bin/hw/android\.hardware\.gatekeeper-service\.trusty u:object_r:hal_gatekeeper_default_exec:s0
+        - /vendor/bin/hw/android\.hardware\.gatekeeper@1\.0-service\.software u:object_r:hal_gatekeeper_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.gatekeeper@1\.0-service\.trusty u:object_r:hal_gatekeeper_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.gnss-service\.pixel u:object_r:hal_gnss_pixel_exec:s0
         - /vendor/bin/hw/android\.hardware\.gnss@[0-9]\.[0-9]-service-brcm u:object_r:hal_gnss_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.gxp\.logging@service-gxp-logging u:object_r:gxp_logging_exec:s0
         - /vendor/bin/hw/android\.hardware\.health-service\.gs101 u:object_r:hal_health_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.health-service\.gs201 u:object_r:hal_health_default_exec:s0
+        - /vendor/bin/hw/android\.hardware\.health-service\.laguna u:object_r:hal_health_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.health-service\.zuma u:object_r:hal_health_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.health-service\.zumapro u:object_r:hal_health_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.identity@1\.0-service\.citadel u:object_r:hal_identity_citadel_exec:s0
@@ -828,10 +1000,12 @@ sepolicy_inclusions:
         - /vendor/bin/hw/android\.hardware\.memtrack-service\.pixel u:object_r:hal_memtrack_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.neuralnetworks@service-darwinn-aidl u:object_r:hal_neuralnetworks_darwinn_exec:s0
         - /vendor/bin/hw/android\.hardware\.nfc-service\.st u:object_r:hal_nfc_default_exec:s0
+        - /vendor/bin/hw/android\.hardware\.nfc2-service\.st u:object_r:hal_nfc_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.oemlock-service\.citadel u:object_r:hal_oemlock_citadel_exec:s0
         - /vendor/bin/hw/android\.hardware\.power-service\.pixel-libperfmgr u:object_r:hal_power_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.power\.stats-service\.pixel u:object_r:hal_power_stats_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.qorvo\.uwb\.service u:object_r:hal_uwb_vendor_default_exec:s0
+        - /vendor/bin/hw/android\.hardware\.samsung\.uwb-service u:object_r:hal_uwb_vendor_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.secure_element-service.uicc u:object_r:hal_secure_element_uicc_exec:s0
         - /vendor/bin/hw/android\.hardware\.secure_element-service\.thales u:object_r:hal_secure_element_st54spi_aidl_exec:s0
         - /vendor/bin/hw/android\.hardware\.secure_element@1\.2-service-gto u:object_r:hal_secure_element_st54spi_exec:s0
@@ -846,27 +1020,33 @@ sepolicy_inclusions:
         - /vendor/bin/hw/android\.hardware\.usb-service u:object_r:hal_usb_impl_exec:s0
         - /vendor/bin/hw/android\.hardware\.usb\.gadget-service u:object_r:hal_usb_gadget_impl_exec:s0
         - /vendor/bin/hw/android\.hardware\.vibrator-service\.cs40l25 u:object_r:hal_vibrator_default_exec:s0
-        - /vendor/bin/hw/android\.hardware\.vibrator-service\.cs40l25 u:object_r:hal_vibrator_default_exec:s0
-        - /vendor/bin/hw/android\.hardware\.vibrator-service\.cs40l25-dual u:object_r:hal_vibrator_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.vibrator-service\.cs40l25-dual u:object_r:hal_vibrator_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.vibrator-service\.cs40l26 u:object_r:hal_vibrator_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.vibrator-service\.cs40l26-dual u:object_r:hal_vibrator_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.vibrator-service\.cs40l26-private u:object_r:hal_vibrator_default_exec:s0
+        - /vendor/bin/hw/android\.hardware\.vibrator-service\.cs40l26-rust u:object_r:hal_vibrator_default_exec:s0
         - /vendor/bin/hw/android\.hardware\.weaver-service\.citadel u:object_r:hal_weaver_citadel_exec:s0
         - /vendor/bin/hw/android\.hardware\.weaver@1\.0-service\.citadel u:object_r:hal_weaver_citadel_exec:s0
         - /vendor/bin/hw/battery_mitigation u:object_r:battery_mitigation_exec:s0
+        - /vendor/bin/hw/block_queue_depth u:object_r:block_queue_depth_exec:s0
         - /vendor/bin/hw/citadel_updater u:object_r:citadel_updater:s0
         - /vendor/bin/hw/citadeld u:object_r:citadeld_exec:s0
         - /vendor/bin/hw/com\.google\.edgetpu.dba-service u:object_r:edgetpu_dba_server_exec:s0
         - /vendor/bin/hw/com\.google\.edgetpu.tachyon-service u:object_r:edgetpu_tachyon_server_exec:s0
+        - /vendor/bin/hw/cs40l26_vibrator_server u:object_r:hal_vibrator_default_exec:s0
         - /vendor/bin/hw/disable_contaminant_detection\.sh u:object_r:disable-contaminant-detection-sh_exec:s0
         - /vendor/bin/hw/gnssd u:object_r:gnssd_exec:s0
         - /vendor/bin/hw/google\.hardware\.media\.c2@1\.0-service u:object_r:mediacodec_exec:s0
         - /vendor/bin/hw/google\.hardware\.media\.c2@1\.0-service u:object_r:mediacodec_google_exec:s0
         - /vendor/bin/hw/google\.hardware\.media\.c2@2\.0-service u:object_r:mediacodec_google_exec:s0
+        - /vendor/bin/hw/google\.hardware\.media\.c2@3\.0-service u:object_r:mediacodec_google_exec:s0
         - /vendor/bin/hw/gpsd u:object_r:gpsd_exec:s0
+        - /vendor/bin/hw/init.h2omg.sh u:object_r:h2omg_vendor_exec:s0
         - /vendor/bin/hw/init_citadel u:object_r:init_citadel_exec:s0
+        - /vendor/bin/hw/init_rdbl\.sh u:object_r:init_rdbl_exec:s0
         - /vendor/bin/hw/lhd u:object_r:lhd_exec:s0
+        - /vendor/bin/hw/pixel\.gralloc\.allocator-service u:object_r:hal_graphics_allocator_default_exec:s0
+        - /vendor/bin/hw/pixel\.gralloc\.allocator-V[1-2]-service u:object_r:hal_graphics_allocator_default_exec:s0
         - /vendor/bin/hw/qfp-daemon u:object_r:hal_fingerprint_default_exec:s0
         - /vendor/bin/hw/rild_exynos u:object_r:rild_exec:s0
         - /vendor/bin/hw/samsung\.hardware\.media\.c2@1\.2-service u:object_r:mediacodec_samsung_exec:s0
@@ -874,11 +1054,16 @@ sepolicy_inclusions:
         - /vendor/bin/hw/sctd u:object_r:sctd_exec:s0
         - /vendor/bin/hw/spad u:object_r:spad_exec:s0
         - /vendor/bin/hw/swcnd u:object_r:swcnd_exec:s0
+        - /vendor/bin/hw/usboffmode u:object_r:usboffmode_exec:s0
         - /vendor/bin/hw/vendor.google.aam-service u:object_r:hal_aam_exec:s0
+        - /vendor/bin/hw/vendor\.dolby\.media\.c2-default-service u:object_r:mediacodec_exec:s0
         - /vendor/bin/hw/vendor\.dolby\.media\.c2@1\.0-service u:object_r:mediacodec_exec:s0
+        - /vendor/bin/hw/vendor\.google\.ambience_hub-service u:object_r:ambience_hub_default_exec:s0
         - /vendor/bin/hw/vendor\.google\.audiometricext@1\.0-service-vendor u:object_r:hal_audiometricext_default_exec:s0
         - /vendor/bin/hw/vendor\.google\.edgetpu_vendor_service@1\.0-service u:object_r:edgetpu_vendor_server_exec:s0
         - /vendor/bin/hw/vendor\.google\.google_battery-service u:object_r:hal_googlebattery_exec:s0
+        - /vendor/bin/hw/vendor\.google\.google_battery.ekf.service u:object_r:hal_googlebattery_ekf_exec:s0
+        - /vendor/bin/hw/vendor\.google\.plat_security-service u:object_r:hal_plat_security_exec:s0
         - /vendor/bin/hw/vendor\.google\.radio_ext-service u:object_r:hal_radio_ext_exec:s0
         - /vendor/bin/hw/vendor\.google\.radioext@1\.0-service u:object_r:hal_aidl_radio_ext_exec:s0
         - /vendor/bin/hw/vendor\.google\.radioext@1\.0-service u:object_r:hal_radioext_default_exec:s0
@@ -908,10 +1093,13 @@ sepolicy_inclusions:
         - /vendor/bin/mosey_server u:object_r:mosey_server_exec:s0
         - /vendor/bin/pcie_power_control u:object_r:pcie_power_exec:s0
         - /vendor/bin/pixel-experiments-recovery\.sh u:object_r:pixel-experiments-recovery-sh_exec:s0
+        - /vendor/bin/pixel_irq_load_balancer u:object_r:pixel_irq_load_balancer_exec:s0
+        - /vendor/bin/pixelmd u:object_r:pixelmd_exec:s0
         - /vendor/bin/pixelstats-vendor u:object_r:pixelstats_vendor_exec:s0
         - /vendor/bin/predump_touch\.sh u:object_r:predump_touch_exec:s0
         - /vendor/bin/ramdump u:object_r:ramdump_exec:s0
         - /vendor/bin/ramdump32 u:object_r:ramdump_exec:s0
+        - /vendor/bin/rango_init_thermal_config u:object_r:init_thermal_config_exec:s0
         - /vendor/bin/rebalance_interrupts-vendor u:object_r:rebalance_interrupts_vendor_exec:s0
         - /vendor/bin/resku_rescue_kicker u:object_r:tee_exec:s0
         - /vendor/bin/rfsd u:object_r:rfsd_exec:s0
@@ -919,6 +1107,7 @@ sepolicy_inclusions:
         - /vendor/bin/sendhint u:object_r:sendhint_vendor_exec:s0
         - /vendor/bin/sg_read_buffer u:object_r:sg_util_exec:s0
         - /vendor/bin/shared_modem_platform u:object_r:modem_svc_sit_exec:s0
+        - /vendor/bin/shared_modem_platform u:object_r:shared_modem_platform_exec:s0
         - /vendor/bin/sscoredump u:object_r:sscoredump_exec:s0
         - /vendor/bin/storage_init\.sh u:object_r:storage_init_exec:s0
         - /vendor/bin/storage_intelligence\.sh u:object_r:storage_intelligence_exec:s0
@@ -929,11 +1118,13 @@ sepolicy_inclusions:
         - /vendor/bin/thermal_symlinks u:object_r:init-thermal-symlinks-sh_exec:s0
         - /vendor/bin/toolbox_vendor u:object_r:vendor_toolbox_exec:s0
         - /vendor/bin/touch_gti_ical u:object_r:gti_ical_exec:s0
+        - /vendor/bin/trusty-coverage-controller u:object_r:trusty_coverage_controller_exec:s0
         - /vendor/bin/trusty_apploader u:object_r:trusty_apploader_exec:s0
         - /vendor/bin/trusty_metricsd u:object_r:trusty_metricsd_exec:s0
         - /vendor/bin/twoshay u:object_r:twoshay_exec:s0
         - /vendor/bin/ufs_firmware_update\.sh u:object_r:ufs_firmware_update_exec:s0
         - /vendor/bin/umfw_stat_tool u:object_r:vendor_umfw_stat_tool:s0
+        - /vendor/bin/usb_accessory_utils u:object_r:vendor_usb_aoa_helper_exec:s0
         - /vendor/bin/usf_reg_edit u:object_r:vendor_usf_reg_edit:s0
         - /vendor/bin/usf_stats u:object_r:vendor_usf_stats:s0
         - /vendor/bin/vcd u:object_r:vcd_exec:s0
@@ -945,6 +1136,7 @@ sepolicy_inclusions:
         - /vendor/etc/aoc(/.*)? u:object_r:aoc_audio_file:s0
         - /vendor/etc/modem_ml_models\.conf u:object_r:modem_config_file:s0
         - /vendor/firmware(/.*)? u:object_r:vendor_fw_file:s0
+        - /vendor/lib(64)?/aconfig_gpu_flags_c_lib\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib(64)?/android\.frameworks\.stats-V1-ndk\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib(64)?/android\.frameworks\.stats-V2-ndk\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib(64)?/arm\.graphics-V1-ndk\.so u:object_r:same_process_hal_file:s0
@@ -954,6 +1146,7 @@ sepolicy_inclusions:
         - /vendor/lib(64)?/hw/vulkan\.mali\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib(64)?/lib_aion_buffer\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib(64)?/lib_jpg_encoder\.so u:object_r:same_process_hal_file:s0
+        - /vendor/lib(64)?/libaconfig_storage_read_api_cc\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib(64)?/libdrm\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib(64)?/libgpudataproducer\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib(64)?/libGralloc4Wrapper\.so u:object_r:same_process_hal_file:s0
@@ -965,6 +1158,8 @@ sepolicy_inclusions:
         - /vendor/lib(64)?/libprotobuf-cpp-lite-(\d+\.){2,3}so u:object_r:same_process_hal_file:s0
         - /vendor/lib(64)?/pixel-power-ext-V1-ndk\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib(64)?/vendor-pixelatoms-cpp\.so u:object_r:same_process_hal_file:s0
+        - /vendor/lib64/aconfig_gpu_flags_c_lib\.so u:object_r:same_process_hal_file:s0
+        - /vendor/lib64/aconfig_gpu_img_flags_c_lib\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/android\.frameworks\.stats-V1-ndk\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/android\.frameworks\.stats-V2-ndk\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/arm\.graphics-V1-ndk\.so u:object_r:same_process_hal_file:s0
@@ -973,13 +1168,19 @@ sepolicy_inclusions:
         - /vendor/lib64/camera u:object_r:vendor_camera_tuning_file:s0
         - /vendor/lib64/camera/ghawb_para_lut\.bin u:object_r:vendor_camera_tuning_file:s0
         - /vendor/lib64/camera/slider_.*\.binarypb u:object_r:vendor_camera_tuning_file:s0
+        - /vendor/lib64/com\.google\.edgetpu_app_service-V([1-9]|10)-ndk\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/com\.google\.edgetpu_app_service-V[1-4]-ndk\.so u:object_r:same_process_hal_file:s0
+        - /vendor/lib64/com\.google\.edgetpu_app_service-V[1-6]-ndk\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/com\.google\.edgetpu_vendor_service-V[1-2]-ndk\.so u:object_r:same_process_hal_file:s0
+        - /vendor/lib64/hw/android\.hardware\.graphics\.mapper@4\.0-impl-pixel\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/hw/mapper\.pixel\.so u:object_r:same_process_hal_file:s0
+        - /vendor/lib64/hw/vulkan.powervr\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/hw/vulkan\.mali\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/hw/vulkan\.pastel\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/lib_aion_buffer\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/lib_jpg_encoder\.so u:object_r:same_process_hal_file:s0
+        - /vendor/lib64/libaconfig_storage_read_api_cc\.so u:object_r:same_process_hal_file:s0
+        - /vendor/lib64/libcustomer_gralloc_ddk_api\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/libdrm\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/libedgetpu_client\.google\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/libedgetpu_litert\.so u:object_r:same_process_hal_file:s0
@@ -989,65 +1190,62 @@ sepolicy_inclusions:
         - /vendor/lib64/libgpudataproducer\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/libGralloc4Wrapper\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/libhwjpeg\.so u:object_r:same_process_hal_file:s0
+        - /vendor/lib64/libIMGegl\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/libion_google\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/libmetrics_logger\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/libOpenCL-pixel\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/libOpenCL\.so u:object_r:same_process_hal_file:s0
+        - /vendor/lib64/libPixelGrallocProperties\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/libprotobuf-cpp-lite-(\d+\.){2,3}so u:object_r:same_process_hal_file:s0
+        - /vendor/lib64/libPVROCL\.so u:object_r:same_process_hal_file:s0
+        - /vendor/lib64/libsrv_um\.so u:object_r:same_process_hal_file:s0
+        - /vendor/lib64/libufwriter\.so u:object_r:same_process_hal_file:s0
+        - /vendor/lib64/libusc\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/pixel-power-ext-V1-ndk\.so u:object_r:same_process_hal_file:s0
         - /vendor/lib64/vendor-pixelatoms-cpp\.so u:object_r:same_process_hal_file:s0
         - /vendor_dlkm/lib/modules/.*\.ko u:object_r:vendor_kernel_modules:s0
-        - /dev/edgetpu-limited u:object_r:edgetpu_device:s0
-        - /dev/logbuffer_bms_vimon u:object_r:logbuffer_device:s0
       vendor_hwservice_contexts:
+        - android.hardware.media.c2::IConfigurable u:object_r:hal_codec2_hwservice:s0
+        - android.vendor.samsung_slsi.telephony.hardware.radio::IOemSamsungslsi u:object_r:hal_exynos_rild_hwservice:s0
         - com.fingerprints42.extension::IFingerprintEngineering u:object_r:hal_fingerprint_capacitance_ext_hwservice:s0
         - com.fingerprints42.extension::IFingerprintSensorTest u:object_r:hal_fingerprint_capacitance_ext_hwservice:s0
-        - vendor.qti.hardware.fingerprint::IQtiExtendedFingerprint u:object_r:hal_fingerprint_ext_hwservice:s0
-        - vendor.google.whitechapel.audio.audioext::IAudioExt u:object_r:hal_audio_ext_hwservice:s0
-        - vendor.samsung_slsi.hardware.radio::IOemSamsungslsi u:object_r:hal_telephony_hwservice:s0
-        - vendor.samsung_slsi.hardware.ExynosHWCServiceTW::IExynosHWCServiceTW u:object_r:hal_vendor_surfaceflinger_hwservice:s0
-        - vendor.samsung_slsi.hardware.configstore::IExynosHWCConfigs u:object_r:hal_configstore_ISurfaceFlingerConfigs:s0
-        - vendor.samsung_slsi.telephony.hardware.radio::IOemSamsungslsi u:object_r:hal_exynos_rild_hwservice:s0
-        - android.vendor.samsung_slsi.telephony.hardware.radio::IOemSamsungslsi u:object_r:hal_exynos_rild_hwservice:s0
-        - android.hardware.media.c2::IConfigurable u:object_r:hal_codec2_hwservice:s0
-        - vendor.google.wireless_charger::IWirelessCharger u:object_r:hal_wlc_hwservice:s0
-        - vendor.google.audiometricext::IAudioMetricExt u:object_r:hal_audiometricext_hwservice:s0
-        - vendor.google.wifi_ext::IWifiExt u:object_r:hal_wifi_ext_hwservice:s0
         - com.google.face.debug::IDebugHost u:object_r:hal_face_debug_hwservice:s0
-        - vendor.samsung_slsi.telephony.hardware.oemservice::IOemService u:object_r:hal_vendor_oem_hwservice:s0
-        - vendor.samsung_slsi.telephony.hardware.radioExternal::IOemSlsiRadioExternal u:object_r:hal_exynos_rild_hwservice:s0
-        - vendor.google.radioext::IRadioExt u:object_r:hal_radioext_hwservice:s0
         - hardware.google.bluetooth.bt_channel_avoidance::IBTChannelAvoidance u:object_r:hal_bluetooth_coexistence_hwservice:s0
-        - hardware.google.bluetooth.sar::IBluetoothSar u:object_r:hal_bluetooth_coexistence_hwservice:s0
         - hardware.google.bluetooth.ccc::IBluetoothCcc u:object_r:hal_bluetooth_coexistence_hwservice:s0
         - hardware.google.bluetooth.ewp::IBluetoothEwp u:object_r:hal_bluetooth_coexistence_hwservice:s0
         - hardware.google.bluetooth.ext::IBluetoothExt u:object_r:hal_bluetooth_coexistence_hwservice:s0
+        - hardware.google.bluetooth.sar::IBluetoothSar u:object_r:hal_bluetooth_coexistence_hwservice:s0
         - vendor.goodix.hardware.biometrics.fingerprint::IGoodixFingerprintDaemon u:object_r:hal_fingerprint_ext_hwservice:s0
+        - vendor.google.audiometricext::IAudioMetricExt u:object_r:hal_audiometricext_hwservice:s0
+        - vendor.google.radioext::IRadioExt u:object_r:hal_radioext_hwservice:s0
+        - vendor.google.whitechapel.audio.audioext::IAudioExt u:object_r:hal_audio_ext_hwservice:s0
+        - vendor.google.wifi_ext::IWifiExt u:object_r:hal_wifi_ext_hwservice:s0
+        - vendor.google.wireless_charger::IWirelessCharger u:object_r:hal_wlc_hwservice:s0
+        - vendor.qti.hardware.fingerprint::IQtiExtendedFingerprint u:object_r:hal_fingerprint_ext_hwservice:s0
+        - vendor.samsung_slsi.hardware.configstore::IExynosHWCConfigs u:object_r:hal_configstore_ISurfaceFlingerConfigs:s0
+        - vendor.samsung_slsi.hardware.ExynosHWCServiceTW::IExynosHWCServiceTW u:object_r:hal_vendor_surfaceflinger_hwservice:s0
+        - vendor.samsung_slsi.hardware.radio::IOemSamsungslsi u:object_r:hal_telephony_hwservice:s0
+        - vendor.samsung_slsi.telephony.hardware.oemservice::IOemService u:object_r:hal_vendor_oem_hwservice:s0
+        - vendor.samsung_slsi.telephony.hardware.radio::IOemSamsungslsi u:object_r:hal_exynos_rild_hwservice:s0
+        - vendor.samsung_slsi.telephony.hardware.radioExternal::IOemSlsiRadioExternal u:object_r:hal_exynos_rild_hwservice:s0
       vendor_seapp_contexts:
         - user=_app isPrivApp=true name=.ShannonImsService domain=vendor_ims_app levelFrom=all
         - user=_app isPrivApp=true name=com.google.android.grilservice domain=grilservice_app levelFrom=all
         - user=_app isPrivApp=true name=com.google.pixel.digitalkey.timesync domain=vendor_cccdktimesync_app type=app_data_file levelFrom=
         - user=_app isPrivApp=true name=com.google.pixel.digitalkey.timesync domain=vendor_cccdktimesync_app type=app_data_file levelFrom=all
         - user=_app isPrivApp=true name=com.samsung.slsi.telephony.oemril domain=oemrilservice_app levelFrom=all
-        - user=_app isPrivApp=true name=com.shannon.imsservice domain=vendor_ims_app levelFrom=all
-        - user=_app isPrivApp=true name=com.shannon.imsservice:remote domain=vendor_ims_app levelFrom=all
-        - user=_app isPrivApp=true name=com.shannon.imsservice:remote domain=vendor_ims_remote_app levelFrom=all
-        - user=_app isPrivApp=true name=com.shannon.qualifiednetworksservice domain=vendor_ims_app levelFrom=all
         - user=_app isPrivApp=true name=com.shannon.qualifiednetworksservice domain=vendor_qualifiednetworks_app levelFrom=all
         - user=_app isPrivApp=true name=com.shannon.rcsservice domain=vendor_rcs_app levelFrom=all
         - user=_app isPrivApp=true name=com.shannon.rcsservice:shannonrcsservice domain=vendor_rcs_app levelFrom=all
         - user=_app isPrivApp=true name=com.shannon.rcsservice:shannonrcsservice domain=vendor_rcs_service_app levelFrom=all
-        - user=_app isPrivApp=true seinfo=EuiccSupportPixel name=com.google.euiccpixel domain=euiccpixel_app type=app_data_file levelFrom=all
         - user=_app isPrivApp=true seinfo=platform name=com.samsung.slsi.telephony.satelliteservice domain=vendor_satellite_service levelFrom=all
-        - user=_app isPrivApp=true seinfo=pms name=com.google.android.modem.pms domain=pixel_modem_app levelFrom=all
         - user=_app isPrivApp=true seinfo=uwb name=com.qorvo.uwb.vendorservice domain=uwb_vendor_app type=uwb_vendor_data_file levelFrom=all
         - user=radio isPrivApp=true seinfo=platform name=com.google.RilConfigService domain=ril_config_service_app type=app_data_file
       vendor_service_contexts:
-        - vendor.google.ambience_hub.IAmbienceHubConsumerManager/default u:object_r:hal_ambience_hub_service:s0
-        - vendor.google.ambience_hub.IAmbienceHubProducerManager/default u:object_r:hal_ambience_hub_service:s0
         - android.hardware.drm.IDrmFactory/castkey u:object_r:hal_drm_service:s0
         - android.hardware.drm.IDrmFactory/widevine u:object_r:hal_drm_service:s0
         - android.hardware.gnss.IGnss/vendor u:object_r:hal_gnss_service:s0
+        - android.hardware.media.c2.IComponentStore/default9 u:object_r:hal_codec2_service:s0
         - android.hardware.neuralnetworks.IDevice/google-edgetpu u:object_r:edgetpu_nnapi_service:s0
         - android.hardware.security.keymint.IKeyMintDevice/strongbox u:object_r:hal_keymint_service:s0
         - android.hardware.security.keymint.IRemotelyProvisionedComponent/strongbox u:object_r:hal_remotelyprovisionedcomponent_service:s0
@@ -1070,7 +1268,10 @@ sepolicy_inclusions:
         - com.google.hardware.pixel.display.IDisplay/secondary u:object_r:hal_pixel_display_service:s0
         - com.google.input.algos.gril.IGrilAntennaTuningService/default u:object_r:gril_antenna_tuning_service:s0
         - com.google.input.algos.spd.IScreenProtectorDetectorService/default u:object_r:screen_protector_detector_service:s0
+        - com.google.input.algos.touchflow.ITouchflowLoggerService/default_touchflow u:object_r:touchflow_logger_service:s0
+        - com.google.input.algos.touchflow.ITouchflowLoggerService/outer_touchflow u:object_r:touchflow_logger_service:s0
         - com.google.input.gia.core.IGiaService/default u:object_r:hal_gia_service:s0
+        - com.google.input.gia.diagnose.IGiaDiagnoseService/default u:object_r:hal_giadiagnose_service:s0
         - com.google.input.ITouchContextService/default u:object_r:touch_context_service:s0
         - com.google.input.ITwoshayFileDumpService/touchflow_default u:object_r:twoshay_file_dump_service:s0
         - com.google.input.ITwoshayFileDumpService/touchflow_outer u:object_r:twoshay_file_dump_service:s0
@@ -1080,6 +1281,7 @@ sepolicy_inclusions:
         - com.google.pixel.modem.logmasklibrary.ILiboemserviceProxy/default u:object_r:liboemservice_proxy_service:s0
         - com.google.pixel.moseyservice.IMoseyService/default u:object_r:mosey_service:s0
         - com.google.pixel.shared_modem_platform.ISharedModemPlatform/default u:object_r:hal_shared_modem_platform_service:s0
+        - google_battery.ekf u:object_r:hal_googlebattery_ekf_service:s0
         - hardware.google.ril_ext.IRilExt/slot1 u:object_r:hal_ril_ext_service:s0
         - hardware.google.ril_ext.IRilExt/slot2 u:object_r:hal_ril_ext_service:s0
         - hardware.google.ril_ext.IRilExt/slot3 u:object_r:hal_ril_ext_service:s0
@@ -1088,8 +1290,11 @@ sepolicy_inclusions:
         - media.ecoservice u:object_r:eco_service:s0
         - power.stats-vendor u:object_r:hal_power_stats_vendor_service:s0
         - rlsservice u:object_r:rls_service:s0
+        - telephony.oem.oemrilhook u:object_r:radio_service:s0
         - vendor.goodix.hardware.biometrics.fingerprint.IGoodixFingerprintDaemon/default u:object_r:hal_fingerprint_service:s0
         - vendor.google.aam.IAam/default u:object_r:hal_aam_service:s0
+        - vendor.google.ambience_hub.IAmbienceHubConsumerManager/default u:object_r:hal_ambience_hub_service:s0
+        - vendor.google.ambience_hub.IAmbienceHubProducerManager/default u:object_r:hal_ambience_hub_service:s0
         - vendor.google.battery_mitigation.IBatteryMitigation/default u:object_r:hal_battery_mitigation_service:s0
         - vendor.google.bluetooth_ext.IBluetoothCcc/default u:object_r:hal_bluetooth_coexistence_service:s0
         - vendor.google.bluetooth_ext.IBluetoothCco/default u:object_r:hal_bluetooth_coexistence_service:s0
@@ -1098,7 +1303,11 @@ sepolicy_inclusions:
         - vendor.google.bluetooth_ext.IBluetoothFinder/default u:object_r:hal_bluetooth_coexistence_service:s0
         - vendor.google.bluetooth_ext.IBluetoothSar/default u:object_r:hal_bluetooth_coexistence_service:s0
         - vendor.google.bluetooth_ext.IBTChannelAvoidance/default u:object_r:hal_bluetooth_coexistence_service:s0
+        - vendor.google.camera_ext.ICameraInterferenceAvoidance/default u:object_r:vendor_camera_interference_avoidance_service:s0
         - vendor.google.google_battery.IGoogleBattery/default u:object_r:hal_googlebattery_service:s0
+        - vendor.google.hardware.biometrics.face.IFaceExt/default u:object_r:hal_face_ext_service:s0
+        - vendor.google.plat_security.ISecureTimestamp/default u:object_r:hal_plat_security_service:s0
+        - vendor.google.plat_security.ITrustyDecrypt/default u:object_r:hal_plat_security_service:s0
         - vendor.google.radio_ext.IRadioExt/default u:object_r:hal_radio_ext_service:s0
         - vendor.google.whitechapel.audio.extension.IAudioExtension/default u:object_r:hal_audio_ext_service:s0
         - vendor.google.wifi_ext.IWifiExt/default u:object_r:hal_wifi_ext_service:s0
