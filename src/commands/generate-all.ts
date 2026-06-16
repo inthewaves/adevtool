@@ -27,7 +27,6 @@ import {
   DeviceBuildId,
   DeviceConfig,
   getDeviceBuildId,
-  loadDeviceConfigs,
   loadDeviceConfigs2,
 } from '../config/device'
 import {
@@ -213,12 +212,12 @@ export default class GenerateFull extends Command {
     let devices = await loadDeviceConfigs2(flags)
     let index: BuildIndex = await loadBuildIndex()
 
-    const devicesToKeepUnpacked = (flags.devicesToKeepUnpacked.length > 0)
-      ? new Set(
-          (await loadDeviceConfigs2({ devices: flags.devicesToKeepUnpacked }))
-            .map(config => config.device.name)
-        )
-      : undefined;
+    const devicesToKeepUnpacked =
+      flags.devicesToKeepUnpacked.length > 0
+        ? new Set(
+            (await loadDeviceConfigs2({ devices: flags.devicesToKeepUnpacked })).map(config => config.device.name),
+          )
+        : undefined
 
     await forEachDevice(
       devices,
@@ -230,7 +229,9 @@ export default class GenerateFull extends Command {
         let backportBuildId = config.device.backport_build_id
         if (backportBuildId !== undefined) {
           let backportDeviceImages = mapGet(images, getDeviceBuildId(config, backportBuildId))
-          let fileOverlays: { [part: string]: Set<string> } = Object.fromEntries(Object.entries(config.backport_files).map(([k, v]) => [k, new Set(v)]))
+          let fileOverlays: { [part: string]: Set<string> } = Object.fromEntries(
+            Object.entries(config.backport_files).map(([k, v]) => [k, new Set(v)]),
+          )
           let fileOverlaysByDir: { [part: string]: { [dir: string]: Set<string> } } = {}
           for (let [part, filePaths] of Object.entries(fileOverlays)) {
             let filesByDir: { [dir: string]: Set<string> } = {}
@@ -327,7 +328,7 @@ export default class GenerateFull extends Command {
         const baseMsg = 'Generated vendor module at ' + vendorDirs.out
         if (devicesToKeepUnpacked && !devicesToKeepUnpacked.has(config.device.name)) {
           log(baseMsg + ', deleting unpacked images')
-          await deleteUnpackedDeviceImages(images);
+          await deleteUnpackedDeviceImages(images)
         } else {
           log(baseMsg)
         }
