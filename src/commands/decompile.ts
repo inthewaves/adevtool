@@ -206,7 +206,7 @@ async function jadx(i: DecompiledItem) {
     ],
     undefined,
     undefined,
-    [0, 1],
+    [0, 1, 3],
   )
 }
 
