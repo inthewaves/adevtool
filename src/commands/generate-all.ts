@@ -70,7 +70,6 @@ import {
 import { exists, listFilesRecursive } from '../util/fs'
 import { log } from '../util/log'
 import { PathResolver } from '../util/partitions'
-import { isStallion } from '../util/stallion'
 
 interface DeviceInfo {
   sdkVersion: string
@@ -264,7 +263,7 @@ export default class GenerateFull extends Command {
         let deviceInfo = await doDevice(vendorDirs, config, pathResolver, flags.customSrc, flags.verbose)
 
         if (!flags.doNotReplaceCarrierSettings) {
-          if (flags.updateSpec && config.device.has_cellular && !flags.doNotDownloadCarrierSettings && !isStallion(config)) {
+          if (flags.updateSpec && config.device.has_cellular && !flags.doNotDownloadCarrierSettings) {
             log(chalk.bold(`Downloading carrier settings updates`))
             const csUpdateConfig = await fetchUpdateConfig(
               config.device.name,

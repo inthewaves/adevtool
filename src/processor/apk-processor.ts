@@ -17,7 +17,6 @@ import { isDirectory } from '../util/fs'
 import { log } from '../util/log'
 import { Partition, PathResolver } from '../util/partitions'
 import { getCertDigests } from './sepolicy'
-import { isStallion } from '../util/stallion'
 
 export interface BriefApkInfo {
   briefPackageInfo: BriefPackageInfo
@@ -273,10 +272,6 @@ export async function processApks(
           }
         }
         if (!foundStockApex) {
-          if (isStallion(config) && pseudoPath === 'system/apex/com.android.telephonycore.apex') {
-            continue
-          }
-
           log('unknown APEX ' + pseudoPath)
           continue
         }
