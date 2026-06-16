@@ -30,6 +30,8 @@ export interface ApkProcessorResult {
   allPackageNames: Set<string>
 }
 
+export const APK_PARSER_CONFIG_DIR_NAME = 'apk-parser-config'
+
 export async function processApks(
   config: DeviceConfig,
   infos: BriefApkInfo[],
@@ -165,7 +167,7 @@ export async function processApks(
     }
   }
 
-  let dstDir = path.join(dirs.out, 'apk-parser-config')
+  let dstDir = path.join(dirs.out, APK_PARSER_CONFIG_DIR_NAME)
   await fs.mkdir(dstDir)
   let fileName = 'apk-parser-config.pb'
   let dstFile = path.join(dstDir, fileName)

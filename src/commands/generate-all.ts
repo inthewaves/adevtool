@@ -51,7 +51,7 @@ import {
 import { writeReadme } from '../frontend/readme'
 import { deleteUnpackedDeviceImages, DeviceImages, prepareDeviceImages } from '../frontend/source'
 import { BuildIndex, ImageType, loadBuildIndex } from '../images/build-index'
-import { processApks } from '../processor/apk-processor'
+import { APK_PARSER_CONFIG_DIR_NAME, processApks } from '../processor/apk-processor'
 import { processSystemServerClassPaths } from '../processor/classpath'
 import { processSepolicy } from '../processor/sepolicy'
 import { processSysconfig } from '../processor/sysconfig'
@@ -413,6 +413,7 @@ async function writeVendorFileTreeSpec(dirs: VendorDirectories, config: DeviceCo
 
 // see readme in vendor-skels/ dir
 async function copyVendorSkel(skelDir: string, dirs: VendorDirectories) {
+  let apkParserConfigDir = path.join(dirs.out, APK_PARSER_CONFIG_DIR_NAME)
   let copyOptions = {
     errorOnExist: true,
     force: false,
@@ -450,6 +451,9 @@ async function copyVendorSkel(skelDir: string, dirs: VendorDirectories) {
             return false
           }
         }
+      }
+      if (source.startsWith(apkParserConfigDir)) {
+        return false
       }
       return true
     },
