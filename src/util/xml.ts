@@ -81,8 +81,10 @@ export function formatXml(obj: object, format: boolean) {
   if (s.length === 0) {
     return s
   }
-  assert(s.charAt(0) == '\n')
-  return s.slice(1)
+  if (s.charAt(0) == '\n') {
+    return s.slice(1)
+  }
+  return s
 }
 
 export interface ProcessXmlCmd {
