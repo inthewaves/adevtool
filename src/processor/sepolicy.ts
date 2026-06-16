@@ -68,6 +68,8 @@ export async function processSepolicy(
   let syspropInclusions = new Set(deviceConfig.sysprop_inclusions)
   let typeAttrs = new Map<string, Set<string>>()
 
+  let definedAttrs = new Set<string>(customState.sepolicy[Partition.System].typeAttrNames)
+
   for (let part of EXT_SYS_PARTITIONS) {
     let selinuxDir = getSelinuxDir(part, pathResolver)
     let exclusions = getPartSepolicy(deviceConfig.sepolicy_exclusions, part)
@@ -154,9 +156,10 @@ export async function processSepolicy(
       let parsedCil = await parseCilFile(selinuxDir, part)
       let customTypeAttrs = customSepolicy.types
       let typeLines: string[] = []
-      let definedAttrs = new Set<string>(
-        customSepolicy.typeAttrNames.concat(...customState.sepolicy[Partition.System].typeAttrNames),
-      )
+      let privateTypeAttributeLines: string[] = []
+      for (let e of customSepolicy.typeAttrNames) {
+        definedAttrs.add(e)
+      }
       let typeSuffix: string | null = null
       if (part === Partition.Vendor) {
         let version = await readFile(path.join(selinuxDir, 'plat_sepolicy_vers.txt'))
@@ -204,7 +207,12 @@ export async function processSepolicy(
               continue
             }
             attrsSet.add(attr)
-            typeLines.push('typeattribute ' + typeStr + ' ' + attr + ';')
+            let line = 'typeattribute ' + typeStr + ' ' + attr + ';'
+            if (sepolicyPubDirPath !== null && customState.sepolicy[Partition.System].types[typeStr] !== undefined) {
+              privateTypeAttributeLines.push(line)
+            } else {
+              typeLines.push(line)
+            }
           }
         }
       }
@@ -227,6 +235,14 @@ export async function processSepolicy(
             if (dirPath === sepolicyPubDirPath) {
               writtenAnyPublic = true
             }
+          })(),
+        )
+      }
+      if (privateTypeAttributeLines.length > 0) {
+        writes.push(
+          (async () => {
+            await mkdirAndWriteFile(sepolicyDirPath, 'typeattributes.te', privateTypeAttributeLines.join('\n'))
+            writtenAny = true
           })(),
         )
       }
