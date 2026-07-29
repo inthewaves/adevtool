@@ -321,16 +321,16 @@
     <integer name="config_wait_for_satellite_enabling_response_timeout_millis">240000</integer>
     <integer name="max_allowed_data_mode">1</integer>
     <string name="config_displayLightSensorType">com.google.sensor.auto_brightness</string>
-    <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
-    <string name="config_dozeTapSensorType">com.google.sensor.single_touch</string>
-    <string name="config_dozeUdfpsLongPressSensorType">com.google.sensor.long_press</string>
-    <string name="config_mainBuiltInDisplayCutout">m 719,99.5 a 47,47 0 0 0 -94,0 47,47 0 0 0 94,0 z @left</string>
-    <string name="config_mainBuiltInDisplayCutoutRectApproximation">m 614.53715,0 h 115 v 199 h -115 z @left</string>
+    <string name="config_dozeComponent" translatable="false">com.android.systemui/com.android.systemui.doze.DozeService</string>
+    <string name="config_dozeTapSensorType" translatable="false">com.google.sensor.single_touch</string>
+    <string name="config_dozeUdfpsLongPressSensorType" translatable="false">com.google.sensor.long_press</string>
+    <string name="config_mainBuiltInDisplayCutout" translatable="false">m 719,99.5 a 47,47 0 0 0 -94,0 47,47 0 0 0 94,0 z @left</string>
+    <string name="config_mainBuiltInDisplayCutoutRectApproximation" translatable="false">m 614.53715,0 h 115 v 199 h -115 z @left</string>
     <string name="config_mainDisplayShape">m 0,224 v -25 -11 -14l 2,-23 4,-17 4,-17 6,-17 6,-11 6,-10 6,-8 4,-6 11,-13 4,-4L 64,38 77,28 87,22 106,12 123,6 140,2 161,0h 15 15 17 19 897 15 6 8 11 6l 9,2h 12l 9,2 12,2 15,4 10,4 7,4 12,6 8,4 9,8 15,10 16,17 11,15 8,11 6,13 5,13 6,21 2,17v 8L 1344,174v 19 19 15 2541 6 4 9 8 12 13l -2,15v 10l -6,26 -5,16 -6,13 -10,15 -7,11 -10,13 -11,11 -14,9 -23,14 -15,6 -23,7 -14,2 -30,4h -23 -12 -7 -10 -889 -12 -10 -10 -6 -13l -19,-2 -12,-2h -8l -17,-5 -15,-4 -19,-10 -15,-10 -19,-15 -13,-11 -10,-16 -11,-19 -8,-19L 6,2859 4,2848 0,2828v -24 -20 -18z</string>
-    <string name="config_mms_user_agent">ggx8b</string>
-    <string name="config_mms_user_agent_profile_url">http://www.gstatic.com/android/sms/GGX8B.xml</string>
-    <string name="config_quickPickupSensorType">com.google.sensor.quick_pickup</string>
-    <string name="config_radio_access_family">GSM|CDMA|EVDO|WCDMA|LTE</string>
+    <string name="config_mms_user_agent" translatable="false">ggx8b</string>
+    <string name="config_mms_user_agent_profile_url" translatable="false">http://www.gstatic.com/android/sms/GGX8B.xml</string>
+    <string name="config_quickPickupSensorType" translatable="false">com.google.sensor.quick_pickup</string>
+    <string name="config_radio_access_family" translatable="false">GSM|CDMA|EVDO|WCDMA|LTE</string>
     <string name="config_satellite_sim_plmn_identifier">90198</string>
     <string name="config_satellite_sim_spn_identifier">Skylo</string>
     <string name="config_wlan_data_service_package">com.google.android.iwlan</string>

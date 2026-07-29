@@ -13,7 +13,7 @@
     <string name="fingerprint_unlock_skip_fingerprint">Continue without Fingerprint Unlock</string>
     <string name="fingerprint_unlock_title">With Fingerprint Unlock, you can unlock your tablet using your fingerprint. For security, this option requires a backup screen lock.</string>
     <string name="frr_notification_reset_fingerprint_description">This can sometimes fix issues</string>
-    <string name="help_url_fingerprint">http://g.co/pixeltablet/fingerprintunlock</string>
+    <string name="help_url_fingerprint" translatable="false">http://g.co/pixeltablet/fingerprintunlock</string>
     <string name="security_settings_fingerprint_enroll_consent_introduction_title">Allow Fingerprint Unlock</string>
     <string name="security_settings_fingerprint_enroll_find_sensor_message">"The fingerprint sensor is on the Power button.
 
@@ -39,7 +39,7 @@ Lightly touch the button without pressing it down."</string>
     <string name="security_settings_sfps_enroll_right_edge_title_immobile_overlay">Move your finger to capture other areas of your fingerprint</string>
     <string name="security_settings_work_fingerprint_preference_title">Fingerprint Unlock for work</string>
     <string name="setup_fingerprint_enroll_immobile_help_continue">Continue</string>
-    <string name="setup_fingerprint_enroll_immobile_help_continue_fallback">Continue</string>
+    <string name="setup_fingerprint_enroll_immobile_help_continue_fallback" translatable="false">Continue</string>
     <string name="setup_fingerprint_enroll_immobile_help_subtitle">This helps capture more of your fingerprint for a better unlocking experience</string>
     <string name="setup_fingerprint_enroll_immobile_help_title">Move your finger</string>
     <string name="suggested_fingerprint_lock_settings_title">Use Fingerprint Unlock</string>

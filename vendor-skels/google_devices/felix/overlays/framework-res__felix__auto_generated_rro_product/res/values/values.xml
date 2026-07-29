@@ -109,8 +109,8 @@
     <integer name="config_pauseRotationWhenUnfolding_hingeEventTimeout">400</integer>
     <integer name="config_pauseRotationWhenUnfolding_maxHingeAngle">165</integer>
     <string name="concurrent_display_notification_thermal_content">Dual Screen is unavailable because your Pixel phone is getting too warm</string>
-    <string name="config_deviceSpecificDeviceStatePolicyProvider">com.google.android.server.policy.FelixDeviceStatePolicyProvider</string>
-    <string name="config_display_features">fold-[1104,0,1104,1848]</string>
+    <string name="config_deviceSpecificDeviceStatePolicyProvider" translatable="false">com.google.android.server.policy.FelixDeviceStatePolicyProvider</string>
+    <string name="config_display_features" translatable="false">fold-[1104,0,1104,1848]</string>
     <string name="config_qualified_networks_service_package">com.android.qns</string>
     <string name="config_rearDisplayPhysicalAddress">4619827677550801153</string>
     <string name="fingerprint_acquired_partial">Make sure your finger covers the sensor</string>

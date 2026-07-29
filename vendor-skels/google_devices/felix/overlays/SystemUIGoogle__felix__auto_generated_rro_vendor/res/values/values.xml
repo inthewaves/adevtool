@@ -63,11 +63,11 @@
     <dimen name="weather_clock_smartspace_scale">0.85</dimen>
     <dimen name="weather_clock_smartspace_translateX">-40.0dp</dimen>
     <dimen name="weather_clock_smartspace_translateY">-15.0dp</dimen>
-    <string name="config_frontBuiltInDisplayCutoutProtection">m 589.2,66.53 a 49.5,49.5 0 0 1 -49.5,49.5 49.5,49.5 0 0 1 -49.5,-49.5 49.5,49.5 0 0 1 49.5,-49.5 49.5,49.5 0 0 1 49.5,49.5 z</string>
-    <string name="config_protectedCameraId">1</string>
-    <string name="config_protectedPhysicalCameraId">5</string>
-    <string name="config_rounded_mask">M 71,0 C 33,0 22,-1 10,10 -1,22 0,33 0,71</string>
-    <string name="doze_brightness_sensor_type">com.google.sensor.binned_brightness</string>
-    <string name="proximity_sensor_secondary_type"/>
-    <string name="proximity_sensor_type"/>
+    <string name="config_frontBuiltInDisplayCutoutProtection" translatable="false">m 589.2,66.53 a 49.5,49.5 0 0 1 -49.5,49.5 49.5,49.5 0 0 1 -49.5,-49.5 49.5,49.5 0 0 1 49.5,-49.5 49.5,49.5 0 0 1 49.5,49.5 z</string>
+    <string name="config_protectedCameraId" translatable="false">1</string>
+    <string name="config_protectedPhysicalCameraId" translatable="false">5</string>
+    <string name="config_rounded_mask" translatable="false">M 71,0 C 33,0 22,-1 10,10 -1,22 0,33 0,71</string>
+    <string name="doze_brightness_sensor_type" translatable="false">com.google.sensor.binned_brightness</string>
+    <string name="proximity_sensor_secondary_type" translatable="false"/>
+    <string name="proximity_sensor_type" translatable="false"/>
 </resources>

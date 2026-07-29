@@ -289,16 +289,16 @@
     <integer name="config_stableDeviceDisplayHeight">2992</integer>
     <integer name="config_stableDeviceDisplayWidth">1344</integer>
     <string name="config_displayLightSensorType">com.google.sensor.auto_brightness</string>
-    <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
-    <string name="config_dozeTapSensorType">com.google.sensor.single_touch</string>
-    <string name="config_dozeUdfpsLongPressSensorType">com.google.sensor.long_press</string>
-    <string name="config_mainBuiltInDisplayCutout">M 628.75,75 a 43.25,43.25 0 1 0 86.5,0 a 43.25,43.25 0 1 0 -86.5,0 Z @left</string>
-    <string name="config_mainBuiltInDisplayCutoutRectApproximation">M 615.5,0 h 110 v 151 h -110 Z @left</string>
-    <string name="config_mainDisplayShape">M 120 0C 113 0 103 2 99 3C 74 8 63 14 50 23C 34 33 21 50 13 66C 8 77 3 93 1 104C 0 115 0 115 0 120L 0 2877L 2 2891C 8 2920 17 2937 34 2955C 51 2973 71 2984 101 2990L 115 2992L 1229 2992L 1243 2990C 1273 2984 1293 2973 1310 2955C 1327 2937 1336 2920 1342 2891L 1344 2877L 1344 120C 1344 115 1344 115 1343 104C 1341 93 1336 77 1331 66C 1323 50 1310 33 1294 23C 1281 14 1270 8 1245 3C 1241 2 1231 0 1224 0L 120 0z</string>
-    <string name="config_mms_user_agent">g1mnw</string>
-    <string name="config_mms_user_agent_profile_url">http://www.gstatic.com/android/sms/G1MNW.xml</string>
-    <string name="config_quickPickupSensorType">com.google.sensor.quick_pickup</string>
-    <string name="config_radio_access_family">GSM|CDMA|EVDO|WCDMA|LTE</string>
+    <string name="config_dozeComponent" translatable="false">com.android.systemui/com.android.systemui.doze.DozeService</string>
+    <string name="config_dozeTapSensorType" translatable="false">com.google.sensor.single_touch</string>
+    <string name="config_dozeUdfpsLongPressSensorType" translatable="false">com.google.sensor.long_press</string>
+    <string name="config_mainBuiltInDisplayCutout" translatable="false">M 628.75,75 a 43.25,43.25 0 1 0 86.5,0 a 43.25,43.25 0 1 0 -86.5,0 Z @left</string>
+    <string name="config_mainBuiltInDisplayCutoutRectApproximation" translatable="false">M 615.5,0 h 110 v 151 h -110 Z @left</string>
+    <string name="config_mainDisplayShape" translatable="false">M 120 0C 113 0 103 2 99 3C 74 8 63 14 50 23C 34 33 21 50 13 66C 8 77 3 93 1 104C 0 115 0 115 0 120L 0 2877L 2 2891C 8 2920 17 2937 34 2955C 51 2973 71 2984 101 2990L 115 2992L 1229 2992L 1243 2990C 1273 2984 1293 2973 1310 2955C 1327 2937 1336 2920 1342 2891L 1344 2877L 1344 120C 1344 115 1344 115 1343 104C 1341 93 1336 77 1331 66C 1323 50 1310 33 1294 23C 1281 14 1270 8 1245 3C 1241 2 1231 0 1224 0L 120 0z</string>
+    <string name="config_mms_user_agent" translatable="false">g1mnw</string>
+    <string name="config_mms_user_agent_profile_url" translatable="false">http://www.gstatic.com/android/sms/G1MNW.xml</string>
+    <string name="config_quickPickupSensorType" translatable="false">com.google.sensor.quick_pickup</string>
+    <string name="config_radio_access_family" translatable="false">GSM|CDMA|EVDO|WCDMA|LTE</string>
     <string name="config_wlan_data_service_package">com.google.android.iwlan</string>
     <string name="config_wlan_network_service_package">com.google.android.iwlan</string>
 </resources>

@@ -65,8 +65,8 @@
     <bool name="config_support_rtt">true</bool>
     <bool name="dynamic_routing_emergency_enabled">true</bool>
     <bool name="enable_logcat_collection_for_all_emergency_calls">false</bool>
-    <string name="config_domain_selection_service_component_name">com.android.phone/com.android.services.telephony.domainselection.TelephonyDomainSelectionService</string>
-    <string name="config_gba_package">com.shannon.rcsservice</string>
+    <string name="config_domain_selection_service_component_name" translatable="false">com.android.phone/com.android.services.telephony.domainselection.TelephonyDomainSelectionService</string>
+    <string name="config_gba_package" translatable="false">com.shannon.rcsservice</string>
     <string name="config_ims_mmtel_package">com.shannon.imsservice</string>
     <string name="config_ims_rcs_package">com.shannon.rcsservice</string>
 </resources>

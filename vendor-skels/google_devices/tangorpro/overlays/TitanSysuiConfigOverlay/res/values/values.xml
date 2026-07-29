@@ -39,11 +39,11 @@
     <dimen name="keyguard_affordance_fixed_width">64.0dp</dimen>
     <dimen name="keyguard_affordance_horizontal_offset">40.0dp</dimen>
     <dimen name="keyguard_affordance_vertical_offset">40.0dp</dimen>
-    <string name="config_lowLightDreamComponent">com.android.systemui/com.android.systemui.lowlightclock.LowLightClockDreamService</string>
+    <string name="config_lowLightDreamComponent" translatable="false">com.android.systemui/com.android.systemui.lowlightclock.LowLightClockDreamService</string>
     <string name="dock_setup_notification_text">Choose a screen saver and turn on hands-free help while your tablet is docked</string>
     <string name="dock_setup_notification_title">Do more while docked</string>
-    <string name="doze_brightness_sensor_type">com.google.sensor.binned_brightness</string>
-    <string name="proximity_sensor_type"/>
+    <string name="doze_brightness_sensor_type" translatable="false">com.google.sensor.binned_brightness</string>
+    <string name="proximity_sensor_type" translatable="false"/>
     <string name="stylus_system_update_notification_text">To make the most of your stylus, install the latest Android update</string>
     <string name="stylus_system_update_notification_title">Install Android update</string>
 </resources>

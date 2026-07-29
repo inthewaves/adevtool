@@ -480,17 +480,17 @@
     <integer name="config_stableDeviceDisplayWidth">1280</integer>
     <integer name="config_wait_for_satellite_enabling_response_timeout_millis">240000</integer>
     <string name="config_displayLightSensorType">com.google.sensor.auto_brightness</string>
-    <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
-    <string name="config_dozeTapSensorType">com.google.sensor.single_touch</string>
-    <string name="config_dozeUdfpsLongPressSensorType">com.google.sensor.long_press</string>
-    <string name="config_mainBuiltInDisplayCutout">m 689,102 a 49,49 0 0 0 -98,0 49,49 0 0 0 98,0 z @left</string>
-    <string name="config_mainBuiltInDisplayCutoutRectApproximation">m 586,0 h 108.5 v 204 h -108.5 Z @left</string>
+    <string name="config_dozeComponent" translatable="false">com.android.systemui/com.android.systemui.doze.DozeService</string>
+    <string name="config_dozeTapSensorType" translatable="false">com.google.sensor.single_touch</string>
+    <string name="config_dozeUdfpsLongPressSensorType" translatable="false">com.google.sensor.long_press</string>
+    <string name="config_mainBuiltInDisplayCutout" translatable="false">m 689,102 a 49,49 0 0 0 -98,0 49,49 0 0 0 98,0 z @left</string>
+    <string name="config_mainBuiltInDisplayCutoutRectApproximation" translatable="false">m 586,0 h 108.5 v 204 h -108.5 Z @left</string>
     <string name="config_mainDisplayShape">m 0,228c 0,0 0,-3 0,-5 0,-4 0,-8 0,-12 0,-3 0,-7 0,-10 0,-6 0,-13 1,-19 0,-5 1,-9 1,-14 1,-6 1,-11 2,-17 1,-5 2,-10 3,-15 1,-6 3,-11 5,-17 2,-7 5,-14 9,-21 3,-6 6,-12 10,-17 4,-6 7,-11 12,-16 2,-3 5,-6 8,-9 4,-4 8,-8 12,-12 3,-2 6,-5 8,-7 4,-3 7,-5 11,-7 6,-4 12,-7 19,-10 8,-4 16,-7 24,-9 8,-3 17,-4 26,-6 11,-2 21,-2 32,-3 10,-1 20,0 30,-1 7,0 14,0 21,0 274,0 549,-1 822,0 5,0 9,0 14,0 2,0 3,0 5,0 3,0 5,0 8,0 3,0 7,0 10,0 6,0 12,0 18,1 5,0 10,1 15,1 5,1 10,1 15,2 4,1 8,2 12,3 3,1 6,2 8,2 5,2 10,4 15,6 3,1 7,3 10,4 5,2 9,5 13,7 4,2 8,5 11,7 4,3 8,6 11,9 3,2 5,4 7,7 3,3 5,5 7,8 3,3 5,6 7,9 2,2 4,5 5,7 2,3 4,6 6,9 2,3 4,6 5,10 1,2 2,5 4,7 2,5 4,10 6,15 2,4 3,9 4,13 1,3 2,6 2,9 1,5 2,10 3,15 1,5 1,11 2,16 0,5 1,10 1,14 0,6 0,12 0,17 0,5 0,11 0,16 0,3 0,6 0,9v 8c 0,0 0,1597 0,2396 0,4 0,9 0,13 0,4 0,8 0,11 0,5 0,11 0,16 0,3 0,6 0,9 0,7 -1,14 -2,21 0,2 0,4 -1,6 -1,5 -2,10 -2,14 -1,4 -2,8 -3,11 -2,6 -4,12 -6,18 -1,4 -3,8 -5,11 -3,6 -6,12 -10,18 -2,4 -5,7 -7,11 -4,5 -9,11 -13,16 -2,3 -5,5 -7,7 -2,2 -3,3 -5,4 -2,2 -4,3 -6,5 -4,3 -7,5 -11,8 -2,2 -5,3 -7,4 -2,1 -5,3 -8,4 -3,1 -6,3 -9,4 -4,2 -8,3 -12,5 -6,2 -11,4 -17,5 -9,2 -17,4 -26,5 -9,1 -17,1 -26,2 -4,0 -9,0 -13,0 -7,0 -13,0 -20,0 -5,0 -10,0 -15,0 -272,0 -544,0 -815,0 -5,0 -9,0 -14,0 -2,0 -3,0 -5,0 -6,0 -12,0 -17,0 -4,0 -8,0 -12,0 -5,0 -10,0 -14,-1 -5,0 -10,-1 -15,-2 -4,-1 -8,-1 -12,-2 -5,-1 -9,-2 -14,-3 -7,-2 -14,-4 -21,-7 -6,-2 -12,-5 -17,-8 -4,-2 -8,-4 -11,-7 -3,-2 -5,-3 -7,-5 -4,-3 -9,-7 -13,-10 -4,-4 -8,-8 -12,-12 -3,-3 -5,-6 -8,-9 -4,-6 -8,-12 -12,-18 -3,-4 -5,-9 -7,-13 -1,-2 -2,-5 -3,-7 -2,-4 -3,-9 -5,-13 -2,-6 -4,-12 -5,-19 -1,-5 -2,-11 -3,-16 -1,-4 -1,-9 -2,-13 0,-5 -1,-10 -1,-15 0,-5 0,-10 0,-16 0,-4 0,-8 0,-12 0,-5 0,-10 0,-15 0,-3 0,-8 0,-8z</string>
-    <string name="config_mms_user_agent">g4qur</string>
-    <string name="config_mms_user_agent_profile_url">http://www.gstatic.com/android/sms/G4QUR.xml</string>
+    <string name="config_mms_user_agent" translatable="false">g4qur</string>
+    <string name="config_mms_user_agent_profile_url" translatable="false">http://www.gstatic.com/android/sms/G4QUR.xml</string>
     <string name="config_pluginsProviderJarPath">/system_ext/framework/laguna-plugin-provider.jar</string>
-    <string name="config_quickPickupSensorType">com.google.sensor.quick_pickup</string>
-    <string name="config_radio_access_family">GSM|CDMA|EVDO|WCDMA|LTE</string>
+    <string name="config_quickPickupSensorType" translatable="false">com.google.sensor.quick_pickup</string>
+    <string name="config_radio_access_family" translatable="false">GSM|CDMA|EVDO|WCDMA|LTE</string>
     <string name="config_satellite_sim_plmn_identifier">90198</string>
     <string name="config_satellite_sim_spn_identifier">Skylo</string>
     <string name="config_wlan_data_service_package">com.google.android.iwlan</string>

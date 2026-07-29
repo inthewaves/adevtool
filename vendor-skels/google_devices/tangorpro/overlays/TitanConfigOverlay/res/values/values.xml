@@ -30,6 +30,6 @@
     <integer name="config_lowLightDisplayBehaviorDefault">2</integer>
     <integer name="config_navBarInteractionMode">2</integer>
     <integer name="config_shortPressOnPowerBehavior">7</integer>
-    <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
+    <string name="config_dozeComponent" translatable="false">com.android.systemui/com.android.systemui.doze.DozeService</string>
     <string name="supervised_user_creation_label">Add child</string>
 </resources>
